@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.FactoryMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Factory" >
+    <id column="factory_id" property="factoryId" jdbcType="INTEGER" />
+    <result column="factory_no" property="factoryNo" jdbcType="CHAR" />
+    <result column="factory_no1" property="factoryNo1" jdbcType="CHAR" />
+    <result column="factory_no2" property="factoryNo2" jdbcType="CHAR" />
+    <result column="legalperson" property="legalperson" jdbcType="VARCHAR" />
+    <result column="factory_name" property="factoryName" jdbcType="VARCHAR" />
+    <result column="factory_usedname" property="factoryUsedname" jdbcType="VARCHAR" />
+    <result column="factory_size" property="factorySize" jdbcType="VARCHAR" />
+    <result column="county_city_dec" property="countyCityDec" jdbcType="VARCHAR" />
+    <result column="county_city" property="countyCity" jdbcType="VARCHAR" />
+    <result column="total_value" property="totalValue" jdbcType="DOUBLE" />
+    <result column="county_name" property="countyName" jdbcType="VARCHAR" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="industry_bigid" property="industryBigid" jdbcType="CHAR" />
+    <result column="industry_name" property="industryName" jdbcType="CHAR" />
+    <result column="industry_bigname" property="industryBigname" jdbcType="CHAR" />
+    <result column="industry_id" property="industryId" jdbcType="CHAR" />
+    <result column="addressdetail" property="addressdetail" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="CHAR" />
+    <result column="county_register_city_dec" property="countyRegisterCityDec" jdbcType="VARCHAR" />
+    <result column="county_register_city" property="countyRegisterCity" jdbcType="VARCHAR" />
+    <result column="aregisterdetail" property="aregisterdetail" jdbcType="VARCHAR" />
+    <result column="power_amount" property="powerAmount" jdbcType="DOUBLE" />
+    <result column="address_register" property="addressRegister" jdbcType="VARCHAR" />
+    <result column="countyid_register_dec" property="countyidRegisterDec" jdbcType="VARCHAR" />
+    <result column="countyid_register" property="countyidRegister" jdbcType="CHAR" />
+    <result column="factory_longitude" property="factoryLongitude" jdbcType="DOUBLE" />
+    <result column="factory_latitude" property="factoryLatitude" jdbcType="DOUBLE" />
+    <result column="source_type" property="sourceType" jdbcType="CHAR" />
+    <result column="gasequ_type" property="gasequType" jdbcType="CHAR" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+    <result column="last_changed_time" property="lastChangedTime" jdbcType="TIMESTAMP" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="filling_time" property="fillingTime" jdbcType="TIMESTAMP" />
+    <result column="devicestatus" property="devicestatus" jdbcType="INTEGER" />
+    <result column="boilerstatus" property="boilerstatus" jdbcType="INTEGER" />
+    <result column="kilnstatus" property="kilnstatus" jdbcType="INTEGER" />
+    <result column="Year_days" property="yearDays" jdbcType="INTEGER" />
+    <result column="Days_hours" property="daysHours" jdbcType="INTEGER" />
+    <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+    <result column="CITY_ID" property="cityId" jdbcType="INTEGER" />
+    <result column="total_output" property="totalOutput" jdbcType="DOUBLE" />
+    <result column="factorystatus" property="factorystatus" jdbcType="INTEGER" />
+    <result column="exhauststatus" property="exhauststatus" jdbcType="INTEGER" />
+    <result column="statusdec" property="statusdec" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="exhaust_num" property="exhaustNum" jdbcType="INTEGER" />
+    <result column="important" property="important" jdbcType="INTEGER" />
+    <result column="shihuaflag" property="shihuaflag" jdbcType="INTEGER" />
+    <result column="feiqnub" property="feiqnub" jdbcType="INTEGER" />
+    <result column="principal_name" property="principalName" jdbcType="VARCHAR" />
+    <result column="principal_phone" property="principalPhone" jdbcType="VARCHAR" />
+    <result column="principal_mobile" property="principalMobile" jdbcType="VARCHAR" />
+    <result column="principal_email" property="principalEmail" jdbcType="VARCHAR" />
+    <result column="lat1" property="lat1" jdbcType="DOUBLE" />
+    <result column="lon1" property="lon1" jdbcType="DOUBLE" />
+    <result column="lat2" property="lat2" jdbcType="DOUBLE" />
+    <result column="lon2" property="lon2" jdbcType="DOUBLE" />
+    <result column="lat3" property="lat3" jdbcType="DOUBLE" />
+    <result column="lon3" property="lon3" jdbcType="DOUBLE" />
+    <result column="lat4" property="lat4" jdbcType="DOUBLE" />
+    <result column="lon4" property="lon4" jdbcType="DOUBLE" />
+    <result column="lat5" property="lat5" jdbcType="DOUBLE" />
+    <result column="lon5" property="lon5" jdbcType="DOUBLE" />
+    <result column="lat6" property="lat6" jdbcType="DOUBLE" />
+    <result column="lon6" property="lon6" jdbcType="DOUBLE" />
+    <result column="lat7" property="lat7" jdbcType="DOUBLE" />
+    <result column="lon7" property="lon7" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    factory_id, factory_no, factory_no1, factory_no2, legalperson, factory_name, factory_usedname, 
+    factory_size, county_city_dec, county_city, total_value, county_name, county_id, 
+    industry_bigid, industry_name, industry_bigname, industry_id, addressdetail, address, 
+    county_register_city_dec, county_register_city, aregisterdetail, power_amount, address_register, 
+    countyid_register_dec, countyid_register, factory_longitude, factory_latitude, source_type, 
+    gasequ_type, year, flag, last_changed_time, audit_time, filling_time, devicestatus, 
+    boilerstatus, kilnstatus, Year_days, Days_hours, CITY_NAME, CITY_ID, total_output, 
+    factorystatus, exhauststatus, statusdec, status, exhaust_num, important, shihuaflag, 
+    feiqnub, principal_name, principal_phone, principal_mobile, principal_email, lat1, 
+    lon1, lat2, lon2, lat3, lon3, lat4, lon4, lat5, lon5, lat6, lon6, lat7, lon7
+  </sql>
+  <select id="selectByFactoryQuery" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.FactoryQuery">
+    SELECT factory.factory_id,
+    factory.factory_no1,
+    factory.factory_name,
+    factory.factory_latitude,
+    factory.factory_longitude,
+    factory.source_type,
+    factory.`year`,
+    factory.county_city,
+    city.city_name,
+    factory.COUNTY_ID,
+    county.COUNTY_NAME,
+    factory.`status`,
+    `status`.introduction AS statusdec
+    FROM factory
+    LEFT JOIN city
+    ON factory.county_city=city.city_code
+    LEFT JOIN county
+    ON factory.county_id=county.COUNTY_ID
+    LEFT JOIN `status`
+    ON factory.`status`=`status`.id
+    <where>
+      <if test="factoryId != null and factoryId != ''">
+        factory.factory_id = #{factoryId}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND factory.county_id = #{countyId}
+      </if>
+      <if test="countyCity != null and countyCity != ''">
+        AND factory.county_city = #{countyCity}
+      </if>
+      <if test="status != null and status != ''">
+        AND factory.status = #{status}
+      </if>
+      <if test="factoryName != null and factoryName != ''">
+        AND factory.factory_name LIKE CONCAT(CONCAT('%',#{factoryName},'%'))
+      </if>
+      <if test="factoryNo1 != null and factoryNo1 != ''">
+        AND factory.factory_no1 LIKE CONCAT(CONCAT('%',#{factoryNo1},'%'))
+      </if>
+    </where>
+    ORDER BY factory_id ASC
+  </select>
+<!--  <select id="selectAllFactorys" resultMap="BaseResultMap">-->
+<!--    SELECT * FROM factory WHERE 1=1 ORDER BY factory_id ASC-->
+<!--  </select>-->
+  <select id="selectAllFactorys" resultMap="BaseResultMap">
+      SELECT factory.factory_id,
+                   factory.factory_no1,
+                   factory.factory_name,
+                   factory.factory_latitude,
+                   factory.factory_longitude,
+                   factory.source_type,
+                   factory.`year`,
+                   factory.county_city,
+                   city.city_name,
+                   factory.COUNTY_ID,
+                   county.COUNTY_NAME,
+                   factory.`status`,
+                   `status`.introduction AS statusdec
+      FROM factory
+      LEFT JOIN city
+      ON factory.county_city=city.city_code
+      LEFT JOIN county
+      ON factory.county_id=county.COUNTY_ID
+      LEFT JOIN `status`
+      ON factory.`status`=`status`.id
+      ORDER BY factory_id ASC
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM factory WHERE factory_id = #{factoryId,jdbcType=INTEGER}
+  </select>
+  <select id="selectBackById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM factory WHERE factory_id &lt; #{factoryId,jdbcType=INTEGER} ORDER BY factory_id DESC LIMIT 1
+  </select>
+  <select id="selectNextById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM factory WHERE factory_id >#{factoryId,jdbcType=INTEGER} ORDER BY factory_id ASC LIMIT 1
+  </select>
+  <update id="updatePassByFactoryNO" parameterType="nankai.xl.business.model.User" >
+    update user
+    set password = #{password,jdbcType=VARCHAR}
+    where fac_no = #{facNo,jdbcType=VARCHAR}
+  </update>
+  <insert id="insertSelective" keyColumn="factory_no1" keyProperty="factoryNo1" parameterType="nankai.xl.business.model.Factory"
+          useGeneratedKeys="true">
+    insert into factory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="factoryId != null" >
+        factory_id,
+      </if>
+      <if test="factoryNo != null" >
+        factory_no,
+      </if>
+      <if test="factoryNo1 != null" >
+        factory_no1,
+      </if>
+      <if test="factoryNo2 != null" >
+        factory_no2,
+      </if>
+      <if test="legalperson != null" >
+        legalperson,
+      </if>
+      <if test="factoryName != null" >
+        factory_name,
+      </if>
+      <if test="factoryUsedname != null" >
+        factory_usedname,
+      </if>
+      <if test="factorySize != null" >
+        factory_size,
+      </if>
+      <if test="countyCityDec != null" >
+        county_city_dec,
+      </if>
+      <if test="countyCity != null" >
+        county_city,
+      </if>
+      <if test="totalValue != null" >
+        total_value,
+      </if>
+      <if test="countyName != null" >
+        county_name,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="industryBigid != null" >
+        industry_bigid,
+      </if>
+      <if test="industryName != null" >
+        industry_name,
+      </if>
+      <if test="industryBigname != null" >
+        industry_bigname,
+      </if>
+      <if test="industryId != null" >
+        industry_id,
+      </if>
+      <if test="addressdetail != null" >
+        addressdetail,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="countyRegisterCityDec != null" >
+        county_register_city_dec,
+      </if>
+      <if test="countyRegisterCity != null" >
+        county_register_city,
+      </if>
+      <if test="aregisterdetail != null" >
+        aregisterdetail,
+      </if>
+      <if test="powerAmount != null" >
+        power_amount,
+      </if>
+      <if test="addressRegister != null" >
+        address_register,
+      </if>
+      <if test="countyidRegisterDec != null" >
+        countyid_register_dec,
+      </if>
+      <if test="countyidRegister != null" >
+        countyid_register,
+      </if>
+      <if test="factoryLongitude != null" >
+        factory_longitude,
+      </if>
+      <if test="factoryLatitude != null" >
+        factory_latitude,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="gasequType != null" >
+        gasequ_type,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="lastChangedTime != null" >
+        last_changed_time,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="fillingTime != null" >
+        filling_time,
+      </if>
+      <if test="devicestatus != null" >
+        devicestatus,
+      </if>
+      <if test="boilerstatus != null" >
+        boilerstatus,
+      </if>
+      <if test="kilnstatus != null" >
+        kilnstatus,
+      </if>
+      <if test="yearDays != null" >
+        Year_days,
+      </if>
+      <if test="daysHours != null" >
+        Days_hours,
+      </if>
+      <if test="cityName != null" >
+        CITY_NAME,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="totalOutput != null" >
+        total_output,
+      </if>
+      <if test="factorystatus != null" >
+        factorystatus,
+      </if>
+      <if test="exhauststatus != null" >
+        exhauststatus,
+      </if>
+      <if test="statusdec != null" >
+        statusdec,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="exhaustNum != null" >
+        exhaust_num,
+      </if>
+      <if test="important != null" >
+        important,
+      </if>
+      <if test="shihuaflag != null" >
+        shihuaflag,
+      </if>
+      <if test="feiqnub != null" >
+        feiqnub,
+      </if>
+      <if test="principalName != null" >
+        principal_name,
+      </if>
+      <if test="principalPhone != null" >
+        principal_phone,
+      </if>
+      <if test="principalMobile != null" >
+        principal_mobile,
+      </if>
+      <if test="principalEmail != null" >
+        principal_email,
+      </if>
+      <if test="lat1 != null" >
+        lat1,
+      </if>
+      <if test="lon1 != null" >
+        lon1,
+      </if>
+      <if test="lat2 != null" >
+        lat2,
+      </if>
+      <if test="lon2 != null" >
+        lon2,
+      </if>
+      <if test="lat3 != null" >
+        lat3,
+      </if>
+      <if test="lon3 != null" >
+        lon3,
+      </if>
+      <if test="lat4 != null" >
+        lat4,
+      </if>
+      <if test="lon4 != null" >
+        lon4,
+      </if>
+      <if test="lat5 != null" >
+        lat5,
+      </if>
+      <if test="lon5 != null" >
+        lon5,
+      </if>
+      <if test="lat6 != null" >
+        lat6,
+      </if>
+      <if test="lon6 != null" >
+        lon6,
+      </if>
+      <if test="lat7 != null" >
+        lat7,
+      </if>
+      <if test="lon7 != null" >
+        lon7,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="factoryId != null" >
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null" >
+        #{factoryNo,jdbcType=CHAR},
+      </if>
+      <if test="factoryNo1 != null" >
+        #{factoryNo1,jdbcType=CHAR},
+      </if>
+      <if test="factoryNo2 != null" >
+        #{factoryNo2,jdbcType=CHAR},
+      </if>
+      <if test="legalperson != null" >
+        #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryName != null" >
+        #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryUsedname != null" >
+        #{factoryUsedname,jdbcType=VARCHAR},
+      </if>
+      <if test="factorySize != null" >
+        #{factorySize,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCityDec != null" >
+        #{countyCityDec,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCity != null" >
+        #{countyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="totalValue != null" >
+        #{totalValue,jdbcType=DOUBLE},
+      </if>
+      <if test="countyName != null" >
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="industryBigid != null" >
+        #{industryBigid,jdbcType=CHAR},
+      </if>
+      <if test="industryName != null" >
+        #{industryName,jdbcType=CHAR},
+      </if>
+      <if test="industryBigname != null" >
+        #{industryBigname,jdbcType=CHAR},
+      </if>
+      <if test="industryId != null" >
+        #{industryId,jdbcType=CHAR},
+      </if>
+      <if test="addressdetail != null" >
+        #{addressdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=CHAR},
+      </if>
+      <if test="countyRegisterCityDec != null" >
+        #{countyRegisterCityDec,jdbcType=VARCHAR},
+      </if>
+      <if test="countyRegisterCity != null" >
+        #{countyRegisterCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aregisterdetail != null" >
+        #{aregisterdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="powerAmount != null" >
+        #{powerAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="addressRegister != null" >
+        #{addressRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="countyidRegisterDec != null" >
+        #{countyidRegisterDec,jdbcType=VARCHAR},
+      </if>
+      <if test="countyidRegister != null" >
+        #{countyidRegister,jdbcType=CHAR},
+      </if>
+      <if test="factoryLongitude != null" >
+        #{factoryLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="factoryLatitude != null" >
+        #{factoryLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=CHAR},
+      </if>
+      <if test="gasequType != null" >
+        #{gasequType,jdbcType=CHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+      <if test="lastChangedTime != null" >
+        #{lastChangedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillingTime != null" >
+        #{fillingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="devicestatus != null" >
+        #{devicestatus,jdbcType=INTEGER},
+      </if>
+      <if test="boilerstatus != null" >
+        #{boilerstatus,jdbcType=INTEGER},
+      </if>
+      <if test="kilnstatus != null" >
+        #{kilnstatus,jdbcType=INTEGER},
+      </if>
+      <if test="yearDays != null" >
+        #{yearDays,jdbcType=INTEGER},
+      </if>
+      <if test="daysHours != null" >
+        #{daysHours,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutput != null" >
+        #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="factorystatus != null" >
+        #{factorystatus,jdbcType=INTEGER},
+      </if>
+      <if test="exhauststatus != null" >
+        #{exhauststatus,jdbcType=INTEGER},
+      </if>
+      <if test="statusdec != null" >
+        #{statusdec,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="exhaustNum != null" >
+        #{exhaustNum,jdbcType=INTEGER},
+      </if>
+      <if test="important != null" >
+        #{important,jdbcType=INTEGER},
+      </if>
+      <if test="shihuaflag != null" >
+        #{shihuaflag,jdbcType=INTEGER},
+      </if>
+      <if test="feiqnub != null" >
+        #{feiqnub,jdbcType=INTEGER},
+      </if>
+      <if test="principalName != null" >
+        #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhone != null" >
+        #{principalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="principalMobile != null" >
+        #{principalMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="principalEmail != null" >
+        #{principalEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="lat1 != null" >
+        #{lat1,jdbcType=DOUBLE},
+      </if>
+      <if test="lon1 != null" >
+        #{lon1,jdbcType=DOUBLE},
+      </if>
+      <if test="lat2 != null" >
+        #{lat2,jdbcType=DOUBLE},
+      </if>
+      <if test="lon2 != null" >
+        #{lon2,jdbcType=DOUBLE},
+      </if>
+      <if test="lat3 != null" >
+        #{lat3,jdbcType=DOUBLE},
+      </if>
+      <if test="lon3 != null" >
+        #{lon3,jdbcType=DOUBLE},
+      </if>
+      <if test="lat4 != null" >
+        #{lat4,jdbcType=DOUBLE},
+      </if>
+      <if test="lon4 != null" >
+        #{lon4,jdbcType=DOUBLE},
+      </if>
+      <if test="lat5 != null" >
+        #{lat5,jdbcType=DOUBLE},
+      </if>
+      <if test="lon5 != null" >
+        #{lon5,jdbcType=DOUBLE},
+      </if>
+      <if test="lat6 != null" >
+        #{lat6,jdbcType=DOUBLE},
+      </if>
+      <if test="lon6 != null" >
+        #{lon6,jdbcType=DOUBLE},
+      </if>
+      <if test="lat7 != null" >
+        #{lat7,jdbcType=DOUBLE},
+      </if>
+      <if test="lon7 != null" >
+        #{lon7,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByFactoryNo1" resultType="java.lang.Integer">
+        select count(*)
+        from factory where factory_no1 = #{factoryNo1}
+  </select>
+  <update id="updateByFactoryId" parameterType="nankai.xl.business.model.Factory" >
+    update factory
+    <set >
+      <if test="factoryNo != null" >
+        factory_no = #{factoryNo,jdbcType=CHAR},
+      </if>
+      <if test="factoryNo1 != null" >
+        factory_no1 = #{factoryNo1,jdbcType=CHAR},
+      </if>
+      <if test="factoryNo2 != null" >
+        factory_no2 = #{factoryNo2,jdbcType=CHAR},
+      </if>
+      <if test="legalperson != null" >
+        legalperson = #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryName != null" >
+        factory_name = #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryUsedname != null" >
+        factory_usedname = #{factoryUsedname,jdbcType=VARCHAR},
+      </if>
+      <if test="factorySize != null" >
+        factory_size = #{factorySize,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCityDec != null" >
+        county_city_dec = #{countyCityDec,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCity != null" >
+        county_city = #{countyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="totalValue != null" >
+        total_value = #{totalValue,jdbcType=DOUBLE},
+      </if>
+      <if test="countyName != null" >
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="industryBigid != null" >
+        industry_bigid = #{industryBigid,jdbcType=CHAR},
+      </if>
+      <if test="industryName != null" >
+        industry_name = #{industryName,jdbcType=CHAR},
+      </if>
+      <if test="industryBigname != null" >
+        industry_bigname = #{industryBigname,jdbcType=CHAR},
+      </if>
+      <if test="industryId != null" >
+        industry_id = #{industryId,jdbcType=CHAR},
+      </if>
+      <if test="addressdetail != null" >
+        addressdetail = #{addressdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=CHAR},
+      </if>
+      <if test="countyRegisterCityDec != null" >
+        county_register_city_dec = #{countyRegisterCityDec,jdbcType=VARCHAR},
+      </if>
+      <if test="countyRegisterCity != null" >
+        county_register_city = #{countyRegisterCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aregisterdetail != null" >
+        aregisterdetail = #{aregisterdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="powerAmount != null" >
+        power_amount = #{powerAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="addressRegister != null" >
+        address_register = #{addressRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="countyidRegisterDec != null" >
+        countyid_register_dec = #{countyidRegisterDec,jdbcType=VARCHAR},
+      </if>
+      <if test="countyidRegister != null" >
+        countyid_register = #{countyidRegister,jdbcType=CHAR},
+      </if>
+      <if test="factoryLongitude != null" >
+        factory_longitude = #{factoryLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="factoryLatitude != null" >
+        factory_latitude = #{factoryLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=CHAR},
+      </if>
+      <if test="gasequType != null" >
+        gasequ_type = #{gasequType,jdbcType=CHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+      <if test="lastChangedTime != null" >
+        last_changed_time = #{lastChangedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillingTime != null" >
+        filling_time = #{fillingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="devicestatus != null" >
+        devicestatus = #{devicestatus,jdbcType=INTEGER},
+      </if>
+      <if test="boilerstatus != null" >
+        boilerstatus = #{boilerstatus,jdbcType=INTEGER},
+      </if>
+      <if test="kilnstatus != null" >
+        kilnstatus = #{kilnstatus,jdbcType=INTEGER},
+      </if>
+      <if test="yearDays != null" >
+        Year_days = #{yearDays,jdbcType=INTEGER},
+      </if>
+      <if test="daysHours != null" >
+        Days_hours = #{daysHours,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutput != null" >
+        total_output = #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="factorystatus != null" >
+        factorystatus = #{factorystatus,jdbcType=INTEGER},
+      </if>
+      <if test="exhauststatus != null" >
+        exhauststatus = #{exhauststatus,jdbcType=INTEGER},
+      </if>
+      <if test="statusdec != null" >
+        statusdec = #{statusdec,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="exhaustNum != null" >
+        exhaust_num = #{exhaustNum,jdbcType=INTEGER},
+      </if>
+      <if test="important != null" >
+        important = #{important,jdbcType=INTEGER},
+      </if>
+      <if test="shihuaflag != null" >
+        shihuaflag = #{shihuaflag,jdbcType=INTEGER},
+      </if>
+      <if test="feiqnub != null" >
+        feiqnub = #{feiqnub,jdbcType=INTEGER},
+      </if>
+      <if test="principalName != null" >
+        principal_name = #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhone != null" >
+        principal_phone = #{principalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="principalMobile != null" >
+        principal_mobile = #{principalMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="principalEmail != null" >
+        principal_email = #{principalEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="lat1 != null" >
+        lat1 = #{lat1,jdbcType=DOUBLE},
+      </if>
+      <if test="lon1 != null" >
+        lon1 = #{lon1,jdbcType=DOUBLE},
+      </if>
+      <if test="lat2 != null" >
+        lat2 = #{lat2,jdbcType=DOUBLE},
+      </if>
+      <if test="lon2 != null" >
+        lon2 = #{lon2,jdbcType=DOUBLE},
+      </if>
+      <if test="lat3 != null" >
+        lat3 = #{lat3,jdbcType=DOUBLE},
+      </if>
+      <if test="lon3 != null" >
+        lon3 = #{lon3,jdbcType=DOUBLE},
+      </if>
+      <if test="lat4 != null" >
+        lat4 = #{lat4,jdbcType=DOUBLE},
+      </if>
+      <if test="lon4 != null" >
+        lon4 = #{lon4,jdbcType=DOUBLE},
+      </if>
+      <if test="lat5 != null" >
+        lat5 = #{lat5,jdbcType=DOUBLE},
+      </if>
+      <if test="lon5 != null" >
+        lon5 = #{lon5,jdbcType=DOUBLE},
+      </if>
+      <if test="lat6 != null" >
+        lat6 = #{lat6,jdbcType=DOUBLE},
+      </if>
+      <if test="lon6 != null" >
+        lon6 = #{lon6,jdbcType=DOUBLE},
+      </if>
+      <if test="lat7 != null" >
+        lat7 = #{lat7,jdbcType=DOUBLE},
+      </if>
+      <if test="lon7 != null" >
+        lon7 = #{lon7,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where factory_id = #{factoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

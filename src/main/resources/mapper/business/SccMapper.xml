@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.SccMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Scc" >
+    <id column="scc" property="scc" jdbcType="CHAR" />
+    <result column="epa_scc" property="epaScc" jdbcType="CHAR" />
+    <result column="gridid_9k" property="gridid9k" jdbcType="CHAR" />
+    <result column="gridid_3k" property="gridid3k" jdbcType="CHAR" />
+    <result column="nox" property="nox" jdbcType="DOUBLE" />
+    <result column="so2" property="so2" jdbcType="DOUBLE" />
+    <result column="nh3" property="nh3" jdbcType="DOUBLE" />
+    <result column="vocs" property="vocs" jdbcType="DOUBLE" />
+    <result column="co" property="co" jdbcType="DOUBLE" />
+    <result column="pm10" property="pm10" jdbcType="DOUBLE" />
+    <result column="pm25" property="pm25" jdbcType="DOUBLE" />
+    <result column="oc" property="oc" jdbcType="DOUBLE" />
+    <result column="pm" property="pm" jdbcType="DOUBLE" />
+    <result column="bc" property="bc" jdbcType="DOUBLE" />
+    <result column="monthid" property="monthid" jdbcType="INTEGER" />
+    <result column="nkweekid" property="nkweekid" jdbcType="INTEGER" />
+    <result column="nkdayid" property="nkdayid" jdbcType="INTEGER" />
+    <result column="nknoxid" property="nknoxid" jdbcType="INTEGER" />
+    <result column="nkvocid" property="nkvocid" jdbcType="INTEGER" />
+    <result column="nkpm25id" property="nkpm25id" jdbcType="INTEGER" />
+    <result column="ec" property="ec" jdbcType="DOUBLE" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="nox_real" property="noxReal" jdbcType="DOUBLE" />
+    <result column="so2_real" property="so2Real" jdbcType="DOUBLE" />
+    <result column="nh3_real" property="nh3Real" jdbcType="DOUBLE" />
+    <result column="vocs_real" property="vocsReal" jdbcType="DOUBLE" />
+    <result column="co_real" property="coReal" jdbcType="DOUBLE" />
+    <result column="pm10_real" property="pm10Real" jdbcType="DOUBLE" />
+    <result column="pm25_real" property="pm25Real" jdbcType="DOUBLE" />
+    <result column="bc_real" property="bcReal" jdbcType="DOUBLE" />
+    <result column="oc_real" property="ocReal" jdbcType="DOUBLE" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scc, epa_scc, gridid_9k, gridid_3k, nox, so2, nh3, vocs, co, pm10, pm25, oc, pm,
+    bc, monthid, nkweekid, nkdayid, nknoxid, nkvocid, nkpm25id, ec, unit, nox_real, so2_real,
+    nh3_real, vocs_real, co_real, pm10_real, pm25_real, bc_real, oc_real, flag
+  </sql>
+  <select id="selectByScc" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from scc
+    where scc = #{scc,jdbcType=CHAR}
+  </select>
+</mapper>

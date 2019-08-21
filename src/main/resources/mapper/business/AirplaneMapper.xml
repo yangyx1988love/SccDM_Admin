@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.AirplaneMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.AirplaneVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="scc_code" property="sccCode" jdbcType="CHAR" />
+    <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
+    <result column="fuel_type" property="fuelType" jdbcType="CHAR" />
+    <result column="activity_level" property="activityLevel" jdbcType="DOUBLE" />
+    <result column="fuel_annual_usage" property="fuelAnnualUsage" jdbcType="DOUBLE" />
+    <result column="fuel_sulfur_usage" property="fuelSulfurUsage" jdbcType="DOUBLE" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="vocs_emission" property="vocsEmission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.AirplaneVo" >
+    SELECT airplane.*,county.COUNTY_NAME
+    FROM airplane
+    LEFT JOIN county
+	ON airplane.county_id=county.COUNTY_ID
+    <where>
+      <if test="year != null and year != ''">
+        airplane.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND airplane.county_id = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT airplane.*,county.COUNTY_NAME
+    FROM airplane
+    LEFT JOIN county
+	ON airplane.county_id=county.COUNTY_ID
+    where airplane.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from airplane
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Airplane" >
+    insert into airplane (id, year, county_id, 
+      scc_code, source_descrip, fuel_type, 
+      activity_level, fuel_annual_usage, fuel_sulfur_usage, 
+      pm10_emission, pm25_emission, co_emission, 
+      so2_emission, nox_emission, vocs_emission, 
+      bc_emission, oc_emission, nh3_emission
+      )
+    values (#{id,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, #{countyId,jdbcType=CHAR}, 
+      #{sccCode,jdbcType=CHAR}, #{sourceDescrip,jdbcType=VARCHAR}, #{fuelType,jdbcType=CHAR}, 
+      #{activityLevel,jdbcType=DOUBLE}, #{fuelAnnualUsage,jdbcType=DOUBLE}, #{fuelSulfurUsage,jdbcType=DOUBLE}, 
+      #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{coEmission,jdbcType=DOUBLE}, 
+      #{so2Emission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, #{vocsEmission,jdbcType=DOUBLE}, 
+      #{bcEmission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}
+      )
+    ON DUPLICATE KEY UPDATE   
+      id = #{id,jdbcType=INTEGER},
+      year = #{year,jdbcType=CHAR},
+      county_id = #{countyId,jdbcType=CHAR},
+      scc_code = #{sccCode,jdbcType=CHAR},
+      source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      fuel_type = #{fuelType,jdbcType=CHAR},
+      activity_level = #{activityLevel,jdbcType=DOUBLE},
+      fuel_annual_usage = #{fuelAnnualUsage,jdbcType=DOUBLE},
+      fuel_sulfur_usage = #{fuelSulfurUsage,jdbcType=DOUBLE},
+      pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      co_emission = #{coEmission,jdbcType=DOUBLE},
+      so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      vocs_emission = #{vocsEmission,jdbcType=DOUBLE},
+      bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{nh3Emission,jdbcType=DOUBLE}
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.Airplane" >
+    update airplane
+    <set >
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="sccCode != null" >
+        scc_code = #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null" >
+        fuel_type = #{fuelType,jdbcType=CHAR},
+      </if>
+      <if test="activityLevel != null" >
+        activity_level = #{activityLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="fuelAnnualUsage != null" >
+        fuel_annual_usage = #{fuelAnnualUsage,jdbcType=DOUBLE},
+      </if>
+      <if test="fuelSulfurUsage != null" >
+        fuel_sulfur_usage = #{fuelSulfurUsage,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocsEmission != null" >
+        vocs_emission = #{vocsEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

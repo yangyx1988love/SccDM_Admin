@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.CountyMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.County" >
+    <id column="COUNTY_ID" property="countyId" jdbcType="CHAR" />
+    <result column="provice_code" property="proviceCode" jdbcType="CHAR" />
+    <result column="city_code" property="cityCode" jdbcType="CHAR" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+    <result column="TOTALGRIDS" property="totalgrids" jdbcType="INTEGER" />
+    <result column="XMAX" property="xmax" jdbcType="DOUBLE" />
+    <result column="XMIN" property="xmin" jdbcType="DOUBLE" />
+    <result column="YMAX" property="ymax" jdbcType="DOUBLE" />
+    <result column="YMIN" property="ymin" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COUNTY_ID, provice_code, city_code, COUNTY_NAME, TOTALGRIDS, XMAX, XMIN, YMAX, YMIN
+  </sql>
+  <select id="selectAllCountys" resultMap="BaseResultMap">
+    select * from county where 1=1
+  </select>
+  <select id="selectCountysByCityCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from county
+    where city_code = #{cityCode,jdbcType=CHAR}
+  </select>
+  <select id="selectCountyById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from county
+    where COUNTY_ID = #{countyId,jdbcType=CHAR}
+  </select>
+</mapper>

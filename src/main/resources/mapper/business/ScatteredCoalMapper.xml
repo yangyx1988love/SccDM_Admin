@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.ScatteredCoalMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.ScatteredCoal" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="scc_code" property="sccCode" jdbcType="CHAR" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="activity_level" property="activityLevel" jdbcType="CHAR" />
+    <result column="fuel_metering_unit" property="fuelMeteringUnit" jdbcType="CHAR" />
+    <result column="activity_level_num" property="activityLevelNum" jdbcType="DOUBLE" />
+    <result column="control_measure" property="controlMeasure" jdbcType="CHAR" />
+    <result column="sulfur_content" property="sulfurContent" jdbcType="DOUBLE" />
+    <result column="ash_content" property="ashContent" jdbcType="DOUBLE" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="source_description" property="sourceDescription" jdbcType="CHAR" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, scc_code, year, county_id, activity_level, fuel_metering_unit, activity_level_num,
+    control_measure, sulfur_content, ash_content, pm25_emission, pm10_emission, co_emission,
+    voc_emission, so2_emission, nox_emission, nh3_emission, oc_emission, bc_emission,
+    source_description,COUNTY_NAME
+  </sql>
+  <select id="selectByScatteredCoal" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="nankai.xl.business.model.ScatteredCoal" >
+      SELECT scattered_coal.*,COUNTY_NAME
+      FROM scattered_coal
+      INNER JOIN (
+      SELECT COUNTY_ID,COUNTY_NAME,city_name FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+      ) co
+      ON co.COUNTY_ID=scattered_coal.county_id
+    <where>
+      <if test="year != null and year != ''">
+        scattered_coal.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND scattered_coal.county_id = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectAll" resultType="nankai.xl.business.model.vo.ScatteredCoalVo">
+    SELECT scattered_coal.*,COUNTY_NAME
+    FROM scattered_coal
+    INNER JOIN (
+        SELECT COUNTY_ID,COUNTY_NAME,city_name FROM county
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=scattered_coal.county_id
+  </select>
+  <select id="selectById" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="java.lang.Integer">
+    SELECT scattered_coal.*,COUNTY_NAME
+    FROM scattered_coal
+    INNER JOIN (
+        SELECT COUNTY_ID,COUNTY_NAME,city_name FROM county
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=scattered_coal.county_id
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ScatteredCoal" >
+    insert into scattered_coal (id, scc_code, year, 
+      county_id, activity_level, fuel_metering_unit, 
+      activity_level_num, control_measure, sulfur_content, 
+      ash_content, pm25_emission, pm10_emission, 
+      co_emission, voc_emission, so2_emission, 
+      nox_emission, nh3_emission, oc_emission, 
+      bc_emission, source_description)
+    values (#{id,jdbcType=INTEGER}, #{sccCode,jdbcType=CHAR}, #{year,jdbcType=CHAR}, 
+      #{countyId,jdbcType=CHAR}, #{activityLevel,jdbcType=CHAR}, #{fuelMeteringUnit,jdbcType=CHAR}, 
+      #{activityLevelNum,jdbcType=DOUBLE}, #{controlMeasure,jdbcType=CHAR}, #{sulfurContent,jdbcType=DOUBLE}, 
+      #{ashContent,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{pm10Emission,jdbcType=DOUBLE}, 
+      #{coEmission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE}, 
+      #{noxEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, 
+      #{bcEmission,jdbcType=DOUBLE}, #{sourceDescription,jdbcType=CHAR})
+    ON DUPLICATE KEY UPDATE
+      id = #{record.id,jdbcType=INTEGER},
+      scc_code = #{sccCode,jdbcType=CHAR},
+      year = #{year,jdbcType=CHAR},
+      county_id = #{countyId,jdbcType=CHAR},
+      activity_level = #{activityLevel,jdbcType=CHAR},
+      fuel_metering_unit = #{fuelMeteringUnit,jdbcType=CHAR},
+      activity_level_num = #{activityLevelNum,jdbcType=DOUBLE},
+      control_measure = #{controlMeasure,jdbcType=CHAR},
+      sulfur_content = #{sulfurContent,jdbcType=DOUBLE},
+      ash_content = #{ashContent,jdbcType=DOUBLE},
+      pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      co_emission = #{coEmission,jdbcType=DOUBLE},
+      voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      source_description = #{sourceDescription,jdbcType=CHAR}
+  </insert>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from scattered_coal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+</mapper>

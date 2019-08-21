@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>模板下载</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row">
+            <table class="layui-hide" id="templeTable"></table>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <script type="text/html" id="rank">
+        {{d.LAY_TABLE_INDEX+1}}
+    </script>
+    <script type="text/html" id="column-toolbar">
+        <shiro:hasPermission name="factory:reset">
+            <a class="layui-btn layui-btn-xs" lay-event="down">下载</a>
+        </shiro:hasPermission>
+    </script>
+    <script>
+        layui.use(['table','element'], function () {
+            var table = layui.table //表格
+            table.render({
+                elem: '#templeTable'
+                , url: '/file/temple/list'
+                , page: true
+                , toolbar: '#toolbar'
+                , cols: [
+                    [
+                        { field: 'rank', title: '序号', width: 80, sort: true, fixed: 'left', templet: '#rank' }
+                        , {field: 'name', title: '模板文件说明'}
+                        , {title: '操作',width: 80, fixed: 'right', align: 'center', toolbar: '#column-toolbar'}
+                    ]
+                ]
+                ,page: false   //开启分页
+            });
+            // 行点击事件 重置密码
+            table.on('tool', function (obj) {
+                var data = obj.data;
+                var event = obj.event;
+                if (event === 'down') {
+                    down(data);
+                }
+            });
+            function down(data) {
+                var name = data.name;
+                window.location.href ='/file/temple/down?name='+ name;
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

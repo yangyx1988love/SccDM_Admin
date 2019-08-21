@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>企业基本信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form class="layui-form layui-form-pane">
+            <fieldset class="layui-elem-field layui-field-title" >
+                <legend>企业基本信息</legend>
+            </fieldset>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">机构代码</label>
+                    <div class="layui-input-block">
+                        <input id="factoryNo1" name="factoryNo1" th:value="${factory?.factoryNo1}" class="layui-input" style="width: 350px" type="text" readonly="readonly" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <label class="layui-form-label">企业名称</label>
+                    <div class="layui-input-inline" >
+                        <input id="factoryName" name="factoryName" th:value="${factory?.factoryName}" class="layui-input" style="width: 350px" type="text" readonly="readonly" lay-verify="required">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">曾用名</label>
+                    <div class="layui-input-block" style="width: 250px">
+                        <input id="factoryUsedname" name="factoryUsedname" th:value="${factory?.factoryUsedname}" class="layui-input" type="text"  lay-verify="chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label">法定代表人</label>
+                    <div class="layui-input-block" style="width: 250px">
+                        <input id="legalperson" name="legalperson" th:value="${factory?.legalperson}" class="layui-input" type="text" readonly="readonly" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 15px;">
+                    <label class="layui-form-label">企业规模</label>
+                    <div class="layui-input-block" style="width: 250px">
+                        <input id="factorySize" name="factorySize" th:value="${factory?.factorySize}" class="layui-input"  type="text" lay-verify="required|number">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">污染源类型</label>
+                    <div class="layui-input-block" style="width: 250px">
+                        <select id="sourceType" name="sourceType" th:field="*{factory.sourceType}" lay-filter="sourceType" lay-verify="required">
+                            <option value="">请选择污染源类型</option>
+                            <option th:each="sourceType : ${sourceTypes}" th:value="${sourceType}" th:text="${sourceType}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label">行业大分类</label>
+                    <div class="layui-input-inline" style="width: 250px">
+                        <select id="industryBigid" name="industryBigid" th:field="*{factory.industryBigid}" lay-filter="industryBigid">
+                            <option value="">请选择行业大分类</option>
+                            <option th:each="industryBig : ${industryBigs}" th:value="${industryBig.industryCode}" th:text="${industryBig.industryName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label" >行业小分类</label>
+                    <div class="layui-input-inline" style="width: 250px">
+                        <select id="industryId" name="industryId" th:field="*{factory.industryId}" lay-filter="industryId">
+                            <option value="">请选择行业小分类</option>
+                            <option th:each="industry : ${industrys}" th:value="${industry.industryId}" th:text="${industry.industryName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">注册省份</label>
+                    <div class="layui-input-block">
+                        <input id="provinceRegisterName" name="provinceRegisterName" value="青海省" class="layui-input" style="width: 250px" type="text" readonly="readonly" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label">注册城市</label>
+                    <div class="layui-input-inline" style="width: 250px">
+                        <select id="countyRegisterCity" name="countyRegisterCity" th:field="*{factory.countyRegisterCity}"lay-filter="countyRegisterCity" lay-verify="required">
+                            <option value="">请选择注册城市</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label" >注册行政区</label>
+                    <div class="layui-input-inline" style="width: 250px">
+                        <select id="countyidRegister" name="countyidRegister" th:field="*{factory.countyidRegister}"lay-filter="countyidRegister" lay-verify="required">
+                            <option value="">请选择注册区县</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">实际省份</label>
+                    <div class="layui-input-block">
+                        <input id="provinceName" name="provinceName" value="青海省" class="layui-input" style="width: 250px" type="text" readonly="readonly" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label">实际城市</label>
+                    <div class="layui-input-inline" style="width: 250px">
+                        <select id="countyCity" name="countyCity" th:field="*{factory.countyCity}"lay-filter="countyCity" lay-verify="required">
+                            <option value="">请选择实际城市</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 10px;">
+                    <label class="layui-form-label" >实际行政区</label>
+                    <div class="layui-input-inline" style="width: 250px">
+                        <select id="countyId" name="countyId" th:field="*{factory.countyId}"lay-filter="countyId" lay-verify="required">
+                            <option value="">请选择实际区县</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 150px">注册详细地址</label>
+                <div class="layui-input-block">
+                    <input id="address" name="address" th:value="${factory?.address}" class="layui-input" style="width: 600px" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">企业经度</label>
+                    <div class="layui-input-block">
+                        <input id="factoryLongitude" name="factoryLongitude" th:value="${factory?.factoryLongitude}" class="layui-input" style="width: 350px" type="text" lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <label class="layui-form-label">企业纬度</label>
+                    <div class="layui-input-inline" >
+                        <input id="factoryLatitude" name="factoryLatitude" th:value="${factory?.factoryLatitude}" class="layui-input" style="width: 350px" type="text"  lay-verify="required|latitude">
+                    </div>
+                </div>
+            </div>
+
+            <fieldset class="layui-elem-field layui-field-title" >
+                <legend>企业详细经纬度信息-生产厂区四至拐点经度指得是工厂面积拐点的经纬度，至少填写四个角落的经纬度</legend>
+            </fieldset>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度1</label>
+                    <div class="layui-input-block">
+                        <input id="lon1" name="lon1" th:value="${factory?.lon1}" class="layui-input" style="width: 250px" type="text" lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度1</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat1" name="lat1" th:value="${factory?.lat1}" class="layui-input" style="width: 250px" type="text" lay-verify="required|latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度2</label>
+                    <div class="layui-input-block">
+                        <input id="lon2" name="lon2" th:value="${factory?.lon2}" class="layui-input" style="width: 250px" type="text" lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度2</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat2" name="lat2" th:value="${factory?.lat2}" class="layui-input" style="width: 250px" type="text" lay-verify="required|latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度3</label>
+                    <div class="layui-input-block">
+                        <input id="lon3" name="lon3" th:value="${factory?.lon3}" class="layui-input" style="width: 250px" type="text" lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度3</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat3" name="lat3" th:value="${factory?.lat3}" class="layui-input" style="width: 250px" type="text" lay-verify="required|latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度4</label>
+                    <div class="layui-input-block">
+                        <input id="lon4" name="lon4" th:value="${factory?.lon4}" class="layui-input" style="width: 250px" type="text" lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度4</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat4" name="lat4" th:value="${factory?.lat4}" class="layui-input" style="width: 250px" type="text" lay-verify="required|latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度5</label>
+                    <div class="layui-input-block">
+                        <input id="lon5" name="lon5" th:value="${factory?.lon5}" class="layui-input"  style="width: 250px" type="text" lay-verify="longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度5</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat5" name="lat5" th:value="${factory?.lat5}" class="layui-input" style="width: 250px" type="text" lay-verify="latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度6</label>
+                    <div class="layui-input-block">
+                        <input id="lon6" name="lon6" th:value="${factory?.lon6}" class="layui-input"  style="width: 250px" type="text" lay-verify="longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度6</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat6" name="lat6" th:value="${factory?.lat6}" class="layui-input" style="width: 250px" type="text" lay-verify="latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点经度7</label>
+                    <div class="layui-input-block">
+                        <input id="lon7" name="lon7" th:value="${factory?.lon7}" class="layui-input"  style="width: 250px" type="text" lay-verify="longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 450px;margin-left: 30px;">
+                    <label class="layui-form-label" style="width: 200px">生产厂区四至拐点纬度7</label>
+                    <div class="layui-input-inline" >
+                        <input id="lat7" name="lat7" th:value="${factory?.lat7}" class="layui-input" style="width: 250px" type="text" lay-verify="latitude">
+                    </div>
+                </div>
+            </div>
+            <fieldset class="layui-elem-field layui-field-title" >
+                <legend>企业生产基本信息</legend>
+            </fieldset>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 150px">生成总值（万元）</label>
+                    <div class="layui-input-block">
+                        <input id="totalOutput" name="totalOutput" th:value="${factory?.totalOutput}" class="layui-input" style="width: 250px" type="text" lay-verify="required|number">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px; width: 450px;">
+                    <label class="layui-form-label" style="width: 150px">年生产天数</label>
+                    <div class="layui-input-inline" >
+                        <input id="yearDays" name="yearDays" th:value="${factory?.yearDays}" class="layui-input" style="width: 250px" type="text" lay-verify="required|number">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 450px">
+                    <label class="layui-form-label" style="width: 150px">日生产小时数</label>
+                    <div class="layui-input-block">
+                        <input id="daysHours" name="daysHours" th:value="${factory?.daysHours}" class="layui-input" style="width: 250px" type="text" lay-verify="required|number">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px; width: 450px;">
+                    <label class="layui-form-label" style="width: 150px">年度用电（万度）</label>
+                    <div class="layui-input-inline" >
+                        <input id="powerAmount" name="powerAmount" th:value="${factory?.powerAmount}" class="layui-input" style="width: 250px" type="text" lay-verify="required|number">
+                    </div>
+                </div>
+            </div>
+            <fieldset class="layui-elem-field layui-field-title" >
+                <legend>企业统计负责人信息</legend>
+            </fieldset>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">统计负责人</label>
+                    <div class="layui-input-block">
+                        <input id="principalName" name="principalName" th:value="${factory?.principalName}" class="layui-input" style="width: 350px" type="text" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <label class="layui-form-label">固定电话</label>
+                    <div class="layui-input-inline" >
+                        <input id="principalPhone" name="principalPhone" th:value="${factory?.principalPhone}" class="layui-input" style="width: 350px" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">移动电话</label>
+                    <div class="layui-input-block">
+                        <input id="principalMobile" name="principalMobile" th:value="${factory?.principalMobile}" class="layui-input" style="width: 350px" type="text" lay-verify="phone">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <label class="layui-form-label">电子邮箱</label>
+                    <div class="layui-input-inline" >
+                        <input id="principalEmail" name="principalEmail" th:value="${factory?.principalEmail}" class="layui-input" style="width: 350px" type="text" lay-verify="required|email">
+                    </div>
+                </div>
+            </div>
+            <fieldset class="layui-elem-field layui-field-title" >
+                <legend>企业填报信息</legend>
+            </fieldset>
+            <div class="layui-form-item">
+                <div class="layui-inline" >
+                    <label class="layui-form-label">填报年份</label>
+                    <div class="layui-input-block">
+                        <input id="year" name="year" th:value="${factory?.year}" class="layui-input" style="width: 350px" type="text" readonly="readonly" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-left: 30px;">
+                    <label class="layui-form-label">审核状态</label>
+                    <div class="layui-input-block" style="width: 250px">
+                        <select id="statusdec" name="statusdec" th:field="*{factory.statusdec}" lay-filter="statusdec" lay-verify="required">
+                            <option value="">审核状态</option>
+                            <option th:each="statusdec : ${statusdecs}" th:value="${statusdec}" th:text="${statusdec}">
+                            </option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="factoryId" name="factoryId" th:value="${factory?.factoryId}">
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:base:update">
+                <div class="layui-form-item" style="margin-left: 40%;margin-top: 20px">
+                    <button class="layui-btn layui-btn-blue" lay-filter="edit"  lay-submit="">保存提交</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            form.verify({
+                "chinese": function(value, item) {
+                    var reg = new RegExp(/[\u4e00-\u9fa5]+/);
+                    if (value.length > 0 && !reg.test(value)) {
+                        return '企业名称至少包含一个汉字！！'
+                    }
+                },"longitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '经度整数部分为0-180,小数部分为0到6位!'
+                        }
+                    }
+                }, "latitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '纬度整数部分为0-90,小数部分为0到6位!\''
+                        }
+                    }
+                }
+            })
+            form.on('select(industryBigid)',function(data){
+                var industryCode=data.value;
+                //alert(industryCode)
+                $.ajax({
+                    url: '/factoryAuth/seleIndustry/' + industryCode,
+                    data: {industryCode: industryCode},//发送的参数
+                    type: "post",
+                    success: function (datas) {
+                        $("select[name=industryId]").html('<option value="">请选择</option>'); //清空
+                        if(datas.length>0){
+                            $.each(datas, function(key, val) {
+                                //alert(key);
+                               // alert(val.industryId);
+                               // alert(val.industryName);
+                                var option1 = $("<option>").val(val.industryId).text(val.industryName);
+                                $("select[name=industryId]").append(option1);
+                                form.render('select');
+                            });
+                        }else{
+                            form.render('select');
+                        }
+                    },
+                    error:function(){
+                        //失败执行的方法
+                        layer.msg("行业小分类更新失败!", {icon: 6});
+                    }
+                })
+
+            });
+            form.on('select(countyRegisterCity)',function(data){
+                var cityCode=data.value;
+                $.ajax({
+                    url: '/factoryAuth/seleCountry/' + cityCode,
+                    data: {cityCode: cityCode},//发送的参数
+                    type: "post",
+                    success: function (datas) {
+                        $("select[name=countyidRegister]").html('<option value="">请选择</option>'); //清空
+                        if(datas.length>0){
+                            $.each(datas, function(key, val) {
+                                var option1 = $("<option>").val(val.countyId).text(val.countyName);
+                                $("select[name=countyidRegister]").append(option1);
+                                form.render('select');
+                            });
+                        }else{
+                            form.render('select');
+                        }
+                    },
+                    error:function(){
+                        //失败执行的方法
+                        layer.msg("区县信息加载失败!", {icon: 6});
+                    }
+                })
+
+            });
+            form.on('select(countyCity)',function(data){
+                var cityCode=data.value;
+                $.ajax({
+                    url: '/factoryAuth/seleCountry/' + cityCode,
+                    data: {cityCode: cityCode},//发送的参数
+                    type: "post",
+                    success: function (datas) {
+                        $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
+                        if(datas.length>0){
+                            $.each(datas, function(key, val) {
+                                var option1 = $("<option>").val(val.countyId).text(val.countyName);
+                                $("select[name=countyId]").append(option1);
+                                form.render('select');
+                            });
+                        }else{
+                            form.render('select');
+                        }
+                    },
+                    error:function(){
+                        //失败执行的方法
+                        layer.msg("区县信息加载失败!", {icon: 6});
+                    }
+                })
+
+            });
+            //监听提交th:value="${industry.industryId}" th:text="${industry.industryName}"
+            form.on('submit(edit)', function (form) {
+                var data = form.field;
+                $.post('/factoryAuth/base/' + data.factoryNo1 + "/edit", form.field, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("企业基本信息提交成功！",{icon: 6, time:3000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

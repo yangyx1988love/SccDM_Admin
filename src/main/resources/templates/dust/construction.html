@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>施工扬尘源</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <form class="layui-form layui-form-pane" name="fConForm" id="fConForm" >
+        <input type="hidden" id="constructDustid" name="constructDustid"  th:value="${fCon?.constructDustid}">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">施工类型</label>
+                <div class="layui-input-block" >
+                    <input id="constructionType" name="constructionType" th:value="${fCon?.constructionType}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">建筑施工阶段</label>
+                <div class="layui-input-block" >
+                    <input id="constructState" name="constructState" th:value="${fCon?.constructState}"  class="layui-input"  type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">施工规划面积(m2)</label>
+                <div class="layui-input-block" >
+                    <input id="constructArea" name="constructArea" th:value="${fCon?.constructArea}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">施工规划面积(m2)</label>
+                <div class="layui-input-block" >
+                    <input id="finisharea" name="finisharea" th:value="${fCon?.finisharea}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" >
+                <label class="layui-form-label" >拐点经度1</label>
+                <div class="layui-input-block" >
+                    <input id="longitude1" name="longitude1" th:value="${fCon?.longitude1}"  class="layui-input"  type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline" >
+                <label class="layui-form-label" >拐点纬度1</label>
+                <div class="layui-input-block">
+                    <input id="latitude1" name="latitude1" th:value="${fCon?.latitude1}" class="layui-input"  type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label" >拐点经度2</label>
+                <div class="layui-input-block" >
+                    <input id="longitude2" name="longitude2" th:value="${fCon?.longitude2}"  class="layui-input" type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline" >
+                <label class="layui-form-label" >拐点纬度2</label>
+                <div class="layui-input-block">
+                    <input id="latitude2" name="latitude2" th:value="${fCon?.latitude2}" class="layui-input"type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">拐点经度3</label>
+                <div class="layui-input-block" >
+                    <input id="longitude3" name="longitude3" th:value="${fCon?.longitude3}"  class="layui-input" type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">拐点纬度3</label>
+                <div class="layui-input-block">
+                    <input id="latitude3" name="latitude3" th:value="${fCon?.latitude3}" class="layui-input" type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">拐点经度4</label>
+                <div class="layui-input-block" >
+                    <input id="longitude4" name="longitude4" th:value="${fCon?.longitude4}"  class="layui-input" type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">拐点纬度4</label>
+                <div class="layui-input-block">
+                    <input id="latitude4" name="latitude4" th:value="${fCon?.latitude4}" class="layui-input"type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">SCC编码</label>
+                <div class="layui-input-block" >
+                    <input id="scccode" name="scccode" th:value="${fCon?.scccode}"  class="layui-input" readonly="readonly" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">PM10排放量</label>
+                <div class="layui-input-block" >
+                    <input id="pm10Emission" name="pm10Emission" th:value="${fCon?.pm10Emission}"  class="layui-input" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">PM2.5排放量</label>
+                <div class="layui-input-block" >
+                    <input id="pm25Emission" name="pm25Emission" th:value="${fCon?.pm25Emission}"  class="layui-input" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <input type="hidden" id="constructMonths" name="constructMonths"  th:value="${fCon?.constructMonths}">
+            <label class="layui-form-label">年活动月份</label>
+            <input type="checkbox" name="constructMonth" value="1" title="一月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="2" title="二月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="3" title="三月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="4" title="四月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="5" title="五月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="6" title="六月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="7" title="七月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="8" title="八月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="9" title="九月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="10" title="十月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="11" title="十一月" lay-skin="primary">
+            <input type="checkbox" name="constructMonth" value="12" title="十二月" lay-skin="primary">
+        </div>
+        <div class="layui-form-item">
+            <input type="hidden" id="controlMeasures" name="controlMeasures"  th:value="${fCon?.controlMeasures}">
+            <label class="layui-form-label">控制措施</label>
+            <input type="checkbox" name="controlMeasure" value="A1" title="1.8m硬质围挡">
+            <input type="checkbox" name="controlMeasure" value="A2" title="2.4m硬质围挡">
+            <input type="checkbox" name="controlMeasure" value="B" title="化学抑尘剂">
+            <input type="checkbox" name="controlMeasure" value="C" title="覆盖防尘布">
+            <input type="checkbox" name="controlMeasure" value="E" title="路面铺装和洒水">
+            <input type="checkbox" name="controlMeasure" value="F" title="封闭">
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 500px;">
+                <label class="layui-form-label" style="width: 200px;">施工开始日期</label>
+                <input type="text" class="layui-input" style="width: 300px;" id="startdate" name="startdate" th:value="${#dates.format(fCon.startdate,'yyyy/MM/dd')}">
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 200px;">施工开始日期</label>
+                <input type="text" class="layui-input" style="width: 300px;" id="finishdate" name="finishdate" th:value="${#dates.format(fCon.finishdate,'yyyy/MM/dd')}">
+            </div>
+        </div>
+        <shiro:hasPermission name="factoryAuth:fCon:update">
+            <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+            </div>
+        </shiro:hasPermission>
+    </form>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','laydate','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+                , laydate = layui.laydate;
+
+            var nowTime = new Date().valueOf();
+            //日期
+            var start = laydate.render({ //开始
+                elem: '#startdate',
+                calendar: true,
+                format: 'yyyy/MM/dd',
+                //min:nowTime,
+                done:function(value,date){
+                    endMax = end.config.max;
+                    end.config.min = date;
+                    end.config.min.month = date.month -1;
+                }
+            });
+            var end = laydate.render({ //结束
+                elem: '#finishdate',
+                calendar: true,
+                format: 'yyyy/MM/dd',
+               // min : nowTime,
+                done:function(value,date){
+                    if($.trim(value) == ''){
+                        var curDate = new Date();
+                        date = {'date': curDate.getDate(), 'month': curDate.getMonth()+1, 'year': curDate.getFullYear()};
+                    }
+                    start.config.max = date;
+                    start.config.max.month = date.month -1;
+                }
+            });
+            form.verify({
+                "longitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '经度整数部分为0-180,小数部分为0到6位!'
+                        }
+                    }
+                }, "latitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '纬度整数部分为0-90,小数部分为0到6位!\''
+                        }
+                    }
+                }
+            })
+            $(document).ready(function(){
+                //加载月份
+                var arr =$('input[name="constructMonths"]').val().split(",");
+                var constructMonths=$.grep(arr,function(n,i){
+                    return n;
+                },false);
+                $.each(constructMonths,function(i,item){
+                    $("input[name='constructMonth'][value="+item+"]").attr("checked","checked");
+                });
+                //加载控制措施
+                var arr1 =$('input[name="controlMeasures"]').val().split(",");
+                var controlMeasures=$.grep(arr1,function(n,i){
+                    return n;
+                },false);
+                $.each(controlMeasures,function(i,item){
+                    $("input[name='controlMeasure'][value="+item+"]").attr("checked","checked");
+                });
+                //重载
+                form.render("checkbox");
+            })
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                //月份复选框
+                var constructMonths =[];//定义一个数组
+                $('input[name="constructMonth"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+                    constructMonths+=$(this).val()+",";
+                });
+                //控制措施
+                var controlMeasures =[];//定义一个数组
+                $('input[name="controlMeasure"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+                    controlMeasures+=$(this).val()+",";
+                });
+                var data = form.field;
+                data.constructMonths=constructMonths;
+                data.controlMeasures=controlMeasures;
+
+                $.post('/factoryAuth/fCon/edit/' + data.constructDustid ,data, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
