@@ -1,0 +1,36 @@
+{
+  "hints": [],
+  "groups": [],
+  "properties": [
+    {
+      "defaultValue": false,
+      "name": "log.login",
+      "description": "是否记录登录日志.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "defaultValue": false,
+      "name": "log.operation",
+      "description": "是否记录操作日志.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "defaultValue": false,
+      "name": "security.login.verify",
+      "description": "是否开启登录验证码.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "defaultValue": 5,
+      "name": "security.retry.count",
+      "description": "登录失败重试次数.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "defaultValue": "user",
+      "name": "security.super-admin.username",
+      "description": "超级管理员用户名.",
+      "type": "java.lang.String"
+    }
+  ]
+}

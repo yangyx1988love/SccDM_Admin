@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.BiomassBoilerMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.BiomassBoilerVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="scc_code" property="sccCode" jdbcType="CHAR" />
+    <result column="com_id" property="comId" jdbcType="INTEGER" />
+    <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
+    <result column="boiler_no" property="boilerNo" jdbcType="INTEGER" />
+    <result column="fuel_type" property="fuelType" jdbcType="CHAR" />
+    <result column="fuel_consumption" property="fuelConsumption" jdbcType="DOUBLE" />
+    <result column="dust_remove_tech" property="dustRemoveTech" jdbcType="CHAR" />
+    <result column="pm10_remove_ratio" property="pm10RemoveRatio" jdbcType="DOUBLE" />
+    <result column="pm25_remove_ratio" property="pm25RemoveRatio" jdbcType="DOUBLE" />
+    <result column="DESULPHUR_REMOVE_TECH" property="desulphurRemoveTech" jdbcType="CHAR" />
+    <result column="SO2_REMOVE_RATIO" property="so2RemoveRatio" jdbcType="DOUBLE" />
+    <result column="DENITRIFIC_REMOVE_TECH" property="denitrificRemoveTech" jdbcType="CHAR" />
+    <result column="NOX_REMOVE_RATIO" property="noxRemoveRatio" jdbcType="DOUBLE" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
+    <result column="pm_emission" property="pmEmission" jdbcType="DOUBLE" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.BiomassBoilerVo" >
+    SELECT biomass_boiler.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+    FROM biomass_boiler
+    LEFT JOIN company
+    ON biomass_boiler.com_id=company.com_id
+    LEFT JOIN county
+    ON company.county_id=county.COUNTY_ID
+    <where>
+      <if test="year != null and year != ''">
+        biomass_boiler.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND company.county_id = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT biomass_boiler.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+    FROM biomass_boiler
+    LEFT JOIN company
+    ON biomass_boiler.com_id=company.com_id
+    LEFT JOIN county
+    ON company.county_id=county.COUNTY_ID
+    where company.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from biomass_boiler
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.BiomassBoiler" >
+    insert into biomass_boiler (id, scc_code, com_id, 
+      source_descrip, boiler_no, fuel_type, 
+      fuel_consumption, dust_remove_tech, pm10_remove_ratio, 
+      pm25_remove_ratio, DESULPHUR_REMOVE_TECH, SO2_REMOVE_RATIO, 
+      DENITRIFIC_REMOVE_TECH, NOX_REMOVE_RATIO, note, 
+      year, pm10_emission, pm25_emission, 
+      co_emission, voc_emission, pm_emission, 
+      so2_emission, nox_emission, nh3_emission, 
+      oc_emission, bc_emission)
+    values (#{id,jdbcType=INTEGER}, #{sccCode,jdbcType=CHAR}, #{comId,jdbcType=INTEGER}, 
+      #{sourceDescrip,jdbcType=VARCHAR}, #{boilerNo,jdbcType=INTEGER}, #{fuelType,jdbcType=CHAR}, 
+      #{fuelConsumption,jdbcType=DOUBLE}, #{dustRemoveTech,jdbcType=CHAR}, #{pm10RemoveRatio,jdbcType=DOUBLE}, 
+      #{pm25RemoveRatio,jdbcType=DOUBLE}, #{desulphurRemoveTech,jdbcType=CHAR}, #{so2RemoveRatio,jdbcType=DOUBLE}, 
+      #{denitrificRemoveTech,jdbcType=CHAR}, #{noxRemoveRatio,jdbcType=DOUBLE}, #{note,jdbcType=VARCHAR}, 
+      #{year,jdbcType=CHAR}, #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, 
+      #{coEmission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, #{pmEmission,jdbcType=DOUBLE}, 
+      #{so2Emission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, 
+      #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE})
+    ON DUPLICATE KEY UPDATE 
+      id = #{id,jdbcType=INTEGER},
+      scc_code = #{sccCode,jdbcType=CHAR},
+      com_id = #{comId,jdbcType=INTEGER},
+      source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      boiler_no = #{boilerNo,jdbcType=INTEGER},
+      fuel_type = #{fuelType,jdbcType=CHAR},
+      fuel_consumption = #{fuelConsumption,jdbcType=DOUBLE},
+      dust_remove_tech = #{dustRemoveTech,jdbcType=CHAR},
+      pm10_remove_ratio = #{pm10RemoveRatio,jdbcType=DOUBLE},
+      pm25_remove_ratio = #{pm25RemoveRatio,jdbcType=DOUBLE},
+      DESULPHUR_REMOVE_TECH = #{desulphurRemoveTech,jdbcType=CHAR},
+      SO2_REMOVE_RATIO = #{so2RemoveRatio,jdbcType=DOUBLE},
+      DENITRIFIC_REMOVE_TECH = #{denitrificRemoveTech,jdbcType=CHAR},
+      NOX_REMOVE_RATIO = #{noxRemoveRatio,jdbcType=DOUBLE},
+      note = #{note,jdbcType=VARCHAR},
+      year = #{year,jdbcType=CHAR},
+      pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      co_emission = #{coEmission,jdbcType=DOUBLE},
+      voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      pm_emission = #{pmEmission,jdbcType=DOUBLE},
+      so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{bcEmission,jdbcType=DOUBLE}
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.BiomassBoiler" >
+    update biomass_boiler
+    <set >
+      <if test="sccCode != null" >
+        scc_code = #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="comId != null" >
+        com_id = #{comId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="boilerNo != null" >
+        boiler_no = #{boilerNo,jdbcType=INTEGER},
+      </if>
+      <if test="fuelType != null" >
+        fuel_type = #{fuelType,jdbcType=CHAR},
+      </if>
+      <if test="fuelConsumption != null" >
+        fuel_consumption = #{fuelConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="dustRemoveTech != null" >
+        dust_remove_tech = #{dustRemoveTech,jdbcType=CHAR},
+      </if>
+      <if test="pm10RemoveRatio != null" >
+        pm10_remove_ratio = #{pm10RemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25RemoveRatio != null" >
+        pm25_remove_ratio = #{pm25RemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="desulphurRemoveTech != null" >
+        DESULPHUR_REMOVE_TECH = #{desulphurRemoveTech,jdbcType=CHAR},
+      </if>
+      <if test="so2RemoveRatio != null" >
+        SO2_REMOVE_RATIO = #{so2RemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="denitrificRemoveTech != null" >
+        DENITRIFIC_REMOVE_TECH = #{denitrificRemoveTech,jdbcType=CHAR},
+      </if>
+      <if test="noxRemoveRatio != null" >
+        NOX_REMOVE_RATIO = #{noxRemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmission != null" >
+        pm_emission = #{pmEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

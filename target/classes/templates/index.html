@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon.ico}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon.ico}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/zadmin.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+</head>
+
+<body class="layui-layout-body">
+
+    <div class="layui-layout layui-layout-admin">
+
+        <div class="layui-header ">
+            <!-- logo 区域 -->
+            <div class="layui-logo ">
+                <cite>污染源清单管理后台系统</cite>
+            </div>
+
+            <!-- 头部区域 -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item" lay-unselect>
+                    <a lay-event="flexible" title="侧边伸缩">
+                        <i class="layui-icon layui-icon-shrink-right"></i>
+                    </a>
+                </li>
+                <!-- 面包屑 -->
+                <span class="layui-breadcrumb layui-anim layui-anim-up">
+                    <a><cite>首页</cite></a>
+                </span>
+            </ul>
+
+            <!-- 头像区域 -->
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a lay-event="clear" title="清理服务器用户缓存" th:href="@{/clear}"><img th:src="@{/images/clear.png}" alt="" style="height: 18px;"/></a>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a>
+                        <i class="layui-icon layui-icon-user">&nbsp;&nbsp;&nbsp;</i>
+                        <cite><shiro:principal property="username"/></span></cite>
+                        <span class="layui-nav-more"></span>
+                    </a>
+                    <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                        <dd lay-unselect>
+                            <a href="#">个人中心</a>
+                        </dd>
+                        <dd lay-unselect>
+                            <a href="#">修改密码</a>
+                        </dd>
+                        <hr>
+                        <dd lay-unselect>
+                            <a th:href="@{/logout}">&nbsp;&nbsp;退出</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 左侧导航区域 -->
+        <div class="layui-side ">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="lay-nav" lay-accordion="true">
+                    <li class="layui-nav-item layui-this">
+                        <a lay-url="welcome" lay-id="home">
+                            <i class="layui-icon layui-icon-home"></i>&emsp;<cite>首页</cite>
+                        </a>
+                    </li>
+
+                    <li class="layui-nav-item" th:each="menu:${menus}">
+                        <a data-th-lay-id="${menu.url}" data-th-lay-url="${menu.url}">
+                            <i class="layui-icon" th:classappend="${menu.icon}"></i>&emsp;
+                            <cite th:text="${menu.menuName}"></cite>
+                        </a>
+                        <dl th:if="${!#lists.isEmpty(menu.children)}" class="layui-nav-child">
+                            <dd th:each="child:${menu.children}">
+                                <a data-th-lay-id="${child.url}" data-th-lay-url="${child.url}">
+                                    <cite th:text="${child.menuName}"></cite>
+                                </a>
+                                <th:block th:unless="${#lists.isEmpty(child.children)}" th:include="common/public::menu(${child})" />
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <div class="layui-pagetabs">
+                <div class="layui-icon admin-tabs-control layui-icon-refresh-3" lay-event="refresh"></div>
+                <div class="layui-tab" lay-unauto lay-allowclose="true" lay-filter="lay-tab">
+                    <ul class="layui-tab-title">
+                        <li lay-id="home" lay-url="welcome" class="layui-this"><i
+                                class="layui-icon layui-icon-home"></i>
+                        </li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <iframe src="welcome" class="layui-iframe"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <ul class="rightmenu">
+                <li data-type="closethis">关闭此页</li>
+                <li data-type="closeall">关闭所有</li>
+                <li data-type="closeothers">关闭其他</li>
+                <li data-type="closeleft">关闭左侧</li>
+                <li data-type="closeright">关闭右侧</li>
+            </ul>
+        </div>
+
+        <!-- 底部固定区域 -->
+        <div class="layui-footer">
+            copyright © 2019 Nankai xlLab.
+        </div>
+
+        <!-- 移动端遮罩 -->
+        <div class="site-mobile-shade"></div>
+    </div>
+
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+
+
+</body>
+
+</html>

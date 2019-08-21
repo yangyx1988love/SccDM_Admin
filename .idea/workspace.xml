@@ -1,0 +1,1171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java" description="//通过scc重新计算" line="615" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="21a863a7-45e2-4408-b9bf-5ba9b383b90b" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/classes/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/vehicleflows/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/map.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15070">
+              <caret line="685" column="2" selection-start-line="685" selection-start-column="2" selection-end-line="685" selection-end-column="2" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="55">
+              <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>baseSoil</find>
+      <find>bioForest</find>
+      <find>bioStove</find>
+      <find>-生物质锅炉</find>
+      <find>record.</find>
+      <find>-</find>
+      <find>生物质锅炉</find>
+      <find>sourceService</find>
+      <find>biomass</find>
+      <find>bioBoiler</find>
+      <find>airplane</find>
+      <find>machinery</find>
+      <find>railway</find>
+      <find>select</find>
+      <find>社会餐饮</find>
+      <find>agriculture</find>
+      <find>family</find>
+      <find>grant-operator</find>
+      <find>add</find>
+      <find>redisCacheManager</find>
+      <find>toolbarDiv</find>
+      <find>main</find>
+      <find>selectSourceMeus</find>
+      <find />
+      <find>parentName</find>
+      <find>selectChildrenIDByPrimaryKey</find>
+      <find>selectMaxOrderNum</find>
+      <find>past</find>
+      <find>getFactoryListByQuery</find>
+      <find>factoryAuthTab</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>pesticide</replace>
+      <replace>strawCompost</replace>
+      <replace>freeStock</replace>
+      <replace>biomass</replace>
+      <replace>生物质锅炉</replace>
+      <replace>生物质户用生物质炉具</replace>
+      <replace>秸秆露天焚烧</replace>
+      <replace>bioBoiler</replace>
+      <replace>bioForest</replace>
+      <replace>bioStove</replace>
+      <replace>bioStraw</replace>
+      <replace>roadMove</replace>
+      <replace>road</replace>
+      <replace>非道路移动源</replace>
+      <replace>nonRoadService</replace>
+      <replace>飞机</replace>
+      <replace>非道路机械</replace>
+      <replace>小型通用机械</replace>
+      <replace>nonRoad</replace>
+      <replace>agriculture</replace>
+      <replace>airplane</replace>
+      <replace>machinery</replace>
+      <replace>railway</replace>
+      <replace>smallMachinery</replace>
+      <replace>get</replace>
+      <replace>家庭餐饮</replace>
+      <replace>烧烤</replace>
+      <replace>family</replace>
+      <replace>barbecue</replace>
+      <replace>repast</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PATH_TO_GIT" value="D:\java\Git\bin\git.exe" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/shiro/credential/RetryLimitHashedCredentialsMatcher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/config/ShiroConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/model/vo/AdminuserVO.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/CountyMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/CityMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SelectCommonService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SelectCommonServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/CityMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/dust/yard.html" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/MatrixParallelCul.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/FileUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/CalculateTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FileTempleVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/MenuMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/MenuService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ResponseUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/files/temple-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/RoleAuditMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RoleAuditMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/model/Dept.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/DeptMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/DeptService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/DeptController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/system/AdminuserMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/model/AdminuserOnline.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/model/Adminuser.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/system/DeptMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FactoryService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-map.html" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/files/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FileService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ReadExcel.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/user/user-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factory/factory-list.html" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/ScatCoalController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/source/fixed/list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factory-map.html" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/MenuController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/IndexController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/map.html" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="SccDM_Admin" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-15" />
+    <option name="y" value="-15" />
+    <option name="width" value="3875" />
+    <option name="height" value="2095" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="show.run.dashboard.notification" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\static\lib" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\static\lib\echarts\map\js\province" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\static\lib\echarts\map\json\province" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\files" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="nankai.xl.business.model" />
+      <recent name="nankai.xl.business.controller" />
+      <recent name="nankai.xl.business.model.vo" />
+      <recent name="nankai.xl.business.service.impl" />
+      <recent name="nankai.xl.business.service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\mapper\business" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\source\fixed" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\solvent" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ShiroActionApplication">
+    <configuration name="CalculateTask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="nankai.xl.common.util.CalculateTask" />
+      <module name="SccDM_Admin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nankai.xl.common.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShiroActionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="SccDM_Admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="nankai.xl.SccAdminApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VehicleflowsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="vehicleflows" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="nankai.xl.vehicleflows.VehicleflowsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CalculateTask" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="21a863a7-45e2-4408-b9bf-5ba9b383b90b" name="Default Changelist" comment="" />
+      <created>1559987734266</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559987734266</updated>
+      <workItem from="1559987740718" duration="1650000" />
+      <workItem from="1559998187849" duration="11667000" />
+      <workItem from="1560010455084" duration="2533000" />
+      <workItem from="1560046159042" duration="11469000" />
+      <workItem from="1560068276872" duration="6310000" />
+      <workItem from="1560077715988" duration="5223000" />
+      <workItem from="1560095497516" duration="5031000" />
+      <workItem from="1560101760172" duration="2531000" />
+      <workItem from="1560104369313" duration="2445000" />
+      <workItem from="1560131238246" duration="2543000" />
+      <workItem from="1560138128806" duration="5626000" />
+      <workItem from="1560144515531" duration="13882000" />
+      <workItem from="1561515048407" duration="6685000" />
+      <workItem from="1561539995032" duration="1529000" />
+      <workItem from="1561544074095" duration="6975000" />
+      <workItem from="1561565186449" duration="4266000" />
+      <workItem from="1561600618245" duration="17405000" />
+      <workItem from="1561638964318" duration="650000" />
+      <workItem from="1561639646472" duration="19000" />
+      <workItem from="1561639848454" duration="1443000" />
+      <workItem from="1561641366792" duration="14602000" />
+      <workItem from="1561689517258" duration="7662000" />
+      <workItem from="1561707788030" duration="21141000" />
+      <workItem from="1561745301045" duration="5460000" />
+      <workItem from="1561776296814" duration="20400000" />
+      <workItem from="1561803456754" duration="20170000" />
+      <workItem from="1561861374164" duration="41000" />
+      <workItem from="1561861490474" duration="3752000" />
+      <workItem from="1561865331704" duration="4792000" />
+      <workItem from="1561870287876" duration="42269000" />
+      <workItem from="1561921527534" duration="523000" />
+      <workItem from="1561948734977" duration="9891000" />
+      <workItem from="1561960295108" duration="9198000" />
+      <workItem from="1561989619608" duration="17398000" />
+      <workItem from="1562035209444" duration="116000" />
+      <workItem from="1562035972156" duration="23463000" />
+      <workItem from="1562073399403" duration="11544000" />
+      <workItem from="1562086826913" duration="4632000" />
+      <workItem from="1562091611388" duration="185000" />
+      <workItem from="1562122894103" duration="2479000" />
+      <workItem from="1562131359108" duration="16635000" />
+      <workItem from="1562175586830" duration="94000" />
+      <workItem from="1562175982138" duration="162000" />
+      <workItem from="1562176568908" duration="3246000" />
+      <workItem from="1562221987578" duration="16982000" />
+      <workItem from="1562297585416" duration="104000" />
+      <workItem from="1562297862033" duration="22574000" />
+      <workItem from="1562322824608" duration="4814000" />
+      <workItem from="1562330984620" duration="560000" />
+      <workItem from="1562331960014" duration="3482000" />
+      <workItem from="1562335521448" duration="15566000" />
+      <workItem from="1562380686455" duration="10172000" />
+      <workItem from="1562434444923" duration="3116000" />
+      <workItem from="1562437766098" duration="1680000" />
+      <workItem from="1562439516134" duration="1461000" />
+      <workItem from="1562490125402" duration="7708000" />
+      <workItem from="1562508090854" duration="11693000" />
+      <workItem from="1562563221401" duration="1285000" />
+      <workItem from="1562596253858" duration="5869000" />
+      <workItem from="1562606913107" duration="22000" />
+      <workItem from="1562678753011" duration="2189000" />
+      <workItem from="1562682989403" duration="1835000" />
+      <workItem from="1562684874707" duration="33000" />
+      <workItem from="1562685457798" duration="8465000" />
+      <workItem from="1562820133899" duration="682000" />
+      <workItem from="1562919620858" duration="19316000" />
+      <workItem from="1562947338321" duration="14000" />
+      <workItem from="1562947417519" duration="5912000" />
+      <workItem from="1562953435890" duration="715000" />
+      <workItem from="1562954312377" duration="831000" />
+      <workItem from="1562955486909" duration="768000" />
+      <workItem from="1562984889895" duration="1738000" />
+      <workItem from="1563027127268" duration="13430000" />
+      <workItem from="1563043061597" duration="21286000" />
+      <workItem from="1563162345399" duration="46000" />
+      <workItem from="1563163610214" duration="9000" />
+      <workItem from="1563167158001" duration="13439000" />
+      <workItem from="1563242464819" duration="1564000" />
+      <workItem from="1563244136709" duration="7672000" />
+      <workItem from="1563254925901" duration="14052000" />
+      <workItem from="1563288444630" duration="10621000" />
+      <workItem from="1563299784377" duration="244000" />
+      <workItem from="1563341376961" duration="4046000" />
+      <workItem from="1563351377575" duration="13740000" />
+      <workItem from="1563374656272" duration="7432000" />
+      <workItem from="1563411823844" duration="36978000" />
+      <workItem from="1563510031221" duration="23105000" />
+      <workItem from="1563544263132" duration="4227000" />
+      <workItem from="1563548611007" duration="39565000" />
+      <workItem from="1563637334498" duration="5724000" />
+      <workItem from="1563643095948" duration="5497000" />
+      <workItem from="1563648804827" duration="1404000" />
+      <workItem from="1563677754060" duration="18861000" />
+      <workItem from="1563700395602" duration="12607000" />
+      <workItem from="1563810562972" duration="2360000" />
+      <workItem from="1563868022212" duration="13479000" />
+      <workItem from="1563962779003" duration="710000" />
+      <workItem from="1564129123936" duration="1778000" />
+      <workItem from="1564144942860" duration="1115000" />
+      <workItem from="1564146093392" duration="964000" />
+      <workItem from="1564409349322" duration="2377000" />
+      <workItem from="1564467358311" duration="1414000" />
+      <workItem from="1564494355009" duration="3487000" />
+      <workItem from="1564539742662" duration="1404000" />
+      <workItem from="1564541223080" duration="6000000" />
+      <workItem from="1564560627272" duration="3830000" />
+      <workItem from="1564568311389" duration="1387000" />
+      <workItem from="1564626452913" duration="715000" />
+      <workItem from="1564734012062" duration="1696000" />
+      <workItem from="1564753164140" duration="1229000" />
+      <workItem from="1564763639298" duration="1364000" />
+      <workItem from="1564765116988" duration="1357000" />
+      <workItem from="1564768055000" duration="23000" />
+      <workItem from="1564800302803" duration="142000" />
+      <workItem from="1564848262128" duration="4204000" />
+      <workItem from="1565250135934" duration="274000" />
+      <workItem from="1565253019738" duration="1176000" />
+      <workItem from="1565254282303" duration="91000" />
+      <workItem from="1565255466311" duration="675000" />
+      <workItem from="1565259960366" duration="193000" />
+      <workItem from="1565260403120" duration="345000" />
+      <workItem from="1565266677923" duration="1007000" />
+      <workItem from="1565316913205" duration="821000" />
+      <workItem from="1565327599356" duration="24678000" />
+      <workItem from="1565368045068" duration="1375000" />
+      <workItem from="1565369612928" duration="5113000" />
+      <workItem from="1565407331334" duration="8996000" />
+      <workItem from="1565433615730" duration="1191000" />
+      <workItem from="1565623750342" duration="656000" />
+      <workItem from="1565681822782" duration="927000" />
+      <workItem from="1565682928151" duration="2931000" />
+      <workItem from="1565691153608" duration="10560000" />
+      <workItem from="1565715790634" duration="665000" />
+      <workItem from="1565716479030" duration="5293000" />
+      <workItem from="1565721852503" duration="11000" />
+      <workItem from="1565772548241" duration="706000" />
+      <workItem from="1565852263818" duration="6245000" />
+      <workItem from="1565860455022" duration="6653000" />
+      <workItem from="1565884984272" duration="1343000" />
+      <workItem from="1565919648970" duration="4964000" />
+      <workItem from="1565947548085" duration="2754000" />
+      <workItem from="1565957278354" duration="531000" />
+      <workItem from="1565957890319" duration="856000" />
+      <workItem from="1566181632839" duration="16412000" />
+      <workItem from="1566204645882" duration="4662000" />
+      <workItem from="1566267358837" duration="6261000" />
+      <workItem from="1566352326116" duration="1458000" />
+      <workItem from="1566353817610" duration="413000" />
+      <workItem from="1566354257591" duration="695000" />
+      <workItem from="1566355069502" duration="201000" />
+      <workItem from="1566355297626" duration="487000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="927341000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.26791695" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.50141245" side_tool="true" weight="0.27729404" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3940678" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.78107345" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="TODO" order="8" weight="0.6398305" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49832553" weight="0.65960455" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.36158192" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5016745" side_tool="true" visible="true" weight="0.69165486" />
+      <window_info anchor="bottom" id="Problems" order="12" weight="0.32909605" />
+      <window_info anchor="bottom" id="Spring" order="13" weight="0.32909605" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.49435028" />
+      <window_info anchor="bottom" id="Java Enterprise" order="15" sideWeight="0.5010047" side_tool="true" weight="0.8036723" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32953784" />
+      <window_info anchor="right" id="Preview" order="1" weight="0.32953784" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32953784" />
+      <window_info anchor="right" id="Database" order="10" weight="0.32953784" />
+      <window_info anchor="right" id="Maven" order="11" weight="0.32953784" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49858758" visible="true" weight="0.24447422" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.50141245" side_tool="true" weight="0.27729404" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3940678" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.78107345" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="TODO" order="8" weight="0.6398305" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49832553" weight="0.65960455" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.36158192" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5016745" side_tool="true" weight="0.6920904" />
+      <window_info anchor="bottom" id="Problems" order="12" weight="0.32909605" />
+      <window_info anchor="bottom" id="Spring" order="13" weight="0.32909605" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.49435028" />
+      <window_info anchor="bottom" id="Java Enterprise" order="15" sideWeight="0.5010047" side_tool="true" weight="0.8036723" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32953784" />
+      <window_info anchor="right" id="Preview" order="1" weight="0.32953784" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32953784" />
+      <window_info anchor="right" id="Database" order="10" weight="0.32953784" />
+      <window_info anchor="right" id="Maven" order="11" weight="0.32953784" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/ScatCoalController.java</url>
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/ScatCoalController.java</url>
+          <line>64</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/MenuController.java</url>
+          <line>77</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/IndexController.java</url>
+          <line>70</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java</url>
+          <line>94</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java</url>
+          <line>96</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SccDM_Admin$ShiroActionApplication.ic" NAME="ShiroActionApplication Coverage Results" MODIFIED="1562091372633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SccDM_Admin$CalculateTask.ic" NAME="CalculateTask Coverage Results" MODIFIED="1564561476845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>nankai.xl.common.util.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>list.size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>file.getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>factoryNo1</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>factoryService.addFactoryUser(factory,user)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/AdminuserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="51" />
+          <folding>
+            <element signature="e#1576#1577#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/DeptService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/MailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/MenuService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/OperatorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/RoleOperatorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/RoleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/ShiroService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1699">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/SysLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/CommonPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/DeptController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginLogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/OperatorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/SecurityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserOnlineController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/boot/spring-boot/2.0.6.RELEASE/spring-boot-2.0.6.RELEASE.jar!/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/TreeCastException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/WebExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/DuplicateNameException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="60" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/CaptchaIncorrectException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/BiomassController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ReadExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="17" column="52" lean-forward="true" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/log/login-logs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-528" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user/user-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="79" column="80" selection-start-line="79" selection-start-column="80" selection-end-line="79" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factory/factory-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11">
+          <caret line="151" column="45" lean-forward="true" selection-start-line="151" selection-start-column="45" selection-end-line="151" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/layui/extend/dtree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="888" column="12" selection-start-line="888" selection-start-column="12" selection-end-line="888" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/MyErrorAttributes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ScatteredCoalVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="50" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="185" column="36" lean-forward="true" selection-start-line="185" selection-start-column="36" selection-end-line="185" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/ScatCoalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="71" column="42" lean-forward="true" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/fixed/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1369">
+          <caret line="129" column="55" lean-forward="true" selection-start-line="129" selection-start-column="55" selection-end-line="129" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FileService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/echarts/map/json/province/tianjin.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="509" selection-start-column="509" selection-end-column="509" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/echarts/map/json/province/tianjin-binhai.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/echarts/map/js/province/tianjin-binhai.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/MenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="77" column="59" selection-start-line="77" selection-start-column="59" selection-end-line="77" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1000#1001#0" expanded="true" />
+            <element signature="e#1038#1039#0" expanded="true" />
+            <element signature="e#1113#1114#0" expanded="true" />
+            <element signature="e#1184#1185#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/menu/menu-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="279" column="50" selection-start-line="279" selection-start-column="50" selection-end-line="279" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/echarts/KEYS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/echarts/map/js/china.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/SysLogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/SystemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/LoginLogService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factory-map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="123" column="25" selection-start-line="123" selection-start-column="25" selection-end-line="123" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="61" column="31" lean-forward="true" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="118" column="18" lean-forward="true" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15070">
+          <caret line="685" column="2" selection-start-line="685" selection-start-column="2" selection-end-line="685" selection-end-column="2" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.CityMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.City" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, province_code, city_code, city_name
+  </sql>
+  <select id="selectAllCitys" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from city
+    where 1=1
+  </select>
+  <select id="selectCityByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from city
+    where city_code = #{cityCode,jdbcType=CHAR}
+  </select>
+  <select id="selectCitysByProvinceCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from city
+    where province_code = #{provinceCode,jdbcType=CHAR}
+  </select>
+  <select id="selectCityByCountyId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT city.* FROM county
+    LEFT JOIN city
+    ON city.city_code=county.city_code
+    WHERE county.COUNTY_ID = #{countyId,jdbcType=CHAR}
+  </select>
+</mapper>

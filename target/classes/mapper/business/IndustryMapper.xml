@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.IndustryMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Industry" >
+    <id column="INDUSTRY_ID" property="industryId" jdbcType="CHAR" />
+    <result column="INDUSTRY_NAME" property="industryName" jdbcType="CHAR" />
+    <result column="INDUSTRY_DESC" property="industryDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INDUSTRY_ID, INDUSTRY_NAME, INDUSTRY_DESC
+  </sql>
+  <select id="selectIndustrysByCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from industry
+    where left(industry_id, 2)=#{industryCode}
+  </select>
+</mapper>

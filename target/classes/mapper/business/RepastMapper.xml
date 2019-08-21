@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.RepastMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.RepastVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="factoryid" property="factoryid" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="cooking_num" property="cookingNum" jdbcType="INTEGER" />
+    <result column="cleaner_num" property="cleanerNum" jdbcType="INTEGER" />
+    <result column="scccode" property="scccode" jdbcType="CHAR" />
+    <result column="smoke_rate" property="smokeRate" jdbcType="DOUBLE" />
+    <result column="annual_runtime" property="annualRuntime" jdbcType="INTEGER" />
+    <result column="removal_effi" property="removalEffi" jdbcType="DOUBLE" />
+    <result column="household_num" property="householdNum" jdbcType="INTEGER" />
+    <result column="pm_emf" property="pmEmf" jdbcType="DOUBLE" />
+    <result column="pm_emfunit" property="pmEmfunit" jdbcType="VARCHAR" />
+    <result column="pm10_emf" property="pm10Emf" jdbcType="DOUBLE" />
+    <result column="pm10_emfunit" property="pm10Emfunit" jdbcType="VARCHAR" />
+    <result column="pm25_emf" property="pm25Emf" jdbcType="DOUBLE" />
+    <result column="pm25_emfunit" property="pm25Emfunit" jdbcType="VARCHAR" />
+    <result column="so2_emf" property="so2Emf" jdbcType="DOUBLE" />
+    <result column="so2_emfunit" property="so2Emfunit" jdbcType="VARCHAR" />
+    <result column="nox_emf" property="noxEmf" jdbcType="DOUBLE" />
+    <result column="nox_emfunit" property="noxEmfunit" jdbcType="VARCHAR" />
+    <result column="co_emf" property="coEmf" jdbcType="DOUBLE" />
+    <result column="co_emfunit" property="coEmfunit" jdbcType="VARCHAR" />
+    <result column="nh3_emf" property="nh3Emf" jdbcType="DOUBLE" />
+    <result column="nh3_emfunit" property="nh3Emfunit" jdbcType="VARCHAR" />
+    <result column="voc_emf" property="vocEmf" jdbcType="DOUBLE" />
+    <result column="voc_emfunit" property="vocEmfunit" jdbcType="VARCHAR" />
+    <result column="oc_emf" property="ocEmf" jdbcType="DOUBLE" />
+    <result column="oc_emfunit" property="ocEmfunit" jdbcType="VARCHAR" />
+    <result column="bc_emf" property="bcEmf" jdbcType="DOUBLE" />
+    <result column="bc_emfunit" property="bcEmfunit" jdbcType="VARCHAR" />
+    <result column="pm_emission" property="pmEmission" jdbcType="DOUBLE" />
+    <result column="pm_emiunit" property="pmEmiunit" jdbcType="VARCHAR" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="pm10_emiunit" property="pm10Emiunit" jdbcType="VARCHAR" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="pm25_emiunit" property="pm25Emiunit" jdbcType="VARCHAR" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="so2_emiunit" property="so2Emiunit" jdbcType="VARCHAR" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="nox_emiunit" property="noxEmiunit" jdbcType="VARCHAR" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="co_emiunit" property="coEmiunit" jdbcType="VARCHAR" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="nh3_emiunit" property="nh3Emiunit" jdbcType="VARCHAR" />
+    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
+    <result column="voc_emiunit" property="vocEmiunit" jdbcType="VARCHAR" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="oc_emiunit" property="ocEmiunit" jdbcType="VARCHAR" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="bc_emiunit" property="bcEmiunit" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="BIT" />
+    <result column="gas_consumption" property="gasConsumption" jdbcType="DOUBLE" />
+    <result column="coal_consumption" property="coalConsumption" jdbcType="DOUBLE" />
+    <result column="coalgas_consumption" property="coalgasConsumption" jdbcType="DOUBLE" />
+    <result column="power_consumption" property="powerConsumption" jdbcType="DOUBLE" />
+    <result column="methanol_consumption" property="methanolConsumption" jdbcType="DOUBLE" />
+    <result column="other_consumption" property="otherConsumption" jdbcType="DOUBLE" />
+    <result column="other_conunit" property="otherConunit" jdbcType="CHAR" />
+    <result column="oil_consumption" property="oilConsumption" jdbcType="DOUBLE" />
+    <result column="source_discrip" property="sourceDiscrip" jdbcType="VARCHAR" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.RepastVo" >
+    SELECT repast.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+    FROM repast
+    LEFT JOIN company
+    ON repast.factoryid=company.com_id
+    LEFT JOIN county
+    ON company.county_id=county.COUNTY_ID
+    <where>
+      <if test="year != null and year != ''">
+        repast.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND company.county_id = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT repast.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+	FROM repast
+    LEFT JOIN company
+    ON repast.factoryid=company.com_id
+    LEFT JOIN county
+    ON company.county_id=county.COUNTY_ID
+    where repast.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from repast
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Repast" >
+    insert into repast (id, factoryid, year, 
+      cooking_num, cleaner_num, scccode, 
+      smoke_rate, annual_runtime, removal_effi, 
+      household_num, pm_emf, pm_emfunit, 
+      pm10_emf, pm10_emfunit, pm25_emf, 
+      pm25_emfunit, so2_emf, so2_emfunit, 
+      nox_emf, nox_emfunit, co_emf, 
+      co_emfunit, nh3_emf, nh3_emfunit, 
+      voc_emf, voc_emfunit, oc_emf, 
+      oc_emfunit, bc_emf, bc_emfunit, 
+      pm_emission, pm_emiunit, pm10_emission, 
+      pm10_emiunit, pm25_emission, pm25_emiunit, 
+      so2_emission, so2_emiunit, nox_emission, 
+      nox_emiunit, co_emission, co_emiunit, 
+      nh3_emission, nh3_emiunit, voc_emission, 
+      voc_emiunit, oc_emission, oc_emiunit, 
+      bc_emission, bc_emiunit, flag, 
+      gas_consumption, coal_consumption, coalgas_consumption, 
+      power_consumption, methanol_consumption, other_consumption, 
+      other_conunit, oil_consumption, source_discrip
+      )
+    values (#{id,jdbcType=INTEGER}, #{factoryid,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, 
+      #{cookingNum,jdbcType=INTEGER}, #{cleanerNum,jdbcType=INTEGER}, #{scccode,jdbcType=CHAR}, 
+      #{smokeRate,jdbcType=DOUBLE}, #{annualRuntime,jdbcType=INTEGER}, #{removalEffi,jdbcType=DOUBLE}, 
+      #{householdNum,jdbcType=INTEGER}, #{pmEmf,jdbcType=DOUBLE}, #{pmEmfunit,jdbcType=VARCHAR}, 
+      #{pm10Emf,jdbcType=DOUBLE}, #{pm10Emfunit,jdbcType=VARCHAR}, #{pm25Emf,jdbcType=DOUBLE}, 
+      #{pm25Emfunit,jdbcType=VARCHAR}, #{so2Emf,jdbcType=DOUBLE}, #{so2Emfunit,jdbcType=VARCHAR}, 
+      #{noxEmf,jdbcType=DOUBLE}, #{noxEmfunit,jdbcType=VARCHAR}, #{coEmf,jdbcType=DOUBLE}, 
+      #{coEmfunit,jdbcType=VARCHAR}, #{nh3Emf,jdbcType=DOUBLE}, #{nh3Emfunit,jdbcType=VARCHAR}, 
+      #{vocEmf,jdbcType=DOUBLE}, #{vocEmfunit,jdbcType=VARCHAR}, #{ocEmf,jdbcType=DOUBLE}, 
+      #{ocEmfunit,jdbcType=VARCHAR}, #{bcEmf,jdbcType=DOUBLE}, #{bcEmfunit,jdbcType=VARCHAR}, 
+      #{pmEmission,jdbcType=DOUBLE}, #{pmEmiunit,jdbcType=VARCHAR}, #{pm10Emission,jdbcType=DOUBLE}, 
+      #{pm10Emiunit,jdbcType=VARCHAR}, #{pm25Emission,jdbcType=DOUBLE}, #{pm25Emiunit,jdbcType=VARCHAR}, 
+      #{so2Emission,jdbcType=DOUBLE}, #{so2Emiunit,jdbcType=VARCHAR}, #{noxEmission,jdbcType=DOUBLE}, 
+      #{noxEmiunit,jdbcType=VARCHAR}, #{coEmission,jdbcType=DOUBLE}, #{coEmiunit,jdbcType=VARCHAR}, 
+      #{nh3Emission,jdbcType=DOUBLE}, #{nh3Emiunit,jdbcType=VARCHAR}, #{vocEmission,jdbcType=DOUBLE}, 
+      #{vocEmiunit,jdbcType=VARCHAR}, #{ocEmission,jdbcType=DOUBLE}, #{ocEmiunit,jdbcType=VARCHAR}, 
+      #{bcEmission,jdbcType=DOUBLE}, #{bcEmiunit,jdbcType=VARCHAR}, #{flag,jdbcType=BIT}, 
+      #{gasConsumption,jdbcType=DOUBLE}, #{coalConsumption,jdbcType=DOUBLE}, #{coalgasConsumption,jdbcType=DOUBLE}, 
+      #{powerConsumption,jdbcType=DOUBLE}, #{methanolConsumption,jdbcType=DOUBLE}, #{otherConsumption,jdbcType=DOUBLE}, 
+      #{otherConunit,jdbcType=CHAR}, #{oilConsumption,jdbcType=DOUBLE}, #{sourceDiscrip,jdbcType=VARCHAR}
+      )
+     ON DUPLICATE KEY UPDATE
+      id = #{record.id,jdbcType=INTEGER},
+      factoryid = #{record.factoryid,jdbcType=INTEGER},
+      year = #{record.year,jdbcType=CHAR},
+      cooking_num = #{record.cookingNum,jdbcType=INTEGER},
+      cleaner_num = #{record.cleanerNum,jdbcType=INTEGER},
+      scccode = #{record.scccode,jdbcType=CHAR},
+      smoke_rate = #{record.smokeRate,jdbcType=DOUBLE},
+      annual_runtime = #{record.annualRuntime,jdbcType=INTEGER},
+      removal_effi = #{record.removalEffi,jdbcType=DOUBLE},
+      household_num = #{record.householdNum,jdbcType=INTEGER},
+      pm_emf = #{record.pmEmf,jdbcType=DOUBLE},
+      pm_emfunit = #{record.pmEmfunit,jdbcType=VARCHAR},
+      pm10_emf = #{record.pm10Emf,jdbcType=DOUBLE},
+      pm10_emfunit = #{record.pm10Emfunit,jdbcType=VARCHAR},
+      pm25_emf = #{record.pm25Emf,jdbcType=DOUBLE},
+      pm25_emfunit = #{record.pm25Emfunit,jdbcType=VARCHAR},
+      so2_emf = #{record.so2Emf,jdbcType=DOUBLE},
+      so2_emfunit = #{record.so2Emfunit,jdbcType=VARCHAR},
+      nox_emf = #{record.noxEmf,jdbcType=DOUBLE},
+      nox_emfunit = #{record.noxEmfunit,jdbcType=VARCHAR},
+      co_emf = #{record.coEmf,jdbcType=DOUBLE},
+      co_emfunit = #{record.coEmfunit,jdbcType=VARCHAR},
+      nh3_emf = #{record.nh3Emf,jdbcType=DOUBLE},
+      nh3_emfunit = #{record.nh3Emfunit,jdbcType=VARCHAR},
+      voc_emf = #{record.vocEmf,jdbcType=DOUBLE},
+      voc_emfunit = #{record.vocEmfunit,jdbcType=VARCHAR},
+      oc_emf = #{record.ocEmf,jdbcType=DOUBLE},
+      oc_emfunit = #{record.ocEmfunit,jdbcType=VARCHAR},
+      bc_emf = #{record.bcEmf,jdbcType=DOUBLE},
+      bc_emfunit = #{record.bcEmfunit,jdbcType=VARCHAR},
+      pm_emission = #{record.pmEmission,jdbcType=DOUBLE},
+      pm_emiunit = #{record.pmEmiunit,jdbcType=VARCHAR},
+      pm10_emission = #{record.pm10Emission,jdbcType=DOUBLE},
+      pm10_emiunit = #{record.pm10Emiunit,jdbcType=VARCHAR},
+      pm25_emission = #{record.pm25Emission,jdbcType=DOUBLE},
+      pm25_emiunit = #{record.pm25Emiunit,jdbcType=VARCHAR},
+      so2_emission = #{record.so2Emission,jdbcType=DOUBLE},
+      so2_emiunit = #{record.so2Emiunit,jdbcType=VARCHAR},
+      nox_emission = #{record.noxEmission,jdbcType=DOUBLE},
+      nox_emiunit = #{record.noxEmiunit,jdbcType=VARCHAR},
+      co_emission = #{record.coEmission,jdbcType=DOUBLE},
+      co_emiunit = #{record.coEmiunit,jdbcType=VARCHAR},
+      nh3_emission = #{record.nh3Emission,jdbcType=DOUBLE},
+      nh3_emiunit = #{record.nh3Emiunit,jdbcType=VARCHAR},
+      voc_emission = #{record.vocEmission,jdbcType=DOUBLE},
+      voc_emiunit = #{record.vocEmiunit,jdbcType=VARCHAR},
+      oc_emission = #{record.ocEmission,jdbcType=DOUBLE},
+      oc_emiunit = #{record.ocEmiunit,jdbcType=VARCHAR},
+      bc_emission = #{record.bcEmission,jdbcType=DOUBLE},
+      bc_emiunit = #{record.bcEmiunit,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=BIT},
+      gas_consumption = #{record.gasConsumption,jdbcType=DOUBLE},
+      coal_consumption = #{record.coalConsumption,jdbcType=DOUBLE},
+      coalgas_consumption = #{record.coalgasConsumption,jdbcType=DOUBLE},
+      power_consumption = #{record.powerConsumption,jdbcType=DOUBLE},
+      methanol_consumption = #{record.methanolConsumption,jdbcType=DOUBLE},
+      other_consumption = #{record.otherConsumption,jdbcType=DOUBLE},
+      other_conunit = #{record.otherConunit,jdbcType=CHAR},
+      oil_consumption = #{record.oilConsumption,jdbcType=DOUBLE},
+      source_discrip = #{record.sourceDiscrip,jdbcType=VARCHAR}
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.Repast" >
+    update repast
+    <set >
+      <if test="factoryid != null" >
+        factoryid = #{factoryid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="cookingNum != null" >
+        cooking_num = #{cookingNum,jdbcType=INTEGER},
+      </if>
+      <if test="cleanerNum != null" >
+        cleaner_num = #{cleanerNum,jdbcType=INTEGER},
+      </if>
+      <if test="scccode != null" >
+        scccode = #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="smokeRate != null" >
+        smoke_rate = #{smokeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="annualRuntime != null" >
+        annual_runtime = #{annualRuntime,jdbcType=INTEGER},
+      </if>
+      <if test="removalEffi != null" >
+        removal_effi = #{removalEffi,jdbcType=DOUBLE},
+      </if>
+      <if test="householdNum != null" >
+        household_num = #{householdNum,jdbcType=INTEGER},
+      </if>
+      <if test="pmEmf != null" >
+        pm_emf = #{pmEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmfunit != null" >
+        pm_emfunit = #{pmEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10Emf != null" >
+        pm10_emf = #{pm10Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emfunit != null" >
+        pm10_emfunit = #{pm10Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Emf != null" >
+        pm25_emf = #{pm25Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emfunit != null" >
+        pm25_emfunit = #{pm25Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="so2Emf != null" >
+        so2_emf = #{so2Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emfunit != null" >
+        so2_emfunit = #{so2Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="noxEmf != null" >
+        nox_emf = #{noxEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmfunit != null" >
+        nox_emfunit = #{noxEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="coEmf != null" >
+        co_emf = #{coEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmfunit != null" >
+        co_emfunit = #{coEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nh3Emf != null" >
+        nh3_emf = #{nh3Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emfunit != null" >
+        nh3_emfunit = #{nh3Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="vocEmf != null" >
+        voc_emf = #{vocEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmfunit != null" >
+        voc_emfunit = #{vocEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ocEmf != null" >
+        oc_emf = #{ocEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmfunit != null" >
+        oc_emfunit = #{ocEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="bcEmf != null" >
+        bc_emf = #{bcEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmfunit != null" >
+        bc_emfunit = #{bcEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pmEmission != null" >
+        pm_emission = #{pmEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmiunit != null" >
+        pm_emiunit = #{pmEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emiunit != null" >
+        pm10_emiunit = #{pm10Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emiunit != null" >
+        pm25_emiunit = #{pm25Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emiunit != null" >
+        so2_emiunit = #{so2Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmiunit != null" >
+        nox_emiunit = #{noxEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmiunit != null" >
+        co_emiunit = #{coEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emiunit != null" >
+        nh3_emiunit = #{nh3Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmiunit != null" >
+        voc_emiunit = #{vocEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmiunit != null" >
+        oc_emiunit = #{ocEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmiunit != null" >
+        bc_emiunit = #{bcEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+      <if test="gasConsumption != null" >
+        gas_consumption = #{gasConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="coalConsumption != null" >
+        coal_consumption = #{coalConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="coalgasConsumption != null" >
+        coalgas_consumption = #{coalgasConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="powerConsumption != null" >
+        power_consumption = #{powerConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="methanolConsumption != null" >
+        methanol_consumption = #{methanolConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="otherConsumption != null" >
+        other_consumption = #{otherConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="otherConunit != null" >
+        other_conunit = #{otherConunit,jdbcType=CHAR},
+      </if>
+      <if test="oilConsumption != null" >
+        oil_consumption = #{oilConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip = #{sourceDiscrip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

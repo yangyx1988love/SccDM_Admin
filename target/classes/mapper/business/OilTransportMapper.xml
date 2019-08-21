@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.OilTransportMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.OilTransportVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="oil_type" property="oilType" jdbcType="CHAR" />
+    <result column="scccode" property="scccode" jdbcType="CHAR" />
+    <result column="source_discrip" property="sourceDiscrip" jdbcType="VARCHAR" />
+    <result column="year_volume" property="yearVolume" jdbcType="DOUBLE" />
+    <result column="control_rate" property="controlRate" jdbcType="INTEGER" />
+    <result column="emission" property="emission" jdbcType="DOUBLE" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.OilTransportVo" >
+    SELECT oil_transport.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+    FROM oil_transport
+    LEFT JOIN company
+    ON oil_transport.company_id=company.com_id
+    LEFT JOIN county
+    ON company.county_id=county.COUNTY_ID
+    <where>
+      <if test="year != null and year != ''">
+        oil_transport.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND company.county_id = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT oil_transport.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+    FROM oil_transport
+    LEFT JOIN company
+    ON oil_transport.company_id=company.com_id
+    LEFT JOIN county
+    ON company.county_id=county.COUNTY_ID
+    where oil_transport.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from oil_transport
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.OilTransport" >
+    insert into oil_transport (id, company_id, year, 
+      oil_type, scccode, source_discrip, 
+      year_volume, control_rate, emission, 
+      flag, note)
+    values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, 
+      #{oilType,jdbcType=CHAR}, #{scccode,jdbcType=CHAR}, #{sourceDiscrip,jdbcType=VARCHAR}, 
+      #{yearVolume,jdbcType=DOUBLE}, #{controlRate,jdbcType=INTEGER}, #{emission,jdbcType=DOUBLE}, 
+      #{flag,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
+    ON DUPLICATE KEY UPDATE    
+      id = #{id,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=INTEGER},
+      year = #{year,jdbcType=CHAR},
+      oil_type = #{oilType,jdbcType=CHAR},
+      scccode = #{scccode,jdbcType=CHAR},
+      source_discrip = #{sourceDiscrip,jdbcType=VARCHAR},
+      year_volume = #{yearVolume,jdbcType=DOUBLE},
+      control_rate = #{controlRate,jdbcType=INTEGER},
+      emission = #{emission,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR}  
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.OilTransport" >
+    update oil_transport
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="oilType != null" >
+        oil_type = #{oilType,jdbcType=CHAR},
+      </if>
+      <if test="scccode != null" >
+        scccode = #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip = #{sourceDiscrip,jdbcType=VARCHAR},
+      </if>
+      <if test="yearVolume != null" >
+        year_volume = #{yearVolume,jdbcType=DOUBLE},
+      </if>
+      <if test="controlRate != null" >
+        control_rate = #{controlRate,jdbcType=INTEGER},
+      </if>
+      <if test="emission != null" >
+        emission = #{emission,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

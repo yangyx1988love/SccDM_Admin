@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.StrawCompostMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.StrawCompostVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="scccode" property="scccode" jdbcType="CHAR" />
+    <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
+    <result column="activity_level" property="activityLevel" jdbcType="DOUBLE" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="flag" property="flag" jdbcType="TINYINT" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.StrawCompostVo" >
+    SELECT straw_compost.*,county.COUNTY_NAME
+    FROM straw_compost
+    LEFT JOIN county
+	ON straw_compost.county_id=county.COUNTY_ID
+    <where>
+      <if test="year != null and year != ''">
+        straw_compost.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND straw_compost.county_id = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT straw_compost.*,county.COUNTY_NAME
+    FROM straw_compost
+    LEFT JOIN county
+	ON straw_compost.county_id=county.COUNTY_ID
+    where straw_compost.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from straw_compost
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.StrawCompost" >
+    insert into straw_compost (id, year, county_id, 
+      scccode, source_descrip, activity_level, 
+      pm10_emission, pm25_emission, voc_emission, 
+      nh3_emission, so2_emission, co_emission, 
+      oc_emission, bc_emission, nox_emission, 
+      flag)
+    values (#{id,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, #{countyId,jdbcType=CHAR}, 
+      #{scccode,jdbcType=CHAR}, #{sourceDescrip,jdbcType=VARCHAR}, #{activityLevel,jdbcType=DOUBLE}, 
+      #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, 
+      #{nh3Emission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE}, #{coEmission,jdbcType=DOUBLE}, 
+      #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, 
+      #{flag,jdbcType=TINYINT})
+    ON DUPLICATE KEY UPDATE
+      id = #{id,jdbcType=INTEGER},
+      year = #{year,jdbcType=CHAR},
+      county_id = #{countyId,jdbcType=CHAR},
+      scccode = #{scccode,jdbcType=CHAR},
+      source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      activity_level = #{activityLevel,jdbcType=DOUBLE},
+      pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      co_emission = #{coEmission,jdbcType=DOUBLE},
+      oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=TINYINT}
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.StrawCompost" >
+    update straw_compost
+    <set >
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="scccode != null" >
+        scccode = #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="activityLevel != null" >
+        activity_level = #{activityLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="UTF-8">
+    <title>企业地图</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+<!--        <div class="layui-row">-->
+<!--            <form class="layui-form layui-col-md12 we-search">-->
+<!--                <shiro:hasPermission name="factoryAuth:citySel">-->
+<!--                    <div class="layui-input-inline">-->
+<!--                        <select id="countyCity" name="countyCity" lay-filter="countyCity">-->
+<!--                            <option value="">请选择实际城市</option>-->
+<!--                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </shiro:hasPermission>-->
+<!--                <div class="layui-input-inline">-->
+<!--                    <select id="countyId" name="countyId" lay-filter="countyId">-->
+<!--                        <option value="">请选择实际区县</option>-->
+<!--                        <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <div class="layui-inline">-->
+<!--                    <input type="text" id="factoryNo1" name="factoryNo1" placeholder="工厂编号"  lay-verify="" class="layui-input">-->
+<!--                </div>-->
+<!--                <div class="layui-inline">-->
+<!--                    <input type="text" id="factoryName" name="factoryName" placeholder="工厂名称"  lay-verify="chinese" class="layui-input">-->
+<!--                </div>-->
+<!--                <div class="layui-input-inline">-->
+<!--                    <select id="status" name="status">-->
+<!--                        <option value="">审核状态</option>-->
+<!--                        <option th:each="Status : ${Statuss}" th:value="${Status.id}" th:text="${Status.introduction}">-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <button  id="selectFactorys" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">-->
+<!--                    <i class="layui-icon">&#xe615;</i></button>-->
+<!--            </form>-->
+<!--        </div>-->
+        <div class="layui-row">
+            <div id="map"style="width: 1000px;height: 800px"></div>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+<!--    <script th:src="@{/lib/echarts/echarts.min.js}"></script>-->
+    <script th:src="@{/lib/echarts/dist/echarts.js}"></script>
+    <script th:src="@{/lib/echarts/map/js/province/tianjin.js}"></script>
+    <script>
+        var mycharts = echarts.init(document.getElementById('map'))
+        //自定义城市坐标菜单
+        var data = [
+            {name: '滨海西站', value: 84},
+            {name: '天津海昌极地海洋世界', value: 86}
+        ];
+        var geoCoordMap = {
+            '滨海西站':[117.617915,39.087602],
+            '天津海昌极地海洋世界':[117.667933,39.014079]
+        };
+        //拼接对象数组
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var geoCoord = geoCoordMap[data[i].name];//获取坐标
+                if (geoCoord) {//如果有坐标
+                    res.push({//创建对象数组，
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value)  //用连接数组的形式将value值加入
+                    });
+                    //res.push(geoCoord.concat(data[i].value));
+                    //res.push(geoCoord.concat(data[i].name));
+                }
+            }
+            return res;
+        };
+        option = {
+            backgroundColor: '#404a59',//整个画布背景
+            //标题组件
+            title: {
+                text: '全国主要城市空气质量',
+                subtext: 'data from PM25.in',
+                sublink: 'http://www.pm25.in',
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            //左下lengend
+            visualMap: {
+                min: 0,//最小
+                    max: 300,//最大
+                    splitNumber: 5,//共分5层
+                    color: ['#ff6300','#eac736','#50a3ba'],//颜色从高到低依次渐变
+                    textStyle: {
+                    color: '#fff'
+                }
+            },
+            //地图区域样式
+            geo: {
+                map: '天津',
+                    label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                roam:true,
+                center: [117.61621,39.08832],
+                itemStyle: {
+                    //未激活样式
+                    normal: {
+                        areaColor: '#324157',
+                            borderColor: '#111'
+                    },
+                    //激活样式
+                    emphasis: {
+                        areaColor: '#2a333d'
+                    }
+                }
+            },
+            //数据
+            series: [
+                {
+                    name: 'pm2.5',
+                    type: 'scatter',
+                    coordinateSystem: 'geo',
+                    data: convertData(data),
+                    symbolSize: 12,
+                    //直接在点上显示标签
+                    label: {
+                        show:false,
+                            normal: {
+                                show: true
+                            },
+                            emphasis: {
+                                show: true
+                            },
+                        formatter:'{b}',
+                        offset:[15,-15],//文字的相对偏移
+                    },
+                    //标签的样式
+                    itemStyle: {
+                        emphasis: {
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        }
+                    }
+                }
+            ]
+        }
+        mycharts.setOption(option);
+    </script>
+
+<!--    <script >-->
+<!--        function randomData() {-->
+<!--            return Math.round(Math.random()*500);-->
+<!--        }-->
+<!--        var mydata = [-->
+<!--            {name: '北京',value: '100' },{name: '天津',value: randomData() },-->
+<!--            {name: '上海',value: randomData() },{name: '重庆',value: randomData() },-->
+<!--            {name: '河北',value: randomData() },{name: '河南',value: randomData() },-->
+<!--            {name: '云南',value: randomData() },{name: '辽宁',value: randomData() },-->
+<!--            {name: '黑龙江',value: randomData() },{name: '湖南',value: randomData() },-->
+<!--            {name: '安徽',value: randomData() },{name: '山东',value: randomData() },-->
+<!--            {name: '新疆',value: randomData() },{name: '江苏',value: randomData() },-->
+<!--            {name: '浙江',value: randomData() },{name: '江西',value: randomData() },-->
+<!--            {name: '湖北',value: randomData() },{name: '广西',value: randomData() },-->
+<!--            {name: '甘肃',value: randomData() },{name: '山西',value: randomData() },-->
+<!--            {name: '内蒙古',value: randomData() },{name: '陕西',value: randomData() },-->
+<!--            {name: '吉林',value: randomData() },{name: '福建',value: randomData() },-->
+<!--            {name: '贵州',value: randomData() },{name: '广东',value: randomData() },-->
+<!--            {name: '青海',value: randomData() },{name: '西藏',value: randomData() },-->
+<!--            {name: '四川',value: randomData() },{name: '宁夏',value: randomData() },-->
+<!--            {name: '海南',value: randomData() },{name: '台湾',value: randomData() },-->
+<!--            {name: '香港',value: randomData() },{name: '澳门',value: randomData() }-->
+<!--        ];-->
+<!--        var optionMap = {-->
+<!--            backgroundColor: '#FFFFFF',-->
+<!--            title: {-->
+<!--                text: '全国地图大数据',-->
+<!--                subtext: '',-->
+<!--                x:'center'-->
+<!--            },-->
+<!--            tooltip : {-->
+<!--                trigger: 'item'-->
+<!--            },-->
+
+<!--            //左侧小导航图标-->
+<!--            visualMap: {-->
+<!--                show : true,-->
+<!--                x: 'left',-->
+<!--                y: 'center',-->
+<!--                splitList: [-->
+<!--                    {start: 500, end:600},{start: 400, end: 500},-->
+<!--                    {start: 300, end: 400},{start: 200, end: 300},-->
+<!--                    {start: 100, end: 200},{start: 0, end: 100},-->
+<!--                ],-->
+<!--                color: ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea']-->
+<!--            },-->
+
+<!--            //配置属性-->
+<!--            series: [{-->
+<!--                name: '数据',-->
+<!--                type: 'map',-->
+<!--                mapType: 'china',-->
+<!--                roam: true,-->
+<!--                label: {-->
+<!--                    normal: {-->
+<!--                        show: true  //省份名称-->
+<!--                    },-->
+<!--                    emphasis: {-->
+<!--                        show: false-->
+<!--                    }-->
+<!--                },-->
+<!--                data:mydata  //数据-->
+<!--            }]-->
+<!--        };-->
+<!--        //初始化echarts实例-->
+<!--        var myChart = echarts.init(document.getElementById('main'));-->
+
+<!--        //使用制定的配置项和数据显示图表-->
+<!--        myChart.setOption(optionMap);-->
+
+<!--    </script>-->
+
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.BiomassForestGrasslandMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.BiomassForestGrasslandVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="county_id" property="countyId" jdbcType="CHAR" />
+    <result column="scc_code" property="sccCode" jdbcType="CHAR" />
+    <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
+    <result column="VEGETATION_TYPES" property="vegetationTypes" jdbcType="CHAR" />
+    <result column="fire_area" property="fireArea" jdbcType="DOUBLE" />
+    <result column="DRY_BIOMASS" property="dryBiomass" jdbcType="DOUBLE" />
+    <result column="BURNING_RATIO" property="burningRatio" jdbcType="DOUBLE" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
+    <result column="pm_emission" property="pmEmission" jdbcType="DOUBLE" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
+  </resultMap>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" >
+    SELECT biomass_forest_grassland.*,county.COUNTY_NAME
+    FROM biomass_forest_grassland
+    LEFT JOIN county
+	ON biomass_forest_grassland.COUNTY_ID=county.COUNTY_ID
+    <where>
+      <if test="year != null and year != ''">
+        biomass_forest_grassland.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND biomass_forest_grassland.COUNTY_ID = #{countyId}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT biomass_forest_grassland.*,county.COUNTY_NAME
+    FROM biomass_forest_grassland
+    LEFT JOIN county
+	ON biomass_forest_grassland.COUNTY_ID=county.COUNTY_ID
+    where biomass_forest_grassland.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from biomass_forest_grassland
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.BiomassForestGrassland" >
+    insert into biomass_forest_grassland (id, county_id, scc_code, 
+      source_descrip, VEGETATION_TYPES, fire_area, 
+      DRY_BIOMASS, BURNING_RATIO, note, 
+      year, pm10_emission, pm25_emission, 
+      co_emission, voc_emission, pm_emission, 
+      so2_emission, nox_emission, nh3_emission, 
+      oc_emission, bc_emission)
+    values (#{id,jdbcType=INTEGER}, #{countyId,jdbcType=CHAR}, #{sccCode,jdbcType=CHAR}, 
+      #{sourceDescrip,jdbcType=VARCHAR}, #{vegetationTypes,jdbcType=CHAR}, #{fireArea,jdbcType=DOUBLE}, 
+      #{dryBiomass,jdbcType=DOUBLE}, #{burningRatio,jdbcType=DOUBLE}, #{note,jdbcType=VARCHAR}, 
+      #{year,jdbcType=CHAR}, #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, 
+      #{coEmission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, #{pmEmission,jdbcType=DOUBLE}, 
+      #{so2Emission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, 
+      #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE})
+    ON DUPLICATE KEY UPDATE
+      id = #{.id,jdbcType=INTEGER},
+      county_id = #{.countyId,jdbcType=CHAR},
+      scc_code = #{.sccCode,jdbcType=CHAR},
+      source_descrip = #{.sourceDescrip,jdbcType=VARCHAR},
+      VEGETATION_TYPES = #{.vegetationTypes,jdbcType=CHAR},
+      fire_area = #{.fireArea,jdbcType=DOUBLE},
+      DRY_BIOMASS = #{.dryBiomass,jdbcType=DOUBLE},
+      BURNING_RATIO = #{.burningRatio,jdbcType=DOUBLE},
+      note = #{.note,jdbcType=VARCHAR},
+      year = #{.year,jdbcType=CHAR},
+      pm10_emission = #{.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{.pm25Emission,jdbcType=DOUBLE},
+      co_emission = #{.coEmission,jdbcType=DOUBLE},
+      voc_emission = #{.vocEmission,jdbcType=DOUBLE},
+      pm_emission = #{.pmEmission,jdbcType=DOUBLE},
+      so2_emission = #{.so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{.noxEmission,jdbcType=DOUBLE},
+      nh3_emission = #{.nh3Emission,jdbcType=DOUBLE},
+      oc_emission = #{.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{.bcEmission,jdbcType=DOUBLE}
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.BiomassForestGrassland" >
+    update biomass_forest_grassland
+    <set >
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="sccCode != null" >
+        scc_code = #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="vegetationTypes != null" >
+        VEGETATION_TYPES = #{vegetationTypes,jdbcType=CHAR},
+      </if>
+      <if test="fireArea != null" >
+        fire_area = #{fireArea,jdbcType=DOUBLE},
+      </if>
+      <if test="dryBiomass != null" >
+        DRY_BIOMASS = #{dryBiomass,jdbcType=DOUBLE},
+      </if>
+      <if test="burningRatio != null" >
+        BURNING_RATIO = #{burningRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmission != null" >
+        pm_emission = #{pmEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

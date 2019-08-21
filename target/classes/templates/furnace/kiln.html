@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>窑炉</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+<form class="layui-form layui-form-pane" name="kilnForm" id="kilnForm" >
+    <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
+    <input type="hidden" id="id" name="id"  th:value="${kiln?.id}">
+    <input type="hidden" id="scc1" name="scc1"  th:value="${scc1}">
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px">窑炉用途</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="functio" name="functio" th:field="*{kiln.functio}" lay-filter="functio" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:each="scc2 : ${scc2s}" th:value="${scc2.scc2}" th:text="${scc2.description}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px;margin-left: 10px;">
+            <label class="layui-form-label" style="width: 110px">工艺类型</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="fueltype" name="fueltype" th:field="*{kiln.fueltype}" lay-filter="fueltype" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px;margin-left: 10px;">
+            <label class="layui-form-label" style="width: 110px">窑炉类型</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="model" name="model" th:field="*{kiln.model}" lay-filter="model" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">窑炉编号</label>
+            <div class="layui-input-block" >
+                <input id="nkNo" name="nkNo" th:value="${kiln?.nkNo}"  class="layui-input" style="width: 170px;" type="text" lay-verify="required|number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">窑炉设备型号</label>
+            <div class="layui-input-block">
+                <input id="kilnModel" name="kilnModel" th:value="${kiln?.kilnModel}" class="layui-input" style="width: 170px;" type="text" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">SCC编码</label>
+            <div class="layui-input-block">
+                <input id="scccode" name="scccode" th:value="${kiln?.scccode}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="required|number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 110px">排气筒编号</label>
+            <div class="layui-input-block" style="width: 240px;">
+                <select id="exhustId" name="exhustId" th:field="*{kiln.exhustId}" lay-filter="exhustId" lay-verify="required|number">
+                    <option value="">请选择</option>
+                    <option th:each="exhaust:${exhausts}" th:value="${exhaust?.exfId}" th:text="${exhaust?.nkNo}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料年使用量</label>
+            <div class="layui-input-block">
+                <input id="kilnFuelAusage" name="kilnFuelAusage" th:value="${kiln?.kilnFuelAusage}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="required|number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 110px;">用量单位</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="kilnFuelAusageunit" name="kilnFuelAusageunit"  th:field="*{kiln.kilnFuelAusageunit}" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option value="吨">吨</option>
+                    <option value="万立方米">万立方米</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">废气排放量(万立方米)</label>
+            <div class="layui-input-block">
+                <input id="feiqiti" name="feiqiti" th:value="${kiln?.feiqiti}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="required|number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">二氧化硫排放量(吨)</label>
+            <div class="layui-input-block">
+                <input id="so2out" name="so2out" th:value="${kiln?.so2out}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="required|number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">氮氧化物排放量(吨)</label>
+            <div class="layui-input-block">
+                <input id="noxout" name="noxout" th:value="${kiln?.noxout}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="required|number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">烟粉尘排放量(吨)</label>
+            <div class="layui-input-block">
+                <input id="pmout" name="pmout" th:value="${kiln?.pmout}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="required|number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃煤灰分(单位:%)</label>
+            <div class="layui-input-block">
+                <input id="coalash" name="coalash" th:value="${kiln?.coalash}" class="layui-input" style="width: 170px" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃煤硫分(单位:%)</label>
+            <div class="layui-input-block">
+                <input id="coalsulfur" name="coalsulfur" th:value="${kiln?.coalsulfur}" class="layui-input" style="width: 170px" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">煤炭挥发分(单位:%)</label>
+            <div class="layui-input-block">
+                <input id="coalVolatilisation" name="coalVolatilisation" th:value="${kiln?.coalVolatilisation}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"style="width: 110px;">除尘方式</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="dustremoveId" name="dustremoveId" th:field="*{kiln.dustremoveid}" >
+                    <option value="">请选择</option>
+                    <option th:each="dustremove : ${dustremoves}" th:value="${dustremove.dustRemoveId}" th:text="${dustremove.dustRemoveName}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px">
+            <label class="layui-form-label" style="width: 110px;">脱硫方式</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="sulphurremoveId" name="sulphurremoveId" th:field="*{kiln.sulphurremoveid}">
+                    <option value="">请选择</option>
+                    <option th:each="sulphurremove : ${sulphurremoves}" th:value="${sulphurremove.id}" th:text="${sulphurremove.sulphurMethod}">
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 110px;">脱硝方式</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="nitreremoveId" name="nitreremoveId" th:field="*{kiln.nitreremoveid}">
+                    <option value="">请选择</option>
+                    <option th:each="nitreremove:${nitreremoves}" th:value="${nitreremove.id}" th:text="${nitreremove.nitreMethod}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料一月份使用量</label>
+            <div class="layui-input-block">
+                <input id="janUseamount" name="janUseamount" th:value="${kiln?.janUseamount}" class="layui-input" style="width: 170px" readonly="readonly" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料二月份使用量</label>
+            <div class="layui-input-block" >
+                <input id="febUseamount" name="febUseamount" th:value="${kiln?.febUseamount}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料三月份使用量</label>
+            <div class="layui-input-block">
+                <input id="marUseamount" name="marUseamount" th:value="${kiln?.marUseamount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">燃料四月份使用量</label>
+            <div class="layui-input-block">
+                <input id="aprUseamount" name="aprUseamount" th:value="${kiln?.aprUseamount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料五月份使用量</label>
+            <div class="layui-input-block" >
+                <input id="mayUseamount" name="mayUseamount" th:value="${kiln?.mayUseamount}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料六月份使用量</label>
+            <div class="layui-input-block">
+                <input id="juneUseamount" name="juneUseamount" th:value="${kiln?.juneUseamount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">燃料七月份使用量</label>
+            <div class="layui-input-block">
+                <input id="julyUseamount" name="julyUseamount" th:value="${kiln?.julyUseamount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料八月份使用量</label>
+            <div class="layui-input-block" >
+                <input id="augUseamount" name="augUseamount" th:value="${kiln?.augUseamount}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料九月份使用量</label>
+            <div class="layui-input-block">
+                <input id="septUseamount" name="septUseamount" th:value="${kiln?.septUseamount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">燃料十月份使用量</label>
+            <div class="layui-input-block">
+                <input id="octUseAmount" name="octUseAmount" th:value="${kiln?.octUseAmount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料十一月份使用量</label>
+            <div class="layui-input-block" >
+                <input id="novUseamount" name="novUseamount" th:value="${kiln?.novUseamount}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">燃料十二月份使用量</label>
+            <div class="layui-input-block">
+                <input id="decUseamount" name="decUseamount" th:value="${kiln?.decUseamount}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">PM10(吨/年)</label>
+            <div class="layui-input-block">
+                <input id="pm10" name="pm10" th:value="${kiln?.pm10}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">PM2.5(吨/年)</label>
+            <div class="layui-input-block" >
+                <input id="pm25" name="pm25" th:value="${kiln?.pm25}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">CO(吨/年)</label>
+            <div class="layui-input-block">
+                <input id="co" name="co" th:value="${kiln?.co}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">VOC(吨/年)</label>
+            <div class="layui-input-block">
+                <input id="voc" name="voc" th:value="${kiln?.voc}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">PM(吨/年)</label>
+            <div class="layui-input-block" >
+                <input id="pm" name="pm" th:value="${kiln?.pm}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">SO2(吨/年)</label>
+            <div class="layui-input-block">
+                <input id="so2" name="so2" th:value="${kiln?.so2}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label"  style="width: 180px;">BC(吨/年)</label>
+            <div class="layui-input-block">
+                <input id="bc" name="bc" th:value="${kiln?.bc}" class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+            <label class="layui-form-label" style="width: 180px;">OC(吨/年)</label>
+            <div class="layui-input-block" >
+                <input id="oc" name="oc" th:value="${kiln?.oc}"  class="layui-input" style="width: 170px;" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <shiro:hasPermission name="factoryAuth:kiln:update">
+        <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+            <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+        </div>
+    </shiro:hasPermission>
+</form>
+
+<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+<script th:src="@{/lib/layui/layui.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+
+<script type="application/javascript">
+    layui.use(['form', 'layer','jquery'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer
+        form.on('select(functio)',function(data){
+            var formData = {};
+            var t = $('form').serializeArray();
+            $.each(t, function() {
+                formData [this.name] = this.value;
+            });
+            var scc1=formData["scc1"];
+            var scc2=data.value;
+            $.ajax({
+                url: '/factoryAuth/seleScc2/' + scc2,
+                data: {scc1: scc1,scc2: scc2},//发送的参数
+                type: "post",
+                success: function (datas) {
+                    $("select[name=fueltype]").html('<option value="">请选择</option>'); //清空
+                    $("select[name=model]").html('<option value="">请选择</option>'); //清空
+                    if(datas.length>0){
+                        $.each(datas, function(key, val) {
+                            var option1 = $("<option>").val(val.scc3).text(val.description);
+                            $("select[name=fueltype]").append(option1);
+                            form.render('select');
+                        });
+                    }else{
+                        form.render('select');
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("更新失败!", {icon: 6});
+                }
+            })
+        });
+        form.on('select(fueltype)',function(data){
+            var formData = {};
+            var t = $('form').serializeArray();
+            $.each(t, function() {
+                formData [this.name] = this.value;
+            });
+            var scc1=formData["scc1"];
+            var scc2=formData["functio"];
+
+            var scc3=data.value;
+            $.ajax({
+                url: '/factoryAuth/seleScc3/' + scc2+"/"+scc3,
+                data: {scc1: scc1,scc2: scc2,scc3: scc3},//发送的参数
+                type: "post",
+                success: function (datas) {
+                    $("select[name=model]").html('<option value="">请选择</option>'); //清空
+                    if(datas.length>0){
+                        $.each(datas, function(key, val) {
+                            var option1 = $("<option>").val(val.scc4).text(val.description);
+                            $("select[name=model]").append(option1);
+                            form.render('select');
+                        });
+                    }else{
+                        form.render('select');
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("更新失败!", {icon: 6});
+                }
+            })
+        });
+        //监听提交
+        form.on('submit(edit)', function (form) {
+            var data = form.field;
+            $.post('/factoryAuth/kiln/edit/' + data.id , form.field, function (result) {
+                handlerResult(result, function (data) {
+                    layer.msg("提交成功！",{icon: 6, time:1000});
+                });
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

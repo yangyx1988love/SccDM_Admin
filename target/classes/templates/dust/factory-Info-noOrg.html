@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>无组织车间</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>无组织车间总信息</legend>
+        </fieldset>
+        <blockquote class="layui-elem-quote">
+            车间总数：<span th:text="${fNoOrgNum}"></span>
+        </blockquote>
+        <form class="layui-form layui-form-pane" name="fNoOrgForm" id="fNoOrgForm" >
+            <div class="layui-collapse" th:each="fNoOrg:${fNoOrgs}">
+                <div class="layui-colla-item">
+                    <h4 class="layui-colla-title">第<span th:text="${fNoOrgStat.index+1}"></span>个车间</h4>
+                    <div class="layui-colla-content layui-show">
+                            <div class="layui-form-item">
+                                <div class="layui-inline" style="width: 350px;">
+                                    <input type="hidden" id="wsid" name="wsid" th:value="${fNoOrg?.wsid}">
+                                    <label class="layui-form-label" style="width: 180px;">车间编号</label>
+                                    <div class="layui-input-block" >
+                                        <input id="workshopid" name="workshopid" th:value="${fNoOrg?.workshopid}"  class="layui-input" style="width: 170px;" type="text" lay-verify="required|number">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="width: 350px;">
+                                    <label class="layui-form-label" style="width: 180px;">经度</label>
+                                    <div class="layui-input-block">
+                                        <input id="longitude" name="longitude" th:value="${fNoOrg?.longitude}" class="layui-input" style="width: 170px" type="text" lay-verify="required|longitude">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+                                    <label class="layui-form-label" style="width: 180px;">纬度</label>
+                                    <div class="layui-input-block">
+                                        <input id="latitude" name="latitude" th:value="${fNoOrg?.latitude}" class="layui-input" style="width: 170px" type="text" lay-verify="required|latitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-inline" style="width: 350px;">
+                                    <label class="layui-form-label" style="width: 180px;">生产用途</label>
+                                    <div class="layui-input-block">
+                                        <input id="productionUse" name="productionUse" th:value="${fNoOrg?.productionUse}" class="layui-input" style="width: 170px;" type="text" lay-verify="required">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-left: 10px;width: 350px;">
+                                    <label class="layui-form-label" style="width: 180px;">车间面积(m^2)</label>
+                                    <div class="layui-input-block">
+                                        <input id="workshopArea" name="workshopArea" th:value="${fNoOrg?.workshopArea}" class="layui-input" style="width: 170px;" type="text" lay-verify="required|number">
+                                    </div>
+                                </div>
+                            </div>
+<!--                        </form>-->
+                    </div>
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:noOrg:update">
+                <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                    <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <script th:src="@{/lib/echarts/echarts.min.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            form.verify({
+                "longitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '经度整数部分为0-180,小数部分为0到6位!'
+                        }
+                    }
+                }, "latitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '纬度整数部分为0-90,小数部分为0到6位!\''
+                        }
+                    }
+                }
+            })
+            // form.on('submit(edit)', function () {
+            //     var els =document.getElementsByName("exfId");
+            //     for (var i = 0, j = els.length; i < j; i++){
+            //         alert(els[i].value);
+            //     }
+            // });
+            //监听提交
+            form.on('submit(edit)', function (formData) {
+                $.post("/factoryAuth/fNoOrg/update", $("#fNoOrgForm").serialize(), function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

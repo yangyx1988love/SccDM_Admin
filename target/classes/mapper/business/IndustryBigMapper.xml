@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.IndustryBigMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.IndustryBig" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="industry_code" property="industryCode" jdbcType="VARCHAR" />
+    <result column="industry_name" property="industryName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, industry_code, industry_name
+  </sql>
+  <select id="selectAllIndustryBigs" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from industry_big
+    where 1=1
+  </select>
+</mapper>
