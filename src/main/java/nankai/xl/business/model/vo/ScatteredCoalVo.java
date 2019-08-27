@@ -52,4 +52,5 @@ public class ScatteredCoalVo extends ScatteredCoal {
     public void setScc4(String scc4) {
         this.scc4 = scc4;
     }
+
 }

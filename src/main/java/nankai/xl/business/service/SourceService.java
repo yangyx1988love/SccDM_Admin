@@ -7,13 +7,10 @@ import java.util.List;
 
 public interface SourceService {
     //散煤
-    int insertScatteredCoal(ScatteredCoal scatteredCoal);
-    int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal);
+    int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal,boolean isCul);
     List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit);
-    List<ScatteredCoalVo> getAllScatteredCoals(int page, int limit);
     ScatteredCoalVo getScatById(Integer id);
     int deleteScatById(Integer id);
-    int updateScatById(ScatteredCoal scatteredCoal);
     //石化有组织废气排放
     int insertOrUpdateShGa(ShGasemission shGasemission);
     List<ShGasemissionVo> getShGasByShGas(ShGasemissionVo shGasemissionVo,int page, int limit);
@@ -31,8 +28,7 @@ public interface SourceService {
     List<ShEffluentemissionVo> getShEffsByExample(ShEffluentemissionVo shEffluentemissionVo,int page, int limit);
     ShEffluentemissionVo getShEffById(Integer id);
     int deleteShEffById(Integer id);
-    int updateShEffById(ShEffluentemission shEffluentemission);
-    int insertOrUpdateShEff(ShEffluentemission shEffluentemission);
+    int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul) throws Exception;
     //VOC处理装置
     List<ShVocdeviceeffiVo> getShVocsByExample(ShVocdeviceeffiVo shVocdeviceeffiVo,int page, int limit);
     ShVocdeviceeffiVo getShVocById(Integer id);

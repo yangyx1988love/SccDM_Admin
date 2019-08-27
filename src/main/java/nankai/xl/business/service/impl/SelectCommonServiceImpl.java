@@ -2,6 +2,7 @@ package nankai.xl.business.service.impl;
 
 import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
+import nankai.xl.business.model.vo.SccVo;
 import nankai.xl.business.service.SelectCommonService;
 import org.springframework.stereotype.Service;
 
@@ -106,6 +107,11 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Override
     public List<Scc4> getScc3sByScc4(Scc4 scc4) {
         return scc4Mapper.selectByScc4(scc4);
+    }
+
+    @Override
+    public SccVo selectBySccCode(String sccCode) {
+        return scc4Mapper.selectBySccCode(sccCode);
     }
 
     @Override

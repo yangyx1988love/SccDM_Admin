@@ -3,6 +3,7 @@ package nankai.xl.business.controller;
 import com.github.pagehelper.PageInfo;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.ScatteredCoalVo;
+import nankai.xl.business.model.vo.SccVo;
 import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
@@ -101,20 +102,16 @@ public class ScatCoalController {
         model.addAttribute("scatteredCoalVo", scatteredCoalVo);
         return "source/fixed/coal-update";
     }
-    @OperationLog("编辑")
-    @PutMapping("/fixed/coal/edit/{id}")
+    @OperationLog("散煤-编辑-保存")
+    @PutMapping("/fixed/coal/edit")
     @ResponseBody
-    public ResultBean insertOrUpdate(@PathVariable("id") Integer id,ScatteredCoalVo scatteredCoalVo) {
+    public ResultBean insertOrUpdate(boolean isCul,ScatteredCoalVo scatteredCoalVo) {
+        String scc1Code="10";
+        String scc2Code="05";
         scatteredCoalVo.setSccCode("1005"+scatteredCoalVo.getScc3()+scatteredCoalVo.getScc4());
-        sourceService.updateScatById(scatteredCoalVo);
-        return ResultBean.success();
-    }
-    @OperationLog("新增")
-    @PostMapping("/fixed/coal/add/")
-    @ResponseBody
-    public ResultBean insert(boolean isCul,ScatteredCoalVo scatteredCoalVo) {
-        scatteredCoalVo.setSccCode("1005"+scatteredCoalVo.getScc3()+scatteredCoalVo.getScc4());
-        sourceService.insertScatteredCoal(scatteredCoalVo);
+        SccVo sccVo=selectCommonService.selectBySccCode(scatteredCoalVo.getSccCode());
+        scatteredCoalVo.setSourceDescription(sccVo.getDescription());
+        sourceService.insertOrUpdateScatteredCoal(scatteredCoalVo,isCul);
         return ResultBean.success();
     }
 }

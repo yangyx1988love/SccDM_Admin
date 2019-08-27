@@ -3,8 +3,8 @@ package nankai.xl.business.controller;
 import com.github.pagehelper.PageInfo;
 import nankai.xl.business.model.City;
 import nankai.xl.business.model.County;
-import nankai.xl.business.model.ScatteredCoal;
-import nankai.xl.business.model.ShGasemission;
+import nankai.xl.business.model.Scc3;
+import nankai.xl.business.model.Scc4;
 import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.SourceService;
@@ -38,28 +38,13 @@ public class ProcessController {
     @GetMapping("/process/shGas/list")
     @ResponseBody
     public PageResultBean<ShGasemissionVo> shGasList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                        @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        ShGasemissionVo shGasemissionVo=new ShGasemissionVo();
+                                                        @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                     ShGasemissionVo shGasemissionVo) {
         List<ShGasemissionVo> results= sourceService.getShGasByShGas(shGasemissionVo,page, limit);
         PageInfo<ShGasemissionVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
-    @OperationLog("工艺过程源-石化有组织废气排放-重载")
-    @GetMapping("/process/shGas/reload")
-    @ResponseBody
-    public PageResultBean<ShGasemissionVo> shGasReload(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                   @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                       ShGasemissionVo shGasemissionVo) {
-        List<ShGasemissionVo> results= sourceService.getShGasByShGas(shGasemissionVo,page, limit);
-        PageInfo<ShGasemissionVo> PageInfo = new PageInfo<>(results);
-        return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
-    }
-//    @OperationLog("散煤-编辑")
-//    @GetMapping("/process/shGas/{id}")
-//    public String update(@PathVariable("id") Integer id, Model model) {
-//        model.addAttribute("scatteredCoal", sourceService.getScatById(id));
-//        return "source/fixed/list";
-//    }
+
     @OperationLog("工艺过程源-石化有组织废气排放-删除")
     @DeleteMapping("/process/shGas/{id}")
     @ResponseBody
@@ -118,39 +103,61 @@ public class ProcessController {
         List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
-        return "source/process/shEff-list";
+        return "source/process/shEff/shEff-list";
     }
     @OperationLog("工艺过程源-废水无组织排放-列表")
     @GetMapping("/process/shEff/list")
     @ResponseBody
     public PageResultBean<ShEffluentemissionVo> shEffList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                          @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        ShEffluentemissionVo shEffluentemissionVo=new ShEffluentemissionVo();
+                                                          @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                          ShEffluentemissionVo shEffluentemissionVo) {
         List<ShEffluentemissionVo> results= sourceService.getShEffsByExample(shEffluentemissionVo,page, limit);
         PageInfo<ShEffluentemissionVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
-    @OperationLog("工艺过程源-废水无组织排放-重载")
-    @GetMapping("/process/shEff/reload")
-    @ResponseBody
-    public PageResultBean<ShEffluentemissionVo> shEffReload(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                    @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                        ShEffluentemissionVo shEffluentemissionVo) {
-        List<ShEffluentemissionVo> results= sourceService.getShEffsByExample(shEffluentemissionVo,page, limit);
-        PageInfo<ShEffluentemissionVo> PageInfo = new PageInfo<>(results);
-        return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
-    }
-    //    @OperationLog("散煤-编辑")
-//    @GetMapping("/process/shEff/{id}")
-//    public String update(@PathVariable("id") Integer id, Model model) {
-//        model.addAttribute("scatteredCoal", sourceService.getScatById(id));
-//        return "source/fixed/list";
-//    }
     @OperationLog("工艺过程源-废水无组织排放-删除")
     @DeleteMapping("/process/shEff/{id}")
     @ResponseBody
     public ResultBean shEffDelete(@PathVariable("id") Integer id) {
         sourceService.deleteShEffById(id);
+        return ResultBean.success();
+    }
+    @OperationLog("废水无组织排放-编辑")
+    @GetMapping("/process/shEff/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        ShEffluentemissionVo shEffluentemissionVo=sourceService.getShEffById(id);
+        shEffluentemissionVo.setScc4(shEffluentemissionVo.getScccode().substring(7,10));
+        Scc4 scc4=new Scc4();
+        scc4.setScc1("11");
+        scc4.setScc2("17");
+        scc4.setScc3("140");
+        List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
+
+        model.addAttribute("scc4s", scc4s);
+        model.addAttribute("shEffluentemissionVo", shEffluentemissionVo);
+        return "source/process/shEff/shEff-update";
+    }
+    @OperationLog("废水无组织排放-新增")
+    @GetMapping("/process/shEff/add")
+    public String add(Model model) {
+        Scc4 scc4=new Scc4();
+        scc4.setScc1("11");
+        scc4.setScc2("17");
+        scc4.setScc3("140");
+        List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        model.addAttribute("scc4s", scc4s);
+        return "source/process/shEff/shEff-add";
+    }
+    @OperationLog("废水无组织排放-编辑-保存")
+    @PutMapping("/process/shEff/edit")
+    @ResponseBody
+    public ResultBean insertOrUpdate(boolean isCul,ShEffluentemissionVo shEffluentemissionVo) throws Exception {
+        shEffluentemissionVo.setScccode("1117140"+shEffluentemissionVo.getScc4());
+        SccVo sccVo=selectCommonService.selectBySccCode(shEffluentemissionVo.getScccode());
+        shEffluentemissionVo.setSourceDiscrip(sccVo.getDescription());
+        sourceService.insertOrUpdateShEff(shEffluentemissionVo,isCul);
         return ResultBean.success();
     }
 

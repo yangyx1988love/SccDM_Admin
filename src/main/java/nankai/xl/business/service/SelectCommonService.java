@@ -1,6 +1,7 @@
 package nankai.xl.business.service;
 
 import nankai.xl.business.model.*;
+import nankai.xl.business.model.vo.SccVo;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface SelectCommonService {
     public List<Scc2> getScc2sByScc2(Scc2 scc2);
     public List<Scc3> getScc3sByScc3(Scc3 scc3);
     public List<Scc4> getScc3sByScc4(Scc4 scc4);
+    SccVo selectBySccCode(String sccCode);
     public List<Dustremove> getAllDustremoves();
     public List<Nitreremove> getAllNitreremoves();
     public List<Sulphurremove> getAllSulphurremoves();

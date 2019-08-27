@@ -65,7 +65,7 @@
     </shiro:hasPermission>
 </script>
 <script>
-    layui.use(['table','form', 'element','upload','laydate'], function () {
+    layui.use(['table','form', 'element','laydate'], function () {
         var table = layui.table //表格
             ,form = layui.form //form表单
             ,element = layui.element
@@ -83,7 +83,7 @@
             , toolbar: '#toolbar'
             , cols: [
                 [
-                    {field: 'year', title: '年份'}
+                    {field: 'year',sort:true, title: '年份'}
                     , {field: 'cityName', title: '城市'}
                     , {field: 'countyName', title: '区县'}
                     , {field: 'activityLevel', title: '活动水平'}

@@ -5,6 +5,7 @@ import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SourceService;
+import nankai.xl.common.util.ClassUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -76,26 +77,37 @@ public class SourceServiceImpl implements SourceService {
     private BiomassStrawMapper biomassStrawMapper;
     @Resource
     private RoadMoveMapper roadMoveMapper;
+    @Resource
+    private SccMapper sccMapper;
+    @Resource
+    private CompanyMapper companyMapper;
 
     @Override
-    public int insertScatteredCoal(ScatteredCoal scatteredCoal) {
-        return scatteredCoalMapper.insertSelective(scatteredCoal);
-    }
-
-    @Override
-    public int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal) {
-        return scatteredCoalMapper.insertOrUpdate(scatteredCoal);
+    public int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal,boolean isCul) {
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(scatteredCoal.getSccCode());
+            Double activity=scatteredCoal.getActivityLevelNum();
+            scatteredCoal.setPm25Emission(activity*scc.getPm25());
+            scatteredCoal.setPm10Emission(activity*scc.getPm10());
+            scatteredCoal.setCoEmission(activity*scc.getCo());
+            scatteredCoal.setVocEmission(activity*scc.getVocs());
+            scatteredCoal.setSo2Emission(activity*scc.getSo2());
+            scatteredCoal.setNoxEmission(activity*scc.getNox());
+            scatteredCoal.setNh3Emission(activity*scc.getNh3());
+            scatteredCoal.setOcEmission(activity*scc.getOc());
+            scatteredCoal.setBcEmission(activity*scc.getBc());
+        }
+        if(scatteredCoal.getId()!=null){
+            scatteredCoalMapper.updateById(scatteredCoal);
+        }else {
+            scatteredCoalMapper.insertSelective(scatteredCoal);
+        }
+        return 1;
     }
     @Override
     public List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit) {
         PageHelper.startPage(page, limit);
         return scatteredCoalMapper.selectByScatteredCoal(scatteredCoalVo);
-    }
-
-    @Override
-    public List<ScatteredCoalVo> getAllScatteredCoals(int page, int limit) {
-        PageHelper.startPage(page, limit);
-        return scatteredCoalMapper.selectAll();
     }
 
     @Override
@@ -106,11 +118,6 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int deleteScatById(Integer id) {
         return scatteredCoalMapper.deleteById(id);
-    }
-
-    @Override
-    public int updateScatById(ScatteredCoal scatteredCoal) {
-        return scatteredCoalMapper.updateById(scatteredCoal);
     }
 
     @Override
@@ -186,15 +193,37 @@ public class SourceServiceImpl implements SourceService {
     public int deleteShEffById(Integer id) {
         return shEffluentemissionMapper.deleteById(id);
     }
-
     @Override
-    public int updateShEffById(ShEffluentemission shEffluentemission) {
-        return shEffluentemissionMapper.updateById(shEffluentemission);
-    }
+    public int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul) throws Exception {
+        ShEffluentemission shEffluentemission=shEffluentemissionVo;
+        Company company=shEffluentemission;
 
-    @Override
-    public int insertOrUpdateShEff(ShEffluentemission shEffluentemission) {
-        return shEffluentemissionMapper.insertOrUpdate(shEffluentemission);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            shEffluentemission.setFactoryId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(shEffluentemission.getScccode());
+            Double activity=shEffluentemission.getActivity();
+            shEffluentemission.setPm25Emission(activity*scc.getPm25());
+            shEffluentemission.setPm10Emission(activity*scc.getPm10());
+            shEffluentemission.setCoEmission(activity*scc.getCo());
+            shEffluentemission.setVocEmission(activity*scc.getVocs());
+            shEffluentemission.setSo2Emission(activity*scc.getSo2());
+            shEffluentemission.setNoxEmission(activity*scc.getNox());
+            shEffluentemission.setNh3Emission(activity*scc.getNh3());
+            shEffluentemission.setOcEmission(activity*scc.getOc());
+            shEffluentemission.setBcEmission(activity*scc.getBc());
+        }
+        if(shEffluentemission.getId()!=null){
+            shEffluentemissionMapper.updateById(shEffluentemission);
+        }else {
+            shEffluentemissionMapper.insertSelective(shEffluentemission);
+        }
+        return 1;
     }
 
     @Override

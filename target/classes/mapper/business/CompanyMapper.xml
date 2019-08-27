@@ -12,87 +12,101 @@
     <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
     <result column="category" property="category" jdbcType="VARCHAR" />
   </resultMap>
-<!--  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >-->
-<!--    select -->
-<!--    <include refid="Base_Column_List" />-->
-<!--    from company-->
-<!--    where com_id = #{comId,jdbcType=INTEGER}-->
-<!--  </select>-->
-<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >-->
-<!--    delete from company-->
-<!--    where com_id = #{comId,jdbcType=INTEGER}-->
-<!--  </delete>-->
-<!--  <insert id="insert" parameterType="nankai.xl.business.model.Company" >-->
-<!--    insert into company (com_id, county_id, company_name, -->
-<!--      address, longitude, latitude, -->
-<!--      domain, company_code, category-->
-<!--      )-->
-<!--    values (#{comId,jdbcType=INTEGER}, #{countyId,jdbcType=CHAR}, #{companyName,jdbcType=VARCHAR}, -->
-<!--      #{address,jdbcType=VARCHAR}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, -->
-<!--      #{domain,jdbcType=VARCHAR}, #{companyCode,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}-->
-<!--      )-->
-<!--  </insert>-->
-<!--  <insert id="insertSelective" parameterType="nankai.xl.business.model.Company" >-->
-<!--    insert into company-->
-<!--    <trim prefix="(" suffix=")" suffixOverrides="," >-->
-<!--      <if test="comId != null" >-->
-<!--        com_id,-->
-<!--      </if>-->
-<!--      <if test="countyId != null" >-->
-<!--        county_id,-->
-<!--      </if>-->
-<!--      <if test="companyName != null" >-->
-<!--        company_name,-->
-<!--      </if>-->
-<!--      <if test="address != null" >-->
-<!--        address,-->
-<!--      </if>-->
-<!--      <if test="longitude != null" >-->
-<!--        longitude,-->
-<!--      </if>-->
-<!--      <if test="latitude != null" >-->
-<!--        latitude,-->
-<!--      </if>-->
-<!--      <if test="domain != null" >-->
-<!--        domain,-->
-<!--      </if>-->
-<!--      <if test="companyCode != null" >-->
-<!--        company_code,-->
-<!--      </if>-->
-<!--      <if test="category != null" >-->
-<!--        category,-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--    <trim prefix="values (" suffix=")" suffixOverrides="," >-->
-<!--      <if test="comId != null" >-->
-<!--        #{comId,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="countyId != null" >-->
-<!--        #{countyId,jdbcType=CHAR},-->
-<!--      </if>-->
-<!--      <if test="companyName != null" >-->
-<!--        #{companyName,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="address != null" >-->
-<!--        #{address,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="longitude != null" >-->
-<!--        #{longitude,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="latitude != null" >-->
-<!--        #{latitude,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="domain != null" >-->
-<!--        #{domain,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="companyCode != null" >-->
-<!--        #{companyCode,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="category != null" >-->
-<!--        #{category,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--  </insert>-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where com_id = #{comId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.Company"  useGeneratedKeys="true" keyProperty="comId">
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="comId != null" >
+        com_id,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="domain != null" >
+        domain,
+      </if>
+      <if test="companyCode != null" >
+        company_code,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="comId != null" >
+        #{comId,jdbcType=INTEGER},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="domain != null" >
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.Company" >
+    update company
+    <set >
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="domain != null" >
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        company_code = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where com_id = #{comId,jdbcType=INTEGER}
+  </update>
 <!--  <update id="updateByExampleSelective" parameterType="map" >-->
 <!--    update company-->
 <!--    <set >-->
@@ -142,36 +156,6 @@
 <!--    <if test="_parameter != null" >-->
 <!--      <include refid="Update_By_Example_Where_Clause" />-->
 <!--    </if>-->
-<!--  </update>-->
-<!--  <update id="updateByPrimaryKeySelective" parameterType="nankai.xl.business.model.Company" >-->
-<!--    update company-->
-<!--    <set >-->
-<!--      <if test="countyId != null" >-->
-<!--        county_id = #{countyId,jdbcType=CHAR},-->
-<!--      </if>-->
-<!--      <if test="companyName != null" >-->
-<!--        company_name = #{companyName,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="address != null" >-->
-<!--        address = #{address,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="longitude != null" >-->
-<!--        longitude = #{longitude,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="latitude != null" >-->
-<!--        latitude = #{latitude,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="domain != null" >-->
-<!--        domain = #{domain,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="companyCode != null" >-->
-<!--        company_code = #{companyCode,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--      <if test="category != null" >-->
-<!--        category = #{category,jdbcType=VARCHAR},-->
-<!--      </if>-->
-<!--    </set>-->
-<!--    where com_id = #{comId,jdbcType=INTEGER}-->
 <!--  </update>-->
 <!--  <update id="updateByPrimaryKey" parameterType="nankai.xl.business.model.Company" >-->
 <!--    update company-->

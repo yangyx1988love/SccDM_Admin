@@ -12,4 +12,5 @@ public interface ShEffluentemissionMapper {
     int deleteById(Integer id);
     int updateById(ShEffluentemission shEffluentemission);
     int insertOrUpdate(ShEffluentemission shEffluentemission);
+    int insertSelective(ShEffluentemission shEffluentemission);
 }

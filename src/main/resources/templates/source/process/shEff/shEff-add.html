@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>废水无组织排放</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">年份</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="cityCode" name="cityCode" lay-filter="cityCode">
+                            <option value="">请选择</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">区县</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="countyId" name="countyId" lay-filter="countyId">
+                            <option value="">请选择实际区县</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">企业名称</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="companyName" name="companyName" class="layui-input" type="text"  lay-verify="required|chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">地址</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="address" name="address" class="layui-input" type="text"  lay-verify="required|chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">企业备注</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <input id="category" name="category" class="layui-input" type="text"  lay-verify="">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">经度</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="longitude" name="longitude" class="layui-input" type="text"  lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">纬度</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="latitude" name="latitude" class="layui-input" type="text"  lay-verify="required|latitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">四级编码</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc4" name="scc4" lay-filter="model" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">活动水平</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="activity" name="activity" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">备注</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <input id="activityNote" name="activityNote" class="layui-input" type="text"  lay-verify="required">
+
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">计量单位</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <select id="activityUnit" name="activityUnit" lay-verify="required">
+                            <option value="吨" >吨</option>
+                            <option value="立方米">立方米</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">VOC控制效率(%)</label>
+                    <div class="layui-input-block">
+                        <input id="vocEfficency" name="vocEfficency" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
+                    <div class="layui-input-block" style="width: 160px">
+                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
+                    </div>
+                </div>
+            </div>
+            <div id="emission" name="emission" style="display: none" >
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM2.5</label>
+                        <div class="layui-input-block" >
+                            <input id="pm25Emission" name="pm25Emission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM10</label>
+                        <div class="layui-input-block">
+                            <input id="pm10Emission" name="pm10Emission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">CO</label>
+                        <div class="layui-input-block">
+                            <input id="coEmission" name="coEmission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">VOCs</label>
+                        <div class="layui-input-block" >
+                            <input id="vocEmission" name="vocEmission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">SO2</label>
+                        <div class="layui-input-block">
+                            <input id="so2Emission" name="so2Emission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">NOx</label>
+                        <div class="layui-input-block">
+                            <input id="noxEmission" name="noxEmission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">NH3</label>
+                        <div class="layui-input-block" >
+                            <input id="nh3Emission" name="nh3Emission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">OC</label>
+                        <div class="layui-input-block">
+                            <input id="ocEmission" name="ocEmission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">BC</label>
+                        <div class="layui-input-block">
+                            <input id="bcEmission" name="bcEmission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:scatteredCoal:update">
+                <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                    <button class="layui-btn layui-btn-blue"  lay-submit=""  lay-filter="edit">增加</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery','laydate'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+                , laydate = layui.laydate;
+            //年选择器
+            laydate.render({
+                elem: '#year'
+                ,type: 'year'
+            });
+
+            form.verify({
+                "ratio": function(value, item) {
+                    var reg = new RegExp(/^100$|^(\d|[1-9]\d)(\.\d+)*$/);
+                    if (value.length > 0 && !reg.test(value)) {
+                        return '请输入0-100的数！！'
+                    }
+                },
+                "pos-num": function(value, item) {
+                    var reg1 = new RegExp(/^\d+(\.{0,10}\d+){0,10}$/);
+                    var reg2 = new RegExp(/[+-]*\d+\.?\d*[Ee]*[+-]*\d+/);
+                    if (value.length > 0 && !reg1.test(value)) {
+                        if (!reg2.test(value)) {
+                            return '请输入正数！！'
+                        }
+                    }
+                },"chinese": function(value, item) {
+                    var reg = new RegExp(/[\u4e00-\u9fa5]+/);
+                    if (value.length > 0 && !reg.test(value)) {
+                        return '企业名称至少包含一个汉字！！'
+                    }
+                },"longitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '经度整数部分为0-180,小数部分为0到6位!'
+                        }
+                    }
+                }, "latitude": function(value, item) {
+                    var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
+                    if(value.length > 0 ){
+                        if (!reg.test(value)) {
+                            return '纬度整数部分为0-90,小数部分为0到6位!\''
+                        }
+                    }
+                }
+            });
+            //监听指定开关
+            form.on('switch(isCul)', function(data){
+                if (this.checked){
+                    $("#emission").attr("style","display:block;");//显示div
+                }else {
+                    $("#emission").attr("style","display:none;");//隐藏div
+                }
+            });
+            //城市区县级联选择
+            form.on('select(cityCode)',function(data){
+                var cityCode=data.value;
+                $.ajax({
+                    url: '/factoryAuth/seleCountry/' + cityCode,
+                    data: {cityCode: cityCode},//发送的参数
+                    type: "post",
+                    success: function (datas) {
+                        $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
+                        if(datas.length>0){
+                            $.each(datas, function(key, val) {
+                                var option1 = $("<option>").val(val.countyId).text(val.countyName);
+                                $("select[name=countyId]").append(option1);
+                                form.render('select');
+                            });
+                        }else{
+                            form.render('select');
+                        }
+                    },
+                    error:function(){
+                        //失败执行的方法
+                        layer.msg("区县信息加载失败!", {icon: 6});
+                    }
+                })
+            });
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                form.field._method = 'PUT';
+                var data = form.field;
+                var isCul=$('input[name="isCul"]:checked').is(':checked');
+                data.isCul=isCul;
+                $.post('/source/process/shEff/edit', form.field, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
