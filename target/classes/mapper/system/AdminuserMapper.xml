@@ -173,16 +173,16 @@
         select menu.perms
         from
              adminuser,
-             role,
+             sys_role,
              user_role,
              menu,
              role_menu
         where
             adminuser.user_id = user_role.user_id
           and
-            role.role_id = user_role.role_id
+            sys_role.role_id = user_role.role_id
           and
-            role.role_id = role_menu.role_id
+            sys_role.role_id = role_menu.role_id
           and
             menu.menu_id = role_menu.menu_id
           and
@@ -190,15 +190,15 @@
     </select>
 
     <select id="selectRoleNameByUserName" resultType="String" parameterType="String">
-        select role.role_name
+        select sys_role.role_name
         from
              adminuser,
-             role,
+             sys_role,
              user_role
         where
             adminuser.user_id = user_role.user_id
           and
-            role.role_id = user_role.role_id
+            sys_role.role_id = user_role.role_id
           and
             adminuser.username = #{username,jdbcType=VARCHAR}
     </select>
@@ -254,16 +254,16 @@
         select operator.perms
         from
             adminuser,
-            role,
+            sys_role,
             user_role,
             operator,
             role_operator
         where
             adminuser.user_id = user_role.user_id
           and
-            role.role_id = user_role.role_id
+            sys_role.role_id = user_role.role_id
           and
-            role.role_id = role_operator.role_id
+            sys_role.role_id = role_operator.role_id
           and
             operator.operator_id = role_operator.operator_id
           and

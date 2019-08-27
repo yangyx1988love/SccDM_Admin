@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>散煤</title>
@@ -16,22 +16,15 @@
 <div class="page-loading">
     <div class="rubik-loader"></div>
 </div>
-<!--<div class="z-body animated fadeIn">-->
-    <form class="layui-form layui-col-md12 we-search">
+    <form class="layui-form ">
         <div class="layui-show" style="margin-left:30px;margin-top: 2px;margin-bottom: 2px">
             <div class="layui-input-inline">
-                <select id="year" name="year">
-                    <option value="">请选择</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
-                    <option value="2016">2016</option>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
-                </select>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
+                </div>
             </div>
             <div class="layui-input-inline">
-                <select id="countyCity" name="countyCity" lay-filter="countyCity">
+                <select id="cityCode" name="cityCode" lay-filter="cityCode">
                     <option value="">请选择实际城市</option>
                     <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
                     </option>
@@ -47,11 +40,12 @@
             <button  id="selectcoal" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">
                 <i class="layui-icon">&#xe615;</i></button>
         </div>
-        <div class="layui-colla-content layui-show">
-            <table class="layui-hide" id="coalTable"></table>
-        </div>
-
     </form>
+    <div class="layui-colla-content layui-show">
+        <table class="layui-hide" id="coalTable"></table>
+    </div>
+
+
 <!--</div>-->
 
 <script th:src="@{/lib/jquery/jquery.min.js}"></script>
@@ -71,11 +65,17 @@
     </shiro:hasPermission>
 </script>
 <script>
-    layui.use(['table','form', 'element','upload'], function () {
+    layui.use(['table','form', 'element','upload','laydate'], function () {
         var table = layui.table //表格
             ,form = layui.form //form表单
             ,element = layui.element
-            ,upload = layui.upload;
+            ,upload = layui.upload
+            , laydate = layui.laydate;
+        //年选择器
+        laydate.render({
+            elem: '#year'
+            ,type: 'year'
+        });
         table.render({
             elem: '#coalTable'
             , url: '/source/fixed/coal/list'
@@ -84,6 +84,7 @@
             , cols: [
                 [
                     {field: 'year', title: '年份'}
+                    , {field: 'cityName', title: '城市'}
                     , {field: 'countyName', title: '区县'}
                     , {field: 'activityLevel', title: '活动水平'}
                     , {field: 'activityLevelNum', title: '活动水平数量'}
@@ -98,7 +99,7 @@
                     , {field: 'so2Emission', title: 'SO2'}
                     , {field: 'noxEmission', title: 'NOX'}
                     , {field: 'nh3Emission', title: 'NH3'}
-                    , {title: '操作', width: "15%", fixed: 'right', align: 'center', toolbar: '#column-toolbar'}
+                    , {title: '操作', width: "10%", fixed: 'right', align: 'center', toolbar: '#column-toolbar'}
                 ]
             ]
             ,page: true   //开启分页
@@ -110,42 +111,44 @@
         table.on('tool', function (obj) {
             var data = obj.data;
             var event = obj.event;
-            if (event === 'del') {
+            if (event == 'del') {
                 del(obj);
             }
-            if (event === 'edit') {
-                var url = '/source/fixed/coal/' + data.id + "/edit";
-                var content = ' <div class="layui-tab-item layui-show">' +
-                    '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
-                parent.layui.element.tabAdd('lay-tab',{
-                    title:'编辑-散煤',
-                    content: content,
-                    id:'coal-tab'
-                });
-                parent.layui.element.tabChange('lay-tab','coal-tab');
+            if (event == 'edit') {
+                edit(obj);
             }
         });
-        // function edit(id) {
-        //     layer.open({
-        //         content: "/source/fixed/coal/" + id,
-        //         title: "编辑-散煤",
-        //         area: ['40%', '85%'],
-        //         type: 2,
-        //         maxmin: true,
-        //         shadeClose: true,
-        //         end: function () {
-        //             table.reload('coalTableReload');
-        //         }
-        //     });
-        // }
         // 工具条点击事件
         table.on('toolbar', function (obj) {
             var data = obj.data;
             var event = obj.event;
-            if (event === 'authAll') {
-                authAll();
+            if (event == 'add') {
+                add(obj);
             }
         });
+        function edit(obj) {
+            var data = obj.data;
+            var url = '/source/fixed/coal/' + data.id;
+            var content = ' <div class="layui-tab-item layui-show">' +
+                '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
+            parent.layui.element.tabAdd('lay-tab',{
+                title:'编辑-散煤',
+                content: content,
+                id:'coal-tab'
+            });
+            parent.layui.element.tabChange('lay-tab','coal-tab');
+        }
+        function add(obj) {
+            var url = '/source/fixed/coal/add';
+            var content = ' <div class="layui-tab-item layui-show">' +
+                '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
+            parent.layui.element.tabAdd('lay-tab',{
+                title:'新增-散煤',
+                content: content,
+                id:'coal-tab'
+            });
+            parent.layui.element.tabChange('lay-tab','coal-tab');
+        }
         function del(obj) {
             layer.confirm("确定删除吗?", {icon: 3, title: '提示'},
                 function (index) {// 确定回调
@@ -167,23 +170,20 @@
         form.on('submit(search)', function(data){
             var formData = data.field;
             var countyId = formData.countyId,
+                cityCode=formData.cityCode,
                 year=formData.year
             //执行重载
             table.reload('coalTableReload',{
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                }
-                , where: {
+                where: {
                     countyId: countyId,
+                    cityCode:cityCode,
                     year:year
                 }
-                , url: '/source/fixed/coal/reload'//后台做模糊搜索接口路径
-                , method: 'GET'
             });
             return false;//false：阻止表单跳转  true：表单跳转
         });
         //城市区县级联选择
-        form.on('select(countyCity)',function(data){
+        form.on('select(cityCode)',function(data){
             var cityCode=data.value;
             $.ajax({
                 url: '/factoryAuth/seleCountry/' + cityCode,

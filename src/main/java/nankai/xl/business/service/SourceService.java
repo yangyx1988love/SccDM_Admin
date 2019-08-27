@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface SourceService {
     //散煤
+    int insertScatteredCoal(ScatteredCoal scatteredCoal);
     int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal);
-    List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoal scatteredCoal,int page, int limit);
+    List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit);
     List<ScatteredCoalVo> getAllScatteredCoals(int page, int limit);
     ScatteredCoalVo getScatById(Integer id);
     int deleteScatById(Integer id);
+    int updateScatById(ScatteredCoal scatteredCoal);
     //石化有组织废气排放
     int insertOrUpdateShGa(ShGasemission shGasemission);
     List<ShGasemissionVo> getShGasByShGas(ShGasemissionVo shGasemissionVo,int page, int limit);

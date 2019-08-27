@@ -71,13 +71,10 @@ FactoryController {
     @GetMapping("/list")
     @ResponseBody
     public PageResultBean<Factory> getList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                 @RequestParam(value = "limit", defaultValue = "50")String limit) {
-        if (limit.equals("_")){
-            System.out.println("");
-        }
+                                                 @RequestParam(value = "limit", defaultValue = "50")int limit) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (user.getDeptId()!=null){
-            PageInfo<Factory> pageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,Integer.parseInt(limit)));
+            PageInfo<Factory> pageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
             return new PageResultBean<>(pageInfo.getTotal(), pageInfo.getList());
         }else {
             throw new IllegalArgumentException("用户赋予的部门不能为空！");

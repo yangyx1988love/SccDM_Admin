@@ -4,7 +4,14 @@ import nankai.xl.business.model.ScatteredCoal;
 
 public class ScatteredCoalVo extends ScatteredCoal {
     private String countyName;
+
     private String cityName;
+
+    private String cityCode;
+
+    private String scc3;
+
+    private String scc4;
 
     public String getCountyName() {
         return countyName;
@@ -20,5 +27,29 @@ public class ScatteredCoalVo extends ScatteredCoal {
 
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public String getScc3() {
+        return scc3;
+    }
+
+    public void setScc3(String scc3) {
+        this.scc3 = scc3;
+    }
+
+    public String getScc4() {
+        return scc4;
+    }
+
+    public void setScc4(String scc4) {
+        this.scc4 = scc4;
     }
 }

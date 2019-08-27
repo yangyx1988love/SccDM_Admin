@@ -8,8 +8,10 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ScatteredCoalMapper {
     int insertOrUpdate(ScatteredCoal scatteredCoal);
-    List<ScatteredCoalVo> selectByScatteredCoal(ScatteredCoal scatteredCoal);
+    int insertSelective(ScatteredCoal scatteredCoal);
+    List<ScatteredCoalVo> selectByScatteredCoal(ScatteredCoalVo scatteredCoalVo);
     List<ScatteredCoalVo> selectAll();
     ScatteredCoalVo selectById(Integer id);
     int deleteById(Integer id);
+    int updateById(ScatteredCoal scatteredCoal);
 }

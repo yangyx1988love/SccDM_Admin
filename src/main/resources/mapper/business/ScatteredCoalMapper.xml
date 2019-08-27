@@ -31,14 +31,15 @@
     source_description,COUNTY_NAME
   </sql>
   <select id="selectByScatteredCoal" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="nankai.xl.business.model.ScatteredCoal" >
-      SELECT scattered_coal.*,COUNTY_NAME
-      FROM scattered_coal
-      INNER JOIN (
-      SELECT COUNTY_ID,COUNTY_NAME,city_name FROM county
-      LEFT JOIN city
-      ON county.city_code=city.city_code
-      ) co
-      ON co.COUNTY_ID=scattered_coal.county_id
+    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
+    FROM scattered_coal
+    INNER JOIN (
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=scattered_coal.county_id
     <where>
       <if test="year != null and year != ''">
         scattered_coal.year = #{year}
@@ -46,29 +47,161 @@
       <if test="countyId != null and countyId != ''">
         AND scattered_coal.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
   <select id="selectAll" resultType="nankai.xl.business.model.vo.ScatteredCoalVo">
-    SELECT scattered_coal.*,COUNTY_NAME
+    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
     FROM scattered_coal
     INNER JOIN (
-        SELECT COUNTY_ID,COUNTY_NAME,city_name FROM county
-        LEFT JOIN city
-        ON county.city_code=city.city_code
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=scattered_coal.county_id
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="java.lang.Integer">
-    SELECT scattered_coal.*,COUNTY_NAME
+    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
     FROM scattered_coal
     INNER JOIN (
-        SELECT COUNTY_ID,COUNTY_NAME,city_name FROM county
-        LEFT JOIN city
-        ON county.city_code=city.city_code
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=scattered_coal.county_id
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.ScatteredCoal" >
+    insert into scattered_coal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sccCode != null" >
+        scc_code,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="activityLevel != null" >
+        activity_level,
+      </if>
+      <if test="fuelMeteringUnit != null" >
+        fuel_metering_unit,
+      </if>
+      <if test="activityLevelNum != null" >
+        activity_level_num,
+      </if>
+      <if test="controlMeasure != null" >
+        control_measure,
+      </if>
+      <if test="sulfurContent != null" >
+        sulfur_content,
+      </if>
+      <if test="ashContent != null" >
+        ash_content,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="sourceDescription != null" >
+        source_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sccCode != null" >
+        #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="activityLevel != null" >
+        #{activityLevel,jdbcType=CHAR},
+      </if>
+      <if test="fuelMeteringUnit != null" >
+        #{fuelMeteringUnit,jdbcType=CHAR},
+      </if>
+      <if test="activityLevelNum != null" >
+        #{activityLevelNum,jdbcType=DOUBLE},
+      </if>
+      <if test="controlMeasure != null" >
+        #{controlMeasure,jdbcType=CHAR},
+      </if>
+      <if test="sulfurContent != null" >
+        #{sulfurContent,jdbcType=DOUBLE},
+      </if>
+      <if test="ashContent != null" >
+        #{ashContent,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceDescription != null" >
+        #{sourceDescription,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ScatteredCoal" >
     insert into scattered_coal (id, scc_code, year, 
       county_id, activity_level, fuel_metering_unit, 
@@ -85,7 +218,7 @@
       #{noxEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, 
       #{bcEmission,jdbcType=DOUBLE}, #{sourceDescription,jdbcType=CHAR})
     ON DUPLICATE KEY UPDATE
-      id = #{record.id,jdbcType=INTEGER},
+      id = #{id,jdbcType=INTEGER},
       scc_code = #{sccCode,jdbcType=CHAR},
       year = #{year,jdbcType=CHAR},
       county_id = #{countyId,jdbcType=CHAR},
@@ -110,4 +243,67 @@
     delete from scattered_coal
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <update id="updateById" parameterType="nankai.xl.business.model.ScatteredCoal" >
+    update scattered_coal
+    <set >
+      <if test="sccCode != null" >
+        scc_code = #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="activityLevel != null" >
+        activity_level = #{activityLevel,jdbcType=CHAR},
+      </if>
+      <if test="fuelMeteringUnit != null" >
+        fuel_metering_unit = #{fuelMeteringUnit,jdbcType=CHAR},
+      </if>
+      <if test="activityLevelNum != null" >
+        activity_level_num = #{activityLevelNum,jdbcType=DOUBLE},
+      </if>
+      <if test="controlMeasure != null" >
+        control_measure = #{controlMeasure,jdbcType=CHAR},
+      </if>
+      <if test="sulfurContent != null" >
+        sulfur_content = #{sulfurContent,jdbcType=DOUBLE},
+      </if>
+      <if test="ashContent != null" >
+        ash_content = #{ashContent,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceDescription != null" >
+        source_description = #{sourceDescription,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

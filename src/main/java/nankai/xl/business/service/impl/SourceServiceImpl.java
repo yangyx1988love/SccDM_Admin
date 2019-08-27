@@ -76,14 +76,20 @@ public class SourceServiceImpl implements SourceService {
     private BiomassStrawMapper biomassStrawMapper;
     @Resource
     private RoadMoveMapper roadMoveMapper;
+
+    @Override
+    public int insertScatteredCoal(ScatteredCoal scatteredCoal) {
+        return scatteredCoalMapper.insertSelective(scatteredCoal);
+    }
+
     @Override
     public int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal) {
         return scatteredCoalMapper.insertOrUpdate(scatteredCoal);
     }
     @Override
-    public List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoal scatteredCoal,int page, int limit) {
+    public List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit) {
         PageHelper.startPage(page, limit);
-        return scatteredCoalMapper.selectByScatteredCoal(scatteredCoal);
+        return scatteredCoalMapper.selectByScatteredCoal(scatteredCoalVo);
     }
 
     @Override
@@ -100,6 +106,11 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int deleteScatById(Integer id) {
         return scatteredCoalMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateScatById(ScatteredCoal scatteredCoal) {
+        return scatteredCoalMapper.updateById(scatteredCoal);
     }
 
     @Override
