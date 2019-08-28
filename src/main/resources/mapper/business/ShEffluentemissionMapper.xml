@@ -26,7 +26,7 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.ShEffluentemissionVo" >
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShEffluentemissionVo" parameterType="nankai.xl.business.model.vo.ShEffluentemissionVo" >
     SELECT sh_effluentemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_effluentemission
     LEFT JOIN company
     ON sh_effluentemission.factory_id=company.com_id
@@ -49,7 +49,7 @@
       </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.vo.ShEffluentemissionVo" parameterType="java.lang.Integer" >
     SELECT sh_effluentemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_effluentemission
     LEFT JOIN company
     ON sh_effluentemission.factory_id=company.com_id

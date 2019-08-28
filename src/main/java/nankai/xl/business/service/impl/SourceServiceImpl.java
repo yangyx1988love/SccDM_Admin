@@ -121,20 +121,41 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int insertOrUpdateShGa(ShGasemission shGasemission) {
-        return shGasemissionMapper.insertOrUpdate(shGasemission);
+    public int insertOrUpdateShGa(ShGasemissionVo shGasemissionVo,boolean isCul) {
+        ShGasemission shGasemission=shGasemissionVo;
+        Company company=shGasemission;
+
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            shGasemission.setFactoryId(company.getComId());
+        }
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(shGasemission.getScccode());
+            Double activity=shGasemission.getActivity();
+            shGasemission.setPm25Emission(activity*scc.getPm25());
+            shGasemission.setPm10Emission(activity*scc.getPm10());
+            shGasemission.setCoEmission(activity*scc.getCo());
+            shGasemission.setVocEmission(activity*scc.getVocs());
+            shGasemission.setSo2Emission(activity*scc.getSo2());
+            shGasemission.setNoxEmission(activity*scc.getNox());
+            shGasemission.setNh3Emission(activity*scc.getNh3());
+            shGasemission.setOcEmission(activity*scc.getOc());
+            shGasemission.setBcEmission(activity*scc.getBc());
+        }
+        if(shGasemission.getId()!=null){
+            shGasemissionMapper.updateById(shGasemission);
+        }else {
+            shGasemissionMapper.insertSelective(shGasemission);
+        }
+        return 1;
     }
 
     @Override
     public List<ShGasemissionVo> getShGasByShGas(ShGasemissionVo shGasemissionVo,int page, int limit) {
         PageHelper.startPage(page, limit);
         return shGasemissionMapper.selectByShGas(shGasemissionVo);
-    }
-
-    @Override
-    public List<ShGasemissionVo> getAllShGas(int page, int limit) {
-        PageHelper.startPage(page, limit);
-        return shGasemissionMapper.selectAll();
     }
 
     @Override
@@ -145,11 +166,6 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int deleteShGaById(Integer id) {
         return shGasemissionMapper.deleteById(id);
-    }
-
-    @Override
-    public int updateShGaById(ShGasemission shGasemission) {
-        return shGasemissionMapper.updateById(shGasemission);
     }
 
     @Override
@@ -168,14 +184,37 @@ public class SourceServiceImpl implements SourceService {
         return shSealpointMapper.deleteById(id);
     }
 
-    @Override
-    public int updateShSealById(ShSealpoint shSealpoint) {
-        return shSealpointMapper.updateById(shSealpoint);
-    }
 
     @Override
-    public int insertOrUpdateShSeal(ShSealpoint shSealpoint) {
-        return shSealpointMapper.insertOrUpdate(shSealpoint);
+    public int insertOrUpdateShSeal(ShSealpointVo shSealpointVo,boolean isCul) {
+        ShSealpoint shSealpoint=shSealpointVo;
+        Company company=shSealpoint;
+
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            shSealpoint.setFactoryId(company.getComId());
+        }
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(shSealpoint.getScccode());
+            Double activity=shSealpoint.getActivity();
+            shSealpoint.setPm25Emission(activity*scc.getPm25());
+            shSealpoint.setPm10Emission(activity*scc.getPm10());
+            shSealpoint.setCoEmission(activity*scc.getCo());
+            shSealpoint.setVocEmission(activity*scc.getVocs());
+            shSealpoint.setSo2Emission(activity*scc.getSo2());
+            shSealpoint.setNoxEmission(activity*scc.getNox());
+            shSealpoint.setNh3Emission(activity*scc.getNh3());
+            shSealpoint.setOcEmission(activity*scc.getOc());
+            shSealpoint.setBcEmission(activity*scc.getBc());
+        }
+        if(shSealpoint.getId()!=null){
+            shSealpointMapper.updateById(shSealpoint);
+        }else {
+            shSealpointMapper.insertSelective(shSealpoint);
+        }
+        return 1;
     }
 
     @Override
@@ -194,7 +233,7 @@ public class SourceServiceImpl implements SourceService {
         return shEffluentemissionMapper.deleteById(id);
     }
     @Override
-    public int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul) throws Exception {
+    public int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul){
         ShEffluentemission shEffluentemission=shEffluentemissionVo;
         Company company=shEffluentemission;
 
@@ -243,13 +282,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateShVocById(ShVocdeviceeffi shVocdeviceeffi) {
-        return shVocdeviceeffiMapper.updateById(shVocdeviceeffi);
-    }
+    public int insertOrUpdateShVoc(ShVocdeviceeffiVo shVocdeviceeffiVo,boolean isCul) {
+        ShVocdeviceeffi shVocdeviceeffi=shVocdeviceeffiVo;
+        Company company=shVocdeviceeffi;
 
-    @Override
-    public int insertOrUpdateShVoc(ShVocdeviceeffi shVocdeviceeffi) {
-        return shVocdeviceeffiMapper.insertOrUpdate(shVocdeviceeffi);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            shVocdeviceeffi.setFactoryId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(shVocdeviceeffi.getScccode());
+            Double activity=shVocdeviceeffi.getAnnualRuntime();
+            shVocdeviceeffi.setPm25Emission(activity*scc.getPm25());
+            shVocdeviceeffi.setPm10Emission(activity*scc.getPm10());
+            shVocdeviceeffi.setCoEmission(activity*scc.getCo());
+            shVocdeviceeffi.setVocEmission(activity*scc.getVocs());
+            shVocdeviceeffi.setSo2Emission(activity*scc.getSo2());
+            shVocdeviceeffi.setNoxEmission(activity*scc.getNox());
+            shVocdeviceeffi.setNh3Emission(activity*scc.getNh3());
+            shVocdeviceeffi.setOcEmission(activity*scc.getOc());
+            shVocdeviceeffi.setBcEmission(activity*scc.getBc());
+        }
+        if(shVocdeviceeffi.getId()!=null){
+            shVocdeviceeffiMapper.updateById(shVocdeviceeffi);
+        }else {
+            shVocdeviceeffiMapper.insertSelective(shVocdeviceeffi);
+        }
+        return 1;
     }
 
     @Override
@@ -269,13 +331,26 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateBuildById(BuildingSmear buildingSmear) {
-        return buildingSmearMapper.updateById(buildingSmear);
-    }
-
-    @Override
-    public int insertOrUpdateBuild(BuildingSmear buildingSmear) {
-        return buildingSmearMapper.insertOrUpdate(buildingSmear);
+    public int insertOrUpdateBuild(BuildingSmear buildingSmear,boolean isCul) {
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(buildingSmear.getScccode());
+            Double activity=buildingSmear.getPaintAmount();
+            buildingSmear.setPm25Emission(activity*scc.getPm25());
+            buildingSmear.setPm10Emission(activity*scc.getPm10());
+            buildingSmear.setCoEmission(activity*scc.getCo());
+            buildingSmear.setVocEmission(activity*scc.getVocs());
+            buildingSmear.setSo2Emission(activity*scc.getSo2());
+            buildingSmear.setNoxEmission(activity*scc.getNox());
+            buildingSmear.setNh3Emission(activity*scc.getNh3());
+            buildingSmear.setOcEmission(activity*scc.getOc());
+            buildingSmear.setBcEmission(activity*scc.getBc());
+        }
+        if(buildingSmear.getId()!=null){
+            buildingSmearMapper.updateById(buildingSmear);
+        }else {
+            buildingSmearMapper.insertSelective(buildingSmear);
+        }
+        return 1;
     }
 
     @Override

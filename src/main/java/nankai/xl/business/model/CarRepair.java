@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class CarRepair {
+public class CarRepair extends Company{
     private Integer id;
 
     private String year;

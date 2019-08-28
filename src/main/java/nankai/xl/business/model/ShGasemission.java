@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class ShGasemission {
+public class ShGasemission extends Company{
     private Integer id;
 
     private String year;

@@ -25,12 +25,15 @@ public class ScatCoalController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
+
+    private String scc1="10";
+    private String scc2="05";
     @OperationLog("源管理界面-散煤")
     @GetMapping("/fixed/coal")
     public String process(Model model) {
         List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        return "source/fixed/list";
+        return "source/fixed/coal-list";
     }
     @OperationLog("散煤-列表")
     @GetMapping("/fixed/coal/list")
@@ -52,18 +55,15 @@ public class ScatCoalController {
     @OperationLog("散煤-新增")
     @GetMapping("/fixed/coal/add")
     public String add(Model model) {
-        String scc1Code="10";
-        String scc2Code="05";
 
         Scc3 scc3=new Scc3();
-        scc3.setScc1(scc1Code);
-        scc3.setScc2(scc2Code);
+        scc3.setScc1(scc1);
+        scc3.setScc2(scc2);
         List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
-
         List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        model.addAttribute("scc1", scc1Code);
-        model.addAttribute("scc2", scc2Code);
+        model.addAttribute("scc1", scc1);
+        model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
         return "source/fixed/coal-add";
     }
@@ -71,32 +71,25 @@ public class ScatCoalController {
     @GetMapping("/fixed/coal/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         ScatteredCoalVo scatteredCoalVo=sourceService.getScatById(id);
-        String scc1Code="10";
-        String scc2Code="05";
-        String scc3Code=null;
-        String scc4Code=null;
-        if (scatteredCoalVo!=null){
-            String sccCode=scatteredCoalVo.getSccCode();
-            scc3Code=sccCode.substring(4,7);
-            scc4Code=sccCode.substring(7,10);
-        }else {
-            scatteredCoalVo=new ScatteredCoalVo();
-        }
-        scatteredCoalVo.setScc3(scc3Code);
-        scatteredCoalVo.setScc4(scc4Code);
+        scatteredCoalVo.setScc1(scc1);
+        scatteredCoalVo.setScc2(scc2);
+        scatteredCoalVo.setScc3(scatteredCoalVo.getSccCode().substring(4,7));
+        scatteredCoalVo.setScc4(scatteredCoalVo.getSccCode().substring(7,10));
 
         Scc3 scc3=new Scc3();
-        scc3.setScc1(scc1Code);
-        scc3.setScc2(scc2Code);
+        scc3.setScc1(scc1);
+        scc3.setScc2(scc2);
         List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
         Scc4 scc4=new Scc4();
-        scc4.setScc1(scc1Code);
-        scc4.setScc2(scc2Code);
-        scc4.setScc3(scc3Code);
+        scc4.setScc1(scc1);
+        scc4.setScc2(scc2);
+        scc4.setScc3(scatteredCoalVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        model.addAttribute("scc1", scc1Code);
-        model.addAttribute("scc2", scc2Code);
+        List<City> citys=selectCommonService.getAllCitys();
+        List<County> countys=selectCommonService.getCountysByCityCode(scatteredCoalVo.getCityCode());
+        model.addAttribute("citys", citys);
+        model.addAttribute("countys", countys);
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("scatteredCoalVo", scatteredCoalVo);
@@ -106,9 +99,7 @@ public class ScatCoalController {
     @PutMapping("/fixed/coal/edit")
     @ResponseBody
     public ResultBean insertOrUpdate(boolean isCul,ScatteredCoalVo scatteredCoalVo) {
-        String scc1Code="10";
-        String scc2Code="05";
-        scatteredCoalVo.setSccCode("1005"+scatteredCoalVo.getScc3()+scatteredCoalVo.getScc4());
+        scatteredCoalVo.setSccCode(scc1+scc2+scatteredCoalVo.getScc3()+scatteredCoalVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(scatteredCoalVo.getSccCode());
         scatteredCoalVo.setSourceDescription(sccVo.getDescription());
         sourceService.insertOrUpdateScatteredCoal(scatteredCoalVo,isCul);

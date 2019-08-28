@@ -11,4 +11,5 @@ public interface HouseMapper {
     int deleteById(Integer id);
     int updateById(House house);
     int insertOrUpdate(House house);
+    int insertSelective(House house);
 }

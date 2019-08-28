@@ -6,66 +6,61 @@ import nankai.xl.business.model.vo.*;
 import java.util.List;
 
 public interface SourceService {
-    //散煤
+    //固体燃烧源//散煤
     int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal,boolean isCul);
     List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit);
     ScatteredCoalVo getScatById(Integer id);
     int deleteScatById(Integer id);
-    //石化有组织废气排放
-    int insertOrUpdateShGa(ShGasemission shGasemission);
+    //工艺过程源//石化有组织废气排放
+    int insertOrUpdateShGa(ShGasemissionVo shGasemissionVo,boolean isCul);
     List<ShGasemissionVo> getShGasByShGas(ShGasemissionVo shGasemissionVo,int page, int limit);
-    List<ShGasemissionVo> getAllShGas(int page, int limit);
     ShGasemissionVo getShGaById(Integer id);
     int deleteShGaById(Integer id);
-    int updateShGaById(ShGasemission shGasemission);
-    //装置密封点
+    //工艺过程源//装置密封点
+    int insertOrUpdateShSeal(ShSealpointVo shSealpointVo,boolean isCul);
     List<ShSealpointVo> getShSealsByExample(ShSealpointVo shSealpointVo,int page, int limit);
     ShSealpointVo getShSealById(Integer id);
     int deleteShSealById(Integer id);
-    int updateShSealById(ShSealpoint shSealpoint);
-    int insertOrUpdateShSeal(ShSealpoint shSealpoint);
-    //废水无组织排放
+    //工艺过程源//废水无组织排放
+    int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul);
     List<ShEffluentemissionVo> getShEffsByExample(ShEffluentemissionVo shEffluentemissionVo,int page, int limit);
     ShEffluentemissionVo getShEffById(Integer id);
     int deleteShEffById(Integer id);
-    int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul) throws Exception;
-    //VOC处理装置
+    //工艺过程源//VOC处理装置
+    int insertOrUpdateShVoc(ShVocdeviceeffiVo shVocdeviceeffiVo,boolean isCul);
     List<ShVocdeviceeffiVo> getShVocsByExample(ShVocdeviceeffiVo shVocdeviceeffiVo,int page, int limit);
     ShVocdeviceeffiVo getShVocById(Integer id);
     int deleteShVocById(Integer id);
-    int updateShVocById(ShVocdeviceeffi shVocdeviceeffi);
-    int insertOrUpdateShVoc(ShVocdeviceeffi shVocdeviceeffi);
-    //建筑涂装二手房
+    //溶剂使用源//建筑涂装二手房
     List<BuildingSmearVo> getBuildsByExample(BuildingSmearVo buildingSmearVo,int page, int limit);
     BuildingSmearVo getBuildById(Integer id);
     int deleteBuildById(Integer id);
-    int updateBuildById(BuildingSmear buildingSmear);
-    int insertOrUpdateBuild(BuildingSmear buildingSmear);
-    //汽修厂
+    int insertOrUpdateBuild(BuildingSmear buildingSmear,boolean isCul);
+    //溶剂使用源//汽修厂
     List<CarRepairVo> getCarsByExample(CarRepairVo carRepairVo,int page, int limit);
     CarRepairVo getCarById(Integer id);
     int deleteCarById(Integer id);
     int updateCarById(CarRepair carRepair);
     int insertOrUpdateCar(CarRepair carRepair);
-    //去污油脂
+    //溶剂使用源//去污油脂
     List<DeoilVo> getDeoilsByExample(DeoilVo deoilVo,int page, int limit);
     DeoilVo getDeoilById(Integer id);
     int deleteDeoilById(Integer id);
     int updateDeoilById(Deoil deoil);
     int insertOrUpdateDeoil(Deoil deoil);
-    //干洗店
+    //溶剂使用源//干洗店
     List<DryCleanerVo> getDrysByExample(DryCleanerVo dryCleanerVo,int page, int limit);
     DryCleanerVo getDryById(Integer id);
     int deleteDryById(Integer id);
     int updateDryById(DryCleaner dryCleaner);
     int insertOrUpdateDry(DryCleaner dryCleaner);
-    //家居家装
+    //溶剂使用源//家居家装
     List<HouseVo> getHousesByExample(HouseVo houseVo,int page, int limit);
     HouseVo getHouseById(Integer id);
     int deleteHouseById(Integer id);
     int updateHouseById(House house);
     int insertOrUpdateHouse(House house);
-    //道路铺装
+    //溶剂使用源//道路铺装
     List<RoadPaveVo> getRoadPasByExample(RoadPaveVo roadPaveVo,int page, int limit);
     RoadPaveVo getRoadPaById(Integer id);
     int deleteRoadPaById(Integer id);

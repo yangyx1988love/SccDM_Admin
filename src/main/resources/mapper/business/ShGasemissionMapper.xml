@@ -28,12 +28,17 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByShGas" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.ShGasemissionVo" >
-      SELECT sh_gasemission.*,company.company_name,company.county_id,county.COUNTY_NAME FROM sh_gasemission
+  <select id="selectByShGas" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="nankai.xl.business.model.vo.ShGasemissionVo" >
+      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_gasemission
       LEFT JOIN company
       ON sh_gasemission.factory_id=company.com_id
-      LEFT JOIN county
-      ON company.county_id=county.COUNTY_ID
+      INNER JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+      ) co
+      ON co.COUNTY_ID=company.county_id
       <where>
         <if test="year != null and year != ''">
            sh_gasemission.year = #{year}
@@ -41,27 +46,167 @@
         <if test="countyId != null and countyId != ''">
           AND company.county_id = #{countyId}
         </if>
+        <if test="cityCode != null and cityCode != ''">
+          AND co.city_code = #{cityCode}
+        </if>
       </where>
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-      SELECT sh_gasemission.*,company.company_name,company.county_id,county.COUNTY_NAME FROM sh_gasemission
+  <select id="selectById" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="java.lang.Integer" >
+      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_gasemission
       LEFT JOIN company
       ON sh_gasemission.factory_id=company.com_id
-      LEFT JOIN county
-      ON company.county_id=county.COUNTY_ID
-  </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-      SELECT sh_gasemission.*,company.company_name,company.county_id,county.COUNTY_NAME FROM sh_gasemission
-      LEFT JOIN company
-      ON sh_gasemission.factory_id=company.com_id
-      LEFT JOIN county
-      ON company.county_id=county.COUNTY_ID
+      INNER JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+      ) co
+      ON co.COUNTY_ID=company.county_id
       where sh_gasemission.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from sh_gasemission
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.ShGasemission" >
+    insert into sh_gasemission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="factoryId != null" >
+        factory_id,
+      </if>
+      <if test="gyName != null" >
+        gy_name,
+      </if>
+      <if test="activityNote != null" >
+        activity_note,
+      </if>
+      <if test="density != null" >
+        density,
+      </if>
+      <if test="activity != null" >
+        activity,
+      </if>
+      <if test="activityUnit != null" >
+        activity_unit,
+      </if>
+      <if test="efficency != null" >
+        efficency,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="emissionUnit != null" >
+        emission_unit,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="factoryId != null" >
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="gyName != null" >
+        #{gyName,jdbcType=CHAR},
+      </if>
+      <if test="activityNote != null" >
+        #{activityNote,jdbcType=CHAR},
+      </if>
+      <if test="density != null" >
+        #{density,jdbcType=DOUBLE},
+      </if>
+      <if test="activity != null" >
+        #{activity,jdbcType=DOUBLE},
+      </if>
+      <if test="activityUnit != null" >
+        #{activityUnit,jdbcType=CHAR},
+      </if>
+      <if test="efficency != null" >
+        #{efficency,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="emissionUnit != null" >
+        #{emissionUnit,jdbcType=CHAR},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDiscrip != null" >
+        #{sourceDiscrip,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ShGasemission" >
     insert into sh_gasemission (id, year, factory_id, 
       gy_name, activity_note, density, 

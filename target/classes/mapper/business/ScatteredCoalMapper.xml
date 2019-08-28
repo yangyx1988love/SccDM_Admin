@@ -52,17 +52,6 @@
       </if>
     </where>
   </select>
-  <select id="selectAll" resultType="nankai.xl.business.model.vo.ScatteredCoalVo">
-    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
-    FROM scattered_coal
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
-    ) co
-    ON co.COUNTY_ID=scattered_coal.county_id
-  </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="java.lang.Integer">
     SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
     FROM scattered_coal

@@ -22,6 +22,34 @@
             <input type="hidden" id="comId" name="comId"  th:value="${shEffluentemissionVo.comId}">
             <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">年份</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <input type="text" class="layui-input" id="year" name="year" th:value="${shEffluentemissionVo.year}" placeholder="年份">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="cityCode" name="cityCode" th:field="*{shEffluentemissionVo.cityCode}" lay-filter="cityCode">
+                            <option value="">请选择</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">区县</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="countyId" name="countyId" th:field="*{shEffluentemissionVo.countyId}" lay-filter="countyId">
+                            <option value="">请选择实际区县</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 110px;">企业名称</label>
                     <div class="layui-input-block"  style="width: 240px;">
                         <input id="companyName" name="companyName" th:value="${shEffluentemissionVo.companyName}" class="layui-input" type="text"  lay-verify="required|chinese">
@@ -82,6 +110,7 @@
                     <label class="layui-form-label" style="width: 110px;">计量单位</label>
                     <div class="layui-input-block" style="width: 240px;">
                         <select id="activityUnit" name="activityUnit" th:field="*{shEffluentemissionVo.activityUnit}" lay-verify="required">
+                            <option value="" >请选择</option>
                             <option value="吨" >吨</option>
                             <option value="立方米">立方米</option>
                         </select>
@@ -176,10 +205,16 @@
     <script th:src="@{/js/common.js}"></script>
 
     <script type="application/javascript">
-        layui.use(['form', 'layer','jquery'], function(){
+        layui.use(['form', 'layer','jquery','laydate'], function(){
             $ = layui.jquery;
             var form = layui.form
                 , layer = layui.layer
+                , laydate = layui.laydate;
+            //年选择器
+            laydate.render({
+                elem: '#year'
+                ,type: 'year'
+            });
 
             form.verify({
                 "ratio": function(value, item) {
@@ -189,11 +224,14 @@
                     }
                 },
                 "pos-num": function(value, item) {
-                    var reg1 = new RegExp(/^\d+(\.{0,10}\d+){0,10}$/);
-                    var reg2 = new RegExp(/[+-]*\d+\.?\d*[Ee]*[+-]*\d+/);
+                    var reg1 = new RegExp(/^(?!0\d)\d+(\.\d{1,})?(E[-]{0,1}\d+)?$/);
+                    var reg2 = new RegExp(/^[1-9]\d{0,9}(\.\d{1,8})?$|^0(\.\d{1,8})?$/);
                     if (value.length > 0 && !reg1.test(value)) {
-                        if (!reg2.test(value)) {
-                            return '请输入正数！！'
+                            return '请输入十位整数，八位小数的正数！！'
+                    }else {
+                        var num = new Number(value)
+                        if (num<0 || !reg2.test(num)){
+                            return '请输入十位整数，八位小数的正数！！'
                         }
                     }
                 },"chinese": function(value, item) {
@@ -216,6 +254,31 @@
                         }
                     }
                 }
+            });
+            //城市区县级联选择
+            form.on('select(cityCode)',function(data){
+                var cityCode=data.value;
+                $.ajax({
+                    url: '/factoryAuth/seleCountry/' + cityCode,
+                    data: {cityCode: cityCode},//发送的参数
+                    type: "post",
+                    success: function (datas) {
+                        $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
+                        if(datas.length>0){
+                            $.each(datas, function(key, val) {
+                                var option1 = $("<option>").val(val.countyId).text(val.countyName);
+                                $("select[name=countyId]").append(option1);
+                                form.render('select');
+                            });
+                        }else{
+                            form.render('select');
+                        }
+                    },
+                    error:function(){
+                        //失败执行的方法
+                        layer.msg("区县信息加载失败!", {icon: 6});
+                    }
+                })
             });
             //监听指定开关
             form.on('switch(isCul)', function(data){

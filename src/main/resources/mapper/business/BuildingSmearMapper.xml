@@ -20,10 +20,16 @@
     <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.BuildingSmearVo" >
-    SELECT building_smear.*,county.COUNTY_NAME FROM building_smear
-    LEFT JOIN county
-    ON building_smear.county_id=county.COUNTY_ID
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BuildingSmearVo" parameterType="nankai.xl.business.model.vo.BuildingSmearVo" >
+    SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name
+    FROM building_smear
+    INNER JOIN (
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=building_smear.county_id
     <where>
       <if test="year != null and year != ''">
         building_smear.year = #{year}
@@ -31,18 +37,130 @@
       <if test="countyId != null and countyId != ''">
         AND building_smear.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT building_smear.*,county.COUNTY_NAME FROM building_smear
-    LEFT JOIN county
-    ON building_smear.county_id=county.COUNTY_ID
+  <select id="selectById" resultType="nankai.xl.business.model.vo.BuildingSmearVo" parameterType="java.lang.Integer" >
+    SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name
+    FROM building_smear
+    INNER JOIN (
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=building_smear.county_id
     where building_smear.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from building_smear
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.BuildingSmear" >
+    insert into building_smear
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="paintAmount != null" >
+        paint_amount,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="flagd != null" >
+        flagd,
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="paintAmount != null" >
+        #{paintAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="flagd != null" >
+        #{flagd,jdbcType=TINYINT},
+      </if>
+      <if test="sourceDescrip != null" >
+        #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.BuildingSmear" >
     insert into building_smear (id, year, county_id, 
       paint_amount, scccode, pm10_emission, 

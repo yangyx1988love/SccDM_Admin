@@ -1090,7 +1090,7 @@ layui.define(['jquery','layer','form'], function(exports) {
 				_this.success(_this.data, _this.obj);
 
 				// 第一次解析树
-				if (_this.dataFormat == 'list'){
+				if (_this.dataFormat == 'coal-list.html'){
 					//1.识别根节点ul中的data-id标签，判断顶级父节点
 					var pid = _this.obj.attr("data-id");
 					//2.构建一个存放节点的树组
@@ -1145,7 +1145,7 @@ layui.define(['jquery','layer','form'], function(exports) {
 						_this.success(result, _this.obj);
 
 						// 第一次解析树
-						if (_this.dataFormat == 'list'){
+						if (_this.dataFormat == 'coal-list.html'){
 							//1.识别根节点ul中的data-id标签，判断顶级父节点
 							var pid = _this.obj.attr("data-id");
 							//2.构建一个存放节点的树组
@@ -1195,7 +1195,7 @@ layui.define(['jquery','layer','form'], function(exports) {
 			$ul.html("");
 
 			// 解析树
-			if (_this.dataFormat == 'list'){
+			if (_this.dataFormat == 'coal-list.html'){
 				var pid = _this.node.nodeId;
 				var level = parseInt(_this.node.level)+1;
 
@@ -1244,7 +1244,7 @@ layui.define(['jquery','layer','form'], function(exports) {
 						// 解析树
 						var pid = _this.node.nodeId;
 						var level = parseInt(_this.node.level)+1;
-						if (_this.dataFormat == 'list'){
+						if (_this.dataFormat == 'coal-list.html'){
 							var pListData = _this.queryListTreeByPid(pid, result[_this.response.rootName]);
 							_this.loadListTree(pListData, result[_this.response.rootName], level, $ul);
 						} else {

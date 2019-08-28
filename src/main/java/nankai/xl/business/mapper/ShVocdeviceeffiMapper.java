@@ -12,4 +12,5 @@ public interface ShVocdeviceeffiMapper {
     int deleteById(Integer id);
     int updateById(ShVocdeviceeffi shVocdeviceeffi);
     int insertOrUpdate(ShVocdeviceeffi shVocdeviceeffi);
+    int insertSelective(ShVocdeviceeffi shVocdeviceeffi);
 }

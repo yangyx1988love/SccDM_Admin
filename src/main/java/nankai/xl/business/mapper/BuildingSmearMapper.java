@@ -11,4 +11,5 @@ public interface BuildingSmearMapper {
     int deleteById(Integer id);
     int updateById(BuildingSmear buildingSmear);
     int insertOrUpdate(BuildingSmear buildingSmear);
+    int insertSelective(BuildingSmear buildingSmear);
 }

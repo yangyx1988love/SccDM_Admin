@@ -42,7 +42,7 @@
                 <i class="layui-icon">&#xe615;</i></button>
         </div>
         <div class="layui-colla-content layui-show">
-            <table class="layui-hide" id="shEff-tab"></table>
+            <table class="layui-hide" id="shEff-tab" lay-filter="shEff-tab"></table>
         </div>
     </form>
 <!--</div>-->
@@ -140,7 +140,7 @@
             var content = ' <div class="layui-tab-item layui-show">' +
                 '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
             parent.layui.element.tabAdd('lay-tab',{
-                title:'编辑-废水无组织排放',
+                title:'新增-废水无组织排放',
                 content: content,
                 id:'shEff-tab'
             });
@@ -162,7 +162,7 @@
         }
         function deleteDone(data) {
             parent.layer.msg("删除成功", {icon: 6});
-            table.reload('shEff-tabReload');
+            table.reload('shEff-tab');
         }
         //监听提交 lay-filter="search"
         form.on('submit(search)', function(data){
@@ -171,7 +171,7 @@
                 cityCode = formData.cityCode,
                 year=formData.year
             //执行重载
-            table.reload('shEff-tabReload',{
+            table.reload('shEff-tab',{
                where: {
                    cityCode:cityCode,
                     countyId: countyId,

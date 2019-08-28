@@ -104,6 +104,7 @@
                     <label class="layui-form-label" style="width: 110px;">计量单位</label>
                     <div class="layui-input-block" style="width: 240px;">
                         <select id="activityUnit" name="activityUnit" lay-verify="required">
+                            <option value="" >请选择</option>
                             <option value="吨" >吨</option>
                             <option value="立方米">立方米</option>
                         </select>
@@ -217,11 +218,14 @@
                     }
                 },
                 "pos-num": function(value, item) {
-                    var reg1 = new RegExp(/^\d+(\.{0,10}\d+){0,10}$/);
-                    var reg2 = new RegExp(/[+-]*\d+\.?\d*[Ee]*[+-]*\d+/);
+                    var reg1 = new RegExp(/^(?!0\d)\d+(\.\d{1,})?(E[-]{0,1}\d+)?$/);
+                    var reg2 = new RegExp(/^[1-9]\d{0,9}(\.\d{1,8})?$|^0(\.\d{1,8})?$/);
                     if (value.length > 0 && !reg1.test(value)) {
-                        if (!reg2.test(value)) {
-                            return '请输入正数！！'
+                        return '请输入十位整数，八位小数的正数！！'
+                    }else {
+                        var num = new Number(value)
+                        if (num<0 || !reg2.test(num)){
+                            return '请输入十位整数，八位小数的正数！！'
                         }
                     }
                 },"chinese": function(value, item) {

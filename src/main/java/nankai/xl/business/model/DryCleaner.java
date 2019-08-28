@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class DryCleaner {
+public class DryCleaner extends Company{
     private Integer id;
 
     private String year;

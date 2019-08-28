@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class ShVocdeviceeffi {
+public class ShVocdeviceeffi extends Company{
     private Integer id;
 
     private String year;

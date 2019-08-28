@@ -1,10 +1,7 @@
 package nankai.xl.business.controller;
 
 import com.github.pagehelper.PageInfo;
-import nankai.xl.business.model.City;
-import nankai.xl.business.model.County;
-import nankai.xl.business.model.Scc3;
-import nankai.xl.business.model.Scc4;
+import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.SourceService;
@@ -25,14 +22,17 @@ public class ProcessController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
+
+    private String scc1="11";
+
+    private String scc2="17";
+
     @OperationLog("工艺过程源-石化有组织废气排放")
     @GetMapping("/process/shGas")
     public String shGas(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
-        return "source/process/shGas-list";
+        return "source/process/shGas/shGas-list";
     }
     @OperationLog("工艺过程源-石化有组织废气排放-列表")
     @GetMapping("/process/shGas/list")
@@ -53,6 +53,59 @@ public class ProcessController {
         return ResultBean.success();
     }
 
+    @OperationLog("石化有组织废气排放-编辑")
+    @GetMapping("/process/shGas/{id}")
+    public String shGasedit(@PathVariable("id") Integer id, Model model) {
+        ShGasemissionVo shGasemissionVo=sourceService.getShGaById(id);
+        shGasemissionVo.setScc1(scc1);
+        shGasemissionVo.setScc2(scc2);
+        shGasemissionVo.setScc3(shGasemissionVo.getScccode().substring(4,7));
+        shGasemissionVo.setScc4(shGasemissionVo.getScccode().substring(7,10));
+
+        Scc3 scc3=new Scc3();
+        scc3.setScc1(scc1);
+        scc3.setScc2(scc2);
+        List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
+        Scc4 scc4=new Scc4();
+        scc4.setScc1(scc1);
+        scc4.setScc2(scc2);
+        scc4.setScc3(shGasemissionVo.getScc3());
+        List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
+
+        List<County> countys=selectCommonService.getCountysByCityCode(shGasemissionVo.getCityCode());
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        model.addAttribute("countys", countys);
+        model.addAttribute("scc3s", scc3s);
+        model.addAttribute("scc4s", scc4s);
+        model.addAttribute("shGasemissionVo", shGasemissionVo);
+        return "source/process/shGas/shGas-update";
+    }
+    @OperationLog("石化有组织废气排放-新增")
+    @GetMapping("/process/shGas/add")
+    public String shGasadd(Model model) {
+        Scc3 scc3=new Scc3();
+        scc3.setScc1(scc1);
+        scc3.setScc2(scc2);
+        List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("scc1", scc1);
+        model.addAttribute("scc2", scc2);
+        model.addAttribute("citys", citys);
+        model.addAttribute("scc3s", scc3s);
+        return "source/process/shGas/shGas-add";
+    }
+    @OperationLog("废水无组织排放-编辑-保存")
+    @PutMapping("/process/shGas/edit")
+    @ResponseBody
+    public ResultBean shGasInsertOrUpdate(boolean isCul,ShGasemissionVo shGasemissionVo)  {
+        shGasemissionVo.setScccode(scc1+scc2+shGasemissionVo.getScc3()+shGasemissionVo.getScc4());
+        SccVo sccVo=selectCommonService.selectBySccCode(shGasemissionVo.getScccode());
+        shGasemissionVo.setSourceDiscrip(sccVo.getDescription());
+        sourceService.insertOrUpdateShGa(shGasemissionVo,isCul);
+        return ResultBean.success();
+    }
+
     @OperationLog("工艺过程源-装置密封点")
     @GetMapping("/process/shSeal")
     public String shSeal(Model model) {
@@ -60,7 +113,7 @@ public class ProcessController {
         List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
-        return "source/process/shSeal-list";
+        return "source/process/shSeal/shSeal-list";
     }
     @OperationLog("工艺过程源-装置密封点-列表")
     @GetMapping("/process/shSeal/list")
@@ -72,22 +125,7 @@ public class ProcessController {
         PageInfo<ShSealpointVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
-    @OperationLog("工艺过程源-装置密封点-重载")
-    @GetMapping("/process/shSeal/reload")
-    @ResponseBody
-    public PageResultBean<ShSealpointVo> shSealReload(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                      ShSealpointVo shSealpointVo) {
-        List<ShSealpointVo> results= sourceService.getShSealsByExample(shSealpointVo,page, limit);
-        PageInfo<ShSealpointVo> PageInfo = new PageInfo<>(results);
-        return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
-    }
-    //    @OperationLog("散煤-编辑")
-//    @GetMapping("/process/shSeal/{id}")
-//    public String update(@PathVariable("id") Integer id, Model model) {
-//        model.addAttribute("scatteredCoal", sourceService.getScatById(id));
-//        return "source/fixed/list";
-//    }
+
     @OperationLog("工艺过程源-装置密封点-删除")
     @DeleteMapping("/process/shSeal/{id}")
     @ResponseBody
@@ -95,13 +133,57 @@ public class ProcessController {
         sourceService.deleteShSealById(id);
         return ResultBean.success();
     }
+    @OperationLog("装置密封点-编辑")
+    @GetMapping("/process/shSeal/{id}")
+    public String shSealEdit(@PathVariable("id") Integer id, Model model) {
+        ShSealpointVo shSealpointVo=sourceService.getShSealById(id);
+        shSealpointVo.setScc1(scc1);
+        shSealpointVo.setScc2(scc2);
+        shSealpointVo.setScc3(shSealpointVo.getScccode().substring(4,7));
+        shSealpointVo.setScc4(shSealpointVo.getScccode().substring(7,10));
+
+        Scc4 scc4=new Scc4();
+        scc4.setScc1(scc1);
+        scc4.setScc2(scc2);
+        scc4.setScc3(shSealpointVo.getScc3());
+        List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
+
+        List<County> countys=selectCommonService.getCountysByCityCode(shSealpointVo.getCityCode());
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        model.addAttribute("countys", countys);
+        model.addAttribute("scc4s", scc4s);
+        model.addAttribute("shSealpointVo", shSealpointVo);
+        return "source/process/shSeal/shSeal-update";
+    }
+    @OperationLog("装置密封点-新增")
+    @GetMapping("/process/shSeal/add")
+    public String shSealAdd(Model model) {
+        Scc4 scc4=new Scc4();
+        scc4.setScc1(scc1);
+        scc4.setScc2(scc2);
+        scc4.setScc3("170");
+        List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        model.addAttribute("scc4s", scc4s);
+        return "source/process/shSeal/shSeal-add";
+    }
+    @OperationLog("装置密封点-编辑-保存")
+    @PutMapping("/process/shSeal/edit")
+    @ResponseBody
+    public ResultBean shSealInsertOrUpdate(boolean isCul,ShSealpointVo shSealpointVo){
+        shSealpointVo.setScccode(scc1+scc2+"170"+shSealpointVo.getScc4());
+        SccVo sccVo=selectCommonService.selectBySccCode(shSealpointVo.getScccode());
+        shSealpointVo.setSourceDiscrip(sccVo.getDescription());
+        sourceService.insertOrUpdateShSeal(shSealpointVo,isCul);
+        return ResultBean.success();
+    }
 
     @OperationLog("工艺过程源-废水无组织排放")
     @GetMapping("/process/shEff")
     public String shEff(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/process/shEff/shEff-list";
     }
@@ -124,7 +206,7 @@ public class ProcessController {
     }
     @OperationLog("废水无组织排放-编辑")
     @GetMapping("/process/shEff/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model) {
+    public String shEffedit(@PathVariable("id") Integer id, Model model) {
         ShEffluentemissionVo shEffluentemissionVo=sourceService.getShEffById(id);
         shEffluentemissionVo.setScc4(shEffluentemissionVo.getScccode().substring(7,10));
         Scc4 scc4=new Scc4();
@@ -132,14 +214,17 @@ public class ProcessController {
         scc4.setScc2("17");
         scc4.setScc3("140");
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-
+        List<County> countys=selectCommonService.getCountysByCityCode(shEffluentemissionVo.getCityCode());
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        model.addAttribute("countys", countys);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("shEffluentemissionVo", shEffluentemissionVo);
         return "source/process/shEff/shEff-update";
     }
     @OperationLog("废水无组织排放-新增")
     @GetMapping("/process/shEff/add")
-    public String add(Model model) {
+    public String shEffadd(Model model) {
         Scc4 scc4=new Scc4();
         scc4.setScc1("11");
         scc4.setScc2("17");
@@ -153,7 +238,7 @@ public class ProcessController {
     @OperationLog("废水无组织排放-编辑-保存")
     @PutMapping("/process/shEff/edit")
     @ResponseBody
-    public ResultBean insertOrUpdate(boolean isCul,ShEffluentemissionVo shEffluentemissionVo) throws Exception {
+    public ResultBean shEffInsertOrUpdate(boolean isCul,ShEffluentemissionVo shEffluentemissionVo)  {
         shEffluentemissionVo.setScccode("1117140"+shEffluentemissionVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(shEffluentemissionVo.getScccode());
         shEffluentemissionVo.setSourceDiscrip(sccVo.getDescription());
@@ -168,7 +253,7 @@ public class ProcessController {
         List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
-        return "source/process/shVoc-list";
+        return "source/process/shVoc/shVoc-list";
     }
     @OperationLog("工艺过程源-VOC处理装置-列表")
     @GetMapping("/process/shVoc/list")
@@ -180,27 +265,40 @@ public class ProcessController {
         PageInfo<ShVocdeviceeffiVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
-    @OperationLog("工艺过程源-VOC处理装置-重载")
-    @GetMapping("/process/shVoc/reload")
-    @ResponseBody
-    public PageResultBean<ShVocdeviceeffiVo> shVocReload(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                            @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                         ShVocdeviceeffiVo shVocdeviceeffiVo) {
-        List<ShVocdeviceeffiVo> results= sourceService.getShVocsByExample(shVocdeviceeffiVo,page, limit);
-        PageInfo<ShVocdeviceeffiVo> PageInfo = new PageInfo<>(results);
-        return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
-    }
-    //    @OperationLog("散煤-编辑")
-//    @GetMapping("/process/shVoc/{id}")
-//    public String update(@PathVariable("id") Integer id, Model model) {
-//        model.addAttribute("scatteredCoal", sourceService.getScatById(id));
-//        return "source/fixed/list";
-//    }
+
     @OperationLog("工艺过程源-VOC处理装置-删除")
     @DeleteMapping("/process/shVoc/{id}")
     @ResponseBody
     public ResultBean shVocDelete(@PathVariable("id") Integer id) {
         sourceService.deleteShVocById(id);
+        return ResultBean.success();
+    }
+    @OperationLog("VOC处理装置-编辑")
+    @GetMapping("/process/shVoc/{id}")
+    public String shVocEdit(@PathVariable("id") Integer id, Model model) {
+        ShVocdeviceeffiVo shVocdeviceeffiVo=sourceService.getShVocById(id);
+        List<County> countys=selectCommonService.getCountysByCityCode(shVocdeviceeffiVo.getCityCode());
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        model.addAttribute("countys", countys);
+        model.addAttribute("shVocdeviceeffiVo", shVocdeviceeffiVo);
+        return "source/process/shVoc/shVoc-update";
+    }
+    @OperationLog("VOC处理装置-新增")
+    @GetMapping("/process/shVoc/add")
+    public String shVocAdd(Model model) {
+        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("citys", citys);
+        return "source/process/shVoc/shVoc-add";
+    }
+    @OperationLog("VOC处理装置-编辑-保存")
+    @PutMapping("/process/shVoc/edit")
+    @ResponseBody
+    public ResultBean shVocInsertOrUpdate(boolean isCul,ShVocdeviceeffiVo shVocdeviceeffiVo)  {
+        shVocdeviceeffiVo.setScccode("1117400211");
+        SccVo sccVo=selectCommonService.selectBySccCode("1117400211");
+        shVocdeviceeffiVo.setSourceDiscrip(sccVo.getDescription());
+        sourceService.insertOrUpdateShVoc(shVocdeviceeffiVo,isCul);
         return ResultBean.success();
     }
 }

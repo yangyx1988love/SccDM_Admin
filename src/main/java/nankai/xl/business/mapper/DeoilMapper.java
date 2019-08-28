@@ -11,4 +11,5 @@ public interface DeoilMapper {
     int deleteById(Integer id);
     int updateById(Deoil deoil);
     int insertOrUpdate(Deoil deoil);
+    int insertSelective(Deoil deoil);
 }

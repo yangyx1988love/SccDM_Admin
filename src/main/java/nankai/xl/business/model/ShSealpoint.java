@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class ShSealpoint {
+public class ShSealpoint extends Company{
     private Integer id;
 
     private String year;

@@ -11,4 +11,5 @@ public interface DryCleanerMapper {
     int deleteById(Integer id);
     int updateById(DryCleaner dryCleaner);
     int insertOrUpdate(DryCleaner dryCleaner);
+    int insertSelective(DryCleaner dryCleaner);
 }

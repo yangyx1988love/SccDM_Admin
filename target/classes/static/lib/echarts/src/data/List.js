@@ -308,7 +308,7 @@ var List = function (dimensions, hostModel) {
 
 var listProto = List.prototype;
 
-listProto.type = 'list';
+listProto.type = 'coal-list.html';
 
 /**
  * If each data item has it's own option

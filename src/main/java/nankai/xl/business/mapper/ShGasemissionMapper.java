@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ShGasemissionMapper {
     int insertOrUpdate(ShGasemission shGasemission);
+    int insertSelective(ShGasemission shGasemission);
     List<ShGasemissionVo> selectByShGas(ShGasemissionVo shGasemissionVo);
-    List<ShGasemissionVo> selectAll();
     ShGasemissionVo selectById(Integer id);
     int deleteById(Integer id);
     int updateById(ShGasemission shGasemission);

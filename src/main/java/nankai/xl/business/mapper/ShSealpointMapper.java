@@ -12,4 +12,5 @@ public interface ShSealpointMapper {
     int deleteById(Integer id);
     int updateById(ShSealpoint shSealpoint);
     int insertOrUpdate(ShSealpoint shSealpoint);
+    int insertSelective(ShSealpoint shSealpoint);
 }
