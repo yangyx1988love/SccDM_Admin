@@ -55,7 +55,6 @@ public class ScatCoalController {
     @OperationLog("散煤-新增")
     @GetMapping("/fixed/coal/add")
     public String add(Model model) {
-
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -71,11 +70,6 @@ public class ScatCoalController {
     @GetMapping("/fixed/coal/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         ScatteredCoalVo scatteredCoalVo=sourceService.getScatById(id);
-        scatteredCoalVo.setScc1(scc1);
-        scatteredCoalVo.setScc2(scc2);
-        scatteredCoalVo.setScc3(scatteredCoalVo.getSccCode().substring(4,7));
-        scatteredCoalVo.setScc4(scatteredCoalVo.getSccCode().substring(7,10));
-
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);

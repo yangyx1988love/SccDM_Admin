@@ -32,15 +32,15 @@
     </where>
   </select>
   <select id="selectBySccCode" resultType="nankai.xl.business.model.vo.SccVo" parameterType="java.lang.String" >
-    SELECT * FROM (
-    SELECT CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3,scc_4.scc_4) AS scc_code,
-    CONCAT(scc_1.description,'/',scc_2.description,'/',scc_3.description,'/',scc_4.description) AS description FROM scc_4
-    INNER JOIN scc_1
-    ON scc_1.scc_1=scc_4.scc_1
-    INNER JOIN scc_2
-    ON scc_2.scc_1=scc_4.scc_1 AND scc_2.scc_2=scc_4.scc_2
-    INNER JOIN scc_3
-    ON scc_3.scc_1=scc_4.scc_1 AND scc_3.scc_2=scc_4.scc_2 AND scc_3.scc_3=scc_4.scc_3
+    SELECT REPLACE(REPLACE(REPLACE(REPLACE(description,CHAR(13),''),CHAR(10),''),CHAR(9),''),' ','') AS description,scc_code FROM (
+      SELECT CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3,scc_4.scc_4) AS scc_code,
+      CONCAT(scc_1.description,'/',scc_2.description,'/',scc_3.description,'/',scc_4.description) AS description FROM scc_4
+      INNER JOIN scc_1
+      ON scc_1.scc_1=scc_4.scc_1
+      INNER JOIN scc_2
+      ON scc_2.scc_1=scc_4.scc_1 AND scc_2.scc_2=scc_4.scc_2
+      INNER JOIN scc_3
+      ON scc_3.scc_1=scc_4.scc_1 AND scc_3.scc_2=scc_4.scc_2 AND scc_3.scc_3=scc_4.scc_3
     ) scc
     where scc.scc_code = #{sccCode}
   </select>

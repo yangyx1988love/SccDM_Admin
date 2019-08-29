@@ -23,14 +23,16 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.DryCleanerVo" parameterType="nankai.xl.business.model.vo.DryCleanerVo" >
-    SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM dry_cleaner
+    SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(dry_cleaner.scccode,1,2) AS scc1,SUBSTR(dry_cleaner.scccode,3,2) AS scc2,
+    SUBSTR(dry_cleaner.scccode,5,3) AS scc3,SUBSTR(dry_cleaner.scccode,8,3) AS scc4
+    FROM dry_cleaner
     LEFT JOIN company
     ON dry_cleaner.company_id=company.com_id
     INNER JOIN (
-      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-      FROM county
-      LEFT JOIN city
-      ON county.city_code=city.city_code
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
     <where>
@@ -40,10 +42,15 @@
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.DryCleanerVo" parameterType="java.lang.Integer" >
-    SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM dry_cleaner
+    SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(dry_cleaner.scccode,1,2) AS scc1,SUBSTR(dry_cleaner.scccode,3,2) AS scc2,
+				SUBSTR(dry_cleaner.scccode,5,3) AS scc3,SUBSTR(dry_cleaner.scccode,8,3) AS scc4
+	FROM dry_cleaner
     LEFT JOIN company
     ON dry_cleaner.company_id=company.com_id
     INNER JOIN (

@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class TankSource {
+public class TankSource extends Company{
     private Integer id;
 
     private String year;

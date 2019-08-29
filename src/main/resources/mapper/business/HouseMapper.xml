@@ -21,7 +21,8 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.HouseVo" parameterType="nankai.xl.business.model.vo.HouseVo" >
-    SELECT house.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT house.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(house.scccode,1,2) AS scc1,SUBSTR(house.scccode,3,2) AS scc2,
+    SUBSTR(house.scccode,5,3) AS scc3,SUBSTR(house.scccode,8,3) AS scc4
     FROM house
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
@@ -43,7 +44,8 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.HouseVo" parameterType="java.lang.Integer" >
-    SELECT house.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT house.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(house.scccode,1,2) AS scc1,SUBSTR(house.scccode,3,2) AS scc2,
+				SUBSTR(house.scccode,5,3) AS scc3,SUBSTR(house.scccode,8,3) AS scc4
     FROM house
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code

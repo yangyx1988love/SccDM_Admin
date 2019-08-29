@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SourceService {
     //固体燃烧源//散煤
-    int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal,boolean isCul);
+    int insertOrUpdateScatteredCoal(ScatteredCoalVo scatteredCoalVo,boolean isCul);
     List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit);
     ScatteredCoalVo getScatById(Integer id);
     int deleteScatById(Integer id);
@@ -35,37 +35,32 @@ public interface SourceService {
     List<BuildingSmearVo> getBuildsByExample(BuildingSmearVo buildingSmearVo,int page, int limit);
     BuildingSmearVo getBuildById(Integer id);
     int deleteBuildById(Integer id);
-    int insertOrUpdateBuild(BuildingSmear buildingSmear,boolean isCul);
+    int insertOrUpdateBuild(BuildingSmearVo buildingSmearVo,boolean isCul);
     //溶剂使用源//汽修厂
     List<CarRepairVo> getCarsByExample(CarRepairVo carRepairVo,int page, int limit);
     CarRepairVo getCarById(Integer id);
     int deleteCarById(Integer id);
-    int updateCarById(CarRepair carRepair);
-    int insertOrUpdateCar(CarRepair carRepair);
+    int insertOrUpdateCar(CarRepairVo carRepairVo,boolean isCul);
     //溶剂使用源//去污油脂
     List<DeoilVo> getDeoilsByExample(DeoilVo deoilVo,int page, int limit);
     DeoilVo getDeoilById(Integer id);
     int deleteDeoilById(Integer id);
-    int updateDeoilById(Deoil deoil);
-    int insertOrUpdateDeoil(Deoil deoil);
+    int insertOrUpdateDeoil(DeoilVo deoilVo,boolean isCul);
     //溶剂使用源//干洗店
     List<DryCleanerVo> getDrysByExample(DryCleanerVo dryCleanerVo,int page, int limit);
     DryCleanerVo getDryById(Integer id);
     int deleteDryById(Integer id);
-    int updateDryById(DryCleaner dryCleaner);
-    int insertOrUpdateDry(DryCleaner dryCleaner);
+    int insertOrUpdateDry(DryCleanerVo dryCleanerVo,boolean isCul);
     //溶剂使用源//家居家装
     List<HouseVo> getHousesByExample(HouseVo houseVo,int page, int limit);
     HouseVo getHouseById(Integer id);
     int deleteHouseById(Integer id);
-    int updateHouseById(House house);
-    int insertOrUpdateHouse(House house);
+    int insertOrUpdateHouse(HouseVo houseVo,boolean isCul);
     //溶剂使用源//道路铺装
     List<RoadPaveVo> getRoadPasByExample(RoadPaveVo roadPaveVo,int page, int limit);
     RoadPaveVo getRoadPaById(Integer id);
     int deleteRoadPaById(Integer id);
-    int updateRoadPaById(RoadPave roadPave);
-    int insertOrUpdateRoadPa(RoadPave roadPave);
+    int insertOrUpdateRoadPa(RoadPaveVo roadPaveVo,boolean isCul);
     //施工扬尘源
     List<XjconstructdustVo> getConsByExample(XjconstructdustVo xjconstructdustVo,int page, int limit);
     XjconstructdustVo getConById(Integer id);
@@ -96,30 +91,26 @@ public interface SourceService {
     int deleteSoilDustById(Integer id);
     int updateSoilDustById(Xjsoildust xjsoildust);
     int insertOrUpdateSoilDust(Xjsoildust xjsoildust);
-    //加气站
+    //存储与运输源//加气站
     List<GasSourceVo> getGassByExample(GasSourceVo gasSourceVo,int page, int limit);
     GasSourceVo getGasById(Integer id);
     int deleteGasById(Integer id);
-    int updateGasById(GasSource gasSource);
-    int insertOrUpdateGas(GasSource gasSource);
-    //加油站
+    int insertOrUpdateGas(GasSourceVo gasSourceVo,boolean isCul);
+    //存储与运输源//加油站
     List<OilSourceVo> getOilsByExample(OilSourceVo oilSourceVo,int page, int limit);
     OilSourceVo getOilById(Integer id);
     int deleteOilById(Integer id);
-    int updateOilById(OilSource oilSource);
-    int insertOrUpdateOil(OilSource oilSource);
-    //装载过程排放
+    int insertOrUpdateOil(OilSourceVo oilSourceVo,boolean isCul);
+    //存储与运输源//装载过程排放
     List<OilTransportVo> getOilTransByExample(OilTransportVo oilTransportVo,int page, int limit);
     OilTransportVo getOilTranById(Integer id);
     int deleteOilTranById(Integer id);
-    int updateOilTranById(OilTransport oilTransport);
-    int insertOrUpdateOilTran(OilTransport oilTransport);
-    //储罐存储
+    int insertOrUpdateOilTran(OilTransportVo oilTransportVo,boolean isCul);
+    //存储与运输源//储罐存储
     List<TankSourceVo> getTanksByExample(TankSourceVo tankSourceVo,int page, int limit);
     TankSourceVo getTankById(Integer id);
     int deleteTankById(Integer id);
-    int updateTankById(TankSource tankSource);
-    int insertOrUpdateTank(TankSource tankSource);
+    int insertOrUpdateTank(TankSourceVo tankSourceVo,boolean isCul);
     //土壤本底
     List<BaseSoilVo> getBaseSoilsByExample(BaseSoilVo baseSoilVo,int page, int limit);
     BaseSoilVo getBaseSoilById(Integer id);

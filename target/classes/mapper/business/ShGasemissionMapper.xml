@@ -29,7 +29,9 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByShGas" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="nankai.xl.business.model.vo.ShGasemissionVo" >
-      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_gasemission
+      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_gasemission.scccode,1,2) AS scc1,
+      SUBSTR(sh_gasemission.scccode,3,2) AS scc2,SUBSTR(sh_gasemission.scccode,5,3) AS scc3,SUBSTR(sh_gasemission.scccode,8,3) AS scc4
+      FROM sh_gasemission
       LEFT JOIN company
       ON sh_gasemission.factory_id=company.com_id
       INNER JOIN (
@@ -52,14 +54,16 @@
       </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="java.lang.Integer" >
-      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_gasemission
+      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_gasemission.scccode,1,2) AS scc1,
+          SUBSTR(sh_gasemission.scccode,3,2) AS scc2,SUBSTR(sh_gasemission.scccode,5,3) AS scc3,SUBSTR(sh_gasemission.scccode,8,3) AS scc4
+      FROM sh_gasemission
       LEFT JOIN company
       ON sh_gasemission.factory_id=company.com_id
       INNER JOIN (
-      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-      FROM county
-      LEFT JOIN city
-      ON county.city_code=city.city_code
+          SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+          FROM county
+          LEFT JOIN city
+          ON county.city_code=city.city_code
       ) co
       ON co.COUNTY_ID=company.county_id
       where sh_gasemission.id = #{id,jdbcType=INTEGER}

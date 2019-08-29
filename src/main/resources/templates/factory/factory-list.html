@@ -20,7 +20,7 @@
         <div class="layui-row">
             <form class="layui-form layui-col-md12 we-search">
                 <div class="layui-input-inline">
-                    <select id="countyCity" name="countyCity" lay-filter="countyCity">
+                    <select id="countyCity" name="countyCity" lay-filter="cityCode">
                         <option value="">请选择实际城市</option>
                         <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
                         </option>
@@ -91,40 +91,7 @@
                 ,limits:[50,100,200,2000,5000]
                 ,id: 'factoryTableReload'
             });
-            form.verify({
-                "chinese": function(value, item) {
-                    var reg = new RegExp(/[\u4e00-\u9fa5]+/);
-                    if (value.length > 0 && !reg.test(value)) {
-                        return '企业名称至少包含一个汉字！！'
-                    }
-                }
-            });
-            //城市区县级联选择
-            form.on('select(countyCity)',function(data){
-                var cityCode=data.value;
-                $.ajax({
-                    url: '/factoryAuth/seleCountry/' + cityCode,
-                    data: {cityCode: cityCode},//发送的参数
-                    type: "post",
-                    success: function (datas) {
-                        $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
-                        if(datas.length>0){
-                            $.each(datas, function(key, val) {
-                                var option1 = $("<option>").val(val.countyId).text(val.countyName);
-                                $("select[name=countyId]").append(option1);
-                                form.render('select');
-                            });
-                        }else{
-                            form.render('select');
-                        }
-                    },
-                    error:function(){
-                        //失败执行的方法
-                        layer.msg("区县信息加载失败!", {icon: 6});
-                    }
-                })
 
-            });
             //监听提交 lay-filter="search"
             form.on('submit(search)', function(data){
                 var formData = data.field;

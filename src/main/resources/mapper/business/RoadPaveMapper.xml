@@ -21,7 +21,8 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.RoadPaveVo" parameterType="nankai.xl.business.model.vo.RoadPaveVo" >
-    SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_pave.scccode,1,2) AS scc1,SUBSTR(road_pave.scccode,3,2) AS scc2,
+    SUBSTR(road_pave.scccode,5,3) AS scc3,SUBSTR(road_pave.scccode,8,3) AS scc4
     FROM road_pave
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
@@ -43,7 +44,8 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.RoadPaveVo" parameterType="java.lang.Integer" >
-    SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_pave.scccode,1,2) AS scc1,SUBSTR(road_pave.scccode,3,2) AS scc2,
+				SUBSTR(road_pave.scccode,5,3) AS scc3,SUBSTR(road_pave.scccode,8,3) AS scc4
     FROM road_pave
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code

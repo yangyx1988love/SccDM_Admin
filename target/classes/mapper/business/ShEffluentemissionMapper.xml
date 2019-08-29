@@ -27,7 +27,9 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShEffluentemissionVo" parameterType="nankai.xl.business.model.vo.ShEffluentemissionVo" >
-    SELECT sh_effluentemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_effluentemission
+    SELECT sh_effluentemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_effluentemission.scccode,1,2) AS scc1,
+    SUBSTR(sh_effluentemission.scccode,3,2) AS scc2,SUBSTR(sh_effluentemission.scccode,5,3) AS scc3,SUBSTR(sh_effluentemission.scccode,8,3) AS scc4
+    FROM sh_effluentemission
     LEFT JOIN company
     ON sh_effluentemission.factory_id=company.com_id
     INNER JOIN (
@@ -50,7 +52,9 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShEffluentemissionVo" parameterType="java.lang.Integer" >
-    SELECT sh_effluentemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_effluentemission
+    SELECT sh_effluentemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_effluentemission.scccode,1,2) AS scc1,
+        SUBSTR(sh_effluentemission.scccode,3,2) AS scc2,SUBSTR(sh_effluentemission.scccode,5,3) AS scc3,SUBSTR(sh_effluentemission.scccode,8,3) AS scc4
+    FROM sh_effluentemission
     LEFT JOIN company
     ON sh_effluentemission.factory_id=company.com_id
     INNER JOIN (

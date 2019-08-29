@@ -21,7 +21,8 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.BuildingSmearVo" parameterType="nankai.xl.business.model.vo.BuildingSmearVo" >
-    SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(building_smear.scccode,1,2) AS scc1,SUBSTR(building_smear.scccode,3,2) AS scc2,
+    SUBSTR(building_smear.scccode,5,3) AS scc3,SUBSTR(building_smear.scccode,8,3) AS scc4
     FROM building_smear
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
@@ -43,7 +44,8 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.BuildingSmearVo" parameterType="java.lang.Integer" >
-    SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(building_smear.scccode,1,2) AS scc1,SUBSTR(building_smear.scccode,3,2) AS scc2,
+				SUBSTR(building_smear.scccode,5,3) AS scc3,SUBSTR(building_smear.scccode,8,3) AS scc4
     FROM building_smear
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code

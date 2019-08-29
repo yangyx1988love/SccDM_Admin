@@ -31,7 +31,8 @@
     source_description,COUNTY_NAME
   </sql>
   <select id="selectByScatteredCoal" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="nankai.xl.business.model.ScatteredCoal" >
-    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(scattered_coal.scc_code,1,2) AS scc1,SUBSTR(scattered_coal.scc_code,3,2) AS scc2,
+    SUBSTR(scattered_coal.scc_code,5,3) AS scc3,SUBSTR(scattered_coal.scc_code,8,3) AS scc4
     FROM scattered_coal
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
@@ -53,7 +54,8 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="java.lang.Integer">
-    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name
+    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(scattered_coal.scc_code,1,2) AS scc1,SUBSTR(scattered_coal.scc_code,3,2) AS scc2,
+				SUBSTR(scattered_coal.scc_code,5,3) AS scc3,SUBSTR(scattered_coal.scc_code,8,3) AS scc4
     FROM scattered_coal
     INNER JOIN (
     SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code

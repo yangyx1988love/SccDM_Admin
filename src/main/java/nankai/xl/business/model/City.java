@@ -1,6 +1,9 @@
 package nankai.xl.business.model;
 
-public class City {
+import java.io.Serializable;
+
+public class City implements Serializable {
+    private static final long serialVersionUID = -2049887553205888297L;
     private Integer id;
 
     private String provinceCode;

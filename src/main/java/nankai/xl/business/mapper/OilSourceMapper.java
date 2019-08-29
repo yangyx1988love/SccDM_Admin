@@ -12,4 +12,5 @@ public interface OilSourceMapper {
     int deleteById(Integer id);
     int updateById(OilSource oilSource);
     int insertOrUpdate(OilSource oilSource);
+    int insertSelective(OilSource oilSource);
 }

@@ -83,7 +83,8 @@ public class SourceServiceImpl implements SourceService {
     private CompanyMapper companyMapper;
 
     @Override
-    public int insertOrUpdateScatteredCoal(ScatteredCoal scatteredCoal,boolean isCul) {
+    public int insertOrUpdateScatteredCoal(ScatteredCoalVo scatteredCoalVo,boolean isCul) {
+        ScatteredCoal scatteredCoal=scatteredCoalVo;
         if (!isCul){
             Scc scc=sccMapper.selectByScc(scatteredCoal.getSccCode());
             Double activity=scatteredCoal.getActivityLevelNum();
@@ -331,7 +332,8 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int insertOrUpdateBuild(BuildingSmear buildingSmear,boolean isCul) {
+    public int insertOrUpdateBuild(BuildingSmearVo buildingSmearVo,boolean isCul) {
+        BuildingSmearVo buildingSmear=buildingSmearVo;
         if (!isCul){
             Scc scc=sccMapper.selectByScc(buildingSmear.getScccode());
             Double activity=buildingSmear.getPaintAmount();
@@ -370,13 +372,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateCarById(CarRepair carRepair) {
-        return carRepairMapper.updateById(carRepair);
-    }
+    public int insertOrUpdateCar(CarRepairVo carRepairVo,boolean isCul) {
+        CarRepair carRepair=carRepairVo;
+        Company company=carRepair;
 
-    @Override
-    public int insertOrUpdateCar(CarRepair carRepair) {
-        return carRepairMapper.insertOrUpdate(carRepair);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            carRepair.setCompanyId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(carRepair.getScccode());
+            Double activity=carRepair.getSolventAmount();
+            carRepair.setPm25Emission(activity*scc.getPm25());
+            carRepair.setPm10Emission(activity*scc.getPm10());
+            carRepair.setCoEmission(activity*scc.getCo());
+            carRepair.setVocEmission(activity*scc.getVocs());
+            carRepair.setSo2Emission(activity*scc.getSo2());
+            carRepair.setNoxEmission(activity*scc.getNox());
+            carRepair.setNh3Emission(activity*scc.getNh3());
+            carRepair.setOcEmission(activity*scc.getOc());
+            carRepair.setBcEmission(activity*scc.getBc());
+        }
+        if(carRepair.getId()!=null){
+            carRepairMapper.updateById(carRepair);
+        }else {
+            carRepairMapper.insertSelective(carRepair);
+        }
+        return 1;
     }
 
     @Override
@@ -395,14 +420,29 @@ public class SourceServiceImpl implements SourceService {
         return deoilMapper.deleteById(id);
     }
 
-    @Override
-    public int updateDeoilById(Deoil deoil) {
-        return deoilMapper.updateById(deoil);
-    }
 
     @Override
-    public int insertOrUpdateDeoil(Deoil deoil) {
-        return deoilMapper.insertOrUpdate(deoil);
+    public int insertOrUpdateDeoil(DeoilVo deoilVo,boolean isCul) {
+        Deoil deoil=deoilVo;
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(deoil.getScccode());
+            Double activity=deoil.getPeoplenumber()+0.0;
+            deoil.setPm25Emission(activity*scc.getPm25());
+            deoil.setPm10Emission(activity*scc.getPm10());
+            deoil.setCoEmission(activity*scc.getCo());
+            deoil.setVocEmission(activity*scc.getVocs());
+            deoil.setSo2Emission(activity*scc.getSo2());
+            deoil.setNoxEmission(activity*scc.getNox());
+            deoil.setNh3Emission(activity*scc.getNh3());
+            deoil.setOcEmission(activity*scc.getOc());
+            deoil.setBcEmission(activity*scc.getBc());
+        }
+        if(deoil.getId()!=null){
+            deoilMapper.updateById(deoil);
+        }else {
+            deoilMapper.insertSelective(deoil);
+        }
+        return 1;
     }
 
     @Override
@@ -422,13 +462,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateDryById(DryCleaner dryCleaner) {
-        return dryCleanerMapper.updateById(dryCleaner);
-    }
+    public int insertOrUpdateDry(DryCleanerVo dryCleanerVo,boolean isCul) {
+        DryCleaner dryCleaner=dryCleanerVo;
+        Company company=dryCleaner;
 
-    @Override
-    public int insertOrUpdateDry(DryCleaner dryCleaner) {
-        return dryCleanerMapper.insertOrUpdate(dryCleaner);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            dryCleaner.setCompanyId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(dryCleaner.getScccode());
+            Double activity=dryCleaner.getYearAmount();
+            dryCleaner.setPm25Emission(activity*scc.getPm25());
+            dryCleaner.setPm10Emission(activity*scc.getPm10());
+            dryCleaner.setCoEmission(activity*scc.getCo());
+            dryCleaner.setVocEmission(activity*scc.getVocs());
+            dryCleaner.setSo2Emission(activity*scc.getSo2());
+            dryCleaner.setNoxEmission(activity*scc.getNox());
+            dryCleaner.setNh3Emission(activity*scc.getNh3());
+            dryCleaner.setOcEmission(activity*scc.getOc());
+            dryCleaner.setBcEmission(activity*scc.getBc());
+        }
+        if(dryCleaner.getId()!=null){
+            dryCleanerMapper.updateById(dryCleaner);
+        }else {
+            dryCleanerMapper.insertSelective(dryCleaner);
+        }
+        return 1;
     }
 
     @Override
@@ -448,13 +511,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateHouseById(House house) {
-        return houseMapper.updateById(house);
-    }
-
-    @Override
-    public int insertOrUpdateHouse(House house) {
-        return houseMapper.insertOrUpdate(house);
+    public int insertOrUpdateHouse(HouseVo houseVo,boolean isCul) {
+        House house=houseVo;
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(house.getScccode());
+            Double activity=house.getSolventAmount();
+            house.setPm25Emission(activity*scc.getPm25());
+            house.setPm10Emission(activity*scc.getPm10());
+            house.setCoEmission(activity*scc.getCo());
+            house.setVocEmission(activity*scc.getVocs());
+            house.setSo2Emission(activity*scc.getSo2());
+            house.setNoxEmission(activity*scc.getNox());
+            house.setNh3Emission(activity*scc.getNh3());
+            house.setOcEmission(activity*scc.getOc());
+            house.setBcEmission(activity*scc.getBc());
+        }
+        if(house.getId()!=null){
+            houseMapper.updateById(house);
+        }else {
+            houseMapper.insertSelective(house);
+        }
+        return 1;
     }
 
     @Override
@@ -474,13 +551,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateRoadPaById(RoadPave roadPave) {
-        return roadPaveMapper.updateById(roadPave);
-    }
-
-    @Override
-    public int insertOrUpdateRoadPa(RoadPave roadPave) {
-        return roadPaveMapper.insertOrUpdate(roadPave);
+    public int insertOrUpdateRoadPa(RoadPaveVo roadPaveVo,boolean isCul) {
+        RoadPave roadPave=roadPaveVo;
+        if (!isCul){
+//            Scc scc=sccMapper.selectByScc(roadPave.getScccode());
+//            Double activity=roadPave.getAsphalt();
+//            roadPave.setPm25Emission(activity*scc.getPm25());
+//            roadPave.setPm10Emission(activity*scc.getPm10());
+//            roadPave.setCoEmission(activity*scc.getCo());
+//            roadPave.setVocEmission(activity*scc.getVocs());
+//            roadPave.setSo2Emission(activity*scc.getSo2());
+//            roadPave.setNoxEmission(activity*scc.getNox());
+//            roadPave.setNh3Emission(activity*scc.getNh3());
+//            roadPave.setOcEmission(activity*scc.getOc());
+//            roadPave.setBcEmission(activity*scc.getBc());
+        }
+        if(roadPave.getId()!=null){
+            roadPaveMapper.updateById(roadPave);
+        }else {
+            roadPaveMapper.insertSelective(roadPave);
+        }
+        return 1;
     }
 
     @Override
@@ -630,13 +721,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateGasById(GasSource gasSource) {
-        return gasSourceMapper.updateById(gasSource);
-    }
+    public int insertOrUpdateGas(GasSourceVo gasSourceVo,boolean isCul) {
+        GasSource gasSource=gasSourceVo;
+        Company company=gasSource;
 
-    @Override
-    public int insertOrUpdateGas(GasSource gasSource) {
-        return gasSourceMapper.insertOrUpdate(gasSource);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            gasSource.setCompanyId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(gasSource.getScccode());
+            Double activity=gasSource.getSalesVolume();
+//            gasSource.set(activity*scc.getPm25());
+//            gasSource.setPm10Emission(activity*scc.getPm10());
+//            gasSource.setCoEmission(activity*scc.getCo());
+//            gasSource.setVocEmission(activity*scc.getVocs());
+//            gasSource.setSo2Emission(activity*scc.getSo2());
+//            gasSource.setNoxEmission(activity*scc.getNox());
+//            gasSource.setNh3Emission(activity*scc.getNh3());
+//            gasSource.setOcEmission(activity*scc.getOc());
+//            gasSource.setBcEmission(activity*scc.getBc());
+        }
+        if(gasSource.getId()!=null){
+            gasSourceMapper.updateById(gasSource);
+        }else {
+            gasSourceMapper.insertSelective(gasSource);
+        }
+        return 1;
     }
 
     @Override
@@ -656,13 +770,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateOilById(OilSource oilSource) {
-        return oilSourceMapper.updateById(oilSource);
-    }
+    public int insertOrUpdateOil(OilSourceVo oilSourceVo,boolean isCul) {
+        OilSource oilSource=oilSourceVo;
+        Company company=oilSource;
 
-    @Override
-    public int insertOrUpdateOil(OilSource oilSource) {
-        return oilSourceMapper.insertOrUpdate(oilSource);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            oilSource.setCompanyId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(oilSource.getScccode());
+            Double activity=oilSource.getSalesVolume();
+//            gasSource.set(activity*scc.getPm25());
+//            gasSource.setPm10Emission(activity*scc.getPm10());
+//            gasSource.setCoEmission(activity*scc.getCo());
+//            gasSource.setVocEmission(activity*scc.getVocs());
+//            gasSource.setSo2Emission(activity*scc.getSo2());
+//            gasSource.setNoxEmission(activity*scc.getNox());
+//            gasSource.setNh3Emission(activity*scc.getNh3());
+//            gasSource.setOcEmission(activity*scc.getOc());
+//            gasSource.setBcEmission(activity*scc.getBc());
+        }
+        if(oilSource.getId()!=null){
+            oilSourceMapper.updateById(oilSource);
+        }else {
+            oilSourceMapper.insertSelective(oilSource);
+        }
+        return 1;
     }
 
     @Override
@@ -682,13 +819,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateOilTranById(OilTransport oilTransport) {
-        return oilTransportMapper.updateById(oilTransport);
-    }
+    public int insertOrUpdateOilTran(OilTransportVo oilTransportVo,boolean isCul) {
+        OilTransport oilTransport=oilTransportVo;
+        Company company=oilTransport;
 
-    @Override
-    public int insertOrUpdateOilTran(OilTransport oilTransport) {
-        return oilTransportMapper.insertOrUpdate(oilTransport);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            oilTransport.setCompanyId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(oilTransport.getScccode());
+            Double activity=oilTransport.getYearVolume();
+//            gasSource.set(activity*scc.getPm25());
+//            gasSource.setPm10Emission(activity*scc.getPm10());
+//            gasSource.setCoEmission(activity*scc.getCo());
+//            gasSource.setVocEmission(activity*scc.getVocs());
+//            gasSource.setSo2Emission(activity*scc.getSo2());
+//            gasSource.setNoxEmission(activity*scc.getNox());
+//            gasSource.setNh3Emission(activity*scc.getNh3());
+//            gasSource.setOcEmission(activity*scc.getOc());
+//            gasSource.setBcEmission(activity*scc.getBc());
+        }
+        if(oilTransport.getId()!=null){
+            oilTransportMapper.updateById(oilTransport);
+        }else {
+            oilTransportMapper.insertSelective(oilTransport);
+        }
+        return 1;
     }
 
     @Override
@@ -708,13 +868,36 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateTankById(TankSource tankSource) {
-        return tankSourceMapper.updateById(tankSource);
-    }
+    public int insertOrUpdateTank(TankSourceVo tankSourceVo,boolean isCul) {
+        TankSource tankSource=tankSourceVo;
+        Company company=tankSource;
 
-    @Override
-    public int insertOrUpdateTank(TankSource tankSource) {
-        return tankSourceMapper.insertOrUpdate(tankSource);
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            companyMapper.insertSelective(company);
+            tankSource.setCompanyId(company.getComId());
+        }
+
+        if (!isCul){
+            Scc scc=sccMapper.selectByScc(tankSource.getScccode());
+//            Double activity=tankSource.get();
+//            gasSource.set(activity*scc.getPm25());
+//            gasSource.setPm10Emission(activity*scc.getPm10());
+//            gasSource.setCoEmission(activity*scc.getCo());
+//            gasSource.setVocEmission(activity*scc.getVocs());
+//            gasSource.setSo2Emission(activity*scc.getSo2());
+//            gasSource.setNoxEmission(activity*scc.getNox());
+//            gasSource.setNh3Emission(activity*scc.getNh3());
+//            gasSource.setOcEmission(activity*scc.getOc());
+//            gasSource.setBcEmission(activity*scc.getBc());
+        }
+        if(tankSource.getId()!=null){
+            tankSourceMapper.updateById(tankSource);
+        }else {
+            tankSourceMapper.insertSelective(tankSource);
+        }
+        return 1;
     }
 
     @Override

@@ -12,4 +12,5 @@ public interface GasSourceMapper {
     int deleteById(Integer id);
     int updateById(GasSource gasSource);
     int insertOrUpdate(GasSource gasSource);
+    int insertSelective(GasSource gasSource);
 }

@@ -25,7 +25,9 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShSealpointVo" parameterType="nankai.xl.business.model.vo.ShSealpointVo" >
-    SELECT sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_sealpoint
+    SELECT sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_sealpoint.scccode,1,2) AS scc1,
+    SUBSTR(sh_sealpoint.scccode,3,2) AS scc2,SUBSTR(sh_sealpoint.scccode,5,3) AS scc3,SUBSTR(sh_sealpoint.scccode,8,3) AS scc4
+    FROM sh_sealpoint
     LEFT JOIN company
     ON sh_sealpoint.factory_id=company.com_id
     INNER JOIN (
@@ -48,7 +50,9 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShSealpointVo" parameterType="java.lang.Integer" >
-    SELECT sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_sealpoint
+    SELECT sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_sealpoint.scccode,1,2) AS scc1,
+        SUBSTR(sh_sealpoint.scccode,3,2) AS scc2,SUBSTR(sh_sealpoint.scccode,5,3) AS scc3,SUBSTR(sh_sealpoint.scccode,8,3) AS scc4
+    FROM sh_sealpoint
     LEFT JOIN company
     ON sh_sealpoint.factory_id=company.com_id
     INNER JOIN (

@@ -19,13 +19,19 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.TankSourceVo" >
-    SELECT tank_source.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME 
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.TankSourceVo" parameterType="nankai.xl.business.model.vo.TankSourceVo" >
+    SELECT tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(tank_source.scccode,1,2) AS scc1,
+    SUBSTR(tank_source.scccode,3,2) AS scc2,SUBSTR(tank_source.scccode,5,3) AS scc3,SUBSTR(tank_source.scccode,8,3) AS scc4
     FROM tank_source
     LEFT JOIN company
     ON tank_source.company_id=company.com_id
-    LEFT JOIN county
-    ON company.county_id=county.COUNTY_ID
+    INNER JOIN (
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
         tank_source.year = #{year}
@@ -33,21 +39,109 @@
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT tank_source.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME 
+  <select id="selectById" resultType="nankai.xl.business.model.vo.TankSourceVo" parameterType="java.lang.Integer" >
+    SELECT tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(tank_source.scccode,1,2) AS scc1,
+    SUBSTR(tank_source.scccode,3,2) AS scc2,SUBSTR(tank_source.scccode,5,3) AS scc3,SUBSTR(tank_source.scccode,8,3) AS scc4
     FROM tank_source
     LEFT JOIN company
     ON tank_source.company_id=company.com_id
-    LEFT JOIN county
-    ON company.county_id=county.COUNTY_ID
+    INNER JOIN (
+    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+    FROM county
+    LEFT JOIN city
+    ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     where tank_source.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from tank_source
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.TankSource" >
+    insert into tank_source
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="tankName != null" >
+        tank_name,
+      </if>
+      <if test="tankType != null" >
+        tank_type,
+      </if>
+      <if test="materialType != null" >
+        material_type,
+      </if>
+      <if test="materialName != null" >
+        material_name,
+      </if>
+      <if test="emission != null" >
+        emission,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDiscrip != null" >
+        #{sourceDiscrip,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tankName != null" >
+        #{tankName,jdbcType=VARCHAR},
+      </if>
+      <if test="tankType != null" >
+        #{tankType,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null" >
+        #{materialType,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="emission != null" >
+        #{emission,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.TankSource" >
     insert into tank_source (id, year, scccode, 
       source_discrip, company_id, t_id, 

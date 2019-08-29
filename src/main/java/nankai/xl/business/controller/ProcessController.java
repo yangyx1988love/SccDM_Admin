@@ -57,11 +57,6 @@ public class ProcessController {
     @GetMapping("/process/shGas/{id}")
     public String shGasedit(@PathVariable("id") Integer id, Model model) {
         ShGasemissionVo shGasemissionVo=sourceService.getShGaById(id);
-        shGasemissionVo.setScc1(scc1);
-        shGasemissionVo.setScc2(scc2);
-        shGasemissionVo.setScc3(shGasemissionVo.getScccode().substring(4,7));
-        shGasemissionVo.setScc4(shGasemissionVo.getScccode().substring(7,10));
-
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -137,10 +132,6 @@ public class ProcessController {
     @GetMapping("/process/shSeal/{id}")
     public String shSealEdit(@PathVariable("id") Integer id, Model model) {
         ShSealpointVo shSealpointVo=sourceService.getShSealById(id);
-        shSealpointVo.setScc1(scc1);
-        shSealpointVo.setScc2(scc2);
-        shSealpointVo.setScc3(shSealpointVo.getScccode().substring(4,7));
-        shSealpointVo.setScc4(shSealpointVo.getScccode().substring(7,10));
 
         Scc4 scc4=new Scc4();
         scc4.setScc1(scc1);
@@ -208,7 +199,6 @@ public class ProcessController {
     @GetMapping("/process/shEff/{id}")
     public String shEffedit(@PathVariable("id") Integer id, Model model) {
         ShEffluentemissionVo shEffluentemissionVo=sourceService.getShEffById(id);
-        shEffluentemissionVo.setScc4(shEffluentemissionVo.getScccode().substring(7,10));
         Scc4 scc4=new Scc4();
         scc4.setScc1("11");
         scc4.setScc2("17");

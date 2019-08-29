@@ -65,16 +65,10 @@
     </shiro:hasPermission>
 </script>
 <script>
-    layui.use(['table','form', 'element','laydate'], function () {
+    layui.use(['table','form', 'element'], function () {
         var table = layui.table //表格
             ,form = layui.form //form表单
             ,element = layui.element
-            , laydate = layui.laydate;
-        //年选择器
-        laydate.render({
-            elem: '#year'
-            ,type: 'year'
-        });
         table.render({
             elem: '#shEff-tab'
             , url: '/source/process/shEff/list'
@@ -179,31 +173,6 @@
                 }
             });
             return false;//false：阻止表单跳转  true：表单跳转
-        });
-        //城市区县级联选择
-        form.on('select(cityCode)',function(data){
-            var cityCode=data.value;
-            $.ajax({
-                url: '/factoryAuth/seleCountry/' + cityCode,
-                data: {cityCode: cityCode},//发送的参数
-                type: "post",
-                success: function (datas) {
-                    $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
-                    if(datas.length>0){
-                        $.each(datas, function(key, val) {
-                            var option1 = $("<option>").val(val.countyId).text(val.countyName);
-                            $("select[name=countyId]").append(option1);
-                            form.render('select');
-                        });
-                    }else{
-                        form.render('select');
-                    }
-                },
-                error:function(){
-                    //失败执行的方法
-                    layer.msg("区县信息加载失败!", {icon: 6});
-                }
-            })
         });
     });
 

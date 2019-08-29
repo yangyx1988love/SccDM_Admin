@@ -106,5 +106,160 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
-/*
+/**
+ * 城市联级选择
  */
+
+layui.use(['form', 'layer','jquery','laydate'], function(){
+    $ = layui.jquery;
+    var form = layui.form
+        , layer = layui.layer
+        , laydate = layui.laydate;
+    //年选择器
+    laydate.render({
+        elem: '#year'
+        ,type: 'year'
+    });
+    form.verify({
+        "factoryNo": function(value, item) {
+            var reg = new RegExp(/^(?![\d]+$)(?![a-zA-Z]+$)(-)[\da-zA-Z!#$%^&*]{6,30}$/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '企业机构代码格式不正确，由6-30位字母或数字或"-"组合！！'
+            }
+        },
+        "ratio": function(value, item) {
+            var reg = new RegExp(/^100$|^(\d|[1-9]\d)(\.\d+)*$/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '请输入0-100的数！！'
+            }
+        },
+        "pos-num": function(value, item) {
+            var reg1 = new RegExp(/^(?!0\d)\d+(\.\d{1,})?(E[-]{0,1}\d+)?$/);
+            var reg2 = new RegExp(/^[1-9]\d{0,8}(\.\d{1,10})?$|^0(\.\d{1,10})?$/);
+            if (value.length > 0 && !reg1.test(value)) {
+                return '请输入八位整数，十位小数的正数！！'
+            }else {
+                var num = new Number(value)
+                if (num<0 || !reg2.test(num)){
+                    return '请输入八位整数，十位小数的正数！！'
+                }
+            }
+        },"chinese": function(value, item) {
+            var reg = new RegExp(/[\u4e00-\u9fa5]+/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '企业名称至少包含一个汉字！！'
+            }
+        },"longitude": function(value, item) {
+            var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
+            if(value.length > 0 ){
+                if (!reg.test(value)) {
+                    return '经度整数部分为0-180,小数部分为0到6位!'
+                }
+            }
+        }, "latitude": function(value, item) {
+            var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
+            if(value.length > 0 ){
+                if (!reg.test(value)) {
+                    return '纬度整数部分为0-90,小数部分为0到6位!\''
+                }
+            }
+        }
+    });
+    //城市区县级联选择
+    form.on('select(cityCode)',function(data){
+        var cityCode=data.value;
+        $.ajax({
+            url: '/factoryAuth/seleCountry/' + cityCode,
+            data: {cityCode: cityCode},//发送的参数
+            type: "post",
+            success: function (datas) {
+                $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
+                if(datas.length>0){
+                    $.each(datas, function(key, val) {
+                        var option1 = $("<option>").val(val.countyId).text(val.countyName);
+                        $("select[name=countyId]").append(option1);
+                        form.render('select');
+                    });
+                }else{
+                    form.render('select');
+                }
+            },
+            error:function(){
+                //失败执行的方法
+                layer.msg("区县信息加载失败!", {icon: 6});
+            }
+        })
+    });
+    form.on('select(scc2)',function(data){
+        var formData = {};
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            formData [this.name] = this.value;
+        });
+        var scc1=formData["scc1"];
+        var scc2=data.value;
+        $.ajax({
+            url: '/factoryAuth/seleScc2/' + scc2,
+            data: {scc1: scc1,scc2: scc2},//发送的参数
+            type: "post",
+            success: function (datas) {
+                $("select[name=scc3]").html('<option value="">请选择</option>'); //清空
+                $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
+                if(datas.length>0){
+                    $.each(datas, function(key, val) {
+                        var option1 = $("<option>").val(val.scc3).text(val.description);
+                        $("select[name=scc3]").append(option1);
+                        form.render('select');
+                    });
+                }else{
+                    form.render('select');
+                }
+            },
+            error:function(){
+                //失败执行的方法
+                layer.msg("更新失败!", {icon: 6});
+            }
+        })
+    });
+    form.on('select(scc3)',function(data){
+        var formData = {};
+        var t = $('form').serializeArray();
+        $.each(t, function() {
+            formData [this.name] = this.value;
+        });
+        var scc1=formData["scc1"];
+        var scc2=formData["scc2"];
+
+        var scc3=data.value;
+        $.ajax({
+            url: '/factoryAuth/seleScc3/' + scc2+"/"+scc3,
+            data: {scc1: scc1,scc2: scc2,scc3: scc3},//发送的参数
+            type: "post",
+            success: function (datas) {
+                $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
+                if(datas.length>0){
+                    $.each(datas, function(key, val) {
+                        var option1 = $("<option>").val(val.scc4).text(val.description);
+                        $("select[name=scc4]").append(option1);
+                        form.render('select');
+                    });
+                }else{
+                    form.render('select');
+                }
+            },
+            error:function(){
+                //失败执行的方法
+                layer.msg("更新失败!", {icon: 6});
+            }
+        })
+    });
+
+    //监听指定开关//污染物是否参与运算
+    form.on('switch(isCul)', function(data){
+        if (this.checked){
+            $("#emission").attr("style","display:block;");//显示div
+        }else {
+            $("#emission").attr("style","display:none;");//隐藏div
+        }
+    });
+});

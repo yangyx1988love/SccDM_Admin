@@ -29,7 +29,9 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" parameterType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" >
-    SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_vocdeviceeffi
+    SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_vocdeviceeffi.scccode,1,2) AS scc1,
+    SUBSTR(sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(sh_vocdeviceeffi.scccode,8,3) AS scc4
+    FROM sh_vocdeviceeffi
     LEFT JOIN company
     ON sh_vocdeviceeffi.factory_id=company.com_id
     INNER JOIN (
@@ -52,7 +54,9 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" parameterType="java.lang.Integer" >
-    SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name FROM sh_vocdeviceeffi
+    SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_vocdeviceeffi.scccode,1,2) AS scc1,
+        SUBSTR(sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(sh_vocdeviceeffi.scccode,8,3) AS scc4
+    FROM sh_vocdeviceeffi
     LEFT JOIN company
     ON sh_vocdeviceeffi.factory_id=company.com_id
     INNER JOIN (

@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class OilTransport {
+public class OilTransport extends Company{
     private Integer id;
 
     private Integer companyId;

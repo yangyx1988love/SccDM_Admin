@@ -12,4 +12,5 @@ public interface OilTransportMapper {
     int deleteById(Integer id);
     int updateById(OilTransport oilTransport);
     int insertOrUpdate(OilTransport oilTransport);
+    int insertSelective(OilTransport oilTransport);
 }
