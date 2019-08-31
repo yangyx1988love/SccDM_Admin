@@ -104,8 +104,8 @@ public class SolventController {
     @GetMapping("/solvent/car/list")
     @ResponseBody
     public PageResultBean<CarRepairVo> carList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                               @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        CarRepairVo carRepairVo=new CarRepairVo();
+                                               @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                               CarRepairVo carRepairVo) {
         List<CarRepairVo> results= sourceService.getCarsByExample(carRepairVo,page, limit);
         PageInfo<CarRepairVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -158,8 +158,8 @@ public class SolventController {
     @GetMapping("/solvent/deoil/list")
     @ResponseBody
     public PageResultBean<DeoilVo> deoilList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                             @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        DeoilVo deoilVo=new DeoilVo();
+                                             @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                             DeoilVo deoilVo) {
         List<DeoilVo> results= sourceService.getDeoilsByExample(deoilVo,page, limit);
         PageInfo<DeoilVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -202,9 +202,7 @@ public class SolventController {
     @OperationLog("溶剂使用源-干洗店")
     @GetMapping("/solvent/dry")
     public String dry(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/solvent/dry/dry-list";
     }
@@ -212,8 +210,8 @@ public class SolventController {
     @GetMapping("/solvent/dry/list")
     @ResponseBody
     public PageResultBean<DryCleanerVo> dryList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        DryCleanerVo dryCleanerVo=new DryCleanerVo();
+                                                @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                DryCleanerVo dryCleanerVo) {
         List<DryCleanerVo> results= sourceService.getDrysByExample(dryCleanerVo,page, limit);
         PageInfo<DryCleanerVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -257,9 +255,7 @@ public class SolventController {
     @OperationLog("溶剂使用源-家庭家居")
     @GetMapping("/solvent/house")
     public String house(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/solvent/house/house-list";
     }
@@ -267,8 +263,8 @@ public class SolventController {
     @GetMapping("/solvent/house/list")
     @ResponseBody
     public PageResultBean<HouseVo> houseList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                             @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        HouseVo houseVo=new HouseVo();
+                                             @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                             HouseVo houseVo) {
         List<HouseVo> results= sourceService.getHousesByExample(houseVo,page, limit);
         PageInfo<HouseVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -313,9 +309,7 @@ public class SolventController {
     @OperationLog("溶剂使用源-道路铺装")
     @GetMapping("/solvent/roadPa")
     public String roadPa(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/solvent/roadPa/roadPa-list";
     }
@@ -323,8 +317,8 @@ public class SolventController {
     @GetMapping("/solvent/roadPa/list")
     @ResponseBody
     public PageResultBean<RoadPaveVo> roadPaList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                     @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        RoadPaveVo roadPaveVo=new RoadPaveVo();
+                                                 @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                 RoadPaveVo roadPaveVo) {
         List<RoadPaveVo> results= sourceService.getRoadPasByExample(roadPaveVo,page, limit);
         PageInfo<RoadPaveVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());

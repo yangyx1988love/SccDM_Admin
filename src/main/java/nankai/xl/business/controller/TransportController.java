@@ -36,8 +36,8 @@ public class TransportController {
     @GetMapping("/transport/gas/list")
     @ResponseBody
     public PageResultBean<GasSourceVo> gasList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                     @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        GasSourceVo gasSourceVo=new GasSourceVo();
+                                                     @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                               GasSourceVo gasSourceVo) {
         List<GasSourceVo> results= sourceService.getGassByExample(gasSourceVo,page, limit);
         PageInfo<GasSourceVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -97,8 +97,8 @@ public class TransportController {
     @GetMapping("/transport/oil/list")
     @ResponseBody
     public PageResultBean<OilSourceVo> oilList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                               @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        OilSourceVo oilSourceVo=new OilSourceVo();
+                                               @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                               OilSourceVo oilSourceVo) {
         List<OilSourceVo> results= sourceService.getOilsByExample(oilSourceVo,page, limit);
         PageInfo<OilSourceVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -158,8 +158,8 @@ public class TransportController {
     @GetMapping("/transport/oilTran/list")
     @ResponseBody
     public PageResultBean<OilTransportVo> oilTranList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                       @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        OilTransportVo oilTransportVo=new OilTransportVo();
+                                                       @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                      OilTransportVo oilTransportVo) {
         List<OilTransportVo> results= sourceService.getOilTransByExample(oilTransportVo,page, limit);
         PageInfo<OilTransportVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -224,8 +224,8 @@ public class TransportController {
     @GetMapping("/transport/tank/list")
     @ResponseBody
     public PageResultBean<TankSourceVo> tankList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                 @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        TankSourceVo tankSourceVo=new TankSourceVo();
+                                                 @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                 TankSourceVo tankSourceVo) {
         List<TankSourceVo> results= sourceService.getTanksByExample(tankSourceVo,page, limit);
         PageInfo<TankSourceVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());

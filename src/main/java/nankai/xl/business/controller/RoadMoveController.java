@@ -37,8 +37,8 @@ public class RoadMoveController {
     @GetMapping("/road/roadMove/list")
     @ResponseBody
     public PageResultBean<RoadMoveVo> roadMoveList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                   @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        RoadMoveVo roadMoveVo=new RoadMoveVo();
+                                                   @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                   RoadMoveVo roadMoveVo) {
         List<RoadMoveVo> results= sourceService.getRoadMovesByExample(roadMoveVo,page, limit);
         PageInfo<RoadMoveVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());

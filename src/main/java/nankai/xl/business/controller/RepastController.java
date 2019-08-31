@@ -38,8 +38,8 @@ public class RepastController {
     @GetMapping("/repast/repast/list")
     @ResponseBody
     public PageResultBean<RepastVo> repastList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                                  @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        RepastVo repastVo=new RepastVo();
+                                               @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                               RepastVo repastVo) {
         List<RepastVo> results= repastService.getByExample(repastVo,page, limit);
         PageInfo<RepastVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());

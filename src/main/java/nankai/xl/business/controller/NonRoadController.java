@@ -27,9 +27,7 @@ public class NonRoadController {
     @OperationLog("非道路移动源-农用运输车")
     @GetMapping("/nonRoad/agriculture")
     public String agriculture(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/nonRoad/agriculture-list";
     }

@@ -114,8 +114,8 @@ public class ProcessController {
     @GetMapping("/process/shSeal/list")
     @ResponseBody
     public PageResultBean<ShSealpointVo> shSealList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                    @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        ShSealpointVo shSealpointVo=new ShSealpointVo();
+                                                    @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                    ShSealpointVo shSealpointVo) {
         List<ShSealpointVo> results= sourceService.getShSealsByExample(shSealpointVo,page, limit);
         PageInfo<ShSealpointVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -249,8 +249,8 @@ public class ProcessController {
     @GetMapping("/process/shVoc/list")
     @ResponseBody
     public PageResultBean<ShVocdeviceeffiVo> shVocList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                       @RequestParam(value = "limit", defaultValue = "50")int limit) {
-        ShVocdeviceeffiVo shVocdeviceeffiVo=new ShVocdeviceeffiVo();
+                                                       @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                       ShVocdeviceeffiVo shVocdeviceeffiVo) {
         List<ShVocdeviceeffiVo> results= sourceService.getShVocsByExample(shVocdeviceeffiVo,page, limit);
         PageInfo<ShVocdeviceeffiVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());

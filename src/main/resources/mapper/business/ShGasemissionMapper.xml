@@ -29,6 +29,7 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByShGas" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="nankai.xl.business.model.vo.ShGasemissionVo" >
+    SELECT * FROM (
       SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_gasemission.scccode,1,2) AS scc1,
       SUBSTR(sh_gasemission.scccode,3,2) AS scc2,SUBSTR(sh_gasemission.scccode,5,3) AS scc3,SUBSTR(sh_gasemission.scccode,8,3) AS scc4
       FROM sh_gasemission
@@ -41,17 +42,18 @@
         ON county.city_code=city.city_code
       ) co
       ON co.COUNTY_ID=company.county_id
-      <where>
-        <if test="year != null and year != ''">
-           sh_gasemission.year = #{year}
-        </if>
-        <if test="countyId != null and countyId != ''">
-          AND company.county_id = #{countyId}
-        </if>
-        <if test="cityCode != null and cityCode != ''">
-          AND co.city_code = #{cityCode}
-        </if>
-      </where>
+    ) SS
+    <where>
+      <if test="year != null and year != ''">
+         year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND county_id = #{countyId}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND city_code = #{cityCode}
+      </if>
+    </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="java.lang.Integer" >
       SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_gasemission.scccode,1,2) AS scc1,
