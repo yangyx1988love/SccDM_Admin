@@ -5,6 +5,7 @@ import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SourceService;
+import nankai.xl.common.exception.DuplicateNameException;
 import nankai.xl.common.util.ClassUtil;
 import org.springframework.stereotype.Service;
 
@@ -125,13 +126,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateShGa(ShGasemissionVo shGasemissionVo,boolean isCul) {
         ShGasemission shGasemission=shGasemissionVo;
         Company company=shGasemission;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            shGasemission.setFactoryId(company.getComId());
-        }
+        int comId=insertOrUpdateCompany(company);
+        shGasemission.setFactoryId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(shGasemission.getScccode());
             Double activity=shGasemission.getActivity();
@@ -190,13 +186,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateShSeal(ShSealpointVo shSealpointVo,boolean isCul) {
         ShSealpoint shSealpoint=shSealpointVo;
         Company company=shSealpoint;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            shSealpoint.setFactoryId(company.getComId());
-        }
+        int comId=insertOrUpdateCompany(company);
+        shSealpoint.setFactoryId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(shSealpoint.getScccode());
             Double activity=shSealpoint.getActivity();
@@ -237,14 +228,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateShEff(ShEffluentemissionVo shEffluentemissionVo,boolean isCul){
         ShEffluentemission shEffluentemission=shEffluentemissionVo;
         Company company=shEffluentemission;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            shEffluentemission.setFactoryId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        shEffluentemission.setFactoryId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(shEffluentemission.getScccode());
             Double activity=shEffluentemission.getActivity();
@@ -286,14 +271,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateShVoc(ShVocdeviceeffiVo shVocdeviceeffiVo,boolean isCul) {
         ShVocdeviceeffi shVocdeviceeffi=shVocdeviceeffiVo;
         Company company=shVocdeviceeffi;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            shVocdeviceeffi.setFactoryId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        shVocdeviceeffi.setFactoryId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(shVocdeviceeffi.getScccode());
             Double activity=shVocdeviceeffi.getAnnualRuntime();
@@ -375,14 +354,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateCar(CarRepairVo carRepairVo,boolean isCul) {
         CarRepair carRepair=carRepairVo;
         Company company=carRepair;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            carRepair.setCompanyId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        carRepair.setCompanyId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(carRepair.getScccode());
             Double activity=carRepair.getSolventAmount();
@@ -465,14 +438,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateDry(DryCleanerVo dryCleanerVo,boolean isCul) {
         DryCleaner dryCleaner=dryCleanerVo;
         Company company=dryCleaner;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            dryCleaner.setCompanyId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        dryCleaner.setCompanyId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(dryCleaner.getScccode());
             Double activity=dryCleaner.getYearAmount();
@@ -724,14 +691,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateGas(GasSourceVo gasSourceVo,boolean isCul) {
         GasSource gasSource=gasSourceVo;
         Company company=gasSource;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            gasSource.setCompanyId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        gasSource.setCompanyId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(gasSource.getScccode());
             Double activity=gasSource.getSalesVolume();
@@ -773,14 +734,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateOil(OilSourceVo oilSourceVo,boolean isCul) {
         OilSource oilSource=oilSourceVo;
         Company company=oilSource;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            oilSource.setCompanyId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        oilSource.setCompanyId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(oilSource.getScccode());
             Double activity=oilSource.getSalesVolume();
@@ -822,14 +777,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateOilTran(OilTransportVo oilTransportVo,boolean isCul) {
         OilTransport oilTransport=oilTransportVo;
         Company company=oilTransport;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            oilTransport.setCompanyId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        oilTransport.setCompanyId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(oilTransport.getScccode());
             Double activity=oilTransport.getYearVolume();
@@ -871,14 +820,8 @@ public class SourceServiceImpl implements SourceService {
     public int insertOrUpdateTank(TankSourceVo tankSourceVo,boolean isCul) {
         TankSource tankSource=tankSourceVo;
         Company company=tankSource;
-
-        if(company.getComId()!=null){
-            companyMapper.updateById(company);
-        }else {
-            companyMapper.insertSelective(company);
-            tankSource.setCompanyId(company.getComId());
-        }
-
+        int comId=insertOrUpdateCompany(company);
+        tankSource.setCompanyId(comId);
         if (!isCul){
             Scc scc=sccMapper.selectByScc(tankSource.getScccode());
 //            Double activity=tankSource.get();
@@ -1203,12 +1146,39 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateRoadMoveById(RoadMove roadMove) {
-        return roadMoveMapper.updateById(roadMove);
+    public int insertOrUpdateRoadMove(RoadMoveVo roadMoveVo,boolean isCul) {
+        RoadMove roadMove=roadMoveVo;
+        if (!isCul){
+//            Scc scc=sccMapper.selectByScc(roadMove.getScccode());
+//            Double activity=roadMove.get();
+//            roadMove.setPm25Emission(activity*scc.getPm25());
+//            roadMove.setPm10Emission(activity*scc.getPm10());
+//            roadMove.setCoEmission(activity*scc.getCo());
+//            roadMove.setVocEmission(activity*scc.getVocs());
+//            roadMove.setSo2Emission(activity*scc.getSo2());
+//            roadMove.setNoxEmission(activity*scc.getNox());
+//            roadMove.setNh3Emission(activity*scc.getNh3());
+//            roadMove.setOcEmission(activity*scc.getOc());
+//            roadMove.setBcEmission(activity*scc.getBc());
+        }
+        if(roadMove.getId()!=null){
+            roadMoveMapper.updateById(roadMove);
+        }else {
+            roadMoveMapper.insertSelective(roadMove);
+        }
+        return 1;
     }
-
-    @Override
-    public int insertOrUpdateRoadMove(RoadMove roadMove) {
-        return roadMoveMapper.insertOrUpdate(roadMove);
+    public int insertOrUpdateCompany(Company company){
+        if(company.getComId()!=null){
+            companyMapper.updateById(company);
+        }else {
+            Company co=companyMapper.selectByFullName(company.getCompanyName());
+            if (co!=null){
+                throw new DuplicateNameException("企业已存在！");
+            }else{
+                companyMapper.insertSelective(company);
+            }
+        }
+        return company.getComId();
     }
 }

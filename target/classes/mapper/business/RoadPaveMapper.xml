@@ -24,11 +24,11 @@
     SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_pave.scccode,1,2) AS scc1,SUBSTR(road_pave.scccode,3,2) AS scc2,
     SUBSTR(road_pave.scccode,5,3) AS scc3,SUBSTR(road_pave.scccode,8,3) AS scc4
     FROM road_pave
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=road_pave.county_id
     <where>
@@ -47,11 +47,11 @@
     SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_pave.scccode,1,2) AS scc1,SUBSTR(road_pave.scccode,3,2) AS scc2,
 				SUBSTR(road_pave.scccode,5,3) AS scc3,SUBSTR(road_pave.scccode,8,3) AS scc4
     FROM road_pave
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=road_pave.county_id
     where road_pave.id = #{id,jdbcType=INTEGER}

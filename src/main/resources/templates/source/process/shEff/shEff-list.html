@@ -120,25 +120,11 @@
         function edit(obj) {
             var data = obj.data;
             var url = '/source/process/shEff/' + data.id;
-            var content = ' <div class="layui-tab-item layui-show">' +
-                '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
-            parent.layui.element.tabAdd('lay-tab',{
-                title:'编辑-废水无组织排放',
-                content: content,
-                id:'shEff-tab'
-            });
-            parent.layui.element.tabChange('lay-tab','shEff-tab');
+            openTab('编辑-废水无组织排放',url);
         }
         function add(obj) {
             var url = '/source/process/shEff/add/';
-            var content = ' <div class="layui-tab-item layui-show">' +
-                '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
-            parent.layui.element.tabAdd('lay-tab',{
-                title:'新增-废水无组织排放',
-                content: content,
-                id:'shEff-tab'
-            });
-            parent.layui.element.tabChange('lay-tab','shEff-tab');
+            openTab('新增-废水无组织排放',url);
         }
         function del(obj) {
             layer.confirm("确定删除吗?", {icon: 3, title: '提示'},

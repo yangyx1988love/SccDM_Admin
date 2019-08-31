@@ -32,11 +32,11 @@
     FROM sh_effluentemission
     LEFT JOIN company
     ON sh_effluentemission.factory_id=company.com_id
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
     <where>
@@ -57,11 +57,11 @@
     FROM sh_effluentemission
     LEFT JOIN company
     ON sh_effluentemission.factory_id=company.com_id
-    INNER JOIN (
-        SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-        FROM county
-        LEFT JOIN city
-        ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
     where sh_effluentemission.id = #{id,jdbcType=INTEGER}

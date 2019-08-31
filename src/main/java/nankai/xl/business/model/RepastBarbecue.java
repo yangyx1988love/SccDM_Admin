@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class RepastBarbecue {
+public class RepastBarbecue extends Company{
     private Integer id;
 
     private Integer factoryid;

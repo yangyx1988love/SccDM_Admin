@@ -11,4 +11,5 @@ public interface FertilizationMapper {
     int deleteById(Integer id);
     int updateById(Fertilization fertilization);
     int insertOrUpdate(Fertilization fertilization);
+    int insertSelective(Fertilization fertilization);
 }

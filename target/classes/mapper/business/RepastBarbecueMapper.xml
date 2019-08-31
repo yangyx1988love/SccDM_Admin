@@ -62,13 +62,19 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.RepastBarbecueVo" >
-    SELECT repast_barbecue.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.RepastBarbecueVo" parameterType="nankai.xl.business.model.vo.RepastBarbecueVo" >
+    SELECT repast_barbecue.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(repast_barbecue.scccode,1,2) AS scc1,SUBSTR(repast_barbecue.scccode,3,2) AS scc2,
+    SUBSTR(repast_barbecue.scccode,5,3) AS scc3,SUBSTR(repast_barbecue.scccode,8,3) AS scc4
     FROM repast_barbecue
     LEFT JOIN company
     ON repast_barbecue.factoryid=company.com_id
-    LEFT JOIN county
-    ON company.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
         repast_barbecue.year = #{year}
@@ -76,21 +82,367 @@
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT repast_barbecue.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
-	FROM repast_barbecue
+  <select id="selectById" resultType="nankai.xl.business.model.vo.RepastBarbecueVo" parameterType="java.lang.Integer" >
+    SELECT repast_barbecue.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(repast_barbecue.scccode,1,2) AS scc1,SUBSTR(repast_barbecue.scccode,3,2) AS scc2,
+    SUBSTR(repast_barbecue.scccode,5,3) AS scc3,SUBSTR(repast_barbecue.scccode,8,3) AS scc4
+    FROM repast_barbecue
     LEFT JOIN company
     ON repast_barbecue.factoryid=company.com_id
-    LEFT JOIN county
-    ON company.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     where repast_barbecue.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from repast_barbecue
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.RepastBarbecue" >
+    insert into repast_barbecue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="factoryid != null" >
+        factoryid,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="annualRuntime != null" >
+        annual_runtime,
+      </if>
+      <if test="dayRunntime != null" >
+        day_runntime,
+      </if>
+      <if test="pmEmf != null" >
+        pm_emf,
+      </if>
+      <if test="pmEmfunit != null" >
+        pm_emfunit,
+      </if>
+      <if test="pm10Emf != null" >
+        pm10_emf,
+      </if>
+      <if test="pm10Emfunit != null" >
+        pm10_emfunit,
+      </if>
+      <if test="pm25Emf != null" >
+        pm25_emf,
+      </if>
+      <if test="pm25Emfunit != null" >
+        pm25_emfunit,
+      </if>
+      <if test="so2Emf != null" >
+        so2_emf,
+      </if>
+      <if test="so2Emfunit != null" >
+        so2_emfunit,
+      </if>
+      <if test="noxEmf != null" >
+        nox_emf,
+      </if>
+      <if test="noxEmfunit != null" >
+        nox_emfunit,
+      </if>
+      <if test="coEmf != null" >
+        co_emf,
+      </if>
+      <if test="coEmfunit != null" >
+        co_emfunit,
+      </if>
+      <if test="nh3Emf != null" >
+        nh3_emf,
+      </if>
+      <if test="nh3Emfunit != null" >
+        nh3_emfunit,
+      </if>
+      <if test="vocEmf != null" >
+        voc_emf,
+      </if>
+      <if test="vocEmfunit != null" >
+        voc_emfunit,
+      </if>
+      <if test="ocEmf != null" >
+        oc_emf,
+      </if>
+      <if test="ocEmfunit != null" >
+        oc_emfunit,
+      </if>
+      <if test="bcEmf != null" >
+        bc_emf,
+      </if>
+      <if test="bcEmfunit != null" >
+        bc_emfunit,
+      </if>
+      <if test="pmEmission != null" >
+        pm_emission,
+      </if>
+      <if test="pmEmiunit != null" >
+        pm_emiunit,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm10Emiunit != null" >
+        pm10_emiunit,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="pm25Emiunit != null" >
+        pm25_emiunit,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="so2Emiunit != null" >
+        so2_emiunit,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="noxEmiunit != null" >
+        nox_emiunit,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="coEmiunit != null" >
+        co_emiunit,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="nh3Emiunit != null" >
+        nh3_emiunit,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="vocEmiunit != null" >
+        voc_emiunit,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="ocEmiunit != null" >
+        oc_emiunit,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="bcEmiunit != null" >
+        bc_emiunit,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="gasConsumption != null" >
+        gas_consumption,
+      </if>
+      <if test="coalConsumption != null" >
+        coal_consumption,
+      </if>
+      <if test="powerConsumption != null" >
+        power_consumption,
+      </if>
+      <if test="methanolConsumption != null" >
+        methanol_consumption,
+      </if>
+      <if test="otherConsumption != null" >
+        other_consumption,
+      </if>
+      <if test="otherConunit != null" >
+        other_conunit,
+      </if>
+      <if test="mealConsumption != null" >
+        meal_consumption,
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="factoryid != null" >
+        #{factoryid,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="annualRuntime != null" >
+        #{annualRuntime,jdbcType=INTEGER},
+      </if>
+      <if test="dayRunntime != null" >
+        #{dayRunntime,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmf != null" >
+        #{pmEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmfunit != null" >
+        #{pmEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10Emf != null" >
+        #{pm10Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emfunit != null" >
+        #{pm10Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Emf != null" >
+        #{pm25Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emfunit != null" >
+        #{pm25Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="so2Emf != null" >
+        #{so2Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emfunit != null" >
+        #{so2Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="noxEmf != null" >
+        #{noxEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmfunit != null" >
+        #{noxEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="coEmf != null" >
+        #{coEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmfunit != null" >
+        #{coEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nh3Emf != null" >
+        #{nh3Emf,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emfunit != null" >
+        #{nh3Emfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="vocEmf != null" >
+        #{vocEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmfunit != null" >
+        #{vocEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ocEmf != null" >
+        #{ocEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmfunit != null" >
+        #{ocEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="bcEmf != null" >
+        #{bcEmf,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmfunit != null" >
+        #{bcEmfunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pmEmission != null" >
+        #{pmEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmiunit != null" >
+        #{pmEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emiunit != null" >
+        #{pm10Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emiunit != null" >
+        #{pm25Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emiunit != null" >
+        #{so2Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmiunit != null" >
+        #{noxEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmiunit != null" >
+        #{coEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emiunit != null" >
+        #{nh3Emiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmiunit != null" >
+        #{vocEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmiunit != null" >
+        #{ocEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmiunit != null" >
+        #{bcEmiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+      <if test="gasConsumption != null" >
+        #{gasConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="coalConsumption != null" >
+        #{coalConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="powerConsumption != null" >
+        #{powerConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="methanolConsumption != null" >
+        #{methanolConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="otherConsumption != null" >
+        #{otherConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="otherConunit != null" >
+        #{otherConunit,jdbcType=CHAR},
+      </if>
+      <if test="mealConsumption != null" >
+        #{mealConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceDiscrip != null" >
+        #{sourceDiscrip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.RepastBarbecue" >
     insert into repast_barbecue (id, factoryid, year, 
       scccode, annual_runtime, day_runntime, 

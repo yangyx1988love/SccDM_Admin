@@ -12,4 +12,5 @@ public interface RoadMoveMapper {
     int deleteById(Integer id);
     int updateById(RoadMove roadMove);
     int insertOrUpdate(RoadMove roadMove);
+    int insertSelective(RoadMove roadMove);
 }

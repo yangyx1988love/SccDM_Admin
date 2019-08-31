@@ -56,7 +56,7 @@ public class IndexController {
         model.addAttribute("loginLogCount", loginLogCount);
         model.addAttribute("sysLogCount", sysLogCount);
         model.addAttribute("userOnlineCount", userOnlineCount);
-        return "map";
+        return "welcome";
     }
 
     @OperationLog("查看近七日登录统计图")

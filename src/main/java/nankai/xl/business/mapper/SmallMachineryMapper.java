@@ -12,4 +12,5 @@ public interface SmallMachineryMapper {
     int deleteById(Integer id);
     int updateById(SmallMachinery smallMachinery);
     int insertOrUpdate(SmallMachinery smallMachinery);
+    int insertSelective(SmallMachinery smallMachinery);
 }

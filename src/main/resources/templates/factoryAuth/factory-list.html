@@ -132,14 +132,15 @@
                 var event = obj.event;
                 if (event === 'edit') {
                     var url = '/factoryAuth/' + data.factoryId + "/edit";
-                    var content = ' <div class="layui-tab-item layui-show">' +
-                        '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
-                    parent.layui.element.tabAdd('lay-tab',{
-                        title:'企业审核',
-                        content: content,
-                        id:'factoryAuthTab'
-                    });
-                    parent.layui.element.tabChange('lay-tab','factoryAuthTab');
+                    openTab('企业审核',url);
+                    // var content = ' <div class="layui-tab-item layui-show">' +
+                    //     '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
+                    // parent.layui.element.tabAdd('lay-tab',{
+                    //     title:'企业审核',
+                    //     content: content,
+                    //     id:'factoryAuthTab'
+                    // });
+                    // parent.layui.element.tabChange('lay-tab','factoryAuthTab');
                 }
             });
             // 工具条点击事件
@@ -177,7 +178,6 @@
             function authAllDone(data) {
                 parent.layer.msg("审核通过！", {icon: 6});
                 table.reload('factoryTableReload');
-                // $(".layui-laypage-btn")[0].click();
             }
         });
 

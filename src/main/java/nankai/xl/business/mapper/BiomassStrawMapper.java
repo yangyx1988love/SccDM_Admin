@@ -12,4 +12,5 @@ public interface BiomassStrawMapper {
     int deleteById(Integer id);
     int updateById(BiomassStraw biomassStraw);
     int insertOrUpdate(BiomassStraw biomassStraw);
+    int insertSelective(BiomassStraw biomassStraw);
 }

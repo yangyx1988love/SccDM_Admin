@@ -34,11 +34,11 @@
     SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(scattered_coal.scc_code,1,2) AS scc1,SUBSTR(scattered_coal.scc_code,3,2) AS scc2,
     SUBSTR(scattered_coal.scc_code,5,3) AS scc3,SUBSTR(scattered_coal.scc_code,8,3) AS scc4
     FROM scattered_coal
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=scattered_coal.county_id
     <where>
@@ -57,11 +57,11 @@
     SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(scattered_coal.scc_code,1,2) AS scc1,SUBSTR(scattered_coal.scc_code,3,2) AS scc2,
 				SUBSTR(scattered_coal.scc_code,5,3) AS scc3,SUBSTR(scattered_coal.scc_code,8,3) AS scc4
     FROM scattered_coal
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=scattered_coal.county_id
     where id = #{id,jdbcType=INTEGER}

@@ -24,13 +24,19 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.CollectbreedingVo" >
-    SELECT collectbreeding.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.CollectbreedingVo" parameterType="nankai.xl.business.model.vo.CollectbreedingVo" >
+    SELECT collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(collectbreeding.scccode,1,2) AS scc1,
+    SUBSTR(collectbreeding.scccode,3,2) AS scc2,SUBSTR(collectbreeding.scccode,5,3) AS scc3,SUBSTR(collectbreeding.scccode,8,3) AS scc4
     FROM collectbreeding
     LEFT JOIN company
     ON collectbreeding.company_id=company.com_id
-    LEFT JOIN county
-	ON company.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
         collectbreeding.year = #{year}
@@ -38,21 +44,139 @@
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT collectbreeding.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+  <select id="selectById" resultType="nankai.xl.business.model.vo.CollectbreedingVo" parameterType="java.lang.Integer" >
+    SELECT collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(collectbreeding.scccode,1,2) AS scc1,
+    SUBSTR(collectbreeding.scccode,3,2) AS scc2,SUBSTR(collectbreeding.scccode,5,3) AS scc3,SUBSTR(collectbreeding.scccode,8,3) AS scc4
     FROM collectbreeding
     LEFT JOIN company
     ON collectbreeding.company_id=company.com_id
-    LEFT JOIN county
-	ON company.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     where collectbreeding.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from collectbreeding
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.Collectbreeding" >
+    insert into collectbreeding
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="activityLevel != null" >
+        activity_level,
+      </if>
+      <if test="computeCycle != null" >
+        compute_cycle,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceDiscrip != null" >
+        #{sourceDiscrip,jdbcType=CHAR},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="activityLevel != null" >
+        #{activityLevel,jdbcType=DOUBLE},
+      </if>
+      <if test="computeCycle != null" >
+        #{computeCycle,jdbcType=INTEGER},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Collectbreeding" >
     insert into collectbreeding (id, year, company_id, 
       source_discrip, scccode, activity_level, 

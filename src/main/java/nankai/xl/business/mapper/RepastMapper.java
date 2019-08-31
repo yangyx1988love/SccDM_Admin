@@ -12,4 +12,5 @@ public interface RepastMapper {
     int deleteById(Integer id);
     int updateById(Repast repast);
     int insertOrUpdate(Repast repast);
+    int insertSelective(Repast repast);
 }

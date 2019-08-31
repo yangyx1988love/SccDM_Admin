@@ -106,8 +106,9 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
+
 /**
- * 城市联级选择
+ * 城市联级选择/年代选择器/SCC编码联级选择/校验
  */
 
 layui.use(['form', 'layer','jquery','laydate'], function(){
@@ -128,12 +129,16 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             }
         },
         "ratio": function(value, item) {
-            var reg = new RegExp(/^100$|^(\d|[1-9]\d)(\.\d+)*$/);
+            var reg = new RegExp(/^([0-9]\d?(\.\d{1,2})?|1)$/);
             if (value.length > 0 && !reg.test(value)) {
-                return '请输入0-100的数！！'
+                return '请输入0-1，最多保留两位小数！！'
             }
-        },
-        "pos-num": function(value, item) {
+        },"speed": function(value, item) {
+            var reg = new RegExp(/^([0-9]\d?(\.\d{1,2})?|100)$/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '请输入0-100，最多保留两位小数！！'
+            }
+        },"pos-num": function(value, item) {
             var reg1 = new RegExp(/^(?!0\d)\d+(\.\d{1,})?(E[-]{0,1}\d+)?$/);
             var reg2 = new RegExp(/^[1-9]\d{0,8}(\.\d{1,10})?$|^0(\.\d{1,10})?$/);
             if (value.length > 0 && !reg1.test(value)) {
@@ -143,6 +148,11 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                 if (num<0 || !reg2.test(num)){
                     return '请输入八位整数，十位小数的正数！！'
                 }
+            }
+        },"integer": function(value, item) {
+            var reg = new RegExp(/^(0|\+?[1-9][0-9]*)$/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '请输入正整数！！'
             }
         },"chinese": function(value, item) {
             var reg = new RegExp(/[\u4e00-\u9fa5]+/);
@@ -253,13 +263,74 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             }
         })
     });
-
     //监听指定开关//污染物是否参与运算
     form.on('switch(isCul)', function(data){
         if (this.checked){
-            $("#emission").attr("style","display:block;");//显示div
+            $("#emissionDiv").attr("style","display:block;");//显示div
         }else {
-            $("#emission").attr("style","display:none;");//隐藏div
+            $("#emissionDiv").attr("style","display:none;");//隐藏div
         }
     });
+    //企业查询
+    // $(function(){
+    //     //输入框失去焦点时
+    //     $("#companyName").on('blur',function(){
+    //         var companyName=$('#companyName').val();
+    //         if((companyName!='')){
+    //             $( '#companyName' ).blur( function(){
+    //                 $.ajax({
+    //                     url: '/factoryAuth/seleCompany/',
+    //                     data: {companyName: companyName},//发送的参数
+    //                     type: "post",
+    //                     success: function (data) {
+    //                         if (data!=null) {
+    //                             $('#comId').val(data.comId);
+    //                             $('#address').val(data.address);
+    //                             $('#longitude').val(data.longitude);
+    //                             $('#latitude').val(data.latitude);
+    //                             $('#category').val(data.category);
+    //                         }else {
+    //                             layer.msg("无该企业信息！提交后将自动新增！", {icon: 6});
+    //                             form.render();
+    //                         }
+    //                     },
+    //                     error:function(){
+    //                         //失败执行的方法
+    //                         layer.msg("企业名称加载失败!", {icon: 6});
+    //                     }
+    //                 })
+    //             })
+    //         }
+    //     })
+    // });
+    //企业查询
+    $(function(){
+        //输入框的值改变时触发
+        //$("#companyName").on("input",function(e){
+        $("#companyName").on('blur',function(){
+            //获取input输入的值
+            var companyName=$(this).val();
+            $.ajax({
+                url: '/factoryAuth/seleCompany/',
+                data: {companyName: companyName},//发送的参数
+                type: "post",
+                success: function (data) {
+                    if ($.isEmptyObject(data)) {
+                        layer.msg("无该企业信息！提交后将自动新增！", {icon: 6});
+                    }else {
+                        $('#comId').val(data.comId);
+                        $('#address').val(data.address);
+                        $('#longitude').val(data.longitude);
+                        $('#latitude').val(data.latitude);
+                        $('#category').val(data.category);
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("企业名称加载失败!", {icon: 6});
+                }
+            })
+        })
+    });
+
 });

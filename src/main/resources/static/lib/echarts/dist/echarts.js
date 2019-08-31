@@ -29699,7 +29699,7 @@ var List = function (dimensions, hostModel) {
 
 var listProto = List.prototype;
 
-listProto.type = 'coal-list.html';
+listProto.type = 'list';
 
 /**
  * If each data item has it's own option
@@ -39470,7 +39470,7 @@ gridProto._updateScale = function (ecModel, gridModel) {
             var xAxis = cartesian.getAxis('x');
             var yAxis = cartesian.getAxis('y');
 
-            if (data.type === 'coal-list.html') {
+            if (data.type === 'list') {
                 unionExtent(data, xAxis, seriesModel);
                 unionExtent(data, yAxis, seriesModel);
             }

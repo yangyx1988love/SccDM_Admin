@@ -3,7 +3,6 @@ package nankai.xl.business.model.vo;
 import nankai.xl.business.model.OilSource;
 
 public class OilSourceVo extends OilSource {
-
     private String scc1;
 
     private String scc2;

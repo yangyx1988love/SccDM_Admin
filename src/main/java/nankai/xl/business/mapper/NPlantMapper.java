@@ -11,5 +11,6 @@ public interface NPlantMapper {
     int deleteById(Integer id);
     int updateById(NPlant nPlant);
     int insertOrUpdate(NPlant nPlant);
+    int insertSelective(NPlant nPlant);
 }
 

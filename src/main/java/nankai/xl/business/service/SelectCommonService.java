@@ -27,4 +27,5 @@ public interface SelectCommonService {
     public List<Dustremove> getAllDustremoves();
     public List<Nitreremove> getAllNitreremoves();
     public List<Sulphurremove> getAllSulphurremoves();
+    Company getCompanyByExample(String companyName);
 }

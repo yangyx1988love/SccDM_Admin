@@ -50,10 +50,17 @@
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.XjroaddustVo" >
-    SELECT xjroaddust.*,county.COUNTY_NAME FROM xjroaddust
-    LEFT JOIN county
-    ON xjroaddust.county_id=county.COUNTY_ID
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.XjroaddustVo" parameterType="nankai.xl.business.model.vo.XjroaddustVo" >
+    SELECT xjroaddust.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(xjroaddust.scccode,1,2) AS scc1,SUBSTR(xjroaddust.scccode,3,2) AS scc2,
+    SUBSTR(xjroaddust.scccode,5,3) AS scc3,SUBSTR(xjroaddust.scccode,8,3) AS scc4
+    FROM xjroaddust
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=xjroaddust.county_id
     <where>
       <if test="year != null and year != ''">
         xjroaddust.year = #{year}
@@ -61,18 +68,311 @@
       <if test="countyId != null and countyId != ''">
         AND xjroaddust.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT xjroaddust.*,county.COUNTY_NAME FROM xjroaddust
-    LEFT JOIN county
-    ON xjroaddust.county_id=county.COUNTY_ID
+  <select id="selectById" resultType="nankai.xl.business.model.vo.XjroaddustVo" parameterType="java.lang.Integer" >
+    SELECT xjroaddust.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(xjroaddust.scccode,1,2) AS scc1,SUBSTR(xjroaddust.scccode,3,2) AS scc2,
+				SUBSTR(xjroaddust.scccode,5,3) AS scc3,SUBSTR(xjroaddust.scccode,8,3) AS scc4
+    FROM xjroaddust
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=xjroaddust.county_id
     where xjroaddust.rd_id = #{rdId,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from xjroaddust
     where rd_id = #{rdId,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.Xjroaddust" >
+    insert into xjroaddust
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rdId != null" >
+        rd_id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="pathname != null" >
+        pathname,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="ispave != null" >
+        ispave,
+      </if>
+      <if test="roadtype != null" >
+        roadtype,
+      </if>
+      <if test="pathlength != null" >
+        pathlength,
+      </if>
+      <if test="averwidth != null" >
+        averwidth,
+      </if>
+      <if test="averweight != null" >
+        averweight,
+      </if>
+      <if test="carflow != null" >
+        carflow,
+      </if>
+      <if test="averspeed != null" >
+        averspeed,
+      </if>
+      <if test="dirtratio != null" >
+        dirtratio,
+      </if>
+      <if test="waterratio != null" >
+        waterratio,
+      </if>
+      <if test="roadload != null" >
+        roadload,
+      </if>
+      <if test="controlname != null" >
+        controlname,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="pm25Max != null" >
+        pm25_max,
+      </if>
+      <if test="pm10Max != null" >
+        pm10_max,
+      </if>
+      <if test="vocMax != null" >
+        voc_max,
+      </if>
+      <if test="nh3Max != null" >
+        nh3_max,
+      </if>
+      <if test="so2Max != null" >
+        so2_max,
+      </if>
+      <if test="coMax != null" >
+        co_max,
+      </if>
+      <if test="ocMax != null" >
+        oc_max,
+      </if>
+      <if test="bcMax != null" >
+        bc_max,
+      </if>
+      <if test="noxMax != null" >
+        nox_max,
+      </if>
+      <if test="pm25Unit != null" >
+        pm25_unit,
+      </if>
+      <if test="pm10Unit != null" >
+        pm10_unit,
+      </if>
+      <if test="vocUnit != null" >
+        voc_unit,
+      </if>
+      <if test="nh3Unit != null" >
+        nh3_unit,
+      </if>
+      <if test="so2Unit != null" >
+        so2_unit,
+      </if>
+      <if test="coUnit != null" >
+        co_unit,
+      </if>
+      <if test="ocUnit != null" >
+        oc_unit,
+      </if>
+      <if test="bcUnit != null" >
+        bc_unit,
+      </if>
+      <if test="noxUnit != null" >
+        nox_unit,
+      </if>
+      <if test="nodustday != null" >
+        nodustday,
+      </if>
+      <if test="sccDescribe != null" >
+        scc_describe,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rdId != null" >
+        #{rdId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="pathname != null" >
+        #{pathname,jdbcType=VARCHAR},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="ispave != null" >
+        #{ispave,jdbcType=CHAR},
+      </if>
+      <if test="roadtype != null" >
+        #{roadtype,jdbcType=CHAR},
+      </if>
+      <if test="pathlength != null" >
+        #{pathlength,jdbcType=DOUBLE},
+      </if>
+      <if test="averwidth != null" >
+        #{averwidth,jdbcType=DOUBLE},
+      </if>
+      <if test="averweight != null" >
+        #{averweight,jdbcType=DOUBLE},
+      </if>
+      <if test="carflow != null" >
+        #{carflow,jdbcType=DOUBLE},
+      </if>
+      <if test="averspeed != null" >
+        #{averspeed,jdbcType=DOUBLE},
+      </if>
+      <if test="dirtratio != null" >
+        #{dirtratio,jdbcType=DOUBLE},
+      </if>
+      <if test="waterratio != null" >
+        #{waterratio,jdbcType=DOUBLE},
+      </if>
+      <if test="roadload != null" >
+        #{roadload,jdbcType=DOUBLE},
+      </if>
+      <if test="controlname != null" >
+        #{controlname,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Max != null" >
+        #{pm25Max,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Max != null" >
+        #{pm10Max,jdbcType=DOUBLE},
+      </if>
+      <if test="vocMax != null" >
+        #{vocMax,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Max != null" >
+        #{nh3Max,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Max != null" >
+        #{so2Max,jdbcType=DOUBLE},
+      </if>
+      <if test="coMax != null" >
+        #{coMax,jdbcType=DOUBLE},
+      </if>
+      <if test="ocMax != null" >
+        #{ocMax,jdbcType=DOUBLE},
+      </if>
+      <if test="bcMax != null" >
+        #{bcMax,jdbcType=DOUBLE},
+      </if>
+      <if test="noxMax != null" >
+        #{noxMax,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Unit != null" >
+        #{pm25Unit,jdbcType=CHAR},
+      </if>
+      <if test="pm10Unit != null" >
+        #{pm10Unit,jdbcType=CHAR},
+      </if>
+      <if test="vocUnit != null" >
+        #{vocUnit,jdbcType=CHAR},
+      </if>
+      <if test="nh3Unit != null" >
+        #{nh3Unit,jdbcType=CHAR},
+      </if>
+      <if test="so2Unit != null" >
+        #{so2Unit,jdbcType=CHAR},
+      </if>
+      <if test="coUnit != null" >
+        #{coUnit,jdbcType=CHAR},
+      </if>
+      <if test="ocUnit != null" >
+        #{ocUnit,jdbcType=CHAR},
+      </if>
+      <if test="bcUnit != null" >
+        #{bcUnit,jdbcType=CHAR},
+      </if>
+      <if test="noxUnit != null" >
+        #{noxUnit,jdbcType=CHAR},
+      </if>
+      <if test="nodustday != null" >
+        #{nodustday,jdbcType=INTEGER},
+      </if>
+      <if test="sccDescribe != null" >
+        #{sccDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Xjroaddust" >
     insert into xjroaddust (rd_id, year, county_id, 
       pathname, scccode, ispave, 

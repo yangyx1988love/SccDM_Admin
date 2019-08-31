@@ -37,10 +37,17 @@
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.XjsoildustVo" >
-    SELECT xjsoildust.*,county.COUNTY_NAME FROM xjsoildust
-    LEFT JOIN county
-    ON xjsoildust.county_id=county.COUNTY_ID
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.XjsoildustVo" parameterType="nankai.xl.business.model.vo.XjsoildustVo" >
+    SELECT xjsoildust.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(xjsoildust.scccode,1,2) AS scc1,SUBSTR(xjsoildust.scccode,3,2) AS scc2,
+    SUBSTR(xjsoildust.scccode,5,3) AS scc3,SUBSTR(xjsoildust.scccode,8,3) AS scc4
+    FROM xjsoildust
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=xjsoildust.county_id
     <where>
       <if test="sdYear != null and sdYear != ''">
         xjsoildust.sd_year = #{sdYear}
@@ -48,18 +55,233 @@
       <if test="countyId != null and countyId != ''">
         AND xjsoildust.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT xjsoildust.*,county.COUNTY_NAME FROM xjsoildust
-    LEFT JOIN county
-    ON xjsoildust.county_id=county.COUNTY_ID
+  <select id="selectById" resultType="nankai.xl.business.model.vo.XjsoildustVo" parameterType="java.lang.Integer" >
+    SELECT xjsoildust.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(xjsoildust.scccode,1,2) AS scc1,SUBSTR(xjsoildust.scccode,3,2) AS scc2,
+				SUBSTR(xjsoildust.scccode,5,3) AS scc3,SUBSTR(xjsoildust.scccode,8,3) AS scc4
+    FROM xjsoildust
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=xjsoildust.county_id
     where xjsoildust.sd_id = #{sdId,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from xjsoildust
     where sd_id = #{sdId,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.Xjsoildust" >
+    insert into xjsoildust
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sdId != null" >
+        sd_id,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="sdYear != null" >
+        sd_year,
+      </if>
+      <if test="sdTakemeasures != null" >
+        sd_takemeasures,
+      </if>
+      <if test="sdUtype != null" >
+        sd_utype,
+      </if>
+      <if test="sdSoiltype != null" >
+        sd_soiltype,
+      </if>
+      <if test="sdArea != null" >
+        sd_area,
+      </if>
+      <if test="soilindexpm25 != null" >
+        soilindexpm25,
+      </if>
+      <if test="soilindexpm10 != null" >
+        soilindexpm10,
+      </if>
+      <if test="surindex != null" >
+        surindex,
+      </if>
+      <if test="noindex != null" >
+        noindex,
+      </if>
+      <if test="pindex != null" >
+        pindex,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="pm25Max != null" >
+        pm25_max,
+      </if>
+      <if test="pm10Max != null" >
+        pm10_max,
+      </if>
+      <if test="vocMax != null" >
+        voc_max,
+      </if>
+      <if test="nh3Max != null" >
+        nh3_max,
+      </if>
+      <if test="so2Max != null" >
+        so2_max,
+      </if>
+      <if test="coMax != null" >
+        co_max,
+      </if>
+      <if test="ocMax != null" >
+        oc_max,
+      </if>
+      <if test="bcMax != null" >
+        bc_max,
+      </if>
+      <if test="noxMax != null" >
+        nox_max,
+      </if>
+      <if test="sccDescribe != null" >
+        scc_describe,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sdId != null" >
+        #{sdId,jdbcType=INTEGER},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="sdYear != null" >
+        #{sdYear,jdbcType=CHAR},
+      </if>
+      <if test="sdTakemeasures != null" >
+        #{sdTakemeasures,jdbcType=VARCHAR},
+      </if>
+      <if test="sdUtype != null" >
+        #{sdUtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sdSoiltype != null" >
+        #{sdSoiltype,jdbcType=VARCHAR},
+      </if>
+      <if test="sdArea != null" >
+        #{sdArea,jdbcType=DOUBLE},
+      </if>
+      <if test="soilindexpm25 != null" >
+        #{soilindexpm25,jdbcType=DOUBLE},
+      </if>
+      <if test="soilindexpm10 != null" >
+        #{soilindexpm10,jdbcType=DOUBLE},
+      </if>
+      <if test="surindex != null" >
+        #{surindex,jdbcType=DOUBLE},
+      </if>
+      <if test="noindex != null" >
+        #{noindex,jdbcType=DOUBLE},
+      </if>
+      <if test="pindex != null" >
+        #{pindex,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Max != null" >
+        #{pm25Max,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Max != null" >
+        #{pm10Max,jdbcType=DOUBLE},
+      </if>
+      <if test="vocMax != null" >
+        #{vocMax,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Max != null" >
+        #{nh3Max,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Max != null" >
+        #{so2Max,jdbcType=DOUBLE},
+      </if>
+      <if test="coMax != null" >
+        #{coMax,jdbcType=DOUBLE},
+      </if>
+      <if test="ocMax != null" >
+        #{ocMax,jdbcType=DOUBLE},
+      </if>
+      <if test="bcMax != null" >
+        #{bcMax,jdbcType=DOUBLE},
+      </if>
+      <if test="noxMax != null" >
+        #{noxMax,jdbcType=DOUBLE},
+      </if>
+      <if test="sccDescribe != null" >
+        #{sccDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Xjsoildust" >
     insert into xjsoildust (sd_id, scccode, county_id, 
       sd_year, sd_takemeasures, sd_utype, 

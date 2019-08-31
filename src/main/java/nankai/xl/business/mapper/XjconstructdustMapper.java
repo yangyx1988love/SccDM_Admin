@@ -12,4 +12,5 @@ public interface XjconstructdustMapper {
     int deleteById(Integer id);
     int updateById(Xjconstructdust xjconstructdust);
     int insertOrUpdate(Xjconstructdust xjconstructdust);
+    int insertSelective(Xjconstructdust xjconstructdust);
 }

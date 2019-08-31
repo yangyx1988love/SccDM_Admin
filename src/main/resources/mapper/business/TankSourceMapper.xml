@@ -25,11 +25,11 @@
     FROM tank_source
     LEFT JOIN company
     ON tank_source.company_id=company.com_id
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
     <where>
@@ -50,11 +50,11 @@
     FROM tank_source
     LEFT JOIN company
     ON tank_source.company_id=company.com_id
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
     where tank_source.id = #{id,jdbcType=INTEGER}

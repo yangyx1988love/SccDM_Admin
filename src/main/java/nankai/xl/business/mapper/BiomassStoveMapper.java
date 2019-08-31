@@ -12,4 +12,5 @@ public interface BiomassStoveMapper {
     int deleteById(Integer id);
     int updateById(BiomassStove biomassStove);
     int insertOrUpdate(BiomassStove biomassStove);
+    int insertSelective(BiomassStove biomassStove);
 }

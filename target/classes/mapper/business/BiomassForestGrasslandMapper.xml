@@ -24,11 +24,17 @@
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" >
-    SELECT biomass_forest_grassland.*,county.COUNTY_NAME
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassStrawVo" parameterType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" >
+    SELECT biomass_forest_grassland.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_forest_grassland.scc_code,1,2) AS scc1,SUBSTR(biomass_forest_grassland.scc_code,3,2) AS scc2,
+    SUBSTR(biomass_forest_grassland.scc_code,5,3) AS scc3,SUBSTR(biomass_forest_grassland.scc_code,8,3) AS scc4
     FROM biomass_forest_grassland
-    LEFT JOIN county
-	ON biomass_forest_grassland.COUNTY_ID=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=biomass_forest_grassland.county_id
     <where>
       <if test="year != null and year != ''">
         biomass_forest_grassland.year = #{year}
@@ -36,19 +42,155 @@
       <if test="countyId != null and countyId != ''">
         AND biomass_forest_grassland.COUNTY_ID = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT biomass_forest_grassland.*,county.COUNTY_NAME
+  <select id="selectById" resultType="nankai.xl.business.model.vo.BiomassStrawVo" parameterType="java.lang.Integer" >
+    SELECT biomass_forest_grassland.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_forest_grassland.scc_code,1,2) AS scc1,SUBSTR(biomass_forest_grassland.scc_code,3,2) AS scc2,
+    SUBSTR(biomass_forest_grassland.scc_code,5,3) AS scc3,SUBSTR(biomass_forest_grassland.scc_code,8,3) AS scc4
     FROM biomass_forest_grassland
-    LEFT JOIN county
-	ON biomass_forest_grassland.COUNTY_ID=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=biomass_forest_grassland.county_id
     where biomass_forest_grassland.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from biomass_forest_grassland
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.BiomassForestGrassland" >
+    insert into biomass_forest_grassland
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="sccCode != null" >
+        scc_code,
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip,
+      </if>
+      <if test="vegetationTypes != null" >
+        VEGETATION_TYPES,
+      </if>
+      <if test="fireArea != null" >
+        fire_area,
+      </if>
+      <if test="dryBiomass != null" >
+        DRY_BIOMASS,
+      </if>
+      <if test="burningRatio != null" >
+        BURNING_RATIO,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="pmEmission != null" >
+        pm_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="sccCode != null" >
+        #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDescrip != null" >
+        #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="vegetationTypes != null" >
+        #{vegetationTypes,jdbcType=CHAR},
+      </if>
+      <if test="fireArea != null" >
+        #{fireArea,jdbcType=DOUBLE},
+      </if>
+      <if test="dryBiomass != null" >
+        #{dryBiomass,jdbcType=DOUBLE},
+      </if>
+      <if test="burningRatio != null" >
+        #{burningRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmission != null" >
+        #{pmEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.BiomassForestGrassland" >
     insert into biomass_forest_grassland (id, county_id, scc_code, 
       source_descrip, VEGETATION_TYPES, fire_area, 

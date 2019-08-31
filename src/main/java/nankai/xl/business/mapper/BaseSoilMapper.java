@@ -11,4 +11,5 @@ public interface BaseSoilMapper {
     int deleteById(Integer id);
     int updateById(BaseSoil baseSoil);
     int insertOrUpdate(BaseSoil baseSoil);
+    int insertSelective(BaseSoil baseSoil);
 }

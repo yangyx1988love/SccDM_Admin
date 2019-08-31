@@ -52,4 +52,11 @@ public class SelectController {
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
         return scc4s;
     }
+    @OperationLog("企业审核界面-重加载区县信息")
+    @PostMapping("/seleCompany")
+    @ResponseBody
+    public Company seleCompany( String companyName) {
+        Company company=selectCommonService.getCompanyByExample(companyName);
+        return company;
+    }
 }

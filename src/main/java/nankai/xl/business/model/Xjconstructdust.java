@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class Xjconstructdust {
+public class Xjconstructdust extends Company{
     private Integer id;
 
     private String year;

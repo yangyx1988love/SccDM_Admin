@@ -35,6 +35,8 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     private NitreremoveMapper nitreremoveMapper;
     @Resource
     private SulphurremoveMapper sulphurremoveMapper;
+    @Resource
+    private CompanyMapper companyMapper;
     @Override
     public List<County> getAllCountys() {
         return countyMapper.selectAllCountys();
@@ -127,5 +129,10 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Override
     public List<Sulphurremove> getAllSulphurremoves() {
         return sulphurremoveMapper.selectAll();
+    }
+
+    @Override
+    public Company getCompanyByExample(String companyName) {
+        return companyMapper.selectByFullName(companyName);
     }
 }

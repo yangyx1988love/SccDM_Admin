@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class BiomassBoiler {
+public class BiomassBoiler extends Company{
     private Integer id;
 
     private String sccCode;

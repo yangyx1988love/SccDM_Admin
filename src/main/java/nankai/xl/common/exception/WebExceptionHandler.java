@@ -85,10 +85,14 @@ public class WebExceptionHandler{
 
     @ExceptionHandler
     public String lockedAccount(DuplicateNameException e) {
-        log.debug("用户名已存在");
-        return generateErrorInfo(ResultBean.FAIL, "用户名已存在");
+        if (e.getMessage() == null) {
+            log.debug("用户名已存在");
+            return generateErrorInfo(ResultBean.FAIL, "用户名已存在");
+        }else {
+            log.debug(e.getMessage());
+            return generateErrorInfo(ResultBean.FAIL, e.getMessage());
+        }
     }
-
     @ExceptionHandler
     public String missingRequestParameter(MissingServletRequestParameterException e) {
         log.debug("请求参数无效");

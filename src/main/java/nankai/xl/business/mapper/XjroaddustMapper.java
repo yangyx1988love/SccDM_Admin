@@ -12,4 +12,5 @@ public interface XjroaddustMapper {
     int deleteById(Integer id);
     int updateById(Xjroaddust xjroaddust);
     int insertOrUpdate(Xjroaddust xjroaddust);
+    int insertSelective(Xjroaddust xjroaddust);
 }

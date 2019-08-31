@@ -39,10 +39,10 @@
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <label class="layui-form-label" style="width: 110px">区县</label>
                     <div class="layui-input-block" style="width: 240px">
                         <select id="countyId" name="countyId" th:field="*{scatteredCoalVo.countyId}" lay-filter="countyId" lay-verify="required">
-                            <option value="">请选择实际区县</option>
+                            <option value="">请选择</option>
                             <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
                             </option>
                         </select>
@@ -71,15 +71,7 @@
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 110px;">活动水平</label>
+                    <label class="layui-form-label" style="width: 110px;">燃料类型</label>
                     <div class="layui-input-block" style="width: 240px;">
                         <select id="activityLevel" name="activityLevel" th:field="*{scatteredCoalVo.activityLevel}" lay-verify="required">
                             <option value="" >请选择</option>
@@ -89,6 +81,8 @@
                         </select>
                     </div>
                 </div>
+            </div>
+            <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 110px;">活动数量</label>
                     <div class="layui-input-block"  style="width: 240px;">
@@ -105,14 +99,14 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">控制技术</label>
                     <div class="layui-input-block" >
                         <input id="controlMeasure" name="controlMeasure" style="width: 170px;" th:value="${scatteredCoalVo.controlMeasure}"  class="layui-input" type="text" lay-verify="required">
                     </div>
                 </div>
+            </div>
+            <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">燃料平均硫分(%)</label>
                     <div class="layui-input-block">
@@ -125,8 +119,14 @@
                         <input id="ashContent" name="ashContent" style="width: 170px;" th:value="${scatteredCoalVo.ashContent}" class="layui-input" type="text"  lay-verify="required|ratio">
                     </div>
                 </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
+                    <div class="layui-input-block" style="width: 160px">
+                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
+                    </div>
+                </div>
             </div>
-            <div id="emission" name="emission" style="display: none">
+            <div id="emissionDiv" name="emissionDiv" style="display: none">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>

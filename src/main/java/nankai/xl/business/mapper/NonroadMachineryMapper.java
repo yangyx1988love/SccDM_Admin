@@ -12,4 +12,5 @@ public interface NonroadMachineryMapper {
     int deleteById(Integer id);
     int updateById(NonroadMachinery nonroadMachinery);
     int insertOrUpdate(NonroadMachinery nonroadMachinery);
+    int insertSelective(NonroadMachinery nonroadMachinery);
 }

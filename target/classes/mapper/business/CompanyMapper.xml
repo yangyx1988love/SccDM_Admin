@@ -12,6 +12,36 @@
     <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
     <result column="category" property="category" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectByFullName" resultType="nankai.xl.business.model.Company" parameterType="java.lang.String" >
+    select * from company
+    where company_name = #{companyName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.CompanyVo" parameterType="nankai.xl.business.model.vo.CompanyVo" >
+    SELECT company.*,co.city_code,co.city_name
+    FROM company
+    LEFT JOIN (
+        SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+        FROM county
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+    ) co
+    ON company.county_id=co.COUNTY_ID
+    <where>
+      <if test="countyId != null and countyId != ''">
+        company.county_id = #{countyId}
+      </if>
+      <if test="company_name != null and company_name != ''">
+        AND company.company_name LIKE CONCAT(CONCAT('%',#{company_name},'%'))
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultType="nankai.xl.business.model.Company" parameterType="java.lang.Integer" >
+    select * from company
+    where com_id = #{comId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from company
     where com_id = #{comId,jdbcType=INTEGER}

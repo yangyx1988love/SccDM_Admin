@@ -11,4 +11,5 @@ public interface StrawCompostMapper {
     int deleteById(Integer id);
     int updateById(StrawCompost strawCompost);
     int insertOrUpdate(StrawCompost strawCompost);
+    int insertSelective(StrawCompost strawCompost);
 }

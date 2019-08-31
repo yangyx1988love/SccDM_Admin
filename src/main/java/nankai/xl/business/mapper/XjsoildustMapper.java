@@ -12,4 +12,5 @@ public interface XjsoildustMapper {
     int deleteById(Integer id);
     int updateById(Xjsoildust xjsoildust);
     int insertOrUpdate(Xjsoildust xjsoildust);
+    int insertSelective(Xjsoildust xjsoildust);
 }

@@ -11,4 +11,5 @@ public interface RepastFamilyMapper {
     int deleteById(Integer id);
     int updateById(RepastFamily repastFamily);
     int insertOrUpdate(RepastFamily repastFamily);
+    int insertSelective(RepastFamily repastFamily);
 }

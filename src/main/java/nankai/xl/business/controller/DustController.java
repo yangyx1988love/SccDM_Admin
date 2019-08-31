@@ -27,13 +27,11 @@ public class DustController {
     @OperationLog("扬尘源-土壤扬尘源")
     @GetMapping("/dust/soilDust")
     public String soilDust(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
         List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/dust/soilDust-list";
     }
-    @OperationLog("扬尘源-土壤扬尘源-列表")
+    @OperationLog("土壤扬尘源-列表")
     @GetMapping("/dust/soilDust/list")
     @ResponseBody
     public PageResultBean<XjsoildustVo> soilDustList(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -43,29 +41,15 @@ public class DustController {
         PageInfo<XjsoildustVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
-    @OperationLog("扬尘源-土壤扬尘源-重载")
-    @GetMapping("/dust/soilDust/reload")
-    @ResponseBody
-    public PageResultBean<XjsoildustVo> soilDustReload(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                       XjsoildustVo xjsoildustVo) {
-        List<XjsoildustVo> results= sourceService.getSoilDustsByExample(xjsoildustVo,page, limit);
-        PageInfo<XjsoildustVo> PageInfo = new PageInfo<>(results);
-        return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
-    }
-    //    @OperationLog("散煤-编辑")
-//    @GetMapping("/dust/soilDust/{id}")
-//    public String update(@PathVariable("id") Integer id, Model model) {
-//        model.addAttribute("scatteredCoal", sourceService.getScatById(id));
-//        return "source/fixed/list";
-//    }
-    @OperationLog("扬尘源-土壤扬尘源-删除")
+    @OperationLog("土壤扬尘源-删除")
     @DeleteMapping("/dust/soilDust/{id}")
     @ResponseBody
     public ResultBean soilDustDelete(@PathVariable("id") Integer id) {
         sourceService.deleteSoilDustById(id);
         return ResultBean.success();
     }
+
+
 
     @OperationLog("扬尘源-道路扬尘源")
     @GetMapping("/dust/roadDust")

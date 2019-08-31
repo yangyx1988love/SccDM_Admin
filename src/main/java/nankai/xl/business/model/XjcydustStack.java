@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class XjcydustStack {
+public class XjcydustStack extends Company{
     private Integer id;
 
     private Integer comId;

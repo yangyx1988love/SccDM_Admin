@@ -25,10 +25,9 @@
                                 <div carousel-item="">
                                     <ul class="layui-row layui-col-space10 layui-this">
                                         <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('用户管理', '/user/index')" class="x-admin-backlog-body">
-                                                <h3>用户数</h3>
+                                            <a href="#" onclick="openTab('地图', '/data/map')" class="x-admin-backlog-body">
                                                 <p>
-                                                    <cite th:text="${userCount}"></cite>
+                                                    <img th:src="@{/images/map.gif}" alt="" style="height: 80px;"/>
                                                 </p>
                                             </a>
                                         </li>
@@ -91,8 +90,7 @@
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
     <script th:src="@{/lib/layui/layui.js}"></script>
     <script th:src="@{/js/common.js}"></script>
-    <script th:src="@{/lib/echarts/echarts.min.js}"></script>
-
+    <script th:src="@{/lib/echarts/dist/echarts.js}"></script>
     <script type="application/javascript">
         layui.use('element', function(){
             layui.$("#main").css("width", (window.innerWidth - 100) +'px');

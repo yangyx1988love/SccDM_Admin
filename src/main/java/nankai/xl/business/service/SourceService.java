@@ -181,6 +181,5 @@ public interface SourceService {
     List<RoadMoveVo> getRoadMovesByExample(RoadMoveVo roadMoveVo,int page, int limit);
     RoadMoveVo getRoadMoveById(Integer id);
     int deleteRoadMoveById(Integer id);
-    int updateRoadMoveById(RoadMove roadMove);
-    int insertOrUpdateRoadMove(RoadMove roadMove);
+    int insertOrUpdateRoadMove(RoadMoveVo roadMoveVo,boolean isCul);
 }

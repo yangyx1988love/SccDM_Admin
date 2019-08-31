@@ -24,11 +24,17 @@
     <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.AgricultureMachineryVo" >
-    SELECT agriculture_machinery.*,county.COUNTY_NAME
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.AgricultureMachineryVo" parameterType="nankai.xl.business.model.vo.AgricultureMachineryVo" >
+    SELECT agriculture_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(agriculture_machinery.scc_code,1,2) AS scc1,SUBSTR(agriculture_machinery.scc_code,3,2) AS scc2,
+    SUBSTR(agriculture_machinery.scc_code,5,3) AS scc3,SUBSTR(agriculture_machinery.scc_code,8,3) AS scc4
     FROM agriculture_machinery
-    LEFT JOIN county
-	ON agriculture_machinery.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=agriculture_machinery.county_id
     <where>
       <if test="year != null and year != ''">
         agriculture_machinery.year = #{year}
@@ -36,19 +42,155 @@
       <if test="countyId != null and countyId != ''">
         AND agriculture_machinery.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT agriculture_machinery.*,county.COUNTY_NAME
+  <select id="selectById" resultType="nankai.xl.business.model.vo.AgricultureMachineryVo" parameterType="java.lang.Integer" >
+    SELECT agriculture_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(agriculture_machinery.scc_code,1,2) AS scc1,SUBSTR(agriculture_machinery.scc_code,3,2) AS scc2,
+    SUBSTR(agriculture_machinery.scc_code,5,3) AS scc3,SUBSTR(agriculture_machinery.scc_code,8,3) AS scc4
     FROM agriculture_machinery
-    LEFT JOIN county
-	ON agriculture_machinery.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=agriculture_machinery.county_id
     where agriculture_machinery.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from agriculture_machinery
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.AgricultureMachinery" >
+    insert into agriculture_machinery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="sccCode != null" >
+        scc_code,
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip,
+      </if>
+      <if test="fuelType != null" >
+        fuel_type,
+      </if>
+      <if test="holdings != null" >
+        holdings,
+      </if>
+      <if test="fuelUsage != null" >
+        fuel_usage,
+      </if>
+      <if test="fuelAnnualUsage != null" >
+        fuel_annual_usage,
+      </if>
+      <if test="annalAverageMilage != null" >
+        annal_average_milage,
+      </if>
+      <if test="fuelSulfurContent != null" >
+        fuel_sulfur_content,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="vocsEmission != null" >
+        vocs_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="sccCode != null" >
+        #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDescrip != null" >
+        #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelType != null" >
+        #{fuelType,jdbcType=CHAR},
+      </if>
+      <if test="holdings != null" >
+        #{holdings,jdbcType=INTEGER},
+      </if>
+      <if test="fuelUsage != null" >
+        #{fuelUsage,jdbcType=DOUBLE},
+      </if>
+      <if test="fuelAnnualUsage != null" >
+        #{fuelAnnualUsage,jdbcType=DOUBLE},
+      </if>
+      <if test="annalAverageMilage != null" >
+        #{annalAverageMilage,jdbcType=DOUBLE},
+      </if>
+      <if test="fuelSulfurContent != null" >
+        #{fuelSulfurContent,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocsEmission != null" >
+        #{vocsEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.AgricultureMachinery" >
     insert into agriculture_machinery (id, year, county_id, 
       scc_code, source_descrip, fuel_type, 

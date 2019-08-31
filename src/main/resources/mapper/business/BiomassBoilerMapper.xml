@@ -33,13 +33,18 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.BiomassBoilerVo" >
-    SELECT biomass_boiler.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassBoilerVo" parameterType="nankai.xl.business.model.vo.BiomassBoilerVo" >
+    SELECT biomass_boiler.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_boiler.scc_code,1,2) AS scc1,SUBSTR(biomass_boiler.scc_code,3,2) AS scc2,SUBSTR(biomass_boiler.scc_code,5,3) AS scc3,SUBSTR(biomass_boiler.scc_code,8,3) AS scc4
     FROM biomass_boiler
     LEFT JOIN company
     ON biomass_boiler.com_id=company.com_id
-    LEFT JOIN county
-    ON company.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
         biomass_boiler.year = #{year}
@@ -47,21 +52,192 @@
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT biomass_boiler.*,company.company_name,company.address,company.county_id,county.COUNTY_NAME
+  <select id="selectById" resultType="nankai.xl.business.model.vo.BiomassBoilerVo" parameterType="java.lang.Integer" >
+    SELECT biomass_boiler.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_boiler.scc_code,1,2) AS scc1,SUBSTR(biomass_boiler.scc_code,3,2) AS scc2,SUBSTR(biomass_boiler.scc_code,5,3) AS scc3,SUBSTR(biomass_boiler.scc_code,8,3) AS scc4
     FROM biomass_boiler
     LEFT JOIN company
     ON biomass_boiler.com_id=company.com_id
-    LEFT JOIN county
-    ON company.county_id=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
     where company.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from biomass_boiler
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.BiomassBoiler" >
+    insert into biomass_boiler
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sccCode != null" >
+        scc_code,
+      </if>
+      <if test="comId != null" >
+        com_id,
+      </if>
+      <if test="sourceDescrip != null" >
+        source_descrip,
+      </if>
+      <if test="boilerNo != null" >
+        boiler_no,
+      </if>
+      <if test="fuelType != null" >
+        fuel_type,
+      </if>
+      <if test="fuelConsumption != null" >
+        fuel_consumption,
+      </if>
+      <if test="dustRemoveTech != null" >
+        dust_remove_tech,
+      </if>
+      <if test="pm10RemoveRatio != null" >
+        pm10_remove_ratio,
+      </if>
+      <if test="pm25RemoveRatio != null" >
+        pm25_remove_ratio,
+      </if>
+      <if test="desulphurRemoveTech != null" >
+        DESULPHUR_REMOVE_TECH,
+      </if>
+      <if test="so2RemoveRatio != null" >
+        SO2_REMOVE_RATIO,
+      </if>
+      <if test="denitrificRemoveTech != null" >
+        DENITRIFIC_REMOVE_TECH,
+      </if>
+      <if test="noxRemoveRatio != null" >
+        NOX_REMOVE_RATIO,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="pmEmission != null" >
+        pm_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sccCode != null" >
+        #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="comId != null" >
+        #{comId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceDescrip != null" >
+        #{sourceDescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="boilerNo != null" >
+        #{boilerNo,jdbcType=INTEGER},
+      </if>
+      <if test="fuelType != null" >
+        #{fuelType,jdbcType=CHAR},
+      </if>
+      <if test="fuelConsumption != null" >
+        #{fuelConsumption,jdbcType=DOUBLE},
+      </if>
+      <if test="dustRemoveTech != null" >
+        #{dustRemoveTech,jdbcType=CHAR},
+      </if>
+      <if test="pm10RemoveRatio != null" >
+        #{pm10RemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25RemoveRatio != null" >
+        #{pm25RemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="desulphurRemoveTech != null" >
+        #{desulphurRemoveTech,jdbcType=CHAR},
+      </if>
+      <if test="so2RemoveRatio != null" >
+        #{so2RemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="denitrificRemoveTech != null" >
+        #{denitrificRemoveTech,jdbcType=CHAR},
+      </if>
+      <if test="noxRemoveRatio != null" >
+        #{noxRemoveRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="pmEmission != null" >
+        #{pmEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.BiomassBoiler" >
     insert into biomass_boiler (id, scc_code, com_id, 
       source_descrip, boiler_no, fuel_type, 

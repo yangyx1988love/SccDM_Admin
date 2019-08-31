@@ -12,4 +12,5 @@ public interface CollectbreedingMapper {
     int deleteById(Integer id);
     int updateById(Collectbreeding collectbreeding);
     int insertOrUpdate(Collectbreeding collectbreeding);
+    int insertSelective(Collectbreeding collectbreeding);
 }

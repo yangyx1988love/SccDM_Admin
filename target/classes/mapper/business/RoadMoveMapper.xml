@@ -27,11 +27,17 @@
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.vo.RoadMoveVo" >
-    SELECT road_move.*,county.COUNTY_NAME
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.RoadMoveVo" parameterType="nankai.xl.business.model.vo.RoadMoveVo" >
+    SELECT road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_move.scccode,1,2) AS scc1,SUBSTR(road_move.scccode,3,2) AS scc2,
+    SUBSTR(road_move.scccode,5,3) AS scc3,SUBSTR(road_move.scccode,8,3) AS scc4
     FROM road_move
-    LEFT JOIN county
-    ON road_move.COUNTY_ID=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=road_move.county_id
     <where>
       <if test="year != null and year != ''">
         road_move.year = #{year}
@@ -39,19 +45,173 @@
       <if test="countyId != null and countyId != ''">
         AND road_move.COUNTY_ID = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    SELECT road_move.*,county.COUNTY_NAME
+  <select id="selectById" resultType="nankai.xl.business.model.vo.RoadMoveVo" parameterType="java.lang.Integer" >
+    SELECT road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_move.scccode,1,2) AS scc1,SUBSTR(road_move.scccode,3,2) AS scc2,
+    SUBSTR(road_move.scccode,5,3) AS scc3,SUBSTR(road_move.scccode,8,3) AS scc4
     FROM road_move
-    LEFT JOIN county
-    ON road_move.COUNTY_ID=county.COUNTY_ID
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=road_move.county_id
     where road_move.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from road_move
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.RoadMove" >
+    insert into road_move
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="sourceDiscrip != null" >
+        source_discrip,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="countyCity != null" >
+        county_city,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="averageMile != null" >
+        average_mile,
+      </if>
+      <if test="carAmount != null" >
+        car_amount,
+      </if>
+      <if test="carSpeed != null" >
+        car_speed,
+      </if>
+      <if test="fuelType != null" >
+        fuel_type,
+      </if>
+      <if test="carFuelamount != null" >
+        car_fuelamount,
+      </if>
+      <if test="orvrPercentage != null" >
+        orvr_percentage,
+      </if>
+      <if test="averageSamount != null" >
+        average_samount,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="ecEmission != null" >
+        ec_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="vocsEmission != null" >
+        vocs_emission,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="sourceDiscrip != null" >
+        #{sourceDiscrip,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="countyCity != null" >
+        #{countyCity,jdbcType=CHAR},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="averageMile != null" >
+        #{averageMile,jdbcType=DOUBLE},
+      </if>
+      <if test="carAmount != null" >
+        #{carAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="carSpeed != null" >
+        #{carSpeed,jdbcType=DOUBLE},
+      </if>
+      <if test="fuelType != null" >
+        #{fuelType,jdbcType=VARCHAR},
+      </if>
+      <if test="carFuelamount != null" >
+        #{carFuelamount,jdbcType=DOUBLE},
+      </if>
+      <if test="orvrPercentage != null" >
+        #{orvrPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="averageSamount != null" >
+        #{averageSamount,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ecEmission != null" >
+        #{ecEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocsEmission != null" >
+        #{vocsEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.RoadMove" >
     insert into road_move (id, scccode, source_discrip, 
       year, county_city, county_id, 

@@ -24,11 +24,11 @@
     SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(building_smear.scccode,1,2) AS scc1,SUBSTR(building_smear.scccode,3,2) AS scc2,
     SUBSTR(building_smear.scccode,5,3) AS scc3,SUBSTR(building_smear.scccode,8,3) AS scc4
     FROM building_smear
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=building_smear.county_id
     <where>
@@ -47,11 +47,11 @@
     SELECT building_smear.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(building_smear.scccode,1,2) AS scc1,SUBSTR(building_smear.scccode,3,2) AS scc2,
 				SUBSTR(building_smear.scccode,5,3) AS scc3,SUBSTR(building_smear.scccode,8,3) AS scc4
     FROM building_smear
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=building_smear.county_id
     where building_smear.id = #{id,jdbcType=INTEGER}

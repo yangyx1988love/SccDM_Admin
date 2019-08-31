@@ -12,4 +12,5 @@ public interface AgricultureMachineryMapper {
     int deleteById(Integer id);
     int updateById(AgricultureMachinery agricultureMachinery);
     int insertOrUpdate(AgricultureMachinery agricultureMachinery);
+    int insertSelective(AgricultureMachinery agricultureMachinery);
 }

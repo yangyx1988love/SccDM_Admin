@@ -24,11 +24,11 @@
     SELECT deoil.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(deoil.scccode,1,2) AS scc1,SUBSTR(deoil.scccode,3,2) AS scc2,
     SUBSTR(deoil.scccode,5,3) AS scc3,SUBSTR(deoil.scccode,8,3) AS scc4
     FROM deoil
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=deoil.county_id
     <where>
@@ -47,11 +47,11 @@
     SELECT deoil.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(deoil.scccode,1,2) AS scc1,SUBSTR(deoil.scccode,3,2) AS scc2,
 				SUBSTR(deoil.scccode,5,3) AS scc3,SUBSTR(deoil.scccode,8,3) AS scc4
     FROM deoil
-    INNER JOIN (
-    SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-    FROM county
-    LEFT JOIN city
-    ON county.city_code=city.city_code
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=deoil.county_id
     where deoil.id = #{id,jdbcType=INTEGER}

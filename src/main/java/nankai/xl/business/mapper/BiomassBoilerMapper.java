@@ -12,4 +12,5 @@ public interface BiomassBoilerMapper {
     int deleteById(Integer id);
     int updateById(BiomassBoiler biomassBoiler);
     int insertOrUpdate(BiomassBoiler biomassBoiler);
+    int insertSelective(BiomassBoiler biomassBoiler);
 }
