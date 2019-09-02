@@ -9,4 +9,5 @@ import org.apache.ibatis.annotations.Param;
 public interface Scc4Mapper {
     List<Scc4> selectByScc4(Scc4 scc4);
     SccVo selectBySccCode(String sccCode);
+    List<Scc4> selectBySccCode123(String sccCode123);
 }

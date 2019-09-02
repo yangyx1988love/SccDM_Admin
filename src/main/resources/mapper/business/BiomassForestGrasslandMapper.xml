@@ -24,7 +24,7 @@
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassStrawVo" parameterType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" >
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" parameterType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" >
     SELECT biomass_forest_grassland.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_forest_grassland.scc_code,1,2) AS scc1,SUBSTR(biomass_forest_grassland.scc_code,3,2) AS scc2,
     SUBSTR(biomass_forest_grassland.scc_code,5,3) AS scc3,SUBSTR(biomass_forest_grassland.scc_code,8,3) AS scc4
     FROM biomass_forest_grassland
@@ -47,7 +47,7 @@
       </if>
     </where>
   </select>
-  <select id="selectById" resultType="nankai.xl.business.model.vo.BiomassStrawVo" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.vo.BiomassForestGrasslandVo" parameterType="java.lang.Integer" >
     SELECT biomass_forest_grassland.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_forest_grassland.scc_code,1,2) AS scc1,SUBSTR(biomass_forest_grassland.scc_code,3,2) AS scc2,
     SUBSTR(biomass_forest_grassland.scc_code,5,3) AS scc3,SUBSTR(biomass_forest_grassland.scc_code,8,3) AS scc4
     FROM biomass_forest_grassland

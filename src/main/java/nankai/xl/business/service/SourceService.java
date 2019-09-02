@@ -6,11 +6,17 @@ import nankai.xl.business.model.vo.*;
 import java.util.List;
 
 public interface SourceService {
+    /*
+        固体燃烧源
+    */
     //固体燃烧源//散煤
     int insertOrUpdateScatteredCoal(ScatteredCoalVo scatteredCoalVo,boolean isCul);
     List<ScatteredCoalVo> getByScatteredCoals(ScatteredCoalVo scatteredCoalVo,int page, int limit);
     ScatteredCoalVo getScatById(Integer id);
     int deleteScatById(Integer id);
+    /*
+        工艺过程源
+    */
     //工艺过程源//石化有组织废气排放
     int insertOrUpdateShGa(ShGasemissionVo shGasemissionVo,boolean isCul);
     List<ShGasemissionVo> getShGasByShGas(ShGasemissionVo shGasemissionVo,int page, int limit);
@@ -31,6 +37,9 @@ public interface SourceService {
     List<ShVocdeviceeffiVo> getShVocsByExample(ShVocdeviceeffiVo shVocdeviceeffiVo,int page, int limit);
     ShVocdeviceeffiVo getShVocById(Integer id);
     int deleteShVocById(Integer id);
+    /*
+        溶剂使用源
+    */
     //溶剂使用源//建筑涂装二手房
     List<BuildingSmearVo> getBuildsByExample(BuildingSmearVo buildingSmearVo,int page, int limit);
     BuildingSmearVo getBuildById(Integer id);
@@ -91,6 +100,9 @@ public interface SourceService {
     int deleteSoilDustById(Integer id);
     int updateSoilDustById(Xjsoildust xjsoildust);
     int insertOrUpdateSoilDust(Xjsoildust xjsoildust);
+    /*
+        存储与运输源
+    */
     //存储与运输源//加气站
     List<GasSourceVo> getGassByExample(GasSourceVo gasSourceVo,int page, int limit);
     GasSourceVo getGasById(Integer id);
@@ -111,72 +123,70 @@ public interface SourceService {
     TankSourceVo getTankById(Integer id);
     int deleteTankById(Integer id);
     int insertOrUpdateTank(TankSourceVo tankSourceVo,boolean isCul);
-    //土壤本底
+    /*
+        农牧源
+    */
+    //农牧源//土壤本底
     List<BaseSoilVo> getBaseSoilsByExample(BaseSoilVo baseSoilVo,int page, int limit);
     BaseSoilVo getBaseSoilById(Integer id);
     int deleteBaseSoilById(Integer id);
-    int updateBaseSoilById(BaseSoil baseSoil);
-    int insertOrUpdateBaseSoil(BaseSoil baseSoil);
-    //畜禽集约化养殖
+    int insertOrUpdateBaseSoil(BaseSoilVo baseSoilVo,boolean isCul);
+    //农牧源//畜禽集约化养殖
     List<CollectbreedingVo> getCoBreedsByExample(CollectbreedingVo collectbreedingVo,int page, int limit);
     CollectbreedingVo getCoBreedById(Integer id);
     int deleteCoBreedById(Integer id);
-    int updateCoBreedById(Collectbreeding collectbreeding);
-    int insertOrUpdateCoBreed(Collectbreeding collectbreeding);
-    //农肥施用源
+    int insertOrUpdateCoBreed(CollectbreedingVo collectbreedingVo,boolean isCul);
+    //农牧源//农肥施用源
     List<FertilizationVo> getFertilsByExample(FertilizationVo fertilizationVo,int page, int limit);
     FertilizationVo getFertilById(Integer id);
     int deleteFertilById(Integer id);
-    int updateFertilById(Fertilization fertilization);
-    int insertOrUpdateFertil(Fertilization fertilization);
-    //畜牧散养源
+    int insertOrUpdateFertil(FertilizationVo fertilizationVo,boolean isCul);
+    //农牧源//畜牧散养源
     List<FreeStockbreedingVo> getFreeStocksByExample(FreeStockbreedingVo freeStockbreedingVo,int page, int limit);
     FreeStockbreedingVo getFreeStockById(Integer id);
     int deleteFreeStockById(Integer id);
-    int updateFreeStockById(FreeStockbreeding freeStockbreeding);
-    int insertOrUpdateFreeStock(FreeStockbreeding freeStockbreeding);
-    //固氮植物源
+    int insertOrUpdateFreeStock(FreeStockbreedingVo freeStockbreedingVo,boolean isCul);
+    //农牧源//固氮植物源
     List<NPlantVo> getNPlantsByExample(NPlantVo nPlantVo,int page, int limit);
     NPlantVo getNPlantById(Integer id);
     int deleteNPlantById(Integer id);
-    int updateNPlantById(NPlant nPlant);
-    int insertOrUpdateNPlant(NPlant nPlant);
-    //农药施用
+    int insertOrUpdateNPlant(NPlantVo nPlantVo,boolean isCul);
+    //农牧源//农药施用
     List<PesticideVo> getPesticidesByExample(PesticideVo pesticideVo,int page, int limit);
     PesticideVo getPesticideById(Integer id);
     int deletePesticideById(Integer id);
-    int updatePesticideById(Pesticide pesticide);
-    int insertOrUpdatePesticide(Pesticide pesticide);
-    //秸秆堆肥源
+    int insertOrUpdatePesticide(PesticideVo pesticideVo,boolean isCul);
+    //农牧源//秸秆堆肥源
     List<StrawCompostVo> getStrawCompostsByExample(StrawCompostVo strawCompostVo,int page, int limit);
     StrawCompostVo getStrawCompostById(Integer id);
     int deleteStrawCompostById(Integer id);
-    int updateStrawCompostById(StrawCompost strawCompost);
-    int insertOrUpdateStrawCompost(StrawCompost strawCompost);
-    //生物质锅炉燃烧源
+    int insertOrUpdateStrawCompost(StrawCompostVo strawCompostVo,boolean isCul);
+    /*
+        生物质燃烧源
+     */
+    //生物质燃烧源//生物质锅炉燃烧源
     List<BiomassBoilerVo> getBioBoilersByExample(BiomassBoilerVo biomassBoilerVo,int page, int limit);
     BiomassBoilerVo getBioBoilerById(Integer id);
     int deleteBioBoilerById(Integer id);
-    int updateBioBoilerById(BiomassBoiler biomassBoiler);
-    int insertOrUpdateBioBoiler(BiomassBoiler biomassBoiler);
-    //森林火灾与草原火灾
+    int insertOrUpdateBioBoiler(BiomassBoilerVo biomassBoilerVo,boolean isCul);
+    //生物质燃烧源//森林火灾与草原火灾
     List<BiomassForestGrasslandVo> getBioForestsByExample(BiomassForestGrasslandVo biomassForestGrasslandVo,int page, int limit);
     BiomassForestGrasslandVo getBioForestById(Integer id);
     int deleteBioForestById(Integer id);
-    int updateBioForestById(BiomassForestGrassland biomassForestGrassland);
-    int insertOrUpdateBioForest(BiomassForestGrassland biomassForestGrassland);
-    //生物质户用生物质炉具
-    List<BiomassStoveVo> getStovesByExample(BiomassStoveVo biomassStoveVo,int page, int limit);
-    BiomassStoveVo getStoveById(Integer id);
-    int deleteStoveById(Integer id);
-    int updateStoveById(BiomassStove biomassStove);
-    int insertOrUpdateStove(BiomassStove biomassStove);
-    //秸秆露天焚烧
+    int insertOrUpdateBioForest(BiomassForestGrasslandVo biomassForestGrasslandVo,boolean isCul);
+    //生物质燃烧源//生物质户用生物质炉具
+    List<BiomassStoveVo> getBioStovesByExample(BiomassStoveVo biomassStoveVo,int page, int limit);
+    BiomassStoveVo getBioStoveById(Integer id);
+    int deleteBioStoveById(Integer id);
+    int insertOrUpdateBioStove(BiomassStoveVo biomassStoveVo,boolean isCul);
+    //生物质燃烧源//秸秆露天焚烧
     List<BiomassStrawVo> getBioStrawsByExample(BiomassStrawVo biomassStrawVo,int page, int limit);
     BiomassStrawVo getBioStrawById(Integer id);
     int deleteBioStrawById(Integer id);
-    int updateBioStrawById(BiomassStraw biomassStraw);
-    int insertOrUpdateBioStraw(BiomassStraw biomassStraw);
+    int insertOrUpdateBioStraw(BiomassStrawVo biomassStrawVo,boolean isCul);
+    /*
+      道路移动源
+    */
     //道路移动源
     List<RoadMoveVo> getRoadMovesByExample(RoadMoveVo roadMoveVo,int page, int limit);
     RoadMoveVo getRoadMoveById(Integer id);

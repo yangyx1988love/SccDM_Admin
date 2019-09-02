@@ -29,46 +29,40 @@ public void after() throws Exception {
 @Test
 public void testGetFactoryListByQuery() throws Exception {
 
-    @OperationLog("储罐存储-编辑")
-    @GetMapping("/transport/tank/{id}")
-    public String tankEdit(@PathVariable("id") Integer id, Model model) {
-        tanksportVo tanksportVo=sourceService.gettankById(id);
-        Scc3 scc3=new Scc3();
-        scc3.setScc1(scc1);
-        scc3.setScc2(tanksportVo.getScc2());
-        List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
-
-        Scc4 scc4=new Scc4();
-        scc4.setScc1(scc1);
-        scc4.setScc2("23");
-        scc4.setScc3(tanksportVo.getScc3());
-        List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-
+    @OperationLog("秸秆露天焚烧-编辑")
+    @GetMapping("/biomass/bioStraw/{id}")
+    public String bioStrawEdit(@PathVariable("id") Integer id, Model model) {
+        BiomassForestGrasslandVo biomassForestGrasslandVo=sourceService.getbioStrawById(id);
+        biomassForestGrasslandVo.setScc1(scc1);
+        biomassForestGrasslandVo.setScc2("04");
         List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(tanksportVo.getCityCode());
-        model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        List<County> countys=selectCommonService.getCountysByCityCode(biomassForestGrasslandVo.getCityCode());
+        List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"04");
+        List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"04"+biomassForestGrasslandVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
-        model.addAttribute("tanksportVo", tanksportVo);
-        return "source/transport/tank/tank-update";
-    }
-    @OperationLog("储罐存储-新增")
-    @GetMapping("/transport/tank/add")
-    public String tankAdd(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        model.addAttribute("scc1", scc1);
-        return "source/transport/tank/tank-add";
+        model.addAttribute("countys", countys);
+        model.addAttribute("biomassForestGrasslandVo", biomassForestGrasslandVo);
+        return "source/biomass/bioStraw/bioStraw-update";
     }
-    @OperationLog("储罐存储-编辑-保存")
-    @PutMapping("/transport/tank/edit")
+    @OperationLog("秸秆露天焚烧-新增")
+    @GetMapping("/biomass/bioStraw/add")
+    public String bioStrawAdd(Model model) {
+        List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"04");
+        model.addAttribute("scc3s", scc3s);
+        model.addAttribute("scc1", scc1);
+        model.addAttribute("scc2", "04");
+        return "source/biomass/bioStraw/bioStraw-add";
+    }
+    @OperationLog("秸秆露天焚烧-编辑-保存")
+    @PutMapping("/biomass/bioStraw/edit")
     @ResponseBody
-    public ResultBean tankInsertOrUpdate(boolean isCul,tanksportVo tanksportVo)  {
-        tanksportVo.setScccode(scc1+tanksportVo.getScc2()+tanksportVo.getScc3()+tanksportVo.getScc4());
-        SccVo sccVo=selectCommonService.selectBySccCode(tanksportVo.getScccode());
-        tanksportVo.setSourceDiscrip(sccVo.getDescription());
-        sourceService.insertOrUpdatetank(tanksportVo,isCul);
+    public ResultBean bioStrawInsertOrUpdate(boolean isCul,BiomassForestGrasslandVo biomassForestGrasslandVo)  {
+        biomassForestGrasslandVo.setSccCode("1804"+biomassForestGrasslandVo.getScc3()+biomassForestGrasslandVo.getScc4());
+        SccVo sccVo=selectCommonService.selectBySccCode(biomassForestGrasslandVo.getSccCode());
+        biomassForestGrasslandVo.setSourceDescrip(sccVo.getDescription());
+        sourceService.insertOrUpdatebioStraw(biomassForestGrasslandVo,isCul);
         return ResultBean.success();
     }
 

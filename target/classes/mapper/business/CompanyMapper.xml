@@ -16,6 +16,11 @@
     select * from company
     where company_name = #{companyName,jdbcType=VARCHAR}
   </select>
+  <select id="selectByVagueName" resultType="nankai.xl.business.model.Company" parameterType="java.lang.String" >
+    select * from company
+    where company_name LIKE CONCAT(CONCAT('%',#{company_name},'%'))
+    limit 0,1
+  </select>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.CompanyVo" parameterType="nankai.xl.business.model.vo.CompanyVo" >
     SELECT company.*,co.city_code,co.city_name
     FROM company

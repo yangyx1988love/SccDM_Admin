@@ -48,7 +48,7 @@
       </if>
     </where>
   </select>
-  <select id="selectById" resultType="nankai.xl.business.model.vo.BiomassStrawVo" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.vo.BiomassStoveVo" parameterType="java.lang.Integer" >
     SELECT biomass_stove.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_stove.scc_code,1,2) AS scc1,SUBSTR(biomass_stove.scc_code,3,2) AS scc2,
     SUBSTR(biomass_stove.scc_code,5,3) AS scc3,SUBSTR(biomass_stove.scc_code,8,3) AS scc4
     FROM biomass_stove

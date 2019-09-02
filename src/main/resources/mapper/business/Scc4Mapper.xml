@@ -44,6 +44,10 @@
     ) scc
     where scc.scc_code = #{sccCode}
   </select>
+  <select id="selectBySccCode123" resultType="nankai.xl.business.model.Scc4" parameterType="java.lang.String" >
+    SELECT * FROM scc_4
+    WHERE CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3)=#{sccCode123}
+  </select>
 <!--  <sql id="Example_Where_Clause" >-->
 <!--    <where >-->
 <!--      <foreach collection="oredCriteria" item="criteria" separator="or" >-->

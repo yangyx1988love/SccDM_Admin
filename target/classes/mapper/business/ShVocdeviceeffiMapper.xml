@@ -29,27 +29,29 @@
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" parameterType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" >
-    SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_vocdeviceeffi.scccode,1,2) AS scc1,
-    SUBSTR(sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(sh_vocdeviceeffi.scccode,8,3) AS scc4
-    FROM sh_vocdeviceeffi
-    LEFT JOIN company
-    ON sh_vocdeviceeffi.factory_id=company.com_id
-    LEFT JOIN (
-      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
-      FROM county
-      LEFT JOIN city
-      ON county.city_code=city.city_code
-    ) co
-    ON co.COUNTY_ID=company.county_id
+    SELECT * FROM (
+      SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_vocdeviceeffi.scccode,1,2) AS scc1,
+      SUBSTR(sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(sh_vocdeviceeffi.scccode,8,3) AS scc4
+      FROM sh_vocdeviceeffi
+      LEFT JOIN company
+      ON sh_vocdeviceeffi.factory_id=company.com_id
+      LEFT JOIN (
+        SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+        FROM county
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+      ) co
+      ON co.COUNTY_ID=company.county_id
+    ) SS
     <where>
       <if test="year != null and year != ''">
-        sh_vocdeviceeffi.year = #{year}
+        year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND company.county_id = #{countyId}
+        AND county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
-        AND co.city_code = #{cityCode}
+        AND city_code = #{cityCode}
       </if>
     </where>
   </select>

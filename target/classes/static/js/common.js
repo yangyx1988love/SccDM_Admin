@@ -175,19 +175,17 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             }
         }
     });
-    //城市区县级联选择
-    form.on('select(cityCode)',function(data){
-        var cityCode=data.value;
+    //加载城市
+    $(function(){
         $.ajax({
-            url: '/factoryAuth/seleCountry/' + cityCode,
-            data: {cityCode: cityCode},//发送的参数
+            url: '/factoryAuth/seleCity',
+            data: {provinceCode: '65'},//发送的参数
             type: "post",
             success: function (datas) {
-                $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
                 if(datas.length>0){
                     $.each(datas, function(key, val) {
-                        var option1 = $("<option>").val(val.countyId).text(val.countyName);
-                        $("select[name=countyId]").append(option1);
+                        var option1 = $("<option>").val(val.cityCode).text(val.cityName);
+                        $("select[name=cityCode]").append(option1);
                         form.render('select');
                     });
                 }else{
@@ -196,9 +194,37 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             },
             error:function(){
                 //失败执行的方法
-                layer.msg("区县信息加载失败!", {icon: 6});
+                layer.msg("城市信息加载失败!", {icon: 6});
             }
         })
+    });
+    //城市区县级联选择
+    form.on('select(cityCode)',function(data){
+        var cityCode=data.value;
+        $("select[name=countyId]").html('<option value="">请选择</option>'); //清空
+        form.render('select');
+        if(cityCode!=''){
+            $.ajax({
+                url: '/factoryAuth/seleCountry/' + cityCode,
+                data: {cityCode: cityCode},//发送的参数
+                type: "post",
+                success: function (datas) {
+                    if(datas.length>0){
+                        $.each(datas, function(key, val) {
+                            var option1 = $("<option>").val(val.countyId).text(val.countyName);
+                            $("select[name=countyId]").append(option1);
+                            form.render('select');
+                        });
+                    }else{
+                        form.render('select');
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("区县信息加载失败!", {icon: 6});
+                }
+            })
+        }
     });
     form.on('select(scc2)',function(data){
         var formData = {};
@@ -207,29 +233,32 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             formData [this.name] = this.value;
         });
         var scc1=formData["scc1"];
+        $("select[name=scc3]").html('<option value="">请选择</option>'); //清空
+        $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
+        form.render('select');
         var scc2=data.value;
-        $.ajax({
-            url: '/factoryAuth/seleScc2/' + scc2,
-            data: {scc1: scc1,scc2: scc2},//发送的参数
-            type: "post",
-            success: function (datas) {
-                $("select[name=scc3]").html('<option value="">请选择</option>'); //清空
-                $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
-                if(datas.length>0){
-                    $.each(datas, function(key, val) {
-                        var option1 = $("<option>").val(val.scc3).text(val.description);
-                        $("select[name=scc3]").append(option1);
+        if(scc2!=''){
+            $.ajax({
+                url: '/factoryAuth/seleScc2/' + scc2,
+                data: {scc1: scc1,scc2: scc2},//发送的参数
+                type: "post",
+                success: function (datas) {
+                    if(datas.length>0){
+                        $.each(datas, function(key, val) {
+                            var option1 = $("<option>").val(val.scc3).text(val.description);
+                            $("select[name=scc3]").append(option1);
+                            form.render('select');
+                        });
+                    }else{
                         form.render('select');
-                    });
-                }else{
-                    form.render('select');
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("更新失败!", {icon: 6});
                 }
-            },
-            error:function(){
-                //失败执行的方法
-                layer.msg("更新失败!", {icon: 6});
-            }
-        })
+            })
+        }
     });
     form.on('select(scc3)',function(data){
         var formData = {};
@@ -239,29 +268,31 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
         });
         var scc1=formData["scc1"];
         var scc2=formData["scc2"];
-
+        $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
+        form.render('select');
         var scc3=data.value;
-        $.ajax({
-            url: '/factoryAuth/seleScc3/' + scc2+"/"+scc3,
-            data: {scc1: scc1,scc2: scc2,scc3: scc3},//发送的参数
-            type: "post",
-            success: function (datas) {
-                $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
-                if(datas.length>0){
-                    $.each(datas, function(key, val) {
-                        var option1 = $("<option>").val(val.scc4).text(val.description);
-                        $("select[name=scc4]").append(option1);
+        if (scc3!=''){
+            $.ajax({
+                url: '/factoryAuth/seleScc3/' + scc2+"/"+scc3,
+                data: {scc1: scc1,scc2: scc2,scc3: scc3},//发送的参数
+                type: "post",
+                success: function (datas) {
+                    if(datas.length>0){
+                        $.each(datas, function(key, val) {
+                            var option1 = $("<option>").val(val.scc4).text(val.description);
+                            $("select[name=scc4]").append(option1);
+                            form.render('select');
+                        });
+                    }else{
                         form.render('select');
-                    });
-                }else{
-                    form.render('select');
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("更新失败!", {icon: 6});
                 }
-            },
-            error:function(){
-                //失败执行的方法
-                layer.msg("更新失败!", {icon: 6});
-            }
-        })
+            })
+        }
     });
     //监听指定开关//污染物是否参与运算
     form.on('switch(isCul)', function(data){
@@ -272,64 +303,34 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
         }
     });
     //企业查询
-    // $(function(){
-    //     //输入框失去焦点时
-    //     $("#companyName").on('blur',function(){
-    //         var companyName=$('#companyName').val();
-    //         if((companyName!='')){
-    //             $( '#companyName' ).blur( function(){
-    //                 $.ajax({
-    //                     url: '/factoryAuth/seleCompany/',
-    //                     data: {companyName: companyName},//发送的参数
-    //                     type: "post",
-    //                     success: function (data) {
-    //                         if (data!=null) {
-    //                             $('#comId').val(data.comId);
-    //                             $('#address').val(data.address);
-    //                             $('#longitude').val(data.longitude);
-    //                             $('#latitude').val(data.latitude);
-    //                             $('#category').val(data.category);
-    //                         }else {
-    //                             layer.msg("无该企业信息！提交后将自动新增！", {icon: 6});
-    //                             form.render();
-    //                         }
-    //                     },
-    //                     error:function(){
-    //                         //失败执行的方法
-    //                         layer.msg("企业名称加载失败!", {icon: 6});
-    //                     }
-    //                 })
-    //             })
-    //         }
-    //     })
-    // });
-    //企业查询
     $(function(){
         //输入框的值改变时触发
         //$("#companyName").on("input",function(e){
         $("#companyName").on('blur',function(){
             //获取input输入的值
             var companyName=$(this).val();
-            $.ajax({
-                url: '/factoryAuth/seleCompany/',
-                data: {companyName: companyName},//发送的参数
-                type: "post",
-                success: function (data) {
-                    if ($.isEmptyObject(data)) {
-                        layer.msg("无该企业信息！提交后将自动新增！", {icon: 6});
-                    }else {
-                        $('#comId').val(data.comId);
-                        $('#address').val(data.address);
-                        $('#longitude').val(data.longitude);
-                        $('#latitude').val(data.latitude);
-                        $('#category').val(data.category);
+            if (companyName!='') {
+                $.ajax({
+                    url: '/factoryAuth/seleCompany/',
+                    data: {companyName: companyName},//发送的参数
+                    type: "post",
+                    success: function (data) {
+                        if ($.isEmptyObject(data)) {
+                            layer.msg("无该企业信息！提交后将自动新增！", {icon: 6});
+                        }else {
+                            $('#comId').val(data.comId);
+                            $('#address').val(data.address);
+                            $('#longitude').val(data.longitude);
+                            $('#latitude').val(data.latitude);
+                            $('#category').val(data.category);
+                        }
+                    },
+                    error:function(){
+                        //失败执行的方法
+                        layer.msg("企业名称加载失败!", {icon: 6});
                     }
-                },
-                error:function(){
-                    //失败执行的方法
-                    layer.msg("企业名称加载失败!", {icon: 6});
-                }
-            })
+                })
+            }
         })
     });
 

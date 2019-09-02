@@ -23,6 +23,13 @@ public class SelectController {
         List<Industry> industrys=selectCommonService.getIndustrysByCode(industryCode);
         return industrys;
     }
+    @OperationLog("企业审核界面-加载城市信息")
+    @PostMapping("/seleCity")
+    @ResponseBody
+    public List<City> seleCity(String provinceCode) {
+        List<City> citys=selectCommonService.getCitysByProvinceCode(provinceCode);
+        return citys;
+    }
     @OperationLog("企业审核界面-重加载区县信息")
     @PostMapping("/seleCountry/{cityCode}")
     @ResponseBody
@@ -56,7 +63,7 @@ public class SelectController {
     @PostMapping("/seleCompany")
     @ResponseBody
     public Company seleCompany( String companyName) {
-        Company company=selectCommonService.getCompanyByExample(companyName);
+        Company company=selectCommonService.getCompanysByVagueName(companyName);
         return company;
     }
 }

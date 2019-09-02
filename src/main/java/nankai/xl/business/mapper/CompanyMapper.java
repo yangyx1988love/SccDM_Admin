@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 public interface CompanyMapper {
     Company selectByFullName(String companyName);
     List<Company> selectByExample(String companyName);
+    Company selectByVagueName(String companyName);
     Company selectById(Integer comId);
     int insertSelective(Company company);
     int deleteByPrimaryKey(Integer comId);

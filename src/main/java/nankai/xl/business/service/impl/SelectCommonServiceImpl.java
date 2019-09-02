@@ -113,7 +113,11 @@ public class SelectCommonServiceImpl implements SelectCommonService {
 
     @Override
     public SccVo selectBySccCode(String sccCode) {
-        return scc4Mapper.selectBySccCode(sccCode);
+        SccVo sccVo=scc4Mapper.selectBySccCode(sccCode);
+        if (sccVo==null){
+            throw new NullPointerException("未查到该SCC编码，请联系管理员！");
+        }
+        return sccVo;
     }
 
     @Override
@@ -134,5 +138,20 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Override
     public Company getCompanyByExample(String companyName) {
         return companyMapper.selectByFullName(companyName);
+    }
+
+    @Override
+    public Company getCompanysByVagueName(String companyName) {
+        return companyMapper.selectByVagueName(companyName);
+    }
+
+    @Override
+    public List<Scc3> getScc3BySccCode12(String sccCode12) {
+        return scc3Mapper.selectByScc1Ascc2(sccCode12);
+    }
+
+    @Override
+    public List<Scc4> getScc4BySccCode123(String sccCode123) {
+        return scc4Mapper.selectBySccCode123(sccCode123);
     }
 }

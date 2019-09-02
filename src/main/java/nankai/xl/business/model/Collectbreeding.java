@@ -1,6 +1,6 @@
 package nankai.xl.business.model;
 
-public class Collectbreeding {
+public class Collectbreeding extends Company{
     private Integer id;
 
     private String year;

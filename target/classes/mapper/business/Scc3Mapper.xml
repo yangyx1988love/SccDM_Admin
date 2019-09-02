@@ -27,4 +27,8 @@
       </if>
     </where>
   </select>
+  <select id="selectByScc1Ascc2" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT * FROM scc_3
+    WHERE CONCAT(scc_3.scc_1,scc_3.scc_2)=#{sccCode12}
+  </select>
 </mapper>
