@@ -69,7 +69,7 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where company.id = #{id,jdbcType=INTEGER}
+    where biomass_boiler.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from biomass_boiler

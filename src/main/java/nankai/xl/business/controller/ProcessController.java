@@ -30,8 +30,6 @@ public class ProcessController {
     @OperationLog("工艺过程源-石化有组织废气排放")
     @GetMapping("/process/shGas")
     public String shGas(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         return "source/process/shGas/shGas-list";
     }
     @OperationLog("工艺过程源-石化有组织废气排放-列表")
@@ -83,10 +81,8 @@ public class ProcessController {
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
         List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
-        List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
-        model.addAttribute("citys", citys);
         model.addAttribute("scc3s", scc3s);
         return "source/process/shGas/shGas-add";
     }
@@ -155,8 +151,6 @@ public class ProcessController {
         scc4.setScc2(scc2);
         scc4.setScc3("170");
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         model.addAttribute("scc4s", scc4s);
         return "source/process/shSeal/shSeal-add";
     }
@@ -220,8 +214,6 @@ public class ProcessController {
         scc4.setScc2("17");
         scc4.setScc3("140");
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         model.addAttribute("scc4s", scc4s);
         return "source/process/shEff/shEff-add";
     }
@@ -277,8 +269,6 @@ public class ProcessController {
     @OperationLog("VOC处理装置-新增")
     @GetMapping("/process/shVoc/add")
     public String shVocAdd(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         return "source/process/shVoc/shVoc-add";
     }
     @OperationLog("VOC处理装置-编辑-保存")

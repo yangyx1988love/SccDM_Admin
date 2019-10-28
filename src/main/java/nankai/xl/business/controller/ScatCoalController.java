@@ -59,8 +59,6 @@ public class ScatCoalController {
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
         List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);

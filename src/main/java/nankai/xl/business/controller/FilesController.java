@@ -1,8 +1,10 @@
 package nankai.xl.business.controller;
 
 import com.github.pagehelper.PageInfo;
+import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
+import nankai.xl.common.util.ReadExcel;
 import nankai.xl.common.util.ResponseUtils;
 import nankai.xl.common.util.ResultBean;
 import nankai.xl.system.model.Menu;
@@ -27,6 +29,8 @@ import java.util.List;
 public class FilesController {
     @Resource
     private MenuService menuService;
+    @Resource
+    private SourceService sourceService;
 
     @OperationLog("文件管理-文件下载")
     @GetMapping("/down/index")
@@ -67,10 +71,19 @@ public class FilesController {
     @OperationLog("新增企业用户")
     @PostMapping("/upload")
     @ResponseBody
-    public ResultBean upload(@RequestParam("file") MultipartFile[] files, HttpServletRequest request,Integer childMenuId) throws Exception {
-        if (files.length==0){
-            return ResultBean.error("文件不存在！请重新上传！");
+    public ResultBean upload(@RequestParam("file") MultipartFile[] files, String childMenuId) throws Exception{
+        if (files.length==0||childMenuId.length()==0){
+            throw new Exception("文件不存在或者未选择源类型！请重新上传！");
         }else{
+            List<String[]> lists=new ArrayList<>();
+            for (MultipartFile file:files) {
+                lists.addAll(ReadExcel.readExcel(file));
+
+            }
+
+//            if (childMenuId==1){
+//
+//            }
             return ResultBean.success();
         }
     }

@@ -81,6 +81,12 @@ public class SourceServiceImpl implements SourceService {
     @Resource
     private RoadMoveMapper roadMoveMapper;
     @Resource
+    private RepastBarbecueMapper repastBarbecueMapper;
+    @Resource
+    private RepastFamilyMapper repastFamilyMapper;
+    @Resource
+    private RepastMapper repastMapper;
+    @Resource
     private SccMapper sccMapper;
     @Resource
     private CompanyMapper companyMapper;
@@ -1330,6 +1336,140 @@ public class SourceServiceImpl implements SourceService {
         }
         return 1;
     }
+    @Override
+    public List<RepastBarbecueVo> getRepastsBarbecuesByExample(RepastBarbecueVo repastBarbecueVo,int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return repastBarbecueMapper.selectByExample(repastBarbecueVo);
+    }
+
+    @Override
+    public RepastBarbecueVo getRepastBarbecueById(Integer id) {
+        return repastBarbecueMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteRepastBarbecueById(Integer id) {
+        return repastBarbecueMapper.deleteById(id);
+    }
+
+    @Override
+    public int insertOrUpdateRepastBarbecue(RepastBarbecueVo repastBarbecueVo,boolean isCul) {
+        RepastBarbecue repastBarbecue=repastBarbecueVo;
+        Company company=repastBarbecue;
+        int comId=insertOrUpdateCompany(company);
+        repastBarbecue.setComId(comId);
+        if (!isCul){
+            Scc scc=getSccFactor(repastBarbecue.getScccode());
+            Double activity=repastBarbecue.getCoalConsumption();
+            repastBarbecue.setPm25Emission(activity*scc.getPm25());
+            repastBarbecue.setPm10Emission(activity*scc.getPm10());
+            repastBarbecue.setCoEmission(activity*scc.getCo());
+            repastBarbecue.setVocEmission(activity*scc.getVocs());
+            repastBarbecue.setSo2Emission(activity*scc.getSo2());
+            repastBarbecue.setNoxEmission(activity*scc.getNox());
+            repastBarbecue.setNh3Emission(activity*scc.getNh3());
+            repastBarbecue.setOcEmission(activity*scc.getOc());
+            repastBarbecue.setBcEmission(activity*scc.getBc());
+        }
+        if(repastBarbecue.getId()!=null){
+            repastBarbecueMapper.updateById(repastBarbecue);
+        }else {
+            repastBarbecueMapper.insertSelective(repastBarbecue);
+        }
+        return 1;
+    }
+
+    @Override
+    public List<RepastFamilyVo> getRepastFamilysByExample(RepastFamilyVo repastFamilyVo,int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return repastFamilyMapper.selectByExample(repastFamilyVo);
+    }
+
+    @Override
+    public RepastFamilyVo getRepastFamilyById(Integer id) {
+        return repastFamilyMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteRepastFamilyById(Integer id) {
+        return repastFamilyMapper.deleteById(id);
+    }
+
+    @Override
+    public int insertOrUpdateRepastFamily(RepastFamilyVo repastFamilyVo,boolean isCul) {
+        RepastFamily repastFamily=repastFamilyVo;
+        if (!isCul){
+            Scc scc=getSccFactor(repastFamily.getScccode());
+            Double activity=repastFamily.getGasConsumption();
+            repastFamily.setPm25Emission(activity*scc.getPm25());
+            repastFamily.setPm10Emission(activity*scc.getPm10());
+            repastFamily.setCoEmission(activity*scc.getCo());
+            repastFamily.setVocEmission(activity*scc.getVocs());
+            repastFamily.setSo2Emission(activity*scc.getSo2());
+            repastFamily.setNoxEmission(activity*scc.getNox());
+            repastFamily.setNh3Emission(activity*scc.getNh3());
+            repastFamily.setOcEmission(activity*scc.getOc());
+            repastFamily.setBcEmission(activity*scc.getBc());
+        }
+        if(repastFamily.getId()!=null){
+            repastFamilyMapper.updateById(repastFamily);
+        }else {
+            repastFamilyMapper.insertSelective(repastFamily);
+        }
+        return 1;
+    }
+
+    @Override
+    public List<RepastVo> getRepastsByExample(RepastVo repastVo,int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return repastMapper.selectByExample(repastVo);
+    }
+
+    @Override
+    public RepastVo getRepastById(Integer id) {
+        return repastMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteRepastById(Integer id) {
+        return repastMapper.deleteById(id);
+    }
+
+    @Override
+    public int insertOrUpdateRepast(RepastVo repastVo,boolean isCul) {
+        Repast repast=repastVo;
+        Company company=repast;
+        int comId=insertOrUpdateCompany(company);
+        repast.setComId(comId);
+        if (!isCul){
+            Scc scc=getSccFactor(repast.getScccode());
+            Double activity=repast.getCoalConsumption();
+            repast.setPm25Emission(activity*scc.getPm25());
+            repast.setPm10Emission(activity*scc.getPm10());
+            repast.setCoEmission(activity*scc.getCo());
+            repast.setVocEmission(activity*scc.getVocs());
+            repast.setSo2Emission(activity*scc.getSo2());
+            repast.setNoxEmission(activity*scc.getNox());
+            repast.setNh3Emission(activity*scc.getNh3());
+            repast.setOcEmission(activity*scc.getOc());
+            repast.setBcEmission(activity*scc.getBc());
+        }
+        if(repast.getId()!=null){
+            repastMapper.updateById(repast);
+        }else {
+            repastMapper.insertSelective(repast);
+        }
+        return 1;
+    }
+
+    @Override
+    public int insertSource(List<String[]> lists, String childMenuId) {
+        if (childMenuId.equals("101000")){
+
+        }
+        return 0;
+    }
+
     public int insertOrUpdateCompany(Company company){
         if(company.getComId()!=null){
             companyMapper.updateById(company);

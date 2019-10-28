@@ -149,6 +149,20 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                     return '请输入八位整数，十位小数的正数！！'
                 }
             }
+        },"pos-num-100": function(value, item) {
+            var reg1 = new RegExp(/^(?!0\d)\d+(\.\d{1,})?(E[-]{0,1}\d+)?$/);
+            var reg2 = new RegExp(/^[1-9]\d{0,8}(\.\d{1,10})?$|^0(\.\d{1,10})?$/);
+            if (value.length > 0 && !reg1.test(value)) {
+                return '请输入八位整数，十位小数的正数！！'
+            }else {
+                var num = new Number(value)
+                if (num<0 || !reg2.test(num)){
+                    return '请输入八位整数，十位小数的正数！！'
+                }
+                if (num>100){
+                    return '请输入小于等于100的正数！！'
+                }
+            }
         },"integer": function(value, item) {
             var reg = new RegExp(/^(0|\+?[1-9][0-9]*)$/);
             if (value.length > 0 && !reg.test(value)) {

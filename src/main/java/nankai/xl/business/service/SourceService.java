@@ -192,4 +192,27 @@ public interface SourceService {
     RoadMoveVo getRoadMoveById(Integer id);
     int deleteRoadMoveById(Integer id);
     int insertOrUpdateRoadMove(RoadMoveVo roadMoveVo,boolean isCul);
+    /*
+      餐饮源
+    */
+    //烧烤
+    List<RepastBarbecueVo> getRepastsBarbecuesByExample(RepastBarbecueVo repastBarbecueVo,int page, int limit);
+    RepastBarbecueVo getRepastBarbecueById(Integer id);
+    int deleteRepastBarbecueById(Integer id);
+    int insertOrUpdateRepastBarbecue(RepastBarbecueVo repastBarbecueVo,boolean isCul);
+    //家庭
+    List<RepastFamilyVo> getRepastFamilysByExample(RepastFamilyVo repastFamilyVo,int page, int limit);
+    RepastFamilyVo getRepastFamilyById(Integer id);
+    int deleteRepastFamilyById(Integer id);
+    int insertOrUpdateRepastFamily(RepastFamilyVo repastFamilyVo, boolean isCul);
+    //社会
+    List<RepastVo> getRepastsByExample(RepastVo repastVo,int page, int limit);
+    RepastVo getRepastById(Integer id);
+    int deleteRepastById(Integer id);
+    int insertOrUpdateRepast(RepastVo repastVo,boolean isCul);
+
+     /*
+       导入文件时，导入
+     */
+     int insertSource(List<String[]> lists,String childMenuId);
 }

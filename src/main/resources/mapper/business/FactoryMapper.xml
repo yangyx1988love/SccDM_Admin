@@ -137,6 +137,9 @@
                    factory.factory_name,
                    factory.factory_latitude,
                    factory.factory_longitude,
+									 factory.total_value,
+									 factory.total_output,
+									 factory.factory_size,
                    factory.source_type,
                    factory.`year`,
                    factory.county_city,
@@ -152,7 +155,7 @@
       ON factory.county_id=county.COUNTY_ID
       LEFT JOIN `status`
       ON factory.`status`=`status`.id
-      ORDER BY factory_id ASC
+      ORDER BY factory.total_output DESC
   </select>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     SELECT * FROM factory WHERE factory_id = #{factoryId,jdbcType=INTEGER}

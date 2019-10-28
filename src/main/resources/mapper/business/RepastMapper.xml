@@ -87,6 +87,9 @@
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
       </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.RepastVo" parameterType="java.lang.Integer" >

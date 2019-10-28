@@ -280,8 +280,8 @@
 /* 二级导航被选中时背景颜色和字体颜色 */
 .layui-nav-tree .layui-nav-child dd.layui-this a,
 .layui-nav-tree dd.layui-this {
-    background-color: #1f2d3d !important;
-    color: rgb(64, 158, 255)
+    background-color: #009688 !important;
+    color: rgb(254, 253, 255)
 }
 
 /* this 导航选中时, 颜色不变 */
@@ -291,8 +291,8 @@
 
 
 /* 去除悬浮时左侧的绿条 */
-.layui-nav-tree .layui-nav-bar {
-    width: 0;
+.layui-nav-tree.layui-nav-child .layui-nav-bar {
+    width: 1.5px;
 }
 
 /* 导航菜单展开时颜色 */

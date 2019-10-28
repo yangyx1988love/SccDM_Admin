@@ -95,7 +95,7 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=repast_family.county_id
-    where id = #{id,jdbcType=INTEGER}
+    where repast_family.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from repast_family

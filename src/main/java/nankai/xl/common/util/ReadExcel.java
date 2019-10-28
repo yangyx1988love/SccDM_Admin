@@ -37,7 +37,7 @@ public class ReadExcel {
      */  
     public static List<String[]> readExcel(MultipartFile file) throws Exception{  
         //检查文件  
-       // checkFile(file);  
+        checkFile(file);
         //获得Workbook工作薄对象  
         Workbook workbook = getWorkBookMul(file);  
         //创建返回对象，把每行中的值作为一个数组，所有行作为一个集合返回  
@@ -70,10 +70,7 @@ public class ReadExcel {
                         Cell cell = row.getCell(cellNum);
                         String cellValue=getCellValue(cell);
                         if(cellValue.equals("")||cellValue.equals("非法字符")||cellValue.equals("未知类型")){
-//                        	ResultUtil.createSubmitResult(ResultUtil.createSuccess(Config.MESSAGE, 203, new Object[]{
-//                        			file.getOriginalFilename(),"第"+cellNum+"行"
-//                    		}));
-                        	throw new TreeCastException(file.getOriginalFilename()+"第"+cellNum+"行存在非法字符！");
+                        	throw new Exception(file.getOriginalFilename()+"第"+cellNum+"行存在非法字符！");
                         }else{
                         	cells[cellNum] = cellValue;
                         }
@@ -88,7 +85,7 @@ public class ReadExcel {
         //判断文件是否存在  
         if(null == file){  
            // logger.error("文件不存在！");
-            throw new TreeCastException(file.getOriginalFilename()+"文件不存在");
+            throw new Exception(file.getOriginalFilename()+"文件不存在");
         }  
         //获得文件名  
         String fileName = file.getOriginalFilename();  
@@ -119,9 +116,7 @@ public class ReadExcel {
         }  
         return workbook;  
     }  
-    public static Workbook getWorkBook(String filePath,String fileName) throws Exception{  
-        //获得文件名  
-       // String fileName = file.getOriginalFilename();  
+    public static Workbook getWorkBook(String filePath,String fileName) throws Exception{
         //创建Workbook工作薄对象，表示整个excel  
         Workbook workbook = null;  
         try {  

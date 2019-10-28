@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>文件上传下载</title>
@@ -17,17 +17,17 @@
     <div class="rubik-loader"></div>
 </div>
 <div class="z-body animated fadeIn">
-    <form class="layui-form layui-col-md12 we-search">
+    <form class="layui-form">
         <div class="layui-upload">
             <div class="layui-input-inline">
-                <select id="menuId" name="menuId" lay-verify="required" lay-filter="menuId">
+                <select id="menuId" name="menuId" lay-filter="menuId" lay-verify="required" >
                     <option value="">请选择源类型</option>
                     <option th:each="sourceMeu : ${sourceMeus}" th:value="${sourceMeu.menuId}" th:text="${sourceMeu.menuName}">
                     </option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select id="childMenuId" name="childMenuId" lay-filter="childMenuId">
+                <select id="childMenuId" name="childMenuId" lay-filter="childMenuId"lay-verify="required">
                     <option value="">请选择源二级分类</option>
                     <option th:each="childMeu : ${childMeus}" th:value="${childMeu.menuId}" th:text="${childMeu.menuName}">
                     </option>

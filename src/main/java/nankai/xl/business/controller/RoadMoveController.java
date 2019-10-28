@@ -29,8 +29,6 @@ public class RoadMoveController {
     @OperationLog("道路移动源")
     @GetMapping("/road/roadMove")
     public String roadMove(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         return "source/road/roadMove-list";
     }
     @OperationLog("道路移动源-列表")
@@ -50,7 +48,7 @@ public class RoadMoveController {
         sourceService.deleteRoadMoveById(id);
         return ResultBean.success();
     }
-    @OperationLog("建筑涂装-编辑")
+    @OperationLog("道路移动源-编辑")
     @GetMapping("/road/roadMove/{id}")
     public String roadMoveEdit(@PathVariable("id") Integer id, Model model) {
         RoadMoveVo roadMoveVo=sourceService.getRoadMoveById(id);
@@ -78,19 +76,17 @@ public class RoadMoveController {
         model.addAttribute("roadMoveVo", roadMoveVo);
         return "source/road/roadMove-update";
     }
-    @OperationLog("建筑涂装-新增")
+    @OperationLog("道路移动源-新增")
     @GetMapping("/road/roadMove/add")
     public String roadMoveAdd(Model model) {
         Scc2 scc2=new Scc2();
         scc2.setScc1(scc1);
         List<Scc2> scc2s=selectCommonService.getScc2sByScc2(scc2);
-        List<City> citys=selectCommonService.getAllCitys();
-        model.addAttribute("citys", citys);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2s", scc2s);
         return "source/road/roadMove-add";
     }
-    @OperationLog("建筑涂装-编辑-保存")
+    @OperationLog("道路移动源-编辑-保存")
     @PutMapping("/road/roadMove/edit")
     @ResponseBody
     public ResultBean roadMoveInsertOrUpdate(boolean isCul,RoadMoveVo roadMoveVo)  {

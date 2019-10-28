@@ -92,7 +92,14 @@
     <script th:src="@{/js/common.js}"></script>
     <script th:src="@{/lib/echarts/dist/echarts.js}"></script>
     <script type="application/javascript">
-        layui.use('element', function(){
+        layui.use(['carousel','element'], function(){
+            var carousel = layui.carousel
+            //常规轮播
+            // carousel.render({
+            //     elem: '#test1'
+            //     ,arrow: 'always'
+            // });
+
             layui.$("#main").css("width", (window.innerWidth - 100) +'px');
             // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('main'));
