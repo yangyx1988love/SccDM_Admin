@@ -192,23 +192,6 @@
                     start.config.max.month = date.month -1;
                 }
             });
-            form.verify({
-                "longitude": function(value, item) {
-                    var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
-                    if(value.length > 0 ){
-                        if (!reg.test(value)) {
-                            return '经度整数部分为0-180,小数部分为0到6位!'
-                        }
-                    }
-                }, "latitude": function(value, item) {
-                    var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
-                    if(value.length > 0 ){
-                        if (!reg.test(value)) {
-                            return '纬度整数部分为0-90,小数部分为0到6位!\''
-                        }
-                    }
-                }
-            })
             $(document).ready(function(){
                 //加载月份
                 var arr =$('input[name="constructMonths"]').val().split(",");

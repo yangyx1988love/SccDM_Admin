@@ -1,22 +1,23 @@
 package nankai.xl.business.controller;
 
 import com.github.pagehelper.PageInfo;
-import nankai.xl.business.model.City;
-import nankai.xl.business.model.County;
-import nankai.xl.business.model.Scc3;
-import nankai.xl.business.model.Scc4;
+import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -25,12 +26,26 @@ public class BiomassController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
 
     private String scc1="18";
 
     @OperationLog("生物质燃烧源-生物质锅炉")
     @GetMapping("/biomass/bioBoiler")
-    public String bioBoiler() {
+    public String bioBoiler(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioBoiler/bioBoiler-list";
     }
     @OperationLog("生物质锅炉-列表")
@@ -39,6 +54,11 @@ public class BiomassController {
     public PageResultBean<BiomassBoilerVo> bioBoilerList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                          BiomassBoilerVo biomassBoilerVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (biomassBoilerVo.getCityCode()==null&&biomassBoilerVo.getCountyId()==null){
+            biomassBoilerVo.setCityCode(cityCode);
+            biomassBoilerVo.setCountyId(countyCode);
+        }
         List<BiomassBoilerVo> results= sourceService.getBioBoilersByExample(biomassBoilerVo,page, limit);
         PageInfo<BiomassBoilerVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -54,16 +74,16 @@ public class BiomassController {
     @GetMapping("/biomass/bioBoiler/{id}")
     public String bioBoilerEdit(@PathVariable("id") Integer id, Model model) {
         BiomassBoilerVo biomassBoilerVo=sourceService.getBioBoilerById(id);
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(biomassBoilerVo.getCityCode());
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(biomassBoilerVo.getCityCode()));
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
         model.addAttribute("biomassBoilerVo", biomassBoilerVo);
         return "source/biomass/bioBoiler/bioBoiler-update";
     }
     @OperationLog("生物质锅炉-新增")
     @GetMapping("/biomass/bioBoiler/add")
     public String bioBoilerAdd(Model model) {
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioBoiler/bioBoiler-add";
     }
     @OperationLog("生物质锅炉-编辑-保存")
@@ -78,7 +98,15 @@ public class BiomassController {
     }
     @OperationLog("生物质燃烧源-森林火灾与草原火灾")
     @GetMapping("/biomass/bioForest")
-    public String bioForest() {
+    public String bioForest(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioForest/bioForest-list";
     }
     @OperationLog("森林火灾与草原火灾-列表")
@@ -87,6 +115,11 @@ public class BiomassController {
     public PageResultBean<BiomassForestGrasslandVo> bioForestList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                          @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                                   BiomassForestGrasslandVo biomassForestGrasslandVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (biomassForestGrasslandVo.getCityCode()==null&&biomassForestGrasslandVo.getCountyId()==null){
+            biomassForestGrasslandVo.setCityCode(cityCode);
+            biomassForestGrasslandVo.setCountyId(countyCode);
+        }
         List<BiomassForestGrasslandVo> results= sourceService.getBioForestsByExample(biomassForestGrasslandVo,page, limit);
         PageInfo<BiomassForestGrasslandVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -110,8 +143,8 @@ public class BiomassController {
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"04"+biomassForestGrasslandVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(biomassForestGrasslandVo.getCityCode()));
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
         model.addAttribute("biomassForestGrasslandVo", biomassForestGrasslandVo);
         return "source/biomass/bioForest/bioForest-update";
     }
@@ -122,6 +155,8 @@ public class BiomassController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "04");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioForest/bioForest-add";
     }
     @OperationLog("森林火灾与草原火灾-编辑-保存")
@@ -136,7 +171,15 @@ public class BiomassController {
     }
     @OperationLog("生物质燃烧源-生物质户用生物质炉具")
     @GetMapping("/biomass/bioStove")
-    public String bioStove() {
+    public String bioStove(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioStove/bioStove-list";
     }
     @OperationLog("生物质户用生物质炉具-列表")
@@ -145,6 +188,11 @@ public class BiomassController {
     public PageResultBean<BiomassStoveVo> bioStoveList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        BiomassStoveVo biomassStoveVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (biomassStoveVo.getCityCode()==null&&biomassStoveVo.getCountyId()==null){
+            biomassStoveVo.setCityCode(cityCode);
+            biomassStoveVo.setCountyId(countyCode);
+        }
         List<BiomassStoveVo> results= sourceService.getBioStovesByExample(biomassStoveVo,page, limit);
         PageInfo<BiomassStoveVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -160,14 +208,12 @@ public class BiomassController {
     @GetMapping("/biomass/bioStove/{id}")
     public String bioStoveEdit(@PathVariable("id") Integer id, Model model) {
         BiomassStoveVo biomassStoveVo=sourceService.getBioStoveById(id);
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(biomassStoveVo.getCityCode());
         List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+biomassStoveVo.getScc2());
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+biomassStoveVo.getScc2()+biomassStoveVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(biomassStoveVo.getCityCode()));
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
         model.addAttribute("biomassStoveVo", biomassStoveVo);
         return "source/biomass/bioStove/bioStove-update";
     }
@@ -175,6 +221,8 @@ public class BiomassController {
     @GetMapping("/biomass/bioStove/add")
     public String bioStoveAdd(Model model) {
         model.addAttribute("scc1", scc1);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioStove/bioStove-add";
     }
     @OperationLog("生物质户用生物质炉具-编辑-保存")
@@ -189,7 +237,15 @@ public class BiomassController {
     }
     @OperationLog("生物质燃烧源-秸秆露天焚烧")
     @GetMapping("/biomass/bioStraw")
-    public String bioStraw() {
+    public String bioStraw(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioStraw/bioStraw-list";
     }
     @OperationLog("秸秆露天焚烧-列表")
@@ -198,6 +254,11 @@ public class BiomassController {
     public PageResultBean<BiomassStrawVo> bioStrawList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        BiomassStrawVo biomassStrawVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (biomassStrawVo.getCityCode()==null&&biomassStrawVo.getCountyId()==null){
+            biomassStrawVo.setCityCode(cityCode);
+            biomassStrawVo.setCountyId(countyCode);
+        }
         List<BiomassStrawVo> results= sourceService.getBioStrawsByExample(biomassStrawVo,page, limit);
         PageInfo<BiomassStrawVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -212,7 +273,6 @@ public class BiomassController {
     @OperationLog("秸秆露天焚烧-编辑")
     @GetMapping("/biomass/bioStraw/{id}")
     public String bioStrawEdit(@PathVariable("id") Integer id, Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
         BiomassStrawVo biomassStrawVo=sourceService.getBioStrawById(id);
         biomassStrawVo.setScc1(scc1);
         biomassStrawVo.setScc2("04");
@@ -220,8 +280,8 @@ public class BiomassController {
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"04"+"001");
         List<County> countys=selectCommonService.getCountysByCityCode(biomassStrawVo.getCityCode());
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(biomassStrawVo.getCityCode()));
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
         model.addAttribute("biomassStrawVo", biomassStrawVo);
         return "source/biomass/bioStraw/bioStraw-update";
     }
@@ -233,6 +293,8 @@ public class BiomassController {
         model.addAttribute("scc2", "04");
         model.addAttribute("scc3", "001");
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/biomass/bioStraw/bioStraw-add";
     }
     @OperationLog("秸秆露天焚烧-编辑-保存")

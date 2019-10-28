@@ -11,12 +11,16 @@ import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -25,12 +29,26 @@ public class NonRoadController {
     private SelectCommonService selectCommonService;
     @Resource
     private NonRoadService nonRoadService;
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
 
     private String scc1="13";
 
     @OperationLog("非道路移动源-农用运输车")
     @GetMapping("/nonRoad/agriculture")
-    public String agriculture() {
+    public String agriculture(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/agriculture/agriculture-list";
     }
     @OperationLog("农用运输车-列表")
@@ -39,6 +57,11 @@ public class NonRoadController {
     public PageResultBean<AgricultureMachineryVo> agricultureList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                   @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                                     AgricultureMachineryVo agricultureMachineryVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (agricultureMachineryVo.getCityCode()==null&&agricultureMachineryVo.getCountyId()==null){
+            agricultureMachineryVo.setCityCode(cityCode);
+            agricultureMachineryVo.setCountyId(countyCode);
+        }
         List<AgricultureMachineryVo> results= nonRoadService.getByExample(agricultureMachineryVo,page, limit);
         PageInfo<AgricultureMachineryVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -58,10 +81,11 @@ public class NonRoadController {
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
         List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
-
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/agriculture/agriculture-add";
     }
     @OperationLog("农用运输车-编辑")
@@ -79,10 +103,8 @@ public class NonRoadController {
         scc4.setScc3(agricultureMachineryVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(agricultureMachineryVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(agricultureMachineryVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("agricultureMachineryVo", agricultureMachineryVo);
@@ -100,7 +122,15 @@ public class NonRoadController {
     }
     @OperationLog("非道路移动源-飞机")
     @GetMapping("/nonRoad/airplane")
-    public String airplane() {
+    public String airplane(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/airplane/airplane-list";
     }
     @OperationLog("飞机-列表")
@@ -109,6 +139,11 @@ public class NonRoadController {
     public PageResultBean<AirplaneVo> airplaneList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                    @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                      AirplaneVo airplaneVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (airplaneVo.getCityCode()==null&&airplaneVo.getCountyId()==null){
+            airplaneVo.setCityCode(cityCode);
+            airplaneVo.setCountyId(countyCode);
+        }
         List<AirplaneVo> results= nonRoadService.getByExample(airplaneVo,page, limit);
         PageInfo<AirplaneVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -122,17 +157,17 @@ public class NonRoadController {
     }
     @OperationLog("飞机-新增")
     @GetMapping("/nonRoad/airplane/add")
-    public String airplaneAdd() {
+    public String airplaneAdd(Model model) {
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/airplane/airplane-add";
     }
     @OperationLog("飞机-编辑")
     @GetMapping("/nonRoad/airplane/{id}")
     public String airplaneEdit(@PathVariable("id") Integer id, Model model) {
         AirplaneVo airplaneVo=nonRoadService.getAirplaneById(id);
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(airplaneVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(airplaneVo.getCityCode()));
         model.addAttribute("airplaneVo", airplaneVo);
         return "source/nonRoad/airplane/airplane-update";
     }
@@ -148,7 +183,15 @@ public class NonRoadController {
     }
     @OperationLog("非道路移动源-非道路机械")
     @GetMapping("/nonRoad/machinery")
-    public String machinery() {
+    public String machinery(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/machinery/machinery-list";
     }
     @OperationLog("非道路机械-列表")
@@ -157,6 +200,11 @@ public class NonRoadController {
     public PageResultBean<NonroadMachineryVo> machineryList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                             @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                                 NonroadMachineryVo nonroadMachineryVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (nonroadMachineryVo.getCityCode()==null&&nonroadMachineryVo.getCountyId()==null){
+            nonroadMachineryVo.setCityCode(cityCode);
+            nonroadMachineryVo.setCountyId(countyCode);
+        }
         List<NonroadMachineryVo> results= nonRoadService.getByExample(nonroadMachineryVo,page, limit);
         PageInfo<NonroadMachineryVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -180,6 +228,8 @@ public class NonRoadController {
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/machinery/machinery-add";
     }
     @OperationLog("非道路机械-编辑")
@@ -197,10 +247,8 @@ public class NonRoadController {
         scc4.setScc3(nonroadMachineryVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(nonroadMachineryVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(nonroadMachineryVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("nonroadMachineryVo", nonroadMachineryVo);
@@ -218,7 +266,15 @@ public class NonRoadController {
     }
     @OperationLog("非道路移动源-铁路内燃机")
     @GetMapping("/nonRoad/railway")
-    public String railway() {
+    public String railway(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/railway/railway-list";
     }
     @OperationLog("铁路内燃机-列表")
@@ -227,6 +283,11 @@ public class NonRoadController {
     public PageResultBean<RailwayEngineVo> railwayList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                         RailwayEngineVo railwayEngineVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (railwayEngineVo.getCityCode()==null&&railwayEngineVo.getCountyId()==null){
+            railwayEngineVo.setCityCode(cityCode);
+            railwayEngineVo.setCountyId(countyCode);
+        }
         List<RailwayEngineVo> results= nonRoadService.getByExample(railwayEngineVo,page, limit);
         PageInfo<RailwayEngineVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -250,6 +311,8 @@ public class NonRoadController {
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/railway/railway-add";
     }
     @OperationLog("铁路内燃机-编辑")
@@ -266,11 +329,8 @@ public class NonRoadController {
         scc4.setScc2(scc2);
         scc4.setScc3(railwayEngineVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(railwayEngineVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(railwayEngineVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("railwayEngineVo", railwayEngineVo);
@@ -288,7 +348,15 @@ public class NonRoadController {
     }
     @OperationLog("非道路移动源-小型通用机械")
     @GetMapping("/nonRoad/smallMachinery")
-    public String smallMachinery() {
+    public String smallMachinery(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/smallMachinery/smallMachinery-list";
     }
     @OperationLog("小型通用机械-列表")
@@ -297,6 +365,11 @@ public class NonRoadController {
     public PageResultBean<SmallMachineryVo> smallMachineryList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                                  SmallMachineryVo smallMachineryVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (smallMachineryVo.getCityCode()==null&&smallMachineryVo.getCountyId()==null){
+            smallMachineryVo.setCityCode(cityCode);
+            smallMachineryVo.setCountyId(countyCode);
+        }
         List<SmallMachineryVo> results= nonRoadService.getByExample(smallMachineryVo,page, limit);
         PageInfo<SmallMachineryVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -320,6 +393,8 @@ public class NonRoadController {
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/nonRoad/smallMachinery/smallMachinery-add";
     }
     @OperationLog("小型通用机械-编辑")
@@ -336,11 +411,8 @@ public class NonRoadController {
         scc4.setScc2(scc2);
         scc4.setScc3(smallMachineryVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(smallMachineryVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(smallMachineryVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("smallMachineryVo", smallMachineryVo);

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
-    <title>散煤</title>
+    <title>堆场装卸扬尘源</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
@@ -16,34 +16,34 @@
 <div class="page-loading">
     <div class="rubik-loader"></div>
 </div>
-    <form class="layui-form ">
-        <div class="layui-show" style="margin-left:30px;margin-top: 2px;margin-bottom: 2px">
+<form class="layui-form ">
+    <div class="layui-show" style="margin-left:30px;margin-top: 2px;margin-bottom: 2px">
+        <div class="layui-input-inline">
             <div class="layui-input-inline">
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
-                </div>
+                <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
             </div>
-            <div class="layui-input-inline">
-                <select id="cityCode" name="cityCode" lay-filter="cityCode">
-                    <option value="">请选择实际城市</option>
-                    <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
-                    </option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select id="countyId" name="countyId" lay-filter="countyId">
-                    <option value="">请选择实际区县</option>
-                    <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
-                    </option>
-                </select>
-            </div>
-            <button  id="selectcoal" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">
-                <i class="layui-icon">&#xe615;</i></button>
         </div>
-    </form>
-    <div class="layui-colla-content layui-show">
-        <table class="layui-hide" id="coal-tab" lay-filter="coal-tab"></table>
+        <div class="layui-input-inline">
+            <select id="cityCode" name="cityCode" lay-filter="cityCode">
+                <option value="">请选择实际城市</option>
+                <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                </option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="countyId" name="countyId" lay-filter="countyId">
+                <option value="">请选择实际区县</option>
+                <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                </option>
+            </select>
+        </div>
+        <button  id="selectdustLoad" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">
+            <i class="layui-icon">&#xe615;</i></button>
     </div>
+</form>
+<div class="layui-colla-content layui-show">
+    <table class="layui-hide" id="dustLoad-tab" lay-filter="dustLoad-tab"></table>
+</div>
 
 
 <!--</div>-->
@@ -52,15 +52,15 @@
 <script th:src="@{/lib/layui/layui.js}"></script>
 <script th:src="@{/js/common.js}"></script>
 <script type="text/html" id="toolbar">
-    <shiro:hasPermission name="source:fixed:delete">
+    <shiro:hasPermission name="source:biomass:delete">
         <a class="layui-btn layui-btn-blue" lay-event="add"><i class="layui-icon layui-icon-add-circle"></i>新增</a>
     </shiro:hasPermission>
 </script>
 <script type="text/html" id="column-toolbar">
-    <shiro:hasPermission name="source:fixed:delete">
+    <shiro:hasPermission name="source:biomass:delete">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     </shiro:hasPermission>
-    <shiro:hasPermission name="source:fixed:delete">
+    <shiro:hasPermission name="source:biomass:delete">
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </shiro:hasPermission>
 </script>
@@ -70,19 +70,16 @@
             ,form = layui.form //form表单
             ,element = layui.element
         table.render({
-            elem: '#coal-tab'
-            , url: '/source/fixed/coal/list'
+            elem: '#dustLoad-tab'
+            , url: '/source/dust/dustLoad/list'
             , page: true
             , toolbar: '#toolbar'
             , cols: [
                 [
-                    {field: 'year',sort:true, title: '年份'}
-                    , {field: 'cityName', title: '城市'}
+                    {field: 'year', title: '年份'}
                     , {field: 'countyName', title: '区县'}
-                    , {field: 'activityLevel', title: '活动水平'}
-                    , {field: 'activityLevelNum', title: '活动水平数量'}
-                    , {field: 'fuelMeteringUnit', title: '活动水平单位'}
-                    , {field: 'sourceDescription', title: '基本信息'}
+                    , {field: 'companyName', title: '工厂名称'}
+                    , {field: 'sccDescribe', title: 'SCC信息描述'}
                     , {field: 'pm25Emission', title: 'PM2.5'}
                     , {field: 'pm10Emission', title: 'PM10'}
                     , {field: 'coEmission', title: 'CO'}
@@ -120,18 +117,18 @@
         });
         function edit(obj) {
             var data = obj.data;
-            var url = '/source/fixed/coal/' + data.id;
-            openTab('编辑-散煤',url);
+            var url = '/source/dust/dustLoad/' + data.id;
+            openTab('编辑-堆场装卸扬尘源',url);
         }
         function add(obj) {
-            var url = '/source/fixed/coal/add';
-            openTab('新增-散煤',url);
+            var url = '/source/dust/dustLoad/add';
+            openTab('新增-堆场装卸扬尘源',url);
         }
         function del(obj) {
             layer.confirm("确定删除吗?", {icon: 3, title: '提示'},
                 function (index) {// 确定回调
                     var id = obj.data.id;
-                    $.post('/source/fixed/coal/' + id, {_method: "DELETE"}, function (data) {
+                    $.post('/source/dust/dustLoad/' + id, {_method: "DELETE"}, function (data) {
                         layer.close(index);
                         handlerResult(data, deleteDone);
                     });
@@ -145,7 +142,7 @@
             refresh();
         }
         function refresh() {
-            table.reload("coal-tab");
+            table.reload("dustLoad-tab");
         }
         //监听提交 lay-filter="search"
         form.on('submit(search)', function(data){
@@ -154,7 +151,7 @@
                 cityCode=formData.cityCode,
                 year=formData.year
             //执行重载
-            table.reload('coal-tab',{
+            table.reload('dustLoad-tab',{
                 where: {
                     countyId: countyId,
                     cityCode:cityCode,

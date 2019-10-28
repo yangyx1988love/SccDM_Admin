@@ -2,8 +2,10 @@ package nankai.xl.business.service;
 
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.SccVo;
+import nankai.xl.system.model.Adminuser;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface SelectCommonService {
@@ -15,6 +17,11 @@ public interface SelectCommonService {
     public City getCityByCode(String cityCode);
     City getCityByCountyId(String countyId);
     List<City> getCitysByProvinceCode(String provinceCode);
+    //根据用于级别和所在部门，选择下拉框中展示的城市、区县信息
+    List<City> getCitysByUser(Adminuser user);
+    List<County> getCountysByUser(Adminuser user);
+    //根据用户选择源管理中该城市或者区县的源
+    Map<String,String> getCityAndCountyCodeByuser(Adminuser user);
     public List<Status> getAllStatus();
     Status getStatusById(Integer id);
     public List<Industry> getIndustrysByCode(String industryCode);

@@ -10,13 +10,17 @@ import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.annotation.RefreshFilterChain;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import nankai.xl.system.model.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -25,13 +29,24 @@ public class ScatCoalController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
-
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
     private String scc1="10";
     private String scc2="05";
     @OperationLog("源管理界面-散煤")
     @GetMapping("/fixed/coal")
     public String process(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/fixed/coal-list";
     }
@@ -41,6 +56,11 @@ public class ScatCoalController {
     public PageResultBean<ScatteredCoalVo> getCoalList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                  @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        ScatteredCoalVo scatteredCoalVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (scatteredCoalVo.getCityCode()==null&&scatteredCoalVo.getCountyId()==null){
+            scatteredCoalVo.setCityCode(cityCode);
+            scatteredCoalVo.setCountyId(countyCode);
+        }
         List<ScatteredCoalVo> results= sourceService.getByScatteredCoals(scatteredCoalVo,page, limit);
         PageInfo<ScatteredCoalVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -62,6 +82,8 @@ public class ScatCoalController {
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/fixed/coal-add";
     }
     @OperationLog("散煤-编辑")
@@ -78,10 +100,8 @@ public class ScatCoalController {
         scc4.setScc3(scatteredCoalVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(scatteredCoalVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(scatteredCoalVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("scatteredCoalVo", scatteredCoalVo);

@@ -62,25 +62,9 @@ public class FactoryAuthController {
     public String auth(Model model) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (user.getDeptId()!=null){
-            Dept dept=deptService.selectByPrimaryKey(user.getDeptId());
-            List<City> citys=new ArrayList<>();
-            List<County> countys=new ArrayList<>();
-            if (dept.getDeptLevel()==1){
-                citys=selectCommonService.getAllCitys();
-                countys=selectCommonService.getAllCountys();
-            }
-            if (dept.getDeptLevel()==2){
-                City city=selectCommonService.getCityByCode(dept.getDeptId());
-                citys.add(city);
-                countys=selectCommonService.getCountysByCityCode(city.getCityCode());
-            }
-            if (dept.getDeptLevel()==3){
-                County county=selectCommonService.getCountyById(dept.getDeptId());
-                countys.add(county);
-            }
             List<Status> Statuss=selectCommonService.getAllStatus();
-            model.addAttribute("countys", countys);
-            model.addAttribute("citys", citys);
+            model.addAttribute("countys", selectCommonService.getCountysByUser(user));
+            model.addAttribute("citys", selectCommonService.getCitysByUser(user));
             model.addAttribute("Statuss", Statuss);
         }else {
             throw new IllegalArgumentException("用户赋予的部门不能为空！");
@@ -123,7 +107,6 @@ public class FactoryAuthController {
         Factory factory=factoryService.getFactoryById(factoryId);
         if (factory!=null){
             String cityCode=factory.getCountyCity();
-
             List<City> citys=selectCommonService.getAllCitys();
             List<County> countys=selectCommonService.getCountysByCityCode(cityCode);
             List<String> statusdecs=new ArrayList<>();

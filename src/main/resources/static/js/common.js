@@ -190,28 +190,28 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
         }
     });
     //加载城市
-    $(function(){
-        $.ajax({
-            url: '/factoryAuth/seleCity',
-            data: {provinceCode: '65'},//发送的参数
-            type: "post",
-            success: function (datas) {
-                if(datas.length>0){
-                    $.each(datas, function(key, val) {
-                        var option1 = $("<option>").val(val.cityCode).text(val.cityName);
-                        $("select[name=cityCode]").append(option1);
-                        form.render('select');
-                    });
-                }else{
-                    form.render('select');
-                }
-            },
-            error:function(){
-                //失败执行的方法
-                layer.msg("城市信息加载失败!", {icon: 6});
-            }
-        })
-    });
+    // $(function(){
+    //     $.ajax({
+    //         url: '/factoryAuth/seleCity',
+    //         data: {provinceCode: '65'},//发送的参数
+    //         type: "post",
+    //         success: function (datas) {
+    //             if(datas.length>0){
+    //                 $.each(datas, function(key, val) {
+    //                     var option1 = $("<option>").val(val.cityCode).text(val.cityName);
+    //                     $("select[name=cityCode]").append(option1);
+    //                     form.render('select');
+    //                 });
+    //             }else{
+    //                 form.render('select');
+    //             }
+    //         },
+    //         error:function(){
+    //             //失败执行的方法
+    //             layer.msg("城市信息加载失败!", {icon: 6});
+    //         }
+    //     })
+    // });
     //城市区县级联选择
     form.on('select(cityCode)',function(data){
         var cityCode=data.value;

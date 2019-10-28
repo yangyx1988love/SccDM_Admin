@@ -4,10 +4,13 @@ import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.SccVo;
 import nankai.xl.business.service.SelectCommonService;
+import nankai.xl.system.mapper.DeptMapper;
+import nankai.xl.system.model.Adminuser;
+import nankai.xl.system.model.Dept;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SelectCommonServiceImpl implements SelectCommonService {
@@ -37,6 +40,8 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     private SulphurremoveMapper sulphurremoveMapper;
     @Resource
     private CompanyMapper companyMapper;
+    @Resource
+    private DeptMapper deptMapper;
     @Override
     public List<County> getAllCountys() {
         return countyMapper.selectAllCountys();
@@ -70,6 +75,69 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Override
     public List<City> getCitysByProvinceCode(String provinceCode) {
         return cityMapper.selectCitysByProvinceCode(provinceCode);
+    }
+
+    @Override
+    public List<City> getCitysByUser(Adminuser user) {
+        List<City> citys=new ArrayList<>();
+        if (user.getDeptId()!=null){
+            Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+            if (dept.getDeptLevel()==1){
+                citys=cityMapper.selectAllCitys();
+            }
+            if (dept.getDeptLevel()==2){
+                City city=cityMapper.selectCityByCode(dept.getDeptId());
+                citys.add(city);
+            }
+        }else {
+            throw new IllegalArgumentException("用户赋予的部门不能为空！");
+        }
+        return citys;
+    }
+
+    @Override
+    public List<County> getCountysByUser(Adminuser user) {
+        List<County> countys=new ArrayList<>();
+        if (user.getDeptId()!=null){
+            Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+            if (dept.getDeptLevel()==1){
+                countys=countyMapper.selectAllCountys();
+            }
+            if (dept.getDeptLevel()==2){
+                City city=cityMapper.selectCityByCode(dept.getDeptId());
+                countys=countyMapper.selectCountysByCityCode(city.getCityCode());
+            }
+            if (dept.getDeptLevel()==3){
+                County county=countyMapper.selectCountyById(dept.getDeptId());
+                countys.add(county);
+            }
+        }else {
+            throw new IllegalArgumentException("用户赋予的部门不能为空！");
+        }
+        return countys;
+    }
+
+    @Override
+    public Map<String, String> getCityAndCountyCodeByuser(Adminuser user) {
+        String cityCode=null;
+        String countyCode=null;
+        if (user.getDeptId()!=null){
+            Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+            if (dept.getDeptLevel()==2){
+                City city=cityMapper.selectCityByCode(dept.getDeptId());
+                cityCode=city.getCityCode();
+            }
+            if (dept.getDeptLevel()==3){
+                County county=countyMapper.selectCountyById(dept.getDeptId());
+                countyCode=county.getCountyId();
+            }
+        }else {
+            throw new IllegalArgumentException("用户赋予的部门不能为空！");
+        }
+        Map<String, String> map=new HashMap<>();
+        map.put("cityCode",cityCode);
+        map.put("countyCode",countyCode);
+        return map;
     }
 
     @Override

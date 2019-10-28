@@ -566,13 +566,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateConById(Xjconstructdust xjconstructdust) {
-        return xjconstructdustMapper.updateById(xjconstructdust);
-    }
-
-    @Override
-    public int insertOrUpdateCon(Xjconstructdust xjconstructdust) {
-        return xjconstructdustMapper.insertOrUpdate(xjconstructdust);
+    public int insertOrUpdateCon(XjconstructdustVo xjconstructdustVo,boolean isCul) {
+        Xjconstructdust xjconstructdus=xjconstructdustVo;
+        if (!isCul){
+//            Scc scc=getSccFactor(roadPave.getScccode());
+//            Double activity=roadPave.getAsphalt();
+//            roadPave.setPm25Emission(activity*scc.getPm25());
+//            roadPave.setPm10Emission(activity*scc.getPm10());
+//            roadPave.setCoEmission(activity*scc.getCo());
+//            roadPave.setVocEmission(activity*scc.getVocs());
+//            roadPave.setSo2Emission(activity*scc.getSo2());
+//            roadPave.setNoxEmission(activity*scc.getNox());
+//            roadPave.setNh3Emission(activity*scc.getNh3());
+//            roadPave.setOcEmission(activity*scc.getOc());
+//            roadPave.setBcEmission(activity*scc.getBc());
+        }
+        if(xjconstructdus.getId()!=null){
+            xjconstructdustMapper.updateById(xjconstructdus);
+        }else {
+            xjconstructdustMapper.insertSelective(xjconstructdus);
+        }
+        return 1;
     }
 
     @Override
@@ -592,13 +606,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateDustLoadById(XjcydustLoad xjcydustLoad) {
-        return xjcydustLoadMapper.updateById(xjcydustLoad);
-    }
-
-    @Override
-    public int insertOrUpdateDustLoad(XjcydustLoad xjcydustLoad) {
-        return xjcydustLoadMapper.insertOrUpdate(xjcydustLoad);
+    public int insertOrUpdateDustLoad(XjcydustLoadVo xjcydustLoadVo,boolean isCul) {
+        XjcydustLoad xjcydustLoad=xjcydustLoadVo;
+        if (!isCul){
+//            Scc scc=getSccFactor(roadPave.getScccode());
+//            Double activity=roadPave.getAsphalt();
+//            roadPave.setPm25Emission(activity*scc.getPm25());
+//            roadPave.setPm10Emission(activity*scc.getPm10());
+//            roadPave.setCoEmission(activity*scc.getCo());
+//            roadPave.setVocEmission(activity*scc.getVocs());
+//            roadPave.setSo2Emission(activity*scc.getSo2());
+//            roadPave.setNoxEmission(activity*scc.getNox());
+//            roadPave.setNh3Emission(activity*scc.getNh3());
+//            roadPave.setOcEmission(activity*scc.getOc());
+//            roadPave.setBcEmission(activity*scc.getBc());
+        }
+        if(xjcydustLoad.getId()!=null){
+            xjcydustLoadMapper.updateById(xjcydustLoad);
+        }else {
+            xjcydustLoadMapper.insertSelective(xjcydustLoad);
+        }
+        return 1;
     }
 
     @Override
@@ -618,13 +646,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateDustStackById(XjcydustStack xjcydustStack) {
-        return xjcydustStackMapper.updateById(xjcydustStack);
-    }
-
-    @Override
-    public int insertOrUpdateDustStack(XjcydustStack xjcydustStack) {
-        return xjcydustStackMapper.insertOrUpdate(xjcydustStack);
+    public int insertOrUpdateDustStack(XjcydustStackVo xjcydustStackVo,boolean isCul) {
+        XjcydustStack xjcydustStack=xjcydustStackVo;
+        if (!isCul){
+//            Scc scc=getSccFactor(roadPave.getScccode());
+//            Double activity=roadPave.getAsphalt();
+//            roadPave.setPm25Emission(activity*scc.getPm25());
+//            roadPave.setPm10Emission(activity*scc.getPm10());
+//            roadPave.setCoEmission(activity*scc.getCo());
+//            roadPave.setVocEmission(activity*scc.getVocs());
+//            roadPave.setSo2Emission(activity*scc.getSo2());
+//            roadPave.setNoxEmission(activity*scc.getNox());
+//            roadPave.setNh3Emission(activity*scc.getNh3());
+//            roadPave.setOcEmission(activity*scc.getOc());
+//            roadPave.setBcEmission(activity*scc.getBc());
+        }
+        if(xjcydustStack.getId()!=null){
+            xjcydustStackMapper.updateById(xjcydustStack);
+        }else {
+            xjcydustStackMapper.insertSelective(xjcydustStack);
+        }
+        return 1;
     }
 
     @Override
@@ -644,13 +686,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateRoadDustById(Xjroaddust xjroaddust) {
-        return xjroaddustMapper.updateById(xjroaddust);
-    }
-
-    @Override
-    public int insertOrUpdateRoadDust(Xjroaddust xjroaddust) {
-        return xjroaddustMapper.insertOrUpdate(xjroaddust);
+    public int insertOrUpdateRoadDust(XjroaddustVo xjroaddustVo,boolean isCul) {
+        Xjroaddust xjroaddust=xjroaddustVo;
+        if (!isCul){
+//            Scc scc=getSccFactor(roadPave.getScccode());
+//            Double activity=roadPave.getAsphalt();
+//            roadPave.setPm25Emission(activity*scc.getPm25());
+//            roadPave.setPm10Emission(activity*scc.getPm10());
+//            roadPave.setCoEmission(activity*scc.getCo());
+//            roadPave.setVocEmission(activity*scc.getVocs());
+//            roadPave.setSo2Emission(activity*scc.getSo2());
+//            roadPave.setNoxEmission(activity*scc.getNox());
+//            roadPave.setNh3Emission(activity*scc.getNh3());
+//            roadPave.setOcEmission(activity*scc.getOc());
+//            roadPave.setBcEmission(activity*scc.getBc());
+        }
+        if(xjroaddust.getRdId()!=null){
+            xjroaddustMapper.updateById(xjroaddust);
+        }else {
+            xjroaddustMapper.insertSelective(xjroaddust);
+        }
+        return 1;
     }
 
     @Override
@@ -670,13 +726,27 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
-    public int updateSoilDustById(Xjsoildust xjsoildust) {
-        return xjsoildustMapper.updateById(xjsoildust);
-    }
-
-    @Override
-    public int insertOrUpdateSoilDust(Xjsoildust xjsoildust) {
-        return xjsoildustMapper.insertOrUpdate(xjsoildust);
+    public int insertOrUpdateSoilDust(XjsoildustVo xjsoildustVo,boolean isCul) {
+        Xjsoildust xjsoildust=xjsoildustVo;
+        if (!isCul){
+//            Scc scc=getSccFactor(roadPave.getScccode());
+//            Double activity=roadPave.getAsphalt();
+//            roadPave.setPm25Emission(activity*scc.getPm25());
+//            roadPave.setPm10Emission(activity*scc.getPm10());
+//            roadPave.setCoEmission(activity*scc.getCo());
+//            roadPave.setVocEmission(activity*scc.getVocs());
+//            roadPave.setSo2Emission(activity*scc.getSo2());
+//            roadPave.setNoxEmission(activity*scc.getNox());
+//            roadPave.setNh3Emission(activity*scc.getNh3());
+//            roadPave.setOcEmission(activity*scc.getOc());
+//            roadPave.setBcEmission(activity*scc.getBc());
+        }
+        if(xjsoildust.getSdId()!=null){
+            xjsoildustMapper.updateById(xjsoildust);
+        }else {
+            xjsoildustMapper.insertSelective(xjsoildust);
+        }
+        return 1;
     }
 
     @Override

@@ -8,12 +8,16 @@ import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -22,6 +26,12 @@ public class ProcessController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
 
     private String scc1="11";
 
@@ -30,20 +40,33 @@ public class ProcessController {
     @OperationLog("工艺过程源-石化有组织废气排放")
     @GetMapping("/process/shGas")
     public String shGas(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/process/shGas/shGas-list";
     }
-    @OperationLog("工艺过程源-石化有组织废气排放-列表")
+    @OperationLog("石化有组织废气排放-列表")
     @GetMapping("/process/shGas/list")
     @ResponseBody
     public PageResultBean<ShGasemissionVo> shGasList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                      ShGasemissionVo shGasemissionVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (shGasemissionVo.getCityCode()==null&&shGasemissionVo.getCountyId()==null){
+            shGasemissionVo.setCityCode(cityCode);
+            shGasemissionVo.setCountyId(countyCode);
+        }
         List<ShGasemissionVo> results= sourceService.getShGasByShGas(shGasemissionVo,page, limit);
         PageInfo<ShGasemissionVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
 
-    @OperationLog("工艺过程源-石化有组织废气排放-删除")
+    @OperationLog("石化有组织废气排放-删除")
     @DeleteMapping("/process/shGas/{id}")
     @ResponseBody
     public ResultBean shGasDelete(@PathVariable("id") Integer id) {
@@ -65,10 +88,8 @@ public class ProcessController {
         scc4.setScc3(shGasemissionVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<County> countys=selectCommonService.getCountysByCityCode(shGasemissionVo.getCityCode());
-        List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(shGasemissionVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("shGasemissionVo", shGasemissionVo);
@@ -84,6 +105,8 @@ public class ProcessController {
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", scc2);
         model.addAttribute("scc3s", scc3s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/process/shGas/shGas-add";
     }
     @OperationLog("废水无组织排放-编辑-保存")
@@ -100,24 +123,33 @@ public class ProcessController {
     @OperationLog("工艺过程源-装置密封点")
     @GetMapping("/process/shSeal")
     public String shSeal(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
         model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/process/shSeal/shSeal-list";
     }
-    @OperationLog("工艺过程源-装置密封点-列表")
+    @OperationLog("装置密封点-列表")
     @GetMapping("/process/shSeal/list")
     @ResponseBody
     public PageResultBean<ShSealpointVo> shSealList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                     @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                     ShSealpointVo shSealpointVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (shSealpointVo.getCityCode()==null&&shSealpointVo.getCountyId()==null){
+            shSealpointVo.setCityCode(cityCode);
+            shSealpointVo.setCountyId(countyCode);
+        }
         List<ShSealpointVo> results= sourceService.getShSealsByExample(shSealpointVo,page, limit);
         PageInfo<ShSealpointVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
 
-    @OperationLog("工艺过程源-装置密封点-删除")
+    @OperationLog("装置密封点-删除")
     @DeleteMapping("/process/shSeal/{id}")
     @ResponseBody
     public ResultBean shSealDelete(@PathVariable("id") Integer id) {
@@ -135,10 +167,8 @@ public class ProcessController {
         scc4.setScc3(shSealpointVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<County> countys=selectCommonService.getCountysByCityCode(shSealpointVo.getCityCode());
-        List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(shSealpointVo.getCityCode()));
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("shSealpointVo", shSealpointVo);
         return "source/process/shSeal/shSeal-update";
@@ -152,6 +182,8 @@ public class ProcessController {
         scc4.setScc3("170");
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/process/shSeal/shSeal-add";
     }
     @OperationLog("装置密封点-编辑-保存")
@@ -168,21 +200,32 @@ public class ProcessController {
     @OperationLog("工艺过程源-废水无组织排放")
     @GetMapping("/process/shEff")
     public String shEff(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/process/shEff/shEff-list";
     }
-    @OperationLog("工艺过程源-废水无组织排放-列表")
+    @OperationLog("废水无组织排放-列表")
     @GetMapping("/process/shEff/list")
     @ResponseBody
     public PageResultBean<ShEffluentemissionVo> shEffList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                           @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                           ShEffluentemissionVo shEffluentemissionVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (shEffluentemissionVo.getCityCode()==null&&shEffluentemissionVo.getCountyId()==null){
+            shEffluentemissionVo.setCityCode(cityCode);
+            shEffluentemissionVo.setCountyId(countyCode);
+        }
         List<ShEffluentemissionVo> results= sourceService.getShEffsByExample(shEffluentemissionVo,page, limit);
         PageInfo<ShEffluentemissionVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
-    @OperationLog("工艺过程源-废水无组织排放-删除")
+    @OperationLog("废水无组织排放-删除")
     @DeleteMapping("/process/shEff/{id}")
     @ResponseBody
     public ResultBean shEffDelete(@PathVariable("id") Integer id) {
@@ -198,10 +241,8 @@ public class ProcessController {
         scc4.setScc2("17");
         scc4.setScc3("140");
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
-        List<County> countys=selectCommonService.getCountysByCityCode(shEffluentemissionVo.getCityCode());
-        List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(shEffluentemissionVo.getCityCode()));
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("shEffluentemissionVo", shEffluentemissionVo);
         return "source/process/shEff/shEff-update";
@@ -215,6 +256,8 @@ public class ProcessController {
         scc4.setScc3("140");
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/process/shEff/shEff-add";
     }
     @OperationLog("废水无组织排放-编辑-保存")
@@ -231,24 +274,33 @@ public class ProcessController {
     @OperationLog("工艺过程源-VOC处理装置")
     @GetMapping("/process/shVoc")
     public String shVoc(Model model) {
-        List<County> countys=selectCommonService.getAllCountys();
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
         model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/process/shVoc/shVoc-list";
     }
-    @OperationLog("工艺过程源-VOC处理装置-列表")
+    @OperationLog("VOC处理装置-列表")
     @GetMapping("/process/shVoc/list")
     @ResponseBody
     public PageResultBean<ShVocdeviceeffiVo> shVocList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        ShVocdeviceeffiVo shVocdeviceeffiVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (shVocdeviceeffiVo.getCityCode()==null&&shVocdeviceeffiVo.getCountyId()==null){
+            shVocdeviceeffiVo.setCityCode(cityCode);
+            shVocdeviceeffiVo.setCountyId(countyCode);
+        }
         List<ShVocdeviceeffiVo> results= sourceService.getShVocsByExample(shVocdeviceeffiVo,page, limit);
         PageInfo<ShVocdeviceeffiVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
 
-    @OperationLog("工艺过程源-VOC处理装置-删除")
+    @OperationLog("VOC处理装置-删除")
     @DeleteMapping("/process/shVoc/{id}")
     @ResponseBody
     public ResultBean shVocDelete(@PathVariable("id") Integer id) {
@@ -259,16 +311,16 @@ public class ProcessController {
     @GetMapping("/process/shVoc/{id}")
     public String shVocEdit(@PathVariable("id") Integer id, Model model) {
         ShVocdeviceeffiVo shVocdeviceeffiVo=sourceService.getShVocById(id);
-        List<County> countys=selectCommonService.getCountysByCityCode(shVocdeviceeffiVo.getCityCode());
-        List<City> citys=selectCommonService.getAllCitys();
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(shVocdeviceeffiVo.getCityCode()));
         model.addAttribute("shVocdeviceeffiVo", shVocdeviceeffiVo);
         return "source/process/shVoc/shVoc-update";
     }
     @OperationLog("VOC处理装置-新增")
     @GetMapping("/process/shVoc/add")
     public String shVocAdd(Model model) {
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/process/shVoc/shVoc-add";
     }
     @OperationLog("VOC处理装置-编辑-保存")

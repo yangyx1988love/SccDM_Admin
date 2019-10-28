@@ -29,25 +29,11 @@ public void after() throws Exception {
 @Test
 public void testGetFactoryListByQuery() throws Exception {
 
-    @OperationLog("小型通用机械-新增")
-    @GetMapping("/nonRoad/smallMachinery/add")
-    public String smallMachineryAdd(Model model) {
-        String scc2="02";
-        Scc3 scc3=new Scc3();
-        scc3.setScc1(scc1);
-        scc3.setScc2(scc2);
-        List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
-
-        model.addAttribute("scc1", scc1);
-        model.addAttribute("scc2", scc2);
-        model.addAttribute("scc3s", scc3s);
-        return "source/nonRoad/smallMachinery/smallMachinery-add";
-    }
-    @OperationLog("小型通用机械-编辑")
-    @GetMapping("/nonRoad/smallMachinery/{id}")
-    public String smallMachineryEdit(@PathVariable("id") Integer id, Model model) {
-        String scc2="02";
-        smallMachinerysmallMachineryVo smallMachinerysmallMachineryVo=nonRoadService.getsmallMachineryById(id);
+    @OperationLog("堆场风蚀扬尘源-编辑")
+    @GetMapping("/dust/dustStack/{id}")
+    public String dustStackEdit(@PathVariable("id") Integer id, Model model) {
+        String scc2="01";
+        XjdustStackVo xjdustStackVo=sourceService.getdustStackById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -55,26 +41,39 @@ public void testGetFactoryListByQuery() throws Exception {
         Scc4 scc4=new Scc4();
         scc4.setScc1(scc1);
         scc4.setScc2(scc2);
-        scc4.setScc3(smallMachinerysmallMachineryVo.getScc3());
+        scc4.setScc3(xjdustStackVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(smallMachinerysmallMachineryVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(xjdustStackVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
-        model.addAttribute("smallMachinerysmallMachineryVo", smallMachinerysmallMachineryVo);
-        return "source/nonRoad/smallMachinery/smallMachinery-update";
+        model.addAttribute("xjdustStackVo", xjdustStackVo);
+        return "source/dust/dustStack-update";
     }
-    @OperationLog("小型通用机械-编辑-保存")
-    @PutMapping("/nonRoad/smallMachinery/edit")
+    @OperationLog("堆场风蚀扬尘源-新增")
+    @GetMapping("/dust/dustStack/add")
+    public String dustStackAdd(Model model) {
+        String scc2="01";
+        Scc3 scc3=new Scc3();
+        scc3.setScc1(scc1);
+        scc3.setScc2(scc2);
+        List<Scc3> scc3s=selectCommonService.getScc3sByScc3(scc3);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
+        model.addAttribute("scc1", scc1);
+        model.addAttribute("scc2", scc2);
+        model.addAttribute("scc3s", scc3s);
+        return "source/dust/dustStack-add";
+    }
+    @OperationLog("堆场风蚀扬尘源-编辑-保存")
+    @PutMapping("/dust/dustStack/edit")
     @ResponseBody
-    public ResultBean smallMachineryInsertOrUpdate(boolean isCul,smallMachinerysmallMachineryVo smallMachinerysmallMachineryVo) {
-        smallMachinerysmallMachineryVo.setSccCode(scc1+"02"+smallMachinerysmallMachineryVo.getScc3()+smallMachinerysmallMachineryVo.getScc4());
-        SccVo sccVo=selectCommonService.selectBySccCode(smallMachinerysmallMachineryVo.getSccCode());
-        smallMachinerysmallMachineryVo.setSourceDescrip(sccVo.getDescription());
-        nonRoadService.insertOrUpdate(smallMachinerysmallMachineryVo,isCul);
+    public ResultBean dustStackInsertOrUpdate(boolean isCul,XjdustStackVo xjdustStackVo)  {
+        xjdustStackVo.setScccode(scc1+"01"+xjdustStackVo.getScc3()+xjdustStackVo.getScc4());
+        SccVo sccVo=selectCommonService.selectBySccCode(xjdustStackVo.getScccode());
+        xjdustStackVo.setSccDescribe(sccVo.getDescription());
+        sourceService.insertOrUpdatedustStack(xjdustStackVo,isCul);
         return ResultBean.success();
     }
 

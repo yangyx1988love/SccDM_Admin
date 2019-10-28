@@ -74,32 +74,27 @@ public interface SourceService {
     List<XjconstructdustVo> getConsByExample(XjconstructdustVo xjconstructdustVo,int page, int limit);
     XjconstructdustVo getConById(Integer id);
     int deleteConById(Integer id);
-    int updateConById(Xjconstructdust xjconstructdust);
-    int insertOrUpdateCon(Xjconstructdust xjconstructdust);
+    int insertOrUpdateCon(XjconstructdustVo xjconstructdustVo,boolean isCul);
     //堆场装卸扬尘源
     List<XjcydustLoadVo> getDustLoadsByExample(XjcydustLoadVo xjcydustLoadVo,int page, int limit);
     XjcydustLoadVo getDustLoadById(Integer id);
     int deleteDustLoadById(Integer id);
-    int updateDustLoadById(XjcydustLoad xjcydustLoad);
-    int insertOrUpdateDustLoad(XjcydustLoad xjcydustLoad);
+    int insertOrUpdateDustLoad(XjcydustLoadVo xjcydustLoadVo,boolean isCul);
     //堆场风蚀扬尘源
     List<XjcydustStackVo> getDustStacksByExample(XjcydustStackVo xjcydustStackVo,int page, int limit);
     XjcydustStackVo getDustStackById(Integer id);
     int deleteDustStackById(Integer id);
-    int updateDustStackById(XjcydustStack xjcydustStack);
-    int insertOrUpdateDustStack(XjcydustStack xjcydustStack);
+    int insertOrUpdateDustStack(XjcydustStackVo xjcydustStackVo,boolean isCul);
     //道路扬尘源
     List<XjroaddustVo> getRoadDustsByExample(XjroaddustVo xjroaddustVo,int page, int limit);
     XjroaddustVo getRoadDustById(Integer id);
     int deleteRoadDustById(Integer id);
-    int updateRoadDustById(Xjroaddust xjroaddust);
-    int insertOrUpdateRoadDust(Xjroaddust xjroaddust);
+    int insertOrUpdateRoadDust(XjroaddustVo xjroaddustVo,boolean isCul);
     //土壤扬尘源
     List<XjsoildustVo> getSoilDustsByExample(XjsoildustVo xjsoildustVo,int page, int limit);
     XjsoildustVo getSoilDustById(Integer id);
     int deleteSoilDustById(Integer id);
-    int updateSoilDustById(Xjsoildust xjsoildust);
-    int insertOrUpdateSoilDust(Xjsoildust xjsoildust);
+    int insertOrUpdateSoilDust(XjsoildustVo xjsoildustVo,boolean isCul);
     /*
         存储与运输源
     */

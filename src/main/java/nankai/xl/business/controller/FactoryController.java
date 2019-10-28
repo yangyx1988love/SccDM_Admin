@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/factory")
@@ -41,25 +42,9 @@ FactoryController {
     public String index(Model model) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (user.getDeptId()!=null){
-            Dept dept=deptService.selectByPrimaryKey(user.getDeptId());
-            List<City> citys=new ArrayList<>();
-            List<County> countys=new ArrayList<>();
-            if (dept.getDeptLevel()==1){
-                citys=selectCommonService.getAllCitys();
-                countys=selectCommonService.getAllCountys();
-            }
-            if (dept.getDeptLevel()==2){
-                City city=selectCommonService.getCityByCode(dept.getDeptId());
-                citys.add(city);
-                countys=selectCommonService.getCountysByCityCode(city.getCityCode());
-            }
-            if (dept.getDeptLevel()==3){
-                County county=selectCommonService.getCountyById(dept.getDeptId());
-                countys.add(county);
-            }
             List<Status> Statuss=selectCommonService.getAllStatus();
-            model.addAttribute("countys", countys);
-            model.addAttribute("citys", citys);
+            model.addAttribute("countys", selectCommonService.getCountysByUser(user));
+            model.addAttribute("citys", selectCommonService.getCitysByUser(user));
             model.addAttribute("Statuss", Statuss);
         }else {
             throw new IllegalArgumentException("用户赋予的部门不能为空！");

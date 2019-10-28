@@ -8,6 +8,8 @@ import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -23,11 +26,25 @@ public class FarmController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
 
     private  String scc1="17";
     @OperationLog("农牧源-土壤本底")
     @GetMapping("/farm/baseSoil")
-    public String baseSoil() {
+    public String baseSoil(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/baseSoil/baseSoil-list";
     }
     @OperationLog("土壤本底-列表")
@@ -36,6 +53,11 @@ public class FarmController {
     public PageResultBean<BaseSoilVo> baseSoilList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                    @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                                BaseSoilVo baseSoilVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (baseSoilVo.getCityCode()==null&&baseSoilVo.getCountyId()==null){
+            baseSoilVo.setCityCode(cityCode);
+            baseSoilVo.setCountyId(countyCode);
+        }
         List<BaseSoilVo> results= sourceService.getBaseSoilsByExample(baseSoilVo,page, limit);
         PageInfo<BaseSoilVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -53,14 +75,12 @@ public class FarmController {
         BaseSoilVo baseSoilVo=sourceService.getBaseSoilById(id);
         baseSoilVo.setScc1(scc1);
         baseSoilVo.setScc2("04");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(baseSoilVo.getCityCode());
         List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"04");
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"04"+baseSoilVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(baseSoilVo.getCityCode()));
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
         model.addAttribute("baseSoilVo", baseSoilVo);
         return "source/farm/baseSoil/baseSoil-update";
     }
@@ -71,6 +91,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "04");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/baseSoil/baseSoil-add";
     }
     @OperationLog("土壤本底-编辑-保存")
@@ -85,7 +107,15 @@ public class FarmController {
     }
     @OperationLog("农牧源-畜禽集约化养殖")
     @GetMapping("/farm/coBreed")
-    public String coBreed() {
+    public String coBreed(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/coBreed/coBreed-list";
     }
     @OperationLog("畜禽集约化养殖-列表")
@@ -94,6 +124,11 @@ public class FarmController {
     public PageResultBean<CollectbreedingVo> coBreedList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                          @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                          CollectbreedingVo collectbreedingVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (collectbreedingVo.getCityCode()==null&&collectbreedingVo.getCountyId()==null){
+            collectbreedingVo.setCityCode(cityCode);
+            collectbreedingVo.setCountyId(countyCode);
+        }
         List<CollectbreedingVo> results= sourceService.getCoBreedsByExample(collectbreedingVo,page, limit);
         PageInfo<CollectbreedingVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -111,8 +146,6 @@ public class FarmController {
         CollectbreedingVo collectbreedingVo=sourceService.getCoBreedById(id);
         collectbreedingVo.setScc1(scc1);
         collectbreedingVo.setScc2("02");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(collectbreedingVo.getCityCode());
         List<Scc3> scc3List=selectCommonService.getScc3BySccCode12(scc1+"02");
         List<Scc3> scc3s=new ArrayList<>();
         for (Scc3 scc3:scc3List) {
@@ -124,7 +157,7 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(collectbreedingVo.getCityCode()));
         model.addAttribute("collectbreedingVo", collectbreedingVo);
         return "source/farm/coBreed/coBreed-update";
     }
@@ -141,6 +174,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "02");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/coBreed/coBreed-add";
     }
     @OperationLog("畜禽集约化养殖-编辑-保存")
@@ -155,7 +190,15 @@ public class FarmController {
     }
     @OperationLog("农牧源-农肥施用源")
     @GetMapping("/farm/fertil")
-    public String fertil() {
+    public String fertil(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/fertil/fertil-list";
     }
     @OperationLog("农肥施用源-列表")
@@ -164,6 +207,11 @@ public class FarmController {
     public PageResultBean<FertilizationVo> fertilList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                       @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                       FertilizationVo fertilizationVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (fertilizationVo.getCityCode()==null&&fertilizationVo.getCountyId()==null){
+            fertilizationVo.setCityCode(cityCode);
+            fertilizationVo.setCountyId(countyCode);
+        }
         List<FertilizationVo> results= sourceService.getFertilsByExample(fertilizationVo,page, limit);
         PageInfo<FertilizationVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -181,15 +229,13 @@ public class FarmController {
         FertilizationVo fertilizationVo=sourceService.getFertilById(id);
         fertilizationVo.setScc1(scc1);
         fertilizationVo.setScc2("01");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(fertilizationVo.getCityCode());
         List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"01");
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"01"+fertilizationVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys",selectCommonService.getCountysByCityCode(fertilizationVo.getCityCode()));
         model.addAttribute("fertilizationVo", fertilizationVo);
         return "source/farm/fertil/fertil-update";
     }
@@ -200,6 +246,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "01");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/fertil/fertil-add";
     }
     @OperationLog("农肥施用源-编辑-保存")
@@ -214,7 +262,15 @@ public class FarmController {
     }
     @OperationLog("农牧源-源畜牧散养源")
     @GetMapping("/farm/freeStock")
-    public String freeStock() {
+    public String freeStock(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/freeStock/freeStock-list";
     }
     @OperationLog("源畜牧散养源-列表")
@@ -223,6 +279,11 @@ public class FarmController {
     public PageResultBean<FreeStockbreedingVo> freeStockList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                              @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                              FreeStockbreedingVo freeStockbreedingVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (freeStockbreedingVo.getCityCode()==null&&freeStockbreedingVo.getCountyId()==null){
+            freeStockbreedingVo.setCityCode(cityCode);
+            freeStockbreedingVo.setCountyId(countyCode);
+        }
         List<FreeStockbreedingVo> results= sourceService.getFreeStocksByExample(freeStockbreedingVo,page, limit);
         PageInfo<FreeStockbreedingVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -240,8 +301,6 @@ public class FarmController {
         FreeStockbreedingVo freeStockbreedingVo=sourceService.getFreeStockById(id);
         freeStockbreedingVo.setScc1(scc1);
         freeStockbreedingVo.setScc2("02");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(freeStockbreedingVo.getCityCode());
         List<Scc3> scc3List=selectCommonService.getScc3BySccCode12(scc1+"02");
         List<Scc3> scc3s=new ArrayList<>();
         for (Scc3 scc3:scc3List) {
@@ -253,7 +312,7 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys",selectCommonService.getCountysByCityCode(freeStockbreedingVo.getCityCode()));
         model.addAttribute("freeStockbreedingVo", freeStockbreedingVo);
         return "source/farm/freeStock/freeStock-update";
     }
@@ -270,6 +329,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "02");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/freeStock/freeStock-add";
     }
     @OperationLog("源畜牧散养源-编辑-保存")
@@ -284,7 +345,15 @@ public class FarmController {
     }
     @OperationLog("农牧源-固氮植物源")
     @GetMapping("/farm/nPlant")
-    public String nPlant() {
+    public String nPlant(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/nPlant/nPlant-list";
     }
     @OperationLog("固氮植物源-列表")
@@ -293,6 +362,11 @@ public class FarmController {
     public PageResultBean<NPlantVo> nPlantList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                NPlantVo nPlantVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (nPlantVo.getCityCode()==null&&nPlantVo.getCountyId()==null){
+            nPlantVo.setCityCode(cityCode);
+            nPlantVo.setCountyId(countyCode);
+        }
         List<NPlantVo> results= sourceService.getNPlantsByExample(nPlantVo,page, limit);
         PageInfo<NPlantVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -310,14 +384,12 @@ public class FarmController {
         NPlantVo nPlantVo=sourceService.getNPlantById(id);
         nPlantVo.setScc1(scc1);
         nPlantVo.setScc2("05");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(nPlantVo.getCityCode());
         List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"05");
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"05"+nPlantVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(nPlantVo.getCityCode()));
         model.addAttribute("nPlantVo", nPlantVo);
         return "source/farm/nPlant/nPlant-update";
     }
@@ -328,6 +400,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "05");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/nPlant/nPlant-add";
     }
     @OperationLog("固氮植物源-编辑-保存")
@@ -342,7 +416,15 @@ public class FarmController {
     }
     @OperationLog("农牧源-农药施用")
     @GetMapping("/farm/pesticide")
-    public String pesticide() {
+    public String pesticide(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/pesticide/pesticide-list";
     }
     @OperationLog("农药施用-列表")
@@ -351,6 +433,11 @@ public class FarmController {
     public PageResultBean<PesticideVo> pesticideList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                      PesticideVo pesticideVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (pesticideVo.getCityCode()==null&&pesticideVo.getCountyId()==null){
+            pesticideVo.setCityCode(cityCode);
+            pesticideVo.setCountyId(countyCode);
+        }
         List<PesticideVo> results= sourceService.getPesticidesByExample(pesticideVo,page, limit);
         PageInfo<PesticideVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -368,14 +455,12 @@ public class FarmController {
         PesticideVo pesticideVo=sourceService.getPesticideById(id);
         pesticideVo.setScc1(scc1);
         pesticideVo.setScc2("03");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(pesticideVo.getCityCode());
         List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"03");
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"03"+pesticideVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(pesticideVo.getCityCode()));
         model.addAttribute("pesticideVo", pesticideVo);
         return "source/farm/pesticide/pesticide-update";
     }
@@ -386,6 +471,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "03");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/pesticide/pesticide-add";
     }
     @OperationLog("农药施用-编辑-保存")
@@ -400,7 +487,15 @@ public class FarmController {
     }
     @OperationLog("农牧源-秸秆堆肥源")
     @GetMapping("/farm/strawCompost")
-    public String strawCompost() {
+    public String strawCompost(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/strawCompost/strawCompost-list";
     }
     @OperationLog("农牧源-秸秆堆肥源-列表")
@@ -409,6 +504,11 @@ public class FarmController {
     public PageResultBean<StrawCompostVo> strawCompostList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                            @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                            StrawCompostVo strawCompostVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (strawCompostVo.getCityCode()==null&&strawCompostVo.getCountyId()==null){
+            strawCompostVo.setCityCode(cityCode);
+            strawCompostVo.setCountyId(countyCode);
+        }
         List<StrawCompostVo> results= sourceService.getStrawCompostsByExample(strawCompostVo,page, limit);
         PageInfo<StrawCompostVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -426,14 +526,12 @@ public class FarmController {
         StrawCompostVo strawCompostVo=sourceService.getStrawCompostById(id);
         strawCompostVo.setScc1(scc1);
         strawCompostVo.setScc2("06");
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(strawCompostVo.getCityCode());
         List<Scc3> scc3s=selectCommonService.getScc3BySccCode12(scc1+"06");
         List<Scc4> scc4s=selectCommonService.getScc4BySccCode123(scc1+"06"+strawCompostVo.getScc3());
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(strawCompostVo.getCityCode()));
         model.addAttribute("strawCompostVo", strawCompostVo);
         return "source/farm/strawCompost/strawCompost-update";
     }
@@ -444,6 +542,8 @@ public class FarmController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "06");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/farm/strawCompost/strawCompost-add";
     }
     @OperationLog("秸秆堆肥源-编辑-保存")
@@ -456,5 +556,4 @@ public class FarmController {
         sourceService.insertOrUpdateStrawCompost(strawCompostVo,isCul);
         return ResultBean.success();
     }
-
 }

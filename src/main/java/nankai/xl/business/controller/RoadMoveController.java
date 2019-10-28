@@ -9,12 +9,16 @@ import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -23,12 +27,25 @@ public class RoadMoveController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
-
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
     private String scc1="12";
 
     @OperationLog("道路移动源")
     @GetMapping("/road/roadMove")
     public String roadMove(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/road/roadMove-list";
     }
     @OperationLog("道路移动源-列表")
@@ -37,6 +54,11 @@ public class RoadMoveController {
     public PageResultBean<RoadMoveVo> roadMoveList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                    @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                    RoadMoveVo roadMoveVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (roadMoveVo.getCityCode()==null&&roadMoveVo.getCountyId()==null){
+            roadMoveVo.setCityCode(cityCode);
+            roadMoveVo.setCountyId(countyCode);
+        }
         List<RoadMoveVo> results= sourceService.getRoadMovesByExample(roadMoveVo,page, limit);
         PageInfo<RoadMoveVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -66,10 +88,8 @@ public class RoadMoveController {
         scc4.setScc3(roadMoveVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(roadMoveVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(roadMoveVo.getCityCode()));
         model.addAttribute("scc2s", scc2s);
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
@@ -84,6 +104,8 @@ public class RoadMoveController {
         List<Scc2> scc2s=selectCommonService.getScc2sByScc2(scc2);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2s", scc2s);
+        model.addAttribute("countys", countys);
+        model.addAttribute("citys", citys);
         return "source/road/roadMove-add";
     }
     @OperationLog("道路移动源-编辑-保存")

@@ -8,12 +8,16 @@ import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
+import nankai.xl.system.model.Adminuser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/source")
@@ -22,13 +26,25 @@ public class TransportController {
     private SelectCommonService selectCommonService;
     @Resource
     private SourceService sourceService;
+    //页面加载时，根据用户加载城市和区县
+    private List<City> citys=new ArrayList<>();
+    private List<County> countys=new ArrayList<>();
+    //根据用户显示该地区的源信息
+    private String cityCode=null;
+    private String countyCode=null;
 
     private String scc1="15";
 
     @OperationLog("存储运输源-加气站")
     @GetMapping("/transport/gas")
     public String gas(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/transport/gas/gas-list";
     }
@@ -38,6 +54,11 @@ public class TransportController {
     public PageResultBean<GasSourceVo> gasList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                GasSourceVo gasSourceVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (gasSourceVo.getCityCode()==null&&gasSourceVo.getCountyId()==null){
+            gasSourceVo.setCityCode(cityCode);
+            gasSourceVo.setCountyId(countyCode);
+        }
         List<GasSourceVo> results= sourceService.getGassByExample(gasSourceVo,page, limit);
         PageInfo<GasSourceVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -59,10 +80,8 @@ public class TransportController {
         scc4.setScc3(gasSourceVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(gasSourceVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(gasSourceVo.getCityCode()));
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("gasSourceVo", gasSourceVo);
         return "source/transport/gas/gas-update";
@@ -70,7 +89,7 @@ public class TransportController {
     @OperationLog("加气站-新增")
     @GetMapping("/transport/gas/add")
     public String gasAdd(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "23");
@@ -89,7 +108,13 @@ public class TransportController {
     @OperationLog("存储运输源-加油站")
     @GetMapping("/transport/oil")
     public String oil(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/transport/oil/oil-list";
     }
@@ -99,6 +124,11 @@ public class TransportController {
     public PageResultBean<OilSourceVo> oilList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                OilSourceVo oilSourceVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (oilSourceVo.getCityCode()==null&&oilSourceVo.getCountyId()==null){
+            oilSourceVo.setCityCode(cityCode);
+            oilSourceVo.setCountyId(countyCode);
+        }
         List<OilSourceVo> results= sourceService.getOilsByExample(oilSourceVo,page, limit);
         PageInfo<OilSourceVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -120,10 +150,8 @@ public class TransportController {
         scc4.setScc3(oilSourceVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(oilSourceVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(oilSourceVo.getCityCode()));
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("oilSourceVo", oilSourceVo);
         return "source/transport/oil/oil-update";
@@ -131,7 +159,7 @@ public class TransportController {
     @OperationLog("加油站-新增")
     @GetMapping("/transport/oil/add")
     public String oilAdd(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2", "23");
@@ -150,16 +178,27 @@ public class TransportController {
     @OperationLog("存储运输源-装载过程排放")
     @GetMapping("/transport/oilTran")
     public String oilTran(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/transport/oilTran/oilTran-list";
     }
-    @OperationLog("存储运输源-装载过程排放-列表")
+    @OperationLog("装载过程排放-列表")
     @GetMapping("/transport/oilTran/list")
     @ResponseBody
     public PageResultBean<OilTransportVo> oilTranList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                       OilTransportVo oilTransportVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (oilTransportVo.getCityCode()==null&&oilTransportVo.getCountyId()==null){
+            oilTransportVo.setCityCode(cityCode);
+            oilTransportVo.setCountyId(countyCode);
+        }
         List<OilTransportVo> results= sourceService.getOilTransByExample(oilTransportVo,page, limit);
         PageInfo<OilTransportVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -171,7 +210,7 @@ public class TransportController {
         sourceService.deleteOilTranById(id);
         return ResultBean.success();
     }
-    @OperationLog("存储运输源-编辑")
+    @OperationLog("装载过程排放-编辑")
     @GetMapping("/transport/oilTran/{id}")
     public String oilTranEdit(@PathVariable("id") Integer id, Model model) {
         OilTransportVo oilTransportVo=sourceService.getOilTranById(id);
@@ -186,24 +225,22 @@ public class TransportController {
         scc4.setScc3(oilTransportVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(oilTransportVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(oilTransportVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("oilTransportVo", oilTransportVo);
         return "source/transport/oilTran/oilTran-update";
     }
-    @OperationLog("存储运输源-新增")
+    @OperationLog("装载过程排放-新增")
     @GetMapping("/transport/oilTran/add")
     public String oilTranAdd(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         model.addAttribute("scc1", scc1);
         return "source/transport/oilTran/oilTran-add";
     }
-    @OperationLog("存储运输源-编辑-保存")
+    @OperationLog("装载过程排放-编辑-保存")
     @PutMapping("/transport/oilTran/edit")
     @ResponseBody
     public ResultBean oilTranInsertOrUpdate(boolean isCul,OilTransportVo oilTransportVo)  {
@@ -216,7 +253,13 @@ public class TransportController {
     @OperationLog("存储运输源-储罐存储")
     @GetMapping("/transport/tank")
     public String tank(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        Adminuser user = ShiroUtil.getCurrentUser();
+        countys=selectCommonService.getCountysByUser(user);
+        citys=selectCommonService.getCitysByUser(user);
+        Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
+        cityCode=map.get("cityCode");
+        countyCode=map.get("countyCode");
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         return "source/transport/tank/tank-list";
     }
@@ -226,6 +269,11 @@ public class TransportController {
     public PageResultBean<TankSourceVo> tankList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                  @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                  TankSourceVo tankSourceVo) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (tankSourceVo.getCityCode()==null&&tankSourceVo.getCountyId()==null){
+            tankSourceVo.setCityCode(cityCode);
+            tankSourceVo.setCountyId(countyCode);
+        }
         List<TankSourceVo> results= sourceService.getTanksByExample(tankSourceVo,page, limit);
         PageInfo<TankSourceVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
@@ -252,10 +300,8 @@ public class TransportController {
         scc4.setScc3(tankSourceVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<City> citys=selectCommonService.getAllCitys();
-        List<County> countys=selectCommonService.getCountysByCityCode(tankSourceVo.getCityCode());
         model.addAttribute("citys", citys);
-        model.addAttribute("countys", countys);
+        model.addAttribute("countys", selectCommonService.getCountysByCityCode(tankSourceVo.getCityCode()));
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("tankSourceVo", tankSourceVo);
@@ -264,7 +310,7 @@ public class TransportController {
     @OperationLog("储罐存储-新增")
     @GetMapping("/transport/tank/add")
     public String tankAdd(Model model) {
-        List<City> citys=selectCommonService.getAllCitys();
+        model.addAttribute("countys", countys);
         model.addAttribute("citys", citys);
         model.addAttribute("scc1", scc1);
         return "source/transport/tank/tank-add";
