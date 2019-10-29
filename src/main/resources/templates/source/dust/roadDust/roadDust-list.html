@@ -118,7 +118,7 @@
         });
         function edit(obj) {
             var data = obj.data;
-            var url = '/source/dust/roadDust/' + data.id;
+            var url = '/source/dust/roadDust/' + data.rdId;
             openTab('编辑-道路扬尘源',url);
         }
         function add(obj) {
@@ -128,7 +128,7 @@
         function del(obj) {
             layer.confirm("确定删除吗?", {icon: 3, title: '提示'},
                 function (index) {// 确定回调
-                    var id = obj.data.id;
+                    var id = obj.data.rdId;
                     $.post('/source/dust/roadDust/' + id, {_method: "DELETE"}, function (data) {
                         layer.close(index);
                         handlerResult(data, deleteDone);

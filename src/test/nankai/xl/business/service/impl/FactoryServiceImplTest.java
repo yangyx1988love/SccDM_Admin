@@ -11,7 +11,7 @@ import org.junit.After;
 * @since <pre>���� 8, 2029</pre> 
 * @version 1.0 
 */ 
-public class FactoryServiceImplTest { 
+public class FactoryServiceImplTest extends {
 
 @Before
 public void before() throws Exception { 

@@ -1532,14 +1532,6 @@ public class SourceServiceImpl implements SourceService {
         return 1;
     }
 
-    @Override
-    public int insertSource(List<String[]> lists, String childMenuId) {
-        if (childMenuId.equals("101000")){
-
-        }
-        return 0;
-    }
-
     public int insertOrUpdateCompany(Company company){
         if(company.getComId()!=null){
             companyMapper.updateById(company);

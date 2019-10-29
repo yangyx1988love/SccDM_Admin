@@ -70,7 +70,7 @@ public class ReadExcel {
                         Cell cell = row.getCell(cellNum);
                         String cellValue=getCellValue(cell);
                         if(cellValue.equals("")||cellValue.equals("非法字符")||cellValue.equals("未知类型")){
-                        	throw new Exception(file.getOriginalFilename()+"第"+cellNum+"行存在非法字符！");
+                        	throw new Exception(file.getOriginalFilename()+"第"+cellNum+"行存在空字符或者非法字符！如果为空数字补零，文字为“空”！");
                         }else{
                         	cells[cellNum] = cellValue;
                         }

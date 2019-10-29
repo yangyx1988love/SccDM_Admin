@@ -64,7 +64,20 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
     public static String parseDateToStr(final String format, final Date date) {
         return new SimpleDateFormat(format).format(date);
     }
-
+    /**
+     * 日期路径 即年/月/日 如2018/08/08
+     */
+    public static boolean checkYear (String str) {
+        SimpleDateFormat sd=new SimpleDateFormat("yyyy");
+        try {
+            sd.setLenient(false);//此处指定日期/时间解析是否不严格，在true是不严格，false时为严格
+            sd.parse(str);//从给定字符串的开始解析文本，以生成一个日期
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
     /**
      * 日期路径 即年/月/日 如2018/08/08
      */

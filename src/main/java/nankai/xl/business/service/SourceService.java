@@ -206,8 +206,4 @@ public interface SourceService {
     int deleteRepastById(Integer id);
     int insertOrUpdateRepast(RepastVo repastVo,boolean isCul);
 
-     /*
-       导入文件时，导入
-     */
-     int insertSource(List<String[]> lists,String childMenuId);
 }

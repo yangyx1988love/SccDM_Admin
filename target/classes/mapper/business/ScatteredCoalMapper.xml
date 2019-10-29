@@ -230,6 +230,27 @@
       bc_emission = #{bcEmission,jdbcType=DOUBLE},
       source_description = #{sourceDescription,jdbcType=CHAR}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO scattered_coal (id, scc_code, year,
+    county_id, activity_level, fuel_metering_unit,
+    activity_level_num, control_measure, sulfur_content,
+    ash_content, pm25_emission, pm10_emission,
+    co_emission, voc_emission, so2_emission,
+    nox_emission, nh3_emission, oc_emission,
+    bc_emission, source_description)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      #{item.id,jdbcType=INTEGER}, #{item.sccCode,jdbcType=CHAR}, #{item.year,jdbcType=CHAR},
+      #{item.countyId,jdbcType=CHAR}, #{item.activityLevel,jdbcType=CHAR}, #{item.fuelMeteringUnit,jdbcType=CHAR},
+      #{item.activityLevelNum,jdbcType=DOUBLE}, #{item.controlMeasure,jdbcType=CHAR}, #{item.sulfurContent,jdbcType=DOUBLE},
+      #{item.ashContent,jdbcType=DOUBLE}, #{item.pm25Emission,jdbcType=DOUBLE}, #{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE}, #{item.vocEmission,jdbcType=DOUBLE}, #{item.so2Emission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE}, #{item.nh3Emission,jdbcType=DOUBLE}, #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE}, #{item.sourceDescription,jdbcType=CHAR}
+      )
+    </foreach>
+  </insert>
   <delete id="deleteById" parameterType="java.lang.Integer" >
     delete from scattered_coal
     where id = #{id,jdbcType=INTEGER}

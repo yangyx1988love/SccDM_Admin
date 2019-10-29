@@ -1,6 +1,7 @@
 package nankai.xl.business.controller;
 
 import com.github.pagehelper.PageInfo;
+import nankai.xl.business.service.FileService;
 import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
@@ -31,6 +32,8 @@ public class FilesController {
     private MenuService menuService;
     @Resource
     private SourceService sourceService;
+    @Resource
+    private FileService fileService;
 
     @OperationLog("文件管理-文件下载")
     @GetMapping("/down/index")
@@ -71,20 +74,16 @@ public class FilesController {
     @OperationLog("新增企业用户")
     @PostMapping("/upload")
     @ResponseBody
-    public ResultBean upload(@RequestParam("file") MultipartFile[] files, String childMenuId) throws Exception{
+    public ResultBean upload(@RequestParam("file") MultipartFile[] files, String childMenuId,boolean isCul) throws Exception{
         if (files.length==0||childMenuId.length()==0){
             throw new Exception("文件不存在或者未选择源类型！请重新上传！");
         }else{
             List<String[]> lists=new ArrayList<>();
             for (MultipartFile file:files) {
                 lists.addAll(ReadExcel.readExcel(file));
-
             }
-
-//            if (childMenuId==1){
-//
-//            }
-            return ResultBean.success();
+            int num=fileService.importTempleFileToSource(childMenuId,lists,isCul);
+            return ResultBean.success("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
         }
     }
     @OperationLog("文件管理-上传-文件分类联级选择")

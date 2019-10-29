@@ -12,43 +12,64 @@
 </head>
 
 <body>
-
 <div class="page-loading">
     <div class="rubik-loader"></div>
 </div>
 <div class="z-body animated fadeIn">
     <form class="layui-form">
         <div class="layui-upload">
-            <div class="layui-input-inline">
-                <select id="menuId" name="menuId" lay-filter="menuId" lay-verify="required" >
-                    <option value="">请选择源类型</option>
-                    <option th:each="sourceMeu : ${sourceMeus}" th:value="${sourceMeu.menuId}" th:text="${sourceMeu.menuName}">
-                    </option>
-                </select>
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <select id="menuId" name="menuId" lay-filter="menuId" lay-verify="required" >
+                        <option value="">请选择源类型</option>
+                        <option th:each="sourceMeu : ${sourceMeus}" th:value="${sourceMeu.menuId}" th:text="${sourceMeu.menuName}">
+                        </option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <select id="childMenuId" name="childMenuId" lay-filter="childMenuId"lay-verify="required">
+                        <option value="">请选择源二级分类</option>
+                        <option th:each="childMeu : ${childMeus}" th:value="${childMeu.menuId}" th:text="${childMeu.menuName}">
+                        </option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <button class="layui-btn layui-btn-normal" id="filesUp" type="button">选择多文件</button>
+                </div>
             </div>
-            <div class="layui-input-inline">
-                <select id="childMenuId" name="childMenuId" lay-filter="childMenuId"lay-verify="required">
-                    <option value="">请选择源二级分类</option>
-                    <option th:each="childMeu : ${childMeus}" th:value="${childMeu.menuId}" th:text="${childMeu.menuName}">
-                    </option>
-                </select>
+            <div class="layui-form-item" style="margin-top: 10px">
+                <div class="layui-upload-list">
+                    <table class="layui-table">
+                        <thead>
+                        <tr><th>文件名</th>
+                            <th>大小</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr></thead>
+                        <tbody id="demoList"></tbody>
+                    </table>
+                </div>
             </div>
-            <div class="layui-input-inline">
-                <button class="layui-btn layui-btn-normal" id="filesUp" type="button">选择多文件</button>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
+                    <div class="layui-input-block" style="width: 160px">
+                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <button class="layui-btn" id="filesUpAction" type="button" lay-filter="edit" lay-submit="">开始上传</button>
+                </div>
             </div>
-            <div class="layui-upload-list">
-                <table class="layui-table">
-                    <thead>
-                    <tr><th>文件名</th>
-                        <th>大小</th>
-                        <th>状态</th>
-                        <th>操作</th>
-                    </tr></thead>
-                    <tbody id="demoList"></tbody>
-                </table>
-            </div>
-            <button class="layui-btn" id="filesUpAction" type="button">开始上传</button>
         </div>
+        <hr class="layui-bg-gray">
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            ON:人工填报，系统将读取导入文件中的污染物排放量；
+            <br>OFF：污染物系统运算,系统将根据公式自动运算并保存。
+            <br><span style="color: red">注意：</span>请把文件中的字段相应填补，如果为数字填为“0”，如果是文字请填“无”。
+            <br>数据中存在企业信息时，企业全称将作为唯一区分；如果不存在则插入。
+            <br>建议用户如果存在不同地区相同企业请在企业名称后加入区域信息，方便区分。
+        </blockquote>
     </form>
 </div>
 
@@ -90,18 +111,21 @@
             })
 
         });
+        form.on('submit(edit)', function (form) {
+
+        });
         var demoListView = $('#demoList')
             ,uploadListIns = upload.render({
             elem: '#filesUp'
             ,url: '/file/upload'
             ,accept: 'file'
-            ,exts: 'csv|xls|xlsx' //只允许上传压缩文件
+            ,exts: 'xls|xlsx' //只允许上传压缩文件
             ,size: 5000 //限制文件大小，单位 KB
             ,multiple: true
             ,auto: false
             ,bindAction: '#filesUpAction'
             ,before: function(obj){
-                this.data={'childMenuId':$('#childMenuId').val()};//关键代码
+                this.data={'childMenuId':$('#childMenuId').val(),'isCul':$('input[name="isCul"]:checked').is(':checked')};//关键代码
             }
             ,choose: function(obj){
                 var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
@@ -112,7 +136,7 @@
                         ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
                         ,'<td>等待上传</td>'
                         ,'<td>'
-                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        // ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
                         ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
                         ,'</td>'
                         ,'</tr>'].join(''));
