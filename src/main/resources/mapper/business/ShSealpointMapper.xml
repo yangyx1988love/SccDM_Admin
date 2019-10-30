@@ -220,6 +220,26 @@
       flag = #{flag,jdbcType=INTEGER},
       source_discrip = #{sourceDiscrip,jdbcType=VARCHAR}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO  sh_sealpoint ( year, factory_id,
+    unit_type, activity, activity_unit,
+    scccode, pm10_emission, pm25_emission,
+    voc_emission, so2_emission, nh3_emission,
+    nox_emission, co_emission, oc_emission,
+    bc_emission, flag, source_discrip
+    )
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      #{item.year,jdbcType=CHAR}, #{item.factoryId,jdbcType=INTEGER},
+      #{item.unitType,jdbcType=CHAR}, #{item.activity,jdbcType=DOUBLE}, #{item.activityUnit,jdbcType=CHAR},
+      #{item.scccode,jdbcType=CHAR}, #{item.pm10Emission,jdbcType=DOUBLE}, #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE}, #{item.so2Emission,jdbcType=DOUBLE}, #{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE}, #{item.coEmission,jdbcType=DOUBLE}, #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE}, #{item.flag,jdbcType=INTEGER}, #{item.sourceDiscrip,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.ShSealpoint" >
     update sh_sealpoint
     <set >

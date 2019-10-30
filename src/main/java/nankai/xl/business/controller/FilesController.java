@@ -83,6 +83,10 @@ public class FilesController {
                 lists.addAll(ReadExcel.readExcel(file));
             }
             int num=fileService.importTempleFileToSource(childMenuId,lists,isCul);
+
+            if(lists.size()-num>0){
+                return ResultBean.error("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
+            }
             return ResultBean.success("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
         }
     }

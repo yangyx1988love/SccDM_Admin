@@ -1,5 +1,9 @@
 package nankai.xl.common.util;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,33 +69,115 @@ public class NumberUtil {
         return pattern.matcher(str).matches();
     }
     //验证正浮点数
-    public static boolean isDouble(String num,int length){
+    public static boolean isPosDouble(String num,int integerNum){
         if (!NumberUtil.isFloat(num)){
             return false;
         }
-        if(String.valueOf(Double.valueOf(num)).length()>length||Double.valueOf(num)<0){
+        if (num.indexOf(".")>integerNum){
+            return false;
+        }
+        if (Double.valueOf(num)<0){
             return false;
         }
         return true;
     }
-    public static boolean isRatio(String num,int length){
+    public static boolean isRatio(String num,int integerNum){
         if (!NumberUtil.isFloat(num)){
             return false;
         }
-        if(String.valueOf(Double.valueOf(num)).length()>length||Double.valueOf(num)<0||Double.valueOf(num)>1){
+        if (num.indexOf(".")>integerNum){
+            return false;
+        }
+        if (Double.valueOf(num)<0){
             return false;
         }
         return true;
     }
     //检验经纬度
-    public static boolean isLongitude(String longitude){
-        String reglo = "((?:[0-9]|[1-9][0-9]|1[0-7][0-9])\\.([0-9]{0,6}))|((?:180)\\.([0]{0,6}))";
-        longitude = longitude.trim();
-        return longitude.matches(reglo);
+    public static boolean isLongitude(String longitude,int integerNum){
+        if (!NumberUtil.isFloat(longitude)){
+            return false;
+        }
+        if (longitude.indexOf(".")>integerNum){
+            return false;
+        }
+        if (73>Double.valueOf(longitude)||Double.valueOf(longitude)>135){
+            return false;
+        }
+        return true;
     }
-    public static boolean isLatitude(String latitude){
-        String regla = "((?:[0-9]|[1-8][0-9])\\.([0-9]{0,6}))|((?:90)\\.([0]{0,6}))";
-        latitude = latitude.trim();
-        return latitude.matches(regla);
+    public static boolean isLatitude(String latitude,int integerNum){
+        if (!NumberUtil.isFloat(latitude)){
+            return false;
+        }
+        if (latitude.indexOf(".")>integerNum){
+            return false;
+        }
+        if (3>Double.valueOf(latitude)||Double.valueOf(latitude)>53){
+            return false;
+        }
+        return true;
     }
+    public static double significand(double oldDouble, int scale) {
+        if (scale < 0) {
+            throw new IllegalArgumentException(
+                    "scale指定的精度为非负值");
+        }
+        /**
+         * RoundingMode：舍入模式
+         * UP：远离零方向舍入的舍入模式；
+         * DOWN：向零方向舍入的舍入模式；
+         * CEILING： 向正无限大方向舍入的舍入模式；
+         * FLOOR：向负无限大方向舍入的舍入模式；
+         * HALF_DOWN：向最接近数字方向舍入的舍入模式，如果与两个相邻数字的距离相等，则向下舍入；
+         * HALF_UP：向最接近数字方向舍入的舍入模式，如果与两个相邻数字的距离相等，则向上舍入；
+         * HALF_EVEN：向最接近数字方向舍入的舍入模式，如果与两个相邻数字的距离相等，则向相邻的偶数舍入;(在重复进行一系列计算时,此舍入模式可以将累加错误减到最小)
+         * UNNECESSARY：用于断言请求的操作具有精确结果的舍入模式，因此不需要舍入。
+         */
+        RoundingMode rMode =null;
+        //rMode=RoundingMode.FLOOR;
+        //下面这种情况，其实和FLOOR一样的。
+        if(oldDouble>0){
+            rMode=RoundingMode.DOWN;
+        }else{
+            rMode=RoundingMode.UP;
+        }
+        //此处的scale表示的是，几位有效位数
+        BigDecimal b = new BigDecimal(Double.toString(oldDouble),new MathContext(scale,rMode));
+        return b.doubleValue();
+    }
+    /**小数点之后保留几位小数(此处，我们用BigDecimal提供的（除以div）方法实现)
+     * @param oldDouble
+     * @param scale
+     * @return
+     */
+    public static double decimal(double oldDouble, int scale) {
+        if (scale < 0) {
+            throw new IllegalArgumentException(
+                    "The scale must be a positive integer or zero");
+        }
+        BigDecimal b = new BigDecimal(Double.toString(oldDouble));
+        BigDecimal one = new BigDecimal("1");
+        //return b.divide(one, scale, BigDecimal.ROUND_FLOOR).doubleValue();
+        if(oldDouble>0){
+            //此处的scale表示的是，小数点之后的精度。
+            return b.divide(one, scale, BigDecimal.ROUND_DOWN).doubleValue();
+        }else{
+            return b.divide(one, scale, BigDecimal.ROUND_UP).doubleValue();
+        }
+    }
+//    public static void main(String[] args) {
+////        double d = 100000.54500000001;
+////        int scale = 18;
+////        double d1 = significand(d,scale);
+////        double d2 = decimal(d,0);
+////        System.out.println(d+"保留"+scale+"位有效数字："+d1);
+////        System.out.println(d+"保留小数点之后"+scale+"位小数："+d2);
+////        DecimalFormat df = new DecimalFormat("###");
+////        BigDecimal b1 = new BigDecimal("288888888.010999999999");
+////        BigDecimal b2 = new BigDecimal("288888888.010999999999");
+////        System.out.println("小数格式化：" + df.format(b1));
+////        System.out.println("整数格式化：" + df.format(b2));
+//        System.out.println(Arith.round("1.888888888",2));
+//    }
 }

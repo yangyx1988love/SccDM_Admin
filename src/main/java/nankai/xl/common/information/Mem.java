@@ -1,6 +1,8 @@
 package nankai.xl.common.information;
 
 
+import nankai.xl.common.util.Arith;
+
 /**
  * 內存相关信息
  */

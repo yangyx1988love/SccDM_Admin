@@ -58,7 +58,8 @@
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
-                    <button class="layui-btn" id="filesUpAction" type="button" lay-filter="edit" lay-submit="">开始上传</button>
+                    <button class="layui-btn" id="filesUpAction" type="button" lay-filter="edit" lay-submit="">开始上传</button>&nbsp;&nbsp;&nbsp;
+                    <span id="msg" name="msg"></span>
                 </div>
             </div>
         </div>
@@ -158,6 +159,9 @@
             }
             ,done: function(res, index, upload){
                 if(res.code == 0){ //上传成功
+                    layer.msg(res.msg,{icon: 6, time:1000});
+                    $("#msg").html(res.msg)
+                    $('#msg').css("border", "5px solid green");
                     var tr = demoListView.find('tr#upload-'+ index)
                         ,tds = tr.children();
                     tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
@@ -166,7 +170,10 @@
                 }
                 this.error(index, upload);
             }
-            ,error: function(index, upload){
+            ,error: function(res,index, upload){
+                layer.msg(res.msg,{icon: 6, time:1000});
+                $("#msg").html(res.msg)
+                $('#msg').css("border", "5px solid red");
                 var tr = demoListView.find('tr#upload-'+ index)
                     ,tds = tr.children();
                 tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');

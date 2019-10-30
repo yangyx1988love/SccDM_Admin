@@ -1,6 +1,7 @@
 package nankai.xl.common.information;
 
 
+import nankai.xl.common.util.Arith;
 import nankai.xl.common.util.IPUtils;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;

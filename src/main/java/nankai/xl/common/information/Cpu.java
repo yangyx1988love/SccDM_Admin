@@ -1,5 +1,7 @@
 package nankai.xl.common.information;
 
+import nankai.xl.common.util.Arith;
+
 /**
  * CPU相关信息
  *

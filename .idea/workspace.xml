@@ -5,53 +5,140 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="21a863a7-45e2-4408-b9bf-5ba9b383b90b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-add.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ScatteredCoalMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ScatteredCoalMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SourceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShEffluentemissionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShEffluentemissionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShGasemissionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShGasemissionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShSealpointMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShSealpointMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShVocdeviceeffiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShVocdeviceeffiMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SourceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SourceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ReadExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ReadExcel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Arith.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/Arith.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Cpu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Cpu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Jvm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Jvm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Mem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Mem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/LivestockBreeding.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/VOC处理装置.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/VOC处理装置.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/constructionMachinery.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/gasstation.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/gridexample.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/oilstorage.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/organicstorage.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/railway.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/resident.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/shipping.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/储罐存储.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/储罐存储.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/农业施肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/农业施肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/农药施用.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/农药施用.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/农运运输车.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/农运运输车.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/加气站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/加气站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/加油站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/加油站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/去污油脂.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/去污油脂.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/固氮植物.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/固氮植物.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/土壤扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/土壤扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/土壤本低.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/土壤本低.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/堆场装卸扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/堆场装卸扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/堆场风蚀扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/堆场风蚀扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/家庭家居.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/家庭家居.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/家庭餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/家庭餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/小型通用机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/小型通用机械.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/干洗店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/干洗店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/废水无组织排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/废水无组织排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/建筑涂装二手房.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/建筑涂装二手房.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/户用生物质炉具.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/户用生物质炉具.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/散煤.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/散煤.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/施工扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/施工扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/森林、草原火灾.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/森林、草原火灾.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/民航飞机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/民航飞机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/汽修店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/汽修店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/烧烤餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/烧烤餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/生物质锅炉.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/生物质锅炉.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/畜牧散养.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/畜牧散养.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/畜牧集约化养殖.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/畜牧集约化养殖.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/石化有组织废气排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/石化有组织废气排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/社会餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/社会餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/秸秆堆肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/秸秆堆肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/秸秆露天焚烧.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/秸秆露天焚烧.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/装置密封点.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/装置密封点.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/装载过程排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/装载过程排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/道路扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/道路扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/道路移动源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/道路移动源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/道路铺装.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/道路铺装.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/铁路内燃机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/铁路内燃机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/非道路机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/非道路机械.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShEffluentemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShEffluentemissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShGasemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShGasemissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShSealpointMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShSealpointMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShVocdeviceeffiMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShVocdeviceeffiMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/barbecue-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/family-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/repast-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ScatteredCoalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ScatteredCoalMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/nankai/xl/system/service/DeptServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/nankai/xl/system/service/DeptServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/LivestockBreeding.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/VOC处理装置.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/VOC处理装置.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/constructionMachinery.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/gasstation.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/gridexample.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/oilstorage.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/organicstorage.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/railway.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/resident.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/shipping.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/储罐存储.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/储罐存储.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/农业施肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/农业施肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/农药施用.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/农药施用.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/农运运输车.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/农运运输车.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/加气站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/加气站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/加油站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/加油站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/去污油脂.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/去污油脂.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/固氮植物.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/固氮植物.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/土壤扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/土壤扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/土壤本低.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/土壤本低.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/堆场装卸扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/堆场装卸扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/堆场风蚀扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/堆场风蚀扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/家庭家居.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/家庭家居.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/家庭餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/家庭餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/小型通用机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/小型通用机械.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/干洗店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/干洗店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/废水无组织排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/废水无组织排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/建筑涂装二手房.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/建筑涂装二手房.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/户用生物质炉具.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/户用生物质炉具.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/散煤.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/散煤.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/施工扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/施工扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/森林、草原火灾.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/森林、草原火灾.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/民航飞机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/民航飞机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/汽修店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/汽修店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/烧烤餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/烧烤餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/生物质锅炉.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/生物质锅炉.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/畜牧散养.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/畜牧散养.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/畜牧集约化养殖.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/畜牧集约化养殖.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/石化有组织废气排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/石化有组织废气排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/社会餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/社会餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/秸秆堆肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/秸秆堆肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/秸秆露天焚烧.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/秸秆露天焚烧.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/装置密封点.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/装置密封点.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/装载过程排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/装载过程排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/道路扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/道路扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/道路移动源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/道路移动源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/道路铺装.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/道路铺装.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/铁路内燃机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/铁路内燃机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/非道路机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/非道路机械.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/Scc4Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/Scc4Mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShEffluentemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShEffluentemissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShGasemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShGasemissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShSealpointMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShSealpointMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShVocdeviceeffiMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShVocdeviceeffiMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/FilesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/FilesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ScatteredCoalMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ScatteredCoalMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/FileService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/FileService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SourceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SourceService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShEffluentemissionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShEffluentemissionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShGasemissionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShGasemissionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShSealpointMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShSealpointMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShVocdeviceeffiMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ShVocdeviceeffiMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FileServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FileServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SourceServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SourceServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/DateUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/DateUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/ReadExcel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/ReadExcel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Arith.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Cpu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Cpu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Jvm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Jvm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Mem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Mem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/information/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/files/file-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/files/file-up.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/dust/conDust-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/dust/dustLoad-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/dust/dustStack-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/dust/roadDust-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/dust/soilDust-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/repast/barbecue-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/repast/family-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/repast/repast-list.html" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -90,23 +177,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="68" column="29" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/files/file-up.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-820">
-              <caret line="117" column="44" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#blockquote#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
             </state>
           </provider>
         </entry>
@@ -114,44 +186,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="52" column="46" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="46" />
+            <state relative-caret-position="492">
+              <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
+              <folding>
+                <element signature="e#2641#2642#0" expanded="true" />
+                <element signature="e#2676#2677#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc4Mapper.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+            <state relative-caret-position="30">
+              <caret line="115" column="40" selection-start-line="115" selection-start-column="40" selection-end-line="115" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/files/file-up.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="232" column="24" selection-start-line="232" selection-start-column="14" selection-end-line="232" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ScatteredCoalMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+            <state relative-caret-position="90">
+              <caret line="163" column="60" selection-start-line="163" selection-start-column="55" selection-end-line="163" selection-end-column="60" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#2987#2993#0" expanded="true" />
+                <element signature="e#2993#2999#0" expanded="true" />
+                <element signature="e#2999#3005#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#blockquote#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,8 +240,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>存储运输源</find>
-      <find>新增</find>
       <find>扬尘源</find>
       <find>列表</find>
       <find>roadDust</find>
@@ -195,14 +265,13 @@
       <find>道路扬尘源</find>
       <find>xjroaddustVo</find>
       <find>编辑</find>
-      <find>Double.valueOf</find>
-      <find>isDouble</find>
       <find>18</find>
+      <find>isLatitude</find>
+      <find>isDouble</find>
+      <find>length</find>
+      <find>Double.valueOf</find>
     </findStrings>
     <replaceStrings>
-      <replace>railway</replace>
-      <replace>铁路内燃机</replace>
-      <replace>railwayEngineVo</replace>
       <replace>smallMachinery</replace>
       <replace>小型通用机械</replace>
       <replace>smallMachineryVo</replace>
@@ -230,6 +299,9 @@
       <replace>isDouble</replace>
       <replace>NumberUtil.isDouble</replace>
       <replace>length</replace>
+      <replace>NumberUtil.isLatitude</replace>
+      <replace>isPosDouble</replace>
+      <replace>getDecimal</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -240,16 +312,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factory/factory-list.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/common.js" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SelectCommonService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SelectCommonServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FarmController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/NonRoadController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/RailwayEngineMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/ProcessController.java" />
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/RepastController.java" />
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/RoadMoveController.java" />
@@ -284,13 +346,23 @@
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FileService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/DateUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ScatteredCoalMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/ShGasemissionMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShGasemissionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/ShSealpointMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/ShVocdeviceeffiMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/ShEffluentemissionMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShEffluentemissionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShSealpointMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShVocdeviceeffiMapper.java" />
+        <option value="$PROJECT_DIR$/src/test/nankai/xl/system/service/DeptServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/Arith.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" />
       </list>
     </option>
   </component>
@@ -322,6 +394,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -361,34 +434,6 @@
               <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="xl" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="xl" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="xl" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -397,7 +442,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
@@ -405,14 +450,83 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
               <item name="business" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -490,6 +604,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NumberUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="nankai.xl.common.util.NumberUtil" />
+      <module name="SccDM_Admin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nankai.xl.common.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ShiroActionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="SccDM_Admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="nankai.xl.SccAdminApplication" />
@@ -506,6 +633,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.NumberUtil" />
         <item itemvalue="Application.CalculateTask" />
       </list>
     </recent_temporary>
@@ -743,7 +871,9 @@
       <workItem from="1572242189968" duration="406000" />
       <workItem from="1572247827794" duration="32169000" />
       <workItem from="1572314370155" duration="33180000" />
-      <workItem from="1572359679334" duration="9222000" />
+      <workItem from="1572359679334" duration="9475000" />
+      <workItem from="1572402230243" duration="8248000" />
+      <workItem from="1572446888144" duration="10912000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1566356085749</created>
@@ -822,11 +952,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572286175521</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="完成散煤模板上传，为提高速度，增加批量上传，增加scc_describe表">
+      <created>1572369865760</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1572369865761</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1326409000" />
+    <option name="totallyTimeSpent" value="1345822000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -841,7 +978,7 @@
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.559375" visible="true" weight="0.25653046" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.559375" visible="true" weight="0.25853986" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -851,14 +988,14 @@
       <window_info id="Web" order="7" sideWeight="0.440625" side_tool="true" weight="0.19691895" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.39321074" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.5473833" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.5487977" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32956153" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="TODO" order="8" weight="0.6393211" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.7864215" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.79773694" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3606789" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50435364" side_tool="true" weight="0.7821782" />
       <window_info anchor="bottom" id="Problems" order="12" weight="0.3281471" />
@@ -879,24 +1016,24 @@
       <window_info anchor="right" id="Maven" order="11" weight="0.32953784" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.64780766" visible="true" weight="0.25566342" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.559375" visible="true" weight="0.25853986" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.35219237" side_tool="true" weight="0.2906899" />
-      <window_info id="Web" order="7" sideWeight="0.50141245" side_tool="true" weight="0.27729404" />
+      <window_info id="Web" order="7" sideWeight="0.440625" side_tool="true" weight="0.19691895" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.39321074" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.51768035" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.5487977" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32956153" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="TODO" order="8" weight="0.6393211" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.7864215" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.79773694" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3606789" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50435364" side_tool="true" weight="0.7821782" />
       <window_info anchor="bottom" id="Problems" order="12" weight="0.3281471" />
@@ -931,7 +1068,8 @@
     <MESSAGE value="完成源管理-完成农牧源和生物质燃烧源" />
     <MESSAGE value="完成源管理" />
     <MESSAGE value="完成不同部门，不同角色，显示该区域数据 包括工厂信息、源信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成不同部门，不同角色，显示该区域数据 包括工厂信息、源信息" />
+    <MESSAGE value="完成散煤模板上传，为提高速度，增加批量上传，增加scc_describe表" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成散煤模板上传，为提高速度，增加批量上传，增加scc_describe表" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -973,10 +1111,10 @@
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java</url>
-          <line>77</line>
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java</url>
+          <line>97</line>
           <properties />
-          <option name="timeStamp" value="103" />
+          <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/resources/templates/welcome.html</url>
@@ -1023,262 +1161,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/information/Mem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/validate/groups/Create.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/validate/groups/Delete.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/validate/groups/Upadate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/WebUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/TreeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1232">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/CsvUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ClassUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/CaptchaUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/CalculateTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ArrayRepaetCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/model/AdminuserOnline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final-sources.jar!/javax/validation/constraints/Email.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final-sources.jar!/javax/validation/constraints/DecimalMax.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-prod.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/model/Adminuser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/ScatteredCoal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#750#751#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-            <element signature="e#840#841#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#904#905#0" expanded="true" />
-            <element signature="e#950#951#0" expanded="true" />
-            <element signature="e#1020#1021#0" expanded="true" />
-            <element signature="e#1051#1052#0" expanded="true" />
-            <element signature="e#1078#1079#0" expanded="true" />
-            <element signature="e#1118#1119#0" expanded="true" />
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1245#1246#0" expanded="true" />
-            <element signature="e#1293#1294#0" expanded="true" />
-            <element signature="e#1366#1367#0" expanded="true" />
-            <element signature="e#1406#1407#0" expanded="true" />
-            <element signature="e#1442#1443#0" expanded="true" />
-            <element signature="e#1631#1632#0" expanded="true" />
-            <element signature="e#1670#1671#0" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
-            <element signature="e#1913#1914#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2074#2075#0" expanded="true" />
-            <element signature="e#2111#2112#0" expanded="true" />
-            <element signature="e#2302#2303#0" expanded="true" />
-            <element signature="e#2338#2339#0" expanded="true" />
-            <element signature="e#2396#2397#0" expanded="true" />
-            <element signature="e#2446#2447#0" expanded="true" />
-            <element signature="e#2483#2484#0" expanded="true" />
-            <element signature="e#2516#2517#0" expanded="true" />
-            <element signature="e#2568#2569#0" expanded="true" />
-            <element signature="e#2612#2613#0" expanded="true" />
-            <element signature="e#2651#2652#0" expanded="true" />
-            <element signature="e#2686#2687#0" expanded="true" />
-            <element signature="e#2742#2743#0" expanded="true" />
-            <element signature="e#2790#2791#0" expanded="true" />
-            <element signature="e#2829#2830#0" expanded="true" />
-            <element signature="e#2864#2865#0" expanded="true" />
-            <element signature="e#2920#2921#0" expanded="true" />
-            <element signature="e#2968#2969#0" expanded="true" />
-            <element signature="e#3005#3006#0" expanded="true" />
-            <element signature="e#3038#3039#0" expanded="true" />
-            <element signature="e#3090#3091#0" expanded="true" />
-            <element signature="e#3134#3135#0" expanded="true" />
-            <element signature="e#3172#3173#0" expanded="true" />
-            <element signature="e#3206#3207#0" expanded="true" />
-            <element signature="e#3260#3261#0" expanded="true" />
-            <element signature="e#3306#3307#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3378#3379#0" expanded="true" />
-            <element signature="e#3432#3433#0" expanded="true" />
-            <element signature="e#3478#3479#0" expanded="true" />
-            <element signature="e#3516#3517#0" expanded="true" />
-            <element signature="e#3550#3551#0" expanded="true" />
-            <element signature="e#3604#3605#0" expanded="true" />
-            <element signature="e#3650#3651#0" expanded="true" />
-            <element signature="e#3688#3689#0" expanded="true" />
-            <element signature="e#3722#3723#0" expanded="true" />
-            <element signature="e#3776#3777#0" expanded="true" />
-            <element signature="e#3822#3823#0" expanded="true" />
-            <element signature="e#3859#3860#0" expanded="true" />
-            <element signature="e#3892#3893#0" expanded="true" />
-            <element signature="e#3944#3945#0" expanded="true" />
-            <element signature="e#3988#3989#0" expanded="true" />
-            <element signature="e#4025#4026#0" expanded="true" />
-            <element signature="e#4058#4059#0" expanded="true" />
-            <element signature="e#4110#4111#0" expanded="true" />
-            <element signature="e#4154#4155#0" expanded="true" />
-            <element signature="e#4198#4199#0" expanded="true" />
-            <element signature="e#4238#4239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/CaptchaIncorrectException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/DuplicateNameException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/MyErrorAttributes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/exception/WebExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2090">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SccService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/SccUtil.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-ooxml/3.9/poi-ooxml-3.9-sources.jar!/org/apache/poi/xssf/usermodel/XSSFSheet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-          <folding>
-            <element signature="e#4992#4993#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-ooxml/3.9/poi-ooxml-3.9-sources.jar!/org/apache/poi/xssf/usermodel/XSSFRow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -1461,23 +1343,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="80" column="108" selection-start-line="80" selection-start-column="108" selection-end-line="80" selection-end-column="108" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/DateUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -1496,58 +1361,276 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/files/file-up.html">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-update.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-820">
-          <caret line="117" column="44" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#blockquote#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="32">
+          <caret line="132" column="18" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="232" column="24" selection-start-line="232" selection-start-column="14" selection-end-line="232" selection-end-column="24" />
+        <state relative-caret-position="968">
+          <caret line="44" column="46" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc4Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ScatteredCoalMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="232" selection-start-line="232" selection-end-line="252" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShVocdeviceeffiMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShSealpointMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShEffluentemissionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ShGasemissionMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ShEffluentemissionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="247" column="72" lean-forward="true" selection-start-line="247" selection-start-column="72" selection-end-line="247" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ShVocdeviceeffiMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="256" selection-start-line="256" selection-end-line="278" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ShSealpointMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="222" selection-start-line="222" selection-end-line="241" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ShGasemissionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="256" selection-start-line="256" selection-end-line="278" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.10.RELEASE/spring-webmvc-5.0.10.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="991">
+          <caret line="1030" selection-start-line="1030" selection-end-line="1030" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.10.RELEASE/spring-webmvc-5.0.10.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="898" selection-start-line="898" selection-end-line="898" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.10.RELEASE/spring-web-5.0.10.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/ShEffluentemission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5434">
+          <caret line="247" column="11" selection-start-line="247" selection-start-column="11" selection-end-line="247" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/nankai/xl/system/service/DeptServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="76" column="5" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="76" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/CalculateTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/DateUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/MatrixParallelCul.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/PageResultBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-94">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ResultBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-556">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ShiroUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/SourceUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/SoureManageMeus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/TreeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/WebUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ArrayRepaetCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="68" column="29" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="29" />
+        <state relative-caret-position="270">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc4Mapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/Arith.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        <state relative-caret-position="2420">
+          <caret line="112" column="68" lean-forward="true" selection-start-line="112" selection-start-column="68" selection-end-line="112" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/SccAdminApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="52" column="46" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="46" />
+        <state relative-caret-position="492">
+          <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
+          <folding>
+            <element signature="e#2641#2642#0" expanded="true" />
+            <element signature="e#2676#2677#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        <state relative-caret-position="30">
+          <caret line="115" column="40" selection-start-line="115" selection-start-column="40" selection-end-line="115" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/files/file-up.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="163" column="60" selection-start-line="163" selection-start-column="55" selection-end-line="163" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#2987#2993#0" expanded="true" />
+            <element signature="e#2993#2999#0" expanded="true" />
+            <element signature="e#2999#3005#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#blockquote#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

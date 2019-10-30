@@ -236,6 +236,27 @@
       source_discrip = #{sourceDiscrip,jdbcType=VARCHAR},
       flag = #{flag,jdbcType=INTEGER}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO  sh_effluentemission (year, factory_id,
+    activity_note, activity, activity_unit,
+    voc_efficency, pm10_emission, pm25_emission,
+    so2_emission, nox_emission, voc_emission,
+    nh3_emission, co_emission, oc_emission,
+    bc_emission, emission_unit, scccode,
+    source_discrip, flag)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      #{item.year,jdbcType=CHAR}, #{item.factoryId,jdbcType=INTEGER},
+      #{item.activityNote,jdbcType=CHAR}, #{item.activity,jdbcType=DOUBLE}, #{item.activityUnit,jdbcType=CHAR},
+      #{item.vocEfficency,jdbcType=DOUBLE}, #{item.pm10Emission,jdbcType=DOUBLE}, #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE}, #{item.noxEmission,jdbcType=DOUBLE}, #{item.vocEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE}, #{item.coEmission,jdbcType=DOUBLE}, #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE}, #{item.emissionUnit,jdbcType=CHAR}, #{item.scccode,jdbcType=CHAR},
+      #{item.sourceDiscrip,jdbcType=VARCHAR}, #{item.flag,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.ShEffluentemission" >
     update sh_effluentemission
     <set >
