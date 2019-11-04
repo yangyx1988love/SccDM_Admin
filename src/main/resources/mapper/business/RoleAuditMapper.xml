@@ -20,6 +20,11 @@
 <!--      order by ${orderByClause}-->
 <!--    </if>-->
 <!--  </select>-->
+  <select id="selectAll" resultType="nankai.xl.business.model.RoleAudit">
+    select * from role_audit
+    where 1=1
+	ORDER BY status_id DESC
+  </select>
   <select id="selectByRodeId" resultType="nankai.xl.business.model.RoleAudit" parameterType="java.lang.Integer" >
     select * from role_audit
     where role_id = #{roleId,jdbcType=INTEGER}

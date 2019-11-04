@@ -16,7 +16,7 @@
         <blockquote class="layui-elem-quote">欢迎：
             <span><shiro:principal property="username"/></span>！当前时间: [[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}]]</blockquote>
         <fieldset class="layui-elem-field">
-            <legend>数据统计</legend>
+            <legend>待审核企业</legend>
             <div class="layui-field-box">
                 <div class="layui-col-md12">
                     <div class="layui-card">
@@ -24,50 +24,11 @@
                             <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
                                 <div carousel-item="">
                                     <ul class="layui-row layui-col-space10 layui-this">
-                                        <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('地图', '/data/map')" class="x-admin-backlog-body">
+                                        <li class="layui-col-xs2" th:each="nonAuthFactory:${nonAuthFactorys}">
+                                            <a href="#" onclick="openTab('待审核企业', '/factoryAuth/index')" class="x-admin-backlog-body">
+                                                <h3><span th:text="${nonAuthFactory.statusDec}"></span></h3>
                                                 <p>
-                                                    <img th:src="@{/images/map.gif}" alt="" style="height: 80px;"/>
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('角色管理', '/role/index')" class="x-admin-backlog-body">
-                                                <h3>角色数</h3>
-                                                <p>
-                                                    <cite th:text="${roleCount}"></cite>
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('菜单管理', '/menu/index')" class="x-admin-backlog-body">
-                                                <h3>菜单数</h3>
-                                                <p>
-                                                    <cite th:text="${menuCount}"></cite>
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('登录日志', '/log/login/index')" class="x-admin-backlog-body">
-                                                <h3>登录日志</h3>
-                                                <p>
-                                                    <cite th:text="${loginLogCount}"></cite>
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('操作日志', '/log/sys/index')" class="x-admin-backlog-body">
-                                                <h3>操作日志</h3>
-                                                <p>
-                                                    <cite th:text="${sysLogCount}"></cite>
-                                                </p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs2">
-                                            <a href="#" onclick="openTab('在线人数', '/online/index')" class="x-admin-backlog-body">
-                                                <h3>在线人数</h3>
-                                                <p>
-                                                    <cite th:text="${userOnlineCount}"></cite>
+                                                    <cite th:text="${nonAuthFactory.factoryNum}"></cite>
                                                 </p>
                                             </a>
                                         </li>
@@ -80,11 +41,172 @@
             </div>
         </fieldset>
         <fieldset class="layui-elem-field">
-            <legend>最近登录</legend>
+            <legend>源数据统计</legend>
             <div class="layui-field-box">
-                <div id="main" style="width: 100%;height:400px;"></div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 200px;">
+                                <div carousel-item="">
+                                    <ul class="layui-row layui-col-space10 layui-this">
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('固体燃烧源', '/source/fixed/coal')" class="x-admin-backlog-body">
+                                                <h3>固体燃烧源</h3>
+                                                <p>
+                                                    <cite th:text="${fixedSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('工艺过程源', '/source/process/shGas')" class="x-admin-backlog-body">
+                                                <h3>工艺过程源</h3>
+                                                <p>
+                                                    <cite th:text="${processSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('溶剂使用源', '/source/solvent/dry')" class="x-admin-backlog-body">
+                                                <h3>溶剂使用源</h3>
+                                                <p>
+                                                    <cite th:text="${solventSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('扬尘源', '/source/dust/soilDust')" class="x-admin-backlog-body">
+                                                <h3>扬尘源</h3>
+                                                <p>
+                                                    <cite th:text="${dustSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('存储与运输源', '/source/transport/tank')" class="x-admin-backlog-body">
+                                                <h3>存储与运输源</h3>
+                                                <p>
+                                                    <cite th:text="${transportSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('农牧源', 'source/farm/pesticide')" class="x-admin-backlog-body">
+                                                <h3>农牧源</h3>
+                                                <p>
+                                                    <cite th:text="${farmSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('生物质燃烧源', 'source/biomass/bioBoiler')" class="x-admin-backlog-body">
+                                                <h3>生物质燃烧源</h3>
+                                                <p>
+                                                    <cite th:text="${biomassSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('道路移动源', 'source/road/roadMove')" class="x-admin-backlog-body">
+                                                <h3>道路移动源</h3>
+                                                <p>
+                                                    <cite th:text="${roadSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('非道路移动源', 'source/nonRoad/agriculture')" class="x-admin-backlog-body">
+                                                <h3>非道路移动源</h3>
+                                                <p>
+                                                    <cite th:text="${nonRoadSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('其他源', 'source/repast/repast')" class="x-admin-backlog-body">
+                                                <h3>其他源</h3>
+                                                <p>
+                                                    <cite th:text="${repastSourceNum}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </fieldset>
+<!--        <fieldset class="layui-elem-field">-->
+<!--            <legend>数据统计</legend>-->
+<!--            <div class="layui-field-box">-->
+<!--                <div class="layui-col-md12">-->
+<!--                    <div class="layui-card">-->
+<!--                        <div class="layui-card-body">-->
+<!--                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">-->
+<!--                                <div carousel-item="">-->
+<!--                                    <ul class="layui-row layui-col-space10 layui-this">-->
+<!--                                        <li class="layui-col-xs2">-->
+<!--                                            <a href="#" onclick="openTab('地图', '/data/map')" class="x-admin-backlog-body">-->
+<!--                                                <p>-->
+<!--                                                    <img th:src="@{/images/map.gif}" alt="" style="height: 80px;"/>-->
+<!--                                                </p>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        <li class="layui-col-xs2">-->
+<!--                                            <a href="#" onclick="openTab('角色管理', '/role/index')" class="x-admin-backlog-body">-->
+<!--                                                <h3>角色数</h3>-->
+<!--                                                <p>-->
+<!--                                                    <cite th:text="${roleCount}"></cite>-->
+<!--                                                </p>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        <li class="layui-col-xs2">-->
+<!--                                            <a href="#" onclick="openTab('菜单管理', '/menu/index')" class="x-admin-backlog-body">-->
+<!--                                                <h3>菜单数</h3>-->
+<!--                                                <p>-->
+<!--                                                    <cite th:text="${menuCount}"></cite>-->
+<!--                                                </p>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        <li class="layui-col-xs2">-->
+<!--                                            <a href="#" onclick="openTab('登录日志', '/log/login/index')" class="x-admin-backlog-body">-->
+<!--                                                <h3>登录日志</h3>-->
+<!--                                                <p>-->
+<!--                                                    <cite th:text="${loginLogCount}"></cite>-->
+<!--                                                </p>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        <li class="layui-col-xs2">-->
+<!--                                            <a href="#" onclick="openTab('操作日志', '/log/sys/index')" class="x-admin-backlog-body">-->
+<!--                                                <h3>操作日志</h3>-->
+<!--                                                <p>-->
+<!--                                                    <cite th:text="${sysLogCount}"></cite>-->
+<!--                                                </p>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                        <li class="layui-col-xs2">-->
+<!--                                            <a href="#" onclick="openTab('在线人数', '/online/index')" class="x-admin-backlog-body">-->
+<!--                                                <h3>在线人数</h3>-->
+<!--                                                <p>-->
+<!--                                                    <cite th:text="${userOnlineCount}"></cite>-->
+<!--                                                </p>-->
+<!--                                            </a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </fieldset>-->
+<!--        <fieldset class="layui-elem-field">-->
+<!--            <legend>最近登录</legend>-->
+<!--            <div class="layui-field-box">-->
+<!--                <div id="main" style="width: 100%;height:400px;"></div>-->
+<!--            </div>-->
+<!--        </fieldset>-->
     </div>
 
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>

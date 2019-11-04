@@ -194,12 +194,12 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ScatteredCoal" >
-    insert into scattered_coal (id, scc_code, year, 
-      county_id, activity_level, fuel_metering_unit, 
-      activity_level_num, control_measure, sulfur_content, 
-      ash_content, pm25_emission, pm10_emission, 
-      co_emission, voc_emission, so2_emission, 
-      nox_emission, nh3_emission, oc_emission, 
+    insert into scattered_coal (id, scc_code, year,
+      county_id, activity_level, fuel_metering_unit,
+      activity_level_num, control_measure, sulfur_content,
+      ash_content, pm25_emission, pm10_emission,
+      co_emission, voc_emission, so2_emission,
+      nox_emission, nh3_emission, oc_emission,
       bc_emission, source_description)
     values (#{id,jdbcType=INTEGER}, #{sccCode,jdbcType=CHAR}, #{year,jdbcType=CHAR}, 
       #{countyId,jdbcType=CHAR}, #{activityLevel,jdbcType=CHAR}, #{fuelMeteringUnit,jdbcType=CHAR}, 

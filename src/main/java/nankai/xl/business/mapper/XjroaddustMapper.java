@@ -13,4 +13,5 @@ public interface XjroaddustMapper {
     int updateById(Xjroaddust xjroaddust);
     int insertOrUpdate(Xjroaddust xjroaddust);
     int insertSelective(Xjroaddust xjroaddust);
+    int insertList(List<Xjroaddust> list);
 }

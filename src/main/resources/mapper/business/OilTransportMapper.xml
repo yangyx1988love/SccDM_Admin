@@ -157,6 +157,28 @@
       flag = #{flag,jdbcType=INTEGER},
       note = #{note,jdbcType=VARCHAR}  
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO oil_transport (id, company_id, year,
+    oil_type, scccode, source_discrip,
+    year_volume, control_rate, emission,
+    flag, note)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      company_id = #{item.companyId,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      oil_type = #{item.oilType,jdbcType=CHAR},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
+      year_volume = #{item.yearVolume,jdbcType=DOUBLE},
+      control_rate = #{item.controlRate,jdbcType=INTEGER},
+      emission = #{item.emission,jdbcType=DOUBLE},
+      flag = #{item.flag,jdbcType=INTEGER},
+      note = #{item.note,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.OilTransport" >
     update oil_transport
     <set >

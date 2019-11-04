@@ -254,6 +254,44 @@
       vocs_emission = #{bioStrawvocsEmission,jdbcType=DOUBLE},
       flag = #{bioStrawflag,jdbcType=INTEGER}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO road_move (id, scccode, source_discrip,
+    year, county_city, county_id,
+    average_mile, car_amount, car_speed,
+    fuel_type, car_fuelamount, orvr_percentage,
+    average_samount, pm25_emission, pm10_emission,
+    oc_emission, ec_emission, so2_emission,
+    nox_emission, co_emission, nh3_emission,
+    vocs_emission, flag)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
+      year = #{item.year,jdbcType=CHAR},
+      county_city = #{item.countyCity,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      average_mile = #{item.averageMile,jdbcType=DOUBLE},
+      car_amount = #{item.carAmount,jdbcType=DOUBLE},
+      car_speed = #{item.carSpeed,jdbcType=DOUBLE},
+      fuel_type = #{item.fuelType,jdbcType=VARCHAR},
+      car_fuelamount = #{item.carFuelamount,jdbcType=DOUBLE},
+      orvr_percentage = #{item.orvrPercentage,jdbcType=DOUBLE},
+      average_samount = #{item.averageSamount,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      ec_emission = #{item.ecEmission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      vocs_emission = #{item.vocsEmission,jdbcType=DOUBLE},
+      flag = #{item.flag,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.RoadMove" >
     update road_move
     <set >

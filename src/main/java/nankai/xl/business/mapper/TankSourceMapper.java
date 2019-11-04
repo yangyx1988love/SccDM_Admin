@@ -12,4 +12,5 @@ public interface TankSourceMapper {
     int updateById(TankSource tankSource);
     int insertOrUpdate(TankSource tankSource);
     int insertSelective(TankSource tankSource);
+    int insertList(List<TankSource> list);
 }

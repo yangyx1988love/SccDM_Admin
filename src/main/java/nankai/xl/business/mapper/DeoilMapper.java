@@ -12,4 +12,5 @@ public interface DeoilMapper {
     int updateById(Deoil deoil);
     int insertOrUpdate(Deoil deoil);
     int insertSelective(Deoil deoil);
+    int insertList(List<Deoil> list);
 }

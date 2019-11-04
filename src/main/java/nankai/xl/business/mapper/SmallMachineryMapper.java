@@ -13,4 +13,5 @@ public interface SmallMachineryMapper {
     int updateById(SmallMachinery smallMachinery);
     int insertOrUpdate(SmallMachinery smallMachinery);
     int insertSelective(SmallMachinery smallMachinery);
+    int insertList(List<SmallMachinery> list);
 }

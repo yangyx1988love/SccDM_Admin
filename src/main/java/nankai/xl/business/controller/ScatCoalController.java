@@ -56,7 +56,6 @@ public class ScatCoalController {
     public PageResultBean<ScatteredCoalVo> getCoalList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                  @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        ScatteredCoalVo scatteredCoalVo) {
-        Adminuser user = ShiroUtil.getCurrentUser();
         if (scatteredCoalVo.getCityCode()==null&&scatteredCoalVo.getCountyId()==null){
             scatteredCoalVo.setCityCode(cityCode);
             scatteredCoalVo.setCountyId(countyCode);

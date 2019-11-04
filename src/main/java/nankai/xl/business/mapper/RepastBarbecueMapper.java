@@ -13,4 +13,5 @@ public interface RepastBarbecueMapper {
     int updateById(RepastBarbecue repastBarbecue);
     int insertOrUpdate(RepastBarbecue repastBarbecue);
     int insertSelective(RepastBarbecue repastBarbecue);
+    int insertList(List<RepastBarbecue> list);
 }

@@ -12,4 +12,5 @@ public interface CarRepairMapper {
     int updateById(CarRepair carRepair);
     int insertOrUpdate(CarRepair carRepair);
     int insertSelective(CarRepair carRepair);
+    int insertList(List<CarRepair> list);
 }

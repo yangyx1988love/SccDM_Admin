@@ -12,4 +12,5 @@ public interface FreeStockbreedingMapper {
     int updateById(FreeStockbreeding freeStockbreeding);
     int insertOrUpdate(FreeStockbreeding freeStockbreeding);
     int insertSelective(FreeStockbreeding freeStockbreeding);
+    int insertList(List<FreeStockbreeding> list);
 }

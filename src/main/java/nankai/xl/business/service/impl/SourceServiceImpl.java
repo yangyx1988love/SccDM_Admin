@@ -7,6 +7,7 @@ import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SourceService;
 import nankai.xl.common.exception.DuplicateNameException;
 import nankai.xl.common.util.ClassUtil;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -81,6 +82,16 @@ public class SourceServiceImpl implements SourceService {
     @Resource
     private RoadMoveMapper roadMoveMapper;
     @Resource
+    private AgricultureMachineryMapper agricultureMachineryMapper;
+    @Resource
+    private AirplaneMapper airplaneMapper;
+    @Resource
+    private NonroadMachineryMapper nonroadMachineryMapper;
+    @Resource
+    private RailwayEngineMapper railwayEngineMapper;
+    @Resource
+    private SmallMachineryMapper smallMachineryMapper;
+    @Resource
     private RepastBarbecueMapper repastBarbecueMapper;
     @Resource
     private RepastFamilyMapper repastFamilyMapper;
@@ -121,6 +132,14 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public int getFixedSourceNum(String cityCode, String countyCode) {
+        ScatteredCoalVo scatteredCoalVo=new ScatteredCoalVo();
+        scatteredCoalVo.setCityCode(cityCode);
+        scatteredCoalVo.setCountyId(countyCode);
+        return scatteredCoalMapper.selectByScatteredCoal(scatteredCoalVo).size();
+    }
+
+    @Override
     public ScatteredCoalVo getScatById(Integer id) {
         return scatteredCoalMapper.selectById(id);
     }
@@ -128,6 +147,24 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int deleteScatById(Integer id) {
         return scatteredCoalMapper.deleteById(id);
+    }
+
+    @Override
+    public int getProcessSourceNum(String cityCode, String countyCode) {
+        ShGasemissionVo shGasemissionVo=new ShGasemissionVo();
+        shGasemissionVo.setCityCode(cityCode);
+        shGasemissionVo.setCountyId(countyCode);
+        ShSealpointVo shSealpointVo=new ShSealpointVo();
+        shSealpointVo.setCityCode(cityCode);
+        shSealpointVo.setCountyId(countyCode);
+        ShEffluentemissionVo shEffluentemissionVo=new ShEffluentemissionVo();
+        shEffluentemissionVo.setCityCode(cityCode);
+        shEffluentemissionVo.setCountyId(countyCode);
+        ShVocdeviceeffiVo shVocdeviceeffiVo=new ShVocdeviceeffiVo();
+        shVocdeviceeffiVo.setCityCode(cityCode);
+        shVocdeviceeffiVo.setCountyId(countyCode);
+        return shGasemissionMapper.selectByShGas(shGasemissionVo).size()+shSealpointMapper.selectByExample(shSealpointVo).size()+
+                shEffluentemissionMapper.selectByExample(shEffluentemissionVo).size()+shVocdeviceeffiMapper.selectByExample(shVocdeviceeffiVo).size() ;
     }
 
     @Override
@@ -276,6 +313,31 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public int getSolventSourceNum(String cityCode, String countyCode) {
+        BuildingSmearVo buildingSmearVo=new BuildingSmearVo();
+        buildingSmearVo.setCityCode(cityCode);
+        buildingSmearVo.setCountyId(countyCode);
+        CarRepairVo carRepairVo=new CarRepairVo();
+        carRepairVo.setCityCode(cityCode);
+        carRepairVo.setCountyId(countyCode);
+        DeoilVo deoilVo=new DeoilVo();
+        deoilVo.setCityCode(cityCode);
+        deoilVo.setCountyId(countyCode);
+        DryCleanerVo dryCleanerVo=new DryCleanerVo();
+        dryCleanerVo.setCityCode(cityCode);
+        dryCleanerVo.setCountyId(countyCode);
+        HouseVo houseVo=new HouseVo();
+        houseVo.setCityCode(cityCode);
+        houseVo.setCountyId(countyCode);
+        RoadPaveVo roadPaveVo=new RoadPaveVo();
+        roadPaveVo.setCityCode(cityCode);
+        roadPaveVo.setCountyId(countyCode);
+        return buildingSmearMapper.selectByExample(buildingSmearVo).size()+carRepairMapper.selectByExample(carRepairVo).size()+
+                deoilMapper.selectByExample(deoilVo).size()+dryCleanerMapper.selectByExample(dryCleanerVo).size()+
+                houseMapper.selectByExample(houseVo).size()+roadPaveMapper.selectByExample(roadPaveVo).size();
+    }
+
+    @Override
     public int insertOrUpdateShVoc(ShVocdeviceeffiVo shVocdeviceeffiVo,boolean isCul) {
         ShVocdeviceeffi shVocdeviceeffi=shVocdeviceeffiVo;
         Company company=shVocdeviceeffi;
@@ -400,7 +462,6 @@ public class SourceServiceImpl implements SourceService {
     public int deleteDeoilById(Integer id) {
         return deoilMapper.deleteById(id);
     }
-
 
     @Override
     public int insertOrUpdateDeoil(DeoilVo deoilVo,boolean isCul) {
@@ -547,6 +608,28 @@ public class SourceServiceImpl implements SourceService {
             roadPaveMapper.insertSelective(roadPave);
         }
         return 1;
+    }
+
+    @Override
+    public int getDustSourceNum(String cityCode, String countyCode) {
+        XjconstructdustVo xjconstructdustVo=new XjconstructdustVo();
+        xjconstructdustVo.setCityCode(cityCode);
+        xjconstructdustVo.setCountyId(countyCode);
+        XjcydustLoadVo xjcydustLoadVo=new XjcydustLoadVo();
+        xjcydustLoadVo.setCityCode(cityCode);
+        xjcydustLoadVo.setCountyId(countyCode);
+        XjcydustStackVo xjcydustStackVo=new XjcydustStackVo();
+        xjcydustStackVo.setCityCode(cityCode);
+        xjcydustStackVo.setCountyId(countyCode);
+        XjroaddustVo xjroaddustVo=new XjroaddustVo();
+        xjroaddustVo.setCityCode(cityCode);
+        xjroaddustVo.setCountyId(countyCode);
+        XjsoildustVo xjsoildustVo=new XjsoildustVo();
+        xjsoildustVo.setCityCode(cityCode);
+        xjsoildustVo.setCountyId(countyCode);
+        return xjconstructdustMapper.selectByExample(xjconstructdustVo).size()+xjcydustLoadMapper.selectByExample(xjcydustLoadVo).size()
+                +xjcydustStackMapper.selectByExample(xjcydustStackVo).size()+xjroaddustMapper.selectByExample(xjroaddustVo).size()
+                +xjsoildustMapper.selectByExample(xjsoildustVo).size();
     }
 
     @Override
@@ -750,6 +833,24 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public int getTransportSourceNum(String cityCode, String countyCode) {
+        GasSourceVo gasSourceVo=new GasSourceVo();
+        gasSourceVo.setCityCode(cityCode);
+        gasSourceVo.setCountyId(countyCode);
+        OilSourceVo oilSourceVo=new OilSourceVo();
+        oilSourceVo.setCityCode(cityCode);
+        oilSourceVo.setCountyId(countyCode);
+        OilTransportVo oilTransportVo=new OilTransportVo();
+        oilTransportVo.setCityCode(cityCode);
+        oilTransportVo.setCountyId(countyCode);
+        TankSourceVo tankSourceVo=new TankSourceVo();
+        tankSourceVo.setCityCode(cityCode);
+        tankSourceVo.setCountyId(countyCode);
+        return gasSourceMapper.selectByExample(gasSourceVo).size()+oilSourceMapper.selectByExample(oilSourceVo).size()
+                +oilTransportMapper.selectByExample(oilTransportVo).size()+tankSourceMapper.selectByExample(tankSourceVo).size();
+    }
+
+    @Override
     public List<GasSourceVo> getGassByExample(GasSourceVo gasSourceVo, int page, int limit) {
         PageHelper.startPage(page, limit);
         return gasSourceMapper.selectByExample(gasSourceVo);
@@ -919,6 +1020,34 @@ public class SourceServiceImpl implements SourceService {
             tankSourceMapper.insertSelective(tankSource);
         }
         return 1;
+    }
+
+    @Override
+    public int getFarmSourceNum(String cityCode, String countyCode) {
+        BaseSoilVo baseSoilVo=new BaseSoilVo();
+        baseSoilVo.setCityCode(cityCode);
+        baseSoilVo.setCountyId(countyCode);
+        CollectbreedingVo collectbreedingVo=new CollectbreedingVo();
+        collectbreedingVo.setCityCode(cityCode);
+        collectbreedingVo.setCountyId(countyCode);
+        FertilizationVo fertilizationVo=new FertilizationVo();
+        fertilizationVo.setCityCode(cityCode);
+        fertilizationVo.setCountyId(countyCode);
+        FreeStockbreedingVo freeStockbreedingVo=new FreeStockbreedingVo();
+        freeStockbreedingVo.setCityCode(cityCode);
+        freeStockbreedingVo.setCountyId(countyCode);
+        NPlantVo nPlantVo=new NPlantVo();
+        nPlantVo.setCityCode(cityCode);
+        nPlantVo.setCountyId(countyCode);
+        PesticideVo pesticideVo=new PesticideVo();
+        pesticideVo.setCityCode(cityCode);
+        pesticideVo.setCountyId(countyCode);
+        StrawCompostVo strawCompostVo=new StrawCompostVo();
+        strawCompostVo.setCityCode(cityCode);
+        strawCompostVo.setCountyId(countyCode);
+        return baseSoilMapper.selectByExample(baseSoilVo).size()+collectbreedingMapper.selectByExample(collectbreedingVo).size()
+                +fertilizationMapper.selectByExample(fertilizationVo).size()+nPlantMapper.selectByExample(nPlantVo).size()
+                +pesticideMapper.selectByExample(pesticideVo).size()+strawCompostMapper.selectByExample(strawCompostVo).size();
     }
 
     @Override
@@ -1205,6 +1334,24 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public int getBiomassSourceNum(String cityCode, String countyCode) {
+        BiomassBoilerVo biomassBoilerVo=new BiomassBoilerVo();
+        biomassBoilerVo.setCityCode(cityCode);
+        biomassBoilerVo.setCountyId(countyCode);
+        BiomassForestGrasslandVo biomassForestGrasslandVo=new BiomassForestGrasslandVo();
+        biomassForestGrasslandVo.setCityCode(cityCode);
+        biomassForestGrasslandVo.setCountyId(countyCode);
+        BiomassStoveVo biomassStoveVo=new BiomassStoveVo();
+        biomassStoveVo.setCityCode(cityCode);
+        biomassStoveVo.setCountyId(countyCode);
+        BiomassStrawVo biomassStrawVo=new BiomassStrawVo();
+        biomassStrawVo.setCityCode(cityCode);
+        biomassStrawVo.setCountyId(countyCode);
+        return biomassBoilerMapper.selectByExample(biomassBoilerVo).size()+biomassForestGrasslandMapper.selectByExample(biomassForestGrasslandVo).size()
+                +biomassStoveMapper.selectByExample(biomassStoveVo).size()+biomassStrawMapper.selectByExample(biomassStrawVo).size();
+    }
+
+    @Override
     public List<BiomassBoilerVo> getBioBoilersByExample(BiomassBoilerVo biomassBoilerVo, int page, int limit) {
         PageHelper.startPage(page, limit);
         return biomassBoilerMapper.selectByExample(biomassBoilerVo);
@@ -1368,6 +1515,14 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public int getRoadSourceNum(String cityCode, String countyCode) {
+        RoadMoveVo roadMoveVo=new RoadMoveVo();
+        roadMoveVo.setCityCode(cityCode);
+        roadMoveVo.setCountyId(countyCode);
+        return roadMoveMapper.selectByExample(roadMoveVo).size();
+    }
+
+    @Override
     public List<RoadMoveVo> getRoadMovesByExample(RoadMoveVo roadMoveVo,int page, int limit) {
         PageHelper.startPage(page, limit);
         return roadMoveMapper.selectByExample(roadMoveVo);
@@ -1406,6 +1561,264 @@ public class SourceServiceImpl implements SourceService {
         }
         return 1;
     }
+
+    @Override
+    public int getNonRoadSourceNum(String cityCode, String countyCode) {
+        AgricultureMachineryVo agricultureMachineryVo=new AgricultureMachineryVo();
+        agricultureMachineryVo.setCityCode(cityCode);
+        agricultureMachineryVo.setCountyId(countyCode);
+        AirplaneVo airplaneVo=new AirplaneVo();
+        airplaneVo.setCityCode(cityCode);
+        airplaneVo.setCountyId(countyCode);
+        NonroadMachineryVo nonroadMachineryVo=new NonroadMachineryVo();
+        nonroadMachineryVo.setCityCode(cityCode);
+        nonroadMachineryVo.setCountyId(countyCode);
+        RailwayEngineVo railwayEngineVo=new RailwayEngineVo();
+        railwayEngineVo.setCityCode(cityCode);
+        railwayEngineVo.setCountyId(countyCode);
+        SmallMachineryVo smallMachineryVo=new SmallMachineryVo();
+        smallMachineryVo.setCityCode(cityCode);
+        smallMachineryVo.setCountyId(countyCode);
+        return agricultureMachineryMapper.selectByExample(agricultureMachineryVo).size()+airplaneMapper.selectByExample(airplaneVo).size()
+                +nonroadMachineryMapper.selectByExample(nonroadMachineryVo).size()+railwayEngineMapper.selectByExample(railwayEngineVo).size()
+                +smallMachineryMapper.selectByExample(smallMachineryVo).size();
+    }
+
+    @Override
+    public List<AgricultureMachineryVo> getByExample(AgricultureMachineryVo agricultureMachineryVo, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return agricultureMachineryMapper.selectByExample(agricultureMachineryVo);
+    }
+
+    @Override
+    public AgricultureMachineryVo getAgricultureById(Integer id) {
+        return agricultureMachineryMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteAgricultureById(Integer id) {
+        return agricultureMachineryMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateById(AgricultureMachinery agricultureMachinery) {
+        return agricultureMachineryMapper.updateById(agricultureMachinery);
+    }
+
+    @Override
+    public int insertOrUpdate(AgricultureMachinery agricultureMachinery,boolean isCul) {
+        if (!isCul){
+            Scc scc=getSccFactor(agricultureMachinery.getSccCode());
+            Double activity=agricultureMachinery.getAnnalAverageMilage();
+            agricultureMachinery.setPm25Emission(activity*scc.getPm25());
+            agricultureMachinery.setPm10Emission(activity*scc.getPm10());
+            agricultureMachinery.setCoEmission(activity*scc.getCo());
+            agricultureMachinery.setVocsEmission(activity*scc.getVocs());
+            agricultureMachinery.setSo2Emission(activity*scc.getSo2());
+            agricultureMachinery.setNoxEmission(activity*scc.getNox());
+            agricultureMachinery.setNh3Emission(activity*scc.getNh3());
+            agricultureMachinery.setOcEmission(activity*scc.getOc());
+            agricultureMachinery.setBcEmission(activity*scc.getBc());
+        }
+        if(agricultureMachinery.getId()!=null){
+            agricultureMachineryMapper.updateById(agricultureMachinery);
+        }else {
+            agricultureMachineryMapper.insertSelective(agricultureMachinery);
+        }
+        return 1;
+    }
+
+    @Override
+    public List<AirplaneVo> getByExample(AirplaneVo airplaneVo, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return airplaneMapper.selectByExample(airplaneVo);
+    }
+
+    @Override
+    public AirplaneVo getAirplaneById(Integer id) {
+        return airplaneMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteAirplaneById(Integer id) {
+        return airplaneMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateById(Airplane airplane) {
+        return airplaneMapper.updateById(airplane);
+    }
+
+    @Override
+    public int insertOrUpdate(Airplane airplane,boolean isCul) {
+        if (!isCul){
+            Scc scc=getSccFactor(airplane.getSccCode());
+            Double activity=airplane.getActivityLevel();
+            airplane.setPm25Emission(activity*scc.getPm25());
+            airplane.setPm10Emission(activity*scc.getPm10());
+            airplane.setCoEmission(activity*scc.getCo());
+            airplane.setVocsEmission(activity*scc.getVocs());
+            airplane.setSo2Emission(activity*scc.getSo2());
+            airplane.setNoxEmission(activity*scc.getNox());
+            airplane.setNh3Emission(activity*scc.getNh3());
+            airplane.setOcEmission(activity*scc.getOc());
+            airplane.setBcEmission(activity*scc.getBc());
+        }
+        if(airplane.getId()!=null){
+            airplaneMapper.updateById(airplane);
+        }else {
+            airplaneMapper.insertSelective(airplane);
+        }
+        return 1;
+    }
+
+    @Override
+    public List<NonroadMachineryVo> getByExample(NonroadMachineryVo nonroadMachineryVo, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return nonroadMachineryMapper.selectByExample(nonroadMachineryVo);
+    }
+
+    @Override
+    public NonroadMachineryVo getMachineryById(Integer id) {
+        return nonroadMachineryMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteMachineryById(Integer id) {
+        return nonroadMachineryMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateById(NonroadMachinery nonroadMachinery) {
+        return nonroadMachineryMapper.updateById(nonroadMachinery);
+    }
+
+    @Override
+    public int insertOrUpdate(NonroadMachinery nonroadMachinery,boolean isCul) {
+        if (!isCul){
+            Scc scc=getSccFactor(nonroadMachinery.getSccCode());
+            Double activity=nonroadMachinery.getAnnalAverageMileage();
+            nonroadMachinery.setPm25Emission(activity*scc.getPm25());
+            nonroadMachinery.setPm10Emission(activity*scc.getPm10());
+            nonroadMachinery.setCoEmission(activity*scc.getCo());
+            nonroadMachinery.setVocsEmission(activity*scc.getVocs());
+            nonroadMachinery.setSo2Emission(activity*scc.getSo2());
+            nonroadMachinery.setNoxEmission(activity*scc.getNox());
+            nonroadMachinery.setNh3Emission(activity*scc.getNh3());
+            nonroadMachinery.setOcEmission(activity*scc.getOc());
+            nonroadMachinery.setBcEmission(activity*scc.getBc());
+        }
+        if(nonroadMachinery.getId()!=null){
+            nonroadMachineryMapper.updateById(nonroadMachinery);
+        }else {
+            nonroadMachineryMapper.insertSelective(nonroadMachinery);
+        }
+        return 1;
+    }
+
+    @Override
+    public List<RailwayEngineVo> getByExample(RailwayEngineVo railwayEngineVo, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return railwayEngineMapper.selectByExample(railwayEngineVo);
+    }
+
+    @Override
+    public RailwayEngineVo getRailwayById(Integer id) {
+        return railwayEngineMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteRailwayById(Integer id) {
+        return railwayEngineMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateById(RailwayEngine railwayEngine) {
+        return railwayEngineMapper.updateById(railwayEngine);
+    }
+
+    @Override
+    public int insertOrUpdate(RailwayEngine railwayEngine,boolean isCul) {
+        if (!isCul){
+            Scc scc=getSccFactor(railwayEngine.getSccCode());
+            Double activity=railwayEngine.getFuelAnnualUsage();
+            railwayEngine.setPm25Emission(activity*scc.getPm25());
+            railwayEngine.setPm10Emission(activity*scc.getPm10());
+            railwayEngine.setCoEmission(activity*scc.getCo());
+            railwayEngine.setVocsEmission(activity*scc.getVocs());
+            railwayEngine.setSo2Emission(activity*scc.getSo2());
+            railwayEngine.setNoxEmission(activity*scc.getNox());
+            railwayEngine.setNh3Emission(activity*scc.getNh3());
+            railwayEngine.setOcEmission(activity*scc.getOc());
+            railwayEngine.setBcEmission(activity*scc.getBc());
+        }
+        if(railwayEngine.getId()!=null){
+            railwayEngineMapper.updateById(railwayEngine);
+        }else {
+            railwayEngineMapper.insertSelective(railwayEngine);
+        }
+        return 1;
+    }
+
+    @Override
+    public List<SmallMachineryVo> getByExample(SmallMachineryVo smallMachineryVo, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return smallMachineryMapper.selectByExample(smallMachineryVo);
+    }
+
+    @Override
+    public SmallMachineryVo getSmallMachineryById(Integer id) {
+        return smallMachineryMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteSmallMachineryById(Integer id) {
+        return smallMachineryMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateById(SmallMachinery smallMachinery) {
+        return smallMachineryMapper.updateById(smallMachinery);
+    }
+
+    @Override
+    public int insertOrUpdate(SmallMachinery smallMachinery,boolean isCul) {
+        if (!isCul){
+            Scc scc=getSccFactor(smallMachinery.getSccCode());
+            Double activity=smallMachinery.getAnnalAverageMileage();
+            smallMachinery.setPm25Emission(activity*scc.getPm25());
+            smallMachinery.setPm10Emission(activity*scc.getPm10());
+            smallMachinery.setCoEmission(activity*scc.getCo());
+            smallMachinery.setVocsEmission(activity*scc.getVocs());
+            smallMachinery.setSo2Emission(activity*scc.getSo2());
+            smallMachinery.setNoxEmission(activity*scc.getNox());
+            smallMachinery.setNh3Emission(activity*scc.getNh3());
+            smallMachinery.setOcEmission(activity*scc.getOc());
+            smallMachinery.setBcEmission(activity*scc.getBc());
+        }
+        if(smallMachinery.getId()!=null){
+            smallMachineryMapper.updateById(smallMachinery);
+        }else {
+            smallMachineryMapper.insertSelective(smallMachinery);
+        }
+        return 1;
+    }
+
+    @Override
+    public int getRepastSourceNum(String cityCode, String countyCode) {
+        RepastBarbecueVo repastBarbecueVo=new RepastBarbecueVo();
+        repastBarbecueVo.setCityCode(cityCode);
+        repastBarbecueVo.setCountyId(countyCode);
+        RepastFamilyVo repastFamilyVo=new RepastFamilyVo();
+        repastFamilyVo.setCityCode(cityCode);
+        repastFamilyVo.setCountyId(countyCode);
+        RepastVo repastVo=new RepastVo();
+        repastVo.setCityCode(cityCode);
+        repastVo.setCountyId(countyCode);
+        return repastBarbecueMapper.selectByExample(repastBarbecueVo).size()+repastFamilyMapper.selectByExample(repastFamilyVo).size()
+                +repastMapper.selectByExample(repastVo).size();
+    }
+
     @Override
     public List<RepastBarbecueVo> getRepastsBarbecuesByExample(RepastBarbecueVo repastBarbecueVo,int page, int limit) {
         PageHelper.startPage(page, limit);

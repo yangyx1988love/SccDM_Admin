@@ -12,4 +12,5 @@ public interface RoadPaveMapper {
     int updateById(RoadPave roadPave);
     int insertOrUpdate(RoadPave roadPave);
     int insertSelective(RoadPave roadPave);
+    int insertList(List<RoadPave> list);
 }

@@ -13,4 +13,5 @@ public interface RoadMoveMapper {
     int updateById(RoadMove roadMove);
     int insertOrUpdate(RoadMove roadMove);
     int insertSelective(RoadMove roadMove);
+    int insertList(List<RoadMove> list);
 }

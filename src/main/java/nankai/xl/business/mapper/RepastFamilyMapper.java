@@ -13,4 +13,5 @@ public interface RepastFamilyMapper {
     int updateById(RepastFamily repastFamily);
     int insertOrUpdate(RepastFamily repastFamily);
     int insertSelective(RepastFamily repastFamily);
+    int insertList(List<RepastFamily> list);
 }

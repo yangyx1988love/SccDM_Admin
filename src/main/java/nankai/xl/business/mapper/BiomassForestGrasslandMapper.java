@@ -13,4 +13,5 @@ public interface BiomassForestGrasslandMapper {
     int updateById(BiomassForestGrassland biomassForestGrassland);
     int insertOrUpdate(BiomassForestGrassland biomassForestGrassland);
     int insertSelective(BiomassForestGrassland biomassForestGrassland);
+    int insertList(List<BiomassForestGrassland> list);
 }

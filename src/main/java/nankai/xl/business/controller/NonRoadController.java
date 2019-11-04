@@ -6,8 +6,8 @@ import nankai.xl.business.model.County;
 import nankai.xl.business.model.Scc3;
 import nankai.xl.business.model.Scc4;
 import nankai.xl.business.model.vo.*;
-import nankai.xl.business.service.NonRoadService;
 import nankai.xl.business.service.SelectCommonService;
+import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
@@ -28,7 +28,7 @@ public class NonRoadController {
     @Resource
     private SelectCommonService selectCommonService;
     @Resource
-    private NonRoadService nonRoadService;
+    private SourceService sourceService;
     //页面加载时，根据用户加载城市和区县
     private List<City> citys=new ArrayList<>();
     private List<County> countys=new ArrayList<>();
@@ -62,7 +62,7 @@ public class NonRoadController {
             agricultureMachineryVo.setCityCode(cityCode);
             agricultureMachineryVo.setCountyId(countyCode);
         }
-        List<AgricultureMachineryVo> results= nonRoadService.getByExample(agricultureMachineryVo,page, limit);
+        List<AgricultureMachineryVo> results= sourceService.getByExample(agricultureMachineryVo,page, limit);
         PageInfo<AgricultureMachineryVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
@@ -70,7 +70,7 @@ public class NonRoadController {
     @DeleteMapping("/nonRoad/agriculture/{id}")
     @ResponseBody
     public ResultBean agricultureDelete(@PathVariable("id") Integer id) {
-        nonRoadService.deleteAgricultureById(id);
+        sourceService.deleteAgricultureById(id);
         return ResultBean.success();
     }
     @OperationLog("农用运输车-新增")
@@ -92,7 +92,7 @@ public class NonRoadController {
     @GetMapping("/nonRoad/agriculture/{id}")
     public String agricultureEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="01";
-        AgricultureMachineryVo agricultureMachineryVo=nonRoadService.getAgricultureById(id);
+        AgricultureMachineryVo agricultureMachineryVo=sourceService.getAgricultureById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -117,7 +117,7 @@ public class NonRoadController {
         agricultureMachineryVo.setSccCode(scc1+"01"+agricultureMachineryVo.getScc3()+agricultureMachineryVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(agricultureMachineryVo.getSccCode());
         agricultureMachineryVo.setSourceDescrip(sccVo.getDescription());
-        nonRoadService.insertOrUpdate(agricultureMachineryVo,isCul);
+        sourceService.insertOrUpdate(agricultureMachineryVo,isCul);
         return ResultBean.success();
     }
     @OperationLog("非道路移动源-飞机")
@@ -144,7 +144,7 @@ public class NonRoadController {
             airplaneVo.setCityCode(cityCode);
             airplaneVo.setCountyId(countyCode);
         }
-        List<AirplaneVo> results= nonRoadService.getByExample(airplaneVo,page, limit);
+        List<AirplaneVo> results= sourceService.getByExample(airplaneVo,page, limit);
         PageInfo<AirplaneVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
@@ -152,7 +152,7 @@ public class NonRoadController {
     @DeleteMapping("/nonRoad/airplane/{id}")
     @ResponseBody
     public ResultBean airplaneDelete(@PathVariable("id") Integer id) {
-        nonRoadService.deleteAirplaneById(id);
+        sourceService.deleteAirplaneById(id);
         return ResultBean.success();
     }
     @OperationLog("飞机-新增")
@@ -165,7 +165,7 @@ public class NonRoadController {
     @OperationLog("飞机-编辑")
     @GetMapping("/nonRoad/airplane/{id}")
     public String airplaneEdit(@PathVariable("id") Integer id, Model model) {
-        AirplaneVo airplaneVo=nonRoadService.getAirplaneById(id);
+        AirplaneVo airplaneVo=sourceService.getAirplaneById(id);
         model.addAttribute("citys", citys);
         model.addAttribute("countys", selectCommonService.getCountysByCityCode(airplaneVo.getCityCode()));
         model.addAttribute("airplaneVo", airplaneVo);
@@ -178,7 +178,7 @@ public class NonRoadController {
         airplaneVo.setSccCode("1304401001");
         SccVo sccVo=selectCommonService.selectBySccCode(airplaneVo.getSccCode());
         airplaneVo.setSourceDescrip(sccVo.getDescription());
-        nonRoadService.insertOrUpdate(airplaneVo,isCul);
+        sourceService.insertOrUpdate(airplaneVo,isCul);
         return ResultBean.success();
     }
     @OperationLog("非道路移动源-非道路机械")
@@ -205,7 +205,7 @@ public class NonRoadController {
             nonroadMachineryVo.setCityCode(cityCode);
             nonroadMachineryVo.setCountyId(countyCode);
         }
-        List<NonroadMachineryVo> results= nonRoadService.getByExample(nonroadMachineryVo,page, limit);
+        List<NonroadMachineryVo> results= sourceService.getByExample(nonroadMachineryVo,page, limit);
         PageInfo<NonroadMachineryVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
@@ -213,7 +213,7 @@ public class NonRoadController {
     @DeleteMapping("/nonRoad/machinery/{id}")
     @ResponseBody
     public ResultBean machineryDelete(@PathVariable("id") Integer id) {
-        nonRoadService.deleteMachineryById(id);
+        sourceService.deleteMachineryById(id);
         return ResultBean.success();
     }
     @OperationLog("非道路机械-新增")
@@ -236,7 +236,7 @@ public class NonRoadController {
     @GetMapping("/nonRoad/machinery/{id}")
     public String machineryEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="02";
-        NonroadMachineryVo nonroadMachineryVo=nonRoadService.getMachineryById(id);
+        NonroadMachineryVo nonroadMachineryVo=sourceService.getMachineryById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -261,7 +261,7 @@ public class NonRoadController {
         nonroadMachineryVo.setSccCode(scc1+"02"+nonroadMachineryVo.getScc3()+nonroadMachineryVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(nonroadMachineryVo.getSccCode());
         nonroadMachineryVo.setSourceDescrip(sccVo.getDescription());
-        nonRoadService.insertOrUpdate(nonroadMachineryVo,isCul);
+        sourceService.insertOrUpdate(nonroadMachineryVo,isCul);
         return ResultBean.success();
     }
     @OperationLog("非道路移动源-铁路内燃机")
@@ -288,7 +288,7 @@ public class NonRoadController {
             railwayEngineVo.setCityCode(cityCode);
             railwayEngineVo.setCountyId(countyCode);
         }
-        List<RailwayEngineVo> results= nonRoadService.getByExample(railwayEngineVo,page, limit);
+        List<RailwayEngineVo> results= sourceService.getByExample(railwayEngineVo,page, limit);
         PageInfo<RailwayEngineVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
@@ -296,7 +296,7 @@ public class NonRoadController {
     @DeleteMapping("/nonRoad/railway/{id}")
     @ResponseBody
     public ResultBean railwayDelete(@PathVariable("id") Integer id) {
-        nonRoadService.deleteRailwayById(id);
+        sourceService.deleteRailwayById(id);
         return ResultBean.success();
     }
     @OperationLog("铁路内燃机-新增")
@@ -319,7 +319,7 @@ public class NonRoadController {
     @GetMapping("/nonRoad/railway/{id}")
     public String railwayEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="03";
-        RailwayEngineVo railwayEngineVo=nonRoadService.getRailwayById(id);
+        RailwayEngineVo railwayEngineVo=sourceService.getRailwayById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -343,7 +343,7 @@ public class NonRoadController {
         railwayEngineVo.setSccCode(scc1+"03"+railwayEngineVo.getScc3()+railwayEngineVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(railwayEngineVo.getSccCode());
         railwayEngineVo.setSourceDescrip(sccVo.getDescription());
-        nonRoadService.insertOrUpdate(railwayEngineVo,isCul);
+        sourceService.insertOrUpdate(railwayEngineVo,isCul);
         return ResultBean.success();
     }
     @OperationLog("非道路移动源-小型通用机械")
@@ -370,7 +370,7 @@ public class NonRoadController {
             smallMachineryVo.setCityCode(cityCode);
             smallMachineryVo.setCountyId(countyCode);
         }
-        List<SmallMachineryVo> results= nonRoadService.getByExample(smallMachineryVo,page, limit);
+        List<SmallMachineryVo> results= sourceService.getByExample(smallMachineryVo,page, limit);
         PageInfo<SmallMachineryVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
@@ -378,7 +378,7 @@ public class NonRoadController {
     @DeleteMapping("/nonRoad/smallMachinery/{id}")
     @ResponseBody
     public ResultBean smallMachineryDelete(@PathVariable("id") Integer id) {
-        nonRoadService.deleteSmallMachineryById(id);
+        sourceService.deleteSmallMachineryById(id);
         return ResultBean.success();
     }
     @OperationLog("小型通用机械-新增")
@@ -401,7 +401,7 @@ public class NonRoadController {
     @GetMapping("/nonRoad/smallMachinery/{id}")
     public String smallMachineryEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="02";
-        SmallMachineryVo smallMachineryVo=nonRoadService.getSmallMachineryById(id);
+        SmallMachineryVo smallMachineryVo=sourceService.getSmallMachineryById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -425,7 +425,7 @@ public class NonRoadController {
         smallMachineryVo.setSccCode(scc1+"02"+smallMachineryVo.getScc3()+smallMachineryVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(smallMachineryVo.getSccCode());
         smallMachineryVo.setSourceDescrip(sccVo.getDescription());
-        nonRoadService.insertOrUpdate(smallMachineryVo,isCul);
+        sourceService.insertOrUpdate(smallMachineryVo,isCul);
         return ResultBean.success();
     }
 }

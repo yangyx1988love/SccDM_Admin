@@ -22,6 +22,11 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
     <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, year, company_id, scccode, year_amount, pm10_emission, pm25_emission, voc_emission,
+    nh3_emission, so2_emission, co_emission, oc_emission, bc_emission, nox_emission,
+    flagd, source_descrip
+  </sql>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.DryCleanerVo" parameterType="nankai.xl.business.model.vo.DryCleanerVo" >
     SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(dry_cleaner.scccode,1,2) AS scc1,SUBSTR(dry_cleaner.scccode,3,2) AS scc2,
     SUBSTR(dry_cleaner.scccode,5,3) AS scc3,SUBSTR(dry_cleaner.scccode,8,3) AS scc4
@@ -199,6 +204,35 @@
       nox_emission = #{noxEmission,jdbcType=DOUBLE},
       flagd = #{flagd,jdbcType=TINYINT},
       source_descrip = #{sourceDescrip,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO dry_cleaner (id, year, company_id,
+    scccode, year_amount, pm10_emission,
+    pm25_emission, voc_emission, nh3_emission,
+    so2_emission, co_emission, oc_emission,
+    bc_emission, nox_emission, flagd,
+    source_descrip)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      company_id = #{item.companyId,jdbcType=INTEGER},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      year_amount = #{item.yearAmount,jdbcType=DOUBLE},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      flagd = #{item.flagd,jdbcType=TINYINT},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR}
+      )
+    </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.DryCleaner" >
     update dry_cleaner

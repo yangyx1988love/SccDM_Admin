@@ -285,6 +285,48 @@
       oc_emission = #{ocEmission,jdbcType=DOUBLE},
       bc_emission = #{bcEmission,jdbcType=DOUBLE}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO biomass_boiler (id, scc_code, com_id,
+    source_descrip, boiler_no, fuel_type,
+    fuel_consumption, dust_remove_tech, pm10_remove_ratio,
+    pm25_remove_ratio, DESULPHUR_REMOVE_TECH, SO2_REMOVE_RATIO,
+    DENITRIFIC_REMOVE_TECH, NOX_REMOVE_RATIO, note,
+    year, pm10_emission, pm25_emission,
+    co_emission, voc_emission, pm_emission,
+    so2_emission, nox_emission, nh3_emission,
+    oc_emission, bc_emission)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      scc_code = #{item.sccCode,jdbcType=CHAR},
+      com_id = #{item.comId,jdbcType=INTEGER},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
+      boiler_no = #{item.boilerNo,jdbcType=INTEGER},
+      fuel_type = #{item.fuelType,jdbcType=CHAR},
+      fuel_consumption = #{item.fuelConsumption,jdbcType=DOUBLE},
+      dust_remove_tech = #{item.dustRemoveTech,jdbcType=CHAR},
+      pm10_remove_ratio = #{item.pm10RemoveRatio,jdbcType=DOUBLE},
+      pm25_remove_ratio = #{item.pm25RemoveRatio,jdbcType=DOUBLE},
+      DESULPHUR_REMOVE_TECH = #{item.desulphurRemoveTech,jdbcType=CHAR},
+      SO2_REMOVE_RATIO = #{item.so2RemoveRatio,jdbcType=DOUBLE},
+      DENITRIFIC_REMOVE_TECH = #{item.denitrificRemoveTech,jdbcType=CHAR},
+      NOX_REMOVE_RATIO = #{item.noxRemoveRatio,jdbcType=DOUBLE},
+      note = #{item.note,jdbcType=VARCHAR},
+      year = #{item.year,jdbcType=CHAR},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      pm_emission = #{item.pmEmission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.BiomassBoiler" >
     update biomass_boiler
     <set >

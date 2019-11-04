@@ -194,6 +194,35 @@
       nox_emission = #{noxEmission,jdbcType=DOUBLE},
       flag = #{flag,jdbcType=TINYINT}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO ertilization (id, year, county_id,
+    scccode, source_descrip, activity_level,
+    pm10_emission, pm25_emission, voc_emission,
+    nh3_emission, so2_emission, co_emission,
+    oc_emission, bc_emission, nox_emission,
+    flag)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{record.id,jdbcType=INTEGER},
+      year = #{record.year,jdbcType=CHAR},
+      county_id = #{record.countyId,jdbcType=CHAR},
+      scccode = #{record.scccode,jdbcType=CHAR},
+      source_descrip = #{record.sourceDescrip,jdbcType=CHAR},
+      activity_level = #{record.activityLevel,jdbcType=DOUBLE},
+      pm10_emission = #{record.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{record.pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{record.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{record.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{record.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{record.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{record.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{record.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{record.noxEmission,jdbcType=DOUBLE},
+      flag = #{record.flag,jdbcType=TINYINT}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.Fertilization" >
     update fertilization
     <set >

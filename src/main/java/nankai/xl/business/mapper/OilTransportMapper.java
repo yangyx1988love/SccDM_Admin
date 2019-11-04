@@ -13,4 +13,5 @@ public interface OilTransportMapper {
     int updateById(OilTransport oilTransport);
     int insertOrUpdate(OilTransport oilTransport);
     int insertSelective(OilTransport oilTransport);
+    int insertList(List<OilTransport> list);
 }

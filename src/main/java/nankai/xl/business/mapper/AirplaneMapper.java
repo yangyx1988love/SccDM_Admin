@@ -13,4 +13,5 @@ public interface AirplaneMapper {
     int updateById(Airplane airplane);
     int insertOrUpdate(Airplane airplane);
     int insertSelective(Airplane airplane);
+    int insertList(List<Airplane> list);
 }

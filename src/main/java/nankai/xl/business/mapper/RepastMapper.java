@@ -13,4 +13,5 @@ public interface RepastMapper {
     int updateById(Repast repast);
     int insertOrUpdate(Repast repast);
     int insertSelective(Repast repast);
+    int insertList(List<Repast> list);
 }

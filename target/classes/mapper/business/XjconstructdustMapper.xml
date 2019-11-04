@@ -442,6 +442,72 @@
       scc_describe = #{sccDescribe,jdbcType=VARCHAR},
       flag = #{flag,jdbcType=INTEGER}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO xjconstructdust (id, year, com_id,
+    xjconstructid, scccode, construct_type,
+    construct_stage, finish_area, thisyear_area,
+    plan_constructarea, months, ec10factor,
+    controlname, longitude, latitude,
+    pm25_emission, pm10_emission, voc_emission,
+    nh3_emission, so2_emission, co_emission,
+    oc_emission, bc_emission, nox_emission,
+    pm25_max, pm10_max, voc_max,
+    nh3_max, so2_max, co_max,
+    oc_max, bc_max, nox_max,
+    pm25_unit, pm10_unit, voc_unit,
+    nh3_unit, so2_unit, co_unit, oc_unit,
+    bc_unit, nox_unit, scc_describe,
+    flag)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      com_id = #{item.comId,jdbcType=INTEGER},
+      xjconstructid = #{item.xjconstructid,jdbcType=INTEGER},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      construct_type = #{item.constructType,jdbcType=VARCHAR},
+      construct_stage = #{item.constructStage,jdbcType=CHAR},
+      finish_area = #{item.finishArea,jdbcType=DOUBLE},
+      thisyear_area = #{item.thisyearArea,jdbcType=DOUBLE},
+      plan_constructarea = #{item.planConstructarea,jdbcType=DOUBLE},
+      months = #{item.months,jdbcType=INTEGER},
+      ec10factor = #{item.ec10factor,jdbcType=DOUBLE},
+      controlname = #{item.controlname,jdbcType=VARCHAR},
+      longitude = #{item.longitude,jdbcType=DOUBLE},
+      latitude = #{item.latitude,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      pm25_max = #{item.pm25Max,jdbcType=DOUBLE},
+      pm10_max = #{item.pm10Max,jdbcType=DOUBLE},
+      voc_max = #{item.vocMax,jdbcType=DOUBLE},
+      nh3_max = #{item.nh3Max,jdbcType=DOUBLE},
+      so2_max = #{item.so2Max,jdbcType=DOUBLE},
+      co_max = #{item.coMax,jdbcType=DOUBLE},
+      oc_max = #{item.ocMax,jdbcType=DOUBLE},
+      bc_max = #{item.bcMax,jdbcType=DOUBLE},
+      nox_max = #{item.noxMax,jdbcType=DOUBLE},
+      pm25_unit = #{item.pm25Unit,jdbcType=CHAR},
+      pm10_unit = #{item.pm10Unit,jdbcType=CHAR},
+      voc_unit = #{item.vocUnit,jdbcType=CHAR},
+      nh3_unit = #{item.nh3Unit,jdbcType=CHAR},
+      so2_unit = #{item.so2Unit,jdbcType=CHAR},
+      co_unit = #{item.coUnit,jdbcType=CHAR},
+      oc_unit = #{item.ocUnit,jdbcType=CHAR},
+      bc_unit = #{item.bcUnit,jdbcType=CHAR},
+      nox_unit = #{item.noxUnit,jdbcType=CHAR},
+      scc_describe = #{item.sccDescribe,jdbcType=VARCHAR},
+      flag = #{item.flag,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.Xjconstructdust" >
     update xjconstructdust
     <set >

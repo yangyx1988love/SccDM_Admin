@@ -166,6 +166,30 @@
   <select id="selectNextById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     SELECT * FROM factory WHERE factory_id >#{factoryId,jdbcType=INTEGER} ORDER BY factory_id ASC LIMIT 1
   </select>
+  <select id="countByFactoryNo1" resultType="java.lang.Integer">
+        select count(*)
+        from factory where factory_no1 = #{factoryNo1}
+  </select>
+  <select id="countNonAthuFactory" resultType="nankai.xl.business.model.vo.NonFactoryVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
+      SELECT ss.num AS factoryNum,`status`.introduction AS statusDec FROM(
+        SELECT COUNT(*) AS num,status
+        FROM factory
+        <where>
+          <if test="countyId != null and countyId != ''">
+            factory.county_id = #{countyId}
+          </if>
+          <if test="countyCity != null and countyCity != ''">
+            AND factory.county_city = #{countyCity}
+          </if>
+          <if test="status != null and status != ''">
+            AND factory.status &lt; #{status}
+          </if>
+        </where>
+        GROUP BY status
+      ) ss
+      INNER JOIN status
+      ON ss.status=`status`.id
+  </select>
   <update id="updatePassByFactoryNO" parameterType="nankai.xl.business.model.User" >
     update user
     set password = #{password,jdbcType=VARCHAR}
@@ -599,10 +623,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByFactoryNo1" resultType="java.lang.Integer">
-        select count(*)
-        from factory where factory_no1 = #{factoryNo1}
-  </select>
   <update id="updateByFactoryId" parameterType="nankai.xl.business.model.Factory" >
     update factory
     <set >

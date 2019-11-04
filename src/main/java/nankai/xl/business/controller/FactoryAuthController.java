@@ -78,8 +78,8 @@ public class FactoryAuthController {
                                            @RequestParam(value = "limit", defaultValue = "50")int limit) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (user.getDeptId()!=null){
-            PageInfo<Factory> rolePageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
-            return new PageResultBean<>(rolePageInfo.getTotal(), rolePageInfo.getList());
+            PageInfo<Factory> factoryPageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
+            return new PageResultBean<>(factoryPageInfo.getTotal(), factoryPageInfo.getList());
         }else {
             throw new IllegalArgumentException("用户赋予的部门不能为空！");
         }

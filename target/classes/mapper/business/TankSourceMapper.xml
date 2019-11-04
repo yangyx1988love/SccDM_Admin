@@ -167,6 +167,30 @@
       emission = #{emission,jdbcType=DOUBLE},
       flag = #{flag,jdbcType=INTEGER}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO  tank_source (id, year, scccode,
+    source_discrip, company_id, t_id,
+    tank_name, tank_type, material_type,
+    material_name, emission, flag
+    )
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
+      company_id = #{item.companyId,jdbcType=INTEGER},
+      t_id = #{item.tId,jdbcType=INTEGER},
+      tank_name = #{item.tankName,jdbcType=VARCHAR},
+      tank_type = #{item.tankType,jdbcType=VARCHAR},
+      material_type = #{item.materialType,jdbcType=VARCHAR},
+      material_name = #{item.materialName,jdbcType=VARCHAR},
+      emission = #{item.emission,jdbcType=DOUBLE},
+      flag = #{item.flag,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.TankSource" >
     update tank_source
     <set >

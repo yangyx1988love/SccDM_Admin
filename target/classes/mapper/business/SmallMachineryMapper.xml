@@ -238,6 +238,42 @@
       oc_emission = #{ocEmission,jdbcType=DOUBLE},
       nh3_emission = #{nh3Emission,jdbcType=DOUBLE}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO small_machinery (id, year, county_id,
+    scc_code, source_descrip, type,
+    fuel_type, holdings, use_hours,
+    fuel_annual_usage, fuel_sulfur_content, annal_average_mileage,
+    pm10_emission, pm25_emission, co_emission,
+    so2_emission, nox_emission, vocs_emission,
+    bc_emission, oc_emission, nh3_emission
+    )
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      scc_code = #{item.sccCode,jdbcType=CHAR},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
+      type = #{item.type,jdbcType=CHAR},
+      fuel_type = #{item.fuelType,jdbcType=CHAR},
+      holdings = #{item.holdings,jdbcType=INTEGER},
+      use_hours = #{item.useHours,jdbcType=DOUBLE},
+      fuel_annual_usage = #{item.fuelAnnualUsage,jdbcType=DOUBLE},
+      fuel_sulfur_content = #{item.fuelSulfurContent,jdbcType=DOUBLE},
+      annal_average_mileage = #{item.annalAverageMileage,jdbcType=DOUBLE},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      vocs_emission = #{item.vocsEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.SmallMachinery" >
     update small_machinery
     <set >

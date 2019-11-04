@@ -12,4 +12,5 @@ public interface HouseMapper {
     int updateById(House house);
     int insertOrUpdate(House house);
     int insertSelective(House house);
+    int insertList(List<House> list);
 }

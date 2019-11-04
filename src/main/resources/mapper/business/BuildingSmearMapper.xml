@@ -194,6 +194,35 @@
       flagd = #{flagd,jdbcType=TINYINT},
       source_descrip = #{sourceDescrip,jdbcType=VARCHAR}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO building_smear (id, year, county_id,
+    paint_amount, scccode, pm10_emission,
+    pm25_emission, voc_emission, nh3_emission,
+    so2_emission, co_emission, oc_emission,
+    bc_emission, nox_emission, flagd,
+    source_descrip)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      paint_amount = #{item.paintAmount,jdbcType=DOUBLE},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      flagd = #{item.flagd,jdbcType=TINYINT},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.BuildingSmear" >
     update building_smear
     <set >

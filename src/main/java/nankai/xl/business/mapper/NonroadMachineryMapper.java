@@ -13,4 +13,5 @@ public interface NonroadMachineryMapper {
     int updateById(NonroadMachinery nonroadMachinery);
     int insertOrUpdate(NonroadMachinery nonroadMachinery);
     int insertSelective(NonroadMachinery nonroadMachinery);
+    int insertList(List<NonroadMachinery> list);
 }

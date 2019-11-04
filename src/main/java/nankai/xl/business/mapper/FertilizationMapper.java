@@ -12,4 +12,5 @@ public interface FertilizationMapper {
     int updateById(Fertilization fertilization);
     int insertOrUpdate(Fertilization fertilization);
     int insertSelective(Fertilization fertilization);
+    int insertList(List<Fertilization> list);
 }

@@ -12,4 +12,5 @@ public interface BuildingSmearMapper {
     int updateById(BuildingSmear buildingSmear);
     int insertOrUpdate(BuildingSmear buildingSmear);
     int insertSelective(BuildingSmear buildingSmear);
+    int insertList(List<BuildingSmear> list);
 }

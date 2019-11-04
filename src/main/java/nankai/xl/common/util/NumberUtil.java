@@ -61,8 +61,8 @@ public class NumberUtil {
         String regx = "[+-]*\\d+\\.?\\d*[Ee]*[+-]*\\d+";
         Pattern pattern = Pattern.compile(regx);
         boolean isNumber = pattern.matcher(str).matches();
-        if (isNumber) {
-            return isNumber;
+        if (!isNumber) {
+            return false;
         }
         regx = "^[-\\+]?[.\\d]*$";
         pattern = Pattern.compile(regx);

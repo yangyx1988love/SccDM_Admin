@@ -452,6 +452,74 @@
       scc_describe = #{sccDescribe,jdbcType=VARCHAR},
       flag = #{flag,jdbcType=INTEGER}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO xjroaddust (rd_id, year, county_id,
+    pathname, scccode, ispave,
+    roadtype, pathlength, averwidth,
+    averweight, carflow, averspeed,
+    dirtratio, waterratio, roadload,
+    controlname, pm25_emission, pm10_emission,
+    voc_emission, nh3_emission, so2_emission,
+    co_emission, oc_emission, bc_emission,
+    nox_emission, pm25_max, pm10_max,
+    voc_max, nh3_max, so2_max,
+    co_max, oc_max, bc_max, nox_max,
+    pm25_unit, pm10_unit, voc_unit,
+    nh3_unit, so2_unit, co_unit, oc_unit,
+    bc_unit, nox_unit, nodustday,
+    scc_describe, flag)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      rd_id = #{item.rdId,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      pathname = #{item.pathname,jdbcType=VARCHAR},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      ispave = #{item.ispave,jdbcType=CHAR},
+      roadtype = #{item.roadtype,jdbcType=CHAR},
+      pathlength = #{item.pathlength,jdbcType=DOUBLE},
+      averwidth = #{item.averwidth,jdbcType=DOUBLE},
+      averweight = #{item.averweight,jdbcType=DOUBLE},
+      carflow = #{item.carflow,jdbcType=DOUBLE},
+      averspeed = #{item.averspeed,jdbcType=DOUBLE},
+      dirtratio = #{item.dirtratio,jdbcType=DOUBLE},
+      waterratio = #{item.waterratio,jdbcType=DOUBLE},
+      roadload = #{item.roadload,jdbcType=DOUBLE},
+      controlname = #{item.controlname,jdbcType=VARCHAR},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      pm25_max = #{item.pm25Max,jdbcType=DOUBLE},
+      pm10_max = #{item.pm10Max,jdbcType=DOUBLE},
+      voc_max = #{item.vocMax,jdbcType=DOUBLE},
+      nh3_max = #{item.nh3Max,jdbcType=DOUBLE},
+      so2_max = #{item.so2Max,jdbcType=DOUBLE},
+      co_max = #{item.coMax,jdbcType=DOUBLE},
+      oc_max = #{item.ocMax,jdbcType=DOUBLE},
+      bc_max = #{item.bcMax,jdbcType=DOUBLE},
+      nox_max = #{item.noxMax,jdbcType=DOUBLE},
+      pm25_unit = #{item.pm25Unit,jdbcType=CHAR},
+      pm10_unit = #{item.pm10Unit,jdbcType=CHAR},
+      voc_unit = #{item.vocUnit,jdbcType=CHAR},
+      nh3_unit = #{item.nh3Unit,jdbcType=CHAR},
+      so2_unit = #{item.so2Unit,jdbcType=CHAR},
+      co_unit = #{item.coUnit,jdbcType=CHAR},
+      oc_unit = #{item.ocUnit,jdbcType=CHAR},
+      bc_unit = #{item.bcUnit,jdbcType=CHAR},
+      nox_unit = #{item.noxUnit,jdbcType=CHAR},
+      nodustday = #{item.nodustday,jdbcType=INTEGER},
+      scc_describe = #{item.sccDescribe,jdbcType=VARCHAR},
+      flag = #{item.flag,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.Xjroaddust" >
     update xjroaddust
     <set >

@@ -183,6 +183,32 @@
       gun_num = #{gunNum,jdbcType=INTEGER},
       tank_num = #{tankNum,jdbcType=INTEGER}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO oil_source (id, company_id, year,
+    oil_type, scccode, source_discrip,
+    sales_volume, emission, flag,
+    volume, every_volume, volume_count,
+    gun_num, tank_num)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      company_id = #{item.companyId,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      oil_type = #{item.oilType,jdbcType=CHAR},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
+      sales_volume = #{item.salesVolume,jdbcType=DOUBLE},
+      emission = #{item.emission,jdbcType=DOUBLE},
+      flag = #{item.flag,jdbcType=INTEGER},
+      volume = #{item.volume,jdbcType=DOUBLE},
+      every_volume = #{item.everyVolume,jdbcType=DOUBLE},
+      volume_count = #{item.volumeCount,jdbcType=DOUBLE},
+      gun_num = #{item.gunNum,jdbcType=INTEGER},
+      tank_num = #{item.tankNum,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.OilSource" >
     update oil_source
     <set >

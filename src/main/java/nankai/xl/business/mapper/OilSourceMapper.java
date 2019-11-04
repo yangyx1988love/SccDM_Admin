@@ -13,4 +13,5 @@ public interface OilSourceMapper {
     int updateById(OilSource oilSource);
     int insertOrUpdate(OilSource oilSource);
     int insertSelective(OilSource oilSource);
+    int insertList(List<OilSource> list);
 }

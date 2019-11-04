@@ -13,4 +13,5 @@ public interface RailwayEngineMapper {
     int updateById(RailwayEngine railwayEngine);
     int insertOrUpdate(RailwayEngine railwayEngine);
     int insertSelective(RailwayEngine railwayEngine);
+    int insertList(List<RailwayEngine> list);
 }

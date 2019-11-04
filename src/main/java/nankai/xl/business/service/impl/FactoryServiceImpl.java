@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.FactoryQuery;
+import nankai.xl.business.model.vo.NonFactoryVo;
 import nankai.xl.business.service.FactoryService;
 import nankai.xl.common.exception.DuplicateNameException;
 import nankai.xl.common.util.ResultBean;
@@ -76,6 +77,24 @@ public class FactoryServiceImpl implements FactoryService {
             factoryResults = getFactoryListByQuery(factoryQuery,page, limit);
         }
         return factoryResults;
+    }
+
+    @Override
+    public List<NonFactoryVo> getNonAuthFactoryNumByuser(Adminuser user) {
+        List<Factory> factoryResults =new ArrayList<>();
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        Integer[] roleIds=adminuserMapper.selectRoleIdsByUserId(user.getUserId());
+        FactoryQuery factoryQuery=new FactoryQuery();
+        factoryQuery.setStatus(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factoryQuery.setCountyCity(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factoryQuery.setCountyId(county.getCountyId());
+        }
+        return factoryMapper.countNonAthuFactory(factoryQuery);
     }
 
     @Override

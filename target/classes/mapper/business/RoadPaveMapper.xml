@@ -177,22 +177,51 @@
       #{bcEmission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, #{flagd,jdbcType=TINYINT}, 
       #{sourceDescrip,jdbcType=VARCHAR})
     ON DUPLICATE KEY UPDATE
-      id = #{record.id,jdbcType=INTEGER},
-      year = #{record.year,jdbcType=CHAR},
-      county_id = #{record.countyId,jdbcType=CHAR},
-      asphalt = #{record.asphalt,jdbcType=DOUBLE},
-      scccode = #{record.scccode,jdbcType=CHAR},
-      pm10_emission = #{record.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{record.pm25Emission,jdbcType=DOUBLE},
-      voc_emission = #{record.vocEmission,jdbcType=DOUBLE},
-      nh3_emission = #{record.nh3Emission,jdbcType=DOUBLE},
-      so2_emission = #{record.so2Emission,jdbcType=DOUBLE},
-      co_emission = #{record.coEmission,jdbcType=DOUBLE},
-      oc_emission = #{record.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{record.bcEmission,jdbcType=DOUBLE},
-      nox_emission = #{record.noxEmission,jdbcType=DOUBLE},
-      flagd = #{record.flagd,jdbcType=TINYINT},
-      source_descrip = #{record.sourceDescrip,jdbcType=VARCHAR}
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      asphalt = #{item.asphalt,jdbcType=DOUBLE},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      flagd = #{item.flagd,jdbcType=TINYINT},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO road_pave (id, year, county_id,
+    asphalt, scccode, pm10_emission,
+    pm25_emission, voc_emission, nh3_emission,
+    so2_emission, co_emission, oc_emission,
+    bc_emission, nox_emission, flagd,
+    source_descrip)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      asphalt = #{item.asphalt,jdbcType=DOUBLE},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      flagd = #{item.flagd,jdbcType=TINYINT},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR}
+      )
+    </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.RoadPave" >
     update road_pave

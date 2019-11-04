@@ -238,6 +238,42 @@
       oc_emission = #{ocEmission,jdbcType=DOUBLE},
       bc_emission = #{bcEmission,jdbcType=DOUBLE}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO biomass_stove (id, year, county_id,
+    stove_type, CROP_TYPE, CROP_YIELD,
+    scc_code, source_descrip, GRASS_VALLEY_RATIO,
+    BURNING_RATIO_stove, note, pm10_emission,
+    pm25_emission, co_emission, voc_emission,
+    pm_emission, so2_emission, nox_emission,
+    nh3_emission, oc_emission, bc_emission
+    )
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      stove_type = #{item.stoveType,jdbcType=CHAR},
+      CROP_TYPE = #{item.cropType,jdbcType=CHAR},
+      CROP_YIELD = #{item.cropYield,jdbcType=DOUBLE},
+      scc_code = #{item.sccCode,jdbcType=CHAR},
+      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
+      GRASS_VALLEY_RATIO = #{item.grassValleyRatio,jdbcType=DOUBLE},
+      BURNING_RATIO_stove = #{item.burningRatioStove,jdbcType=DOUBLE},
+      note = #{item.note,jdbcType=VARCHAR},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      pm_emission = #{item.pmEmission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.BiomassStove" >
     update biomass_stove
     <set >

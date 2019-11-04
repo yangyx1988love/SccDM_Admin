@@ -13,4 +13,5 @@ public interface XjcydustStackMapper {
     int updateById(XjcydustStack xjcydustStack);
     int insertOrUpdate(XjcydustStack xjcydustStack);
     int insertSelective(XjcydustStack xjcydustStack);
+    int insertList(List<XjcydustStack> list);
 }

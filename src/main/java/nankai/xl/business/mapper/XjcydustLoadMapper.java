@@ -13,4 +13,5 @@ public interface XjcydustLoadMapper {
     int updateById(XjcydustLoad xjcydustLoad);
     int insertOrUpdate(XjcydustLoad xjcydustLoad);
     int insertSelective(XjcydustLoad xjcydustLoad);
+    int insertList(List<XjcydustLoad> list);
 }

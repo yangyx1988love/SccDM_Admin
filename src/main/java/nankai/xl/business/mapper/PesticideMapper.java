@@ -13,4 +13,5 @@ public interface PesticideMapper {
     int updateById(Pesticide pesticide);
     int insertOrUpdate(Pesticide pesticide);
     int insertSelective(Pesticide pesticide);
+    int insertList(List<Pesticide> list);
 }

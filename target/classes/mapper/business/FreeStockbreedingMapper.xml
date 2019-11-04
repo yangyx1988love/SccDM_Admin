@@ -200,6 +200,36 @@
       nox_emission = #{noxEmission,jdbcType=DOUBLE},
       flag = #{flag,jdbcType=TINYINT}
   </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    INSERT INTO free_stockbreeding (id, year, county_id,
+    scccode, source_discrip, activity_level,
+    compute_cycle, pm10_emission, pm25_emission,
+    voc_emission, nh3_emission, so2_emission,
+    co_emission, oc_emission, bc_emission,
+    nox_emission, flag)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      id = #{item.id,jdbcType=INTEGER},
+      year = #{item.year,jdbcType=CHAR},
+      county_id = #{item.countyId,jdbcType=CHAR},
+      scccode = #{item.scccode,jdbcType=CHAR},
+      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
+      activity_level = #{item.activityLevel,jdbcType=DOUBLE},
+      compute_cycle = #{item.computeCycle,jdbcType=INTEGER},
+      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
+      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
+      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
+      co_emission = #{item.coEmission,jdbcType=DOUBLE},
+      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
+      flag = #{item.flag,jdbcType=TINYINT}
+      )
+    </foreach>
+  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.FreeStockbreeding" >
     update free_stockbreeding
     <set >

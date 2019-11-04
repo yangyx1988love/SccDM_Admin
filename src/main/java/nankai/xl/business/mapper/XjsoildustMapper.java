@@ -13,4 +13,5 @@ public interface XjsoildustMapper {
     int updateById(Xjsoildust xjsoildust);
     int insertOrUpdate(Xjsoildust xjsoildust);
     int insertSelective(Xjsoildust xjsoildust);
+    int insertList(List<Xjsoildust> list);
 }

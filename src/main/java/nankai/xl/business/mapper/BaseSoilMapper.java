@@ -12,4 +12,5 @@ public interface BaseSoilMapper {
     int updateById(BaseSoil baseSoil);
     int insertOrUpdate(BaseSoil baseSoil);
     int insertSelective(BaseSoil baseSoil);
+    int insertList(List<BaseSoil> list);
 }
