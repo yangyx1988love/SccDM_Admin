@@ -444,7 +444,7 @@ function makeDefaultEncode(
             encode.value = firstNotOrdinal;
             var nameDimIndex = completeResult.potentialNameDimIndex
                 || Math.max(firstNotOrdinal - 1, 0);
-            // By default, label use itemName in charts.
+            // By default, label use itemName in district.
             // So we dont set encodeLabel here.
             encodeSeriesName.push(nameDimIndex);
             encodeItemName.push(nameDimIndex);

@@ -3,7 +3,6 @@ package nankai.xl.business.controller;
 import com.github.pagehelper.PageInfo;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.FactoryQuery;
-import nankai.xl.business.model.vo.FactoryVo;
 import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.FactoryService;
 import nankai.xl.common.annotation.OperationLog;
@@ -11,11 +10,8 @@ import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
 import nankai.xl.common.util.ShiroUtil;
 import nankai.xl.common.validate.groups.Create;
-import nankai.xl.system.mapper.DeptMapper;
 import nankai.xl.system.model.Adminuser;
-import nankai.xl.system.model.Dept;
 import nankai.xl.system.service.DeptService;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/factory")

@@ -588,7 +588,7 @@ echartsProto.getConnectedDataURL = function (opts) {
         targetCanvas.height = height;
         var zr = zrender.init(targetCanvas);
 
-        // Background between the charts
+        // Background between the district
         if (opts.connectedBackgroundColor) {
             zr.add(new graphic.Rect({
                 shape: {
@@ -1400,7 +1400,7 @@ echartsProto.off = createRegisterEventWithLowercaseName('off', false);
 echartsProto.one = createRegisterEventWithLowercaseName('one', false);
 
 /**
- * Prepare view instances of charts and components
+ * Prepare view instances of district and components
  * @param  {module:echarts/model/Global} ecModel
  * @private
  */
@@ -1508,7 +1508,7 @@ function render(ecIns, ecModel, api, payload) {
 
     renderSeries(ecIns, ecModel, api, payload);
 
-    // Remove groups of unrendered charts
+    // Remove groups of unrendered district
     each(ecIns._chartsViews, function (chart) {
         if (!chart.__alive) {
             chart.remove(ecModel, api);
@@ -1530,7 +1530,7 @@ function renderComponents(ecIns, ecModel, api, payload, dirtyList) {
  * @private
  */
 function renderSeries(ecIns, ecModel, api, payload, dirtyMap) {
-    // Render all charts
+    // Render all district
     var scheduler = ecIns._scheduler;
     var unfinished;
     ecModel.eachSeries(function (seriesModel) {
@@ -2088,7 +2088,7 @@ export function init(dom, theme, opts) {
  * @return {string|Array.<module:echarts~ECharts>} groupId
  */
 export function connect(groupId) {
-    // Is array of charts
+    // Is array of district
     if (zrUtil.isArray(groupId)) {
         var charts = groupId;
         groupId = null;

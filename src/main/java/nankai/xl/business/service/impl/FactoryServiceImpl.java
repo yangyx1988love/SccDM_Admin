@@ -4,13 +4,11 @@ import com.github.pagehelper.PageHelper;
 import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.FactoryQuery;
-import nankai.xl.business.model.vo.NonFactoryVo;
+import nankai.xl.business.model.vo.SumVo;
 import nankai.xl.business.service.FactoryService;
 import nankai.xl.common.exception.DuplicateNameException;
-import nankai.xl.common.util.ResultBean;
 import nankai.xl.system.mapper.AdminuserMapper;
 import nankai.xl.system.mapper.DeptMapper;
-import nankai.xl.system.mapper.RoleMapper;
 import nankai.xl.system.model.Adminuser;
 import nankai.xl.system.model.Dept;
 import org.apache.shiro.SecurityUtils;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,28 +57,37 @@ public class FactoryServiceImpl implements FactoryService {
 
     @Override
     public List<Factory> getFactorysByuser(Adminuser user,int page, int limit) {
-        List<Factory> factoryResults =new ArrayList<>();
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
         FactoryQuery factoryQuery=new FactoryQuery();
-        if (dept.getDeptLevel()==1){
-            factoryResults = getFactoryListByQuery(factoryQuery,page, limit);
-        }
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
             factoryQuery.setCountyCity(city.getCityCode());
-            factoryResults = getFactoryListByQuery(factoryQuery,page, limit);
+
         }
         if (dept.getDeptLevel()==3){
             County county=countyMapper.selectCountyById(dept.getDeptId());
             factoryQuery.setCountyId(county.getCountyId());
-            factoryResults = getFactoryListByQuery(factoryQuery,page, limit);
         }
-        return factoryResults;
+        return getFactoryListByQuery(factoryQuery,page, limit);
     }
 
     @Override
-    public List<NonFactoryVo> getNonAuthFactoryNumByuser(Adminuser user) {
-        List<Factory> factoryResults =new ArrayList<>();
+    public List<Factory> getFactorysByuser(Adminuser user) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactoryQuery factoryQuery=new FactoryQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factoryQuery.setCountyCity(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factoryQuery.setCountyId(county.getCountyId());
+        }
+        return factoryMapper.selectByFactoryQuery(factoryQuery);
+    }
+
+    @Override
+    public List<SumVo> countNonAuthByuser(Adminuser user) {
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
         Integer[] roleIds=adminuserMapper.selectRoleIdsByUserId(user.getUserId());
         FactoryQuery factoryQuery=new FactoryQuery();
@@ -94,7 +100,34 @@ public class FactoryServiceImpl implements FactoryService {
             County county=countyMapper.selectCountyById(dept.getDeptId());
             factoryQuery.setCountyId(county.getCountyId());
         }
-        return factoryMapper.countNonAthuFactory(factoryQuery);
+        return factoryMapper.countNonAthu(factoryQuery);
+    }
+
+    @Override
+    public List<SumVo> countIndustryBigByuser(Adminuser user) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        Integer[] roleIds=adminuserMapper.selectRoleIdsByUserId(user.getUserId());
+        FactoryQuery factoryQuery=new FactoryQuery();
+        factoryQuery.setStatus(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factoryQuery.setCountyCity(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factoryQuery.setCountyId(county.getCountyId());
+        }
+        return factoryMapper.countByIndustryBig(factoryQuery);
+    }
+
+    @Override
+    public List<SumVo> countByCity() {
+        return factoryMapper.countByCity();
+    }
+
+    @Override
+    public List<SumVo> countByCounty() {
+        return factoryMapper.countByCounty();
     }
 
     @Override

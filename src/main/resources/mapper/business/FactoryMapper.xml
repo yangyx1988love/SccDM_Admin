@@ -93,6 +93,8 @@
     factory.factory_longitude,
     factory.source_type,
     factory.`year`,
+    factory.total_output,
+    factory.total_value,
     factory.county_city,
     city.city_name,
     factory.COUNTY_ID,
@@ -133,21 +135,21 @@
 <!--  </select>-->
   <select id="selectAllFactorys" resultMap="BaseResultMap">
       SELECT factory.factory_id,
-                   factory.factory_no1,
-                   factory.factory_name,
-                   factory.factory_latitude,
-                   factory.factory_longitude,
-									 factory.total_value,
-									 factory.total_output,
-									 factory.factory_size,
-                   factory.source_type,
-                   factory.`year`,
-                   factory.county_city,
-                   city.city_name,
-                   factory.COUNTY_ID,
-                   county.COUNTY_NAME,
-                   factory.`status`,
-                   `status`.introduction AS statusdec
+             factory.factory_no1,
+             factory.factory_name,
+             factory.factory_latitude,
+             factory.factory_longitude,
+             factory.total_value,
+             factory.total_output,
+             factory.factory_size,
+             factory.source_type,
+             factory.`year`,
+             factory.county_city,
+             city.city_name,
+             factory.COUNTY_ID,
+             county.COUNTY_NAME,
+             factory.`status`,
+             `status`.introduction AS statusdec
       FROM factory
       LEFT JOIN city
       ON factory.county_city=city.city_code
@@ -170,25 +172,53 @@
         select count(*)
         from factory where factory_no1 = #{factoryNo1}
   </select>
-  <select id="countNonAthuFactory" resultType="nankai.xl.business.model.vo.NonFactoryVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
-      SELECT ss.num AS factoryNum,`status`.introduction AS statusDec FROM(
-        SELECT COUNT(*) AS num,status
-        FROM factory
-        <where>
-          <if test="countyId != null and countyId != ''">
-            factory.county_id = #{countyId}
-          </if>
-          <if test="countyCity != null and countyCity != ''">
-            AND factory.county_city = #{countyCity}
-          </if>
-          <if test="status != null and status != ''">
-            AND factory.status &lt; #{status}
-          </if>
-        </where>
-        GROUP BY status
-      ) ss
-      INNER JOIN status
-      ON ss.status=`status`.id
+  <select id="countNonAthu" resultType="nankai.xl.business.model.vo.SumVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
+    SELECT COUNT(factory.factory_id) AS value,`status`.introduction AS name FROM factory
+    INNER JOIN status
+    ON factory.`status`=`status`.id
+    <where>
+      <if test="countyId != null and countyId != ''">
+        factory.county_id = #{countyId}
+      </if>
+      <if test="countyCity != null and countyCity != ''">
+        AND factory.county_city = #{countyCity}
+      </if>
+      <if test="status != null and status != ''">
+        AND factory.status &lt; #{status}
+      </if>
+    </where>
+    GROUP BY factory.`status`
+  </select>
+  <select id="countByIndustryBig" resultType="nankai.xl.business.model.vo.SumVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
+    SELECT COUNT(*) AS value,industry_big.industry_name AS name FROM factory
+    INNER JOIN industry_big
+    ON industry_big.industry_code=factory.industry_bigid
+    <where>
+      <if test="countyId != null and countyId != ''">
+        factory.county_id = #{countyId}
+      </if>
+      <if test="countyCity != null and countyCity != ''">
+        AND factory.county_city = #{countyCity}
+      </if>
+    </where>
+    GROUP BY factory.industry_bigid
+  </select>
+  <select id="countByCity" resultType="nankai.xl.business.model.vo.SumVo">
+    SELECT COUNT(factory.factory_id) AS value,city.city_name AS name FROM county
+    LEFT JOIN factory
+    ON county.COUNTY_ID=factory.county_id
+    INNER JOIN city
+    ON county.city_code=city.city_code
+    GROUP BY county.city_code
+  </select>
+  <select id="countByCounty" resultType="nankai.xl.business.model.vo.SumVo">
+    SELECT COUNT(factory.factory_id) AS value,CONCAT(city.city_name,'-',county.COUNTY_NAME )AS name FROM county
+    INNER JOIN factory
+    ON county.COUNTY_ID=factory.county_id
+    INNER JOIN city
+    ON county.city_code=city.city_code
+    GROUP BY county.COUNTY_ID
+    ORDER BY city.city_code
   </select>
   <update id="updatePassByFactoryNO" parameterType="nankai.xl.business.model.User" >
     update user

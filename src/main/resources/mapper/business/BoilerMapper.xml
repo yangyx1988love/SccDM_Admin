@@ -83,6 +83,35 @@
           )
      ORDER BY NK_NO ASC
   </select>
+  <select id="countByCity" resultType="nankai.xl.business.model.vo.SumVo">
+    SELECT COUNT(ss.ID) AS value,city.city_name AS name FROM county
+    INNER JOIN (
+        SELECT boiler.ID,factory.county_id FROM boiler
+        INNER JOIN exhaust
+        ON exhaust.EXF_ID=boiler.EXHUST_ID
+        INNER JOIN factory
+        ON exhaust.FACTORY_ID=factory.factory_id
+    ) ss
+    ON county.COUNTY_ID=ss.county_id
+    INNER JOIN city
+    ON county.city_code=city.city_code
+    GROUP BY county.city_code
+  </select>
+  <select id="countByCounty" resultType="nankai.xl.business.model.vo.SumVo">
+    SELECT COUNT(ss.ID) AS value,CONCAT(city.city_name,'-',county.COUNTY_NAME) AS name FROM county
+    LEFT JOIN (
+    SELECT boiler.ID,factory.county_id FROM boiler
+    INNER JOIN exhaust
+    ON exhaust.EXF_ID=boiler.EXHUST_ID
+    INNER JOIN factory
+    ON exhaust.FACTORY_ID=factory.factory_id
+    ) ss
+    ON county.COUNTY_ID=ss.county_id
+    INNER JOIN city
+    ON county.city_code=city.city_code
+    GROUP BY county.COUNTY_ID
+    ORDER BY county.city_code ASC
+  </select>
   <update id="updateById" parameterType="nankai.xl.business.model.Boiler" >
     update boiler
     <set >

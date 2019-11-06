@@ -152,7 +152,7 @@ export default echarts.extendComponentView({
             var self = this;
             clearTimeout(this._refreshUpdateTimeout);
             this._refreshUpdateTimeout = setTimeout(function () {
-                // Show tip next tick after other charts are rendered
+                // Show tip next tick after other district are rendered
                 // In case highlight action has wrong result
                 // FIXME
                 !api.isDisposed() && self.manuallyShowTip(tooltipModel, ecModel, api, {

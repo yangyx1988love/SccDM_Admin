@@ -4,6 +4,7 @@ import nankai.xl.business.model.Boiler;
 import nankai.xl.business.model.Kiln;
 import nankai.xl.business.model.vo.BoilerVo;
 import nankai.xl.business.model.vo.KilnVo;
+import nankai.xl.business.model.vo.SumVo;
 
 import java.util.List;
 
@@ -20,4 +21,11 @@ public interface FurnaceCommonService {
     List<KilnVo> getKilnsByFactoryId(Integer factoryId);
     int updateKilnById(Kiln kiln);
     int insertOrUpdateKiln(Kiln kiln);
+
+    //按城市统计锅炉数量
+    public List<SumVo> countBoilerByCity();
+    public List<SumVo> countBoilerByCounty();
+    //按城市统计窑炉数量
+    public List<SumVo> countKilnByCity();
+    public List<SumVo> countKilnByCounty();
 }

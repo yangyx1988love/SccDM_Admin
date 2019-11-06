@@ -61,14 +61,14 @@ public class OperationLogAspect {
         Object[] args = joinPoint.getArgs();
         // 请求的方法参数名称
         LocalVariableTableParameterNameDiscoverer u = new LocalVariableTableParameterNameDiscoverer();
-        String[] paramNames = u.getParameterNames(method);
-        if (args != null && paramNames != null) {
-            StringBuilder params = new StringBuilder();
-            for (int i = 0; i < args.length; i++) {
-                params.append("  ").append(paramNames[i]).append(": ").append(args[i]);
-            }
-            sysLog.setParams(params.toString());
-        }
+//        String[] paramNames = u.getParameterNames(method);
+//        if (args != null && paramNames != null) {
+//            StringBuilder params = new StringBuilder();
+//            for (int i = 0; i < args.length; i++) {
+//                params.append("  ").append(paramNames[i]).append(": ").append(args[i]);
+//            }
+//            sysLog.setParams(params.toString());
+//        }
         sysLog.setIp(IPUtils.getIpAddr());
 
         // 登录才获取用户名

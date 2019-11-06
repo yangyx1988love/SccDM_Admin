@@ -51,22 +51,17 @@ public class IndexController {
     @OperationLog("访问我的桌面")
     @GetMapping("/welcome")
     public String welcome(Model model) {
-//        int userCount = adminuserService.count();
-//        int roleCount = roleService.count();
-//        int menuCount = menuService.count();
-//        int loginLogCount = loginLogService.count();
-//        int sysLogCount = sysLogService.count();
-//        int userOnlineCount = adminuserOnlineService.count();
-//
-//        model.addAttribute("userCount", userCount);
-//        model.addAttribute("roleCount", roleCount);
-//        model.addAttribute("menuCount", menuCount);
-//        model.addAttribute("loginLogCount", loginLogCount);
-//        model.addAttribute("sysLogCount", sysLogCount);
-//        model.addAttribute("userOnlineCount", userOnlineCount);
         Adminuser user = ShiroUtil.getCurrentUser();
+
+        model.addAttribute("userCount", adminuserService.count());
+        model.addAttribute("roleCount", roleService.count());
+        model.addAttribute("menuCount", menuService.count());
+        model.addAttribute("loginLogCount", loginLogService.count());
+        model.addAttribute("sysLogCount", sysLogService.count());
+        model.addAttribute("userOnlineCount", adminuserOnlineService.count());
+
         if (user.getDeptId()!=null){
-            model.addAttribute("nonAuthFactorys",factoryService.getNonAuthFactoryNumByuser(user));
+            model.addAttribute("nonAuthFactorys",factoryService.countNonAuthByuser(user));
             Map<String, String> map=selectCommonService.getCityAndCountyCodeByuser(user);
             String cityCode=map.get("cityCode");
             String countyCode=map.get("countyCode");

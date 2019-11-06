@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="z-body animated fadeIn">
+    <div class="z-body animated fadeIn" id="parentDiv">
         <blockquote class="layui-elem-quote">欢迎：
             <span><shiro:principal property="username"/></span>！当前时间: [[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}]]</blockquote>
         <fieldset class="layui-elem-field">
@@ -26,9 +26,9 @@
                                     <ul class="layui-row layui-col-space10 layui-this">
                                         <li class="layui-col-xs2" th:each="nonAuthFactory:${nonAuthFactorys}">
                                             <a href="#" onclick="openTab('待审核企业', '/factoryAuth/index')" class="x-admin-backlog-body">
-                                                <h3><span th:text="${nonAuthFactory.statusDec}"></span></h3>
+                                                <h3><span th:text="${nonAuthFactory.name}"></span></h3>
                                                 <p>
-                                                    <cite th:text="${nonAuthFactory.factoryNum}"></cite>
+                                                    <cite th:text="${nonAuthFactory.value}"></cite>
                                                 </p>
                                             </a>
                                         </li>
@@ -137,122 +137,126 @@
                 </div>
             </div>
         </fieldset>
-<!--        <fieldset class="layui-elem-field">-->
-<!--            <legend>数据统计</legend>-->
-<!--            <div class="layui-field-box">-->
-<!--                <div class="layui-col-md12">-->
-<!--                    <div class="layui-card">-->
-<!--                        <div class="layui-card-body">-->
-<!--                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">-->
-<!--                                <div carousel-item="">-->
-<!--                                    <ul class="layui-row layui-col-space10 layui-this">-->
-<!--                                        <li class="layui-col-xs2">-->
-<!--                                            <a href="#" onclick="openTab('地图', '/data/map')" class="x-admin-backlog-body">-->
-<!--                                                <p>-->
-<!--                                                    <img th:src="@{/images/map.gif}" alt="" style="height: 80px;"/>-->
-<!--                                                </p>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="layui-col-xs2">-->
-<!--                                            <a href="#" onclick="openTab('角色管理', '/role/index')" class="x-admin-backlog-body">-->
-<!--                                                <h3>角色数</h3>-->
-<!--                                                <p>-->
-<!--                                                    <cite th:text="${roleCount}"></cite>-->
-<!--                                                </p>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="layui-col-xs2">-->
-<!--                                            <a href="#" onclick="openTab('菜单管理', '/menu/index')" class="x-admin-backlog-body">-->
-<!--                                                <h3>菜单数</h3>-->
-<!--                                                <p>-->
-<!--                                                    <cite th:text="${menuCount}"></cite>-->
-<!--                                                </p>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="layui-col-xs2">-->
-<!--                                            <a href="#" onclick="openTab('登录日志', '/log/login/index')" class="x-admin-backlog-body">-->
-<!--                                                <h3>登录日志</h3>-->
-<!--                                                <p>-->
-<!--                                                    <cite th:text="${loginLogCount}"></cite>-->
-<!--                                                </p>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="layui-col-xs2">-->
-<!--                                            <a href="#" onclick="openTab('操作日志', '/log/sys/index')" class="x-admin-backlog-body">-->
-<!--                                                <h3>操作日志</h3>-->
-<!--                                                <p>-->
-<!--                                                    <cite th:text="${sysLogCount}"></cite>-->
-<!--                                                </p>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li class="layui-col-xs2">-->
-<!--                                            <a href="#" onclick="openTab('在线人数', '/online/index')" class="x-admin-backlog-body">-->
-<!--                                                <h3>在线人数</h3>-->
-<!--                                                <p>-->
-<!--                                                    <cite th:text="${userOnlineCount}"></cite>-->
-<!--                                                </p>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </fieldset>-->
-<!--        <fieldset class="layui-elem-field">-->
-<!--            <legend>最近登录</legend>-->
-<!--            <div class="layui-field-box">-->
-<!--                <div id="main" style="width: 100%;height:400px;"></div>-->
-<!--            </div>-->
-<!--        </fieldset>-->
+        <fieldset class="layui-elem-field">
+            <legend>快捷键</legend>
+            <div class="layui-field-box">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
+                                <div carousel-item="">
+                                    <ul class="layui-row layui-col-space10 layui-this">
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('地图', '/data/map')" class="x-admin-backlog-body">
+                                                <h3>填报企业地理位置</h3>
+                                                <p>
+                                                    <img th:src="@{/images/map.gif}" alt="" style="height: 30px;width: 30px"/>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <shiro:hasRole name="admin">
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('角色管理', '/role/index')" class="x-admin-backlog-body">
+                                                <h3>角色数</h3>
+                                                <p>
+                                                    <cite th:text="${roleCount}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('菜单管理', '/menu/index')" class="x-admin-backlog-body">
+                                                <h3>菜单数</h3>
+                                                <p>
+                                                    <cite th:text="${menuCount}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('登录日志', '/log/login/index')" class="x-admin-backlog-body">
+                                                <h3>登录日志</h3>
+                                                <p>
+                                                    <cite th:text="${loginLogCount}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('操作日志', '/log/sys/index')" class="x-admin-backlog-body">
+                                                <h3>操作日志</h3>
+                                                <p>
+                                                    <cite th:text="${sysLogCount}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs2">
+                                            <a href="#" onclick="openTab('在线人数', '/online/index')" class="x-admin-backlog-body">
+                                                <h3>在线人数</h3>
+                                                <p>
+                                                    <cite th:text="${userOnlineCount}"></cite>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        </shiro:hasRole>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+            <legend>填报企业数据图表</legend>
+            <div class="layui-field-box">
+                <div class="layui-carousel" id="carousel_1" >
+                    <div carousel-item="" >
+                        <div id="barGraphDiv" style="height: 500px"></div>
+                        <div id="pieDiv"style="height: 540px; "></div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
     </div>
 
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
     <script th:src="@{/lib/layui/layui.js}"></script>
     <script th:src="@{/js/common.js}"></script>
     <script th:src="@{/lib/echarts/dist/echarts.js}"></script>
+    <script th:src="@{/js/myEcharts.js}"></script>
     <script type="application/javascript">
-        layui.use(['carousel','element'], function(){
+        layui.use(['carousel','element','jquery','form'], function() {
             var carousel = layui.carousel
-            //常规轮播
-            // carousel.render({
-            //     elem: '#test1'
-            //     ,arrow: 'always'
+            var $ = layui.jquery
+                , element = layui.element //Tab的切换功能，切换事件监听等，需要依赖element模块
+                ,form = layui.form //form表单
+            // $(function(){
+            //     element.progress('storage', '70%')
+            //     $('#storage').css("background-color","red")
             // });
+            carousel.render({
+                elem: '#carousel_1'
+                , arrow: 'hover'
+                , width: '100%' //设置容器宽度
+                , height: '500px'
+                , indicator: 'none'
+                , interval: 5000
+            });
+            var parentWith = $('#parentDiv').width();
 
-            layui.$("#main").css("width", (window.innerWidth - 100) +'px');
-            // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main'));
-            // 指定图表的配置项和数据
-            option = {
-                title: {
-                    text: '近七天登陆次数统计图',
-                    left: 'center'
-                },
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                        type: 'none' // 默认为直线，可选为：'line' | 'shadow'
-                    }
-                },
-                xAxis: {
-                    type: 'category',
-                    data:  getWeekList()
-                },
-                yAxis: {
-                    type: 'value'
-                },
-                series: [{
-                    data: [],
-                    type: 'line'
-                }]
-            };
-            layui.$.get('/weekLoginCount', function (data) {
-                option.series[0].data = data;
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
+            layui.$.get('/data/pie/factory/industryBig', function (result) {
+                var legendData = result.legendData;
+                var seriesData = result.seriesData;
+                layui.$("#pieDiv").css("width", (parentWith - 35) + 'px');
+                var myChartPie = echarts.init(document.getElementById('pieDiv'));
+                initPie(myChartPie, "行业大分类企业占比", legendData, "行业大分类", seriesData);
+            });
+
+            layui.$.get('/data/barGrap/factory/industryBig', function (result) {
+                var xAxisData = result.xAxisData;
+                var seriesData = result.seriesData;
+                layui.$("#barGraphDiv").css("width", (parentWith - 25) + 'px');
+                var myChartBarGrap = echarts.init(document.getElementById('barGraphDiv'));
+                inintBarGraph(myChartBarGrap,'行业大分类企业数量',['企业数量'], xAxisData, seriesData)
             });
         });
     </script>

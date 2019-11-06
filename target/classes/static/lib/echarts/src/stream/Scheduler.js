@@ -313,7 +313,7 @@ function createSeriesStageTask(scheduler, stageHandler, stageHandlerRecord, ecMo
 
     // If a stageHandler should cover all series, `createOnAllSeries` should be declared mandatorily,
     // to avoid some typo or abuse. Otherwise if an extension do not specify a `seriesType`,
-    // it works but it may cause other irrelevant charts blocked.
+    // it works but it may cause other irrelevant district blocked.
     if (stageHandler.createOnAllSeries) {
         ecModel.eachRawSeries(create);
     }

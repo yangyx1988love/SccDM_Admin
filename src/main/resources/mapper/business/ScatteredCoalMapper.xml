@@ -66,6 +66,17 @@
     ON co.COUNTY_ID=scattered_coal.county_id
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="sumByFuleTypeACity" resultType="nankai.xl.business.model.vo.SumVo">
+    SELECT SUM(scattered_coal.activity_level_num) AS value,scattered_coal.activity_level AS name ,ss.city_name AS theme
+    FROM scattered_coal
+    INNER JOIN (
+    SELECT county.COUNTY_ID,city.city_name,city.city_code FROM county
+    INNER JOIN city
+    ON city.city_code=county.city_code
+    )ss
+    ON scattered_coal.county_id=ss.COUNTY_ID
+    GROUP BY scattered_coal.activity_level,ss.city_code
+  </select>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.ScatteredCoal" >
     insert into scattered_coal
     <trim prefix="(" suffix=")" suffixOverrides="," >

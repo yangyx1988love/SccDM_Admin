@@ -6,6 +6,7 @@ import nankai.xl.business.model.Boiler;
 import nankai.xl.business.model.Kiln;
 import nankai.xl.business.model.vo.BoilerVo;
 import nankai.xl.business.model.vo.KilnVo;
+import nankai.xl.business.model.vo.SumVo;
 import nankai.xl.business.service.FurnaceCommonService;
 import org.springframework.stereotype.Service;
 
@@ -67,5 +68,25 @@ public class FurnaceCommonServiceImpl implements FurnaceCommonService {
     @Override
     public int insertOrUpdateKiln(Kiln kiln) {
         return kilnMapper.insertOrUpdate(kiln);
+    }
+
+    @Override
+    public List<SumVo> countBoilerByCity() {
+        return boilerMapper.countByCity();
+    }
+
+    @Override
+    public List<SumVo> countBoilerByCounty() {
+        return boilerMapper.countByCounty();
+    }
+
+    @Override
+    public List<SumVo> countKilnByCity() {
+        return kilnMapper.countByCity();
+    }
+
+    @Override
+    public List<SumVo> countKilnByCounty() {
+        return kilnMapper.countByCounty();
     }
 }

@@ -20761,7 +20761,7 @@ function makeDefaultEncode(
             encode.value = firstNotOrdinal;
             var nameDimIndex = completeResult.potentialNameDimIndex
                 || Math.max(firstNotOrdinal - 1, 0);
-            // By default, label use itemName in charts.
+            // By default, label use itemName in district.
             // So we dont set encodeLabel here.
             encodeSeriesName.push(nameDimIndex);
             encodeItemName.push(nameDimIndex);
@@ -25486,7 +25486,7 @@ function createSeriesStageTask(scheduler, stageHandler, stageHandlerRecord, ecMo
 
     // If a stageHandler should cover all series, `createOnAllSeries` should be declared mandatorily,
     // to avoid some typo or abuse. Otherwise if an extension do not specify a `seriesType`,
-    // it works but it may cause other irrelevant charts blocked.
+    // it works but it may cause other irrelevant district blocked.
     if (stageHandler.createOnAllSeries) {
         ecModel.eachRawSeries(create);
     }
@@ -28085,7 +28085,7 @@ echartsProto.off = createRegisterEventWithLowercaseName('off');
 echartsProto.one = createRegisterEventWithLowercaseName('one');
 
 /**
- * Prepare view instances of charts and components
+ * Prepare view instances of district and components
  * @param  {module:echarts/model/Global} ecModel
  * @private
  */
@@ -28193,7 +28193,7 @@ function render(ecIns, ecModel, api, payload) {
 
     renderSeries(ecIns, ecModel, api, payload);
 
-    // Remove groups of unrendered charts
+    // Remove groups of unrendered district
     each(ecIns._chartsViews, function (chart) {
         if (!chart.__alive) {
             chart.remove(ecModel, api);
@@ -28215,7 +28215,7 @@ function renderComponents(ecIns, ecModel, api, payload, dirtyList) {
  * @private
  */
 function renderSeries(ecIns, ecModel, api, payload, dirtyMap) {
-    // Render all charts
+    // Render all district
     var scheduler = ecIns._scheduler;
     var unfinished;
     ecModel.eachSeries(function (seriesModel) {
@@ -28755,7 +28755,7 @@ function init(dom, theme$$1, opts) {
  * @return {string|Array.<module:echarts~ECharts>} groupId
  */
 function connect(groupId) {
-    // Is array of charts
+    // Is array of district
     if (isArray(groupId)) {
         var charts = groupId;
         groupId = null;
@@ -42669,7 +42669,7 @@ var createDataSelectAction = function (seriesType, actionInfos) {
 */
 
 // Pick color from palette for each data item.
-// Applicable for charts that require applying color palette
+// Applicable for district that require applying color palette
 // in data level (like pie, funnel, chord).
 var dataColor = function (seriesType) {
     return {
@@ -74343,7 +74343,7 @@ extendComponentView({
             var self = this;
             clearTimeout(this._refreshUpdateTimeout);
             this._refreshUpdateTimeout = setTimeout(function () {
-                // Show tip next tick after other charts are rendered
+                // Show tip next tick after other district are rendered
                 // In case highlight action has wrong result
                 // FIXME
                 self.manuallyShowTip(tooltipModel, ecModel, api, {
@@ -75253,7 +75253,7 @@ function barLayoutPolar(seriesType, ecModel, api) {
 }
 
 /**
- * Calculate bar width and offset for radial bar charts
+ * Calculate bar width and offset for radial bar district
  */
 function calRadialBar(barSeries, api) {
     // Columns info on each category axis. Key is polar name
@@ -93887,7 +93887,7 @@ registerPainter('svg', SVGPainter);
 * under the License.
 */
 
-// Import all charts and components
+// Import all district and components
 
 exports.version = version;
 exports.dependencies = dependencies;

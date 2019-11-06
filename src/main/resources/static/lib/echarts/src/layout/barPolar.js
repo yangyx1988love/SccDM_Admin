@@ -175,7 +175,7 @@ function barLayoutPolar(seriesType, ecModel, api) {
 }
 
 /**
- * Calculate bar width and offset for radial bar charts
+ * Calculate bar width and offset for radial bar district
  */
 function calRadialBar(barSeries, api) {
     // Columns info on each category axis. Key is polar name

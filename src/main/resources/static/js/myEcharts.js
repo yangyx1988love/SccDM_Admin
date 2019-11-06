@@ -311,14 +311,19 @@ function initPie(myChart,title,legendData,seriesName,seriesData) {
     };
     myChart.setOption(option);
 }
-function inintBarGraph(myChart,title,xAxisData,seriesData) {
+function inintBarGraph(myChart,title,legenddata,xAxisData,seriesData) {
     option = {
         title : {
             text: title,
-            subtext: ''
+            subtext: '',
+            x: 'left',
+            align: 'right'
         },
         tooltip : {
             trigger: 'axis'
+        },
+        legend: {
+            data:legenddata
         },
         toolbox: {
             show : true,
@@ -356,6 +361,7 @@ function inintBarGraph(myChart,title,xAxisData,seriesData) {
         ],
         series : [
             {
+                name:legenddata[0],
                 type:'bar',
                 data:seriesData,
                 markPoint : {
@@ -367,6 +373,92 @@ function inintBarGraph(myChart,title,xAxisData,seriesData) {
                 markLine : {
                     data : [
                         {type : 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+}
+function inint2BarGraph(myChart,title,legenddata,xAxisData,seriesData) {
+    option = {
+        title : {
+            text: title,
+            subtext: '',
+            x: 'left',
+            align: 'right'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:legenddata
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        grid: { // 控制图的大小，调整下面这些值就可以，
+            x: 100,//控制x轴文字与底部的距离
+            y2: 200 // y2可以控制倾斜的文字狱最右边的距离，放置倾斜的文字超过显示区域
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : xAxisData,
+                axisLabel: {
+                    interval: 0,    //强制文字产生间隔
+                    rotate: 45,     //文字逆时针旋转45°
+                    textStyle: {    //文字样式
+                        color: "black",
+                        fontSize: 10,
+                        fontFamily: 'Microsoft YaHei'
+                    }
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:legenddata[0],
+                type:'bar',
+                data:seriesData[0],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            ,
+            {
+                name:legenddata[1],
+                type:'bar',
+                data:seriesData[1],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name : '平均值'}
                     ]
                 }
             }
@@ -818,6 +910,40 @@ function initStackArea(myChart,title,legendData,xAxisData,seriesData) {
             }
         ],
         series : seriesData
+    };
+    myChart.setOption(option);
+}
+//上下双柱图
+function initUpAndDowmBar(myChart,sourceData) {
+    option = {
+        legend: {},
+        tooltip: {},
+        dataset: {
+            source: sourceData
+        },
+        xAxis: [
+            {type: 'category', gridIndex: 0},
+            {type: 'category', gridIndex: 1}
+        ],
+        yAxis: [
+            {gridIndex: 0},
+            {gridIndex: 1}
+        ],
+        grid: [
+            {bottom: '55%'},
+            {top: '55%'}
+        ],
+        series: [
+            // These series are in the first grid.
+            {type: 'bar', seriesLayoutBy: 'row'},
+            {type: 'bar', seriesLayoutBy: 'row'},
+            {type: 'bar', seriesLayoutBy: 'row'},
+            // These series are in the second grid.
+            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
+            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
+            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
+            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1}
+        ]
     };
     myChart.setOption(option);
 }
