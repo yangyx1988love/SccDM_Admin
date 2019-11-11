@@ -3,6 +3,7 @@ package nankai.xl.business.controller;
 import com.github.pagehelper.PageInfo;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.FactoryQuery;
+import nankai.xl.business.model.vo.FactoryVo;
 import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.FactoryService;
 import nankai.xl.common.annotation.OperationLog;
@@ -50,11 +51,11 @@ FactoryController {
     @OperationLog("查看工厂列表")
     @GetMapping("/list")
     @ResponseBody
-    public PageResultBean<Factory> getList(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<FactoryVo> getList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                  @RequestParam(value = "limit", defaultValue = "50")int limit) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (user.getDeptId()!=null){
-            PageInfo<Factory> pageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
+            PageInfo<FactoryVo> pageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
             return new PageResultBean<>(pageInfo.getTotal(), pageInfo.getList());
         }else {
             throw new IllegalArgumentException("用户赋予的部门不能为空！");
@@ -63,12 +64,12 @@ FactoryController {
     @OperationLog("查看工厂列表")
     @GetMapping("/reload")
     @ResponseBody
-    public PageResultBean<Factory> getListByParam(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<FactoryVo> getListByParam(@RequestParam(value = "page", defaultValue = "1") int page,
                                            @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                   @Validated(Create.class) FactoryQuery factoryQuery) {
 
-        List<Factory> factoryResults=factoryService.getFactoryListByQuery(factoryQuery,page, limit);
-        PageInfo<Factory> rolePageInfo = new PageInfo<>(factoryResults);
+        List<FactoryVo> factoryResults=factoryService.getFactoryListByQuery(factoryQuery,page, limit);
+        PageInfo<FactoryVo> rolePageInfo = new PageInfo<>(factoryResults);
         return new PageResultBean<>(rolePageInfo.getTotal(), rolePageInfo.getList());
     }
     @GetMapping
@@ -92,7 +93,7 @@ FactoryController {
     @ResponseBody
     public ResultBean add(@Validated(Create.class) Factory factory) {
         User user=new User();
-        user.setFacNo(factory.getFactoryNo1());
+        user.setFacNo(factory.getFactoryNo());
         user.setPassword("123456");
         factory.setStatus(7);
         return ResultBean.success(factoryService.addFactoryUser(factory,user));

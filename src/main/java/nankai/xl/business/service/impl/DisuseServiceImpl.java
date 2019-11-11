@@ -2,7 +2,6 @@ package nankai.xl.business.service.impl;
 
 import nankai.xl.business.mapper.FeiqiMapper;
 import nankai.xl.business.model.Feiqi;
-import nankai.xl.business.model.vo.FeiqiVo;
 import nankai.xl.business.service.DisuseService;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class DisuseServiceImpl implements DisuseService {
     }
 
     @Override
-    public List<FeiqiVo> getFeiqisByFactoryId(Integer factoryId) {
+    public List<Feiqi> getFeiqisByFactoryId(Integer factoryId) {
         return feiqiMapper.selectByFactoryId(factoryId);
     }
 

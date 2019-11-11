@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.FactoryQuery;
+import nankai.xl.business.model.vo.FactoryVo;
 import nankai.xl.business.model.vo.SumVo;
 import nankai.xl.business.service.FactoryService;
 import nankai.xl.common.exception.DuplicateNameException;
@@ -39,29 +40,29 @@ public class FactoryServiceImpl implements FactoryService {
     private CountyMapper countyMapper;
 
     @Override
-    public List<Factory> getFactoryListByQuery(FactoryQuery factoryQuery,int page, int limit) {
+    public List<FactoryVo> getFactoryListByQuery(FactoryQuery factoryQuery, int page, int limit) {
         PageHelper.startPage(page, limit);
         return factoryMapper.selectByFactoryQuery(factoryQuery);
     }
 
     @Override
-    public List<Factory> getAllFactorys(int page, int limit) {
+    public List<FactoryVo> getAllFactorys(int page, int limit) {
         PageHelper.startPage(page, limit);
         return factoryMapper.selectAllFactorys();
     }
 
     @Override
-    public List<Factory> getAllFactorys() {
+    public List<FactoryVo> getAllFactorys() {
         return factoryMapper.selectAllFactorys();
     }
 
     @Override
-    public List<Factory> getFactorysByuser(Adminuser user,int page, int limit) {
+    public List<FactoryVo> getFactorysByuser(Adminuser user,int page, int limit) {
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
         FactoryQuery factoryQuery=new FactoryQuery();
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
-            factoryQuery.setCountyCity(city.getCityCode());
+            factoryQuery.setCityCode(city.getCityCode());
 
         }
         if (dept.getDeptLevel()==3){
@@ -72,12 +73,12 @@ public class FactoryServiceImpl implements FactoryService {
     }
 
     @Override
-    public List<Factory> getFactorysByuser(Adminuser user) {
+    public List<FactoryVo> getFactorysByuser(Adminuser user) {
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
         FactoryQuery factoryQuery=new FactoryQuery();
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
-            factoryQuery.setCountyCity(city.getCityCode());
+            factoryQuery.setCityCode(city.getCityCode());
         }
         if (dept.getDeptLevel()==3){
             County county=countyMapper.selectCountyById(dept.getDeptId());
@@ -94,7 +95,7 @@ public class FactoryServiceImpl implements FactoryService {
         factoryQuery.setStatus(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
-            factoryQuery.setCountyCity(city.getCityCode());
+            factoryQuery.setCityCode(city.getCityCode());
         }
         if (dept.getDeptLevel()==3){
             County county=countyMapper.selectCountyById(dept.getDeptId());
@@ -111,7 +112,7 @@ public class FactoryServiceImpl implements FactoryService {
         factoryQuery.setStatus(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
-            factoryQuery.setCountyCity(city.getCityCode());
+            factoryQuery.setCityCode(city.getCityCode());
         }
         if (dept.getDeptLevel()==3){
             County county=countyMapper.selectCountyById(dept.getDeptId());
@@ -131,17 +132,17 @@ public class FactoryServiceImpl implements FactoryService {
     }
 
     @Override
-    public Factory getBackById(Integer factoryId) {
+    public FactoryVo getBackById(Integer factoryId) {
         return factoryMapper.selectBackById(factoryId);
     }
 
     @Override
-    public Factory getNextById(Integer factoryId) {
+    public FactoryVo getNextById(Integer factoryId) {
         return factoryMapper.selectNextById(factoryId);
     }
 
     @Override
-    public Factory getFactoryById(Integer factoryId) {
+    public FactoryVo getFactoryById(Integer factoryId) {
         return factoryMapper.selectById(factoryId);
     }
 
@@ -156,10 +157,10 @@ public class FactoryServiceImpl implements FactoryService {
     @Override
     @Transactional
     public String addFactoryUser(Factory factory, User user) {
-        checkFactoryNoExistOnCreate(factory.getFactoryNo1());
+        checkFactoryNoExistOnCreate(factory.getFactoryNo());
         factoryMapper.insertSelective(factory);
         userMapper.insertSelective(user);
-        return factory.getFactoryNo1();
+        return factory.getFactoryNo();
     }
 
     @Override
@@ -182,7 +183,6 @@ public class FactoryServiceImpl implements FactoryService {
             factory.setFactoryId(factoryIds[i]);
             Status status=statusMapper.selectById(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
             factory.setStatus(status.getId());
-            factory.setStatusdec(status.getIntroduction());
             factoryMapper.updateByFactoryId(factory);
         }
         return true;
@@ -193,7 +193,7 @@ public class FactoryServiceImpl implements FactoryService {
      * @param factoryNo1  企业组织机构代码
      */
     public void checkFactoryNoExistOnCreate(String factoryNo1) {
-        if (factoryMapper.countByFactoryNo1(factoryNo1) > 0) {
+        if (factoryMapper.countByFactoryNo(factoryNo1) > 0) {
             throw new DuplicateNameException();
         }
     }

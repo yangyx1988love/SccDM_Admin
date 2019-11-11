@@ -1,16 +1,11 @@
 package nankai.xl.business.model;
 
-import java.io.Serializable;
-
-public class Exhaust implements Serializable{
-
-    private static final long serialVersionUID = -4001326422264853695L;
-
+public class Exhaust {
     private Integer exfId;
 
     private Integer nkNo;
 
-    private String exfNo;
+    private Integer factoryId;
 
     private String exfMaterial;
 
@@ -56,8 +51,6 @@ public class Exhaust implements Serializable{
 
     private Double exfBc;
 
-    private Integer factoryId;
-
     public Integer getExfId() {
         return exfId;
     }
@@ -74,12 +67,12 @@ public class Exhaust implements Serializable{
         this.nkNo = nkNo;
     }
 
-    public String getExfNo() {
-        return exfNo;
+    public Integer getFactoryId() {
+        return factoryId;
     }
 
-    public void setExfNo(String exfNo) {
-        this.exfNo = exfNo == null ? null : exfNo.trim();
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
     }
 
     public String getExfMaterial() {
@@ -256,13 +249,5 @@ public class Exhaust implements Serializable{
 
     public void setExfBc(Double exfBc) {
         this.exfBc = exfBc;
-    }
-
-    public Integer getFactoryId() {
-        return factoryId;
-    }
-
-    public void setFactoryId(Integer factoryId) {
-        this.factoryId = factoryId;
     }
 }

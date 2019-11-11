@@ -5,19 +5,13 @@ public class RongjiProduct {
 
     private Integer nkNo;
 
-    private Integer devicetotalId;
-
-    private String activitiesCategoryDec;
+    private Integer factoryId;
 
     private String activitiesCategory;
-
-    private String nameCategoryDec;
 
     private String nameCategory;
 
     private String name;
-
-    private String drainageProcessDec;
 
     private String drainageProcess;
 
@@ -27,45 +21,23 @@ public class RongjiProduct {
 
     private String sccCode;
 
-    private Double factorNox;
-
     private Double nox;
-
-    private Double factorCo;
 
     private Double co;
 
-    private Byte factorStatus;
-
-    private Double factorPm10;
-
     private Double pm10;
-
-    private Double factorPm25;
 
     private Double pm25;
 
-    private Double factorPm;
-
     private Double pm;
-
-    private Double factorSo2;
 
     private Double so2;
 
-    private Double factorVoc;
-
     private Double voc;
-
-    private Double factorNh3;
 
     private Double nh3;
 
-    private Double factorOc;
-
     private Double oc;
-
-    private Double factorBc;
 
     private Double bc;
 
@@ -109,20 +81,12 @@ public class RongjiProduct {
         this.nkNo = nkNo;
     }
 
-    public Integer getDevicetotalId() {
-        return devicetotalId;
+    public Integer getFactoryId() {
+        return factoryId;
     }
 
-    public void setDevicetotalId(Integer devicetotalId) {
-        this.devicetotalId = devicetotalId;
-    }
-
-    public String getActivitiesCategoryDec() {
-        return activitiesCategoryDec;
-    }
-
-    public void setActivitiesCategoryDec(String activitiesCategoryDec) {
-        this.activitiesCategoryDec = activitiesCategoryDec == null ? null : activitiesCategoryDec.trim();
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
     }
 
     public String getActivitiesCategory() {
@@ -131,14 +95,6 @@ public class RongjiProduct {
 
     public void setActivitiesCategory(String activitiesCategory) {
         this.activitiesCategory = activitiesCategory == null ? null : activitiesCategory.trim();
-    }
-
-    public String getNameCategoryDec() {
-        return nameCategoryDec;
-    }
-
-    public void setNameCategoryDec(String nameCategoryDec) {
-        this.nameCategoryDec = nameCategoryDec == null ? null : nameCategoryDec.trim();
     }
 
     public String getNameCategory() {
@@ -155,14 +111,6 @@ public class RongjiProduct {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getDrainageProcessDec() {
-        return drainageProcessDec;
-    }
-
-    public void setDrainageProcessDec(String drainageProcessDec) {
-        this.drainageProcessDec = drainageProcessDec == null ? null : drainageProcessDec.trim();
     }
 
     public String getDrainageProcess() {
@@ -197,28 +145,12 @@ public class RongjiProduct {
         this.sccCode = sccCode == null ? null : sccCode.trim();
     }
 
-    public Double getFactorNox() {
-        return factorNox;
-    }
-
-    public void setFactorNox(Double factorNox) {
-        this.factorNox = factorNox;
-    }
-
     public Double getNox() {
         return nox;
     }
 
     public void setNox(Double nox) {
         this.nox = nox;
-    }
-
-    public Double getFactorCo() {
-        return factorCo;
-    }
-
-    public void setFactorCo(Double factorCo) {
-        this.factorCo = factorCo;
     }
 
     public Double getCo() {
@@ -229,36 +161,12 @@ public class RongjiProduct {
         this.co = co;
     }
 
-    public Byte getFactorStatus() {
-        return factorStatus;
-    }
-
-    public void setFactorStatus(Byte factorStatus) {
-        this.factorStatus = factorStatus;
-    }
-
-    public Double getFactorPm10() {
-        return factorPm10;
-    }
-
-    public void setFactorPm10(Double factorPm10) {
-        this.factorPm10 = factorPm10;
-    }
-
     public Double getPm10() {
         return pm10;
     }
 
     public void setPm10(Double pm10) {
         this.pm10 = pm10;
-    }
-
-    public Double getFactorPm25() {
-        return factorPm25;
-    }
-
-    public void setFactorPm25(Double factorPm25) {
-        this.factorPm25 = factorPm25;
     }
 
     public Double getPm25() {
@@ -269,28 +177,12 @@ public class RongjiProduct {
         this.pm25 = pm25;
     }
 
-    public Double getFactorPm() {
-        return factorPm;
-    }
-
-    public void setFactorPm(Double factorPm) {
-        this.factorPm = factorPm;
-    }
-
     public Double getPm() {
         return pm;
     }
 
     public void setPm(Double pm) {
         this.pm = pm;
-    }
-
-    public Double getFactorSo2() {
-        return factorSo2;
-    }
-
-    public void setFactorSo2(Double factorSo2) {
-        this.factorSo2 = factorSo2;
     }
 
     public Double getSo2() {
@@ -301,28 +193,12 @@ public class RongjiProduct {
         this.so2 = so2;
     }
 
-    public Double getFactorVoc() {
-        return factorVoc;
-    }
-
-    public void setFactorVoc(Double factorVoc) {
-        this.factorVoc = factorVoc;
-    }
-
     public Double getVoc() {
         return voc;
     }
 
     public void setVoc(Double voc) {
         this.voc = voc;
-    }
-
-    public Double getFactorNh3() {
-        return factorNh3;
-    }
-
-    public void setFactorNh3(Double factorNh3) {
-        this.factorNh3 = factorNh3;
     }
 
     public Double getNh3() {
@@ -333,28 +209,12 @@ public class RongjiProduct {
         this.nh3 = nh3;
     }
 
-    public Double getFactorOc() {
-        return factorOc;
-    }
-
-    public void setFactorOc(Double factorOc) {
-        this.factorOc = factorOc;
-    }
-
     public Double getOc() {
         return oc;
     }
 
     public void setOc(Double oc) {
         this.oc = oc;
-    }
-
-    public Double getFactorBc() {
-        return factorBc;
-    }
-
-    public void setFactorBc(Double factorBc) {
-        this.factorBc = factorBc;
     }
 
     public Double getBc() {

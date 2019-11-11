@@ -3,11 +3,9 @@ package nankai.xl.business.model;
 public class FRoadDustSource {
     private Integer roadDustid;
 
-    private String scccode;
-
     private Integer factoryid;
 
-    private String companyName;
+    private String scccode;
 
     private Double startLongitude;
 
@@ -51,10 +49,6 @@ public class FRoadDustSource {
 
     private String controlMeasures;
 
-    private Double pm10Factors;
-
-    private Double pm25Factors;
-
     private Double pm25Emission;
 
     private Double pm10Emission;
@@ -71,14 +65,6 @@ public class FRoadDustSource {
         this.roadDustid = roadDustid;
     }
 
-    public String getScccode() {
-        return scccode;
-    }
-
-    public void setScccode(String scccode) {
-        this.scccode = scccode == null ? null : scccode.trim();
-    }
-
     public Integer getFactoryid() {
         return factoryid;
     }
@@ -87,12 +73,12 @@ public class FRoadDustSource {
         this.factoryid = factoryid;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getScccode() {
+        return scccode;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName == null ? null : companyName.trim();
+    public void setScccode(String scccode) {
+        this.scccode = scccode == null ? null : scccode.trim();
     }
 
     public Double getStartLongitude() {
@@ -261,22 +247,6 @@ public class FRoadDustSource {
 
     public void setControlMeasures(String controlMeasures) {
         this.controlMeasures = controlMeasures == null ? null : controlMeasures.trim();
-    }
-
-    public Double getPm10Factors() {
-        return pm10Factors;
-    }
-
-    public void setPm10Factors(Double pm10Factors) {
-        this.pm10Factors = pm10Factors;
-    }
-
-    public Double getPm25Factors() {
-        return pm25Factors;
-    }
-
-    public void setPm25Factors(Double pm25Factors) {
-        this.pm25Factors = pm25Factors;
     }
 
     public Double getPm25Emission() {

@@ -9,10 +9,6 @@ public class FBareSoilDustSource {
 
     private Double bareSoilArea;
 
-    private Double pm10Factors;
-
-    private Double pm25Factors;
-
     private Double pm25Emission;
 
     private Double pm10Emission;
@@ -51,22 +47,6 @@ public class FBareSoilDustSource {
 
     public void setBareSoilArea(Double bareSoilArea) {
         this.bareSoilArea = bareSoilArea;
-    }
-
-    public Double getPm10Factors() {
-        return pm10Factors;
-    }
-
-    public void setPm10Factors(Double pm10Factors) {
-        this.pm10Factors = pm10Factors;
-    }
-
-    public Double getPm25Factors() {
-        return pm25Factors;
-    }
-
-    public void setPm25Factors(Double pm25Factors) {
-        this.pm25Factors = pm25Factors;
     }
 
     public Double getPm25Emission() {

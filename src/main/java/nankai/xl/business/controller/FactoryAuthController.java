@@ -74,11 +74,11 @@ public class FactoryAuthController {
     @OperationLog("查看工厂列表")
     @GetMapping("/list")
     @ResponseBody
-    public PageResultBean<Factory> getList(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<FactoryVo> getList(@RequestParam(value = "page", defaultValue = "1") int page,
                                            @RequestParam(value = "limit", defaultValue = "50")int limit) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (user.getDeptId()!=null){
-            PageInfo<Factory> factoryPageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
+            PageInfo<FactoryVo> factoryPageInfo = new PageInfo<>(factoryService.getFactorysByuser(user,page,limit));
             return new PageResultBean<>(factoryPageInfo.getTotal(), factoryPageInfo.getList());
         }else {
             throw new IllegalArgumentException("用户赋予的部门不能为空！");
@@ -87,12 +87,12 @@ public class FactoryAuthController {
     @OperationLog("查看工厂列表")
     @GetMapping("/reload")
     @ResponseBody
-    public PageResultBean<Factory> getListByParam(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<FactoryVo> getListByParam(@RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                   @Validated(Create.class) FactoryQuery factoryQuery) {
 
-        List<Factory> factoryResults=factoryService.getFactoryListByQuery(factoryQuery,page, limit);
-        PageInfo<Factory> rolePageInfo = new PageInfo<>(factoryResults);
+        List<FactoryVo> factoryResults=factoryService.getFactoryListByQuery(factoryQuery,page, limit);
+        PageInfo<FactoryVo> rolePageInfo = new PageInfo<>(factoryResults);
         return new PageResultBean<>(rolePageInfo.getTotal(), rolePageInfo.getList());
     }
     @OperationLog("进入企业审核界面")
@@ -104,9 +104,9 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-企业基本信息")
     @GetMapping("/base/{factoryId}")
     public String baseInfo(@PathVariable("factoryId") Integer factoryId,Model model) {
-        Factory factory=factoryService.getFactoryById(factoryId);
+        FactoryVo factory=factoryService.getFactoryById(factoryId);
         if (factory!=null){
-            String cityCode=factory.getCountyCity();
+            String cityCode=factory.getCityCode();
             List<City> citys=selectCommonService.getAllCitys();
             List<County> countys=selectCommonService.getCountysByCityCode(cityCode);
             List<String> statusdecs=new ArrayList<>();
@@ -133,22 +133,6 @@ public class FactoryAuthController {
     @PostMapping("/base/{factoryId}/edit")
     @ResponseBody
     public ResultBean resetPassword(@Validated(Create.class) Factory factory) {
-        String countyRegisterCity=factory.getCountyRegisterCity();//注册城市编码
-        String countyidRegister=factory.getCountyidRegister();//注册区县编码
-        String countyCity=factory.getCountyCity();//实际城市编码cityCode ,表中cityId有何用？？？
-        String countyId=factory.getCountyId();//实际区县编码
-
-        City cityReg=selectCommonService.getCityByCode(countyRegisterCity);
-        County countyReg=selectCommonService.getCountyById(countyidRegister);
-
-        City city=selectCommonService.getCityByCode(countyCity);
-        County county=selectCommonService.getCountyById(countyId);
-
-        factory.setCountyRegisterCityDec(cityReg.getCityName());
-        factory.setCountyidRegisterDec(countyReg.getCountyName());
-        factory.setCityName(city.getCityName());
-        //factory.setCountyCityDec(city.getCityName());
-        factory.setCountyName(county.getCountyName());
         factoryService.updateByFactoryId(factory);
         return ResultBean.success();
     }
@@ -180,7 +164,7 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-总锅炉信息")
     @GetMapping("/{factoryId}/boiler")
     public String boiler(@PathVariable("factoryId") Integer factoryId,Model model,HttpSession session) {
-        List<BoilerVo> boilerVos=furnaceCommonService.getBoilersByFactoryId(factoryId);
+        List<Boiler> boilerVos=furnaceCommonService.getBoilersByFactoryId(factoryId);
         model.addAttribute("factoryId", factoryId);
         model.addAttribute("boilerNum", boilerVos.size());
         model.addAttribute("boilerVos", boilerVos);
@@ -225,7 +209,7 @@ public class FactoryAuthController {
     @PostMapping("/boiler/edit/{id}")
     @ResponseBody
     public ResultBean updateBoiler(Boiler boiler,Integer factoryId) {
-        List<BoilerVo> boilerVos=furnaceCommonService.getBoilersByFactoryId(factoryId);
+        List<Boiler> boilerVos=furnaceCommonService.getBoilersByFactoryId(factoryId);
         Integer[] nkNos=new Integer[boilerVos.size()];
         for (int i = 0; i <boilerVos.size() ; i++) {
             if (boilerVos.get(i).getId().equals(boiler.getId())){
@@ -252,7 +236,7 @@ public class FactoryAuthController {
 //                    Sulphurremove sulphurremove=removeCommonService.getSulphurremoveById(boiler.getSulphurremoveId());
 //                    boiler.setSulphurremoveDec(sulphurremove.getSulphurMethod());
                 //通过scc重新计算
-                Scc scc=sccService.getSccByScc(sccCode);
+                SccActivity scc=sccService.getSccByScc(sccCode);
                 if (scc!=null) {
                     boiler.setPm(boiler.getPm() * scc.getPm());
                     boiler.setPm10(boiler.getPm10() * scc.getPm10());
@@ -274,7 +258,7 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-窑炉信息")
     @GetMapping("/{factoryId}/kiln")
     public String kiln(@PathVariable("factoryId") Integer factoryId,Model model,HttpSession session) {
-        List<KilnVo> kilnVos=furnaceCommonService.getKilnsByFactoryId(factoryId);
+        List<Kiln> kilnVos=furnaceCommonService.getKilnsByFactoryId(factoryId);
         model.addAttribute("factoryId", factoryId);
         model.addAttribute("kilnNum", kilnVos.size());
         model.addAttribute("kilnVos", kilnVos);
@@ -320,7 +304,7 @@ public class FactoryAuthController {
     @PostMapping("/kiln/edit/{id}")
     @ResponseBody
     public ResultBean updatekiln(Kiln kiln,Integer factoryId) {
-        List<KilnVo> kilnVos=furnaceCommonService.getKilnsByFactoryId(factoryId);
+        List<Kiln> kilnVos=furnaceCommonService.getKilnsByFactoryId(factoryId);
         Integer[] kilnNkNos=new Integer[kilnVos.size()];
         for (int i = 0; i <kilnVos.size() ; i++) {
             if (kilnVos.get(i).getId().equals(kiln.getId())){
@@ -347,7 +331,7 @@ public class FactoryAuthController {
 //                    Sulphurremove sulphurremove=removeCommonService.getSulphurremoveById(kiln.getSulphurremoveid());
 //                    kiln.setSulphurremovedec(sulphurremove.getSulphurMethod());
                 //通过scc重新计算
-                Scc scc=sccService.getSccByScc(sccCode);
+                SccActivity scc=sccService.getSccByScc(sccCode);
                 if (scc!=null) {
                     kiln.setPm(kiln.getPm() * scc.getPm());
                     kiln.setPm10(kiln.getPm10() * scc.getPm10());
@@ -369,9 +353,9 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-工艺过程")
     @GetMapping("/{factoryId}/process")
     public String process(@PathVariable("factoryId") Integer factoryId, Model model, HttpSession session) {
-        List<DeviceVo> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
-        List<DeviceRawVo> deviceRawVos=deviceCommonService.getDeviceRawsByFactoryId(factoryId);
-        List<DeviceProductVo> deviceProductVos=deviceCommonService.getDeviceProductsByFactoryId(factoryId);
+        List<Device> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
+        List<DeviceRaw> deviceRawVos=deviceCommonService.getDeviceRawsByFactoryId(factoryId);
+        List<DeviceProduct> deviceProductVos=deviceCommonService.getDeviceProductsByFactoryId(factoryId);
 
         model.addAttribute("deviceNum", deviceVos.size());
         model.addAttribute("deviceRawNum", deviceRawVos.size());
@@ -396,7 +380,7 @@ public class FactoryAuthController {
     @PostMapping("/device/edit/{id}")
     @ResponseBody
     public ResultBean updateDevice(Device device, Integer factoryId) {
-        List<DeviceVo> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
+        List<Device> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
         Integer[] deviceNkNos=new Integer[deviceVos.size()];
         for (int i = 0; i <deviceVos.size() ; i++) {
             if (deviceVos.get(i).getId().equals(device.getId())){
@@ -416,7 +400,7 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-工艺过程-原料")
     @GetMapping("/device/deviceRawForm")
     public String deviceRawLoad(Integer factoryId, Integer id,Model model) {
-        List<DeviceVo> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
+        List<Device> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
         DeviceRaw deviceRaw=deviceCommonService.getDeviceRawById(id);
         String scc1="11";
         Scc2 scc2=new Scc2();
@@ -432,9 +416,6 @@ public class FactoryAuthController {
         scc4.setScc3(deviceRaw.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<Dustremove> dustremoves=selectCommonService.getAllDustremoves();
-        List<Nitreremove> nitreremoves=selectCommonService.getAllNitreremoves();
-        List<Sulphurremove> sulphurremoves=selectCommonService.getAllSulphurremoves();
         model.addAttribute("deviceRaw", deviceRaw);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2s", scc2s);
@@ -463,7 +444,7 @@ public class FactoryAuthController {
 //                    Sulphurremove sulphurremove=removeCommonService.getSulphurremoveById(deviceRaw.getSulphurremoveid());
 //                    deviceRaw.setSulphurremovedec(sulphurremove.getSulphurMethod());
             //通过scc重新计算
-//            Scc scc = sccService.getSccByScc(sccCode);
+//            SccActivity scc = sccService.getSccByScc(sccCode);
 //            if (scc!=null){
 //                deviceRaw.setPm(deviceRaw.getPm() * scc.getPm());
 //                deviceRaw.setPm10(deviceRaw.getPm10() * scc.getPm10());
@@ -482,7 +463,7 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-工艺过程-产品")
     @GetMapping("/device/deviceProductForm")
     public String deviceProductLoad(Integer factoryId, Integer id,Model model) {
-        List<DeviceVo> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
+        List<Device> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
         DeviceProduct deviceProduct=deviceCommonService.getDeviceProductById(id);
 
         String scc1="11";
@@ -499,9 +480,6 @@ public class FactoryAuthController {
         scc4.setScc3(deviceProduct.getNameCategory());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
-        List<Dustremove> dustremoves=selectCommonService.getAllDustremoves();
-        List<Nitreremove> nitreremoves=selectCommonService.getAllNitreremoves();
-        List<Sulphurremove> sulphurremoves=selectCommonService.getAllSulphurremoves();
         model.addAttribute("deviceProduct", deviceProduct);
         model.addAttribute("scc1", scc1);
         model.addAttribute("scc2s", scc2s);
@@ -529,7 +507,7 @@ public class FactoryAuthController {
 //                    Sulphurremove sulphurremove=removeCommonService.getSulphurremoveById(deviceProduct.getSulphurremoveId());
 //                    deviceProduct.setSulphurremoveDec(sulphurremove.getSulphurMethod());
             //通过scc重新计算
-            Scc scc = sccService.getSccByScc(sccCode);
+            SccActivity scc = sccService.getSccByScc(sccCode);
             if (scc!=null){
                 deviceProduct.setPm(deviceProduct.getPm() * scc.getPm());
                 deviceProduct.setPm10(deviceProduct.getPm10() * scc.getPm10());
@@ -548,8 +526,8 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-溶剂")
     @GetMapping("/{factoryId}/solvent")
     public String solvent(@PathVariable("factoryId") Integer factoryId,Model model) {
-        List<RongjiRawVo> rongjiRawVos=solventService.getRawsByFactoryId(factoryId);
-        List<RongjiProductVo> rongjiProductVos=solventService.getProductsByFactoryId(factoryId);
+        List<RongjiRaw> rongjiRawVos=solventService.getRawsByFactoryId(factoryId);
+        List<RongjiProduct> rongjiProductVos=solventService.getProductsByFactoryId(factoryId);
         model.addAttribute("rongjiRawVoNum", rongjiRawVos.size());
         model.addAttribute("rongjiProductVoNum", rongjiProductVos.size());
         model.addAttribute("rongjiRawVos", rongjiRawVos);
@@ -596,7 +574,7 @@ public class FactoryAuthController {
             String sccCode = "11" + rongjiRaw.getScc2() + rongjiRaw.getScc3() + rongjiRaw.getScc4();
             rongjiRaw.setSccCode(sccCode);
             //通过scc重新计算
-//            Scc scc = sccService.getSccByScc(sccCode);
+//            SccActivity scc = sccService.getSccByScc(sccCode);
 //            if (scc!=null){
 //                rongjiRaw.setPm(rongjiRaw.getPm() * scc.getPm());
 //                rongjiRaw.setPm10(rongjiRaw.getPm10() * scc.getPm10());
@@ -651,7 +629,7 @@ public class FactoryAuthController {
             String sccCode = "11" + rongjiProduct.getActivitiesCategory() + rongjiProduct.getNameCategory() + rongjiProduct.getDrainageProcess();
             rongjiProduct.setSccCode(sccCode);
             //通过scc重新计算
-//            Scc scc = sccService.getSccByScc(sccCode);
+//            SccActivity scc = sccService.getSccByScc(sccCode);
 //            if (scc!=null){
 //                rongjiProduct.setPm(rongjiProduct.getPm() * scc.getPm());
 //                rongjiProduct.setPm10(rongjiProduct.getPm10() * scc.getPm10());
@@ -670,7 +648,7 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-废弃设备")
     @GetMapping("/{factoryId}/feiqi")
     public String feiqi(@PathVariable("factoryId") Integer factoryId, Model model) {
-        List<FeiqiVo> feiqiVos=disuseService.getFeiqisByFactoryId(factoryId);
+        List<Feiqi> feiqiVos=disuseService.getFeiqisByFactoryId(factoryId);
         model.addAttribute("feiqiNum", feiqiVos.size());
         model.addAttribute("feiqiVos", feiqiVos);
         model.addAttribute("factoryId", factoryId);
@@ -709,7 +687,7 @@ public class FactoryAuthController {
         String sccCode = "21" + feiqi.getScc2() + feiqi.getScc3() + feiqi.getScc4();
         feiqi.setSccCode(sccCode);
         //通过scc重新计算
-//            Scc scc = sccService.getSccByScc(sccCode);
+//            SccActivity scc = sccService.getSccByScc(sccCode);
 //            if (scc!=null){
 //                feiqi.setPm(feiqi.getPm() * scc.getPm());
 //                feiqi.setPm10(feiqi.getPm10() * scc.getPm10());

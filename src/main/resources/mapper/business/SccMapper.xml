@@ -40,10 +40,13 @@
     bc, monthid, nkweekid, nkdayid, nknoxid, nkvocid, nkpm25id, ec, unit, nox_real, so2_real,
     nh3_real, vocs_real, co_real, pm10_real, pm25_real, bc_real, oc_real, flag
   </sql>
-  <select id="selectByScc" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select
-    <include refid="Base_Column_List" />
-    from scc
+  <select id="selectByScc" resultType="nankai.xl.business.model.vo.SccActivity" parameterType="java.lang.String" >
+    SELECT scc,nox, so2, nh3, vocs, co, pm10, pm25, oc, pm, bc, january, february, march, april, may, june, july, august, september, october,
+      november, december from(
+        SELECT * FROM scc
+        INNER JOIN activity_m
+        ON scc.monthid=activity_m.month_id
+    ) scc
     where scc = #{scc,jdbcType=CHAR}
   </select>
 </mapper>

@@ -1,83 +1,74 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.KilnMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Kiln" >
-    <id column="ID" property="id" jdbcType="INTEGER" />
-    <result column="EXHUST_ID" property="exhustId" jdbcType="INTEGER" />
-    <result column="TKILN_ID" property="tkilnId" jdbcType="INTEGER" />
-    <result column="NK_NO" property="nkNo" jdbcType="INTEGER" />
-    <result column="KILN_NO" property="kilnNo" jdbcType="CHAR" />
-    <result column="FUNCTION_Dec" property="functionDec" jdbcType="VARCHAR" />
-    <result column="FUNCTIO" property="functio" jdbcType="CHAR" />
-    <result column="MODEL_DEC" property="modelDec" jdbcType="VARCHAR" />
-    <result column="KILN_MODEL" property="kilnModel" jdbcType="CHAR" />
-    <result column="MODEL" property="model" jdbcType="VARCHAR" />
-    <result column="fueltype_dec" property="fueltypeDec" jdbcType="VARCHAR" />
-    <result column="fueltype" property="fueltype" jdbcType="CHAR" />
-    <result column="KILN_FUEL_AUSAGE" property="kilnFuelAusage" jdbcType="DOUBLE" />
-    <result column="KILN_FUEL_AUSAGEUNIT" property="kilnFuelAusageunit" jdbcType="VARCHAR" />
-    <result column="NITREREMOVEDEC" property="nitreremovedec" jdbcType="VARCHAR" />
-    <result column="NITREREMOVEID" property="nitreremoveid" jdbcType="INTEGER" />
-    <result column="DUSTREMOVEDEC" property="dustremovedec" jdbcType="VARCHAR" />
-    <result column="DUSTREMOVEID" property="dustremoveid" jdbcType="INTEGER" />
-    <result column="SULPHURREMOVEDEC" property="sulphurremovedec" jdbcType="VARCHAR" />
-    <result column="SULPHURREMOVEID" property="sulphurremoveid" jdbcType="INTEGER" />
-    <result column="EXF_NO" property="exfNo" jdbcType="TINYINT" />
-    <result column="COALASH" property="coalash" jdbcType="DOUBLE" />
-    <result column="coal_volatilisation" property="coalVolatilisation" jdbcType="DOUBLE" />
-    <result column="COALSULFUR" property="coalsulfur" jdbcType="DOUBLE" />
-    <result column="factor_pm10" property="factorPm10" jdbcType="DOUBLE" />
-    <result column="factor_status" property="factorStatus" jdbcType="TINYINT" />
-    <result column="PM10" property="pm10" jdbcType="DOUBLE" />
-    <result column="factor_pm25" property="factorPm25" jdbcType="DOUBLE" />
-    <result column="PM25" property="pm25" jdbcType="DOUBLE" />
-    <result column="factor_CO" property="factorCo" jdbcType="DOUBLE" />
-    <result column="CO" property="co" jdbcType="DOUBLE" />
-    <result column="factor_VOC" property="factorVoc" jdbcType="DOUBLE" />
-    <result column="VOC" property="voc" jdbcType="DOUBLE" />
-    <result column="factor_PM" property="factorPm" jdbcType="DOUBLE" />
-    <result column="PM" property="pm" jdbcType="DOUBLE" />
-    <result column="factor_SO2" property="factorSo2" jdbcType="DOUBLE" />
-    <result column="SO2" property="so2" jdbcType="DOUBLE" />
-    <result column="factor_NOX" property="factorNox" jdbcType="DOUBLE" />
-    <result column="NOX" property="nox" jdbcType="DOUBLE" />
-    <result column="factor_NH3" property="factorNh3" jdbcType="DOUBLE" />
-    <result column="NH3" property="nh3" jdbcType="DOUBLE" />
-    <result column="factor_OC" property="factorOc" jdbcType="DOUBLE" />
-    <result column="OC" property="oc" jdbcType="DOUBLE" />
-    <result column="factor_BC" property="factorBc" jdbcType="DOUBLE" />
-    <result column="BC" property="bc" jdbcType="DOUBLE" />
-    <result column="SCCCODE" property="scccode" jdbcType="CHAR" />
-    <result column="feiqiti" property="feiqiti" jdbcType="DOUBLE" />
-    <result column="so2out" property="so2out" jdbcType="DOUBLE" />
-    <result column="pmout" property="pmout" jdbcType="DOUBLE" />
-    <result column="noxout" property="noxout" jdbcType="DOUBLE" />
-    <result column="Jan_useamount" property="janUseamount" jdbcType="DOUBLE" />
-    <result column="Feb_useamount" property="febUseamount" jdbcType="DOUBLE" />
-    <result column="Mar_useamount" property="marUseamount" jdbcType="DOUBLE" />
-    <result column="Apr_useamount" property="aprUseamount" jdbcType="DOUBLE" />
-    <result column="May_useamount" property="mayUseamount" jdbcType="DOUBLE" />
-    <result column="June_useamount" property="juneUseamount" jdbcType="DOUBLE" />
-    <result column="July_useamount" property="julyUseamount" jdbcType="DOUBLE" />
-    <result column="aug_useamount" property="augUseamount" jdbcType="DOUBLE" />
-    <result column="sept_useamount" property="septUseamount" jdbcType="DOUBLE" />
-    <result column="oct_use_amount" property="octUseAmount" jdbcType="DOUBLE" />
-    <result column="nov_useamount" property="novUseamount" jdbcType="DOUBLE" />
-    <result column="dec_useamount" property="decUseamount" jdbcType="DOUBLE" />
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Kiln">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NK_NO" jdbcType="INTEGER" property="nkNo" />
+    <result column="EXHUST_ID" jdbcType="INTEGER" property="exhustId" />
+    <result column="FUNCTIO" jdbcType="CHAR" property="functio" />
+    <result column="KILN_MODEL" jdbcType="CHAR" property="kilnModel" />
+    <result column="MODEL" jdbcType="VARCHAR" property="model" />
+    <result column="fueltype" jdbcType="CHAR" property="fueltype" />
+    <result column="SCCCODE" jdbcType="CHAR" property="scccode" />
+    <result column="KILN_FUEL_AUSAGE" jdbcType="DOUBLE" property="kilnFuelAusage" />
+    <result column="KILN_FUEL_AUSAGEUNIT" jdbcType="VARCHAR" property="kilnFuelAusageunit" />
+    <result column="NITREREMOVEID" jdbcType="INTEGER" property="nitreremoveid" />
+    <result column="DUSTREMOVEID" jdbcType="INTEGER" property="dustremoveid" />
+    <result column="SULPHURREMOVEID" jdbcType="INTEGER" property="sulphurremoveid" />
+    <result column="COALASH" jdbcType="DOUBLE" property="coalash" />
+    <result column="coal_volatilisation" jdbcType="DOUBLE" property="coalVolatilisation" />
+    <result column="COALSULFUR" jdbcType="DOUBLE" property="coalsulfur" />
+    <result column="PM10" jdbcType="DOUBLE" property="pm10" />
+    <result column="PM25" jdbcType="DOUBLE" property="pm25" />
+    <result column="CO" jdbcType="DOUBLE" property="co" />
+    <result column="VOC" jdbcType="DOUBLE" property="voc" />
+    <result column="PM" jdbcType="DOUBLE" property="pm" />
+    <result column="SO2" jdbcType="DOUBLE" property="so2" />
+    <result column="NOX" jdbcType="DOUBLE" property="nox" />
+    <result column="NH3" jdbcType="DOUBLE" property="nh3" />
+    <result column="OC" jdbcType="DOUBLE" property="oc" />
+    <result column="BC" jdbcType="DOUBLE" property="bc" />
+    <result column="feiqiti" jdbcType="DOUBLE" property="feiqiti" />
+    <result column="so2out" jdbcType="DOUBLE" property="so2out" />
+    <result column="pmout" jdbcType="DOUBLE" property="pmout" />
+    <result column="noxout" jdbcType="DOUBLE" property="noxout" />
+    <result column="Jan_useamount" jdbcType="DOUBLE" property="janUseamount" />
+    <result column="Feb_useamount" jdbcType="DOUBLE" property="febUseamount" />
+    <result column="Mar_useamount" jdbcType="DOUBLE" property="marUseamount" />
+    <result column="Apr_useamount" jdbcType="DOUBLE" property="aprUseamount" />
+    <result column="May_useamount" jdbcType="DOUBLE" property="mayUseamount" />
+    <result column="June_useamount" jdbcType="DOUBLE" property="juneUseamount" />
+    <result column="July_useamount" jdbcType="DOUBLE" property="julyUseamount" />
+    <result column="aug_useamount" jdbcType="DOUBLE" property="augUseamount" />
+    <result column="sept_useamount" jdbcType="DOUBLE" property="septUseamount" />
+    <result column="oct_use_amount" jdbcType="DOUBLE" property="octUseAmount" />
+    <result column="nov_useamount" jdbcType="DOUBLE" property="novUseamount" />
+    <result column="dec_useamount" jdbcType="DOUBLE" property="decUseamount" />
   </resultMap>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <sql id="Base_Column_List">
+    ID, NK_NO, EXHUST_ID, FUNCTIO, KILN_MODEL, MODEL, fueltype, SCCCODE, KILN_FUEL_AUSAGE,
+    KILN_FUEL_AUSAGEUNIT, NITREREMOVEID, DUSTREMOVEID, SULPHURREMOVEID, COALASH, coal_volatilisation,
+    COALSULFUR, PM10, PM25, CO, VOC, PM, SO2, NOX, NH3, OC, BC, feiqiti, so2out, pmout,
+    noxout, Jan_useamount, Feb_useamount, Mar_useamount, Apr_useamount, May_useamount,
+    June_useamount, July_useamount, aug_useamount, sept_useamount, oct_use_amount, nov_useamount,
+    dec_useamount
+  </sql>
+  <select id="selectById" resultType="nankai.xl.business.model.Kiln" parameterType="java.lang.Integer" >
     select * from kiln
     where ID = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByExhustId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByExhustId" resultType="nankai.xl.business.model.Kiln" parameterType="java.lang.Integer" >
     select * from kiln
     where EXHUST_ID = #{exhustId,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultType="nankai.xl.business.model.vo.KilnVo" parameterType="java.lang.Integer" >
-     SELECT id,NK_NO FROM kiln WHERE EXHUST_ID IN(
-          SELECT EXF_ID FROM exhaust WHERE FACTORY_ID = #{factoryId,jdbcType=INTEGER}
-          )
-     ORDER BY NK_NO ASC
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.Kiln" parameterType="java.lang.Integer" >
+     SELECT kiln.* FROM kiln
+     INNER JOIN exhaust
+     ON kiln.EXHUST_ID=exhaust.EXF_ID
+     INNER JOIN factory
+     ON factory.factory_id=exhaust.FACTORY_ID
+     WHERE factory.factory_id= #{factoryId,jdbcType=INTEGER}
+     ORDER BY kiln.NK_NO ASC
   </select>
   <select id="countByCity" resultType="nankai.xl.business.model.vo.SumVo">
     SELECT COUNT(ss.ID) AS value,city.city_name AS name FROM county

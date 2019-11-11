@@ -5,73 +5,51 @@ public class DeviceRaw {
 
     private Integer nkNo;
 
-    private String mname;
+    private Integer deviceId;
 
-    private String unit;
+    private String mname;
 
     private Double musage;
 
-    private String scc2Dec;
+    private String unit;
 
     private String scc2;
 
-    private String scc4Dec;
+    private String scc3;
 
     private String scc4;
 
     private String sccCode;
 
-    private String scc3Dec;
-
-    private String scc3;
-
-    private Integer devicetotalId;
-
-    private Integer deviceNo;
-
-    private Integer deviceId;
-
-    private Double factorNox;
-
-    private Byte factorStatus;
-
     private Double nox;
-
-    private Double factorCo;
 
     private Double co;
 
-    private Double factorPm10;
-
     private Double pm10;
-
-    private Double factorPm25;
 
     private Double pm25;
 
-    private Double factorPm;
-
     private Double pm;
-
-    private Double factorSo2;
 
     private Double so2;
 
-    private Double factorVoc;
-
     private Double voc;
 
-    private Double factorNh3;
-
     private Double nh3;
-
-    private Double factorOc;
 
     private Double oc;
 
     private Double bc;
 
-    private Double factorBc;
+    private String gasNo;
+
+    private Double gasPre;
+
+    private Double gasVocs;
+
+    private String treatNo;
+
+    private Double treatPre;
 
     private Double janUseamount;
 
@@ -97,16 +75,6 @@ public class DeviceRaw {
 
     private Double decUseamount;
 
-    private String gasNo;
-
-    private Double gasPre;
-
-    private Double gasVocs;
-
-    private String treatNo;
-
-    private Double treatPre;
-
     public Integer getId() {
         return id;
     }
@@ -123,20 +91,20 @@ public class DeviceRaw {
         this.nkNo = nkNo;
     }
 
+    public Integer getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Integer deviceId) {
+        this.deviceId = deviceId;
+    }
+
     public String getMname() {
         return mname;
     }
 
     public void setMname(String mname) {
         this.mname = mname == null ? null : mname.trim();
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit == null ? null : unit.trim();
     }
 
     public Double getMusage() {
@@ -147,12 +115,12 @@ public class DeviceRaw {
         this.musage = musage;
     }
 
-    public String getScc2Dec() {
-        return scc2Dec;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setScc2Dec(String scc2Dec) {
-        this.scc2Dec = scc2Dec == null ? null : scc2Dec.trim();
+    public void setUnit(String unit) {
+        this.unit = unit == null ? null : unit.trim();
     }
 
     public String getScc2() {
@@ -163,12 +131,12 @@ public class DeviceRaw {
         this.scc2 = scc2 == null ? null : scc2.trim();
     }
 
-    public String getScc4Dec() {
-        return scc4Dec;
+    public String getScc3() {
+        return scc3;
     }
 
-    public void setScc4Dec(String scc4Dec) {
-        this.scc4Dec = scc4Dec == null ? null : scc4Dec.trim();
+    public void setScc3(String scc3) {
+        this.scc3 = scc3 == null ? null : scc3.trim();
     }
 
     public String getScc4() {
@@ -187,76 +155,12 @@ public class DeviceRaw {
         this.sccCode = sccCode == null ? null : sccCode.trim();
     }
 
-    public String getScc3Dec() {
-        return scc3Dec;
-    }
-
-    public void setScc3Dec(String scc3Dec) {
-        this.scc3Dec = scc3Dec == null ? null : scc3Dec.trim();
-    }
-
-    public String getScc3() {
-        return scc3;
-    }
-
-    public void setScc3(String scc3) {
-        this.scc3 = scc3 == null ? null : scc3.trim();
-    }
-
-    public Integer getDevicetotalId() {
-        return devicetotalId;
-    }
-
-    public void setDevicetotalId(Integer devicetotalId) {
-        this.devicetotalId = devicetotalId;
-    }
-
-    public Integer getDeviceNo() {
-        return deviceNo;
-    }
-
-    public void setDeviceNo(Integer deviceNo) {
-        this.deviceNo = deviceNo;
-    }
-
-    public Integer getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(Integer deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public Double getFactorNox() {
-        return factorNox;
-    }
-
-    public void setFactorNox(Double factorNox) {
-        this.factorNox = factorNox;
-    }
-
-    public Byte getFactorStatus() {
-        return factorStatus;
-    }
-
-    public void setFactorStatus(Byte factorStatus) {
-        this.factorStatus = factorStatus;
-    }
-
     public Double getNox() {
         return nox;
     }
 
     public void setNox(Double nox) {
         this.nox = nox;
-    }
-
-    public Double getFactorCo() {
-        return factorCo;
-    }
-
-    public void setFactorCo(Double factorCo) {
-        this.factorCo = factorCo;
     }
 
     public Double getCo() {
@@ -267,28 +171,12 @@ public class DeviceRaw {
         this.co = co;
     }
 
-    public Double getFactorPm10() {
-        return factorPm10;
-    }
-
-    public void setFactorPm10(Double factorPm10) {
-        this.factorPm10 = factorPm10;
-    }
-
     public Double getPm10() {
         return pm10;
     }
 
     public void setPm10(Double pm10) {
         this.pm10 = pm10;
-    }
-
-    public Double getFactorPm25() {
-        return factorPm25;
-    }
-
-    public void setFactorPm25(Double factorPm25) {
-        this.factorPm25 = factorPm25;
     }
 
     public Double getPm25() {
@@ -299,28 +187,12 @@ public class DeviceRaw {
         this.pm25 = pm25;
     }
 
-    public Double getFactorPm() {
-        return factorPm;
-    }
-
-    public void setFactorPm(Double factorPm) {
-        this.factorPm = factorPm;
-    }
-
     public Double getPm() {
         return pm;
     }
 
     public void setPm(Double pm) {
         this.pm = pm;
-    }
-
-    public Double getFactorSo2() {
-        return factorSo2;
-    }
-
-    public void setFactorSo2(Double factorSo2) {
-        this.factorSo2 = factorSo2;
     }
 
     public Double getSo2() {
@@ -331,14 +203,6 @@ public class DeviceRaw {
         this.so2 = so2;
     }
 
-    public Double getFactorVoc() {
-        return factorVoc;
-    }
-
-    public void setFactorVoc(Double factorVoc) {
-        this.factorVoc = factorVoc;
-    }
-
     public Double getVoc() {
         return voc;
     }
@@ -347,28 +211,12 @@ public class DeviceRaw {
         this.voc = voc;
     }
 
-    public Double getFactorNh3() {
-        return factorNh3;
-    }
-
-    public void setFactorNh3(Double factorNh3) {
-        this.factorNh3 = factorNh3;
-    }
-
     public Double getNh3() {
         return nh3;
     }
 
     public void setNh3(Double nh3) {
         this.nh3 = nh3;
-    }
-
-    public Double getFactorOc() {
-        return factorOc;
-    }
-
-    public void setFactorOc(Double factorOc) {
-        this.factorOc = factorOc;
     }
 
     public Double getOc() {
@@ -387,12 +235,44 @@ public class DeviceRaw {
         this.bc = bc;
     }
 
-    public Double getFactorBc() {
-        return factorBc;
+    public String getGasNo() {
+        return gasNo;
     }
 
-    public void setFactorBc(Double factorBc) {
-        this.factorBc = factorBc;
+    public void setGasNo(String gasNo) {
+        this.gasNo = gasNo == null ? null : gasNo.trim();
+    }
+
+    public Double getGasPre() {
+        return gasPre;
+    }
+
+    public void setGasPre(Double gasPre) {
+        this.gasPre = gasPre;
+    }
+
+    public Double getGasVocs() {
+        return gasVocs;
+    }
+
+    public void setGasVocs(Double gasVocs) {
+        this.gasVocs = gasVocs;
+    }
+
+    public String getTreatNo() {
+        return treatNo;
+    }
+
+    public void setTreatNo(String treatNo) {
+        this.treatNo = treatNo == null ? null : treatNo.trim();
+    }
+
+    public Double getTreatPre() {
+        return treatPre;
+    }
+
+    public void setTreatPre(Double treatPre) {
+        this.treatPre = treatPre;
     }
 
     public Double getJanUseamount() {
@@ -489,45 +369,5 @@ public class DeviceRaw {
 
     public void setDecUseamount(Double decUseamount) {
         this.decUseamount = decUseamount;
-    }
-
-    public String getGasNo() {
-        return gasNo;
-    }
-
-    public void setGasNo(String gasNo) {
-        this.gasNo = gasNo == null ? null : gasNo.trim();
-    }
-
-    public Double getGasPre() {
-        return gasPre;
-    }
-
-    public void setGasPre(Double gasPre) {
-        this.gasPre = gasPre;
-    }
-
-    public Double getGasVocs() {
-        return gasVocs;
-    }
-
-    public void setGasVocs(Double gasVocs) {
-        this.gasVocs = gasVocs;
-    }
-
-    public String getTreatNo() {
-        return treatNo;
-    }
-
-    public void setTreatNo(String treatNo) {
-        this.treatNo = treatNo == null ? null : treatNo.trim();
-    }
-
-    public Double getTreatPre() {
-        return treatPre;
-    }
-
-    public void setTreatPre(Double treatPre) {
-        this.treatPre = treatPre;
     }
 }

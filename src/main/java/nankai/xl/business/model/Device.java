@@ -5,21 +5,15 @@ public class Device {
 
     private Integer nkNo;
 
-    private Integer productrawtotalId;
+    private Integer exhustId;
 
     private String name;
-
-    private String deviceNo;
 
     private String deviceFlow;
 
     private Double designPower;
 
     private Double practicalPower;
-
-    private Integer exhustNo;
-
-    private Integer exhustId;
 
     private Integer yearrunDays;
 
@@ -41,12 +35,12 @@ public class Device {
         this.nkNo = nkNo;
     }
 
-    public Integer getProductrawtotalId() {
-        return productrawtotalId;
+    public Integer getExhustId() {
+        return exhustId;
     }
 
-    public void setProductrawtotalId(Integer productrawtotalId) {
-        this.productrawtotalId = productrawtotalId;
+    public void setExhustId(Integer exhustId) {
+        this.exhustId = exhustId;
     }
 
     public String getName() {
@@ -55,14 +49,6 @@ public class Device {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getDeviceNo() {
-        return deviceNo;
-    }
-
-    public void setDeviceNo(String deviceNo) {
-        this.deviceNo = deviceNo == null ? null : deviceNo.trim();
     }
 
     public String getDeviceFlow() {
@@ -87,22 +73,6 @@ public class Device {
 
     public void setPracticalPower(Double practicalPower) {
         this.practicalPower = practicalPower;
-    }
-
-    public Integer getExhustNo() {
-        return exhustNo;
-    }
-
-    public void setExhustNo(Integer exhustNo) {
-        this.exhustNo = exhustNo;
-    }
-
-    public Integer getExhustId() {
-        return exhustId;
-    }
-
-    public void setExhustId(Integer exhustId) {
-        this.exhustId = exhustId;
     }
 
     public Integer getYearrunDays() {

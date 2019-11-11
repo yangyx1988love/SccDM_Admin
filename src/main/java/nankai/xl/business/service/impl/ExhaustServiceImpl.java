@@ -23,10 +23,6 @@ public class ExhaustServiceImpl implements ExhaustService {
     }
 
     @Override
-    public int insertOrUpdateExhaustByExfId(Exhaust exhaust) {
-        return exhaustMapper.insertOrUpdate(exhaust);
-    }
-    @Override
     public int updateExhaustByExfId(Exhaust exhaust) {
         return exhaustMapper.updateByExfId(exhaust);
     }

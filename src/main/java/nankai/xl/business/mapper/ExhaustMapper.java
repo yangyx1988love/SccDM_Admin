@@ -9,5 +9,4 @@ public interface ExhaustMapper {
     List<Exhaust> selectByFactoryId(Integer factoryId);
     Exhaust selectByExfId(Integer exfId);
     int updateByExfId(Exhaust exhaust);
-    int insertOrUpdate(Exhaust exhaust);
 }

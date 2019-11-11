@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nankai.xl.business.mapper.ActivityWMapper">
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.ActivityW">
+    <id column="week_id" jdbcType="INTEGER" property="weekId" />
+    <result column="monday" jdbcType="INTEGER" property="monday" />
+    <result column="tuesday" jdbcType="INTEGER" property="tuesday" />
+    <result column="wednesday" jdbcType="INTEGER" property="wednesday" />
+    <result column="thursday" jdbcType="INTEGER" property="thursday" />
+    <result column="friday" jdbcType="INTEGER" property="friday" />
+    <result column="saturday" jdbcType="INTEGER" property="saturday" />
+    <result column="sunday" jdbcType="INTEGER" property="sunday" />
+    <result column="total_week" jdbcType="INTEGER" property="totalWeek" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    week_id, monday, tuesday, wednesday, thursday, friday, saturday, sunday, total_week
+  </sql>
+<!--  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+<!--    select -->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from activity_w-->
+<!--    where week_id = #{weekId,jdbcType=INTEGER}-->
+<!--  </select>-->
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+<!--    delete from activity_w-->
+<!--    where week_id = #{weekId,jdbcType=INTEGER}-->
+<!--  </delete>-->
+<!--  <insert id="insertSelective" parameterType="com.nankai.xining.bean.ActivityW">-->
+<!--    insert into activity_w-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="weekId != null">-->
+<!--        week_id,-->
+<!--      </if>-->
+<!--      <if test="monday != null">-->
+<!--        monday,-->
+<!--      </if>-->
+<!--      <if test="tuesday != null">-->
+<!--        tuesday,-->
+<!--      </if>-->
+<!--      <if test="wednesday != null">-->
+<!--        wednesday,-->
+<!--      </if>-->
+<!--      <if test="thursday != null">-->
+<!--        thursday,-->
+<!--      </if>-->
+<!--      <if test="friday != null">-->
+<!--        friday,-->
+<!--      </if>-->
+<!--      <if test="saturday != null">-->
+<!--        saturday,-->
+<!--      </if>-->
+<!--      <if test="sunday != null">-->
+<!--        sunday,-->
+<!--      </if>-->
+<!--      <if test="totalWeek != null">-->
+<!--        total_week,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="weekId != null">-->
+<!--        #{weekId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="monday != null">-->
+<!--        #{monday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="tuesday != null">-->
+<!--        #{tuesday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="wednesday != null">-->
+<!--        #{wednesday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="thursday != null">-->
+<!--        #{thursday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="friday != null">-->
+<!--        #{friday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="saturday != null">-->
+<!--        #{saturday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="sunday != null">-->
+<!--        #{sunday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="totalWeek != null">-->
+<!--        #{totalWeek,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.nankai.xining.bean.ActivityW">-->
+<!--    update activity_w-->
+<!--    <set>-->
+<!--      <if test="monday != null">-->
+<!--        monday = #{monday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="tuesday != null">-->
+<!--        tuesday = #{tuesday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="wednesday != null">-->
+<!--        wednesday = #{wednesday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="thursday != null">-->
+<!--        thursday = #{thursday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="friday != null">-->
+<!--        friday = #{friday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="saturday != null">-->
+<!--        saturday = #{saturday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="sunday != null">-->
+<!--        sunday = #{sunday,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="totalWeek != null">-->
+<!--        total_week = #{totalWeek,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where week_id = #{weekId,jdbcType=INTEGER}-->
+<!--  </update>-->
+</mapper>

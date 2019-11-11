@@ -9,10 +9,6 @@ public class FConstructionDustSource {
 
     private Integer factoryid;
 
-    private String year;
-
-    private String companyName;
-
     private String constructState;
 
     private Double constructArea;
@@ -26,14 +22,6 @@ public class FConstructionDustSource {
     private Double nowkgarea;
 
     private Date startdate;
-
-    private Double pm25Factors;
-
-    private Double pm10Factors;
-
-    private Double ocFactors;
-
-    private Double bcFactors;
 
     private Double pm10Emission;
 
@@ -63,8 +51,6 @@ public class FConstructionDustSource {
 
     private Date finishdate;
 
-    private String shenheStatus;
-
     private String note;
 
     public Integer getConstructDustid() {
@@ -89,22 +75,6 @@ public class FConstructionDustSource {
 
     public void setFactoryid(Integer factoryid) {
         this.factoryid = factoryid;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year == null ? null : year.trim();
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName == null ? null : companyName.trim();
     }
 
     public String getConstructState() {
@@ -161,38 +131,6 @@ public class FConstructionDustSource {
 
     public void setStartdate(Date startdate) {
         this.startdate = startdate;
-    }
-
-    public Double getPm25Factors() {
-        return pm25Factors;
-    }
-
-    public void setPm25Factors(Double pm25Factors) {
-        this.pm25Factors = pm25Factors;
-    }
-
-    public Double getPm10Factors() {
-        return pm10Factors;
-    }
-
-    public void setPm10Factors(Double pm10Factors) {
-        this.pm10Factors = pm10Factors;
-    }
-
-    public Double getOcFactors() {
-        return ocFactors;
-    }
-
-    public void setOcFactors(Double ocFactors) {
-        this.ocFactors = ocFactors;
-    }
-
-    public Double getBcFactors() {
-        return bcFactors;
-    }
-
-    public void setBcFactors(Double bcFactors) {
-        this.bcFactors = bcFactors;
     }
 
     public Double getPm10Emission() {
@@ -305,14 +243,6 @@ public class FConstructionDustSource {
 
     public void setFinishdate(Date finishdate) {
         this.finishdate = finishdate;
-    }
-
-    public String getShenheStatus() {
-        return shenheStatus;
-    }
-
-    public void setShenheStatus(String shenheStatus) {
-        this.shenheStatus = shenheStatus == null ? null : shenheStatus.trim();
     }
 
     public String getNote() {

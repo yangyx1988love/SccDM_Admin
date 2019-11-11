@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.FBareSoilDustSourceMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.FBareSoilDustSource" >
-    <id column="bare_soilid" property="bareSoilid" jdbcType="INTEGER" />
-    <result column="sccCode" property="scccode" jdbcType="CHAR" />
-    <result column="factoryid" property="factoryid" jdbcType="INTEGER" />
-    <result column="bare_soil_area" property="bareSoilArea" jdbcType="DOUBLE" />
-    <result column="pm10_factors" property="pm10Factors" jdbcType="DOUBLE" />
-    <result column="pm25_factors" property="pm25Factors" jdbcType="DOUBLE" />
-    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
-    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
-    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
-    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.FBareSoilDustSource">
+    <id column="bare_soilid" jdbcType="INTEGER" property="bareSoilid" />
+    <result column="sccCode" jdbcType="CHAR" property="scccode" />
+    <result column="factoryid" jdbcType="INTEGER" property="factoryid" />
+    <result column="bare_soil_area" jdbcType="DOUBLE" property="bareSoilArea" />
+    <result column="pm25_emission" jdbcType="DOUBLE" property="pm25Emission" />
+    <result column="pm10_emission" jdbcType="DOUBLE" property="pm10Emission" />
+    <result column="oc_emission" jdbcType="DOUBLE" property="ocEmission" />
+    <result column="bc_emission" jdbcType="DOUBLE" property="bcEmission" />
   </resultMap>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <sql id="Base_Column_List">
+    bare_soilid, sccCode, factoryid, bare_soil_area, pm25_emission, pm10_emission, oc_emission,
+    bc_emission
+  </sql>
+  <select id="selectById" resultType="nankai.xl.business.model.FBareSoilDustSource" parameterType="java.lang.Integer" >
     select * from f_bare_soil_dust_source
     where bare_soilid = #{bareSoilid,jdbcType=INTEGER}
   </select>
@@ -23,195 +25,29 @@
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.FBareSoilDustSource" >
     update f_bare_soil_dust_source
-    <set >
-      <if test="scccode != null" >
+    <set>
+      <if test="scccode != null">
         sccCode = #{scccode,jdbcType=CHAR},
       </if>
-      <if test="factoryid != null" >
+      <if test="factoryid != null">
         factoryid = #{factoryid,jdbcType=INTEGER},
       </if>
-      <if test="bareSoilArea != null" >
+      <if test="bareSoilArea != null">
         bare_soil_area = #{bareSoilArea,jdbcType=DOUBLE},
       </if>
-      <if test="pm10Factors != null" >
-        pm10_factors = #{pm10Factors,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25Factors != null" >
-        pm25_factors = #{pm25Factors,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25Emission != null" >
+      <if test="pm25Emission != null">
         pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
       </if>
-      <if test="pm10Emission != null" >
+      <if test="pm10Emission != null">
         pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
       </if>
-      <if test="ocEmission != null" >
+      <if test="ocEmission != null">
         oc_emission = #{ocEmission,jdbcType=DOUBLE},
       </if>
-      <if test="bcEmission != null" >
+      <if test="bcEmission != null">
         bc_emission = #{bcEmission,jdbcType=DOUBLE},
       </if>
     </set>
     where bare_soilid = #{bareSoilid,jdbcType=INTEGER}
   </update>
-<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >-->
-<!--    delete from f_bare_soil_dust_source-->
-<!--    where bare_soilid = #{bareSoilid,jdbcType=INTEGER}-->
-<!--  </delete>-->
-<!--  <delete id="deleteByExample" parameterType="nankai.xl.business.model.FBareSoilDustSourceExample" >-->
-<!--    delete from f_bare_soil_dust_source-->
-<!--    <if test="_parameter != null" >-->
-<!--      <include refid="Example_Where_Clause" />-->
-<!--    </if>-->
-<!--  </delete>-->
-<!--  <insert id="insert" parameterType="nankai.xl.business.model.FBareSoilDustSource" >-->
-<!--    insert into f_bare_soil_dust_source (bare_soilid, sccCode, factoryid, -->
-<!--      bare_soil_area, pm10_factors, pm25_factors, -->
-<!--      pm25_emission, pm10_emission, oc_emission, -->
-<!--      bc_emission)-->
-<!--    values (#{bareSoilid,jdbcType=INTEGER}, #{scccode,jdbcType=CHAR}, #{factoryid,jdbcType=INTEGER}, -->
-<!--      #{bareSoilArea,jdbcType=DOUBLE}, #{pm10Factors,jdbcType=DOUBLE}, #{pm25Factors,jdbcType=DOUBLE}, -->
-<!--      #{pm25Emission,jdbcType=DOUBLE}, #{pm10Emission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, -->
-<!--      #{bcEmission,jdbcType=DOUBLE})-->
-<!--  </insert>-->
-<!--  <insert id="insertSelective" parameterType="nankai.xl.business.model.FBareSoilDustSource" >-->
-<!--    insert into f_bare_soil_dust_source-->
-<!--    <trim prefix="(" suffix=")" suffixOverrides="," >-->
-<!--      <if test="bareSoilid != null" >-->
-<!--        bare_soilid,-->
-<!--      </if>-->
-<!--      <if test="scccode != null" >-->
-<!--        sccCode,-->
-<!--      </if>-->
-<!--      <if test="factoryid != null" >-->
-<!--        factoryid,-->
-<!--      </if>-->
-<!--      <if test="bareSoilArea != null" >-->
-<!--        bare_soil_area,-->
-<!--      </if>-->
-<!--      <if test="pm10Factors != null" >-->
-<!--        pm10_factors,-->
-<!--      </if>-->
-<!--      <if test="pm25Factors != null" >-->
-<!--        pm25_factors,-->
-<!--      </if>-->
-<!--      <if test="pm25Emission != null" >-->
-<!--        pm25_emission,-->
-<!--      </if>-->
-<!--      <if test="pm10Emission != null" >-->
-<!--        pm10_emission,-->
-<!--      </if>-->
-<!--      <if test="ocEmission != null" >-->
-<!--        oc_emission,-->
-<!--      </if>-->
-<!--      <if test="bcEmission != null" >-->
-<!--        bc_emission,-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--    <trim prefix="values (" suffix=")" suffixOverrides="," >-->
-<!--      <if test="bareSoilid != null" >-->
-<!--        #{bareSoilid,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="scccode != null" >-->
-<!--        #{scccode,jdbcType=CHAR},-->
-<!--      </if>-->
-<!--      <if test="factoryid != null" >-->
-<!--        #{factoryid,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="bareSoilArea != null" >-->
-<!--        #{bareSoilArea,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="pm10Factors != null" >-->
-<!--        #{pm10Factors,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="pm25Factors != null" >-->
-<!--        #{pm25Factors,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="pm25Emission != null" >-->
-<!--        #{pm25Emission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="pm10Emission != null" >-->
-<!--        #{pm10Emission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="ocEmission != null" >-->
-<!--        #{ocEmission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="bcEmission != null" >-->
-<!--        #{bcEmission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--    </trim>-->
-<!--  </insert>-->
-<!--  <select id="countByExample" parameterType="nankai.xl.business.model.FBareSoilDustSourceExample" resultType="java.lang.Integer" >-->
-<!--    select count(*) from f_bare_soil_dust_source-->
-<!--    <if test="_parameter != null" >-->
-<!--      <include refid="Example_Where_Clause" />-->
-<!--    </if>-->
-<!--  </select>-->
-<!--  <update id="updateByExampleSelective" parameterType="map" >-->
-<!--    update f_bare_soil_dust_source-->
-<!--    <set >-->
-<!--      <if test="record.bareSoilid != null" >-->
-<!--        bare_soilid = #{record.bareSoilid,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="record.scccode != null" >-->
-<!--        sccCode = #{record.scccode,jdbcType=CHAR},-->
-<!--      </if>-->
-<!--      <if test="record.factoryid != null" >-->
-<!--        factoryid = #{record.factoryid,jdbcType=INTEGER},-->
-<!--      </if>-->
-<!--      <if test="record.bareSoilArea != null" >-->
-<!--        bare_soil_area = #{record.bareSoilArea,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="record.pm10Factors != null" >-->
-<!--        pm10_factors = #{record.pm10Factors,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="record.pm25Factors != null" >-->
-<!--        pm25_factors = #{record.pm25Factors,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="record.pm25Emission != null" >-->
-<!--        pm25_emission = #{record.pm25Emission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="record.pm10Emission != null" >-->
-<!--        pm10_emission = #{record.pm10Emission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="record.ocEmission != null" >-->
-<!--        oc_emission = #{record.ocEmission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--      <if test="record.bcEmission != null" >-->
-<!--        bc_emission = #{record.bcEmission,jdbcType=DOUBLE},-->
-<!--      </if>-->
-<!--    </set>-->
-<!--    <if test="_parameter != null" >-->
-<!--      <include refid="Update_By_Example_Where_Clause" />-->
-<!--    </if>-->
-<!--  </update>-->
-<!--  <update id="updateByExample" parameterType="map" >-->
-<!--    update f_bare_soil_dust_source-->
-<!--    set bare_soilid = #{record.bareSoilid,jdbcType=INTEGER},-->
-<!--      sccCode = #{record.scccode,jdbcType=CHAR},-->
-<!--      factoryid = #{record.factoryid,jdbcType=INTEGER},-->
-<!--      bare_soil_area = #{record.bareSoilArea,jdbcType=DOUBLE},-->
-<!--      pm10_factors = #{record.pm10Factors,jdbcType=DOUBLE},-->
-<!--      pm25_factors = #{record.pm25Factors,jdbcType=DOUBLE},-->
-<!--      pm25_emission = #{record.pm25Emission,jdbcType=DOUBLE},-->
-<!--      pm10_emission = #{record.pm10Emission,jdbcType=DOUBLE},-->
-<!--      oc_emission = #{record.ocEmission,jdbcType=DOUBLE},-->
-<!--      bc_emission = #{record.bcEmission,jdbcType=DOUBLE}-->
-<!--    <if test="_parameter != null" >-->
-<!--      <include refid="Update_By_Example_Where_Clause" />-->
-<!--    </if>-->
-<!--  </update>-->
-<!--  <update id="updateByPrimaryKey" parameterType="nankai.xl.business.model.FBareSoilDustSource" >-->
-<!--    update f_bare_soil_dust_source-->
-<!--    set sccCode = #{scccode,jdbcType=CHAR},-->
-<!--      factoryid = #{factoryid,jdbcType=INTEGER},-->
-<!--      bare_soil_area = #{bareSoilArea,jdbcType=DOUBLE},-->
-<!--      pm10_factors = #{pm10Factors,jdbcType=DOUBLE},-->
-<!--      pm25_factors = #{pm25Factors,jdbcType=DOUBLE},-->
-<!--      pm25_emission = #{pm25Emission,jdbcType=DOUBLE},-->
-<!--      pm10_emission = #{pm10Emission,jdbcType=DOUBLE},-->
-<!--      oc_emission = #{ocEmission,jdbcType=DOUBLE},-->
-<!--      bc_emission = #{bcEmission,jdbcType=DOUBLE}-->
-<!--    where bare_soilid = #{bareSoilid,jdbcType=INTEGER}-->
-<!--  </update>-->
 </mapper>

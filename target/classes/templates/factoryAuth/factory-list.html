@@ -20,7 +20,7 @@
             <form class="layui-form layui-col-md12 we-search">
                 <shiro:hasPermission name="factoryAuth:citySel">
                     <div class="layui-input-inline">
-                        <select id="countyCity" name="countyCity" lay-filter="cityCode">
+                        <select id="cityCode" name="cityCode" lay-filter="cityCode">
                             <option value="">请选择实际城市</option>
                             <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
                             </option>
@@ -84,7 +84,7 @@
                 , cols: [
                     [
                         {type: 'checkbox', fixed: 'left'}
-                        , {field: 'factoryNo1', title: '工厂编号'}
+                        , {field: 'factoryNo', title: '工厂编号'}
                         , {field: 'factoryName', title: '工厂名称'}
                         , {field: 'cityName', title: '实际城市'}
                         , {field: 'countyName', title: '实际区县'}
@@ -105,9 +105,9 @@
             form.on('submit(search)', function(data){
                 var formData = data.field;
                 var countyId = formData.countyId,
-                    countyCity=formData.countyCity,
+                    cityCode=formData.cityCode,
                     factoryName=formData.factoryName,
-                    factoryNo1=formData.factoryNo1,
+                    factoryNo=formData.factoryNo,
                     status=formData.status
                 //执行重载
                 table.reload('factoryTableReload',{
@@ -117,8 +117,8 @@
                     , where: {//这里传参  向后台
                         countyId: countyId,
                         factoryName: factoryName,
-                        countyCity: countyCity,
-                        factoryNo1: factoryNo1,
+                        cityCode: cityCode,
+                        factoryNo: factoryNo,
                         status: status
                     }
                     , url: '/factoryAuth/reload'//后台做模糊搜索接口路径

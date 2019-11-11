@@ -20,7 +20,7 @@
         <div class="layui-row">
             <form class="layui-form layui-col-md12 we-search">
                 <div class="layui-input-inline">
-                    <select id="countyCity" name="countyCity" lay-filter="cityCode">
+                    <select id="cityCode" name="cityCode" lay-filter="cityCode">
                         <option value="">请选择实际城市</option>
                         <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
                         </option>
@@ -74,7 +74,7 @@
                 , toolbar: '#toolbar'
                 , cols: [
                     [
-                        {field: 'factoryNo1', title: '工厂编号'}
+                        {field: 'factoryNo', title: '工厂编号'}
                         , {field: 'factoryName', title: '工厂名称'}
                         , {field: 'cityName', title: '实际城市'}
                         , {field: 'countyName', title: '实际区县'}
@@ -96,9 +96,9 @@
             form.on('submit(search)', function(data){
                 var formData = data.field;
                 var countyId = formData.countyId,
-                    countyCity=formData.countyCity,
+                    cityCode=formData.cityCode,
                     factoryName=formData.factoryName,
-                    factoryNo1=formData.factoryNo1
+                    factoryNo=formData.factoryNo
                 //执行重载
                 table.reload('factoryTableReload',{
                     page: {
@@ -107,8 +107,8 @@
                     , where: {
                         countyId: countyId,
                         factoryName: factoryName,
-                        countyCity: countyCity,
-                        factoryNo1: factoryNo1
+                        cityCode: cityCode,
+                        factoryNo: factoryNo
                     }
                     , url: '/factory/reload'//后台做模糊搜索接口路径
                     , method: 'get'

@@ -18,25 +18,7 @@
 </div>
 <form class="layui-form ">
     <div class="layui-show" style="margin-left:30px;margin-top: 2px;margin-bottom: 2px">
-        <div class="layui-input-inline">
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
-            </div>
-        </div>
-        <div class="layui-input-inline">
-            <select id="cityCode" name="cityCode" lay-filter="cityCode">
-                <option value="">请选择实际城市</option>
-                <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
-                </option>
-            </select>
-        </div>
-        <div class="layui-input-inline">
-            <select id="countyId" name="countyId" lay-filter="countyId">
-                <option value="">请选择实际区县</option>
-                <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
-                </option>
-            </select>
-        </div>
+        <th:block  th:include="common/city-select::content" />
         <button  id="selectmachinery" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">
             <i class="layui-icon">&#xe615;</i></button>
     </div>

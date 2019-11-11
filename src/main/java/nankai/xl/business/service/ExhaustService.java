@@ -8,5 +8,4 @@ public interface ExhaustService {
     List<Exhaust> getByFactoryId(Integer factoryId);
     Exhaust getByExfId(Integer exfId);
     int updateExhaustByExfId(Exhaust exhaust);
-    int insertOrUpdateExhaustByExfId(Exhaust exhaust);
 }

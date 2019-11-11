@@ -7,9 +7,9 @@ public class FactoryQuery {
 
     private String countyId;
 
-    private String factoryNo1;
+    private String factoryNo;
 
-    private String countyCity;
+    private String cityCode;
 
     private Integer status;
 
@@ -21,28 +21,12 @@ public class FactoryQuery {
         this.factoryId = factoryId;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public String getFactoryName() {
         return factoryName;
     }
 
     public void setFactoryName(String factoryName) {
         this.factoryName = factoryName == null ? null : factoryName.trim();
-    }
-
-    public String getFactoryNo1() {
-        return factoryNo1;
-    }
-
-    public void setFactoryNo1(String factoryNo1) {
-        this.factoryNo1 = factoryNo1;
     }
 
     public String getCountyId() {
@@ -52,11 +36,27 @@ public class FactoryQuery {
     public void setCountyId(String countyId) {
         this.countyId = countyId;
     }
-    public String getCountyCity() {
-        return countyCity;
+
+    public String getFactoryNo() {
+        return factoryNo;
     }
 
-    public void setCountyCity(String countyCity) {
-        this.countyCity = countyCity;
+    public void setFactoryNo(String factoryNo) {
+        this.factoryNo = factoryNo;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

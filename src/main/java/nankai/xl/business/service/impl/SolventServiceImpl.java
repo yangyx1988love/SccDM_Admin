@@ -4,8 +4,6 @@ import nankai.xl.business.mapper.RongjiProductMapper;
 import nankai.xl.business.mapper.RongjiRawMapper;
 import nankai.xl.business.model.RongjiProduct;
 import nankai.xl.business.model.RongjiRaw;
-import nankai.xl.business.model.vo.RongjiProductVo;
-import nankai.xl.business.model.vo.RongjiRawVo;
 import nankai.xl.business.service.SolventService;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +22,7 @@ public class SolventServiceImpl implements SolventService {
     }
 
     @Override
-    public List<RongjiRawVo> getRawsByFactoryId(Integer factoryId) {
+    public List<RongjiRaw> getRawsByFactoryId(Integer factoryId) {
         return rongjiRawMapper.selectByFactoryId(factoryId);
     }
 
@@ -39,7 +37,7 @@ public class SolventServiceImpl implements SolventService {
     }
 
     @Override
-    public List<RongjiProductVo> getProductsByFactoryId(Integer factoryId) {
+    public List<RongjiProduct> getProductsByFactoryId(Integer factoryId) {
         return rongjiProductMapper.selectByFactoryId(factoryId);
     }
 

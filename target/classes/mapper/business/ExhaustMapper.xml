@@ -1,179 +1,126 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.ExhaustMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Exhaust" >
-    <id column="EXF_ID" property="exfId" jdbcType="INTEGER" />
-    <result column="NK_NO" property="nkNo" jdbcType="INTEGER" />
-    <result column="EXF_NO" property="exfNo" jdbcType="CHAR" />
-    <result column="EXF_MATERIAL" property="exfMaterial" jdbcType="CHAR" />
-    <result column="EXF_HEIGHT" property="exfHeight" jdbcType="DOUBLE" />
-    <result column="SMOKE_OUTD" property="smokeOutd" jdbcType="DOUBLE" />
-    <result column="SMOKE_O_UTTE_M" property="smokeOUtteM" jdbcType="DOUBLE" />
-    <result column="SMOKE_OUTA" property="smokeOuta" jdbcType="DOUBLE" />
-    <result column="SMOKE_OUTV" property="smokeOutv" jdbcType="DOUBLE" />
-    <result column="EXF_LONGITUDE" property="exfLongitude" jdbcType="DOUBLE" />
-    <result column="EXF_LATITUDE" property="exfLatitude" jdbcType="DOUBLE" />
-    <result column="EXF_PM10" property="exfPm10" jdbcType="DOUBLE" />
-    <result column="EXF_PM25" property="exfPm25" jdbcType="DOUBLE" />
-    <result column="EXF_NH3" property="exfNh3" jdbcType="DOUBLE" />
-    <result column="EXF_CO" property="exfCo" jdbcType="DOUBLE" />
-    <result column="EXF_VOC" property="exfVoc" jdbcType="DOUBLE" />
-    <result column="MEASURE_NH3" property="measureNh3" jdbcType="DOUBLE" />
-    <result column="MEASURE_BC" property="measureBc" jdbcType="DOUBLE" />
-    <result column="MEASURE_OC" property="measureOc" jdbcType="DOUBLE" />
-    <result column="MEASURE_VOC" property="measureVoc" jdbcType="DOUBLE" />
-    <result column="EXF_PM" property="exfPm" jdbcType="DOUBLE" />
-    <result column="EXF_SO2" property="exfSo2" jdbcType="DOUBLE" />
-    <result column="EXF_NOX" property="exfNox" jdbcType="DOUBLE" />
-    <result column="exf_oc" property="exfOc" jdbcType="DOUBLE" />
-    <result column="exf_bc" property="exfBc" jdbcType="DOUBLE" />
-    <result column="FACTORY_ID" property="factoryId" jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Exhaust">
+    <id column="EXF_ID" jdbcType="INTEGER" property="exfId" />
+    <result column="NK_NO" jdbcType="INTEGER" property="nkNo" />
+    <result column="FACTORY_ID" jdbcType="INTEGER" property="factoryId" />
+    <result column="EXF_MATERIAL" jdbcType="CHAR" property="exfMaterial" />
+    <result column="EXF_HEIGHT" jdbcType="DOUBLE" property="exfHeight" />
+    <result column="SMOKE_OUTD" jdbcType="DOUBLE" property="smokeOutd" />
+    <result column="SMOKE_O_UTTE_M" jdbcType="DOUBLE" property="smokeOUtteM" />
+    <result column="SMOKE_OUTA" jdbcType="DOUBLE" property="smokeOuta" />
+    <result column="SMOKE_OUTV" jdbcType="DOUBLE" property="smokeOutv" />
+    <result column="EXF_LONGITUDE" jdbcType="DOUBLE" property="exfLongitude" />
+    <result column="EXF_LATITUDE" jdbcType="DOUBLE" property="exfLatitude" />
+    <result column="EXF_PM10" jdbcType="DOUBLE" property="exfPm10" />
+    <result column="EXF_PM25" jdbcType="DOUBLE" property="exfPm25" />
+    <result column="EXF_NH3" jdbcType="DOUBLE" property="exfNh3" />
+    <result column="EXF_CO" jdbcType="DOUBLE" property="exfCo" />
+    <result column="EXF_VOC" jdbcType="DOUBLE" property="exfVoc" />
+    <result column="MEASURE_NH3" jdbcType="DOUBLE" property="measureNh3" />
+    <result column="MEASURE_BC" jdbcType="DOUBLE" property="measureBc" />
+    <result column="MEASURE_OC" jdbcType="DOUBLE" property="measureOc" />
+    <result column="MEASURE_VOC" jdbcType="DOUBLE" property="measureVoc" />
+    <result column="EXF_PM" jdbcType="DOUBLE" property="exfPm" />
+    <result column="EXF_SO2" jdbcType="DOUBLE" property="exfSo2" />
+    <result column="EXF_NOX" jdbcType="DOUBLE" property="exfNox" />
+    <result column="exf_oc" jdbcType="DOUBLE" property="exfOc" />
+    <result column="exf_bc" jdbcType="DOUBLE" property="exfBc" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    EXF_ID, NK_NO, EXF_NO, EXF_MATERIAL, EXF_HEIGHT, SMOKE_OUTD, SMOKE_O_UTTE_M, SMOKE_OUTA, 
-    SMOKE_OUTV, EXF_LONGITUDE, EXF_LATITUDE, EXF_PM10, EXF_PM25, EXF_NH3, EXF_CO, EXF_VOC, 
-    MEASURE_NH3, MEASURE_BC, MEASURE_OC, MEASURE_VOC, EXF_PM, EXF_SO2, EXF_NOX, exf_oc, 
-    exf_bc, FACTORY_ID
+  <sql id="Base_Column_List">
+    EXF_ID, NK_NO, FACTORY_ID, EXF_MATERIAL, EXF_HEIGHT, SMOKE_OUTD, SMOKE_O_UTTE_M,
+    SMOKE_OUTA, SMOKE_OUTV, EXF_LONGITUDE, EXF_LATITUDE, EXF_PM10, EXF_PM25, EXF_NH3,
+    EXF_CO, EXF_VOC, MEASURE_NH3, MEASURE_BC, MEASURE_OC, MEASURE_VOC, EXF_PM, EXF_SO2,
+    EXF_NOX, exf_oc, exf_bc
   </sql>
-  <select id="selectByFactoryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.Exhaust" parameterType="java.lang.Integer" >
+    select *
     from exhaust
     where FACTORY_ID = #{factoryId,jdbcType=INTEGER}
     ORDER BY NK_NO ASC
   </select>
-  <select id="selectByExfId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
+  <select id="selectByExfId" resultType="nankai.xl.business.model.Exhaust" parameterType="java.lang.Integer" >
+    select *
     from exhaust
     where EXF_ID = #{exfId,jdbcType=INTEGER}
   </select>
   <update id="updateByExfId" parameterType="nankai.xl.business.model.Exhaust" >
     update exhaust
-    <set >
-      <if test="nkNo != null" >
+    <set>
+      <if test="nkNo != null">
         NK_NO = #{nkNo,jdbcType=INTEGER},
       </if>
-      <if test="exfNo != null" >
-        EXF_NO = #{exfNo,jdbcType=CHAR},
+      <if test="factoryId != null">
+        FACTORY_ID = #{factoryId,jdbcType=INTEGER},
       </if>
-      <if test="exfMaterial != null" >
+      <if test="exfMaterial != null">
         EXF_MATERIAL = #{exfMaterial,jdbcType=CHAR},
       </if>
-      <if test="exfHeight != null" >
+      <if test="exfHeight != null">
         EXF_HEIGHT = #{exfHeight,jdbcType=DOUBLE},
       </if>
-      <if test="smokeOutd != null" >
+      <if test="smokeOutd != null">
         SMOKE_OUTD = #{smokeOutd,jdbcType=DOUBLE},
       </if>
-      <if test="smokeOUtteM != null" >
+      <if test="smokeOUtteM != null">
         SMOKE_O_UTTE_M = #{smokeOUtteM,jdbcType=DOUBLE},
       </if>
-      <if test="smokeOuta != null" >
+      <if test="smokeOuta != null">
         SMOKE_OUTA = #{smokeOuta,jdbcType=DOUBLE},
       </if>
-      <if test="smokeOutv != null" >
+      <if test="smokeOutv != null">
         SMOKE_OUTV = #{smokeOutv,jdbcType=DOUBLE},
       </if>
-      <if test="exfLongitude != null" >
+      <if test="exfLongitude != null">
         EXF_LONGITUDE = #{exfLongitude,jdbcType=DOUBLE},
       </if>
-      <if test="exfLatitude != null" >
+      <if test="exfLatitude != null">
         EXF_LATITUDE = #{exfLatitude,jdbcType=DOUBLE},
       </if>
-      <if test="exfPm10 != null" >
+      <if test="exfPm10 != null">
         EXF_PM10 = #{exfPm10,jdbcType=DOUBLE},
       </if>
-      <if test="exfPm25 != null" >
+      <if test="exfPm25 != null">
         EXF_PM25 = #{exfPm25,jdbcType=DOUBLE},
       </if>
-      <if test="exfNh3 != null" >
+      <if test="exfNh3 != null">
         EXF_NH3 = #{exfNh3,jdbcType=DOUBLE},
       </if>
-      <if test="exfCo != null" >
+      <if test="exfCo != null">
         EXF_CO = #{exfCo,jdbcType=DOUBLE},
       </if>
-      <if test="exfVoc != null" >
+      <if test="exfVoc != null">
         EXF_VOC = #{exfVoc,jdbcType=DOUBLE},
       </if>
-      <if test="measureNh3 != null" >
+      <if test="measureNh3 != null">
         MEASURE_NH3 = #{measureNh3,jdbcType=DOUBLE},
       </if>
-      <if test="measureBc != null" >
+      <if test="measureBc != null">
         MEASURE_BC = #{measureBc,jdbcType=DOUBLE},
       </if>
-      <if test="measureOc != null" >
+      <if test="measureOc != null">
         MEASURE_OC = #{measureOc,jdbcType=DOUBLE},
       </if>
-      <if test="measureVoc != null" >
+      <if test="measureVoc != null">
         MEASURE_VOC = #{measureVoc,jdbcType=DOUBLE},
       </if>
-      <if test="exfPm != null" >
+      <if test="exfPm != null">
         EXF_PM = #{exfPm,jdbcType=DOUBLE},
       </if>
-      <if test="exfSo2 != null" >
+      <if test="exfSo2 != null">
         EXF_SO2 = #{exfSo2,jdbcType=DOUBLE},
       </if>
-      <if test="exfNox != null" >
+      <if test="exfNox != null">
         EXF_NOX = #{exfNox,jdbcType=DOUBLE},
       </if>
-      <if test="exfOc != null" >
+      <if test="exfOc != null">
         exf_oc = #{exfOc,jdbcType=DOUBLE},
       </if>
-      <if test="exfBc != null" >
+      <if test="exfBc != null">
         exf_bc = #{exfBc,jdbcType=DOUBLE},
-      </if>
-      <if test="factoryId != null" >
-        FACTORY_ID = #{factoryId,jdbcType=INTEGER},
       </if>
     </set>
     where EXF_ID = #{exfId,jdbcType=INTEGER}
   </update>
-  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Exhaust" >
-    insert into exhaust_temp (EXF_ID, NK_NO, EXF_NO,
-      EXF_MATERIAL, EXF_HEIGHT, SMOKE_OUTD,
-      SMOKE_O_UTTE_M, SMOKE_OUTA, SMOKE_OUTV,
-      EXF_LONGITUDE, EXF_LATITUDE, EXF_PM10,
-      EXF_PM25, EXF_NH3, EXF_CO,
-      EXF_VOC, MEASURE_NH3, MEASURE_BC,
-      MEASURE_OC, MEASURE_VOC, EXF_PM,
-      EXF_SO2, EXF_NOX, exf_oc,
-      exf_bc, FACTORY_ID)
-    values (#{exfId,jdbcType=INTEGER}, #{nkNo,jdbcType=INTEGER}, #{exfNo,jdbcType=CHAR},
-      #{exfMaterial,jdbcType=CHAR}, #{exfHeight,jdbcType=DOUBLE}, #{smokeOutd,jdbcType=DOUBLE},
-      #{smokeOUtteM,jdbcType=DOUBLE}, #{smokeOuta,jdbcType=DOUBLE}, #{smokeOutv,jdbcType=DOUBLE},
-      #{exfLongitude,jdbcType=DOUBLE}, #{exfLatitude,jdbcType=DOUBLE}, #{exfPm10,jdbcType=DOUBLE},
-      #{exfPm25,jdbcType=DOUBLE}, #{exfNh3,jdbcType=DOUBLE}, #{exfCo,jdbcType=DOUBLE},
-      #{exfVoc,jdbcType=DOUBLE}, #{measureNh3,jdbcType=DOUBLE}, #{measureBc,jdbcType=DOUBLE},
-      #{measureOc,jdbcType=DOUBLE}, #{measureVoc,jdbcType=DOUBLE}, #{exfPm,jdbcType=DOUBLE},
-      #{exfSo2,jdbcType=DOUBLE}, #{exfNox,jdbcType=DOUBLE}, #{exfOc,jdbcType=DOUBLE},
-      #{exfBc,jdbcType=DOUBLE}, #{factoryId,jdbcType=INTEGER})
-    ON DUPLICATE KEY UPDATE
-      EXF_ID = #{exfId,jdbcType=INTEGER},
-      NK_NO = #{nkNo,jdbcType=INTEGER},
-      EXF_NO = #{exfNo,jdbcType=CHAR},
-      EXF_MATERIAL = #{exfMaterial,jdbcType=CHAR},
-      EXF_HEIGHT = #{exfHeight,jdbcType=DOUBLE},
-      SMOKE_OUTD = #{smokeOutd,jdbcType=DOUBLE},
-      SMOKE_O_UTTE_M = #{smokeOUtteM,jdbcType=DOUBLE},
-      SMOKE_OUTA = #{smokeOuta,jdbcType=DOUBLE},
-      SMOKE_OUTV = #{smokeOutv,jdbcType=DOUBLE},
-      EXF_LONGITUDE = #{exfLongitude,jdbcType=DOUBLE},
-      EXF_LATITUDE = #{exfLatitude,jdbcType=DOUBLE},
-      EXF_PM10 = #{exfPm10,jdbcType=DOUBLE},
-      EXF_PM25 = #{exfPm25,jdbcType=DOUBLE},
-      EXF_NH3 = #{exfNh3,jdbcType=DOUBLE},
-      EXF_CO = #{exfCo,jdbcType=DOUBLE},
-      EXF_VOC = #{exfVoc,jdbcType=DOUBLE},
-      MEASURE_NH3 = #{measureNh3,jdbcType=DOUBLE},
-      MEASURE_BC = #{measureBc,jdbcType=DOUBLE},
-      MEASURE_OC = #{measureOc,jdbcType=DOUBLE},
-      MEASURE_VOC = #{measureVoc,jdbcType=DOUBLE},
-      EXF_PM = #{exfPm,jdbcType=DOUBLE},
-      EXF_SO2 = #{exfSo2,jdbcType=DOUBLE},
-      EXF_NOX = #{exfNox,jdbcType=DOUBLE},
-      exf_oc = #{exfOc,jdbcType=DOUBLE},
-      exf_bc = #{exfBc,jdbcType=DOUBLE},
-      FACTORY_ID = #{factoryId,jdbcType=INTEGER}
-  </insert>
 </mapper>

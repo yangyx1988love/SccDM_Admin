@@ -3,23 +3,19 @@ package nankai.xl.business.model;
 public class Feiqi {
     private Integer id;
 
-    private Integer factoryId;
-
     private Integer nkno;
+
+    private Integer factoryId;
 
     private String deviceName;
 
     private String scc2;
 
-    private String scc2Dec;
-
     private String scc3;
-
-    private String scc3Dec;
 
     private String scc4;
 
-    private String scc4Dec;
+    private String sccCode;
 
     private Double lon1;
 
@@ -41,19 +37,25 @@ public class Feiqi {
 
     private Double tian;
 
-    private Double fen;
-
     private Double dui;
 
-    private Integer status;
+    private Double fen;
 
-    private String statusDec;
+    private Double pm10Emission;
+
+    private Double pm25Emission;
 
     private Double vocs;
 
     private Double nh3;
 
-    private String sccCode;
+    private Double ocEmission;
+
+    private Double bcEmission;
+
+    private Double so2Emission;
+
+    private Double noxEmission;
 
     private Double marUseamount;
 
@@ -79,18 +81,6 @@ public class Feiqi {
 
     private Double decUseamount;
 
-    private Double pm10Emission;
-
-    private Double pm25Emission;
-
-    private Double ocEmission;
-
-    private Double bcEmission;
-
-    private Double so2Emission;
-
-    private Double noxEmission;
-
     public Integer getId() {
         return id;
     }
@@ -99,20 +89,20 @@ public class Feiqi {
         this.id = id;
     }
 
-    public Integer getFactoryId() {
-        return factoryId;
-    }
-
-    public void setFactoryId(Integer factoryId) {
-        this.factoryId = factoryId;
-    }
-
     public Integer getNkno() {
         return nkno;
     }
 
     public void setNkno(Integer nkno) {
         this.nkno = nkno;
+    }
+
+    public Integer getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
     }
 
     public String getDeviceName() {
@@ -131,28 +121,12 @@ public class Feiqi {
         this.scc2 = scc2 == null ? null : scc2.trim();
     }
 
-    public String getScc2Dec() {
-        return scc2Dec;
-    }
-
-    public void setScc2Dec(String scc2Dec) {
-        this.scc2Dec = scc2Dec == null ? null : scc2Dec.trim();
-    }
-
     public String getScc3() {
         return scc3;
     }
 
     public void setScc3(String scc3) {
         this.scc3 = scc3 == null ? null : scc3.trim();
-    }
-
-    public String getScc3Dec() {
-        return scc3Dec;
-    }
-
-    public void setScc3Dec(String scc3Dec) {
-        this.scc3Dec = scc3Dec == null ? null : scc3Dec.trim();
     }
 
     public String getScc4() {
@@ -163,12 +137,12 @@ public class Feiqi {
         this.scc4 = scc4 == null ? null : scc4.trim();
     }
 
-    public String getScc4Dec() {
-        return scc4Dec;
+    public String getSccCode() {
+        return sccCode;
     }
 
-    public void setScc4Dec(String scc4Dec) {
-        this.scc4Dec = scc4Dec == null ? null : scc4Dec.trim();
+    public void setSccCode(String sccCode) {
+        this.sccCode = sccCode == null ? null : sccCode.trim();
     }
 
     public Double getLon1() {
@@ -251,14 +225,6 @@ public class Feiqi {
         this.tian = tian;
     }
 
-    public Double getFen() {
-        return fen;
-    }
-
-    public void setFen(Double fen) {
-        this.fen = fen;
-    }
-
     public Double getDui() {
         return dui;
     }
@@ -267,20 +233,28 @@ public class Feiqi {
         this.dui = dui;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Double getFen() {
+        return fen;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setFen(Double fen) {
+        this.fen = fen;
     }
 
-    public String getStatusDec() {
-        return statusDec;
+    public Double getPm10Emission() {
+        return pm10Emission;
     }
 
-    public void setStatusDec(String statusDec) {
-        this.statusDec = statusDec == null ? null : statusDec.trim();
+    public void setPm10Emission(Double pm10Emission) {
+        this.pm10Emission = pm10Emission;
+    }
+
+    public Double getPm25Emission() {
+        return pm25Emission;
+    }
+
+    public void setPm25Emission(Double pm25Emission) {
+        this.pm25Emission = pm25Emission;
     }
 
     public Double getVocs() {
@@ -299,12 +273,36 @@ public class Feiqi {
         this.nh3 = nh3;
     }
 
-    public String getSccCode() {
-        return sccCode;
+    public Double getOcEmission() {
+        return ocEmission;
     }
 
-    public void setSccCode(String sccCode) {
-        this.sccCode = sccCode == null ? null : sccCode.trim();
+    public void setOcEmission(Double ocEmission) {
+        this.ocEmission = ocEmission;
+    }
+
+    public Double getBcEmission() {
+        return bcEmission;
+    }
+
+    public void setBcEmission(Double bcEmission) {
+        this.bcEmission = bcEmission;
+    }
+
+    public Double getSo2Emission() {
+        return so2Emission;
+    }
+
+    public void setSo2Emission(Double so2Emission) {
+        this.so2Emission = so2Emission;
+    }
+
+    public Double getNoxEmission() {
+        return noxEmission;
+    }
+
+    public void setNoxEmission(Double noxEmission) {
+        this.noxEmission = noxEmission;
     }
 
     public Double getMarUseamount() {
@@ -401,53 +399,5 @@ public class Feiqi {
 
     public void setDecUseamount(Double decUseamount) {
         this.decUseamount = decUseamount;
-    }
-
-    public Double getPm10Emission() {
-        return pm10Emission;
-    }
-
-    public void setPm10Emission(Double pm10Emission) {
-        this.pm10Emission = pm10Emission;
-    }
-
-    public Double getPm25Emission() {
-        return pm25Emission;
-    }
-
-    public void setPm25Emission(Double pm25Emission) {
-        this.pm25Emission = pm25Emission;
-    }
-
-    public Double getOcEmission() {
-        return ocEmission;
-    }
-
-    public void setOcEmission(Double ocEmission) {
-        this.ocEmission = ocEmission;
-    }
-
-    public Double getBcEmission() {
-        return bcEmission;
-    }
-
-    public void setBcEmission(Double bcEmission) {
-        this.bcEmission = bcEmission;
-    }
-
-    public Double getSo2Emission() {
-        return so2Emission;
-    }
-
-    public void setSo2Emission(Double so2Emission) {
-        this.so2Emission = so2Emission;
-    }
-
-    public Double getNoxEmission() {
-        return noxEmission;
-    }
-
-    public void setNoxEmission(Double noxEmission) {
-        this.noxEmission = noxEmission;
     }
 }

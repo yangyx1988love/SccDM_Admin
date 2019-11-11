@@ -4,8 +4,6 @@ import nankai.xl.business.mapper.BoilerMapper;
 import nankai.xl.business.mapper.KilnMapper;
 import nankai.xl.business.model.Boiler;
 import nankai.xl.business.model.Kiln;
-import nankai.xl.business.model.vo.BoilerVo;
-import nankai.xl.business.model.vo.KilnVo;
 import nankai.xl.business.model.vo.SumVo;
 import nankai.xl.business.service.FurnaceCommonService;
 import org.springframework.stereotype.Service;
@@ -31,18 +29,13 @@ public class FurnaceCommonServiceImpl implements FurnaceCommonService {
     }
 
     @Override
-    public List<BoilerVo> getBoilersByFactoryId(Integer factoryId) {
+    public List<Boiler> getBoilersByFactoryId(Integer factoryId) {
         return boilerMapper.selectByFactoryId(factoryId);
     }
 
     @Override
     public int updateBoilerById(Boiler boiler) {
         return boilerMapper.updateById(boiler);
-    }
-
-    @Override
-    public int insertOrUpdateBoiler(Boiler boiler) {
-        return boilerMapper.insertOrUpdate(boiler);
     }
 
     @Override
@@ -56,18 +49,13 @@ public class FurnaceCommonServiceImpl implements FurnaceCommonService {
     }
 
     @Override
-    public List<KilnVo> getKilnsByFactoryId(Integer factoryId) {
+    public List<Kiln> getKilnsByFactoryId(Integer factoryId) {
         return kilnMapper.selectByFactoryId(factoryId);
     }
 
     @Override
     public int updateKilnById(Kiln kiln) {
         return kilnMapper.updateById(kiln);
-    }
-
-    @Override
-    public int insertOrUpdateKiln(Kiln kiln) {
-        return kilnMapper.insertOrUpdate(kiln);
     }
 
     @Override

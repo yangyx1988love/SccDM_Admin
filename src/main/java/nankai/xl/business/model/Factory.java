@@ -1,17 +1,11 @@
 package nankai.xl.business.model;
 
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 public class Factory {
     private Integer factoryId;
 
     private String factoryNo;
-
-    @NotBlank(message = "企业机构代码不能为空")
-    private String factoryNo1;
-
-    private String factoryNo2;
 
     private String legalperson;
 
@@ -21,39 +15,17 @@ public class Factory {
 
     private String factorySize;
 
-    private String countyCityDec;
-
-    private String countyCity;
-
-    private Double totalValue;
-
-    private String countyName;
-
     private String countyId;
 
     private String industryBigid;
 
-    private String industryName;
-
-    private String industryBigname;
-
     private String industryId;
 
-    private String addressdetail;
-
     private String address;
-
-    private String countyRegisterCityDec;
-
-    private String countyRegisterCity;
-
-    private String aregisterdetail;
 
     private Double powerAmount;
 
     private String addressRegister;
-
-    private String countyidRegisterDec;
 
     private String countyidRegister;
 
@@ -63,11 +35,7 @@ public class Factory {
 
     private String sourceType;
 
-    private String gasequType;
-
     private String year;
-
-    private Boolean flag;
 
     private Date lastChangedTime;
 
@@ -75,37 +43,13 @@ public class Factory {
 
     private Date fillingTime;
 
-    private Integer devicestatus;
-
-    private Integer boilerstatus;
-
-    private Integer kilnstatus;
-
     private Integer yearDays;
 
     private Integer daysHours;
 
-    private String cityName;
-
-    private Integer cityId;
-
     private Double totalOutput;
 
-    private Integer factorystatus;
-
-    private Integer exhauststatus;
-
-    private String statusdec;
-
     private Integer status;
-
-    private Integer exhaustNum;
-
-    private Integer important;
-
-    private Integer shihuaflag;
-
-    private Integer feiqnub;
 
     private String principalName;
 
@@ -143,6 +87,38 @@ public class Factory {
 
     private Double lon7;
 
+    private Integer exhaustCount;
+
+    private Integer boilerCount;
+
+    private Integer kilnCount;
+
+    private Integer deviceCount;
+
+    private Integer deviceProductCount;
+
+    private Integer deviceRawCount;
+
+    private Integer rongjiProductCount;
+
+    private Integer rongjiRawCount;
+
+    private Integer feiqiCount;
+
+    private Integer soilDustCount;
+
+    private Integer conDustCount;
+
+    private Integer roadDustCount;
+
+    private Integer yardDustCount;
+
+    private Integer noOrgWorkCount;
+
+    private Boolean flag;
+
+    private Integer important;
+
     private String note;
 
     public Integer getFactoryId() {
@@ -159,22 +135,6 @@ public class Factory {
 
     public void setFactoryNo(String factoryNo) {
         this.factoryNo = factoryNo == null ? null : factoryNo.trim();
-    }
-
-    public String getFactoryNo1() {
-        return factoryNo1;
-    }
-
-    public void setFactoryNo1(String factoryNo1) {
-        this.factoryNo1 = factoryNo1 == null ? null : factoryNo1.trim();
-    }
-
-    public String getFactoryNo2() {
-        return factoryNo2;
-    }
-
-    public void setFactoryNo2(String factoryNo2) {
-        this.factoryNo2 = factoryNo2 == null ? null : factoryNo2.trim();
     }
 
     public String getLegalperson() {
@@ -209,38 +169,6 @@ public class Factory {
         this.factorySize = factorySize == null ? null : factorySize.trim();
     }
 
-    public String getCountyCityDec() {
-        return countyCityDec;
-    }
-
-    public void setCountyCityDec(String countyCityDec) {
-        this.countyCityDec = countyCityDec == null ? null : countyCityDec.trim();
-    }
-
-    public String getCountyCity() {
-        return countyCity;
-    }
-
-    public void setCountyCity(String countyCity) {
-        this.countyCity = countyCity == null ? null : countyCity.trim();
-    }
-
-    public Double getTotalValue() {
-        return totalValue;
-    }
-
-    public void setTotalValue(Double totalValue) {
-        this.totalValue = totalValue;
-    }
-
-    public String getCountyName() {
-        return countyName;
-    }
-
-    public void setCountyName(String countyName) {
-        this.countyName = countyName == null ? null : countyName.trim();
-    }
-
     public String getCountyId() {
         return countyId;
     }
@@ -257,22 +185,6 @@ public class Factory {
         this.industryBigid = industryBigid == null ? null : industryBigid.trim();
     }
 
-    public String getIndustryName() {
-        return industryName;
-    }
-
-    public void setIndustryName(String industryName) {
-        this.industryName = industryName == null ? null : industryName.trim();
-    }
-
-    public String getIndustryBigname() {
-        return industryBigname;
-    }
-
-    public void setIndustryBigname(String industryBigname) {
-        this.industryBigname = industryBigname == null ? null : industryBigname.trim();
-    }
-
     public String getIndustryId() {
         return industryId;
     }
@@ -281,44 +193,12 @@ public class Factory {
         this.industryId = industryId == null ? null : industryId.trim();
     }
 
-    public String getAddressdetail() {
-        return addressdetail;
-    }
-
-    public void setAddressdetail(String addressdetail) {
-        this.addressdetail = addressdetail == null ? null : addressdetail.trim();
-    }
-
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
-    }
-
-    public String getCountyRegisterCityDec() {
-        return countyRegisterCityDec;
-    }
-
-    public void setCountyRegisterCityDec(String countyRegisterCityDec) {
-        this.countyRegisterCityDec = countyRegisterCityDec == null ? null : countyRegisterCityDec.trim();
-    }
-
-    public String getCountyRegisterCity() {
-        return countyRegisterCity;
-    }
-
-    public void setCountyRegisterCity(String countyRegisterCity) {
-        this.countyRegisterCity = countyRegisterCity == null ? null : countyRegisterCity.trim();
-    }
-
-    public String getAregisterdetail() {
-        return aregisterdetail;
-    }
-
-    public void setAregisterdetail(String aregisterdetail) {
-        this.aregisterdetail = aregisterdetail == null ? null : aregisterdetail.trim();
     }
 
     public Double getPowerAmount() {
@@ -335,14 +215,6 @@ public class Factory {
 
     public void setAddressRegister(String addressRegister) {
         this.addressRegister = addressRegister == null ? null : addressRegister.trim();
-    }
-
-    public String getCountyidRegisterDec() {
-        return countyidRegisterDec;
-    }
-
-    public void setCountyidRegisterDec(String countyidRegisterDec) {
-        this.countyidRegisterDec = countyidRegisterDec == null ? null : countyidRegisterDec.trim();
     }
 
     public String getCountyidRegister() {
@@ -377,28 +249,12 @@ public class Factory {
         this.sourceType = sourceType == null ? null : sourceType.trim();
     }
 
-    public String getGasequType() {
-        return gasequType;
-    }
-
-    public void setGasequType(String gasequType) {
-        this.gasequType = gasequType == null ? null : gasequType.trim();
-    }
-
     public String getYear() {
         return year;
     }
 
     public void setYear(String year) {
         this.year = year == null ? null : year.trim();
-    }
-
-    public Boolean getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Boolean flag) {
-        this.flag = flag;
     }
 
     public Date getLastChangedTime() {
@@ -425,30 +281,6 @@ public class Factory {
         this.fillingTime = fillingTime;
     }
 
-    public Integer getDevicestatus() {
-        return devicestatus;
-    }
-
-    public void setDevicestatus(Integer devicestatus) {
-        this.devicestatus = devicestatus;
-    }
-
-    public Integer getBoilerstatus() {
-        return boilerstatus;
-    }
-
-    public void setBoilerstatus(Integer boilerstatus) {
-        this.boilerstatus = boilerstatus;
-    }
-
-    public Integer getKilnstatus() {
-        return kilnstatus;
-    }
-
-    public void setKilnstatus(Integer kilnstatus) {
-        this.kilnstatus = kilnstatus;
-    }
-
     public Integer getYearDays() {
         return yearDays;
     }
@@ -465,22 +297,6 @@ public class Factory {
         this.daysHours = daysHours;
     }
 
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName == null ? null : cityName.trim();
-    }
-
-    public Integer getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
-
     public Double getTotalOutput() {
         return totalOutput;
     }
@@ -489,68 +305,12 @@ public class Factory {
         this.totalOutput = totalOutput;
     }
 
-    public Integer getFactorystatus() {
-        return factorystatus;
-    }
-
-    public void setFactorystatus(Integer factorystatus) {
-        this.factorystatus = factorystatus;
-    }
-
-    public Integer getExhauststatus() {
-        return exhauststatus;
-    }
-
-    public void setExhauststatus(Integer exhauststatus) {
-        this.exhauststatus = exhauststatus;
-    }
-
-    public String getStatusdec() {
-        return statusdec;
-    }
-
-    public void setStatusdec(String statusdec) {
-        this.statusdec = statusdec == null ? null : statusdec.trim();
-    }
-
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Integer getExhaustNum() {
-        return exhaustNum;
-    }
-
-    public void setExhaustNum(Integer exhaustNum) {
-        this.exhaustNum = exhaustNum;
-    }
-
-    public Integer getImportant() {
-        return important;
-    }
-
-    public void setImportant(Integer important) {
-        this.important = important;
-    }
-
-    public Integer getShihuaflag() {
-        return shihuaflag;
-    }
-
-    public void setShihuaflag(Integer shihuaflag) {
-        this.shihuaflag = shihuaflag;
-    }
-
-    public Integer getFeiqnub() {
-        return feiqnub;
-    }
-
-    public void setFeiqnub(Integer feiqnub) {
-        this.feiqnub = feiqnub;
     }
 
     public String getPrincipalName() {
@@ -695,6 +455,134 @@ public class Factory {
 
     public void setLon7(Double lon7) {
         this.lon7 = lon7;
+    }
+
+    public Integer getExhaustCount() {
+        return exhaustCount;
+    }
+
+    public void setExhaustCount(Integer exhaustCount) {
+        this.exhaustCount = exhaustCount;
+    }
+
+    public Integer getBoilerCount() {
+        return boilerCount;
+    }
+
+    public void setBoilerCount(Integer boilerCount) {
+        this.boilerCount = boilerCount;
+    }
+
+    public Integer getKilnCount() {
+        return kilnCount;
+    }
+
+    public void setKilnCount(Integer kilnCount) {
+        this.kilnCount = kilnCount;
+    }
+
+    public Integer getDeviceCount() {
+        return deviceCount;
+    }
+
+    public void setDeviceCount(Integer deviceCount) {
+        this.deviceCount = deviceCount;
+    }
+
+    public Integer getDeviceProductCount() {
+        return deviceProductCount;
+    }
+
+    public void setDeviceProductCount(Integer deviceProductCount) {
+        this.deviceProductCount = deviceProductCount;
+    }
+
+    public Integer getDeviceRawCount() {
+        return deviceRawCount;
+    }
+
+    public void setDeviceRawCount(Integer deviceRawCount) {
+        this.deviceRawCount = deviceRawCount;
+    }
+
+    public Integer getRongjiProductCount() {
+        return rongjiProductCount;
+    }
+
+    public void setRongjiProductCount(Integer rongjiProductCount) {
+        this.rongjiProductCount = rongjiProductCount;
+    }
+
+    public Integer getRongjiRawCount() {
+        return rongjiRawCount;
+    }
+
+    public void setRongjiRawCount(Integer rongjiRawCount) {
+        this.rongjiRawCount = rongjiRawCount;
+    }
+
+    public Integer getFeiqiCount() {
+        return feiqiCount;
+    }
+
+    public void setFeiqiCount(Integer feiqiCount) {
+        this.feiqiCount = feiqiCount;
+    }
+
+    public Integer getSoilDustCount() {
+        return soilDustCount;
+    }
+
+    public void setSoilDustCount(Integer soilDustCount) {
+        this.soilDustCount = soilDustCount;
+    }
+
+    public Integer getConDustCount() {
+        return conDustCount;
+    }
+
+    public void setConDustCount(Integer conDustCount) {
+        this.conDustCount = conDustCount;
+    }
+
+    public Integer getRoadDustCount() {
+        return roadDustCount;
+    }
+
+    public void setRoadDustCount(Integer roadDustCount) {
+        this.roadDustCount = roadDustCount;
+    }
+
+    public Integer getYardDustCount() {
+        return yardDustCount;
+    }
+
+    public void setYardDustCount(Integer yardDustCount) {
+        this.yardDustCount = yardDustCount;
+    }
+
+    public Integer getNoOrgWorkCount() {
+        return noOrgWorkCount;
+    }
+
+    public void setNoOrgWorkCount(Integer noOrgWorkCount) {
+        this.noOrgWorkCount = noOrgWorkCount;
+    }
+
+    public Boolean getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
+    }
+
+    public Integer getImportant() {
+        return important;
+    }
+
+    public void setImportant(Integer important) {
+        this.important = important;
     }
 
     public String getNote() {

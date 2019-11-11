@@ -6,9 +6,6 @@ import nankai.xl.business.mapper.DeviceRawMapper;
 import nankai.xl.business.model.Device;
 import nankai.xl.business.model.DeviceProduct;
 import nankai.xl.business.model.DeviceRaw;
-import nankai.xl.business.model.vo.DeviceProductVo;
-import nankai.xl.business.model.vo.DeviceRawVo;
-import nankai.xl.business.model.vo.DeviceVo;
 import nankai.xl.business.service.DeviceCommonService;
 import org.springframework.stereotype.Service;
 
@@ -33,18 +30,13 @@ public class DeviceCommonServiceImpl implements DeviceCommonService {
     }
 
     @Override
-    public List<DeviceVo> getDevicesByFactoryId(Integer factoryId) {
+    public List<Device> getDevicesByFactoryId(Integer factoryId) {
         return deviceMapper.selectByFactoryId(factoryId);
     }
 
     @Override
     public int updateDeviceById(Device device) {
         return deviceMapper.updateById(device);
-    }
-
-    @Override
-    public int insertOrUpdateDevice(Device device) {
-        return deviceMapper.insertOrUpdate(device);
     }
 
     @Override
@@ -58,18 +50,13 @@ public class DeviceCommonServiceImpl implements DeviceCommonService {
     }
 
     @Override
-    public List<DeviceRawVo> getDeviceRawsByFactoryId(Integer factoryId) {
+    public List<DeviceRaw> getDeviceRawsByFactoryId(Integer factoryId) {
         return deviceRawMapper.selectByFactoryId(factoryId);
     }
 
     @Override
     public int updateDeviceRawById(DeviceRaw deviceRaw) {
         return deviceRawMapper.updateById(deviceRaw);
-    }
-
-    @Override
-    public int insertOrUpdateDeviceRaw(DeviceRaw deviceRaw) {
-        return deviceRawMapper.insertOrUpdate(deviceRaw);
     }
 
     @Override
@@ -83,7 +70,7 @@ public class DeviceCommonServiceImpl implements DeviceCommonService {
     }
 
     @Override
-    public List<DeviceProductVo> getDeviceProductsByFactoryId(Integer factoryId) {
+    public List<DeviceProduct> getDeviceProductsByFactoryId(Integer factoryId) {
         return deviceProductMapper.selectByFactoryId(factoryId);
     }
 
@@ -92,8 +79,4 @@ public class DeviceCommonServiceImpl implements DeviceCommonService {
         return deviceProductMapper.updateById(deviceProduct);
     }
 
-    @Override
-    public int insertOrUpdateDeviceProduct(DeviceProduct deviceProduct) {
-        return deviceProductMapper.insertOrUpdate(deviceProduct);
-    }
 }

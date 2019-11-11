@@ -12,8 +12,6 @@ public class ExhaustVo {
 
     private Integer[] nkNo;
 
-    private String[] exfNo;
-
     private String[] exfMaterial;
 
     private Double[] exfHeight;
@@ -74,14 +72,6 @@ public class ExhaustVo {
 
     public void setNkNo(Integer[] nkNo) {
         this.nkNo = nkNo;
-    }
-
-    public String[] getExfNo() {
-        return exfNo;
-    }
-
-    public void setExfNo(String[] exfNo) {
-        this.exfNo = exfNo;
     }
 
     public String[] getExfMaterial() {
@@ -277,9 +267,6 @@ public class ExhaustVo {
             }
             if (exhaustVo.nkNo != null) {
                 exhaust.setNkNo(exhaustVo.nkNo[i]);
-            }
-            if (exhaustVo.exfNo != null) {
-                exhaust.setExfNo(exhaustVo.exfNo[i]);
             }
             if (exhaustVo.exfMaterial != null) {
                 exhaust.setExfMaterial(exhaustVo.exfMaterial[i]);

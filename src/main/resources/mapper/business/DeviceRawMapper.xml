@@ -1,325 +1,180 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.DeviceRawMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.DeviceRaw" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="nk_no" property="nkNo" jdbcType="INTEGER" />
-    <result column="mname" property="mname" jdbcType="VARCHAR" />
-    <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="musage" property="musage" jdbcType="DOUBLE" />
-    <result column="scc2_dec" property="scc2Dec" jdbcType="VARCHAR" />
-    <result column="scc2" property="scc2" jdbcType="CHAR" />
-    <result column="scc4_dec" property="scc4Dec" jdbcType="VARCHAR" />
-    <result column="scc4" property="scc4" jdbcType="CHAR" />
-    <result column="scc_code" property="sccCode" jdbcType="CHAR" />
-    <result column="scc3_dec" property="scc3Dec" jdbcType="VARCHAR" />
-    <result column="scc3" property="scc3" jdbcType="CHAR" />
-    <result column="devicetotal_id" property="devicetotalId" jdbcType="INTEGER" />
-    <result column="device_no" property="deviceNo" jdbcType="INTEGER" />
-    <result column="device_id" property="deviceId" jdbcType="INTEGER" />
-    <result column="factor_nox" property="factorNox" jdbcType="DOUBLE" />
-    <result column="factor_status" property="factorStatus" jdbcType="TINYINT" />
-    <result column="nox" property="nox" jdbcType="DOUBLE" />
-    <result column="factor_co" property="factorCo" jdbcType="DOUBLE" />
-    <result column="co" property="co" jdbcType="DOUBLE" />
-    <result column="factor_pm10" property="factorPm10" jdbcType="DOUBLE" />
-    <result column="pm10" property="pm10" jdbcType="DOUBLE" />
-    <result column="factor_pm25" property="factorPm25" jdbcType="DOUBLE" />
-    <result column="pm25" property="pm25" jdbcType="DOUBLE" />
-    <result column="factor_pm" property="factorPm" jdbcType="DOUBLE" />
-    <result column="pm" property="pm" jdbcType="DOUBLE" />
-    <result column="factor_so2" property="factorSo2" jdbcType="DOUBLE" />
-    <result column="so2" property="so2" jdbcType="DOUBLE" />
-    <result column="factor_voc" property="factorVoc" jdbcType="DOUBLE" />
-    <result column="voc" property="voc" jdbcType="DOUBLE" />
-    <result column="factor_nh3" property="factorNh3" jdbcType="DOUBLE" />
-    <result column="nh3" property="nh3" jdbcType="DOUBLE" />
-    <result column="factor_oc" property="factorOc" jdbcType="DOUBLE" />
-    <result column="oc" property="oc" jdbcType="DOUBLE" />
-    <result column="bc" property="bc" jdbcType="DOUBLE" />
-    <result column="factor_bc" property="factorBc" jdbcType="DOUBLE" />
-    <result column="Jan_useamount" property="janUseamount" jdbcType="DOUBLE" />
-    <result column="Feb_useamount" property="febUseamount" jdbcType="DOUBLE" />
-    <result column="Mar_useamount" property="marUseamount" jdbcType="DOUBLE" />
-    <result column="Apr_useamount" property="aprUseamount" jdbcType="DOUBLE" />
-    <result column="May_useamount" property="mayUseamount" jdbcType="DOUBLE" />
-    <result column="June_useamount" property="juneUseamount" jdbcType="DOUBLE" />
-    <result column="July_useamount" property="julyUseamount" jdbcType="DOUBLE" />
-    <result column="aug_useamount" property="augUseamount" jdbcType="DOUBLE" />
-    <result column="sept_useamount" property="septUseamount" jdbcType="DOUBLE" />
-    <result column="oct_use_amount" property="octUseAmount" jdbcType="DOUBLE" />
-    <result column="nov_useamount" property="novUseamount" jdbcType="DOUBLE" />
-    <result column="dec_useamount" property="decUseamount" jdbcType="DOUBLE" />
-    <result column="gas_no" property="gasNo" jdbcType="VARCHAR" />
-    <result column="gas_pre" property="gasPre" jdbcType="DOUBLE" />
-    <result column="gas_vocs" property="gasVocs" jdbcType="DOUBLE" />
-    <result column="treat_no" property="treatNo" jdbcType="VARCHAR" />
-    <result column="treat_pre" property="treatPre" jdbcType="DOUBLE" />
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.DeviceRaw">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="nk_no" jdbcType="INTEGER" property="nkNo" />
+    <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+    <result column="mname" jdbcType="VARCHAR" property="mname" />
+    <result column="musage" jdbcType="DOUBLE" property="musage" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="scc2" jdbcType="CHAR" property="scc2" />
+    <result column="scc3" jdbcType="CHAR" property="scc3" />
+    <result column="scc4" jdbcType="CHAR" property="scc4" />
+    <result column="scc_code" jdbcType="CHAR" property="sccCode" />
+    <result column="nox" jdbcType="DOUBLE" property="nox" />
+    <result column="co" jdbcType="DOUBLE" property="co" />
+    <result column="pm10" jdbcType="DOUBLE" property="pm10" />
+    <result column="pm25" jdbcType="DOUBLE" property="pm25" />
+    <result column="pm" jdbcType="DOUBLE" property="pm" />
+    <result column="so2" jdbcType="DOUBLE" property="so2" />
+    <result column="voc" jdbcType="DOUBLE" property="voc" />
+    <result column="nh3" jdbcType="DOUBLE" property="nh3" />
+    <result column="oc" jdbcType="DOUBLE" property="oc" />
+    <result column="bc" jdbcType="DOUBLE" property="bc" />
+    <result column="gas_no" jdbcType="VARCHAR" property="gasNo" />
+    <result column="gas_pre" jdbcType="DOUBLE" property="gasPre" />
+    <result column="gas_vocs" jdbcType="DOUBLE" property="gasVocs" />
+    <result column="treat_no" jdbcType="VARCHAR" property="treatNo" />
+    <result column="treat_pre" jdbcType="DOUBLE" property="treatPre" />
+    <result column="Jan_useamount" jdbcType="DOUBLE" property="janUseamount" />
+    <result column="Feb_useamount" jdbcType="DOUBLE" property="febUseamount" />
+    <result column="Mar_useamount" jdbcType="DOUBLE" property="marUseamount" />
+    <result column="Apr_useamount" jdbcType="DOUBLE" property="aprUseamount" />
+    <result column="May_useamount" jdbcType="DOUBLE" property="mayUseamount" />
+    <result column="June_useamount" jdbcType="DOUBLE" property="juneUseamount" />
+    <result column="July_useamount" jdbcType="DOUBLE" property="julyUseamount" />
+    <result column="aug_useamount" jdbcType="DOUBLE" property="augUseamount" />
+    <result column="sept_useamount" jdbcType="DOUBLE" property="septUseamount" />
+    <result column="oct_use_amount" jdbcType="DOUBLE" property="octUseAmount" />
+    <result column="nov_useamount" jdbcType="DOUBLE" property="novUseamount" />
+    <result column="dec_useamount" jdbcType="DOUBLE" property="decUseamount" />
   </resultMap>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <sql id="Base_Column_List">
+    id, nk_no, device_id, mname, musage, unit, scc2, scc3, scc4, scc_code, nox, co, pm10,
+    pm25, pm, so2, voc, nh3, oc, bc, gas_no, gas_pre, gas_vocs, treat_no, treat_pre,
+    Jan_useamount, Feb_useamount, Mar_useamount, Apr_useamount, May_useamount, June_useamount,
+    July_useamount, aug_useamount, sept_useamount, oct_use_amount, nov_useamount, dec_useamount
+  </sql>
+  <select id="selectById" resultType="nankai.xl.business.model.DeviceRaw" parameterType="java.lang.Integer" >
     select * from device_raw
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByDeviceId" resultType="nankai.xl.business.model.DeviceRaw" parameterType="java.lang.Integer" >
     select * from device_raw
     where device_id = #{deviceId,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultType="nankai.xl.business.model.vo.DeviceRawVo" parameterType="java.lang.Integer" >
-     SELECT id,nk_no FROM device_raw WHERE device_id IN(
-          SELECT id FROM device WHERE EXHUST_ID IN(
-              SELECT EXF_ID FROM exhaust WHERE FACTORY_ID = #{factoryId,jdbcType=INTEGER}
-          )
-      )
-      ORDER BY NK_NO ASC
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.DeviceRaw" parameterType="java.lang.Integer" >
+      SELECT device_raw.* FROM device_raw
+      INNER JOIN device
+      ON device_raw.device_id=device.id
+      INNER JOIN exhaust
+      ON device.EXHUST_ID=exhaust.EXF_ID
+      INNER JOIN factory
+      ON factory.factory_id=exhaust.FACTORY_ID
+      WHERE factory.factory_id=#{factoryId,jdbcType=INTEGER}
+      ORDER BY device_raw.nk_no ASC
   </select>
-  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.DeviceRaw" >
-    insert into device_raw (id, nk_no, mname, 
-      unit, musage, scc2_dec, 
-      scc2, scc4_dec, scc4, scc_code, 
-      scc3_dec, scc3, devicetotal_id, 
-      device_no, device_id, factor_nox, 
-      factor_status, nox, factor_co, 
-      co, factor_pm10, pm10, 
-      factor_pm25, pm25, factor_pm, 
-      pm, factor_so2, so2, factor_voc, 
-      voc, factor_nh3, nh3, factor_oc, 
-      oc, bc, factor_bc, Jan_useamount, 
-      Feb_useamount, Mar_useamount, Apr_useamount, 
-      May_useamount, June_useamount, July_useamount, 
-      aug_useamount, sept_useamount, oct_use_amount, 
-      nov_useamount, dec_useamount, gas_no, 
-      gas_pre, gas_vocs, treat_no, 
-      treat_pre)
-    values (#{id,jdbcType=INTEGER}, #{nkNo,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, 
-      #{unit,jdbcType=VARCHAR}, #{musage,jdbcType=DOUBLE}, #{scc2Dec,jdbcType=VARCHAR}, 
-      #{scc2,jdbcType=CHAR}, #{scc4Dec,jdbcType=VARCHAR}, #{scc4,jdbcType=CHAR}, #{sccCode,jdbcType=CHAR}, 
-      #{scc3Dec,jdbcType=VARCHAR}, #{scc3,jdbcType=CHAR}, #{devicetotalId,jdbcType=INTEGER}, 
-      #{deviceNo,jdbcType=INTEGER}, #{deviceId,jdbcType=INTEGER}, #{factorNox,jdbcType=DOUBLE}, 
-      #{factorStatus,jdbcType=TINYINT}, #{nox,jdbcType=DOUBLE}, #{factorCo,jdbcType=DOUBLE}, 
-      #{co,jdbcType=DOUBLE}, #{factorPm10,jdbcType=DOUBLE}, #{pm10,jdbcType=DOUBLE}, 
-      #{factorPm25,jdbcType=DOUBLE}, #{pm25,jdbcType=DOUBLE}, #{factorPm,jdbcType=DOUBLE}, 
-      #{pm,jdbcType=DOUBLE}, #{factorSo2,jdbcType=DOUBLE}, #{so2,jdbcType=DOUBLE}, #{factorVoc,jdbcType=DOUBLE}, 
-      #{voc,jdbcType=DOUBLE}, #{factorNh3,jdbcType=DOUBLE}, #{nh3,jdbcType=DOUBLE}, #{factorOc,jdbcType=DOUBLE}, 
-      #{oc,jdbcType=DOUBLE}, #{bc,jdbcType=DOUBLE}, #{factorBc,jdbcType=DOUBLE}, #{janUseamount,jdbcType=DOUBLE}, 
-      #{febUseamount,jdbcType=DOUBLE}, #{marUseamount,jdbcType=DOUBLE}, #{aprUseamount,jdbcType=DOUBLE}, 
-      #{mayUseamount,jdbcType=DOUBLE}, #{juneUseamount,jdbcType=DOUBLE}, #{julyUseamount,jdbcType=DOUBLE}, 
-      #{augUseamount,jdbcType=DOUBLE}, #{septUseamount,jdbcType=DOUBLE}, #{octUseAmount,jdbcType=DOUBLE}, 
-      #{novUseamount,jdbcType=DOUBLE}, #{decUseamount,jdbcType=DOUBLE}, #{gasNo,jdbcType=VARCHAR}, 
-      #{gasPre,jdbcType=DOUBLE}, #{gasVocs,jdbcType=DOUBLE}, #{treatNo,jdbcType=VARCHAR}, 
-      #{treatPre,jdbcType=DOUBLE})
-    ON DUPLICATE KEY UPDATE
-      id = #{id,jdbcType=INTEGER},
-      nk_no = #{nkNo,jdbcType=INTEGER},
-      mname = #{mname,jdbcType=VARCHAR},
-      unit = #{unit,jdbcType=VARCHAR},
-      musage = #{musage,jdbcType=DOUBLE},
-      scc2_dec = #{scc2Dec,jdbcType=VARCHAR},
-      scc2 = #{scc2,jdbcType=CHAR},
-      scc4_dec = #{scc4Dec,jdbcType=VARCHAR},
-      scc4 = #{scc4,jdbcType=CHAR},
-      scc_code = #{sccCode,jdbcType=CHAR},
-      scc3_dec = #{scc3Dec,jdbcType=VARCHAR},
-      scc3 = #{scc3,jdbcType=CHAR},
-      devicetotal_id = #{devicetotalId,jdbcType=INTEGER},
-      device_no = #{deviceNo,jdbcType=INTEGER},
-      device_id = #{deviceId,jdbcType=INTEGER},
-      factor_nox = #{factorNox,jdbcType=DOUBLE},
-      factor_status = #{factorStatus,jdbcType=TINYINT},
-      nox = #{nox,jdbcType=DOUBLE},
-      factor_co = #{factorCo,jdbcType=DOUBLE},
-      co = #{co,jdbcType=DOUBLE},
-      factor_pm10 = #{factorPm10,jdbcType=DOUBLE},
-      pm10 = #{pm10,jdbcType=DOUBLE},
-      factor_pm25 = #{factorPm25,jdbcType=DOUBLE},
-      pm25 = #{pm25,jdbcType=DOUBLE},
-      factor_pm = #{factorPm,jdbcType=DOUBLE},
-      pm = #{pm,jdbcType=DOUBLE},
-      factor_so2 = #{factorSo2,jdbcType=DOUBLE},
-      so2 = #{so2,jdbcType=DOUBLE},
-      factor_voc = #{factorVoc,jdbcType=DOUBLE},
-      voc = #{voc,jdbcType=DOUBLE},
-      factor_nh3 = #{factorNh3,jdbcType=DOUBLE},
-      nh3 = #{nh3,jdbcType=DOUBLE},
-      factor_oc = #{factorOc,jdbcType=DOUBLE},
-      oc = #{oc,jdbcType=DOUBLE},
-      bc = #{bc,jdbcType=DOUBLE},
-      factor_bc = #{factorBc,jdbcType=DOUBLE},
-      Jan_useamount = #{janUseamount,jdbcType=DOUBLE},
-      Feb_useamount = #{febUseamount,jdbcType=DOUBLE},
-      Mar_useamount = #{marUseamount,jdbcType=DOUBLE},
-      Apr_useamount = #{aprUseamount,jdbcType=DOUBLE},
-      May_useamount = #{mayUseamount,jdbcType=DOUBLE},
-      June_useamount = #{juneUseamount,jdbcType=DOUBLE},
-      July_useamount = #{julyUseamount,jdbcType=DOUBLE},
-      aug_useamount = #{augUseamount,jdbcType=DOUBLE},
-      sept_useamount = #{septUseamount,jdbcType=DOUBLE},
-      oct_use_amount = #{octUseAmount,jdbcType=DOUBLE},
-      nov_useamount = #{novUseamount,jdbcType=DOUBLE},
-      dec_useamount = #{decUseamount,jdbcType=DOUBLE},
-      gas_no = #{gasNo,jdbcType=VARCHAR},
-      gas_pre = #{gasPre,jdbcType=DOUBLE},
-      gas_vocs = #{gasVocs,jdbcType=DOUBLE},
-      treat_no = #{treatNo,jdbcType=VARCHAR},
-      treat_pre = #{treatPre,jdbcType=DOUBLE}
-  </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.DeviceRaw" >
     update device_raw
-    <set >
-      <if test="nkNo != null" >
+    <set>
+      <if test="nkNo != null">
         nk_no = #{nkNo,jdbcType=INTEGER},
       </if>
-      <if test="mname != null" >
-        mname = #{mname,jdbcType=VARCHAR},
-      </if>
-      <if test="unit != null" >
-        unit = #{unit,jdbcType=VARCHAR},
-      </if>
-      <if test="musage != null" >
-        musage = #{musage,jdbcType=DOUBLE},
-      </if>
-      <if test="scc2Dec != null" >
-        scc2_dec = #{scc2Dec,jdbcType=VARCHAR},
-      </if>
-      <if test="scc2 != null" >
-        scc2 = #{scc2,jdbcType=CHAR},
-      </if>
-      <if test="scc4Dec != null" >
-        scc4_dec = #{scc4Dec,jdbcType=VARCHAR},
-      </if>
-      <if test="scc4 != null" >
-        scc4 = #{scc4,jdbcType=CHAR},
-      </if>
-      <if test="sccCode != null" >
-        scc_code = #{sccCode,jdbcType=CHAR},
-      </if>
-      <if test="scc3Dec != null" >
-        scc3_dec = #{scc3Dec,jdbcType=VARCHAR},
-      </if>
-      <if test="scc3 != null" >
-        scc3 = #{scc3,jdbcType=CHAR},
-      </if>
-      <if test="devicetotalId != null" >
-        devicetotal_id = #{devicetotalId,jdbcType=INTEGER},
-      </if>
-      <if test="deviceNo != null" >
-        device_no = #{deviceNo,jdbcType=INTEGER},
-      </if>
-      <if test="deviceId != null" >
+      <if test="deviceId != null">
         device_id = #{deviceId,jdbcType=INTEGER},
       </if>
-      <if test="factorNox != null" >
-        factor_nox = #{factorNox,jdbcType=DOUBLE},
+      <if test="mname != null">
+        mname = #{mname,jdbcType=VARCHAR},
       </if>
-      <if test="factorStatus != null" >
-        factor_status = #{factorStatus,jdbcType=TINYINT},
+      <if test="musage != null">
+        musage = #{musage,jdbcType=DOUBLE},
       </if>
-      <if test="nox != null" >
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="scc2 != null">
+        scc2 = #{scc2,jdbcType=CHAR},
+      </if>
+      <if test="scc3 != null">
+        scc3 = #{scc3,jdbcType=CHAR},
+      </if>
+      <if test="scc4 != null">
+        scc4 = #{scc4,jdbcType=CHAR},
+      </if>
+      <if test="sccCode != null">
+        scc_code = #{sccCode,jdbcType=CHAR},
+      </if>
+      <if test="nox != null">
         nox = #{nox,jdbcType=DOUBLE},
       </if>
-      <if test="factorCo != null" >
-        factor_co = #{factorCo,jdbcType=DOUBLE},
-      </if>
-      <if test="co != null" >
+      <if test="co != null">
         co = #{co,jdbcType=DOUBLE},
       </if>
-      <if test="factorPm10 != null" >
-        factor_pm10 = #{factorPm10,jdbcType=DOUBLE},
-      </if>
-      <if test="pm10 != null" >
+      <if test="pm10 != null">
         pm10 = #{pm10,jdbcType=DOUBLE},
       </if>
-      <if test="factorPm25 != null" >
-        factor_pm25 = #{factorPm25,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25 != null" >
+      <if test="pm25 != null">
         pm25 = #{pm25,jdbcType=DOUBLE},
       </if>
-      <if test="factorPm != null" >
-        factor_pm = #{factorPm,jdbcType=DOUBLE},
-      </if>
-      <if test="pm != null" >
+      <if test="pm != null">
         pm = #{pm,jdbcType=DOUBLE},
       </if>
-      <if test="factorSo2 != null" >
-        factor_so2 = #{factorSo2,jdbcType=DOUBLE},
-      </if>
-      <if test="so2 != null" >
+      <if test="so2 != null">
         so2 = #{so2,jdbcType=DOUBLE},
       </if>
-      <if test="factorVoc != null" >
-        factor_voc = #{factorVoc,jdbcType=DOUBLE},
-      </if>
-      <if test="voc != null" >
+      <if test="voc != null">
         voc = #{voc,jdbcType=DOUBLE},
       </if>
-      <if test="factorNh3 != null" >
-        factor_nh3 = #{factorNh3,jdbcType=DOUBLE},
-      </if>
-      <if test="nh3 != null" >
+      <if test="nh3 != null">
         nh3 = #{nh3,jdbcType=DOUBLE},
       </if>
-      <if test="factorOc != null" >
-        factor_oc = #{factorOc,jdbcType=DOUBLE},
-      </if>
-      <if test="oc != null" >
+      <if test="oc != null">
         oc = #{oc,jdbcType=DOUBLE},
       </if>
-      <if test="bc != null" >
+      <if test="bc != null">
         bc = #{bc,jdbcType=DOUBLE},
       </if>
-      <if test="factorBc != null" >
-        factor_bc = #{factorBc,jdbcType=DOUBLE},
-      </if>
-      <if test="janUseamount != null" >
-        Jan_useamount = #{janUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="febUseamount != null" >
-        Feb_useamount = #{febUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="marUseamount != null" >
-        Mar_useamount = #{marUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="aprUseamount != null" >
-        Apr_useamount = #{aprUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="mayUseamount != null" >
-        May_useamount = #{mayUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="juneUseamount != null" >
-        June_useamount = #{juneUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="julyUseamount != null" >
-        July_useamount = #{julyUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="augUseamount != null" >
-        aug_useamount = #{augUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="septUseamount != null" >
-        sept_useamount = #{septUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="octUseAmount != null" >
-        oct_use_amount = #{octUseAmount,jdbcType=DOUBLE},
-      </if>
-      <if test="novUseamount != null" >
-        nov_useamount = #{novUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="decUseamount != null" >
-        dec_useamount = #{decUseamount,jdbcType=DOUBLE},
-      </if>
-      <if test="gasNo != null" >
+      <if test="gasNo != null">
         gas_no = #{gasNo,jdbcType=VARCHAR},
       </if>
-      <if test="gasPre != null" >
+      <if test="gasPre != null">
         gas_pre = #{gasPre,jdbcType=DOUBLE},
       </if>
-      <if test="gasVocs != null" >
+      <if test="gasVocs != null">
         gas_vocs = #{gasVocs,jdbcType=DOUBLE},
       </if>
-      <if test="treatNo != null" >
+      <if test="treatNo != null">
         treat_no = #{treatNo,jdbcType=VARCHAR},
       </if>
-      <if test="treatPre != null" >
+      <if test="treatPre != null">
         treat_pre = #{treatPre,jdbcType=DOUBLE},
+      </if>
+      <if test="janUseamount != null">
+        Jan_useamount = #{janUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="febUseamount != null">
+        Feb_useamount = #{febUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="marUseamount != null">
+        Mar_useamount = #{marUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="aprUseamount != null">
+        Apr_useamount = #{aprUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="mayUseamount != null">
+        May_useamount = #{mayUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="juneUseamount != null">
+        June_useamount = #{juneUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="julyUseamount != null">
+        July_useamount = #{julyUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="augUseamount != null">
+        aug_useamount = #{augUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="septUseamount != null">
+        sept_useamount = #{septUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="octUseAmount != null">
+        oct_use_amount = #{octUseAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="novUseamount != null">
+        nov_useamount = #{novUseamount,jdbcType=DOUBLE},
+      </if>
+      <if test="decUseamount != null">
+        dec_useamount = #{decUseamount,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
