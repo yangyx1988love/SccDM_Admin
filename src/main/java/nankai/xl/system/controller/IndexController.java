@@ -45,6 +45,7 @@ public class IndexController {
     public String index(Model model) {
         List<Menu> menuTreeVOS = menuService.selectCurrentUserMenuTree();
         model.addAttribute("menus", menuTreeVOS);
+        model.addAttribute("userId", ShiroUtil.getCurrentUser().getUserId());
         return "index";
     }
 

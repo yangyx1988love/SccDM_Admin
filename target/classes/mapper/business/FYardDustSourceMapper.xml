@@ -1,134 +1,167 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.FYardDustSourceMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.FYardDustSource">
-    <id column="wind_dustid" jdbcType="INTEGER" property="windDustid" />
-    <result column="factoryid" jdbcType="INTEGER" property="factoryid" />
-    <result column="scccode" jdbcType="CHAR" property="scccode" />
-    <result column="longitude1" jdbcType="DOUBLE" property="longitude1" />
-    <result column="latitude1" jdbcType="DOUBLE" property="latitude1" />
-    <result column="longitude2" jdbcType="DOUBLE" property="longitude2" />
-    <result column="latitude2" jdbcType="DOUBLE" property="latitude2" />
-    <result column="longitude3" jdbcType="DOUBLE" property="longitude3" />
-    <result column="latitude3" jdbcType="DOUBLE" property="latitude3" />
-    <result column="longitude4" jdbcType="DOUBLE" property="longitude4" />
-    <result column="latitude4" jdbcType="DOUBLE" property="latitude4" />
-    <result column="material_type" jdbcType="VARCHAR" property="materialType" />
-    <result column="wind_speed" jdbcType="DOUBLE" property="windSpeed" />
-    <result column="material_capacity" jdbcType="DOUBLE" property="materialCapacity" />
-    <result column="loading_count" jdbcType="DOUBLE" property="loadingCount" />
-    <result column="loading_start" jdbcType="TIME" property="loadingStart" />
-    <result column="loading_time" jdbcType="TIME" property="loadingTime" />
-    <result column="loading_capacity" jdbcType="DOUBLE" property="loadingCapacity" />
-    <result column="control_measures" jdbcType="VARCHAR" property="controlMeasures" />
-    <result column="moisture_materia" jdbcType="DOUBLE" property="moistureMateria" />
-    <result column="pm25_emission" jdbcType="DOUBLE" property="pm25Emission" />
-    <result column="pm10_emission" jdbcType="DOUBLE" property="pm10Emission" />
-    <result column="bc_emission" jdbcType="DOUBLE" property="bcEmission" />
-    <result column="oc_emission" jdbcType="DOUBLE" property="ocEmission" />
-    <result column="heap_area" jdbcType="DOUBLE" property="heapArea" />
-    <result column="heap_covered" jdbcType="DOUBLE" property="heapCovered" />
-    <result column="heap_heigh" jdbcType="DOUBLE" property="heapHeigh" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.FYardDustSource" >
+    <id column="wind_dustid" property="windDustid" jdbcType="INTEGER" />
+    <result column="factoryid" property="factoryid" jdbcType="INTEGER" />
+    <result column="scccode" property="scccode" jdbcType="CHAR" />
+    <result column="longitude1" property="longitude1" jdbcType="DOUBLE" />
+    <result column="latitude1" property="latitude1" jdbcType="DOUBLE" />
+    <result column="longitude2" property="longitude2" jdbcType="DOUBLE" />
+    <result column="latitude2" property="latitude2" jdbcType="DOUBLE" />
+    <result column="longitude3" property="longitude3" jdbcType="DOUBLE" />
+    <result column="latitude3" property="latitude3" jdbcType="DOUBLE" />
+    <result column="longitude4" property="longitude4" jdbcType="DOUBLE" />
+    <result column="latitude4" property="latitude4" jdbcType="DOUBLE" />
+    <result column="material_type" property="materialType" jdbcType="VARCHAR" />
+    <result column="wind_speed" property="windSpeed" jdbcType="DOUBLE" />
+    <result column="material_capacity" property="materialCapacity" jdbcType="DOUBLE" />
+    <result column="loading_count" property="loadingCount" jdbcType="DOUBLE" />
+    <result column="loading_start" property="loadingStart" jdbcType="TIME" />
+    <result column="loading_time" property="loadingTime" jdbcType="TIME" />
+    <result column="loading_capacity" property="loadingCapacity" jdbcType="DOUBLE" />
+    <result column="control_measures" property="controlMeasures" jdbcType="VARCHAR" />
+    <result column="moisture_materia" property="moistureMateria" jdbcType="DOUBLE" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="heap_area" property="heapArea" jdbcType="DOUBLE" />
+    <result column="heap_covered" property="heapCovered" jdbcType="DOUBLE" />
+    <result column="heap_heigh" property="heapHeigh" jdbcType="DOUBLE" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="control_measures1" property="controlMeasures1" jdbcType="VARCHAR" />
+    <result column="material_type1" property="materialType1" jdbcType="VARCHAR" />
+    <result column="pm10_emission1" property="pm10Emission1" jdbcType="DOUBLE" />
+    <result column="pm25_emission1" property="pm25Emission1" jdbcType="DOUBLE" />
+    <result column="oc_emission1" property="ocEmission1" jdbcType="DOUBLE" />
+    <result column="bc_emission1" property="bcEmission1" jdbcType="DOUBLE" />
+    <result column="scccode1" property="scccode1" jdbcType="CHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     wind_dustid, factoryid, scccode, longitude1, latitude1, longitude2, latitude2, longitude3,
     latitude3, longitude4, latitude4, material_type, wind_speed, material_capacity, loading_count,
     loading_start, loading_time, loading_capacity, control_measures, moisture_materia,
     pm25_emission, pm10_emission, bc_emission, oc_emission, heap_area, heap_covered,
-    heap_heigh, note
+    heap_heigh, note, control_measures1, material_type1, pm10_emission1, pm25_emission1,
+    oc_emission1, bc_emission1, scccode1
   </sql>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.FYardDustSource" parameterType="java.lang.Integer" >
     select * from f_yard_dust_source
     where wind_dustid = #{windDustid,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+  <select id="selectIdsByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select wind_dustid from f_yard_dust_source
+    where factoryid = #{factoryid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.FYardDustSource" parameterType="java.lang.Integer" >
     select * from f_yard_dust_source
     where factoryid = #{factoryid,jdbcType=INTEGER}
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.FYardDustSource" >
     update f_yard_dust_source
-    <set>
-      <if test="factoryid != null">
+    <set >
+      <if test="factoryid != null" >
         factoryid = #{factoryid,jdbcType=INTEGER},
       </if>
-      <if test="scccode != null">
+      <if test="scccode != null" >
         scccode = #{scccode,jdbcType=CHAR},
       </if>
-      <if test="longitude1 != null">
+      <if test="longitude1 != null" >
         longitude1 = #{longitude1,jdbcType=DOUBLE},
       </if>
-      <if test="latitude1 != null">
+      <if test="latitude1 != null" >
         latitude1 = #{latitude1,jdbcType=DOUBLE},
       </if>
-      <if test="longitude2 != null">
+      <if test="longitude2 != null" >
         longitude2 = #{longitude2,jdbcType=DOUBLE},
       </if>
-      <if test="latitude2 != null">
+      <if test="latitude2 != null" >
         latitude2 = #{latitude2,jdbcType=DOUBLE},
       </if>
-      <if test="longitude3 != null">
+      <if test="longitude3 != null" >
         longitude3 = #{longitude3,jdbcType=DOUBLE},
       </if>
-      <if test="latitude3 != null">
+      <if test="latitude3 != null" >
         latitude3 = #{latitude3,jdbcType=DOUBLE},
       </if>
-      <if test="longitude4 != null">
+      <if test="longitude4 != null" >
         longitude4 = #{longitude4,jdbcType=DOUBLE},
       </if>
-      <if test="latitude4 != null">
+      <if test="latitude4 != null" >
         latitude4 = #{latitude4,jdbcType=DOUBLE},
       </if>
-      <if test="materialType != null">
+      <if test="materialType != null" >
         material_type = #{materialType,jdbcType=VARCHAR},
       </if>
-      <if test="windSpeed != null">
+      <if test="windSpeed != null" >
         wind_speed = #{windSpeed,jdbcType=DOUBLE},
       </if>
-      <if test="materialCapacity != null">
+      <if test="materialCapacity != null" >
         material_capacity = #{materialCapacity,jdbcType=DOUBLE},
       </if>
-      <if test="loadingCount != null">
+      <if test="loadingCount != null" >
         loading_count = #{loadingCount,jdbcType=DOUBLE},
       </if>
-      <if test="loadingStart != null">
+      <if test="loadingStart != null" >
         loading_start = #{loadingStart,jdbcType=TIME},
       </if>
-      <if test="loadingTime != null">
+      <if test="loadingTime != null" >
         loading_time = #{loadingTime,jdbcType=TIME},
       </if>
-      <if test="loadingCapacity != null">
+      <if test="loadingCapacity != null" >
         loading_capacity = #{loadingCapacity,jdbcType=DOUBLE},
       </if>
-      <if test="controlMeasures != null">
+      <if test="controlMeasures != null" >
         control_measures = #{controlMeasures,jdbcType=VARCHAR},
       </if>
-      <if test="moistureMateria != null">
+      <if test="moistureMateria != null" >
         moisture_materia = #{moistureMateria,jdbcType=DOUBLE},
       </if>
-      <if test="pm25Emission != null">
+      <if test="pm25Emission != null" >
         pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
       </if>
-      <if test="pm10Emission != null">
+      <if test="pm10Emission != null" >
         pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
       </if>
-      <if test="bcEmission != null">
+      <if test="bcEmission != null" >
         bc_emission = #{bcEmission,jdbcType=DOUBLE},
       </if>
-      <if test="ocEmission != null">
+      <if test="ocEmission != null" >
         oc_emission = #{ocEmission,jdbcType=DOUBLE},
       </if>
-      <if test="heapArea != null">
+      <if test="heapArea != null" >
         heap_area = #{heapArea,jdbcType=DOUBLE},
       </if>
-      <if test="heapCovered != null">
+      <if test="heapCovered != null" >
         heap_covered = #{heapCovered,jdbcType=DOUBLE},
       </if>
-      <if test="heapHeigh != null">
+      <if test="heapHeigh != null" >
         heap_heigh = #{heapHeigh,jdbcType=DOUBLE},
       </if>
-      <if test="note != null">
+      <if test="note != null" >
         note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="controlMeasures1 != null" >
+        control_measures1 = #{controlMeasures1,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType1 != null" >
+        material_type1 = #{materialType1,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10Emission1 != null" >
+        pm10_emission1 = #{pm10Emission1,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Emission1 != null" >
+        pm25_emission1 = #{pm25Emission1,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission1 != null" >
+        oc_emission1 = #{ocEmission1,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission1 != null" >
+        bc_emission1 = #{bcEmission1,jdbcType=DOUBLE},
+      </if>
+      <if test="scccode1 != null" >
+        scccode1 = #{scccode1,jdbcType=CHAR},
       </if>
     </set>
     where wind_dustid = #{windDustid,jdbcType=INTEGER}

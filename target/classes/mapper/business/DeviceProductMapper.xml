@@ -51,12 +51,6 @@
     where device_id = #{deviceId,jdbcType=INTEGER}
   </select>
   <select id="selectByFactoryId" resultType="nankai.xl.business.model.DeviceProduct" parameterType="java.lang.Integer" >
---      SELECT id,nk_no FROM device_product WHERE device_id IN(
---           SELECT id FROM device WHERE EXHUST_ID IN(
---               SELECT EXF_ID FROM exhaust WHERE FACTORY_ID = #{factoryId,jdbcType=INTEGER}
---           )
---       )
---       ORDER BY NK_NO ASC
       SELECT device_product.* FROM device_product
       INNER JOIN device
       ON device_product.device_id=device.id

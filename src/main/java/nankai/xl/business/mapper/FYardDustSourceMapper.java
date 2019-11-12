@@ -6,7 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface FYardDustSourceMapper {
-    List<Integer> selectByFactoryId(Integer factoryId);
+    List<Integer> selectIdsByFactoryId(Integer factoryId);
+    List<FYardDustSource> selectByFactoryId(Integer factoryId);
     FYardDustSource selectById(Integer windDustid);
     int updateById(FYardDustSource fYardDustSource);
 }

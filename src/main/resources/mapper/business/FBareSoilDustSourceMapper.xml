@@ -19,8 +19,12 @@
     select * from f_bare_soil_dust_source
     where bare_soilid = #{bareSoilid,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+  <select id="selectIdsByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
     select bare_soilid from f_bare_soil_dust_source
+    where factoryid = #{factoryid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.FBareSoilDustSource" parameterType="java.lang.Integer" >
+    select * from f_bare_soil_dust_source
     where factoryid = #{factoryid,jdbcType=INTEGER}
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.FBareSoilDustSource" >

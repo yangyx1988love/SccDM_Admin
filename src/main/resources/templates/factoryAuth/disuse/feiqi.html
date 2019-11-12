@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>废弃设备</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <form class="layui-form layui-form-pane" name="feiqiForm" id="feiqiForm" >
+    <input type="hidden" id="id" name="id"  th:value="${feiqi?.id}">
+    <input type="hidden" id="scc1" name="scc1"  th:value="${scc1}">
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px" >
+            <label class="layui-form-label" style="width: 110px;">废弃类型Ⅰ</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="scc2" name="scc2" th:field="*{feiqi.scc2}" lay-filter="scc2" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:each="scc2 : ${scc2s}" th:value="${scc2.scc2}" th:text="${scc2.description}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">废弃类型Ⅱ</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="scc3" name="scc3" th:field="*{feiqi.scc3}" lay-filter="scc3" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px" >
+            <label class="layui-form-label" style="width: 110px;">处理技术</label>
+            <div class="layui-input-block" style="width: 240px">
+                <select id="scc4" name="scc4" th:field="*{feiqi.scc4}" lay-filter="scc4" lay-verify="required">
+                    <option value="">请选择</option>
+                    <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">处理工艺/设施名称</label>
+            <div class="layui-input-block" >
+                <input id="deviceName" name="deviceName" th:value="${feiqi?.deviceName}"  class="layui-input" style="width: 240px" type="text" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px" >
+            <label class="layui-form-label" style="width: 110px;">设备经度</label>
+            <div class="layui-input-block">
+                <input id="lon1" name="lon1" th:value="${feiqi?.lon1}" class="layui-input" style="width: 240px" type="text" placeholder="93.68~96.30" lay-verify="required|longitude">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px" >
+            <label class="layui-form-label" style="width: 110px;">设备纬度</label>
+            <div class="layui-input-inline" >
+                <input id="lat1" name="lat1" th:value="${feiqi?.lat1}" class="layui-input" style="width: 240px"type="text" placeholder="34.37~49.55" lay-verify="required|latitude">
+            </div>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" >
+        <legend>污水处理量(单位：m3/年)/年固体（单位：吨/年）年废弃物处理量及月处理量</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">年处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUse" name="watter" th:value="${feiqi?.watter}" class="layui-input" style="width: 240px"type="text" lay-verify="required">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">一月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM1" name="janUseamount" th:value="${feiqi?.janUseamount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;" >二月份处理量</label>
+            <div class="layui-input-block" >
+                <input id="totalUseM2" name="febUseamount" th:value="${feiqi?.febUseamount}"  class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">三月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM3" name="marUseamount" th:value="${feiqi?.marUseamount}" class="layui-input" style="width: 240px"onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">四月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM4" name="aprUseamount" th:value="${feiqi?.aprUseamount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">五月份处理量</label>
+            <div class="layui-input-block" >
+                <input id="totalUseM5" name="mayUseamount" th:value="${feiqi?.mayUseamount}"  class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">六月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM6" name="juneUseamount" th:value="${feiqi?.juneUseamount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">七月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM7" name="julyUseamount" th:value="${feiqi?.julyUseamount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">八月份处理量</label>
+            <div class="layui-input-block" >
+                <input id="totalUseM8" name="augUseamount" th:value="${feiqi?.augUseamount}"  class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">九月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM9" name="septUseamount" th:value="${feiqi?.septUseamount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">十月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM10" name="octUseAmount" th:value="${feiqi?.octUseAmount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">十一月份处理量</label>
+            <div class="layui-input-block" >
+                <input id="totalUseM11" name="novUseamount" th:value="${feiqi?.novUseamount}"  class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-inline" style="width: 350px">
+            <label class="layui-form-label" style="width: 110px;">十二月份处理量</label>
+            <div class="layui-input-block">
+                <input id="totalUseM12" name="decUseamount" th:value="${feiqi?.decUseamount}" class="layui-input" style="width: 240px" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+            </div>
+        </div>
+    </div>
+    <shiro:hasPermission name="factoryAuth:feiqi:update">
+        <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+            <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+        </div>
+    </shiro:hasPermission>
+</form>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                var data = form.field;
+                $.post('/factoryAuth/feiqi/edit/' + data.id , form.field, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

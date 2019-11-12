@@ -80,6 +80,19 @@ function openTab(title, url) {
 }
 
 /**
+ * 公共打开小窗
+ */
+function openLayer(title, url) {
+    layer.open({
+        content: url,
+        title: title,
+        area: ['40%', '60%'],
+        type: 2,
+        maxmin: true,
+        shadeClose: true
+    });
+}
+/**
  * 全局 AJAX error 处理事件.
  */
 $(document).ajaxError(function(event, response){
@@ -106,16 +119,46 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
-
+function checkMonthUse(object) {
+    var va=object.value;
+    if (checkPosNum(object.value) ) {
+        var totalUse=Number($('#totalUseM1').val())+Number($('#totalUseM2').val())+Number($('#totalUseM3').val())+Number($('#totalUseM4').val())
+            +Number($('#totalUseM5').val())+Number($('#totalUseM6').val()) +Number($('#totalUseM7').val())+Number($('#totalUseM8').val())
+            +Number($('#totalUseM9').val())+Number($('#totalUseM10').val())+Number($('#totalUseM11').val())+Number($('#totalUseM12').val())
+        $('#totalUse').val(totalUse);
+    }else {
+        //layer.msg('请输入八位整数，十位小数的正数！！',{icon: 6, time:1000});
+        alert('请输入八位整数，十位小数的正数！！');
+    }
+}
+function checkPosNum(value) {
+    var reg1 = new RegExp(/^(?!0\d)\d+(\.\d{1,})?(E[-]{0,1}\d+)?$/);
+    var reg2 = new RegExp(/^[1-9]\d{0,8}(\.\d{1,10})?$|^0(\.\d{1,10})?$/);
+    if (value.length > 0 && !reg1.test(value)) {
+        return false;
+    }else {
+        var num = new Number(value)
+        if (num<0 || !reg2.test(num)){
+            return false;
+        }
+    }
+    return true;
+}
 /**
  * 城市联级选择/年代选择器/SCC编码联级选择/校验
  */
-
 layui.use(['form', 'layer','jquery','laydate'], function(){
     $ = layui.jquery;
     var form = layui.form
         , layer = layui.layer
         , laydate = layui.laydate;
+    //鼠标悬浮显示label内容
+    $(".layui-form-label").mouseover(function() {
+        layer.tips($(this).text(), this, {
+            tips: [1, "#000"],
+            time:1000
+        });
+    });
     //年选择器
     laydate.render({
         elem: '#year'
@@ -241,14 +284,9 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
         }
     });
     form.on('select(scc2)',function(data){
-        var formData = {};
-        var t = $('form').serializeArray();
-        $.each(t, function() {
-            formData [this.name] = this.value;
-        });
-        var scc1=formData["scc1"];
-        $("select[name=scc3]").html('<option value="">请选择</option>'); //清空
-        $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
+        $("select[id=scc3]").html('<option value="">请选择</option>'); //清空
+        $("select[id=scc4]").html('<option value="">请选择</option>'); //清空
+        var scc1=$("input[id=scc1]").val();
         form.render('select');
         var scc2=data.value;
         if(scc2!=''){
@@ -260,7 +298,7 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                     if(datas.length>0){
                         $.each(datas, function(key, val) {
                             var option1 = $("<option>").val(val.scc3).text(val.description);
-                            $("select[name=scc3]").append(option1);
+                            $("select[id=scc3]").append(option1);
                             form.render('select');
                         });
                     }else{
@@ -275,14 +313,9 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
         }
     });
     form.on('select(scc3)',function(data){
-        var formData = {};
-        var t = $('form').serializeArray();
-        $.each(t, function() {
-            formData [this.name] = this.value;
-        });
-        var scc1=formData["scc1"];
-        var scc2=formData["scc2"];
-        $("select[name=scc4]").html('<option value="">请选择</option>'); //清空
+        $("select[id=scc4]").html('<option value="">请选择</option>'); //清空
+        var scc1=$("input[id=scc1]").val();
+        var scc2=$("select[id=scc2]").val();
         form.render('select');
         var scc3=data.value;
         if (scc3!=''){
@@ -294,7 +327,7 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                     if(datas.length>0){
                         $.each(datas, function(key, val) {
                             var option1 = $("<option>").val(val.scc4).text(val.description);
-                            $("select[name=scc4]").append(option1);
+                            $("select[id=scc4]").append(option1);
                             form.render('select');
                         });
                     }else{
@@ -347,5 +380,4 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             }
         })
     });
-
 });

@@ -12,7 +12,6 @@ import nankai.xl.common.util.ResultBean;
 import nankai.xl.common.util.ShiroUtil;
 import nankai.xl.common.validate.groups.Create;
 import nankai.xl.system.model.Adminuser;
-import nankai.xl.system.model.Dept;
 import nankai.xl.system.service.AdminuserService;
 import nankai.xl.system.service.DeptService;
 import nankai.xl.system.service.MailService;
@@ -51,8 +50,6 @@ public class FactoryAuthController {
     private DisuseService disuseService;
     @Resource
     private DustService dustService;
-    @Resource
-    private AdminuserService adminuserService;
     @Resource
     private MailService mailService;
     @Resource
@@ -116,15 +113,13 @@ public class FactoryAuthController {
             }
             List<IndustryBig> industryBigs=selectCommonService.getAllIndustryBigs();
             List<Industry> industrys=selectCommonService.getIndustrysByCode(factory.getIndustryBigid());
-            String[] sourceTypes={"废气国控","废气省控","废气市控","废气其它"};
             model.addAttribute("countys", countys);
             model.addAttribute("citys", citys);
             model.addAttribute("statusdecs", statusdecs);
             model.addAttribute("industrys", industrys);
             model.addAttribute("industryBigs", industryBigs);
-            model.addAttribute("sourceTypes", sourceTypes);
             model.addAttribute("factory", factory);
-            return "factoryAuth/factory-Info-base";
+            return "factoryAuth/base/factory-Info-base";
         }else{
             return ResultBean.error("企业信息错误！！").getMsg();
         }
@@ -138,12 +133,12 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-排气筒信息")
     @GetMapping("/{factoryId}/exhaust")
-    public String exhaust(@PathVariable("factoryId") Integer factoryId, Model model,HttpSession session) {
+    public String exhaust(@PathVariable("factoryId") Integer factoryId, Model model) {
         List<Exhaust> exhausts=exhaustService.getByFactoryId(factoryId);
         Integer exhaustNum=exhausts.size();
         model.addAttribute("exhausts", exhausts);
         model.addAttribute("exhaustNum", exhaustNum);
-        return "factoryAuth/factory-Info-exhaust";
+        return "factoryAuth/exhaust/factory-Info-exhaust";
     }
     @OperationLog("更新企业-排气筒信息")
     @PostMapping(value="/exhaust/update")
@@ -163,16 +158,16 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-总锅炉信息")
     @GetMapping("/{factoryId}/boiler")
-    public String boiler(@PathVariable("factoryId") Integer factoryId,Model model,HttpSession session) {
+    public String boiler(@PathVariable("factoryId") Integer factoryId,Model model) {
         List<Boiler> boilerVos=furnaceCommonService.getBoilersByFactoryId(factoryId);
         model.addAttribute("factoryId", factoryId);
         model.addAttribute("boilerNum", boilerVos.size());
         model.addAttribute("boilerVos", boilerVos);
-        return "furnace/factory-Info-boiler";
+        return "factoryAuth/furnace/factory-Info-boiler";
     }
     @OperationLog("企业审核界面-锅炉表单信息")
-    @GetMapping("/boiler/boilerForm")
-    public String boilerForm(Integer factoryId, Integer id,Model model,HttpSession session) {
+    @GetMapping("/boiler")
+    public String boilerForm(Integer factoryId, Integer id,Model model) {
         List<Exhaust> exhausts=exhaustService.getByFactoryId(factoryId);
         Boiler boiler=furnaceCommonService.getBoilerById(id);
         String scc1="10";
@@ -203,10 +198,10 @@ public class FactoryAuthController {
         model.addAttribute("nitreremoves", nitreremoves);
         model.addAttribute("sulphurremoves", sulphurremoves);
         model.addAttribute("factoryId", factoryId);
-        return "furnace/boiler";
+        return "factoryAuth/furnace/boiler";
     }
     @OperationLog("更新企业-锅炉信息")
-    @PostMapping("/boiler/edit/{id}")
+    @PostMapping("/boiler/{id}/edit")
     @ResponseBody
     public ResultBean updateBoiler(Boiler boiler,Integer factoryId) {
         List<Boiler> boilerVos=furnaceCommonService.getBoilersByFactoryId(factoryId);
@@ -236,18 +231,18 @@ public class FactoryAuthController {
 //                    Sulphurremove sulphurremove=removeCommonService.getSulphurremoveById(boiler.getSulphurremoveId());
 //                    boiler.setSulphurremoveDec(sulphurremove.getSulphurMethod());
                 //通过scc重新计算
-                SccActivity scc=sccService.getSccByScc(sccCode);
-                if (scc!=null) {
-                    boiler.setPm(boiler.getPm() * scc.getPm());
-                    boiler.setPm10(boiler.getPm10() * scc.getPm10());
-                    boiler.setPm25(boiler.getPm25() * scc.getPm25());
-                    boiler.setCo(boiler.getCo() * scc.getCo());
-                    boiler.setVoc(boiler.getVoc() * scc.getVocs());
-                    boiler.setSo2(boiler.getSo2() * scc.getSo2());
-                    boiler.setBc(boiler.getBc() * scc.getBc());
-                    boiler.setOc(boiler.getOc() * scc.getOc());
-                    //除尘、脱销等计算还待商榷，
-                }
+//                SccActivity scc=sccService.getSccByScc(sccCode);
+//                if (scc!=null) {
+//                    boiler.setPm(boiler.getPm() * scc.getPm());
+//                    boiler.setPm10(boiler.getPm10() * scc.getPm10());
+//                    boiler.setPm25(boiler.getPm25() * scc.getPm25());
+//                    boiler.setCo(boiler.getCo() * scc.getCo());
+//                    boiler.setVoc(boiler.getVoc() * scc.getVocs());
+//                    boiler.setSo2(boiler.getSo2() * scc.getSo2());
+//                    boiler.setBc(boiler.getBc() * scc.getBc());
+//                    boiler.setOc(boiler.getOc() * scc.getOc());
+//                    //除尘、脱销等计算还待商榷，
+//                }
                 furnaceCommonService.updateBoilerById(boiler);
                 return ResultBean.success();
             }
@@ -257,18 +252,17 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-窑炉信息")
     @GetMapping("/{factoryId}/kiln")
-    public String kiln(@PathVariable("factoryId") Integer factoryId,Model model,HttpSession session) {
+    public String kiln(@PathVariable("factoryId") Integer factoryId,Model model) {
         List<Kiln> kilnVos=furnaceCommonService.getKilnsByFactoryId(factoryId);
         model.addAttribute("factoryId", factoryId);
         model.addAttribute("kilnNum", kilnVos.size());
         model.addAttribute("kilnVos", kilnVos);
-        return "furnace/factory-Info-kiln";
+        return "factoryAuth/furnace/factory-Info-kiln";
     }
     @OperationLog("企业审核界面-锅炉表单信息")
-    @GetMapping("/kiln/kilnForm")
-    public String kilnForm(Integer factoryId, Integer id,Model model,HttpSession session) {
+    @GetMapping("/kiln")
+    public String kilnForm(Integer factoryId, Integer id,Model model) {
         List<Exhaust> exhausts=exhaustService.getByFactoryId(factoryId);
-
         Kiln kiln=furnaceCommonService.getKilnById(id);
         String scc1="11";
         Scc2 scc2=new Scc2();
@@ -298,10 +292,10 @@ public class FactoryAuthController {
         model.addAttribute("nitreremoves", nitreremoves);
         model.addAttribute("sulphurremoves", sulphurremoves);
         model.addAttribute("factoryId", factoryId);
-        return "furnace/kiln";
+        return "factoryAuth/furnace/kiln";
     }
     @OperationLog("更新企业-窑炉信息")
-    @PostMapping("/kiln/edit/{id}")
+    @PostMapping("/kiln/{id}/edit")
     @ResponseBody
     public ResultBean updatekiln(Kiln kiln,Integer factoryId) {
         List<Kiln> kilnVos=furnaceCommonService.getKilnsByFactoryId(factoryId);
@@ -331,17 +325,17 @@ public class FactoryAuthController {
 //                    Sulphurremove sulphurremove=removeCommonService.getSulphurremoveById(kiln.getSulphurremoveid());
 //                    kiln.setSulphurremovedec(sulphurremove.getSulphurMethod());
                 //通过scc重新计算
-                SccActivity scc=sccService.getSccByScc(sccCode);
-                if (scc!=null) {
-                    kiln.setPm(kiln.getPm() * scc.getPm());
-                    kiln.setPm10(kiln.getPm10() * scc.getPm10());
-                    kiln.setPm25(kiln.getPm25() * scc.getPm25());
-                    kiln.setCo(kiln.getCo() * scc.getCo());
-                    kiln.setVoc(kiln.getVoc() * scc.getVocs());
-                    kiln.setSo2(kiln.getSo2() * scc.getSo2());
-                    kiln.setBc(kiln.getBc() * scc.getBc());
-                    kiln.setOc(kiln.getOc() * scc.getOc());
-                }
+//                SccActivity scc=sccService.getSccByScc(sccCode);
+//                if (scc!=null) {
+//                    kiln.setPm(kiln.getPm() * scc.getPm());
+//                    kiln.setPm10(kiln.getPm10() * scc.getPm10());
+//                    kiln.setPm25(kiln.getPm25() * scc.getPm25());
+//                    kiln.setCo(kiln.getCo() * scc.getCo());
+//                    kiln.setVoc(kiln.getVoc() * scc.getVocs());
+//                    kiln.setSo2(kiln.getSo2() * scc.getSo2());
+//                    kiln.setBc(kiln.getBc() * scc.getBc());
+//                    kiln.setOc(kiln.getOc() * scc.getOc());
+//                }
                 //除尘、脱销等计算还待商榷，
                 furnaceCommonService.updateKilnById(kiln);
                 return ResultBean.success();
@@ -352,7 +346,7 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-工艺过程")
     @GetMapping("/{factoryId}/process")
-    public String process(@PathVariable("factoryId") Integer factoryId, Model model, HttpSession session) {
+    public String process(@PathVariable("factoryId") Integer factoryId, Model model) {
         List<Device> deviceVos=deviceCommonService.getDevicesByFactoryId(factoryId);
         List<DeviceRaw> deviceRawVos=deviceCommonService.getDeviceRawsByFactoryId(factoryId);
         List<DeviceProduct> deviceProductVos=deviceCommonService.getDeviceProductsByFactoryId(factoryId);
@@ -364,7 +358,7 @@ public class FactoryAuthController {
         model.addAttribute("deviceRawVos", deviceRawVos);
         model.addAttribute("deviceProductVos", deviceProductVos);
         model.addAttribute("factoryId", factoryId);
-        return "device/factory-Info-process";
+        return "factoryAuth/device/factory-Info-process";
     }
     @OperationLog("企业审核界面-工艺过程-设备")
     @GetMapping("/device/deviceForm")
@@ -374,7 +368,7 @@ public class FactoryAuthController {
         model.addAttribute("device", device);
         model.addAttribute("exhausts", exhausts);
         model.addAttribute("factoryId", factoryId);
-        return "device/device";
+        return "factoryAuth/device/device";
     }
     @OperationLog("企业审核界面-更新-工艺工程-设备")
     @PostMapping("/device/edit/{id}")
@@ -422,7 +416,7 @@ public class FactoryAuthController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("deviceVos", deviceVos);
-        return "device/deviceRaw";
+        return "factoryAuth/device/deviceRaw";
     }
     @OperationLog("企业审核界面-更新-工艺过程-原料")
     @PostMapping("/deviceRaw/edit/{id}")
@@ -486,7 +480,7 @@ public class FactoryAuthController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("deviceVos", deviceVos);
-        return "device/deviceProduct";
+        return "factoryAuth/device/deviceProduct";
     }
     @OperationLog("企业审核界面-更新-工艺过程-产品")
     @PostMapping("/deviceProduct/edit/{id}")
@@ -533,7 +527,7 @@ public class FactoryAuthController {
         model.addAttribute("rongjiRawVos", rongjiRawVos);
         model.addAttribute("rongjiProductVos", rongjiProductVos);
         model.addAttribute("factoryId", factoryId);
-        return "solvent/factory-Info-solvent";
+        return "factoryAuth/solvent/factory-Info-solvent";
     }
     @OperationLog("企业审核界面-溶剂-原料")
     @GetMapping("/solvent/rongjiRawForm")
@@ -559,7 +553,7 @@ public class FactoryAuthController {
         model.addAttribute("scc2s", scc2s);
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
-        return "solvent/rongjiRaw";
+        return "factoryAuth/solvent/rongjiRaw";
     }
     @OperationLog("企业审核界面-更新-溶剂-原料")
     @PostMapping("/rongjiRaw/edit/{id}")
@@ -614,7 +608,7 @@ public class FactoryAuthController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("rongjiProduct", rongjiProduct);
-        return "solvent/rongjiProduct";
+        return "factoryAuth/solvent/rongjiProduct";
     }
     @OperationLog("企业审核界面-更新-溶剂-产品")
     @PostMapping("/rongjiProduct/edit/{id}")
@@ -652,7 +646,7 @@ public class FactoryAuthController {
         model.addAttribute("feiqiNum", feiqiVos.size());
         model.addAttribute("feiqiVos", feiqiVos);
         model.addAttribute("factoryId", factoryId);
-        return "disuse/factory-Info-feiqi";
+        return "factoryAuth/disuse/factory-Info-feiqi";
     }
     @OperationLog("企业审核界面-废弃设备")
     @GetMapping("/feiqi/feiqiForm")
@@ -678,7 +672,7 @@ public class FactoryAuthController {
         model.addAttribute("scc3s", scc3s);
         model.addAttribute("scc4s", scc4s);
         model.addAttribute("feiqi", feiqi);
-        return "disuse/feiqi";
+        return "factoryAuth/disuse/feiqi";
     }
     @OperationLog("企业审核界面-更新-废弃设备")
     @PostMapping("/feiqi/edit/{id}")
@@ -709,19 +703,20 @@ public class FactoryAuthController {
         List<Integer> fconIds=dustService.getFConIdsByFactoryId(factoryId);
         List<Integer> froadIds=dustService.getFRoadIdsByFactoryId(factoryId);
         List<Integer> fyardIds=dustService.getFYardIdsByFactoryId(factoryId);
+
         model.addAttribute("fconIds", fconIds);
         model.addAttribute("fyardIds", fyardIds);
         model.addAttribute("froadIds", froadIds);
         model.addAttribute("fbareIds", fbareIds);
         model.addAttribute("factoryId", factoryId);
-        return "dust/factory-Info-dust";
+        return "factoryAuth/dust/factory-Info-dust";
     }
     @OperationLog("企业审核界面-扬尘-施工")
     @GetMapping("/con/conForm")
     public String conLoad(Integer factoryId, Integer id,Model model) {
         FConstructionDustSource fCon=dustService.getFConById(id);
         model.addAttribute("fCon", fCon);
-        return "dust/construction";
+        return "factoryAuth/dust/construction";
     }
     @OperationLog("企业审核界面-更新-扬尘-施工")
     @PostMapping("/fCon/edit/{id}")
@@ -734,10 +729,10 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-扬尘-堆场")
     @GetMapping("/yard/yardForm")
-    public String yardLoad(Integer factoryId, Integer id,Model model) {
+    public String yardLoad(Integer id,Model model) {
         FYardDustSource yard=dustService.getFYardById(id);
         model.addAttribute("yard", yard);
-        return "dust/yard";
+        return "factoryAuth/dust/yard";
     }
     @OperationLog("企业审核界面-更新-扬尘-堆场")
     @PostMapping("/yard/edit/{id}")
@@ -750,10 +745,10 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-扬尘-道路")
     @GetMapping("/road/roadForm")
-    public String roadLoad(Integer factoryId, Integer id,Model model) {
+    public String roadLoad(Integer id,Model model) {
         FRoadDustSource road=dustService.getFRoadById(id);
         model.addAttribute("road", road);
-        return "dust/road";
+        return "factoryAuth/dust/road";
     }
     @OperationLog("企业审核界面-更新-扬尘-道路")
     @PostMapping("/road/edit/{id}")
@@ -764,10 +759,10 @@ public class FactoryAuthController {
     }
     @OperationLog("企业审核界面-扬尘-裸土")
     @GetMapping("/bare/bareForm")
-    public String bareLoad(Integer factoryId, Integer id,Model model) {
+    public String bareLoad(Integer id,Model model) {
         FBareSoilDustSource bare=dustService.getFBareById(id);
         model.addAttribute("bare", bare);
-        return "dust/bare";
+        return "factoryAuth/dust/bare";
     }
     @OperationLog("企业审核界面-更新-扬尘-裸土")
     @PostMapping("/bare/edit/{id}")
@@ -783,7 +778,7 @@ public class FactoryAuthController {
         model.addAttribute("fNoOrgs", fNoOrgs);
         model.addAttribute("fNoOrgNum", fNoOrgs.size());
         model.addAttribute("factoryId", factoryId);
-        return "dust/factory-Info-noOrg";
+        return "factoryAuth/noOrg/factory-Info-noOrg";
     }
     @OperationLog("企业审核界面-排气筒信息更新")
     @PostMapping(value="/fNoOrg/update")
@@ -800,6 +795,42 @@ public class FactoryAuthController {
         }else{
             return ResultBean.error("车间编号编号重复！");
         }
+    }
+    @OperationLog("企业审核界面-企业填报数据汇总")
+    @GetMapping("/{factoryId}/sum")
+    public String sum(@PathVariable("factoryId") Integer factoryId, Model model) {
+        List<Exhaust> exhausts=exhaustService.getByFactoryId(factoryId);
+        List<Boiler> boilers=furnaceCommonService.getBoilersByFactoryId(factoryId);
+        List<Kiln> kilns=furnaceCommonService.getKilnsByFactoryId(factoryId);
+        List<Device> devices=deviceCommonService.getDevicesByFactoryId(factoryId);
+        List<DeviceRaw> deviceRaws=deviceCommonService.getDeviceRawsByFactoryId(factoryId);
+        List<DeviceProduct> deviceProducts=deviceCommonService.getDeviceProductsByFactoryId(factoryId);
+        List<RongjiRaw> rongjiRaws=solventService.getRawsByFactoryId(factoryId);
+        List<RongjiProduct> rongjiProducts=solventService.getProductsByFactoryId(factoryId);
+        List<Feiqi> feiqis=disuseService.getFeiqisByFactoryId(factoryId);
+        List<FBareSoilDustSource> fBareSoilDustSources=dustService.getFBaresByFactoryId(factoryId);
+        List<FConstructionDustSource> fConstructionDustSources=dustService.getFConsByFactoryId(factoryId);
+        List<FRoadDustSource> fRoadDustSources=dustService.getFRoadsByFactoryId(factoryId);
+        List<FYardDustSource> fYardDustSources=dustService.getFYardsByFactoryId(factoryId);
+        List<FNoOrganizationWorkshopDischarge> fNoOrgs=dustService.getFnoOrgByFactoryId(factoryId);
+
+        model.addAttribute("exhausts",exhausts);
+        model.addAttribute("boilers",boilers);
+        model.addAttribute("kilns",kilns);
+        model.addAttribute("devices",devices);
+        model.addAttribute("deviceRaws",deviceRaws);
+        model.addAttribute("deviceProducts",deviceProducts);
+        model.addAttribute("rongjiRaws",rongjiRaws);
+        model.addAttribute("rongjiProducts",rongjiProducts);
+        model.addAttribute("feiqis",feiqis);
+        model.addAttribute("fCons",fConstructionDustSources);
+        model.addAttribute("fYards",fYardDustSources);
+        model.addAttribute("fRoads",fRoadDustSources);
+        model.addAttribute("fBares",fBareSoilDustSources);
+        model.addAttribute("fNoOrgs",fNoOrgs);
+
+        model.addAttribute("factoryId",factoryId);
+        return "factoryAuth/factory-Info-sum";
     }
     @OperationLog("企业审核-审核通过")
     @PostMapping("/{factoryId}/past")

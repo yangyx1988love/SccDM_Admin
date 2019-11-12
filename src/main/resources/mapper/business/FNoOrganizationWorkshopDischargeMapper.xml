@@ -25,11 +25,11 @@
     pm10_emission, oc_emission, pm25_emission, ec_emission, so2_emission, nox_emission,
     co_emission, nh3_emission, vocs_emission
   </sql>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.FNoOrganizationWorkshopDischarge" parameterType="java.lang.Integer" >
     select * from f_no_organization_workshop_discharge
     where wsid = #{wsid,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.FNoOrganizationWorkshopDischarge" parameterType="java.lang.Integer" >
     select * from f_no_organization_workshop_discharge
     where factoryid = #{factoryid,jdbcType=INTEGER}
   </select>

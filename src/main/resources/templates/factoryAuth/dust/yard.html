@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>堆场扬尘源</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <form class="layui-form layui-form-pane" name="yardForm" id="yardForm" >
+        <input type="hidden" id="windDustid" name="windDustid"  th:value="${yard?.windDustid}">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">物料种类</label>
+                <div class="layui-input-block" >
+                    <input id="materialType" name="materialType" th:value="${yard?.materialType}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">物料含水率(%)</label>
+                <div class="layui-input-block" >
+                    <input id="moistureMateria" name="moistureMateria" th:value="${yard?.moistureMateria}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">地面风速(m/s)</label>
+                <div class="layui-input-block" >
+                    <input id="windSpeed" name="windSpeed" th:value="${yard?.windSpeed}"  class="layui-input"  type="text" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">料堆占地面积(m<sup>2</sup>)</label>
+                <div class="layui-input-block" >
+                    <input id="heapCovered" name="heapCovered" th:value="${yard?.heapCovered}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">料堆表面积(m<sup>2</sup>)</label>
+                <div class="layui-input-block" >
+                    <input id="heapArea" name="heapArea" th:value="${yard?.heapArea}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">料堆高度(m)</label>
+                <div class="layui-input-block" >
+                    <input id="heapHeigh" name="heapHeigh" th:value="${yard?.heapHeigh}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" >
+                <label class="layui-form-label" >拐点经度1</label>
+                <div class="layui-input-block" >
+                    <input id="longitude1" name="longitude1" th:value="${yard?.longitude1}"  class="layui-input"  type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline" >
+                <label class="layui-form-label" >拐点纬度1</label>
+                <div class="layui-input-block">
+                    <input id="latitude1" name="latitude1" th:value="${yard?.latitude1}" class="layui-input"  type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label" >拐点经度2</label>
+                <div class="layui-input-block" >
+                    <input id="longitude2" name="longitude2" th:value="${yard?.longitude2}"  class="layui-input" type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline" >
+                <label class="layui-form-label" >拐点纬度2</label>
+                <div class="layui-input-block">
+                    <input id="latitude2" name="latitude2" th:value="${yard?.latitude2}" class="layui-input"type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">拐点经度3</label>
+                <div class="layui-input-block" >
+                    <input id="longitude3" name="longitude3" th:value="${yard?.longitude3}"  class="layui-input" type="text" lay-verify="required|longitude">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">拐点纬度3</label>
+                <div class="layui-input-block">
+                    <input id="latitude3" name="latitude3" th:value="${yard?.latitude3}" class="layui-input" type="text" lay-verify="required|latitude">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">装卸物料种类</label>
+                <div class="layui-input-block" >
+                    <input id="materialType1" name="materialType1" th:value="${yard?.materialType1}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">年物料装卸量(t)</label>
+                <div class="layui-input-block" >
+                    <input id="materialCapacity" name="materialCapacity" th:value="${yard?.materialCapacity}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">每日装卸次数</label>
+                <div class="layui-input-block" >
+                    <input id="loadingCount" name="loadingCount" th:value="${yard?.loadingCount}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">每次装卸量(t)</label>
+                <div class="layui-input-block" >
+                    <input id="loadingCapacity" name="loadingCapacity" th:value="${yard?.loadingCapacity}"  class="layui-input" type="text" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <input type="hidden" id="controlMeasures1" name="controlMeasures1"  th:value="${yard?.controlMeasures1}">
+            <label class="layui-form-label">装卸控制措施</label>
+            <input type="checkbox" name="controlMeasure1" value="A" title="封闭">
+            <input type="checkbox" name="controlMeasure1" value="B" title="密封">
+            <input type="checkbox" name="controlMeasure1" value="C" title="抑尘墙">
+            <input type="checkbox" name="controlMeasure1" value="D" title="抑尘网">
+            <input type="checkbox" name="controlMeasure1" value="E" title="防风网">
+            <input type="checkbox" name="controlMeasure1" value="F" title="洒水">
+            <input type="checkbox" name="controlMeasure1" value="G" title="喷淋">
+            <input type="checkbox" name="controlMeasure1" value="H" title="喷水">
+            <input type="checkbox" name="controlMeasure1" value="I" title="半封闭">
+        </div>
+        <div class="layui-form-item">
+            <input type="hidden" id="controlMeasures" name="controlMeasures"  th:value="${yard?.controlMeasures}">
+            <label class="layui-form-label">风蚀控制措施</label>
+            <input type="checkbox" name="controlMeasure" value="A" title="封闭">
+            <input type="checkbox" name="controlMeasure" value="B" title="密封">
+            <input type="checkbox" name="controlMeasure" value="C" title="抑尘墙">
+            <input type="checkbox" name="controlMeasure" value="D" title="抑尘网">
+            <input type="checkbox" name="controlMeasure" value="E" title="防风网">
+            <input type="checkbox" name="controlMeasure" value="F" title="洒水">
+            <input type="checkbox" name="controlMeasure" value="G" title="喷淋">
+            <input type="checkbox" name="controlMeasure" value="H" title="喷水">
+            <input type="checkbox" name="controlMeasure" value="I" title="半封闭">
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 500px;">
+                <label class="layui-form-label" style="width: 200px;">日装卸开始时间</label>
+                <input type="text" class="layui-input" style="width: 300px;" id="loadingStart" name="loadingStart" th:value="${#dates.format(yard.loadingStart,'HH:mm:ss')}">
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 200px;">日装卸结束时间</label>
+                <input type="text" class="layui-input" style="width: 300px;" id="loadingTime" name="loadingTime" th:value="${#dates.format(yard.loadingTime,'HH:mm:ss')}">
+            </div>
+        </div>
+        <shiro:hasPermission name="factoryAuth:yard:update">
+            <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+            </div>
+        </shiro:hasPermission>
+    </form>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','laydate','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+                , laydate = layui.laydate;
+
+            var nowTime = new Date().valueOf();
+            //日期
+            var start = laydate.render({ //开始
+                elem: '#loadingStart'
+                ,type: 'time'
+                ,format: 'HH:mm:ss'
+                ,done:function(value,date){
+                    end.config.min = getDateArray(date);
+                }
+            });
+            var end = laydate.render({ //结束
+                elem: '#loadingTime'
+                ,type: 'time'
+                ,format: 'HH:mm:ss'
+                ,done:function(value,date){
+                    start.config.max = getDateArray(date);
+                }
+            });
+            function getDateArray(date){//获取时间数组
+                var darray={};
+                darray.year=date.year;
+                darray.month=date.month - 1;
+                var day=date.date;
+                if(date.hours == 23 && date.minutes == 59 && date.seconds == 59){
+                    day = day + 1;
+                }else{
+                    darray.hours = date.hours;
+                    darray.minutes = date.minutes;
+                    darray.seconds = date.seconds;
+                }
+                darray.date=day;
+                return darray;
+            }
+            $(document).ready(function(){
+                //加载装卸
+                var arr =$('input[name="controlMeasures1"]').val().split(",");
+                var controlMeasures1=$.grep(arr,function(n,i){
+                    return n;
+                },false);
+                $.each(controlMeasures1,function(i,item){
+                    $("input[name='controlMeasure1'][value="+item+"]").attr("checked","checked");
+                });
+                //加载风蚀控制措施
+                var arr1 =$('input[name="controlMeasures"]').val().split(",");
+                var controlMeasures=$.grep(arr1,function(n,i){
+                    return n;
+                },false);
+                $.each(controlMeasures,function(i,item){
+                    $("input[name='controlMeasure'][value="+item+"]").attr("checked","checked");
+                });
+                //重载
+                form.render("checkbox");
+            })
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                //月份复选框
+                var controlMeasures1 =[];//定义一个数组
+                $('input[name="controlMeasure1"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+                    controlMeasures1+=$(this).val()+",";
+                });
+                //控制措施
+                var controlMeasures =[];//定义一个数组
+                $('input[name="controlMeasure"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+                    controlMeasures+=$(this).val()+",";
+                });
+                var data = form.field;
+                data.constructMonths=constructMonths;
+                data.controlMeasures=controlMeasures;
+
+                $.post('/factoryAuth/yard/edit/' + data.windDustid ,data, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -23,6 +23,11 @@ public class DustServiceImpl implements DustService {
 
     @Override
     public List<Integer> getFBareIdsByFactoryId(Integer factoryId) {
+        return fBareSoilDustSourceMapper.selectIdsByFactoryId(factoryId);
+    }
+
+    @Override
+    public List<FBareSoilDustSource> getFBaresByFactoryId(Integer factoryId) {
         return fBareSoilDustSourceMapper.selectByFactoryId(factoryId);
     }
 
@@ -38,6 +43,11 @@ public class DustServiceImpl implements DustService {
 
     @Override
     public List<Integer> getFConIdsByFactoryId(Integer factoryId) {
+        return fConstructionDustSourceMapper.selectIdsByFactoryId(factoryId);
+    }
+
+    @Override
+    public List<FConstructionDustSource> getFConsByFactoryId(Integer factoryId) {
         return fConstructionDustSourceMapper.selectByFactoryId(factoryId);
     }
 
@@ -53,6 +63,11 @@ public class DustServiceImpl implements DustService {
 
     @Override
     public List<Integer> getFRoadIdsByFactoryId(Integer factoryId) {
+        return fRoadDustSourceMapper.selectIdsByFactoryId(factoryId);
+    }
+
+    @Override
+    public List<FRoadDustSource> getFRoadsByFactoryId(Integer factoryId) {
         return fRoadDustSourceMapper.selectByFactoryId(factoryId);
     }
 
@@ -68,6 +83,11 @@ public class DustServiceImpl implements DustService {
 
     @Override
     public List<Integer> getFYardIdsByFactoryId(Integer factoryId) {
+        return fYardDustSourceMapper.selectIdsByFactoryId(factoryId);
+    }
+
+    @Override
+    public List<FYardDustSource> getFYardsByFactoryId(Integer factoryId) {
         return fYardDustSourceMapper.selectByFactoryId(factoryId);
     }
 

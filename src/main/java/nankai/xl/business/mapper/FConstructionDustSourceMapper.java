@@ -6,7 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface FConstructionDustSourceMapper {
-    List<Integer> selectByFactoryId(Integer factoryId);
+    List<Integer> selectIdsByFactoryId(Integer factoryId);
+    List<FConstructionDustSource> selectByFactoryId(Integer factoryId);
     FConstructionDustSource selectById(Integer constructDustid);
     int updateById(FConstructionDustSource fConstructionDustSource);
 }

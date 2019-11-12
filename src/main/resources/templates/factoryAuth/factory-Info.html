@@ -18,8 +18,7 @@
 <!--        <div class="rubik-loader"></div>-->
 <!--    </div>-->
 <!--    <div class="z-body animated fadeIn">-->
-<form class="layui-form layui-form-pane" >
-    <div class="layui-tab layui-tab-brief " style="margin-top: 2px;" height="100%" lay-filter="factoryTable">
+    <div class="layui-tab layui-tab-brief " style="margin-left: 20px;" height="100%" lay-filter="factoryTable">
         <ul class="layui-tab-title" th:value="${factoryId}">
             <li lay-id="home" class="layui-this" ><i class="layui-icon "></i>企业基本信息</li>
             <li>排气筒</li>
@@ -30,68 +29,42 @@
             <li>废弃设备</li>
             <li>无组织扬尘排放</li>
             <li>无组织车间排放</li>
-            <li style="width: 300px;background-color: white;">
-                    <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
-<!--                    <div class="layui-btn-group" style="margin-left: 10%">-->
-<!--                        <button type="button" class="layui-btn layui-btn-sm" lay-filter="back" lay-submit=""><i class="layui-icon layui-icon-prev"></i></button>-->
-<!--                        <button type="button" class="layui-btn layui-btn-sm" lay-filter="next" lay-submit=""><i class="layui-icon layui-icon-next"></i></button>-->
-<!--                    </div>-->
-                    <div class="layui-btn-group" style="margin-left: 20px">
-                        <shiro:hasPermission name="factoryAuth:auth">
-                            <button type="button" class="layui-btn layui-btn-sm"  lay-filter="past" lay-submit=""><i class="layui-icon layui-icon-ok"></i>通过</button>
-                        </shiro:hasPermission>
-                        <shiro:hasPermission name="factoryAuth:auth">
-                            <button type="button" id="reject" name="reject" class="layui-btn layui-btn-sm layui-bg-red" lay-filter="reject" lay-submit="">
-                                <i class="layui-icon layui-icon-close"></i>未通过</button>
-                        </shiro:hasPermission>
-                    </div>
-            </li>
+            <li>企业填报信息统计</li>
         </ul>
         <div class="layui-tab-content">
-
-                <div class="layui-tab-item layui-show" th:src="@{/factoryAuth/base/{factoryId}(factoryId=${factoryId})}">
-                    <iframe th:src="@{/factoryAuth/base/{factoryId}(factoryId=${factoryId})}" class="layui-iframe" width="100%" frameborder="0" ></iframe>
-                </div>
-
-                <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/exhaust(factoryId=${factoryId})}">
-                    <iframe  src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
-                </div>
+            <div class="layui-tab-item layui-show" th:src="@{/factoryAuth/base/{factoryId}(factoryId=${factoryId})}">
+                <iframe th:src="@{/factoryAuth/base/{factoryId}(factoryId=${factoryId})}" class="layui-iframe" width="100%" frameborder="0" ></iframe>
+            </div>
+            <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/exhaust(factoryId=${factoryId})}">
+                <iframe  src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
+            </div>
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/boiler(factoryId=${factoryId})}">
                 <iframe  src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            <shiro:hasPermission name="factoryAuth:kiln:update">
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/kiln(factoryId=${factoryId})}">
                 <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            </shiro:hasPermission>
-            <shiro:hasPermission name="factoryAuth:process:update">
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/process(factoryId=${factoryId})}">
                 <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            </shiro:hasPermission>
-            <shiro:hasPermission name="factoryAuth:solvent:update">
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/solvent(factoryId=${factoryId})}">
                 <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            </shiro:hasPermission>
-            <shiro:hasPermission name="factoryAuth:feiqi:update">
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/feiqi(factoryId=${factoryId})}">
                 <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            </shiro:hasPermission>
-            <shiro:hasPermission name="factoryAuth:dust:update">
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/dust(factoryId=${factoryId})}">
                 <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            </shiro:hasPermission>
-            <shiro:hasPermission name="factoryAuth:noOrg:update">
             <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/noOrg(factoryId=${factoryId})}">
                 <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
             </div>
-            </shiro:hasPermission>
+            <div class="layui-tab-item" th:src="@{/factoryAuth/{factoryId}/sum(factoryId=${factoryId})}">
+                <iframe src="" class="layui-iframe" width="100%" frameborder="0"></iframe>
+            </div>
         </div>
     </div>
-</form>
+
 <!--    </div>-->
 <script th:src="@{/lib/jquery/jquery.min.js}"></script>
 <script th:src="@{/lib/layui/layui.js}"></script>
@@ -122,52 +95,6 @@
         }
         $(window).resize(function () {
             FrameWH();
-        });
-        form.on('submit(back)', function (form) {
-            var data = form.field;
-            $.post('/factoryAuth/' + data.factoryId + "/back", form.field, function () {
-                layer.msg("上一个！",{icon: 6, time:1000});
-            });
-            return false;
-        });
-        form.on('submit(next)', function (form) {
-            var data = form.field;
-            $.post('/factoryAuth/' + data.factoryId + "/next", form.field, function () {
-                layer.msg("下一个！",{icon: 6, time:1000});
-            });
-            return false;
-        });
-        form.on('submit(past)', function (form) {
-            layer.confirm('您是确定审核通过吗？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                var data = form.field;
-                $.post('/factoryAuth/' + data.factoryId + "/past", form.field, function (result) {
-                    handlerResult(result, function (data) {
-                        layer.msg("修改成功！",{icon: 6, time:1000});
-                    });
-                });
-            }, function(){
-                layer.close();
-            });
-            return false;
-        });
-        form.on('submit(reject)', function (form) {
-            var data = form.field;
-            layer.open({
-                content: '/factoryAuth/' + data.factoryId + "/reject",
-                title: "邮件反馈",
-                area: ['40%', '55%'],
-                type: 2,
-                maxmin: true,
-                shadeClose: true,
-                moveOut: true
-                // zIndex: layer.zIndex, //重点1
-                // success: function(layero){
-                //     layer.setTop(layero); //重点2
-                // }
-            });
-            return false;
         });
     });
 </script>

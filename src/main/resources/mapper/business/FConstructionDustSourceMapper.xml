@@ -38,8 +38,12 @@
     select * from f_construction_dust_source
     where construct_dustid = #{constructDustid,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+  <select id="selectIdsByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
     select construct_dustid from f_construction_dust_source
+    where factoryid = #{factoryid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.FConstructionDustSource" parameterType="java.lang.Integer" >
+    select * from f_construction_dust_source
     where factoryid = #{factoryid,jdbcType=INTEGER}
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.FConstructionDustSource" >

@@ -59,6 +59,20 @@ public class FYardDustSource {
 
     private String note;
 
+    private String controlMeasures1;
+
+    private String materialType1;
+
+    private Double pm10Emission1;
+
+    private Double pm25Emission1;
+
+    private Double ocEmission1;
+
+    private Double bcEmission1;
+
+    private String scccode1;
+
     public Integer getWindDustid() {
         return windDustid;
     }
@@ -281,5 +295,61 @@ public class FYardDustSource {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getControlMeasures1() {
+        return controlMeasures1;
+    }
+
+    public void setControlMeasures1(String controlMeasures1) {
+        this.controlMeasures1 = controlMeasures1 == null ? null : controlMeasures1.trim();
+    }
+
+    public String getMaterialType1() {
+        return materialType1;
+    }
+
+    public void setMaterialType1(String materialType1) {
+        this.materialType1 = materialType1 == null ? null : materialType1.trim();
+    }
+
+    public Double getPm10Emission1() {
+        return pm10Emission1;
+    }
+
+    public void setPm10Emission1(Double pm10Emission1) {
+        this.pm10Emission1 = pm10Emission1;
+    }
+
+    public Double getPm25Emission1() {
+        return pm25Emission1;
+    }
+
+    public void setPm25Emission1(Double pm25Emission1) {
+        this.pm25Emission1 = pm25Emission1;
+    }
+
+    public Double getOcEmission1() {
+        return ocEmission1;
+    }
+
+    public void setOcEmission1(Double ocEmission1) {
+        this.ocEmission1 = ocEmission1;
+    }
+
+    public Double getBcEmission1() {
+        return bcEmission1;
+    }
+
+    public void setBcEmission1(Double bcEmission1) {
+        this.bcEmission1 = bcEmission1;
+    }
+
+    public String getScccode1() {
+        return scccode1;
+    }
+
+    public void setScccode1(String scccode1) {
+        this.scccode1 = scccode1 == null ? null : scccode1.trim();
     }
 }

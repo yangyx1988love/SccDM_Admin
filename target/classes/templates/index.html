@@ -15,9 +15,7 @@
 </head>
 
 <body class="layui-layout-body">
-
     <div class="layui-layout layui-layout-admin">
-
         <div class="layui-header ">
             <!-- logo 区域 -->
             <div class="layui-logo">
@@ -25,7 +23,6 @@
                     <p>污染源清单管理后台系统</p>
                 </div>
             </div>
-
             <!-- 头部区域 -->
             <ul class="layui-nav layui-layout-left">
                 <li class="layui-nav-item" lay-unselect>
@@ -53,10 +50,10 @@
                     </a>
                     <dl class="layui-nav-child layui-anim layui-anim-upbit">
                         <dd lay-unselect>
-                            <a href="#">个人中心</a>
+                            <a href="#" onclick="openLayer('个人中心', '/user/currtUser')">个人中心</a>
                         </dd>
                         <dd lay-unselect>
-                            <a href="#">修改密码</a>
+                            <a href="#" onclick="openLayer('修改密码', '/user/currtUser/reset')">修改密码</a>
                         </dd>
                         <hr>
                         <dd lay-unselect>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>排气筒</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <form class="layui-form layui-form-pane" name="exhastForm" id="exhastForm" >
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>排气筒总信息</legend>
+        </fieldset>
+        <blockquote class="layui-elem-quote">
+            排气筒总数：<span th:text="${exhaustNum}"></span>
+        </blockquote>
+        <div class="layui-collapse" th:each="exhaust:${exhausts}">
+            <div class="layui-colla-item">
+                <h4 class="layui-colla-title"><span th:text="${exhaust?.nkNo}"></span>号排气筒信息</h4>
+                <div class="layui-colla-content layui-show">
+                        <div class="layui-form-item">
+                            <div class="layui-inline" >
+                                <input type="hidden" id="exfId" name="exfId"  th:value="${exhaust?.exfId}">
+                                <label class="layui-form-label">排气筒编号</label>
+                                <div class="layui-input-block" >
+                                    <input id="nkNo" name="nkNo" th:value="${exhaust?.nkNo}"  class="layui-input" type="text" lay-verify="required|number">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">排气筒材质</label>
+                                <div class="layui-input-block">
+                                    <input id="exfMaterial" name="exfMaterial" th:value="${exhaust?.exfMaterial}" class="layui-input" type="text">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" >排气筒高度(m)</label>
+                                <div class="layui-input-block">
+                                    <input id="exfHeight" name="exfHeight" th:value="${exhaust?.exfHeight}" class="layui-input" type="text" lay-verify="required|number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline" >
+                                <label class="layui-form-label">烟气出口直径(m)</label>
+                                <div class="layui-input-block">
+                                    <input id="smokeOutd" name="smokeOutd" th:value="${exhaust?.smokeOutd}" class="layui-input" type="text" lay-verify="required|number">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">烟气出口温度(℃)</label>
+                                <div class="layui-input-block">
+                                    <input id="smokeOUtteM" name="smokeOUtteM" th:value="${exhaust?.smokeOUtteM}" class="layui-input" type="text" lay-verify="required|number">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">烟气流量(Nm**3/h)</label>
+                                <div class="layui-input-block">
+                                    <input id="smokeOuta" name="smokeOuta" th:value="${exhaust?.smokeOuta}" class="layui-input" type="text" lay-verify="required|number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline" >
+                                <label class="layui-form-label">排气筒经度</label>
+                                <div class="layui-input-block">
+                                    <input id="exfLongitude" name="exfLongitude" th:value="${exhaust?.exfLongitude}" class="layui-input" style="width: 170px" type="text" lay-verify="required|longitude">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">排气筒纬度</label>
+                                <div class="layui-input-block">
+                                    <input id="exfLatitude" name="exfLatitude" th:value="${exhaust?.exfLatitude}" class="layui-input" type="text" lay-verify="required|latitude">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <shiro:hasPermission name="factoryAuth:exhaust:update">
+            <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit"
+                        id="submit__btn" name="submit__btn" lay-submit="">保存提交</button>
+            </div>
+        </shiro:hasPermission>
+    </form>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (formData) {
+                $.post("/factoryAuth/exhaust/update", $("#exhastForm").serialize(), function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

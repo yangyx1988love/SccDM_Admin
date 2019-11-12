@@ -56,6 +56,15 @@ public class UserController {
         model.addAttribute("roles", roleService.selectAll());
         return "user/user-add";
     }
+    @GetMapping("/currtUser")
+    public String updatecurrtUser(Model model) {
+        Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        int userId=currtUser.getUserId();
+        model.addAttribute("roleIds", userService.selectRoleIdsById(userId));
+        model.addAttribute("user", currtUser);
+        model.addAttribute("roles", roleService.selectAll());
+        return "user/user-add";
+    }
 
     @OperationLog("编辑角色")
     @PutMapping
@@ -101,6 +110,12 @@ public class UserController {
     @GetMapping("/{userId}/reset")
     public String resetPassword(@PathVariable("userId") Integer userId, Model model) {
         model.addAttribute("userId", userId);
+        return "user/user-reset-pwd";
+    }
+    @GetMapping("/currtUser/reset")
+    public String resetPasswordCurrtUser(Model model) {
+        Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("userId", currtUser.getUserId());
         return "user/user-reset-pwd";
     }
 

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>用户编辑</title>
@@ -49,6 +48,7 @@
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <shiro:hasPermission name="user:update">
             <div class="layui-form-item" pane="">
                 <label class="layui-form-label">
                     状态
@@ -58,6 +58,8 @@
                     <input type="radio" name="status" value="0" th:checked="${user?.status == '0'}" title="锁定">
                 </div>
             </div>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="user:allocation">
             <div class="layui-form-item">
                 <label class="layui-form-label">
                     角色
@@ -72,6 +74,8 @@
                     </select>
                 </div>
             </div>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="dept:update">
             <div class="layui-form-item">
                 <label class="layui-form-label">
                     部门
@@ -94,6 +98,7 @@
                     </div>
                 </div>
             </div>
+            </shiro:hasPermission>
             <div class="layui-form-item">
                 <div class="layui-input-block" style="margin-left:0;text-align:center;">
                     <input type="hidden" name="userId" th:value="${user?.userId}">

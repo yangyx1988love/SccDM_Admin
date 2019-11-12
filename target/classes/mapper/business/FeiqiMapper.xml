@@ -50,12 +50,12 @@
     Jan_useamount, May_useamount, June_useamount, July_useamount, sept_useamount, aug_useamount,
     Apr_useamount, oct_use_amount, nov_useamount, dec_useamount
   </sql>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.Feiqi" parameterType="java.lang.Integer" >
     select * from feiqi
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectByFactoryId" resultType="nankai.xl.business.model.Feiqi" parameterType="java.lang.Integer" >
-    select id,nkno from feiqi
+    select * from feiqi
     where factory_id = #{factoryId,jdbcType=INTEGER}
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.Feiqi" >

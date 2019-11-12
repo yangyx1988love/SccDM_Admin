@@ -38,12 +38,16 @@
     sweep_fall, water_times_spring, water_times_summer, water_times_fall, dust_suppression,
     control_measures, pm25_emission, pm10_emission, oc_emission, bc_emission
   </sql>
-  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectById" resultType="nankai.xl.business.model.FRoadDustSource" parameterType="java.lang.Integer" >
     select * from f_road_dust_source
     where road_dustid = #{roadDustid,jdbcType=INTEGER}
   </select>
-  <select id="selectByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+  <select id="selectIdsByFactoryId" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
     select road_dustid from f_road_dust_source
+    where factoryid = #{factoryid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFactoryId" resultType="nankai.xl.business.model.FRoadDustSource" parameterType="java.lang.Integer" >
+    select * from f_road_dust_source
     where factoryid = #{factoryid,jdbcType=INTEGER}
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.FRoadDustSource" >
