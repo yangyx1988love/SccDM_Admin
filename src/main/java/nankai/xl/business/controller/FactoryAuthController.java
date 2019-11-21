@@ -112,11 +112,11 @@ public class FactoryAuthController {
                 statusdecs.add(status.getIntroduction());
             }
             List<IndustryBig> industryBigs=selectCommonService.getAllIndustryBigs();
-            List<Industry> industrys=selectCommonService.getIndustrysByCode(factory.getIndustryBigid());
+            List<IndustrySmall> industrySmalls=selectCommonService.getIndustrySmallsByCode(factory.getIndustryBigid());
             model.addAttribute("countys", countys);
             model.addAttribute("citys", citys);
             model.addAttribute("statusdecs", statusdecs);
-            model.addAttribute("industrys", industrys);
+            model.addAttribute("industrySmalls", industrySmalls);
             model.addAttribute("industryBigs", industryBigs);
             model.addAttribute("factory", factory);
             return "factoryAuth/base/factory-Info-base";

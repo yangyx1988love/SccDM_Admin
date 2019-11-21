@@ -297,7 +297,7 @@ function initPie(myChart,title,legendData,seriesName,seriesData) {
                 name: seriesName,
                 type: 'pie',
                 radius : '55%',
-                center: ['50%', '60%'],
+                center: ['60%', '50%'],
                 data:seriesData,
                 itemStyle: {
                     emphasis: {
@@ -336,8 +336,8 @@ function inintBarGraph(myChart,title,legenddata,xAxisData,seriesData) {
         },
         calculable : true,
         grid: { // 控制图的大小，调整下面这些值就可以，
-            x: 100,//控制x轴文字与底部的距离
-            y2: 200 // y2可以控制倾斜的文字狱最右边的距离，放置倾斜的文字超过显示区域
+            x: 70,//控制x轴文字与底部的距离
+            y2: 120 // y2可以控制倾斜的文字狱最右边的距离，放置倾斜的文字超过显示区域
         },
         xAxis : [
             {
@@ -788,7 +788,7 @@ function initPieRadar(myChart,legendData,radarIndicator,radarSeriesData,pieSerie
                 data:pieSeriesData,
                 label: {
                     normal: {
-                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                        formatter: '{a|{b}}{abg|}\n{hr|}\n {c} {per|{d}%}  ',
                         backgroundColor: '#eee',
                         borderColor: '#aaa',
                         borderWidth: 1,
@@ -799,7 +799,6 @@ function initPieRadar(myChart,legendData,radarIndicator,radarSeriesData,pieSerie
                                 lineHeight: 22,
                                 align: 'center'
                             },
-
                             hr: {
                                 borderColor: '#aaa',
                                 width: '100%',
@@ -921,6 +920,15 @@ function initUpAndDowmBar(myChart,sourceData) {
         dataset: {
             source: sourceData
         },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
         xAxis: [
             {type: 'category', gridIndex: 0},
             {type: 'category', gridIndex: 1}
@@ -935,15 +943,33 @@ function initUpAndDowmBar(myChart,sourceData) {
         ],
         series: [
             // These series are in the first grid.
-            {type: 'bar', seriesLayoutBy: 'row'},
-            {type: 'bar', seriesLayoutBy: 'row'},
-            {type: 'bar', seriesLayoutBy: 'row'},
-            // These series are in the second grid.
-            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
-            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
-            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1},
-            {type: 'bar', xAxisIndex: 1, yAxisIndex: 1}
+
         ]
     };
+    for ( i = 0; i <sourceData.length-1 ; i++) {
+        option.series[i] =  {
+            type: 'bar',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            seriesLayoutBy: 'row'
+        };
+    }
+    for ( i = sourceData.length-1; i <sourceData.length+sourceData[0].length-2; i++) {
+        option.series[i] = {
+            type: 'bar',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+            xAxisIndex: 1,
+            yAxisIndex: 1
+        };
+    }
     myChart.setOption(option);
 }

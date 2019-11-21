@@ -23,60 +23,61 @@
             裸土扬尘源总数：<span th:text="${fbareIds.size()}"></span>
         </blockquote>
         <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
-        <div class="layui-collapse">
-            <div class="layui-colla-item" th:if="${fconIds.size() > 0}">
-                <h4 class="layui-colla-title">施工扬尘源信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <div class="layui-collapse" style="border-style: none">
-                        <div class="layui-colla-item" th:each="fconId:${fconIds}">
-                            <h4 class="layui-colla-title" style="background-color: white"><span th:text="${fconIdStat.index}"></span>号施工扬尘信息</h4>
-                            <div class="layui-colla-content layui-show" >
-                                <iframe th:src="@{/factoryAuth/con/conForm(factoryId=${factoryId},id=${fconId})}" class="layui-iframe" height="600px" width="100%" frameborder="0" ></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-colla-item" th:if="${fyardIds.size() > 0}">
-                <h4 class="layui-colla-title">堆场扬尘源信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <div class="layui-collapse" style="border-style: none">
-                        <div class="layui-colla-item" th:each="fyardId:${fyardIds}">
-                            <h4 class="layui-colla-title" style="background-color: white"><span th:text="${fyardIdStat.index}"></span>号堆场扬尘信息</h4>
-                            <div class="layui-colla-content layui-show" >
-                                <iframe th:src="@{/factoryAuth/yard/yardForm(factoryId=${factoryId},id=${fyardId})}" class="layui-iframe" height="600px" width="100%" frameborder="0" ></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-colla-item" th:if="${froadIds.size() > 0}">
-                <h4 class="layui-colla-title">道路扬尘源信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <div class="layui-collapse" style="border-style: none">
-                        <div class="layui-colla-item" th:each="froadId:${froadIds}">
-                            <h4 class="layui-colla-title" style="background-color: white"><span th:text="${froadIdStat.index}"></span>号道路扬尘信息</h4>
-                            <div class="layui-colla-content layui-show" >
-                                <iframe th:src="@{/factoryAuth/road/roadForm(factoryId=${factoryId},id=${froadId})}" class="layui-iframe" height="400px" width="100%" frameborder="0" ></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-colla-item" th:if="${fbareIds.size() > 0}">
-                <h4 class="layui-colla-title">裸土扬尘源信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <div class="layui-collapse" style="border-style: none">
-                        <div class="layui-colla-item" th:each="fbareId:${fbareIds}">
-                            <h4 class="layui-colla-title" style="background-color: white"><span th:text="${fbareIdStat.index}"></span>号裸土扬尘信息</h4>
-                            <div class="layui-colla-content layui-show" >
-                                <iframe th:src="@{/factoryAuth/bare/bareForm(factoryId=${factoryId},id=${fbareId})}" class="layui-iframe" height="120px" width="100%" frameborder="0" ></iframe>
-                            </div>
-                        </div>
+        <div class="layui-row" th:if="${fconIds.size() > 0}">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>无组织扬尘源-施工扬尘源信息</legend>
+            </fieldset>
+            <div class="layui-collapse">
+                <div class="layui-colla-item" th:each="fconId:${fconIds}">
+                    <h4 class="layui-colla-title"><span th:text="${fconIdStat.index}"></span>号施工扬尘信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/con/conForm(factoryId=${factoryId},id=${fconId})}" class="layui-iframe" height="600px" width="100%" frameborder="0" ></iframe>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="layui-row" th:if="${fyardIds.size() > 0}">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>无组织扬尘源-堆场扬尘源信息</legend>
+            </fieldset>
+            <div class="layui-collapse">
+                <div class="layui-colla-item" th:each="fyardId:${fyardIds}">
+                    <h4 class="layui-colla-title"><span th:text="${fyardIdStat.index}"></span>号堆场扬尘信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/yard/yardForm(factoryId=${factoryId},id=${fyardId})}" class="layui-iframe" height="600px" width="100%" frameborder="0" ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row" th:if="${froadIds.size() > 0}">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>无组织扬尘源-道路扬尘源信息</legend>
+            </fieldset>
+            <div class="layui-collapse">
+                <div class="layui-colla-item" th:each="froadId:${froadIds}">
+                    <h4 class="layui-colla-title"><span th:text="${froadIdStat.index}"></span>号道路扬尘信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/road/roadForm(factoryId=${factoryId},id=${froadId})}" class="layui-iframe" height="400px" width="100%" frameborder="0" ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row" th:if="${fbareIds.size() > 0}">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>无组织扬尘源-裸土扬尘源信息</legend>
+            </fieldset>
+            <div class="layui-collapse">
+                <div class="layui-colla-item" th:each="fbareId:${fbareIds}">
+                    <h4 class="layui-colla-title"><span th:text="${fbareIdStat.index}"></span>号裸土扬尘信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/bare/bareForm(factoryId=${factoryId},id=${fbareId})}" class="layui-iframe" height="120px" width="100%" frameborder="0" ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
     <script th:src="@{/lib/layui/layui.js}"></script>
     <script th:src="@{/js/common.js}"></script>

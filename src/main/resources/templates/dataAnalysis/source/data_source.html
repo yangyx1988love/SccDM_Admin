@@ -21,8 +21,21 @@
                         <div class="layui-card-body" >
                             <div class="layui-carousel" id="carousel_1" >
                                 <div carousel-item="" >
-                                    <div id="pieRadarDiv" style="height: 560px"></div>
                                     <div id="upAndDowmBar" style="height: 560px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><h3>污染源排放区域信息及排放特征</h3></div>
+                        <div class="layui-card-body" >
+                            <div class="layui-carousel" id="carousel_2" >
+                                <div carousel-item="" >
+                                    <div id="pieRadarDiv" style="height: 560px"></div>
                                 </div>
                             </div>
                         </div>
@@ -54,16 +67,7 @@
     <script th:src="@{/lib/jquery/jquery.min.js}"></script>
     <script th:src="@{/lib/layui/layui.js}"></script>
     <script th:src="@{/js/common.js}"></script>
-    <script src="http://api.map.baidu.com/api?v=2.0&ak=pO4OiY1uC2SFSFyM9No099yaEjcUe7jZ"></script>
-
-    <!-- 引入百度地图交通路况样式文件 -->
-    <link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
-
-    <!-- 引入百度地图交通路况文件 -->
-    <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>
-
     <script th:src="@{/lib/echarts/dist/echarts.js}"></script>
-    <script th:src="@{/lib/echarts/dist/extension/bmap.js}"></script>
     <script th:src="@{/js/myEcharts.js}"></script>
     <style type="text/css">
         .anchorBL{

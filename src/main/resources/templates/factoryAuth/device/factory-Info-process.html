@@ -13,6 +13,7 @@
 
 <body>
     <div class="z-body animated fadeIn" style="margin-left: 5px;margin-right: 5px">
+        <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
         <fieldset class="layui-elem-field layui-field-title" >
             <legend>工艺过程源-设备&原料&产品总信息</legend>
         </fieldset>
@@ -21,37 +22,43 @@
             原料总数：<span th:text="${deviceRawNum}"></span>&nbsp;&nbsp;
             产品总数：<span th:text="${deviceProductNum}"></span>
         </blockquote>
-        <fieldset class="layui-elem-field layui-field-title" th:if="${deviceNum > 0}">
-            <legend>工艺过程源-设备信息</legend>
-        </fieldset>
-        <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
-        <div class="layui-collapse">
-            <div class="layui-colla-item" th:each="deviceVo:${deviceVos}">
-                <h4 class="layui-colla-title"><span th:text="${deviceVo?.nkNo}"></span>号设备信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <iframe th:src="@{/factoryAuth/device/deviceForm(factoryId=${factoryId},id=${deviceVo.id})}" class="layui-iframe" height="245px" width="100%" frameborder="0" ></iframe>
+
+        <div class="layui-row" th:if="${deviceNum > 0}">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>工艺过程源-设备信息</legend>
+            </fieldset>
+            <div class="layui-collapse" th:if="${deviceNum > 0}">
+                <div class="layui-colla-item" th:each="deviceVo:${deviceVos}">
+                    <h4 class="layui-colla-title"><span th:text="${deviceVo?.nkNo}"></span>号设备信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/device/deviceForm(factoryId=${factoryId},id=${deviceVo.id})}" class="layui-iframe" height="245px" width="100%" frameborder="0" ></iframe>
+                    </div>
                 </div>
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" th:if="${deviceRawNum > 0}">
-            <legend>工艺过程源-原料信息</legend>
-        </fieldset>
-        <div class="layui-collapse">
-            <div class="layui-colla-item" th:each="deviceRawVo:${deviceRawVos}">
-                <h4 class="layui-colla-title"><span th:text="${deviceRawVo?.nkNo}"></span>号原料信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <iframe th:src="@{/factoryAuth/device/deviceRawForm(factoryId=${factoryId},id=${deviceRawVo.id})}" class="layui-iframe" height="650px" width="100%" frameborder="0" ></iframe>
+        <div class="layui-row" th:if="${deviceRawNum > 0}">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>工艺过程源-原料信息</legend>
+            </fieldset>
+            <div class="layui-collapse" th:if="${deviceRawNum > 0}">
+                <div class="layui-colla-item" th:each="deviceRawVo:${deviceRawVos}">
+                    <h4 class="layui-colla-title"><span th:text="${deviceRawVo?.nkNo}"></span>号原料信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/device/deviceRawForm(factoryId=${factoryId},id=${deviceRawVo.id})}" class="layui-iframe" height="650px" width="100%" frameborder="0" ></iframe>
+                    </div>
                 </div>
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" th:if="${deviceProductNum > 0}">
-            <legend>工艺过程源-产品信息</legend>
-        </fieldset>
-        <div class="layui-collapse">
-            <div class="layui-colla-item" th:each="deviceProductVo:${deviceProductVos}">
-                <h4 class="layui-colla-title"><span th:text="${deviceProductVo?.nkNo}"></span>号产品信息</h4>
-                <div class="layui-colla-content layui-show" >
-                    <iframe th:src="@{/factoryAuth/device/deviceProductForm(factoryId=${factoryId},id=${deviceProductVo.id})}" class="layui-iframe" height="600px" width="100%" frameborder="0" ></iframe>
+        <div class="layui-row" th:if="${deviceProductNum > 0}">
+            <fieldset class="layui-elem-field layui-field-title" th:if="${deviceProductNum > 0}">
+                <legend>工艺过程源-产品信息</legend>
+            </fieldset>
+            <div class="layui-collapse"  th:if="${deviceProductNum > 0}">
+                <div class="layui-colla-item" th:each="deviceProductVo:${deviceProductVos}">
+                    <h4 class="layui-colla-title"><span th:text="${deviceProductVo?.nkNo}"></span>号产品信息</h4>
+                    <div class="layui-colla-content layui-show" >
+                        <iframe th:src="@{/factoryAuth/device/deviceProductForm(factoryId=${factoryId},id=${deviceProductVo.id})}" class="layui-iframe" height="600px" width="100%" frameborder="0" ></iframe>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 public class Factory {
-    @NotBlank(message = "不能为空")
+
     private Integer factoryId;
 
     private String factoryNo;

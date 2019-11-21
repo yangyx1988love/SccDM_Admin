@@ -14,6 +14,7 @@
 <body>
 <!--    <div class="z-body animated fadeIn">-->
         <form class="layui-form layui-form-pane">
+            <input type="hidden" id="factoryId" name="factoryId" th:value="${factory?.factoryId}">
             <fieldset class="layui-elem-field layui-field-title" >
                 <legend>企业基本信息</legend>
             </fieldset>
@@ -256,7 +257,7 @@
                     <div class="layui-input-inline" >
                         <select id="industryId" name="industryId" th:field="*{factory.industryId}" lay-filter="industryId">
                             <option value="">请选择行业小分类</option>
-                            <option th:each="industry : ${industrys}" th:value="${industry.industryId}" th:text="${industry.industryName}">
+                            <option th:each="industrySmall : ${industrySmalls}" th:value="${industrySmall.industrySmall}" th:text="${industrySmall.industryName}">
                             </option>
                         </select>
                     </div>
@@ -340,7 +341,6 @@
                             </option>
                         </select>
                     </div>
-                    <input type="hidden" id="factoryId" name="factoryId" th:value="${factory?.factoryId}">
                 </div>
             </div>
             <shiro:hasPermission name="factoryAuth:base:update">
@@ -384,7 +384,6 @@
             })
             form.on('select(industryBigid)',function(data){
                 var industryCode=data.value;
-                //alert(industryCode)
                 $.ajax({
                     url: '/factoryAuth/seleIndustry/' + industryCode,
                     data: {industryCode: industryCode},//发送的参数
@@ -393,9 +392,6 @@
                         $("select[name=industryId]").html('<option value="">请选择</option>'); //清空
                         if(datas.length>0){
                             $.each(datas, function(key, val) {
-                                //alert(key);
-                               // alert(val.industryId);
-                               // alert(val.industryName);
                                 var option1 = $("<option>").val(val.industryId).text(val.industryName);
                                 $("select[name=industryId]").append(option1);
                                 form.render('select');

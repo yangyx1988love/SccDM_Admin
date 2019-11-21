@@ -19,7 +19,7 @@
         窑炉总数：<span th:text="${kilnNum}"></span>
     </blockquote>
     <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
-    <div class="layui-collapse">
+    <div class="layui-collapse" th:if="${kilnNum > 0}">
         <div class="layui-colla-item" th:each="kilnVo:${kilnVos}">
             <h4 class="layui-colla-title"><span th:text="${kilnVo.nkNo}"></span>号窑炉信息</h4>
             <input type="hidden" id="id" name="id"  th:value="${kilnVo.id}">

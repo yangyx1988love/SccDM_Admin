@@ -19,7 +19,7 @@
         <blockquote class="layui-elem-quote">
             车间总数：<span th:text="${fNoOrgNum}"></span>
         </blockquote>
-        <div class="layui-collapse" th:each="fNoOrg:${fNoOrgs}">
+        <div class="layui-collapse" th:each="fNoOrg:${fNoOrgs}" th:if="${fNoOrgNum > 0}">
             <div class="layui-colla-item">
                 <h4 class="layui-colla-title">第<span th:text="${fNoOrgStat.index+1}"></span>个车间</h4>
                 <div class="layui-colla-content layui-show">

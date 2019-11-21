@@ -21,7 +21,7 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Resource
     private StatusMapper statusMapper;
     @Resource
-    private IndustryMapper industryMapper;
+    private IndustrySmallMapper industrySmallMapper;
     @Resource
     private IndustryBigMapper industryBigMapper;
     @Resource
@@ -151,8 +151,8 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     }
 
     @Override
-    public List<Industry> getIndustrysByCode(String industryCode) {
-        return industryMapper.selectIndustrysByCode(industryCode);
+    public List<IndustrySmall> getIndustrySmallsByCode(String industryBigCode) {
+        return industrySmallMapper.selectByBigCode(industryBigCode);
     }
     @Override
     public List<IndustryBig> getAllIndustryBigs() {

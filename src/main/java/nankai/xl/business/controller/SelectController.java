@@ -19,9 +19,9 @@ public class SelectController {
     @OperationLog("企业审核界面-重加载行业小分类")
     @PostMapping("/seleIndustry/{industryCode}")
     @ResponseBody
-    public List<Industry> seleIndustry(@PathVariable("industryCode") String industryCode) {
-        List<Industry> industrys=selectCommonService.getIndustrysByCode(industryCode);
-        return industrys;
+    public List<IndustrySmall> seleIndustry(@PathVariable("industryCode") String industryCode) {
+        List<IndustrySmall> industrySmalls=selectCommonService.getIndustrySmallsByCode(industryCode);
+        return industrySmalls;
     }
     @OperationLog("企业审核界面-加载城市信息")
     @PostMapping("/seleCity")

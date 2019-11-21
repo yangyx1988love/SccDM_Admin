@@ -19,7 +19,7 @@
         <blockquote class="layui-elem-quote">
             排气筒总数：<span th:text="${exhaustNum}"></span>
         </blockquote>
-        <div class="layui-collapse" th:each="exhaust:${exhausts}">
+        <div class="layui-collapse" th:each="exhaust:${exhausts}" th:if="${exhaustNum > 0}">
             <div class="layui-colla-item">
                 <h4 class="layui-colla-title"><span th:text="${exhaust?.nkNo}"></span>号排气筒信息</h4>
                 <div class="layui-colla-content layui-show">

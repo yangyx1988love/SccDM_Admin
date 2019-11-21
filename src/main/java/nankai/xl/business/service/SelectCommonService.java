@@ -24,7 +24,7 @@ public interface SelectCommonService {
     Map<String,String> getCityAndCountyCodeByuser(Adminuser user);
     public List<Status> getAllStatus();
     Status getStatusById(Integer id);
-    public List<Industry> getIndustrysByCode(String industryCode);
+    public List<IndustrySmall> getIndustrySmallsByCode(String industryBigCode);
     public List<IndustryBig> getAllIndustryBigs();
     public List<Source> getAllSources();
     public List<Scc2> getScc2sByScc2(Scc2 scc2);

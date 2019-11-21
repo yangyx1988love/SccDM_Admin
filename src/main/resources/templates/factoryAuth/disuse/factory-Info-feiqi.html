@@ -19,7 +19,7 @@
         <blockquote class="layui-elem-quote">
             设备总数：<span th:text="${feiqiNum}"></span>&nbsp;&nbsp;
         </blockquote>
-        <div class="layui-collapse">
+        <div class="layui-collapse" th:if="${feiqiNum > 0}">
             <div class="layui-colla-item" th:each="feiqiVo:${feiqiVos}">
                 <h4 class="layui-colla-title"><span th:text="${feiqiVo?.nkno}"></span>号原料信息</h4>
                 <div class="layui-colla-content layui-show" >
