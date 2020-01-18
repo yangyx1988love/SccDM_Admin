@@ -12,6 +12,7 @@
                 <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
             </div>
         </div>
+        <shiro:hasPermission name="factoryAuth:citySel">
         <div class="layui-input-inline">
             <select id="cityCode" name="cityCode" lay-filter="cityCode">
                 <option value="">请选择实际城市</option>
@@ -19,6 +20,7 @@
                 </option>
             </select>
         </div>
+        </shiro:hasPermission>
         <div class="layui-input-inline">
             <select id="countyId" name="countyId" lay-filter="countyId">
                 <option value="">请选择实际区县</option>

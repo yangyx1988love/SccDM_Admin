@@ -29,6 +29,36 @@
     from exhaust
     where EXF_ID = #{exfId,jdbcType=INTEGER}
   </select>
+  <select id="selectSum" resultType="nankai.xl.business.model.vo.ExhaustSumVo" parameterType="nankai.xl.business.model.vo.FactorySumCommonQuery" >
+    SELECT * FROM(
+        SELECT factory.`year`,factory.factory_name,factory.factory_no,city.city_code,factory.county_id,city.city_name,
+                        county.COUNTY_NAME,factory.`status`,status.introduction AS statusdec,exhaust.*
+        FROM exhaust
+        LEFT JOIN factory
+        ON factory.factory_id=exhaust.FACTORY_ID
+        LEFT JOIN county
+        ON factory.county_id=county.county_id
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+        LEFT JOIN `status`
+        ON factory.`status`=`status`.id
+    )ss
+    <where>
+      <if test="year != null and year != ''">
+        year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND county_id = #{countyId}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND city_code = #{cityCode}
+      </if>
+      <if test="status != null and status != ''">
+        AND status = #{status}
+      </if>
+    </where>
+    ORDER BY FACTORY_ID,NK_NO ASC
+  </select>
   <update id="updateByExfId" parameterType="nankai.xl.business.model.Exhaust" >
     update exhaust
     <set >

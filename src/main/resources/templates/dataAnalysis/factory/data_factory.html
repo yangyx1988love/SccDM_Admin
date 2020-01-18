@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>企业统计数据</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row layui-col-space15" id="chartsDiv">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><h3>区县企业数据</h3></div>
+                        <div class="layui-card-body" >
+                            <div class="layui-carousel" id="carousel_1" >
+                                <div carousel-item="" >
+                                    <div id="barGraphDiv" style="height: 540px"></div>
+                                    <div id="pieDiv"style="height: 540px; "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><h3>企业锅炉、窑炉数据</h3></div>
+                        <div class="layui-card-body" >
+                            <div class="layui-carousel" id="carousel_2" >
+                                <div carousel-item="" >
+                                    <div id="pieBarDiv" style="height: 100%"></div>
+                                    <div id="BKbarGraphDiv" style="height: 540px"></div>
+<!--                                    <div id="StackAreaDiv" style="height: 560px"></div>-->
+                                    <!--                                        <div id="pieRadarDiv" style="height: 560px"></div>-->
+                                    <!--                                        <div id="sunburstDiv" style="height: 560px"></div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="layui-col-md4">-->
+            <!--                <div class="layui-card">-->
+            <!--                    <div class="layui-card-header">系统信息</div>-->
+            <!--                    <div class="layui-card-body layui-text">-->
+            <!--                        <p>天津市滨海新区污染源管理系统。。。。。。。。。。。。。。。</p>-->
+            <!--                        <p>。。。。。。。。。。。</p>-->
+            <!--                        <p>。。。。。。。。。。</p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="layui-card">-->
+            <!--                    <div class="layui-card-header">实用工具</div>-->
+            <!--                    <div class="layui-card-body ">-->
+            <!--                        <div carousel-item="">-->
+            <!--                            <ul class="layui-row layui-col-space10 layui-this">-->
+            <!--                                <li class="layui-col-xs2" th:width="100px">-->
+            <!--                                    <h3>地理坐标拾取</h3>-->
+            <!--                                    <a href="#" onclick="openTab('拾取坐标系统', 'http://api.map.baidu.com/lbsapi/getpoint/index.html')">-->
+            <!--                                        <p>-->
+            <!--                                            <img th:src="@{/images/dingwei.jpg}" alt="" style="height: 60px;"/>-->
+            <!--                                        </p>-->
+            <!--                                    </a>-->
+            <!--                                </li>-->
+            <!--                            </ul>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="layui-card" style="height: 200px">-->
+            <!--                    <div class="layui-card-header">实时监控</div>-->
+            <!--                    <div class="layui-card-body" >-->
+            <!--                        <h3>CPU使用率</h3>-->
+            <!--                        <div class="layui-progress layui-progress-big" lay-showpercent="true">-->
+            <!--                            <div class="layui-progress-bar" lay-percent="40%"></div>-->
+            <!--                        </div>-->
+            <!--                        <h3>内存占用率</h3>-->
+            <!--                        <div  class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="storage">-->
+            <!--                            <div id="storage" class="layui-progress-bar" ></div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+        </div>
+
+
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=pO4OiY1uC2SFSFyM9No099yaEjcUe7jZ"></script>
+
+    <!-- 引入百度地图交通路况样式文件 -->
+    <link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- 引入百度地图交通路况文件 -->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>
+
+    <script th:src="@{/lib/echarts/dist/echarts.js}"></script>
+    <script th:src="@{/lib/echarts/dist/extension/bmap.js}"></script>
+    <script th:src="@{/js/myEcharts.js}"></script>
+    <style type="text/css">
+        .anchorBL{
+            display:none
+        }
+    </style>
+    <script type="application/javascript">
+        layui.use(['carousel','element','jquery','form'], function() {
+            var carousel = layui.carousel
+            var $ = layui.jquery
+                , element = layui.element //Tab的切换功能，切换事件监听等，需要依赖element模块
+                ,form = layui.form //form表单
+            // $(function(){
+            //     element.progress('storage', '70%')
+            //     $('#storage').css("background-color","red")
+            // });
+            carousel.render({
+                elem: '#carousel_1'
+                , arrow: 'hover'
+                , width: '100%' //设置容器宽度
+                , height: '560px'
+                , indicator: 'none'
+                , interval: 5000
+            });
+            carousel.render({
+                elem: '#carousel_2'
+                , arrow: 'hover'
+                , width: '100%' //设置容器宽度
+                , height: '560px'
+                , indicator: 'none'
+                , interval: 5000
+            });
+            var parentWith = $('#chartsDiv').width();
+            layui.$.get('/data/factory/city/num/pie', function (result) {
+                var legendData = result.legendData;
+                var seriesData = result.seriesData;
+                layui.$("#pieDiv").css("width", (parentWith - 50) + 'px');
+                var myChartPie = echarts.init(document.getElementById('pieDiv'));
+                initPie(myChartPie, "各城市企业占比", legendData, "", seriesData);
+            });
+            layui.$.get('/data/factory/county/num/bar', function (result) {
+                var xAxisData = result.xAxisData;
+                var seriesData = result.seriesData;
+                layui.$("#barGraphDiv").css("width", (parentWith - 50) + 'px');
+                var myChartBarGrap = echarts.init(document.getElementById('barGraphDiv'));
+                inintBarGraph(myChartBarGrap,'各区县企业数量',['企业数量'], xAxisData, seriesData)
+            });
+            layui.$.get('/data/boilerAKiln/num/barPie', function (result) {
+                var jsonObj = result;
+                layui.$("#pieBarDiv").css("width", (parentWith - 50) + 'px');
+                var myChartPieBar = echarts.init(document.getElementById('pieBarDiv'));
+                initBarPie(myChartPieBar, result.barJson, "各城市锅炉、窑炉", result.upPieJson,"锅炉占比", result.downPieJson,"窑炉占比")
+            });
+            layui.$.get('/data/boilerAKiln/num/bar', function (result) {
+                var xAxisData = result.xAxisData;
+                var seriesData = result.seriesData;
+                layui.$("#BKbarGraphDiv").css("width", (parentWith - 50) + 'px');
+                var bk = echarts.init(document.getElementById('BKbarGraphDiv'));
+                inint2BarGraph(bk, '各区县数量',['锅炉','窑炉'], xAxisData, seriesData)
+            });
+            // var legendData=['化石','工艺', '联盟广告','视频广告','搜索引擎']
+            // var radarIndicator=[
+            //     { text: 'PM25' },
+            //     { text: 'PM10' },
+            //     { text: '指标三' },
+            //     { text: '指标四' },
+            //     { text: '指标五' }
+            // ]
+            // var radarSeriesData=[
+            //     {
+            //         value: [100, 8, 0.40, -80, 20000],
+            //         name: '化石'
+            //     },
+            //     {
+            //         value: [60, 5, 0.30, -100, 15000],
+            //         name: '工艺'
+            //     }
+            // ]
+            // var pieSeriesData=[
+            //     {value:335, name:'化石'},
+            //     {value:310, name:'工艺'},
+            //     {value:234, name:'联盟广告'},
+            //     {value:135, name:'视频广告'},
+            //     {value:1548, name:'搜索引擎'}
+            // ]
+            // layui.$("#pieRadarDiv").css("width", (parentWith - 50) + 'px');
+            // var myChartPieRadar= echarts.init(document.getElementById('pieRadarDiv'));
+            // initPieRadar(myChartPieRadar,legendData,radarIndicator,radarSeriesData,pieSeriesData,'污染源活动水平','污染源排放详情')
+            // var seriesData = [{
+            //     name: 'Grandpa',
+            //     children: [{
+            //         name: 'Uncle Leo',
+            //         value: 15
+            //     }, {
+            //         name: 'Aunt Jane',
+            //         value: 4
+            //     }, {
+            //         name: 'Father',
+            //         value: 10
+            //     }]
+            // }, {
+            //     name: 'Mike',
+            //     children: [{
+            //         name: 'Uncle Dan',
+            //         value: 10
+            //     }]
+            // }, {
+            //     name: 'Nancy',
+            //     children: [{
+            //         name: 'Uncle Nike',
+            //         value: 2
+            //     }]
+            // }];
+            // layui.$("#sunburstDiv").css("width", (parentWith - 50) + 'px');
+            // var myChartSunburst= echarts.init(document.getElementById('sunburstDiv'));
+            // initSunburst(myChartSunburst,seriesData,'行业分类企业数量旭日图')
+            // layui.$.get('/source/StackArea/scc1', function (result) {
+            //     layui.$("#StackAreaDiv").css("width", (parentWith - 50) + 'px');
+            //     var myChartStackArea = echarts.init(document.getElementById('StackAreaDiv'));
+            //     var xAxisData=['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+            //     initStackArea(myChartStackArea,"源排放时间系列图",result.legendData,xAxisData,result.seriesData);
+            // });
+        });
+    </script>
+</body>
+</html>

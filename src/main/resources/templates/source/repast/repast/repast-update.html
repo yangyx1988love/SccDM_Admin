@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>社会餐饮-编辑</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form class="layui-form layui-form-pane" name="bioForest-form" id="bioForest-form" >
+            <blockquote class="layui-elem-quote">
+                <legend>SCC编码：<span th:text="${repastVo.scccode}"></span>&nbsp;&nbsp;&nbsp;
+                         详情：<span th:text="${repastVo.sourceDiscrip}"></span></legend>
+            </blockquote>
+            <input type="hidden" id="id" name="id"  th:value="${repastVo.id}">
+            <input type="hidden" id="comId" name="comId"  th:value="${repastVo.comId}">
+            <input type="hidden" id="scc1" name="scc1"  th:value="${repastVo.scc1}">
+            <input type="hidden" id="scc2" name="scc2"  th:value="${repastVo.scc2}">
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">年份</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <input type="text" class="layui-input" id="year" name="year" th:value="${repastVo.year}" placeholder="yyyy" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="cityCode" name="cityCode" th:field="*{repastVo.cityCode}" lay-filter="cityCode" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">区县</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="countyId" name="countyId" th:field="*{repastVo.countyId}" lay-filter="countyId" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">餐馆名称</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="companyName" name="companyName" th:value="${repastVo.companyName}" class="layui-input" type="text"  lay-verify="required|chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">地址</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="address" name="address" th:value="${repastVo.address}" class="layui-input" type="text"  lay-verify="required|chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">企业备注</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <input id="category" name="category" th:value="${repastVo.category}" class="layui-input" type="text"  lay-verify="">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">经度</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="longitude" name="longitude" th:value="${repastVo.longitude}" class="layui-input" type="text"  lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">纬度</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="latitude" name="latitude" th:value="${repastVo.latitude}" class="layui-input" type="text"  lay-verify="required|latitude">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">餐馆类别</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc3" name="scc3" th:field="*{repastVo.scc3}" lay-filter="scc3" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="000">所有类别</option>
+                            <option value="200">火锅店</option>
+                            <option value="300" disabled>烧烤店</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">餐馆细类</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc4" name="scc4" th:field="*{repastVo.scc4}" lay-filter="model" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">灶头数(个)</label>
+                    <div class="layui-input-block" >
+                        <input id="cookingNum" name="cookingNum" style="width: 170px;" th:value="${repastVo.cookingNum}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">年总经营时间(h)</label>
+                    <div class="layui-input-block" >
+                        <input id="annualRuntime" name="annualRuntime" style="width: 170px;" th:value="${repastVo.annualRuntime}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">燃气消耗量(m3/d)</label>
+                    <div class="layui-input-block" >
+                        <input id="gasConsumption" name="gasConsumption" style="width: 170px;" th:value="${repastVo.gasConsumption}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">煤炭消耗量(kg/d)</label>
+                    <div class="layui-input-block" >
+                        <input id="coalConsumption" name="coalConsumption" style="width: 170px;" th:value="${repastVo.coalConsumption}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">用电量(度/d)</label>
+                    <div class="layui-input-block" >
+                        <input id="powerConsumption" name="powerConsumption" style="width: 170px;" th:value="${repastVo.powerConsumption}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">甲醛消耗量(m3/d)</label>
+                    <div class="layui-input-block" >
+                        <input id="methanolConsumption" name="methanolConsumption" style="width: 170px;" th:value="${repastVo.methanolConsumption}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">其他消耗量</label>
+                    <div class="layui-input-block" >
+                        <input id="otherConsumption" name="otherConsumption" style="width: 170px;" th:value="${repastVo.otherConsumption}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">其他消耗量单位</label>
+                    <div class="layui-input-block" >
+                        <input id="otherConunit" name="otherConunit" style="width: 170px;" th:value="${repastVo.otherConunit}" class="layui-input" type="text"  lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">食用油消耗量(kg/d)</label>
+                    <div class="layui-input-block" >
+                        <input id="oilConsumption" name="oilConsumption" style="width: 170px;" th:value="${repastVo.oilConsumption}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
+                    <div class="layui-input-block" style="width: 160px">
+                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
+                    </div>
+                </div>
+            </div>
+            <div id="emissionDiv" name="emissionDiv" style="display: none">
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM2.5</label>
+                        <div class="layui-input-block" >
+                            <input id="pm25Emission" name="pm25Emission" style="width: 170px;" th:value="${repastVo.pm25Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM10</label>
+                        <div class="layui-input-block">
+                            <input id="pm10Emission" name="pm10Emission" style="width: 170px;" th:value="${repastVo.pm10Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">CO</label>
+                        <div class="layui-input-block">
+                            <input id="coEmission" name="coEmission" style="width: 170px;" th:value="${repastVo.coEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">VOCs</label>
+                        <div class="layui-input-block" >
+                            <input id="vocEmission" name="vocEmission" style="width: 170px;" th:value="${repastVo.vocEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">SO2</label>
+                        <div class="layui-input-block">
+                            <input id="so2Emission" name="so2Emission" style="width: 170px;" th:value="${repastVo.so2Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">NOx</label>
+                        <div class="layui-input-block">
+                            <input id="noxEmission" name="noxEmission" style="width: 170px;" th:value="${repastVo.noxEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">NH3</label>
+                        <div class="layui-input-block" >
+                            <input id="nh3Emission" name="nh3Emission" style="width: 170px;" th:value="${repastVo.nh3Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">OC</label>
+                        <div class="layui-input-block">
+                            <input id="ocEmission" name="ocEmission" style="width: 170px;" th:value="${repastVo.ocEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:scatteredCoal:update">
+                <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                    <button class="layui-btn layui-btn-blue" lay-filter="edit" lay-submit="">保存提交</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                form.field._method = 'PUT';
+                var data = form.field;
+                var isCul=$('input[name="isCul"]:checked').is(':checked');
+                data.isCul=isCul;
+                $.post('/source/repast/repast/edit', data, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+
+            });
+        });
+    </script>
+</body>
+</html>

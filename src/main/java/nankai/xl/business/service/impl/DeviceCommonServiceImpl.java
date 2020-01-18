@@ -25,11 +25,6 @@ public class DeviceCommonServiceImpl implements DeviceCommonService {
     }
 
     @Override
-    public List<Device> getDevicesByExfId(Integer exfId) {
-        return deviceMapper.selectByExfId(exfId);
-    }
-
-    @Override
     public List<Device> getDevicesByFactoryId(Integer factoryId) {
         return deviceMapper.selectByFactoryId(factoryId);
     }

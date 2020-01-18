@@ -74,19 +74,13 @@
   </sql>
   <select id="selectByFactoryQuery" resultType="nankai.xl.business.model.vo.FactoryVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
     SELECT * FROM (
-      SELECT factory.factory_id,
-      factory.factory_no,
-      factory.factory_name,
-      factory.factory_latitude,
-      factory.factory_longitude,
-      factory.source_type,
-      factory.`year`,
-      factory.county_id,
+      SELECT factory.*,
       county.COUNTY_NAME,
       county.city_code,
       city.city_name,
-      factory.`status`,
-      `status`.introduction AS statusdec
+      `status`.introduction AS statusdec,
+      industry_big.industry_name AS industryBigName,
+      industry_small.industry_name AS industrySmallName
       FROM factory
       LEFT JOIN county
       ON factory.county_id=county.county_id
@@ -94,10 +88,17 @@
       ON county.city_code=city.city_code
       LEFT JOIN `status`
       ON factory.`status`=`status`.id
+      LEFT JOIN industry_big
+      ON factory.industry_bigid=industry_big.industry_code
+      LEFT JOIN industry_small
+      ON factory.industry_id=industry_small.industry_small AND factory.industry_bigid=industry_small.industry_big
     ) factory
     <where>
+      <if test="year != null and year != ''">
+        year = #{year}
+      </if>
       <if test="factoryId != null and factoryId != ''">
-        factory_id = #{factoryId}
+        AND factory_id = #{factoryId}
       </if>
       <if test="countyId != null and countyId != ''">
         AND county_id = #{countyId}

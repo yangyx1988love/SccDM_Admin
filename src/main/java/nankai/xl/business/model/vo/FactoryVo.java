@@ -11,6 +11,10 @@ public class FactoryVo extends Factory {
 
     private String registerCity;
 
+    private String industryBigName;
+
+    private String industrySmallName;
+
     private String statusdec;
 
     public String getCountyName() {
@@ -51,5 +55,21 @@ public class FactoryVo extends Factory {
 
     public void setStatusdec(String statusdec) {
         this.statusdec = statusdec;
+    }
+
+    public String getIndustryBigName() {
+        return industryBigName;
+    }
+
+    public void setIndustryBigName(String industryBigName) {
+        this.industryBigName = industryBigName;
+    }
+
+    public String getIndustrySmallName() {
+        return industrySmallName;
+    }
+
+    public void setIndustrySmallName(String industrySmallName) {
+        this.industrySmallName = industrySmallName;
     }
 }

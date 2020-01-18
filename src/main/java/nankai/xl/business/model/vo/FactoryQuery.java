@@ -13,6 +13,8 @@ public class FactoryQuery {
 
     private Integer status;
 
+    private String year;
+
     public Integer getFactoryId() {
         return factoryId;
     }
@@ -58,5 +60,13 @@ public class FactoryQuery {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }

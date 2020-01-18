@@ -19,6 +19,8 @@ public class Device {
 
     private String designUnit;
 
+    private Integer factoryId;
+
     public Integer getId() {
         return id;
     }
@@ -89,5 +91,13 @@ public class Device {
 
     public void setDesignUnit(String designUnit) {
         this.designUnit = designUnit == null ? null : designUnit.trim();
+    }
+
+    public Integer getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(Integer factoryId) {
+        this.factoryId = factoryId;
     }
 }

@@ -9,7 +9,6 @@ import java.util.List;
 public interface DeviceCommonService {
     //设备
     Device getDeviceById(Integer id);
-    List<Device> getDevicesByExfId(Integer exfId);
     List<Device> getDevicesByFactoryId(Integer factoryId);
     int updateDeviceById(Device device);
     //设备原料

@@ -6,10 +6,7 @@
     <result column="NK_NO" jdbcType="INTEGER" property="nkNo" />
     <result column="EXHUST_ID" jdbcType="INTEGER" property="exhustId" />
     <result column="version" jdbcType="VARCHAR" property="version" />
-    <result column="FUNCTION_DEC" jdbcType="VARCHAR" property="functionDec" />
     <result column="FUNCTIO" jdbcType="CHAR" property="functio" />
-    <result column="FUELTYPE_DEC" jdbcType="VARCHAR" property="fueltypeDec" />
-    <result column="MODEL_DEC" jdbcType="VARCHAR" property="modelDec" />
     <result column="MODEL" jdbcType="CHAR" property="model" />
     <result column="TONS" jdbcType="DOUBLE" property="tons" />
     <result column="FUELTYPE" jdbcType="CHAR" property="fueltype" />
@@ -36,9 +33,6 @@
     <result column="coal_volatilisation" jdbcType="DOUBLE" property="coalVolatilisation" />
     <result column="installed_capacity" jdbcType="DOUBLE" property="installedCapacity" />
     <result column="feiqiti" jdbcType="DOUBLE" property="feiqiti" />
-    <result column="so2out" jdbcType="DOUBLE" property="so2out" />
-    <result column="pmout" jdbcType="DOUBLE" property="pmout" />
-    <result column="noxout" jdbcType="DOUBLE" property="noxout" />
     <result column="Jan_useamount" jdbcType="DOUBLE" property="janUseamount" />
     <result column="Feb_useamount" jdbcType="DOUBLE" property="febUseamount" />
     <result column="Mar_useamount" jdbcType="DOUBLE" property="marUseamount" />
@@ -53,11 +47,11 @@
     <result column="dec_useamount" jdbcType="DOUBLE" property="decUseamount" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NK_NO, EXHUST_ID, version, FUNCTION_DEC, FUNCTIO, FUELTYPE_DEC, MODEL_DEC, MODEL,
+    ID, NK_NO, EXHUST_ID, version, FUNCTIO, MODEL,
     TONS, FUELTYPE, COALASH, COALSULFUR, COMBUSTIONSYSTEM, FUEL_AUSAGE, FUEL_AUSAGEUNIT,
     dustremove_id, sulphurremove_id, nitreremove_id, pm10, pm25, co, voc, pm, so2, nox,
-    nh3, oc, bc, scc, machine_no, coal_volatilisation, installed_capacity, feiqiti, so2out,
-    pmout, noxout, Jan_useamount, Feb_useamount, Mar_useamount, Apr_useamount, May_useamount,
+    nh3, oc, bc, scc, machine_no, coal_volatilisation, installed_capacity, feiqiti,
+     Jan_useamount, Feb_useamount, Mar_useamount, Apr_useamount, May_useamount,
     June_useamount, July_useamount, aug_useamount, sept_useamount, oct_use_amount, nov_useamount,
     dec_useamount
   </sql>
@@ -91,6 +85,65 @@
     INNER JOIN city
     ON county.city_code=city.city_code
     GROUP BY county.city_code
+  </select>
+  <select id="selectSum" resultType="nankai.xl.business.model.vo.BoilerSumVo" parameterType="nankai.xl.business.model.vo.FactorySumCommonQuery" >
+    SELECT * FROM(
+      SELECT  factory.`year`,factory.factory_name,factory.factory_no,factory.city_code,factory.county_id,factory.city_name,
+      factory.COUNTY_NAME,factory.`status`,factory.statusdec,factory.factory_id,
+      factory.EXF_MATERIAL,factory.SMOKE_OUTA,
+      scc.sccDec,
+      boiler.*,sulphurremove.sulphur_method AS sulphurremoveDec,dustremove.dust_remove_name AS dustremoveDec,
+      nitreremove.nitre_method AS nitreremoveDec
+      FROM boiler
+      LEFT JOIN sulphurremove
+      ON sulphurremove.id=boiler.sulphurremove_id
+      LEFT JOIN dustremove
+      ON dustremove.id=boiler.dustremove_id
+      LEFT JOIN nitreremove
+      ON nitreremove.id=boiler.nitreremove_id
+      LEFT JOIN (
+        SELECT CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3,scc_4.scc_4) AS sccCode,
+        CONCAT(scc_1.description,'/',scc_2.description,'/',scc_3.description,'/',scc_4.description) AS sccDec
+        FROM scc_4
+        LEFT JOIN scc_1
+        ON scc_4.scc_1=scc_1.scc_1
+        LEFT JOIN scc_2
+        ON scc_4.scc_1=scc_2.scc_1 AND scc_4.scc_2=scc_2.scc_2
+        LEFT JOIN scc_3
+        ON scc_4.scc_1=scc_3.scc_1 AND scc_4.scc_2=scc_3.scc_2 AND scc_4.scc_3=scc_3.scc_3
+      )scc
+      ON scc.sccCode=boiler.scc
+      LEFT JOIN (
+        SELECT factory.`year`,factory.factory_name,factory.factory_no,city.city_code,factory.county_id,city.city_name,
+        county.COUNTY_NAME,factory.`status`,status.introduction AS statusdec,factory.factory_id,
+        exhaust.EXF_MATERIAL,exhaust.SMOKE_OUTA,exhaust.EXF_ID
+        FROM exhaust
+        LEFT JOIN factory
+        ON factory.factory_id=exhaust.FACTORY_ID
+        LEFT JOIN county
+        ON factory.county_id=county.county_id
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+        LEFT JOIN `status`
+        ON factory.`status`=`status`.id
+      )factory
+      ON factory.EXF_ID=boiler.EXHUST_ID
+    )ss
+    <where>
+      <if test="year != null and year != ''">
+        year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND county_id = #{countyId}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND city_code = #{cityCode}
+      </if>
+      <if test="status != null and status != ''">
+        AND status = #{status}
+      </if>
+    </where>
+    ORDER BY FACTORY_ID,NK_NO ASC
   </select>
   <select id="countByCounty" resultType="nankai.xl.business.model.vo.SumVo">
     SELECT COUNT(ss.ID) AS value,CONCAT(city.city_name,'-',county.COUNTY_NAME) AS name FROM county

@@ -11,28 +11,19 @@
     <result column="practical_power" jdbcType="DOUBLE" property="practicalPower" />
     <result column="yearrun_days" jdbcType="INTEGER" property="yearrunDays" />
     <result column="design_unit" jdbcType="CHAR" property="designUnit" />
+    <result column="factory_id" jdbcType="INTEGER" property="factoryId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, nk_no, EXHUST_ID, name, device_flow, design_power, practical_power, yearrun_days,
-    design_unit
+    design_unit,factory_id
   </sql>
   <select id="selectById" resultType="nankai.xl.business.model.Device" parameterType="java.lang.Integer" >
     select * FROM device
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByExfId" resultType="nankai.xl.business.model.Device" parameterType="java.lang.Integer" >
-    select * FROM device
-    where EXHUST_ID = #{exhustId,jdbcType=INTEGER}
-  </select>
   <select id="selectByFactoryId" resultType="nankai.xl.business.model.Device" parameterType="java.lang.Integer">
-    SELECT * FROM (
-        SELECT device.*,factory.factory_id FROM device
-        INNER JOIN exhaust
-        ON device.EXHUST_ID=exhaust.EXF_ID
-        INNER JOIN factory
-        ON factory.factory_id=exhaust.FACTORY_ID
-    ) device
-    WHERE factory_id = #{factoryId,jdbcType=INTEGER}
+    select * FROM device
+    where factory_id = #{factoryId,jdbcType=INTEGER}
     ORDER BY NK_NO ASC
   </select>
   <update id="updateById" parameterType="nankai.xl.business.model.Device" >
