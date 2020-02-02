@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="UTF-8">
+    <title>无组织车间列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 we-search">
+                <th:block  th:include="common/sum-common-select::content" />
+            </form>
+        </div>
+        <div class="layui-row">
+            <table class="layui-hide" id="FNoOrganizationsTable"></table>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        layui.use(['table','form', 'element'], function () {
+            var table = layui.table //表格
+                ,form = layui.form //form表单
+                ,element = layui.element;
+            table.render({
+                elem: '#FNoOrganizationsTable'
+                , url: '/factoryAuth/sum/FNoOrganization/list'
+                , page: true
+                , toolbar: '#toolbar'
+                , cols: [
+                    [
+                        {field: 'year', title: '年份'}
+                        , {field: 'factoryNo', title: '工厂编号'}
+                        , {field: 'factoryName', title: '工厂名称'}
+                        , {field: 'cityName', title: '实际城市'}
+                        , {field: 'countyName', title: '实际区县'}
+                        , {field: 'statusdec', title: '审核状态'}
+                        , {field: 'wsid', title: '无组织车间ID'}
+                        , {field: 'workshopid', title: '无组织车间编号'}
+                        , {field: 'sccDec', title: '道路扬尘描述'}
+                        , {field: 'longitude', title: '经度'}
+                        , {field: 'latitude', title: '纬度'}
+                        , {field: 'productionUse', title: '车间用途'}
+                        , {field: 'workshopArea', title: '车间面积'}
+                        , {field: 'pm10Emission', title: 'PM10排放量(吨)'}
+                        , {field: 'pm25Emission', title: 'PM2.5排放量(吨)'}
+                        , {field: 'ocEmission', title: 'OC排放量(吨)'}
+                        , {field: 'ecEmission', title: 'EC排放量(吨)'}
+                        , {field: 'so2Emission', title: 'SO2排放量(吨)'}
+                        , {field: 'noxEmission', title: 'NOX排放量(吨)'}
+                        , {field: 'coEmission', title: 'CO排放量(吨)'}
+                        , {field: 'nh3Emission', title: 'NH3排放量(吨)'}
+                        , {field: 'vocsEmission', title: 'VOC排放量(吨)'}
+                    ]
+                ]
+                ,page: true   //开启分页
+                ,limit:50   //默认十条数据一页
+                ,limits:[50,100,200,500,1000,2000]  //数据分页条
+                ,id: 'FNoOrganizationTableReload'
+            });
+            //监听提交 lay-filter="search"
+            form.on('submit(search)', function(data){
+                var formData = data.field;
+                var countyId = formData.countyId,
+                    cityCode=formData.cityCode,
+                    year=formData.year
+                    status=formData.status
+                //执行重载
+                table.reload('FNoOrganizationTableReload',{
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {//这里传参  向后台
+                        countyId: countyId,
+                        cityCode: cityCode,
+                        status: status,
+                        year:year
+                    }
+                    , url: '/factoryAuth/sum/FNoOrganization/reload'//后台做模糊搜索接口路径
+                    , method: 'get'
+                });
+                return false;//false：阻止表单跳转  true：表单跳转
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

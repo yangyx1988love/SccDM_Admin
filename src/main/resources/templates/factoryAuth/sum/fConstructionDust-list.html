@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="UTF-8">
+    <title>施工列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 we-search">
+                <th:block  th:include="common/sum-common-select::content" />
+            </form>
+        </div>
+        <div class="layui-row">
+            <table class="layui-hide" id="fConstructionDustsTable"></table>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        layui.use(['table','form', 'element'], function () {
+            var table = layui.table //表格
+                ,form = layui.form //form表单
+                ,element = layui.element;
+            table.render({
+                elem: '#fConstructionDustsTable'
+                , url: '/factoryAuth/sum/fConstructionDust/list'
+                , page: true
+                , toolbar: '#toolbar'
+                , cols: [
+                    [
+                        {field: 'year', title: '年份'}
+                        , {field: 'factoryNo', title: '工厂编号'}
+                        , {field: 'factoryName', title: '工厂名称'}
+                        , {field: 'cityName', title: '实际城市'}
+                        , {field: 'countyName', title: '实际区县'}
+                        , {field: 'statusdec', title: '审核状态'}
+                        , {field: 'constructDustid', title: '施工扬尘编号ID'}
+                        , {field: 'sccDec', title: '施工扬尘描述'}
+                        , {field: 'longitude1', title: '拐点经度1'}
+                        , {field: 'latitude1', title: '拐点纬度1'}
+                        , {field: 'longitude2', title: '拐点经度2'}
+                        , {field: 'latitude2', title: '拐点纬度2'}
+                        , {field: 'longitude3', title: '拐点经度3'}
+                        , {field: 'latitude3', title: '拐点纬度3'}
+                        , {field: 'longitude4', title: '拐点经度4'}
+                        , {field: 'latitude4', title: '拐点纬度4'}
+                        , {field: 'constructionType', title: '建筑施工类型'}
+                        , {field: 'constructState', title: '建筑施工阶段'}
+                        , {field: 'constructArea', title: '施工规划面积'}
+                        , {field: 'nowkgarea', title: '施工开工面积'}
+                        , {field: 'startdate', title: '施工开始时间'}
+                        , {field: 'finishdate', title: '施工结束时间'}
+                        , {field: 'constructMonths', title: '年活跃月份'}
+                        , {field: 'controlMeasures', title: '控制措施'}
+                        , {field: 'pm25Emission', title: 'PM2.5排放量（吨）'}
+                        , {field: 'pm10Emission', title: 'PM10排放量（吨）'}
+                    ]
+                ]
+                ,page: true   //开启分页
+                ,limit:50   //默认十条数据一页
+                ,limits:[50,100,200,500,1000,2000]  //数据分页条
+                ,id: 'fConstructionDustTableReload'
+            });
+            //监听提交 lay-filter="search"
+            form.on('submit(search)', function(data){
+                var formData = data.field;
+                var countyId = formData.countyId,
+                    cityCode=formData.cityCode,
+                    year=formData.year
+                    status=formData.status
+                //执行重载
+                table.reload('fConstructionDustTableReload',{
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {//这里传参  向后台
+                        countyId: countyId,
+                        cityCode: cityCode,
+                        status: status,
+                        year:year
+                    }
+                    , url: '/factoryAuth/sum/fConstructionDust/reload'//后台做模糊搜索接口路径
+                    , method: 'get'
+                });
+                return false;//false：阻止表单跳转  true：表单跳转
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

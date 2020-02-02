@@ -52,7 +52,6 @@ public class ExhaustServiceImpl implements ExhaustService {
 
     @Override
     public List<ExhaustSumVo> getSumExhausts(Adminuser user, int page, int limit) {
-        PageHelper.startPage(page, limit);
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
         FactorySumCommonQuery factorySumCommonQuery=new FactorySumCommonQuery();
         if (dept.getDeptLevel()==2){

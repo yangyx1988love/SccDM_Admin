@@ -1,8 +1,13 @@
 package nankai.xl.business.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
+import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.DustService;
+import nankai.xl.system.mapper.DeptMapper;
+import nankai.xl.system.model.Adminuser;
+import nankai.xl.system.model.Dept;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,6 +15,12 @@ import java.util.List;
 
 @Service
 public class DustServiceImpl implements DustService {
+    @Resource
+    private DeptMapper deptMapper;
+    @Resource
+    private CityMapper cityMapper;
+    @Resource
+    private CountyMapper countyMapper;
     @Resource
     private FNoOrganizationWorkshopDischargeMapper fNoOrganizationWorkshopDischargeMapper;
     @Resource
@@ -37,6 +48,27 @@ public class DustServiceImpl implements DustService {
     }
 
     @Override
+    public List<FBareSoilDustSourceSumVo> getSumFBareSoilDustSources(FactorySumCommonQuery factorySumCommonQuery, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return fBareSoilDustSourceMapper.selectSum(factorySumCommonQuery);
+    }
+
+    @Override
+    public List<FBareSoilDustSourceSumVo> getSumFBareSoilDustSources(Adminuser user, int page, int limit) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactorySumCommonQuery factorySumCommonQuery=new FactorySumCommonQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factorySumCommonQuery.setCityCode(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factorySumCommonQuery.setCountyId(county.getCountyId());
+        }
+        return getSumFBareSoilDustSources(factorySumCommonQuery,page, limit);
+    }
+
+    @Override
     public int updateFBareById(FBareSoilDustSource fBareSoilDustSource) {
         return fBareSoilDustSourceMapper.updateById(fBareSoilDustSource);
     }
@@ -54,6 +86,27 @@ public class DustServiceImpl implements DustService {
     @Override
     public FConstructionDustSource getFConById(Integer constructDustid) {
         return fConstructionDustSourceMapper.selectById(constructDustid);
+    }
+
+    @Override
+    public List<FConstructionDustSourceSumVo> getSumFConstructionDustSources(FactorySumCommonQuery factorySumCommonQuery, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return fConstructionDustSourceMapper.selectSum(factorySumCommonQuery);
+    }
+
+    @Override
+    public List<FConstructionDustSourceSumVo> getSumFConstructionDustSources(Adminuser user, int page, int limit) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactorySumCommonQuery factorySumCommonQuery=new FactorySumCommonQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factorySumCommonQuery.setCityCode(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factorySumCommonQuery.setCountyId(county.getCountyId());
+        }
+        return getSumFConstructionDustSources(factorySumCommonQuery,page, limit);
     }
 
     @Override
@@ -77,6 +130,27 @@ public class DustServiceImpl implements DustService {
     }
 
     @Override
+    public List<FRoadDustSourceSumVo> getSumFRoadDustSources(FactorySumCommonQuery factorySumCommonQuery, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return fRoadDustSourceMapper.selectSum(factorySumCommonQuery);
+    }
+
+    @Override
+    public List<FRoadDustSourceSumVo> getSumFRoadDustSources(Adminuser user, int page, int limit) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactorySumCommonQuery factorySumCommonQuery=new FactorySumCommonQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factorySumCommonQuery.setCityCode(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factorySumCommonQuery.setCountyId(county.getCountyId());
+        }
+        return getSumFRoadDustSources(factorySumCommonQuery,page, limit);
+    }
+
+    @Override
     public int updateFRoadById(FRoadDustSource fRoadDustSource) {
         return fRoadDustSourceMapper.updateById(fRoadDustSource);
     }
@@ -97,6 +171,27 @@ public class DustServiceImpl implements DustService {
     }
 
     @Override
+    public List<FYardDustSourceSumVo> getSumFYardDustSources(FactorySumCommonQuery factorySumCommonQuery, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return fYardDustSourceMapper.selectSum(factorySumCommonQuery);
+    }
+
+    @Override
+    public List<FYardDustSourceSumVo> getSumFYardDustSources(Adminuser user, int page, int limit) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactorySumCommonQuery factorySumCommonQuery=new FactorySumCommonQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factorySumCommonQuery.setCityCode(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factorySumCommonQuery.setCountyId(county.getCountyId());
+        }
+        return getSumFYardDustSources(factorySumCommonQuery,page, limit);
+    }
+
+    @Override
     public int updateFYardById(FYardDustSource fYardDustSource) {
         return fYardDustSourceMapper.updateById(fYardDustSource);
     }
@@ -109,6 +204,27 @@ public class DustServiceImpl implements DustService {
     @Override
     public FNoOrganizationWorkshopDischarge getFnoOrgsById(Integer wsid) {
         return fNoOrganizationWorkshopDischargeMapper.selectById(wsid);
+    }
+
+    @Override
+    public List<FNoOrganizationWorkshopDischargeSumVo> getSumFNoOrganizations(FactorySumCommonQuery factorySumCommonQuery, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        return fNoOrganizationWorkshopDischargeMapper.selectSum(factorySumCommonQuery);
+    }
+
+    @Override
+    public List<FNoOrganizationWorkshopDischargeSumVo> getSumFNoOrganizations(Adminuser user, int page, int limit) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactorySumCommonQuery factorySumCommonQuery=new FactorySumCommonQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factorySumCommonQuery.setCityCode(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factorySumCommonQuery.setCountyId(county.getCountyId());
+        }
+        return getSumFNoOrganizations(factorySumCommonQuery,page, limit);
     }
 
     @Override

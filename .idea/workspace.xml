@@ -4,57 +4,105 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java" description="//通过scc重新计算" line="570" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="21a863a7-45e2-4408-b9bf-5ba9b383b90b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/BoilerSumVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustSumVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactorySumCommonQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/KilnSumVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/sum-common-select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/exhaust-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html" afterDir="false" />
+    <list default="true" id="21a863a7-45e2-4408-b9bf-5ba9b383b90b" name="Default Changelist" comment="数据导出，包括企业、排气筒、锅炉、窑炉">
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/DeviceProductSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/DeviceRawSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/DeviceSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FBareSoilDustSourceSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FConstructionDustSourceSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FNoOrganizationWorkshopDischargeSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FRoadDustSourceSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FYardDustSourceSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FeiqiSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/RongjiProductSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/RongjiRawSumVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/device-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/deviceProduct-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/deviceRaw-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fBareSoilDust-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fConstructionDust-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fNoOrganization-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fRoadDust-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fYardDust-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/feiqi-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/rongjiProduct-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/rongjiRaw-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/BoilerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/BoilerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ExhaustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ExhaustMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/KilnMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/KilnMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Device.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceRawMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceRawMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FBareSoilDustSourceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FBareSoilDustSourceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FConstructionDustSourceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FConstructionDustSourceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FNoOrganizationWorkshopDischargeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FNoOrganizationWorkshopDischargeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FRoadDustSourceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FRoadDustSourceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FYardDustSourceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FYardDustSourceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FeiqiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FeiqiMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RongjiProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RongjiProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RongjiRawMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RongjiRawMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SumVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SumVo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DeviceCommonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DeviceCommonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/ExhaustService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/ExhaustService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FurnaceCommonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FurnaceCommonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DisuseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DisuseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DustService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DustService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SolventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SolventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DeviceCommonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DeviceCommonServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DisuseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DisuseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DustServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DustServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/ExhaustServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/ExhaustServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FurnaceCommonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FurnaceCommonServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SolventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SolventServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BoilerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BoilerMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ExhaustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ExhaustMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceRawMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceRawMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FBareSoilDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FBareSoilDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FConstructionDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FConstructionDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FNoOrganizationWorkshopDischargeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FNoOrganizationWorkshopDischargeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FRoadDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FRoadDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FYardDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FYardDustSourceMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/KilnMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/KilnMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/common/city-select.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/common/city-select.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FeiqiMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FeiqiMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RongjiProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RongjiProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RongjiRawMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RongjiRawMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/exhaust-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/exhaust-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BoilerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BoilerMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/DeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ExhaustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ExhaustMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FactoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FactoryMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/KilnMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/KilnMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/BoilerMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/BoilerMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/DeviceProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/DeviceProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/DeviceRawMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/DeviceRawMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FBareSoilDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FBareSoilDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FConstructionDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FConstructionDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FNoOrganizationWorkshopDischargeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FNoOrganizationWorkshopDischargeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FRoadDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FRoadDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FYardDustSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FYardDustSourceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FeiqiMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FeiqiMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RongjiProductMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RongjiProductMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RongjiRawMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RongjiRawMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/DeviceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/DeviceMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ExhaustMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/ExhaustMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/KilnMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/KilnMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/Device.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/Device.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/DeviceProductMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/DeviceProductMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/DeviceRawMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/DeviceRawMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FBareSoilDustSourceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FBareSoilDustSourceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FConstructionDustSourceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FConstructionDustSourceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FNoOrganizationWorkshopDischargeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FNoOrganizationWorkshopDischargeMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FRoadDustSourceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FRoadDustSourceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FYardDustSourceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FYardDustSourceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FeiqiMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FeiqiMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/RongjiProductMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/RongjiProductMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/RongjiRawMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/RongjiRawMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/FactoryQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/FactoryQuery.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/DeviceCommonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/DeviceCommonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/ExhaustService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/ExhaustService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/FurnaceCommonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/FurnaceCommonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/DisuseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/DisuseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/DustService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/DustService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SolventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SolventService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/DeviceCommonServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/DeviceCommonServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/DisuseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/DisuseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/DustServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/DustServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/ExhaustServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/ExhaustServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FurnaceCommonServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FurnaceCommonServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SolventServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SolventServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -91,60 +139,49 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="123" column="43" lean-forward="true" selection-start-line="123" selection-start-column="43" selection-end-line="123" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/common/sum-common-select.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="9" selection-start-line="9" selection-end-line="13" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="97" column="38" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="72" column="86" selection-start-line="72" selection-start-column="86" selection-end-line="72" selection-end-column="86" />
+            <state relative-caret-position="-94">
+              <caret line="48" column="60" lean-forward="true" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryQuery.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/welcome.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-              <folding>
-                <element signature="e#1317#1318#0" expanded="true" />
-                <element signature="e#1357#1358#0" expanded="true" />
-                <element signature="e#1389#1390#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="100">
+              <caret line="27" column="101" selection-start-line="27" selection-start-column="101" selection-end-line="27" selection-end-column="101" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ExhaustMapper.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info-sum.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="46" selection-start-line="46" selection-end-line="48" selection-end-column="11" />
+            <state relative-caret-position="-5346" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="104" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SumVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+              <folding>
+                <element signature="e#622#623#0" expanded="true" />
+                <element signature="e#662#663#0" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,26 +189,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="100" column="12" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
+            <state relative-caret-position="176">
+              <caret line="189" column="100" selection-start-line="189" selection-start-column="100" selection-end-line="189" selection-end-column="100" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="330">
+              <caret line="88" column="82" selection-start-line="88" selection-start-column="82" selection-end-line="88" selection-end-column="82" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryQuery.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="38" />
+            <state relative-caret-position="286">
+              <caret line="13" column="26" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -188,26 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>factoryNo</find>
-      <find>countyCity</find>
-      <find>countyidRegister</find>
-      <find>countyName</find>
-      <find>style=&quot;width: 240px;&quot;</find>
-      <find>class=&quot;layui-input-block&quot;</find>
-      <find>燃料</find>
-      <find>style=&quot;width: 22%&quot;</find>
-      <find>fei</find>
-      <find>class=&quot;layui-input&quot;</find>
-      <find>margin-left: 10px;</find>
-      <find>class=&quot;layui-inline&quot;</find>
-      <find>class=&quot;layui-form-label&quot;</find>
-      <find>170</find>
-      <find>废弃物</find>
-      <find>产品</find>
-      <find>原料</find>
-      <find>totalUse</find>
-      <find>lay-filter=&quot;totalUseM&quot;</find>
-      <find>style=&quot;width: 170px;&quot;</find>
       <find>style=&quot;margin-left: 30px; width: 450px;&quot;</find>
       <find>sourceType</find>
       <find>furnace</find>
@@ -215,34 +232,31 @@
       <find>getFYardsByFactoryId</find>
       <find>skip</find>
       <find>排气筒</find>
-      <find>exhaust</find>
+      <find>kiln</find>
       <find>锅炉</find>
       <find>boiler</find>
+      <find>原料</find>
+      <find>deviceRaw</find>
+      <find>设备</find>
+      <find>device</find>
+      <find>Rongji</find>
+      <find>FeiqiRaw</find>
+      <find>exhaust</find>
+      <find>rongjiProduct</find>
+      <find>溶剂原料</find>
+      <find>废弃</find>
+      <find>feiqi</find>
+      <find>fBareSoilDust</find>
+      <find>裸土</find>
+      <find>施工</find>
+      <find>fConstructionDust</find>
+      <find>道路</find>
+      <find>fRoadDust</find>
+      <find>堆场</find>
+      <find>燃料</find>
+      <find>使用量</find>
     </findStrings>
     <replaceStrings>
-      <replace>agricultureMachinery</replace>
-      <replace>airplane</replace>
-      <replace>nonroadMachinery</replace>
-      <replace>item</replace>
-      <replace>railwayEngine</replace>
-      <replace>smallMachinery</replace>
-      <replace>repast</replace>
-      <replace>repastFamily</replace>
-      <replace>repastBarbecue</replace>
-      <replace>!checkRatio</replace>
-      <replace>sourceService</replace>
-      <replace>cityCode</replace>
-      <replace>class=&quot;layui-input-block&quot; style=&quot;width: 240px;&quot;</replace>
-      <replace>class=&quot;layui-input&quot; style=&quot;width: 240px;&quot;</replace>
-      <replace>style=&quot;width: 350px;&quot;</replace>
-      <replace>class=&quot;layui-input&quot;</replace>
-      <replace>原料</replace>
-      <replace>class=&quot;layui-form-label&quot; style=&quot;width: 110px&quot;</replace>
-      <replace>class=&quot;layui-input&quot;  style=&quot;width: 240px;&quot;</replace>
-      <replace>class=&quot;layui-inline&quot; style=&quot;width: 350px&quot;</replace>
-      <replace>class=&quot;layui-inline&quot; style=&quot;width: 350px;&quot;</replace>
-      <replace>class=&quot;layui-form-label&quot; style=&quot;width: 110px;&quot;</replace>
-      <replace>240</replace>
       <replace>class=&quot;layui-input&quot; style=&quot;width: 240px&quot;</replace>
       <replace>totalUseM</replace>
       <replace>onchange=&quot;checkMonthUse(this)&quot;</replace>
@@ -250,6 +264,29 @@
       <replace>boiler</replace>
       <replace>窑炉</replace>
       <replace>kiln</replace>
+      <replace>设备</replace>
+      <replace>device</replace>
+      <replace>设备原料</replace>
+      <replace>deviceRaw</replace>
+      <replace>产品</replace>
+      <replace>deviceProduct</replace>
+      <replace>溶剂</replace>
+      <replace>rongji</replace>
+      <replace>Feiqi</replace>
+      <replace>rongjiProduct</replace>
+      <replace>rongjiRaw</replace>
+      <replace>废弃</replace>
+      <replace>裸土</replace>
+      <replace>fBareSoilDust</replace>
+      <replace>fConstructionDust</replace>
+      <replace>施工</replace>
+      <replace>fRoadDust</replace>
+      <replace>道路</replace>
+      <replace>堆场</replace>
+      <replace>fYardDust</replace>
+      <replace>无组织车间</replace>
+      <replace>处理量</replace>
+      <replace>生产量</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -260,57 +297,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/dust/factory-Info-dust.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/device/factory-Info-process.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info-sum.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/factory/data_factory.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/source/data_source.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/myEcharts.js" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SelectCommonServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SelectCommonService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/IndustrySmallMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SelectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/IndustrySmallMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/base/factory-Info-base.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Factory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/CsvUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-dev.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-list.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Device.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DeviceCommonServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DeviceCommonService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ExhaustMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/ExhaustService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactorySumCommonQuery.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustVoBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustSumVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/ExhaustServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/BoilerMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/BoilerSumVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/KilnVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FurnaceCommonService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/KilnMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FurnaceCommonServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/RongjiProductMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RongjiProductMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SolventService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SolventServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/feiqiVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FeiqiVo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FeiqiMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/RongjiRawMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FeiqiMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DisuseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DisuseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FeiqiSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/RongjiProductSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/RongjiRawSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FRoadDustSourceSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FYardDustSourceSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FBareSoilDustSourceSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FConstructionDustSourceSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FNoOrganizationWorkshopDischargeSumVo.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FRoadDustSourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FYardDustSourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FBareSoilDustSourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FConstructionDustSourceMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FNoOrganizationWorkshopDischargeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FBareSoilDustSourceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FConstructionDustSourceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FNoOrganizationWorkshopDischargeMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FRoadDustSourceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FYardDustSourceMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DustService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DustServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/common/sum-common-select.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/common/city-select.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/BoilerMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/ExhaustMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/KilnMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/device-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/deviceProduct-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/deviceRaw-list.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/exhaust-list.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fBareSoilDust-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/feiqi-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/rongjiProduct-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/rongjiRaw-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fNoOrganization-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fRoadDust-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fYardDust-list.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fConstructionDust-list.html" />
+        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SumVo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryQuery.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/welcome.html" />
       </list>
     </option>
   </component>
@@ -331,8 +368,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="585" />
-    <option name="y" value="277" />
+    <option name="x" value="1870" />
+    <option name="y" value="220" />
     <option name="width" value="2880" />
     <option name="height" value="1545" />
   </component>
@@ -342,6 +379,44 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
+              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
+              <item name="templates" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -399,45 +474,86 @@
               <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="vo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
             <path>
-              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="factoryAuth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
-              <item name="templates" type="1f31426a:PackageElementNode" />
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nankai" type="462c0819:PsiDirectoryNode" />
+              <item name="xl" type="462c0819:PsiDirectoryNode" />
+              <item name="business" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -454,7 +570,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/common" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sql" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -472,12 +588,12 @@
     <property name="show.run.dashboard.notification" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\mapper\business" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\noOrg" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\sum" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\common" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\java\nankai\xl\business\mapper" />
       <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\exhaust" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\base" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="nankai.xl.business.model.vo" />
@@ -486,12 +602,12 @@
       <recent name="nankai.xl.business.service.impl" />
       <recent name="nankai.xl.business.service" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\common" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\sum" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\java\nankai\xl\business\mapper" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\mapper\business" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\noOrg" />
       <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\exhaust" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\base" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -858,7 +974,16 @@
       <workItem from="1579153520660" duration="3708000" />
       <workItem from="1579173112025" duration="881000" />
       <workItem from="1579255819368" duration="59000" />
-      <workItem from="1579329529014" duration="23921000" />
+      <workItem from="1579329529014" duration="28367000" />
+      <workItem from="1579367072002" duration="19000" />
+      <workItem from="1579669818011" duration="125000" />
+      <workItem from="1579749323919" duration="6488000" />
+      <workItem from="1580184719324" duration="2768000" />
+      <workItem from="1580359439246" duration="12000" />
+      <workItem from="1580388225365" duration="2323000" />
+      <workItem from="1580454735915" duration="689000" />
+      <workItem from="1580573160330" duration="6153000" />
+      <workItem from="1580624565806" duration="6121000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1566356085749</created>
@@ -986,11 +1111,18 @@
       <option name="project" value="LOCAL" />
       <updated>1574326254972</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="数据导出，包括企业、排气筒、锅炉、窑炉">
+      <created>1579364249547</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1579364249547</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1623493000" />
+    <option name="totallyTimeSpent" value="1652637000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1005,7 +1137,7 @@
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5261669" visible="true" weight="0.229069" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5261669" weight="0.25720027" />
       <window_info id="Structure" order="1" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1022,7 +1154,7 @@
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49919093" weight="0.56577086" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.4996651" weight="0.6393211" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.8373409" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.7793494" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5008091" side_tool="true" weight="0.5681293" />
       <window_info anchor="bottom" id="Problems" order="11" weight="0.3281471" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3592645" />
@@ -1043,7 +1175,7 @@
       <window_info anchor="right" id="Maven" order="11" weight="0.32953784" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5261669" visible="true" weight="0.229069" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5261669" visible="true" weight="0.25720027" />
       <window_info id="Structure" order="1" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1060,7 +1192,7 @@
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49919093" weight="0.56577086" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.4996651" weight="0.6393211" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.5558699" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49564636" weight="0.7793494" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5008091" side_tool="true" weight="0.5681293" />
       <window_info anchor="bottom" id="Problems" order="11" weight="0.3281471" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3592645" />
@@ -1102,7 +1234,8 @@
     <MESSAGE value="修订数据库，完成与新版数据库的对接" />
     <MESSAGE value="增加企业审核中企业情况概览" />
     <MESSAGE value="修改行业小分类，将表industry换为industry_small" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改行业小分类，将表industry换为industry_small" />
+    <MESSAGE value="数据导出，包括企业、排气筒、锅炉、窑炉" />
+    <option name="LAST_COMMIT_MESSAGE" value="数据导出，包括企业、排气筒、锅炉、窑炉" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1130,12 +1263,6 @@
           <line>1446</line>
           <properties />
           <option name="timeStamp" value="100" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java</url>
-          <line>99</line>
-          <properties />
-          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1177,441 +1304,366 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DeviceCommonServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FNoOrganizationWorkshopDischargeSumVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="1386">
+          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DeviceCommonService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FConstructionDustSourceSumVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        <state relative-caret-position="610">
+          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/DeviceMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FYardDustSourceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="148">
+          <caret line="60" column="85" selection-start-line="60" selection-start-column="65" selection-end-line="60" selection-end-column="85" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/Scc1Mapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FBareSoilDustSourceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/Scc2Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="61" column="37" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="37" />
+        <state relative-caret-position="280">
+          <caret line="29" column="89" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="89" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/IndustrySmallMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FConstructionDustSourceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        <state relative-caret-position="368">
+          <caret line="94" column="39" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DataAnalysisController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FNoOrganizationWorkshopDischargeMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="113" column="69" selection-start-line="113" selection-start-column="47" selection-end-line="113" selection-end-column="69" />
+        <state relative-caret-position="434">
+          <caret line="81" column="33" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/IndustryBigMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FRoadDustSourceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="96" column="11" lean-forward="true" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="11" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FeiqiMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/IndustrySmall.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FBareSoilDustSourceMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="176">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="90" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/IndustryBig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FConstructionDustSourceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FNoOrganizationWorkshopDischargeMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="32" />
+          <caret line="12" column="103" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FRoadDustSourceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FYardDustSourceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="13" column="62" lean-forward="true" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DisuseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" selection-start-line="14" selection-end-line="15" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1436">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DustServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2664">
+          <caret line="226" column="37" selection-start-line="226" selection-start-column="37" selection-end-line="226" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/DisuseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="52" selection-start-line="52" selection-end-line="62" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/DustService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9460">
+          <caret line="455" column="35" selection-start-line="455" selection-start-column="18" selection-end-line="455" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="31" selection-start-line="31" selection-end-line="67" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/fixed/coal-add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4532">
+          <caret line="206" column="28" selection-start-line="206" selection-start-column="23" selection-end-line="206" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#2;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#2;n#div#2;n#div#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#shiro:hasPermission#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-add.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/FNoOrganizationWorkshopDischarge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="96" column="59" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/device-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/deviceProduct-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="86" column="59" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/deviceRaw-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="86" column="59" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/exhaust-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="105" column="54" selection-start-line="105" selection-start-column="54" selection-end-line="105" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/feiqi-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="75" column="59" selection-start-line="75" selection-start-column="59" selection-end-line="75" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="89" column="59" selection-start-line="89" selection-start-column="59" selection-end-line="89" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/rongjiProduct-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="72" column="59" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/rongjiRaw-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="76" column="59" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/FRoadDustSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" selection-start-line="9" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/FYardDustSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" selection-start-line="11" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fConstructionDust-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="59" column="62" selection-start-line="59" selection-start-column="62" selection-end-line="59" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fBareSoilDust-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="59" column="59" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/FConstructionDustSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="33" selection-start-line="33" selection-end-line="47" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fNoOrganization-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="54" column="56" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fRoadDust-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/fYardDust-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="52" selection-start-line="52" selection-end-line="59" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryVo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="35" lean-forward="true" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1084">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SumVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
           <folding>
-            <element signature="e#1205#1206#0" expanded="true" />
-            <element signature="e#1243#1244#0" expanded="true" />
-            <element signature="e#1305#1306#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
-            <element signature="e#1403#1404#0" expanded="true" />
-            <element signature="e#1443#1444#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-            <element signature="e#1567#1568#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FactoryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactorySumCommon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustVoBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/SccMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="42" column="39" lean-forward="true" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="224" column="53" selection-start-line="224" selection-start-column="43" selection-end-line="224" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ExhaustSumVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" selection-start-line="5" selection-end-line="94" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Exhaust.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" selection-start-line="7" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/ExhaustService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="13" selection-start-line="13" selection-end-line="14" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/ExhaustServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="60" column="9" lean-forward="true" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/ExhaustMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.0.6.RELEASE/spring-boot-autoconfigure-2.0.6.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="484" column="44" selection-start-line="484" selection-start-column="44" selection-end-line="484" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/KilnSumVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="164" column="5" selection-start-line="164" selection-start-column="5" selection-end-line="164" selection-end-column="5" />
-          <folding>
-            <element signature="e#2050#2051#0" expanded="true" />
-            <element signature="e#2082#2083#0" expanded="true" />
-            <element signature="e#2133#2134#0" expanded="true" />
-            <element signature="e#2175#2176#0" expanded="true" />
-            <element signature="e#2213#2214#0" expanded="true" />
-            <element signature="e#2247#2248#0" expanded="true" />
-            <element signature="e#2301#2302#0" expanded="true" />
-            <element signature="e#2347#2348#0" expanded="true" />
-            <element signature="e#2383#2384#0" expanded="true" />
-            <element signature="e#2415#2416#0" expanded="true" />
-            <element signature="e#2465#2466#0" expanded="true" />
-            <element signature="e#2507#2508#0" expanded="true" />
-            <element signature="e#2540#2541#0" expanded="true" />
-            <element signature="e#2569#2570#0" expanded="true" />
-            <element signature="e#2613#2614#0" expanded="true" />
-            <element signature="e#2649#2650#0" expanded="true" />
-            <element signature="e#2692#2693#0" expanded="true" />
-            <element signature="e#2731#2732#0" expanded="true" />
-            <element signature="e#2795#2796#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
-            <element signature="e#2891#2892#0" expanded="true" />
-            <element signature="e#2927#2928#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
-            <element signature="e#3035#3036#0" expanded="true" />
-            <element signature="e#3076#3077#0" expanded="true" />
-            <element signature="e#3113#3114#0" expanded="true" />
-            <element signature="e#3173#3174#0" expanded="true" />
-            <element signature="e#3225#3226#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/BoilerSumVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2084">
-          <caret line="164" column="5" lean-forward="true" selection-start-line="5" selection-end-line="164" selection-end-column="5" />
-          <folding>
-            <element signature="e#1946#1947#0" expanded="true" />
-            <element signature="e#1978#1979#0" expanded="true" />
-            <element signature="e#2029#2030#0" expanded="true" />
-            <element signature="e#2071#2072#0" expanded="true" />
-            <element signature="e#2109#2110#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
-            <element signature="e#2197#2198#0" expanded="true" />
-            <element signature="e#2243#2244#0" expanded="true" />
-            <element signature="e#2279#2280#0" expanded="true" />
-            <element signature="e#2311#2312#0" expanded="true" />
-            <element signature="e#2361#2362#0" expanded="true" />
-            <element signature="e#2403#2404#0" expanded="true" />
-            <element signature="e#2436#2437#0" expanded="true" />
-            <element signature="e#2465#2466#0" expanded="true" />
-            <element signature="e#2509#2510#0" expanded="true" />
-            <element signature="e#2545#2546#0" expanded="true" />
-            <element signature="e#2705#2706#0" expanded="true" />
-            <element signature="e#2744#2745#0" expanded="true" />
-            <element signature="e#2808#2809#0" expanded="true" />
-            <element signature="e#2864#2865#0" expanded="true" />
-            <element signature="e#2904#2905#0" expanded="true" />
-            <element signature="e#2940#2941#0" expanded="true" />
-            <element signature="e#2998#2999#0" expanded="true" />
-            <element signature="e#3048#3049#0" expanded="true" />
-            <element signature="e#3089#3090#0" expanded="true" />
-            <element signature="e#3126#3127#0" expanded="true" />
-            <element signature="e#3186#3187#0" expanded="true" />
-            <element signature="e#3238#3239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FurnaceCommonService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/BoilerMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FurnaceCommonServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="109" column="68" lean-forward="true" selection-start-line="109" selection-start-column="68" selection-end-line="109" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/KilnMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="15" column="18" lean-forward="true" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactorySumCommonQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding>
-            <element signature="e#376#377#0" expanded="true" />
-            <element signature="e#403#404#0" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/BiomassBoilerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="48" selection-start-line="48" selection-end-line="50" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/BoilerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="132" selection-start-line="132" selection-end-line="137" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/DeviceMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-182">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/KilnMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="121" column="11" selection-start-line="121" selection-start-column="11" selection-end-line="121" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/common/city-select.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/exhaust-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="71" column="38" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/kiln-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="97" column="38" selection-start-line="97" selection-start-column="38" selection-end-line="97" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/common/sum-common-select.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="9" selection-start-line="9" selection-end-line="13" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/factory-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="123" column="43" lean-forward="true" selection-start-line="123" selection-start-column="43" selection-end-line="123" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/ExhaustMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="46" selection-start-line="46" selection-end-line="48" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="100" column="12" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactorySumController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="72" column="86" selection-start-line="72" selection-start-column="86" selection-end-line="72" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Factory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="24" />
+          <caret line="88" column="82" selection-start-line="88" selection-start-column="82" selection-end-line="88" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/FactoryQuery.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
-          <folding>
-            <element signature="e#1317#1318#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1389#1390#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="286">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="189" column="100" selection-start-line="189" selection-start-column="100" selection-end-line="189" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-94">
+          <caret line="48" column="60" lean-forward="true" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info-sum.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5346" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="27" column="101" selection-start-line="27" selection-start-column="101" selection-end-line="27" selection-end-column="101" />
         </state>
       </provider>
     </entry>

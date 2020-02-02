@@ -61,6 +61,56 @@
       WHERE factory.factory_id=#{factoryId,jdbcType=INTEGER}
       ORDER BY device_product.nk_no ASC
   </select>
+  <select id="selectSum" resultType="nankai.xl.business.model.vo.DeviceProductSumVo" parameterType="nankai.xl.business.model.vo.FactorySumCommonQuery" >
+    SELECT * FROM (
+      SELECT  factory.`year`,factory.factory_name,factory.factory_no,factory.city_code,factory.county_id,factory.city_name,
+      factory.COUNTY_NAME,factory.`status`,factory.statusdec,
+      device.factory_id,device.id AS deviceId,device.`name` AS deviceName,device.device_flow,device.yearrun_days,device.practical_power,device.design_unit,
+      device_product.*,scc.sccDec
+      FROM device_product
+      LEFT JOIN device
+      ON device.id=device_product.device_id
+      LEFT JOIN (
+        SELECT CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3,scc_4.scc_4) AS sccCode,
+        CONCAT(scc_1.description,'/',scc_2.description,'/',scc_3.description,'/',scc_4.description) AS sccDec
+        FROM scc_4
+        LEFT JOIN scc_1
+        ON scc_4.scc_1=scc_1.scc_1
+        LEFT JOIN scc_2
+        ON scc_4.scc_1=scc_2.scc_1 AND scc_4.scc_2=scc_2.scc_2
+        LEFT JOIN scc_3
+        ON scc_4.scc_1=scc_3.scc_1 AND scc_4.scc_2=scc_3.scc_2 AND scc_4.scc_3=scc_3.scc_3
+      )scc
+      ON scc.sccCode=device_product.scc_code
+      LEFT JOIN (
+        SELECT factory.factory_id,factory.`year`,factory.factory_name,factory.factory_no,city.city_code,factory.county_id,city.city_name,
+        county.COUNTY_NAME,factory.`status`,status.introduction AS statusdec
+        FROM factory
+        LEFT JOIN county
+        ON factory.county_id=county.county_id
+        LEFT JOIN city
+        ON county.city_code=city.city_code
+        LEFT JOIN `status`
+        ON factory.`status`=`status`.id
+      )factory
+      ON factory.factory_id=device.factory_id
+    )ss
+    <where>
+      <if test="year != null and year != ''">
+        year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND county_id = #{countyId}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND city_code = #{cityCode}
+      </if>
+      <if test="status != null and status != ''">
+        AND status = #{status}
+      </if>
+    </where>
+    ORDER BY FACTORY_ID,NK_NO ASC
+  </select>
   <update id="updateById" parameterType="nankai.xl.business.model.DeviceProduct" >
     update device_product
     <set>
