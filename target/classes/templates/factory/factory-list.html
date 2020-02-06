@@ -19,13 +19,20 @@
     <div class="z-body animated fadeIn">
         <div class="layui-row">
             <form class="layui-form layui-col-md12 we-search">
-                <div class="layui-input-inline">
-                    <select id="cityCode" name="cityCode" lay-filter="cityCode">
-                        <option value="">请选择实际城市</option>
-                        <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
-                        </option>
-                    </select>
+                <div class="layui-input-inline layui-col-md1">
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
+                    </div>
                 </div>
+                <shiro:hasPermission name="factoryAuth:citySel">
+                    <div class="layui-input-inline">
+                        <select id="cityCode" name="cityCode" lay-filter="cityCode">
+                            <option value="">请选择实际城市</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </shiro:hasPermission>
                 <div class="layui-input-inline">
                     <select id="countyId" name="countyId" lay-filter="countyId">
                         <option value="">请选择实际区县</option>
@@ -34,10 +41,10 @@
                     </select>
                 </div>
                 <div class="layui-inline">
-                    <input type="text" id="factoryNo1" name="factoryNo1" placeholder="工厂编号"  lay-verify="" class="layui-input">
+                    <input type="text" id="factoryNo" name="factoryNo" placeholder="工厂编号"  lay-verify="" class="layui-input">
                 </div>
                 <div class="layui-inline">
-                    <input id="factoryName" name="factoryName" type="text" class="layui-input" placeholder="工厂名称" autocomplete="off" lay-verify="chinese">
+                    <input type="text" id="factoryName" name="factoryName" placeholder="工厂名称"  lay-verify="chinese" class="layui-input">
                 </div>
                 <button  id="selectFactorys" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">
                     <i class="layui-icon">&#xe615;</i></button>
@@ -137,9 +144,9 @@
             table.on('toolbar', function (obj) {
                 var data = obj.data;
                 var event = obj.event;
-
                 if (event === 'add') {
                     add();
+                    table.reload();
                 }
             });
             function add() {
@@ -152,7 +159,6 @@
                     shadeClose: true,
                     end: function () {
                         $(".layui-laypage-btn")[0].click()
-                        table.reload('factoryTableReload');
                     }
                 });
             }

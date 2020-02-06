@@ -187,7 +187,12 @@
     from factory where factory_no = #{factoryNo}
   </select>
   <select id="countNonAthu" resultType="nankai.xl.business.model.vo.SumVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
-    SELECT COUNT(factory.factory_id) AS value,`status`.introduction AS name FROM factory
+    SELECT COUNT(factory.factory_id) AS value,`status`.introduction AS name,factory.`status` AS code
+    FROM factory
+    LEFT JOIN county
+    ON factory.county_id=county.county_id
+    LEFT JOIN city
+    ON county.city_code=city.city_code
     INNER JOIN status
     ON factory.`status`=`status`.id
     <where>
@@ -195,7 +200,7 @@
         factory.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
-        AND factory.county_city = #{cityCode}
+        AND county.city_code= #{cityCode}
       </if>
       <if test="status != null and status != ''">
         AND factory.status &lt; #{status}
@@ -205,6 +210,10 @@
   </select>
   <select id="countByIndustryBig" resultType="nankai.xl.business.model.vo.SumVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
     SELECT COUNT(*) AS value,industry_big.industry_name AS name FROM factory
+    LEFT JOIN county
+    ON factory.county_id=county.county_id
+    LEFT JOIN city
+    ON county.city_code=city.city_code
     INNER JOIN industry_big
     ON industry_big.industry_code=factory.industry_bigid
     <where>
@@ -212,7 +221,7 @@
         factory.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
-        AND factory.county_city = #{cityCode}
+        AND county.city_code = #{cityCode}
       </if>
     </where>
     GROUP BY factory.industry_bigid
@@ -234,6 +243,9 @@
     GROUP BY county.COUNTY_ID
     ORDER BY city.city_code
   </select>
+  <delete id="delFactory" parameterType="java.lang.Integer" statementType="CALLABLE">
+		{call del_factory(#{factoryid,mode=IN})}
+  </delete>
   <update id="updatePassByFactoryNO" parameterType="nankai.xl.business.model.User" >
     update user
     set password = #{password,jdbcType=VARCHAR}
@@ -241,6 +253,367 @@
   </update>
   <insert id="insertSelective"  parameterType="nankai.xl.business.model.Factory" >
     insert into factory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="factoryId != null">
+        factory_id,
+      </if>
+      <if test="factoryNo != null">
+        factory_no,
+      </if>
+      <if test="legalperson != null">
+        legalperson,
+      </if>
+      <if test="factoryName != null">
+        factory_name,
+      </if>
+      <if test="factoryUsedname != null">
+        factory_usedname,
+      </if>
+      <if test="factorySize != null">
+        factory_size,
+      </if>
+      <if test="countyId != null">
+        county_id,
+      </if>
+      <if test="industryBigid != null">
+        industry_bigid,
+      </if>
+      <if test="industryId != null">
+        industry_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="powerAmount != null">
+        power_amount,
+      </if>
+      <if test="addressRegister != null">
+        address_register,
+      </if>
+      <if test="countyidRegister != null">
+        countyid_register,
+      </if>
+      <if test="factoryLongitude != null">
+        factory_longitude,
+      </if>
+      <if test="factoryLatitude != null">
+        factory_latitude,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="lastChangedTime != null">
+        last_changed_time,
+      </if>
+      <if test="auditTime != null">
+        audit_time,
+      </if>
+      <if test="fillingTime != null">
+        filling_time,
+      </if>
+      <if test="yearDays != null">
+        Year_days,
+      </if>
+      <if test="daysHours != null">
+        Days_hours,
+      </if>
+      <if test="totalOutput != null">
+        total_output,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="principalName != null">
+        principal_name,
+      </if>
+      <if test="principalPhone != null">
+        principal_phone,
+      </if>
+      <if test="principalMobile != null">
+        principal_mobile,
+      </if>
+      <if test="principalEmail != null">
+        principal_email,
+      </if>
+      <if test="lat1 != null">
+        lat1,
+      </if>
+      <if test="lon1 != null">
+        lon1,
+      </if>
+      <if test="lat2 != null">
+        lat2,
+      </if>
+      <if test="lon2 != null">
+        lon2,
+      </if>
+      <if test="lat3 != null">
+        lat3,
+      </if>
+      <if test="lon3 != null">
+        lon3,
+      </if>
+      <if test="lat4 != null">
+        lat4,
+      </if>
+      <if test="lon4 != null">
+        lon4,
+      </if>
+      <if test="lat5 != null">
+        lat5,
+      </if>
+      <if test="lon5 != null">
+        lon5,
+      </if>
+      <if test="lat6 != null">
+        lat6,
+      </if>
+      <if test="lon6 != null">
+        lon6,
+      </if>
+      <if test="lat7 != null">
+        lat7,
+      </if>
+      <if test="lon7 != null">
+        lon7,
+      </if>
+      <if test="exhaustCount != null">
+        exhaust_count,
+      </if>
+      <if test="boilerCount != null">
+        boiler_count,
+      </if>
+      <if test="kilnCount != null">
+        kiln_count,
+      </if>
+      <if test="deviceCount != null">
+        device_count,
+      </if>
+      <if test="deviceProductCount != null">
+        device_product_count,
+      </if>
+      <if test="deviceRawCount != null">
+        device_raw_count,
+      </if>
+      <if test="rongjiProductCount != null">
+        rongji_product_count,
+      </if>
+      <if test="rongjiRawCount != null">
+        rongji_raw_count,
+      </if>
+      <if test="feiqiCount != null">
+        feiqi_count,
+      </if>
+      <if test="soilDustCount != null">
+        soil_dust_count,
+      </if>
+      <if test="conDustCount != null">
+        con_dust_count,
+      </if>
+      <if test="roadDustCount != null">
+        road_dust_count,
+      </if>
+      <if test="yardDustCount != null">
+        yard_dust_count,
+      </if>
+      <if test="noOrgWorkCount != null">
+        no_org_work_count,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="important != null">
+        important,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="factoryId != null">
+        #{factoryId,jdbcType=INTEGER},
+      </if>
+      <if test="factoryNo != null">
+        #{factoryNo,jdbcType=CHAR},
+      </if>
+      <if test="legalperson != null">
+        #{legalperson,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryName != null">
+        #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryUsedname != null">
+        #{factoryUsedname,jdbcType=VARCHAR},
+      </if>
+      <if test="factorySize != null">
+        #{factorySize,jdbcType=VARCHAR},
+      </if>
+      <if test="countyId != null">
+        #{countyId,jdbcType=CHAR},
+      </if>
+      <if test="industryBigid != null">
+        #{industryBigid,jdbcType=CHAR},
+      </if>
+      <if test="industryId != null">
+        #{industryId,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=CHAR},
+      </if>
+      <if test="powerAmount != null">
+        #{powerAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="addressRegister != null">
+        #{addressRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="countyidRegister != null">
+        #{countyidRegister,jdbcType=CHAR},
+      </if>
+      <if test="factoryLongitude != null">
+        #{factoryLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="factoryLatitude != null">
+        #{factoryLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=CHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="lastChangedTime != null">
+        #{lastChangedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null">
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fillingTime != null">
+        #{fillingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yearDays != null">
+        #{yearDays,jdbcType=INTEGER},
+      </if>
+      <if test="daysHours != null">
+        #{daysHours,jdbcType=INTEGER},
+      </if>
+      <if test="totalOutput != null">
+        #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="principalName != null">
+        #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhone != null">
+        #{principalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="principalMobile != null">
+        #{principalMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="principalEmail != null">
+        #{principalEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="lat1 != null">
+        #{lat1,jdbcType=DOUBLE},
+      </if>
+      <if test="lon1 != null">
+        #{lon1,jdbcType=DOUBLE},
+      </if>
+      <if test="lat2 != null">
+        #{lat2,jdbcType=DOUBLE},
+      </if>
+      <if test="lon2 != null">
+        #{lon2,jdbcType=DOUBLE},
+      </if>
+      <if test="lat3 != null">
+        #{lat3,jdbcType=DOUBLE},
+      </if>
+      <if test="lon3 != null">
+        #{lon3,jdbcType=DOUBLE},
+      </if>
+      <if test="lat4 != null">
+        #{lat4,jdbcType=DOUBLE},
+      </if>
+      <if test="lon4 != null">
+        #{lon4,jdbcType=DOUBLE},
+      </if>
+      <if test="lat5 != null">
+        #{lat5,jdbcType=DOUBLE},
+      </if>
+      <if test="lon5 != null">
+        #{lon5,jdbcType=DOUBLE},
+      </if>
+      <if test="lat6 != null">
+        #{lat6,jdbcType=DOUBLE},
+      </if>
+      <if test="lon6 != null">
+        #{lon6,jdbcType=DOUBLE},
+      </if>
+      <if test="lat7 != null">
+        #{lat7,jdbcType=DOUBLE},
+      </if>
+      <if test="lon7 != null">
+        #{lon7,jdbcType=DOUBLE},
+      </if>
+      <if test="exhaustCount != null">
+        #{exhaustCount,jdbcType=INTEGER},
+      </if>
+      <if test="boilerCount != null">
+        #{boilerCount,jdbcType=INTEGER},
+      </if>
+      <if test="kilnCount != null">
+        #{kilnCount,jdbcType=INTEGER},
+      </if>
+      <if test="deviceCount != null">
+        #{deviceCount,jdbcType=INTEGER},
+      </if>
+      <if test="deviceProductCount != null">
+        #{deviceProductCount,jdbcType=INTEGER},
+      </if>
+      <if test="deviceRawCount != null">
+        #{deviceRawCount,jdbcType=INTEGER},
+      </if>
+      <if test="rongjiProductCount != null">
+        #{rongjiProductCount,jdbcType=INTEGER},
+      </if>
+      <if test="rongjiRawCount != null">
+        #{rongjiRawCount,jdbcType=INTEGER},
+      </if>
+      <if test="feiqiCount != null">
+        #{feiqiCount,jdbcType=INTEGER},
+      </if>
+      <if test="soilDustCount != null">
+        #{soilDustCount,jdbcType=INTEGER},
+      </if>
+      <if test="conDustCount != null">
+        #{conDustCount,jdbcType=INTEGER},
+      </if>
+      <if test="roadDustCount != null">
+        #{roadDustCount,jdbcType=INTEGER},
+      </if>
+      <if test="yardDustCount != null">
+        #{yardDustCount,jdbcType=INTEGER},
+      </if>
+      <if test="noOrgWorkCount != null">
+        #{noOrgWorkCount,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=BIT},
+      </if>
+      <if test="important != null">
+        #{important,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertOrUpdate"  parameterType="nankai.xl.business.model.Factory" >
+    insert ignore INTO factory
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="factoryId != null">
         factory_id,
@@ -780,4 +1153,20 @@
     </set>
     where factory_id = #{factoryId,jdbcType=INTEGER}
   </update>
+  <insert id="insertOrUpdateList" parameterType="java.util.List" useGeneratedKeys="true">
+    INSERT IGNORE INTO factory (factory_no, year,factory_name,county_id,address,address_register,factory_longitude,factory_latitude)
+    VALUES
+    <foreach collection="list" item="item" separator=",">
+      <trim prefix="(" suffix=")">
+        factory_no = #{item.factoryNo,jdbcType=CHAR},
+        year = #{item.year,jdbcType=CHAR},
+        factory_name = #{item.factoryName,jdbcType=VARCHAR},
+        county_id = #{item.countyId,jdbcType=CHAR},
+        address = #{item.address,jdbcType=CHAR},
+        address_register = #{item.addressRegister,jdbcType=VARCHAR},
+        factory_longitude = #{item.factoryLongitude,jdbcType=DOUBLE},
+        factory_latitude = #{item.factoryLatitude,jdbcType=DOUBLE}
+      </trim>
+    </foreach>
+  </insert>
 </mapper>

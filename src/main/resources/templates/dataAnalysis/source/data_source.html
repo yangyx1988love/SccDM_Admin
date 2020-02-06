@@ -17,7 +17,7 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-header"><h3>固体燃烧源：煤（吨）、液化石油气、天然气（立方米）</h3></div>
+                        <div class="layui-card-header"><h3>锅炉、窑炉燃料使用量统计：煤（吨）、液化石油气、天然气（立方米）</h3></div>
                         <div class="layui-card-body" >
                             <div class="layui-carousel" id="carousel_1" >
                                 <div carousel-item="" >
@@ -28,31 +28,14 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-header"><h3>污染源排放区域信息及排放特征</h3></div>
-                        <div class="layui-card-body" >
-                            <div class="layui-carousel" id="carousel_2" >
-                                <div carousel-item="" >
-                                    <div id="pieRadarDiv" style="height: 560px"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 <!--            <div class="layui-row layui-col-space15">-->
 <!--                <div class="layui-col-md12">-->
 <!--                    <div class="layui-card">-->
-<!--                        <div class="layui-card-header"><h3>企业锅炉、窑炉数据</h3></div>-->
+<!--                        <div class="layui-card-header"><h3>污染源排放区域信息及排放特征</h3></div>-->
 <!--                        <div class="layui-card-body" >-->
 <!--                            <div class="layui-carousel" id="carousel_2" >-->
 <!--                                <div carousel-item="" >-->
-<!--&lt;!&ndash;                                    <div id="StackAreaDiv" style="height: 560px"></div>&ndash;&gt;-->
-
-
-<!--                                    &lt;!&ndash;                                        <div id="sunburstDiv" style="height: 560px"></div>&ndash;&gt;-->
+<!--                                    <div id="pieRadarDiv" style="height: 560px"></div>-->
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </div>-->
@@ -101,34 +84,36 @@
                 , interval: 5000
             });
             var parentWith = $('#chartsDiv').width();
-            var legendData=['化石','工艺', '联盟广告','视频广告','搜索引擎']
-            var radarIndicator=[
-                { text: 'PM25' },
-                { text: 'PM10' },
-                { text: '指标三' },
-                { text: '指标四' },
-                { text: '指标五' }
-            ]
-            var radarSeriesData=[
-                {
-                    value: [100, 8, 0.40, -80, 20000],
-                    name: '化石'
-                },
-                {
-                    value: [60, 5, 0.30, -100, 15000],
-                    name: '工艺'
-                }
-            ]
-            var pieSeriesData=[
-                {value:335, name:'化石'},
-                {value:310, name:'工艺'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1548, name:'搜索引擎'}
-            ]
-            layui.$("#pieRadarDiv").css("width", (parentWith - 50) + 'px');
-            var myChartPieRadar= echarts.init(document.getElementById('pieRadarDiv'));
-            initPieRadar(myChartPieRadar,legendData,radarIndicator,radarSeriesData,pieSeriesData,'污染源活动水平','污染源排放详情')
+
+
+            // var legendData=['化石','工艺', '联盟广告','视频广告','搜索引擎']
+            // var radarIndicator=[
+            //     { text: 'PM25' },
+            //     { text: 'PM10' },
+            //     { text: '指标三' },
+            //     { text: '指标四' },
+            //     { text: '指标五' }
+            // ]
+            // var radarSeriesData=[
+            //     {
+            //         value: [100, 8, 0.40, -80, 20000],
+            //         name: '化石'
+            //     },
+            //     {
+            //         value: [60, 5, 0.30, -100, 15000],
+            //         name: '工艺'
+            //     }
+            // ]
+            // var pieSeriesData=[
+            //     {value:335, name:'化石'},
+            //     {value:310, name:'工艺'},
+            //     {value:234, name:'联盟广告'},
+            //     {value:135, name:'视频广告'},
+            //     {value:1548, name:'搜索引擎'}
+            // ]
+            // layui.$("#pieRadarDiv").css("width", (parentWith - 50) + 'px');
+            // var myChartPieRadar= echarts.init(document.getElementById('pieRadarDiv'));
+            // initPieRadar(myChartPieRadar,legendData,radarIndicator,radarSeriesData,pieSeriesData,'污染源活动水平','污染源排放详情')
             // var sourceData=[
             //     ['product', '新疆', '2013', '2014', '2015'],
             //         ['天然气', 41.1, 30.4, 65.1, 53.3],

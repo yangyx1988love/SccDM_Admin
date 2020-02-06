@@ -24,7 +24,7 @@
             <h4 class="layui-colla-title"><span th:text="${kilnVo.nkNo}"></span>号窑炉信息</h4>
             <input type="hidden" id="id" name="id"  th:value="${kilnVo.id}">
             <div class="layui-colla-content layui-show" >
-                <iframe th:src="@{/factoryAuth/kiln(factoryId=${factoryId},id=${kilnVo.id})}" class="layui-iframe" height="1100px" width="100%" frameborder="0" ></iframe>
+                <iframe th:src="@{/factoryAuth/kiln(factoryId=${factoryId},id=${kilnVo.id})}" class="layui-iframe" height="900px" width="100%" frameborder="0" ></iframe>
             </div>
         </div>
     </div>

@@ -155,20 +155,20 @@ layui.define(["element", "layer"], function (exports) {
 
 
     // layui 导航互斥效果 (手风琴).
-    // $("div.layui-side-scroll .layui-nav-item").click(function() {
-    //     var flag = false;
-    //     if ($(this).hasClass("layui-nav-itemed")) {
-    //         flag = true;
-    //     }
-    //     $("div.layui-side-scroll .layui-nav-item").removeClass("layui-nav-itemed").removeClass("layui-this");
-    //     if($(this).has("dl").length){//如果有子菜单，显示下拉样式
-    //         if (flag) {
-    //             $(this).addClass("layui-nav-itemed");
-    //         }
-    //     }else{//如果没有子菜单，显示菜单项样式
-    //         $(this).addClass("layui-this");
-    //     }
-    // });
+    $("div.layui-side-scroll .layui-nav-item").click(function() {
+        var flag = false;
+        if ($(this).hasClass("layui-nav-itemed")) {
+            flag = true;
+        }
+        $("div.layui-side-scroll .layui-nav-item").removeClass("layui-nav-itemed").removeClass("layui-this");
+        if($(this).has("dl").length){//如果有子菜单，显示下拉样式
+            if (flag) {
+                $(this).addClass("layui-nav-itemed");
+            }
+        }else{//如果没有子菜单，显示菜单项样式
+            $(this).addClass("layui-this");
+        }
+    });
 
     // 页面加载完后, 打开存储的标签卡.
     $(document).ready(function() {

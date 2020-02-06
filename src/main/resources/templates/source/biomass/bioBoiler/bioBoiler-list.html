@@ -103,7 +103,7 @@
         function edit(obj) {
             var data = obj.data;
             var url = '/source/biomass/bioBoiler/' + data.id;
-            openTab('编辑-生物质锅炉',url);
+            openTab('编辑-生物质锅炉',url, data.id);
         }
         function add(obj) {
             var url = '/source/biomass/bioBoiler/add';

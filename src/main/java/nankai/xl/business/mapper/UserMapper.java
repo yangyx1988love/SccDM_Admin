@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     int insertSelective(User user);
     User selectByFactoryId(Integer factoryId);
+    int insertOrUpdate(User user);
 }

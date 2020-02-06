@@ -18,6 +18,11 @@
     <div class="z-body animated fadeIn">
         <div class="layui-row">
             <form class="layui-form layui-col-md12 we-search">
+                <div class="layui-input-inline layui-col-md1">
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
+                    </div>
+                </div>
                 <shiro:hasPermission name="factoryAuth:citySel">
                     <div class="layui-input-inline">
                         <select id="cityCode" name="cityCode" lay-filter="cityCode">
@@ -35,7 +40,7 @@
                     </select>
                 </div>
                 <div class="layui-inline">
-                    <input type="text" id="factoryNo1" name="factoryNo1" placeholder="工厂编号"  lay-verify="" class="layui-input">
+                    <input type="text" id="factoryNo" name="factoryNo" placeholder="工厂编号"  lay-verify="" class="layui-input">
                 </div>
                 <div class="layui-inline">
                     <input type="text" id="factoryName" name="factoryName" placeholder="工厂名称"  lay-verify="chinese" class="layui-input">
@@ -64,10 +69,16 @@
         <shiro:hasPermission name="factoryAuth:authAll">
             <a class="layui-btn layui-btn-blue" lay-event="authAll"><i class="layui-icon">&#xe6b2;</i>一键审核</a>
         </shiro:hasPermission>
+        <shiro:hasPermission name="factoryAuth:authAll">
+            <a class="layui-btn layui-btn-danger" lay-event="delAll"><i class="layui-icon">&#xe640;</i>一键删除</a>
+        </shiro:hasPermission>
     </script>
     <script type="text/html" id="column-toolbar">
         <shiro:hasPermission name="factoryAuth:update">
             <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon">&#xe6b2;</i></a>
+        </shiro:hasPermission>
+        <shiro:hasPermission name="factoryAuth:update">
+            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
         </shiro:hasPermission>
     </script>
 
@@ -92,7 +103,7 @@
                         , {field: 'factoryLatitude', title: '工厂维度'}
                         , {field: 'sourceType', title: '污染源类型'}
                         , {field: 'year', title: '年份'}
-                        , {field: 'statusdec', title: '审核状态', width: "15%"}
+                        , {field: 'statusdec', title: '审核状态', width: "20%"}
                         , {title: '操作', fixed: 'right', align: 'center', toolbar: '#column-toolbar'}
                     ]
                 ]
@@ -133,14 +144,22 @@
                 if (event === 'edit') {
                     var url = '/factoryAuth/' + data.factoryId + "/edit";
                     openTab('企业审核',url);
-                    // var content = ' <div class="layui-tab-item layui-show">' +
-                    //     '<iframe class="layui-iframe" src="' + url + '"></iframe></div>';
-                    // parent.layui.element.tabAdd('lay-tab',{
-                    //     title:'企业审核',
-                    //     content: content,
-                    //     id:'factoryAuthTab'
-                    // });
-                    // parent.layui.element.tabChange('lay-tab','factoryAuthTab');
+                    table.reload('factoryTableReload');
+                }
+                if (event === 'del') {
+                    layer.confirm('您确定删除该企业吗？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(index){
+                        $.post('/factoryAuth/' + data.factoryId + "/del", function (result) {
+                            handlerResult(result, function (data) {
+                                layer.msg("删除成功！",{icon: 6, time:1000});
+                                table.reload('factoryTableReload');
+                            });
+                        });
+                    }, function(index){
+                        layer.close(index);
+                    });
+                    return false;
                 }
             });
             // 工具条点击事件
@@ -149,6 +168,9 @@
                 var event = obj.event;
                 if (event === 'authAll') {
                     authAll();
+                }
+                if (event === 'delAll') {
+                    delAll();
                 }
             });
 
@@ -175,8 +197,35 @@
                     }
                 );
             }
+            function delAll() {
+                var checkStatus = table.checkStatus('factoryTableReload');
+                var ids = [];
+                $(checkStatus.data).each(function (i, o) {
+                    ids.push(o.factoryId);
+                });
+                if (ids.length < 1) {
+                    layer.msg('无选中项');
+                    return false;
+                }
+                //alert(ids);
+                ids = ids.join(",");
+                layer.confirm("确定要将选中企业删除吗?", {icon: 3, title: '提示'},
+                    function (index) {//确定回调
+                        $.post("/factoryAuth/delAll",{ids:ids}, function (data) {
+                            layer.close(index);
+                            handlerResult(data, delAllDone);
+                        });
+                    }, function (index) {//取消回调
+                        layer.close(index);
+                    }
+                );
+            }
             function authAllDone(data) {
                 parent.layer.msg("审核通过！", {icon: 6});
+                table.reload('factoryTableReload');
+            }
+            function delAllDone(data) {
+                parent.layer.msg("删除成功！", {icon: 6});
                 table.reload('factoryTableReload');
             }
         });

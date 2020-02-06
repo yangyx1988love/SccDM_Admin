@@ -2,6 +2,7 @@ package nankai.xl.business.service.impl;
 
 import nankai.xl.business.mapper.*;
 import nankai.xl.business.model.*;
+import nankai.xl.business.model.vo.FactoryQuery;
 import nankai.xl.business.model.vo.SccVo;
 import nankai.xl.business.service.FileService;
 import nankai.xl.common.exception.DuplicateNameException;
@@ -107,6 +108,10 @@ public class FileServiceImpl implements FileService {
     private RepastFamilyMapper repastFamilyMapper;
     @Resource
     private RepastBarbecueMapper repastBarbecueMapper;
+    @Resource
+    private FactoryMapper factoryMapper;
+    @Resource
+    private UserMapper userMapper;
 
     private int integerNum=8;
 
@@ -185,6 +190,41 @@ public class FileServiceImpl implements FileService {
         }
         return num;
     }
+
+    @Override
+    public int importTempleFileToFactory(FactoryQuery factoryQuery, List<String[]> list) {
+        int i=0;
+        for (i=0;i<list.size();i++)   {
+            String[] strs=list.get(i);
+            if (!NumberUtil.isLongitude(strs[4],integerNum)){
+                throw new NullPointerException("第"+(i+1)+"行经度错误，请填写正确的经纬度范围,且在0^18位！");
+            }
+            if (!NumberUtil.isLatitude(strs[5],integerNum)){
+                throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
+            }
+        }
+        List<Factory> factoryList=new ArrayList<>();
+        for (String[] strs:list) {
+            Factory factory=new Factory();
+            factory.setYear(factoryQuery.getYear());
+            factory.setCountyId(factoryQuery.getCountyId());
+            factory.setFactoryNo(strs[0]);
+            factory.setFactoryName(strs[1]);
+            factory.setAddress(strs[2]);
+            factory.setAddressRegister(strs[3]);
+            factory.setFactoryLongitude(Double.parseDouble(strs[4]));
+            factory.setFactoryLatitude(Double.parseDouble(strs[5]));
+            factoryList.add(factory);
+            factoryMapper.insertOrUpdate(factory);
+            User user=new User();
+            user.setPassword("123456");
+            user.setFacNo(strs[0]);
+            userMapper.insertOrUpdate(user);
+        }
+        //factoryMapper.insertOrUpdateList(factoryList);
+        return i;
+    }
+
     public String getSccDescribe(String sccCode){
         if (!NumberUtil.isNumeric(sccCode,16)){
             return null;

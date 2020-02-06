@@ -78,7 +78,6 @@ function openTab(title, url) {
         url: url
     });
 }
-
 /**
  * 公共打开小窗
  */

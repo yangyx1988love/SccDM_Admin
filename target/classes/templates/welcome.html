@@ -15,7 +15,7 @@
     <div class="z-body animated fadeIn" id="parentDiv">
         <blockquote class="layui-elem-quote">欢迎：
             <span><shiro:principal property="username"/></span>！当前时间: [[${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}]]</blockquote>
-        <fieldset class="layui-elem-field">
+        <fieldset class="layui-elem-field" th:if="${nonAuthFactorys.size() > 0}">
             <legend>待审核企业</legend>
             <div class="layui-field-box">
                 <div class="layui-col-md12">
@@ -40,7 +40,8 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="layui-elem-field">
+        <fieldset class="layui-elem-field" th:if="${fixedSourceNum+processSourceNum+solventSourceNum+dustSourceNum+transportSourceNum
+        +farmSourceNum+biomassSourceNum+roadSourceNum+nonRoadSourceNum+repastSourceNum > 0}">
             <legend>源数据统计</legend>
             <div class="layui-field-box">
                 <div class="layui-col-md12">
@@ -49,7 +50,7 @@
                             <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 200px;">
                                 <div carousel-item="">
                                     <ul class="layui-row layui-col-space10 layui-this">
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${fixedSourceNum > 0}">
                                             <a href="#" onclick="openTab('固体燃烧源', '/source/fixed/coal')" class="x-admin-backlog-body">
                                                 <h3>固体燃烧源</h3>
                                                 <p>
@@ -57,7 +58,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${processSourceNum > 0}">
                                             <a href="#" onclick="openTab('工艺过程源', '/source/process/shGas')" class="x-admin-backlog-body">
                                                 <h3>工艺过程源</h3>
                                                 <p>
@@ -65,7 +66,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${solventSourceNum > 0}">
                                             <a href="#" onclick="openTab('溶剂使用源', '/source/solvent/dry')" class="x-admin-backlog-body">
                                                 <h3>溶剂使用源</h3>
                                                 <p>
@@ -73,7 +74,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${dustSourceNum > 0}">
                                             <a href="#" onclick="openTab('扬尘源', '/source/dust/soilDust')" class="x-admin-backlog-body">
                                                 <h3>扬尘源</h3>
                                                 <p>
@@ -81,7 +82,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${transportSourceNum > 0}">
                                             <a href="#" onclick="openTab('存储与运输源', '/source/transport/tank')" class="x-admin-backlog-body">
                                                 <h3>存储与运输源</h3>
                                                 <p>
@@ -89,7 +90,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${farmSourceNum > 0}">
                                             <a href="#" onclick="openTab('农牧源', 'source/farm/pesticide')" class="x-admin-backlog-body">
                                                 <h3>农牧源</h3>
                                                 <p>
@@ -97,7 +98,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${biomassSourceNum > 0}">
                                             <a href="#" onclick="openTab('生物质燃烧源', 'source/biomass/bioBoiler')" class="x-admin-backlog-body">
                                                 <h3>生物质燃烧源</h3>
                                                 <p>
@@ -105,7 +106,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${roadSourceNum > 0}">
                                             <a href="#" onclick="openTab('道路移动源', 'source/road/roadMove')" class="x-admin-backlog-body">
                                                 <h3>道路移动源</h3>
                                                 <p>
@@ -113,7 +114,7 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${nonRoadSourceNum > 0}">
                                             <a href="#" onclick="openTab('非道路移动源', 'source/nonRoad/agriculture')" class="x-admin-backlog-body">
                                                 <h3>非道路移动源</h3>
                                                 <p>
@@ -121,9 +122,9 @@
                                                 </p>
                                             </a>
                                         </li>
-                                        <li class="layui-col-xs2">
+                                        <li class="layui-col-xs2" th:if="${repastSourceNum > 0}">
                                             <a href="#" onclick="openTab('其他源', 'source/repast/repast')" class="x-admin-backlog-body">
-                                                <h3>其他源</h3>
+                                                <h3>餐饮源</h3>
                                                 <p>
                                                     <cite th:text="${repastSourceNum}"></cite>
                                                 </p>
@@ -204,7 +205,7 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset class="layui-elem-field">
+        <fieldset class="layui-elem-field" th:if="${nonAuthFactorys.size() > 0}">
             <legend>填报企业数据图表</legend>
             <div class="layui-field-box">
                 <div class="layui-carousel" id="carousel_1" >

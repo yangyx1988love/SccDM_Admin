@@ -21,6 +21,8 @@ public interface FactoryMapper {
     int updatePassByFactoryNO(User user);
     int insertSelective(Factory factory);
     int updateByFactoryId(Factory factory);
+    int insertOrUpdate(Factory factory);
+    int insertOrUpdateList(List<Factory> list);
     /**
      * 统计已经有几个此用户名, 用来检测用户名是否重复.
      */
@@ -30,5 +32,7 @@ public interface FactoryMapper {
 
     List<SumVo> countByCity();
     List<SumVo> countByCounty();
+
+    int delFactory(Integer factoryId);
 
 }

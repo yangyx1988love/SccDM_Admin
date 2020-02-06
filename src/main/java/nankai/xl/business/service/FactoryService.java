@@ -20,6 +20,7 @@ public interface FactoryService {
     public void updateUserPassword(String factoryNo1, String password);
     public String addFactoryUser(Factory factory, User user);
     public boolean updateByFactoryId(Factory factory);
+    public int delFactroy(Integer factoryId);
     //企业用户
     User getUserByFactoryId(Integer factoryId);
     public boolean auditFactory(Integer[] factoryIds);

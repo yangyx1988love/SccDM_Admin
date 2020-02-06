@@ -135,7 +135,7 @@
             <div class="layui-input-block" style="width: 240px">
                 <select id="dustremoveId" name="dustremoveId" th:field="*{kiln.dustremoveid}" >
                     <option value="">请选择</option>
-                    <option th:each="dustremove : ${dustremoves}" th:value="${dustremove.dustRemoveId}" th:text="${dustremove.dustRemoveName}">
+                    <option th:each="dustremove : ${dustremoves}" th:value="${dustremove.id}" th:text="${dustremove.dustRemoveName}">
                     </option>
                 </select>
             </div>

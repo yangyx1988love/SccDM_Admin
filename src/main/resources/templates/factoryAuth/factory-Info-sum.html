@@ -17,9 +17,9 @@
         </fieldset>
 
         <blockquote class="layui-elem-quote">
-            排气筒总数：<span th:text="${exhausts.size()}"></span>
+            排气筒总数：<span th:text="${factoryMessSumVo.getExhausts().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${exhausts.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getExhausts().size() > 0}">
             <thead>
             <tr>
                 <th>排气筒编号</th>
@@ -34,7 +34,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="exhaust:${exhausts}">
+            <tr th:each="exhaust:${factoryMessSumVo.getExhausts()}">
                 <td th:text="${exhaust?.nkNo}"></td>
                 <td th:text="${exhaust?.exfMaterial}"></td>
                 <td th:text="${exhaust?.exfHeight}"></td>
@@ -48,9 +48,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            锅炉总数：<span th:text="${boilers.size()}"></span>
+            锅炉总数：<span th:text="${factoryMessSumVo.getBoilers().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${boilers.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getBoilers().size() > 0}">
             <thead>
             <tr>
                 <th>锅炉编号</th>
@@ -65,7 +65,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="boiler:${boilers}">
+            <tr th:each="boiler:${factoryMessSumVo.getBoilers()}">
                 <td th:text="${boiler?.nkNo}"></td>
                 <td th:text="${boiler?.exhustId}"></td>
                 <td th:text="${boiler?.tons}"></td>
@@ -79,9 +79,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            窑炉总数：<span th:text="${kilns.size()}"></span>
+            窑炉总数：<span th:text="${factoryMessSumVo.getKilns().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${kilns.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getKilns().size() > 0}">
             <thead>
             <tr>
                 <th>窑炉编号</th>
@@ -94,7 +94,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="kiln:${kilns}">
+            <tr th:each="kiln:${factoryMessSumVo.getKilns()}">
                 <td th:text="${kiln?.nkNo}"></td>
                 <td th:text="${kiln?.exhustId}"></td>
                 <td th:text="${kiln?.kilnFuelAusage}"></td>
@@ -106,9 +106,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            工艺过程-设备总数：<span th:text="${devices.size()}"></span>
+            工艺过程-设备总数：<span th:text="${factoryMessSumVo.getDevices().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${devices.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getDevices().size() > 0}">
             <thead>
             <tr>
                 <th>生产装置名称</th>
@@ -122,7 +122,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="device:${devices}">
+            <tr th:each="device:${factoryMessSumVo.getDevices()}">
                 <td th:text="${device?.name}"></td>
                 <td th:text="${device?.nkNo}"></td>
                 <td th:text="${device?.exhustId}"></td>
@@ -135,9 +135,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            工艺过程-原料总数：<span th:text="${deviceRaws.size()}"></span>
+            工艺过程-原料总数：<span th:text="${factoryMessSumVo.getDeviceRaws().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${deviceRaws.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getDeviceRaws().size() > 0}">
             <thead>
             <tr>
                 <th>设备编号</th>
@@ -150,7 +150,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="deviceRaw:${deviceRaws}">
+            <tr th:each="deviceRaw:${factoryMessSumVo.getDeviceRaws()}">
                 <td th:text="${deviceRaw?.deviceId}"></td>
                 <td th:text="${deviceRaw?.gasNo}"></td>
                 <td th:text="${deviceRaw?.gasPre}"></td>
@@ -162,9 +162,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            工艺过程-产品总数：<span th:text="${deviceProducts.size()}"></span>
+            工艺过程-产品总数：<span th:text="${factoryMessSumVo.getDeviceProducts().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${deviceProducts.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getDeviceProducts().size() > 0}">
             <thead>
             <tr>
                 <th>设备编号</th>
@@ -174,7 +174,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="deviceProduct:${deviceProducts}">
+            <tr th:each="deviceProduct:${factoryMessSumVo.getDeviceProducts()}">
                 <td th:text="${deviceProduct?.deviceId}"></td>
                 <td th:text="${deviceProduct?.annualOutput}"></td>
                 <td th:text="${deviceProduct?.name}"></td>
@@ -183,9 +183,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            溶剂使用-原料总数：<span th:text="${rongjiRaws.size()}"></span>
+            溶剂使用-原料总数：<span th:text="${factoryMessSumVo.getRongjiRaws().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${rongjiRaws.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getRongjiRaws().size() > 0}">
             <thead>
             <tr>
                 <th>集气设施编号</th>
@@ -199,7 +199,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="rongjiRaw:${rongjiRaws}">
+            <tr th:each="rongjiRaw:${factoryMessSumVo.getRongjiRaws()}">
                 <td th:text="${rongjiRaw?.gasNo}"></td>
                 <td th:text="${rongjiRaw?.treatNo}"></td>
                 <td th:text="${rongjiRaw?.mname}"></td>
@@ -212,9 +212,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            溶剂使用-产品总数：<span th:text="${rongjiProducts.size()}"></span>
+            溶剂使用-产品总数：<span th:text="${factoryMessSumVo.getRongjiProducts().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${rongjiProducts.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getRongjiProducts().size() > 0}">
             <thead>
             <tr>
                 <th>产品年总产量</th>
@@ -223,7 +223,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="rongjiProduct:${rongjiProducts}">
+            <tr th:each="rongjiProduct:${factoryMessSumVo.getRongjiProducts()}">
                 <td th:text="${rongjiProduct?.annualOutput}"></td>
                 <td th:text="${rongjiProduct?.uint}"></td>
                 <td th:text="${rongjiProduct?.name}"></td>
@@ -231,9 +231,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            废弃设备总数：<span th:text="${feiqis.size()}"></span>
+            废弃设备总数：<span th:text="${factoryMessSumVo.getFeiqis().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${feiqis.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getFeiqis().size() > 0}">
             <thead>
             <tr>
                 <th>处理工艺/设施名称</th>
@@ -243,7 +243,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="feiqi:${feiqis}">
+            <tr th:each="feiqi:${factoryMessSumVo.getFeiqis()}">
                 <td th:text="${feiqi?.deviceName}"></td>
                 <td th:text="${feiqi?.lon1}"></td>
                 <td th:text="${feiqi?.lat1}"></td>
@@ -252,9 +252,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            无组织扬尘排放-施工扬尘源：<span th:text="${fCons.size()}"></span>
+            无组织扬尘排放-施工扬尘源：<span th:text="${factoryMessSumVo.getfConstructionDustSources().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${fCons.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfConstructionDustSources().size() > 0}">
             <thead>
             <tr>
                 <th>施工类型</th>
@@ -265,7 +265,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="fCon:${fCons}">
+            <tr th:each="fCon:${factoryMessSumVo.getfConstructionDustSources()}">
                 <td th:text="${fCon?.constructionType}"></td>
                 <td th:text="${fCon?.constructState}"></td>
                 <td th:text="${fCon?.constructArea}"></td>
@@ -275,9 +275,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            无组织扬尘排放-堆场扬尘源：<span th:text="${fYards.size()}"></span>
+            无组织扬尘排放-堆场扬尘源：<span th:text="${factoryMessSumVo.getfYardDustSources().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${fYards.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfYardDustSources().size() > 0}">
             <thead>
             <tr>
                 <th>物料种类</th>
@@ -291,7 +291,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="fYard:${fYards}">
+            <tr th:each="fYard:${factoryMessSumVo.getfYardDustSources()}">
                 <td th:text="${fYard?.materialType}"></td>
                 <td th:text="${fYard?.moistureMateria}"></td>
                 <td th:text="${fYard?.heapCovered}"></td>
@@ -304,9 +304,9 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            无组织扬尘排放-道路扬尘源信息：<span th:text="${fRoads.size()}"></span>
+            无组织扬尘排放-道路扬尘源信息：<span th:text="${factoryMessSumVo.getfRoadDustSources().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${fRoads.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfRoadDustSources().size() > 0}">
             <thead>
             <tr>
                 <th>道路长度(km)</th>
@@ -325,7 +325,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="fRoad:${fRoads}">
+            <tr th:each="fRoad:${factoryMessSumVo.getfRoadDustSources()}">
                 <td th:text="${fRoad?.pathLength}"></td>
                 <td th:text="${fRoad?.averWidth}"></td>
                 <td th:text="${fRoad?.averWeight}"></td>
@@ -343,25 +343,25 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">
-            无组织扬尘排放-裸土扬尘源：<span th:text="${fBares.size()}"></span>
+            无组织扬尘排放-裸土扬尘源：<span th:text="${factoryMessSumVo.getfBareSoilDustSources().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${fBares.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfBareSoilDustSources().size() > 0}">
             <thead>
             <tr>
                 <th>裸土面积(平方米)</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="fBare:${fBares}">
+            <tr th:each="fBare:${factoryMessSumVo.getfBareSoilDustSources()}">
                 <td th:text="${fBare?.bareSoilArea}"></td>
             </tr>
             </tbody>
         </table>
 
         <blockquote class="layui-elem-quote">
-            无组织车间排放：<span th:text="${fNoOrgs.size()}"></span>
+            无组织车间排放：<span th:text="${factoryMessSumVo.getfNoOrgs().size()}"></span>
         </blockquote>
-        <table class="layui-table" lay-skin="line" th:if="${fNoOrgs.size() > 0}">
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfNoOrgs().size() > 0}">
             <thead>
             <tr>
                 <th>车间编号</th>
@@ -372,7 +372,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="fNoOrg:${fNoOrgs}">
+            <tr th:each="fNoOrg:${factoryMessSumVo.getfNoOrgs()}">
                 <td th:text="${fNoOrg?.workshopid}"></td>
                 <td th:text="${fNoOrg?.longitude}"></td>
                 <td th:text="${fNoOrg?.latitude}"></td>
@@ -384,11 +384,13 @@
 
         <shiro:hasPermission name="factoryAuth:auth">
         <form class="layui-form layui-form-pane" >
-            <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
+            <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryMessSumVo.getFactoryId()}">
             <div class="layui-form-item" style="margin-left: 40%;margin-top: 20px">
                 <button type="button" class="layui-btn layui-btn-normal" lay-filter="past" lay-submit=""><i class="layui-icon layui-icon-ok"></i>通过</button>
                 <button type="button" class="layui-btn layui-btn-danger" lay-filter="reject" lay-submit="" style="margin-left: 30px">
                     <i class="layui-icon layui-icon-close"></i>未通过</button></button>
+<!--                <button type="button" class="layui-btn layui-btn-danger" lay-filter="del" lay-submit="" style="margin-left: 30px">-->
+<!--                    <i class="layui-icon layui-icon-close"></i>删除企业</button></button>-->
             </div>
         </form>
         </shiro:hasPermission>
@@ -404,7 +406,6 @@
             var form = layui.form,
                 table = layui.table
             var $ = layui.jquery;
-
 
             form.on('submit(back)', function (form) {
                 var data = form.field;
@@ -448,6 +449,23 @@
                 });
                 return false;
             });
+            // form.on('submit(del)', function (form) {
+            //     layer.confirm('您确定删除该企业吗？', {
+            //         btn: ['确定','取消'] //按钮
+            //     }, function(index){
+            //         var data = form.field;
+            //         var factoryId=data.factoryId;
+            //         $.post('/factoryAuth/' + data.factoryId + "/del", form.field, function (result) {
+            //             handlerResult(result, function (data) {
+            //                 layer.msg("删除成功！",{icon: 6, time:1000});
+            //                 parent.layer.close(index);
+            //             });
+            //         });
+            //     }, function(index){
+            //         layer.close(index);
+            //     });
+            //     return false;
+            // });
         });
     </script>
 </body>

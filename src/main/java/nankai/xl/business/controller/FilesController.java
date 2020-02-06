@@ -1,13 +1,15 @@
 package nankai.xl.business.controller;
 
 import com.github.pagehelper.PageInfo;
+import nankai.xl.business.model.Status;
+import nankai.xl.business.model.vo.FactoryQuery;
+import nankai.xl.business.service.FactoryService;
 import nankai.xl.business.service.FileService;
+import nankai.xl.business.service.SelectCommonService;
 import nankai.xl.business.service.SourceService;
 import nankai.xl.common.annotation.OperationLog;
-import nankai.xl.common.util.PageResultBean;
-import nankai.xl.common.util.ReadExcel;
-import nankai.xl.common.util.ResponseUtils;
-import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.*;
+import nankai.xl.system.model.Adminuser;
 import nankai.xl.system.model.Menu;
 import nankai.xl.system.service.MenuService;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/file")
@@ -34,13 +37,17 @@ public class FilesController {
     private SourceService sourceService;
     @Resource
     private FileService fileService;
+    @Resource
+    private SelectCommonService selectCommonService;
+    @Resource
+    private FactoryService factoryService;
 
-    @OperationLog("文件管理-文件下载")
+    @OperationLog("源文件管理-文件下载")
     @GetMapping("/down/index")
     public String temple(Model model) {
         return "files/temple-list";
     }
-    @OperationLog("文件管理-文件模板列表")
+    @OperationLog("源文件管理-文件模板列表")
     @GetMapping("/temple/list")
     @ResponseBody
     public PageResultBean<Menu> getList() {
@@ -54,7 +61,7 @@ public class FilesController {
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
     @RequestMapping(value = "/temple/down", method = RequestMethod.GET, produces ="application/json;charset=UTF-8")
-    public ResponseEntity<byte[]> downloadExcel(String name, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public ResponseEntity<byte[]> downloadExcel(String name) throws IOException {
         File file=null;
         try {
             file = ResourceUtils.getFile("classpath:examples/"+name+".xlsx");
@@ -63,7 +70,7 @@ public class FilesController {
         }
         return ResponseUtils.buildResponseEntity(file);
     }
-    @OperationLog("文件管理-文件上传")
+    @OperationLog("源文件管理-文件上传")
     @GetMapping("/up/index")
     public String fileUp(Model model) {
         List<Menu> sourceMeus=menuService.selectSourceMeus(100000);
@@ -71,30 +78,64 @@ public class FilesController {
         model.addAttribute("childMeus",menuService.selectByParentId(sourceMeus.get(0).getMenuId()));
         return "files/file-up";
     }
-    @OperationLog("新增企业用户")
+    @OperationLog("源文件上传")
     @PostMapping("/upload")
     @ResponseBody
-    public ResultBean upload(@RequestParam("file") MultipartFile[] files, String childMenuId,boolean isCul) throws Exception{
+    public ResultBean upload(@RequestParam("file") MultipartFile[] files, String childMenuId,boolean isCul){
         if (files.length==0||childMenuId.length()==0){
-            throw new Exception("文件不存在或者未选择源类型！请重新上传！");
+            return ResultBean.error("文件不存在或者未选择源类型！请重新上传！");
         }else{
             List<String[]> lists=new ArrayList<>();
-            for (MultipartFile file:files) {
-                lists.addAll(ReadExcel.readExcel(file));
-            }
-            int num=fileService.importTempleFileToSource(childMenuId,lists,isCul);
-
-            if(lists.size()-num>0){
-                return ResultBean.error("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
+            int num=0;
+            try {
+                for (MultipartFile file:files) {
+                    lists.addAll(ReadExcel.readExcel(file));
+                }
+                num=fileService.importTempleFileToSource(childMenuId,lists,isCul);
+            } catch (Exception e) {
+                return ResultBean.error(e.getMessage());
             }
             return ResultBean.success("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
         }
     }
-    @OperationLog("文件管理-上传-文件分类联级选择")
+    @OperationLog("源文件管理-上传-文件分类联级选择")
     @PostMapping("/up/soure/{menuId}")
     @ResponseBody
     public List<Menu> seleCountry(@PathVariable("menuId") Integer menuId) {
         List<Menu> childMeus=menuService.selectByParentId(menuId);
         return childMeus;
     }
+    @OperationLog("源文件管理-文件上传")
+    @GetMapping("/up/factory")
+    public String factoryUp(Model model) {
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (user.getDeptId()!=null){
+            model.addAttribute("countys", selectCommonService.getCountysByUser(user));
+            model.addAttribute("citys", selectCommonService.getCitysByUser(user));
+        }else {
+            throw new IllegalArgumentException("用户赋予的部门不能为空！");
+        }
+        return "files/factory-up";
+    }
+    @OperationLog("源文件上传")
+    @PostMapping("/upload/factory")
+    @ResponseBody
+    public ResultBean factoryUpload(@RequestParam("file") MultipartFile[] files, FactoryQuery factoryQuery){
+        if (files.length==0){
+            return ResultBean.error("文件不存在或者未选择源类型！请重新上传！");
+        }else{
+            int num=0;
+            List<String[]> lists=new ArrayList<>();
+            try {
+                for (MultipartFile file:files) {
+                        lists.addAll(ReadExcel.readExcel(file));
+                }
+                num=fileService.importTempleFileToFactory(factoryQuery,lists);
+            } catch (Exception e) {
+                return ResultBean.error(e.getMessage());
+            }
+            return ResultBean.success("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
+        }
+    }
+
 }

@@ -799,43 +799,29 @@ public class FactoryAuthController {
     @OperationLog("企业审核界面-企业填报数据汇总")
     @GetMapping("/{factoryId}/sum")
     public String sum(@PathVariable("factoryId") Integer factoryId, Model model) {
-        List<Exhaust> exhausts=exhaustService.getByFactoryId(factoryId);
-        List<Boiler> boilers=furnaceCommonService.getBoilersByFactoryId(factoryId);
-        List<Kiln> kilns=furnaceCommonService.getKilnsByFactoryId(factoryId);
-        List<Device> devices=deviceCommonService.getDevicesByFactoryId(factoryId);
-        List<DeviceRaw> deviceRaws=deviceCommonService.getDeviceRawsByFactoryId(factoryId);
-        List<DeviceProduct> deviceProducts=deviceCommonService.getDeviceProductsByFactoryId(factoryId);
-        List<RongjiRaw> rongjiRaws=solventService.getRawsByFactoryId(factoryId);
-        List<RongjiProduct> rongjiProducts=solventService.getProductsByFactoryId(factoryId);
-        List<Feiqi> feiqis=disuseService.getFeiqisByFactoryId(factoryId);
-        List<FBareSoilDustSource> fBareSoilDustSources=dustService.getFBaresByFactoryId(factoryId);
-        List<FConstructionDustSource> fConstructionDustSources=dustService.getFConsByFactoryId(factoryId);
-        List<FRoadDustSource> fRoadDustSources=dustService.getFRoadsByFactoryId(factoryId);
-        List<FYardDustSource> fYardDustSources=dustService.getFYardsByFactoryId(factoryId);
-        List<FNoOrganizationWorkshopDischarge> fNoOrgs=dustService.getFnoOrgByFactoryId(factoryId);
-
-        model.addAttribute("exhausts",exhausts);
-        model.addAttribute("boilers",boilers);
-        model.addAttribute("kilns",kilns);
-        model.addAttribute("devices",devices);
-        model.addAttribute("deviceRaws",deviceRaws);
-        model.addAttribute("deviceProducts",deviceProducts);
-        model.addAttribute("rongjiRaws",rongjiRaws);
-        model.addAttribute("rongjiProducts",rongjiProducts);
-        model.addAttribute("feiqis",feiqis);
-        model.addAttribute("fCons",fConstructionDustSources);
-        model.addAttribute("fYards",fYardDustSources);
-        model.addAttribute("fRoads",fRoadDustSources);
-        model.addAttribute("fBares",fBareSoilDustSources);
-        model.addAttribute("fNoOrgs",fNoOrgs);
-
-        model.addAttribute("factoryId",factoryId);
+        FactoryMessSumVo factoryMessSumVo=new FactoryMessSumVo();
+        factoryMessSumVo.setFactoryId(factoryId);
+        factoryMessSumVo.setExhausts(exhaustService.getByFactoryId(factoryId));
+        factoryMessSumVo.setBoilers(furnaceCommonService.getBoilersByFactoryId(factoryId));
+        factoryMessSumVo.setKilns(furnaceCommonService.getKilnsByFactoryId(factoryId));
+        factoryMessSumVo.setDevices(deviceCommonService.getDevicesByFactoryId(factoryId));
+        factoryMessSumVo.setDeviceRaws(deviceCommonService.getDeviceRawsByFactoryId(factoryId));
+        factoryMessSumVo.setDeviceProducts(deviceCommonService.getDeviceProductsByFactoryId(factoryId));
+        factoryMessSumVo.setRongjiRaws(solventService.getRawsByFactoryId(factoryId));
+        factoryMessSumVo.setRongjiProducts(solventService.getProductsByFactoryId(factoryId));
+        factoryMessSumVo.setFeiqis(disuseService.getFeiqisByFactoryId(factoryId));
+        factoryMessSumVo.setfBareSoilDustSources(dustService.getFBaresByFactoryId(factoryId));
+        factoryMessSumVo.setfConstructionDustSources(dustService.getFConsByFactoryId(factoryId));
+        factoryMessSumVo.setfRoadDustSources(dustService.getFRoadsByFactoryId(factoryId));
+        factoryMessSumVo.setfYardDustSources(dustService.getFYardsByFactoryId(factoryId));
+        factoryMessSumVo.setfNoOrgs(dustService.getFnoOrgByFactoryId(factoryId));
+        model.addAttribute("factoryMessSumVo",factoryMessSumVo);
         return "factoryAuth/factory-Info-sum";
     }
     @OperationLog("企业审核-审核通过")
     @PostMapping("/{factoryId}/past")
     @ResponseBody
-    public ResultBean pastFactory(@PathVariable("factoryId") Integer factoryId, HttpSession session) {
+    public ResultBean pastFactory(@PathVariable("factoryId") Integer factoryId) {
         Integer[] ids={factoryId};
         factoryService.auditFactory(ids);
         return ResultBean.success();
@@ -848,6 +834,8 @@ public class FactoryAuthController {
         String mailContent=factory.getFactoryName()+" "+factory.getPrincipalName()+"您好："
                 +"\r\n"
                 +"                                "+user.getRealname()
+                +"\n"
+                +"                       办公电话："+user.getWorkphone()
                 +"\n"
                 +"                                "+deptService.selectByPrimaryKey(user.getDeptId()).getDeptName();
         model.addAttribute("mailContent", mailContent);
@@ -862,6 +850,12 @@ public class FactoryAuthController {
         new Thread(() ->
                 mailService.sendHTMLMail(factoryUser.getEmail(),"污染源清单管理系统 审核通知", mailContent))
                 .start();
+        return ResultBean.success();
+    }
+    @PostMapping("/{factoryId}/del")
+    @ResponseBody
+    public ResultBean delFactory(@PathVariable("factoryId") Integer factoryId) {
+        factoryService.delFactroy(factoryId);
         return ResultBean.success();
     }
     @OperationLog("企业审核界面-上一家企业")
@@ -885,6 +879,21 @@ public class FactoryAuthController {
         Adminuser user = (Adminuser) SecurityUtils.getSubject().getPrincipal();
         if (ids.length>0){
             factoryService.auditFactory(ids);
+            return ResultBean.success();
+        }else{
+            return ResultBean.error("选中的企业数据不存在！");
+        }
+    }
+    @OperationLog("企业审核界面-批量删除")
+    @PostMapping("/delAll")
+    @ResponseBody
+    public ResultBean delAll(Integer[] ids) {
+        Adminuser user = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        if (ids.length>0){
+            factoryService.auditFactory(ids);
+            for (Integer id:ids) {
+                factoryService.delFactroy(id);
+            }
             return ResultBean.success();
         }else{
             return ResultBean.error("选中的企业数据不存在！");

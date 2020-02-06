@@ -170,6 +170,11 @@ public class FactoryServiceImpl implements FactoryService {
     }
 
     @Override
+    public int delFactroy(Integer factoryId) {
+        return factoryMapper.delFactory(factoryId);
+    }
+
+    @Override
     public User getUserByFactoryId(Integer factoryId) {
         return userMapper.selectByFactoryId(factoryId);
     }
