@@ -243,22 +243,23 @@
                 , interval: 5000
             });
             var parentWith = $('#parentDiv').width();
+            if([[${nonAuthFactorys.size()}]] > 0){
+                layui.$.get('/data/pie/factory/industryBig', function (result) {
+                    var legendData = result.legendData;
+                    var seriesData = result.seriesData;
+                    layui.$("#pieDiv").css("width", (parentWith - 35) + 'px');
+                    var myChartPie = echarts.init(document.getElementById('pieDiv'));
+                    initPie(myChartPie, "行业大分类企业占比", legendData, "行业大分类", seriesData);
+                });
 
-            layui.$.get('/data/pie/factory/industryBig', function (result) {
-                var legendData = result.legendData;
-                var seriesData = result.seriesData;
-                layui.$("#pieDiv").css("width", (parentWith - 35) + 'px');
-                var myChartPie = echarts.init(document.getElementById('pieDiv'));
-                initPie(myChartPie, "行业大分类企业占比", legendData, "行业大分类", seriesData);
-            });
-
-            layui.$.get('/data/barGrap/factory/industryBig', function (result) {
-                var xAxisData = result.xAxisData;
-                var seriesData = result.seriesData;
-                layui.$("#barGraphDiv").css("width", (parentWith - 25) + 'px');
-                var myChartBarGrap = echarts.init(document.getElementById('barGraphDiv'));
-                inintBarGraph(myChartBarGrap,'行业大分类企业数量',['企业数量'], xAxisData, seriesData)
-            });
+                layui.$.get('/data/barGrap/factory/industryBig', function (result) {
+                    var xAxisData = result.xAxisData;
+                    var seriesData = result.seriesData;
+                    layui.$("#barGraphDiv").css("width", (parentWith - 25) + 'px');
+                    var myChartBarGrap = echarts.init(document.getElementById('barGraphDiv'));
+                    inintBarGraph(myChartBarGrap,'行业大分类企业数量',['企业数量'], xAxisData, seriesData)
+                });
+            }
         });
     </script>
 </body>

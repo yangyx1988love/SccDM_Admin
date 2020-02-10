@@ -16,11 +16,11 @@
         <header class="layui-elip">登录</header>
         <form class="layui-form">
             <div class="layui-input-inline">
-                <input type="text" name="username" lay-verify="required" lay-vertype="tips" placeholder="管理员 admin 普通用户 user" autocomplete="off"
+                <input type="text" name="username" lay-verify="required" lay-vertype="tips" placeholder="用户名" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-input-inline">
-                <input type="password" name="password" lay-verify="required" lay-vertype="tips" placeholder="密码 123456" autocomplete="off"
+                <input type="password" name="password" lay-verify="required" lay-vertype="tips" placeholder="密码" autocomplete="off"
                        class="layui-input">
             </div>
             <div class="layui-input-inline" th:if="${loginVerify}">
@@ -33,13 +33,10 @@
                 <button lay-submit lay-filter="login" class="layui-btn layui-btn-blue">登录</button>
             </div>
             <hr/>
-            <!--<div class="layui-input-inline">-->
-                <!--<button type="button" class="layui-btn layui-btn-primary">QQ登录</button>-->
-            <!--</div>-->
-            <!--<div class="layui-input-inline">-->
-                <!--<button type="button" class="layui-btn layui-btn-normal">微信登录</button>-->
-            <!--</div>-->
-            <p><a th:href="@{/register}" class="fl">立即注册</a><a href="javascript:" class="fr">忘记密码？</a></p>
+            <p>
+<!--                <a th:href="@{/register}" class="fl">立即注册</a>-->
+                <a th:href="@{/forget}" class="fr">忘记密码？</a>
+            </p>
         </form>
     </div>
 
@@ -66,11 +63,9 @@
             });
         });
 
-
         function generateCaptcha(obj) {
             $(obj).attr("src", "/captcha?timestamp=" + (new Date()).valueOf());
         }
-
         function loginDone(data) {
             layer.msg("登陆成功, 即将跳转到首页!", {
                 icon: 1,

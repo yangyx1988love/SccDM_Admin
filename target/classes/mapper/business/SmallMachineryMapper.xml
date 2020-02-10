@@ -26,22 +26,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.SmallMachineryVo" parameterType="nankai.xl.business.model.vo.SmallMachineryVo" >
-    SELECT small_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(small_machinery.scc_code,1,2) AS scc1,SUBSTR(small_machinery.scc_code,3,2) AS scc2,
-    SUBSTR(small_machinery.scc_code,5,3) AS scc3,SUBSTR(small_machinery.scc_code,8,3) AS scc4
-    FROM small_machinery
+    SELECT yd_small_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_small_machinery.scc_code,1,2) AS scc1,SUBSTR(yd_small_machinery.scc_code,3,2) AS scc2,
+    SUBSTR(yd_small_machinery.scc_code,5,3) AS scc3,SUBSTR(yd_small_machinery.scc_code,8,3) AS scc4
+    FROM yd_small_machinery
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=small_machinery.county_id
+    ON co.COUNTY_ID=yd_small_machinery.county_id
     <where>
       <if test="year != null and year != ''">
-        small_machinery.year = #{year}
+        yd_small_machinery.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND small_machinery.county_id = #{countyId}
+        AND yd_small_machinery.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -49,24 +49,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.SmallMachineryVo" parameterType="java.lang.Integer" >
-    SELECT small_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(small_machinery.scc_code,1,2) AS scc1,SUBSTR(small_machinery.scc_code,3,2) AS scc2,
-    SUBSTR(small_machinery.scc_code,5,3) AS scc3,SUBSTR(small_machinery.scc_code,8,3) AS scc4
-    FROM small_machinery
+    SELECT yd_small_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_small_machinery.scc_code,1,2) AS scc1,SUBSTR(yd_small_machinery.scc_code,3,2) AS scc2,
+    SUBSTR(yd_small_machinery.scc_code,5,3) AS scc3,SUBSTR(yd_small_machinery.scc_code,8,3) AS scc4
+    FROM yd_small_machinery
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=small_machinery.county_id
-    where small_machinery.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=yd_small_machinery.county_id
+    where yd_small_machinery.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from small_machinery
+    delete from yd_small_machinery
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.SmallMachinery" >
-    insert into small_machinery
+    insert into yd_small_machinery
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -199,7 +199,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.SmallMachinery" >
-    insert into small_machinery (id, year, county_id, 
+    insert into yd_small_machinery (id, year, county_id, 
       scc_code, source_descrip, type, 
       fuel_type, holdings, use_hours, 
       fuel_annual_usage, fuel_sulfur_content, annal_average_mileage, 
@@ -239,7 +239,7 @@
       nh3_emission = #{nh3Emission,jdbcType=DOUBLE}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO small_machinery (id, year, county_id,
+    INSERT INTO yd_small_machinery (id, year, county_id,
     scc_code, source_descrip, type,
     fuel_type, holdings, use_hours,
     fuel_annual_usage, fuel_sulfur_content, annal_average_mileage,
@@ -275,7 +275,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.SmallMachinery" >
-    update small_machinery
+    update yd_small_machinery
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

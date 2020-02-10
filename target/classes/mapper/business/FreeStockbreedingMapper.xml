@@ -22,21 +22,21 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.FreeStockbreedingVo" parameterType="nankai.xl.business.model.vo.FreeStockbreedingVo" >
-    SELECT free_stockbreeding.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(free_stockbreeding.scccode,1,2) AS scc1,SUBSTR(free_stockbreeding.scccode,3,2) AS 		scc2,SUBSTR(free_stockbreeding.scccode,5,3) AS scc3,SUBSTR(free_stockbreeding.scccode,8,3) AS scc4
-    FROM free_stockbreeding
+    SELECT ny_free_stockbreeding.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_free_stockbreeding.scccode,1,2) AS scc1,SUBSTR(ny_free_stockbreeding.scccode,3,2) AS 		scc2,SUBSTR(ny_free_stockbreeding.scccode,5,3) AS scc3,SUBSTR(ny_free_stockbreeding.scccode,8,3) AS scc4
+    FROM ny_free_stockbreeding
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=free_stockbreeding.county_id
+    ON co.COUNTY_ID=ny_free_stockbreeding.county_id
     <where>
       <if test="year != null and year != ''">
-        free_stockbreeding.year = #{year}
+        ny_free_stockbreeding.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND free_stockbreeding.county_id = #{countyId}
+        AND ny_free_stockbreeding.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -44,23 +44,23 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.FreeStockbreedingVo" parameterType="java.lang.Integer" >
-    SELECT free_stockbreeding.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(free_stockbreeding.scccode,1,2) AS scc1,SUBSTR(free_stockbreeding.scccode,3,2) AS 		scc2,SUBSTR(free_stockbreeding.scccode,5,3) AS scc3,SUBSTR(free_stockbreeding.scccode,8,3) AS scc4
-    FROM free_stockbreeding
+    SELECT ny_free_stockbreeding.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_free_stockbreeding.scccode,1,2) AS scc1,SUBSTR(ny_free_stockbreeding.scccode,3,2) AS 		scc2,SUBSTR(ny_free_stockbreeding.scccode,5,3) AS scc3,SUBSTR(ny_free_stockbreeding.scccode,8,3) AS scc4
+    FROM ny_free_stockbreeding
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=free_stockbreeding.county_id
-    where free_stockbreeding.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=ny_free_stockbreeding.county_id
+    where ny_free_stockbreeding.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from free_stockbreeding
+    delete from ny_free_stockbreeding
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.FreeStockbreeding" >
-    insert into free_stockbreeding
+    insert into ny_free_stockbreeding
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -169,7 +169,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.FreeStockbreeding" >
-    insert into free_stockbreeding (id, year, county_id, 
+    insert into ny_free_stockbreeding (id, year, county_id, 
       scccode, source_discrip, activity_level, 
       compute_cycle, pm10_emission, pm25_emission, 
       voc_emission, nh3_emission, so2_emission, 
@@ -201,7 +201,7 @@
       flag = #{flag,jdbcType=TINYINT}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO free_stockbreeding (id, year, county_id,
+    INSERT INTO ny_free_stockbreeding (id, year, county_id,
     scccode, source_discrip, activity_level,
     compute_cycle, pm10_emission, pm25_emission,
     voc_emission, nh3_emission, so2_emission,
@@ -231,7 +231,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.FreeStockbreeding" >
-    update free_stockbreeding
+    update ny_free_stockbreeding
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

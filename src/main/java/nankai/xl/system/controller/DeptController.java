@@ -52,6 +52,7 @@ public class DeptController {
     @PostMapping
     @ResponseBody
     public ResultBean add(Dept dept) {
+        dept.setDeptLevel(deptService.selectByPrimaryKey(dept.getParentId()).getDeptLevel()+1);
         deptService.insert(dept);
         return ResultBean.success();
     }
@@ -68,6 +69,7 @@ public class DeptController {
     @PutMapping
     @ResponseBody
     public ResultBean update(Dept dept) {
+        dept.setDeptLevel(deptService.selectByPrimaryKey(dept.getParentId()).getDeptLevel()+1);
         deptService.updateByPrimaryKey(dept);
         return ResultBean.success();
     }

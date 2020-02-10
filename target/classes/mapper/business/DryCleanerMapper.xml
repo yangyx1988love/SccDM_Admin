@@ -28,11 +28,11 @@
     flagd, source_descrip
   </sql>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.DryCleanerVo" parameterType="nankai.xl.business.model.vo.DryCleanerVo" >
-    SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(dry_cleaner.scccode,1,2) AS scc1,SUBSTR(dry_cleaner.scccode,3,2) AS scc2,
-    SUBSTR(dry_cleaner.scccode,5,3) AS scc3,SUBSTR(dry_cleaner.scccode,8,3) AS scc4
-    FROM dry_cleaner
+    SELECT rj_dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(rj_dry_cleaner.scccode,1,2) AS scc1,SUBSTR(rj_dry_cleaner.scccode,3,2) AS scc2,
+    SUBSTR(rj_dry_cleaner.scccode,5,3) AS scc3,SUBSTR(rj_dry_cleaner.scccode,8,3) AS scc4
+    FROM rj_dry_cleaner
     LEFT JOIN company
-    ON dry_cleaner.company_id=company.com_id
+    ON rj_dry_cleaner.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -42,7 +42,7 @@
     ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
-        dry_cleaner.year = #{year}
+        rj_dry_cleaner.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
@@ -53,11 +53,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.DryCleanerVo" parameterType="java.lang.Integer" >
-    SELECT dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(dry_cleaner.scccode,1,2) AS scc1,SUBSTR(dry_cleaner.scccode,3,2) AS scc2,
-				SUBSTR(dry_cleaner.scccode,5,3) AS scc3,SUBSTR(dry_cleaner.scccode,8,3) AS scc4
-	FROM dry_cleaner
+    SELECT rj_dry_cleaner.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(rj_dry_cleaner.scccode,1,2) AS scc1,SUBSTR(rj_dry_cleaner.scccode,3,2) AS scc2,
+				SUBSTR(rj_dry_cleaner.scccode,5,3) AS scc3,SUBSTR(rj_dry_cleaner.scccode,8,3) AS scc4
+	FROM rj_dry_cleaner
     LEFT JOIN company
-    ON dry_cleaner.company_id=company.com_id
+    ON rj_dry_cleaner.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -65,14 +65,14 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where dry_cleaner.id = #{id,jdbcType=INTEGER}
+    where rj_dry_cleaner.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from dry_cleaner
+    delete from rj_dry_cleaner
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.DryCleaner" >
-    insert into dry_cleaner
+    insert into rj_dry_cleaner
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -175,7 +175,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.DryCleaner" >
-    insert into dry_cleaner (id, year, company_id, 
+    insert into rj_dry_cleaner (id, year, company_id, 
       scccode, year_amount, pm10_emission, 
       pm25_emission, voc_emission, nh3_emission, 
       so2_emission, co_emission, oc_emission, 
@@ -206,7 +206,7 @@
       source_descrip = #{sourceDescrip,jdbcType=VARCHAR}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO dry_cleaner (id, year, company_id,
+    INSERT INTO rj_dry_cleaner (id, year, company_id,
     scccode, year_amount, pm10_emission,
     pm25_emission, voc_emission, nh3_emission,
     so2_emission, co_emission, oc_emission,
@@ -235,7 +235,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.DryCleaner" >
-    update dry_cleaner
+    update rj_dry_cleaner
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

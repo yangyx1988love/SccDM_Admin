@@ -93,6 +93,11 @@ public class AdminuserService {
         grantRole(adminuser.getUserId(), roleIds);
         return adminuserMapper.updateByPrimaryKeySelective(adminuser) == 1;
     }
+    @Transactional
+    public boolean update(Adminuser adminuser) {
+        checkUserNameExistOnUpdate(adminuser);
+        return adminuserMapper.updateByPrimaryKeySelective(adminuser) == 1;
+    }
 
     public Adminuser selectOne(Integer id) {
         return adminuserMapper.selectByPrimaryKey(id);

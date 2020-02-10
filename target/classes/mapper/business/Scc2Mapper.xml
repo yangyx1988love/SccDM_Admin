@@ -10,10 +10,16 @@
   <sql id="Base_Column_List" >
     id, scc_1, scc_2, description
   </sql>
-  <select id="selectByScc2" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.Scc2" >
-    select
-    <include refid="Base_Column_List" />
-    from scc_2
+  <select id="selectByScc1" resultType="nankai.xl.business.model.Scc2" parameterType="java.lang.String" >
+    select * from scc_2
+    <where>
+      <if test="scc1 != null and scc1 != ''">
+        scc_1 = #{scc1}
+      </if>
+    </where>
+  </select>
+  <select id="selectByScc2" resultType="nankai.xl.business.model.Scc2" parameterType="nankai.xl.business.model.Scc2" >
+    select * from scc_2
     <where>
       <if test="scc1 != null and scc1 != ''">
         scc_1 = #{scc1}

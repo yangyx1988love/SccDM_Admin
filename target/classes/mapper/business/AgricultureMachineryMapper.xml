@@ -25,22 +25,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.AgricultureMachineryVo" parameterType="nankai.xl.business.model.vo.AgricultureMachineryVo" >
-    SELECT agriculture_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(agriculture_machinery.scc_code,1,2) AS scc1,SUBSTR(agriculture_machinery.scc_code,3,2) AS scc2,
-    SUBSTR(agriculture_machinery.scc_code,5,3) AS scc3,SUBSTR(agriculture_machinery.scc_code,8,3) AS scc4
-    FROM agriculture_machinery
+    SELECT yd_agriculture_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_agriculture_machinery.scc_code,1,2) AS scc1,SUBSTR(yd_agriculture_machinery.scc_code,3,2) AS scc2,
+    SUBSTR(yd_agriculture_machinery.scc_code,5,3) AS scc3,SUBSTR(yd_agriculture_machinery.scc_code,8,3) AS scc4
+    FROM yd_agriculture_machinery
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=agriculture_machinery.county_id
+    ON co.COUNTY_ID=yd_agriculture_machinery.county_id
     <where>
       <if test="year != null and year != ''">
-        agriculture_machinery.year = #{year}
+        yd_agriculture_machinery.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND agriculture_machinery.county_id = #{countyId}
+        AND yd_agriculture_machinery.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -48,24 +48,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.AgricultureMachineryVo" parameterType="java.lang.Integer" >
-    SELECT agriculture_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(agriculture_machinery.scc_code,1,2) AS scc1,SUBSTR(agriculture_machinery.scc_code,3,2) AS scc2,
-    SUBSTR(agriculture_machinery.scc_code,5,3) AS scc3,SUBSTR(agriculture_machinery.scc_code,8,3) AS scc4
-    FROM agriculture_machinery
+    SELECT yd_agriculture_machinery.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_agriculture_machinery.scc_code,1,2) AS scc1,SUBSTR(yd_agriculture_machinery.scc_code,3,2) AS scc2,
+    SUBSTR(yd_agriculture_machinery.scc_code,5,3) AS scc3,SUBSTR(yd_agriculture_machinery.scc_code,8,3) AS scc4
+    FROM yd_agriculture_machinery
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=agriculture_machinery.county_id
-    where agriculture_machinery.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=yd_agriculture_machinery.county_id
+    where yd_agriculture_machinery.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from agriculture_machinery
+    delete from yd_agriculture_machinery
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.AgricultureMachinery" >
-    insert into agriculture_machinery
+    insert into yd_agriculture_machinery
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -192,7 +192,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.AgricultureMachinery" >
-    insert into agriculture_machinery (id, year, county_id, 
+    insert into yd_agriculture_machinery (id, year, county_id, 
       scc_code, source_descrip, fuel_type, 
       holdings, fuel_usage, fuel_annual_usage, 
       annal_average_milage, fuel_sulfur_content, pm10_emission, 
@@ -229,7 +229,7 @@
       nh3_emission = #{nh3Emission,jdbcType=DOUBLE} 
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO agriculture_machinery (id, year, county_id,
+    INSERT INTO yd_agriculture_machinery (id, year, county_id,
     scc_code, source_descrip, fuel_type,
     holdings, fuel_usage, fuel_annual_usage,
     annal_average_milage, fuel_sulfur_content, pm10_emission,
@@ -263,7 +263,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.AgricultureMachinery" >
-    update agriculture_machinery
+    update yd_agriculture_machinery
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

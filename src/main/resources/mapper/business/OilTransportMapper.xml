@@ -19,11 +19,11 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.OilTransportVo" parameterType="nankai.xl.business.model.vo.OilTransportVo" >
-    SELECT oil_transport.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(oil_transport.scccode,1,2) AS scc1,
-    SUBSTR(oil_transport.scccode,3,2) AS scc2,SUBSTR(oil_transport.scccode,5,3) AS scc3,SUBSTR(oil_transport.scccode,8,3) AS scc4
-    FROM oil_transport
+    SELECT cc_oil_transport.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(cc_oil_transport.scccode,1,2) AS scc1,
+    SUBSTR(cc_oil_transport.scccode,3,2) AS scc2,SUBSTR(cc_oil_transport.scccode,5,3) AS scc3,SUBSTR(cc_oil_transport.scccode,8,3) AS scc4
+    FROM cc_oil_transport
     LEFT JOIN company
-    ON oil_transport.company_id=company.com_id
+    ON cc_oil_transport.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -33,7 +33,7 @@
     ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
-        oil_transport.year = #{year}
+        cc_oil_transport.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
@@ -44,11 +44,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.OilTransportVo" parameterType="java.lang.Integer" >
-    SELECT oil_transport.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(oil_transport.scccode,1,2) AS scc1,
-    SUBSTR(oil_transport.scccode,3,2) AS scc2,SUBSTR(oil_transport.scccode,5,3) AS scc3,SUBSTR(oil_transport.scccode,8,3) AS scc4
-    FROM oil_transport
+    SELECT cc_oil_transport.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(cc_oil_transport.scccode,1,2) AS scc1,
+    SUBSTR(cc_oil_transport.scccode,3,2) AS scc2,SUBSTR(cc_oil_transport.scccode,5,3) AS scc3,SUBSTR(cc_oil_transport.scccode,8,3) AS scc4
+    FROM cc_oil_transport
     LEFT JOIN company
-    ON oil_transport.company_id=company.com_id
+    ON cc_oil_transport.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -56,14 +56,14 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where oil_transport.id = #{id,jdbcType=INTEGER}
+    where cc_oil_transport.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from oil_transport
+    delete from cc_oil_transport
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.OilTransport" >
-    insert into oil_transport
+    insert into cc_oil_transport
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -136,7 +136,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.OilTransport" >
-    insert into oil_transport (id, company_id, year, 
+    insert into cc_oil_transport (id, company_id, year, 
       oil_type, scccode, source_discrip, 
       year_volume, control_rate, emission, 
       flag, note)
@@ -158,7 +158,7 @@
       note = #{note,jdbcType=VARCHAR}  
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO oil_transport (id, company_id, year,
+    INSERT INTO cc_oil_transport (id, company_id, year,
     oil_type, scccode, source_discrip,
     year_volume, control_rate, emission,
     flag, note)
@@ -180,7 +180,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.OilTransport" >
-    update oil_transport
+    update cc_oil_transport
     <set >
       <if test="companyId != null" >
         company_id = #{companyId,jdbcType=INTEGER},

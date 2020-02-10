@@ -30,8 +30,8 @@ public interface FactoryMapper {
     List<SumVo> countNonAthu(FactoryQuery factoryQuery);
     List<SumVo> countByIndustryBig(FactoryQuery factoryQuery);
 
-    List<SumVo> countByCity();
-    List<SumVo> countByCounty();
+    List<SumVo> countByCity(FactoryQuery factoryQuery);
+    List<SumVo> countByCounty(FactoryQuery factoryQuery);
 
     int delFactory(Integer factoryId);
 

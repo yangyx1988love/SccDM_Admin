@@ -97,33 +97,6 @@
             $ = layui.jquery;
             var form = layui.form
                 , layer = layui.layer
-            form.verify({
-                "factoryNo": function(value, item) {
-                    var reg = new RegExp(/^[0-9A-Za-z]{6,30}$/);
-                    if (value.length > 0 && !reg.test(value)) {
-                        return '企业机构代码格式不正确，由6-30位字母或数字组合！！'
-                    }
-                },"chinese": function(value, item) {
-                    var reg = new RegExp(/[\u4e00-\u9fa5]+/);
-                    if (value.length > 0 && !reg.test(value)) {
-                        return '企业名称至少包含一个汉字！！'
-                    }
-                },"longitude": function(value, item) {
-                    var reg = new RegExp(/^[\-\+]?(0(\.\d{1,10})?|([1-9](\d)?)(\.\d{1,10})?|1[0-7]\d{1}(\.\d{1,10})?|180\.0{1,10})$/);
-                    if(value.length > 0 ){
-                        if (!reg.test(value)) {
-                            return '经度整数部分为0-180,小数部分为0到6位!'
-                        }
-                    }
-                }, "latitude": function(value, item) {
-                    var reg = new RegExp(/^[\-\+]?((0|([1-8]\d?))(\.\d{1,10})?|90(\.0{1,10})?)$/);
-                    if(value.length > 0 ){
-                        if (!reg.test(value)) {
-                            return '纬度整数部分为0-90,小数部分为0到6位!\''
-                        }
-                    }
-                }
-            })
             form.on('submit(add)', function (form) {
                 $.post('/factory', form.field, function (result) {
                     handlerResult(result, addDone);

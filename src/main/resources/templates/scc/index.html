@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>SCC</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 we-search">
+                <div class="layui-form-item">
+                    <div class="layui-inline" >
+                        <label class="layui-form-label">一级</label>
+                        <div class="layui-input-block" >
+                            <select id="scc1" name="scc1" lay-filter="scc1">
+                                <option value="">请选择</option>
+                                <option th:each="scc1 : ${scc1s}" th:value="${scc1.scc1}" th:text="${scc1.description+'('+scc1.scc1+')'}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="addScc1" type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-add-circle "></i>
+                    </button>
+                    <div class="layui-inline" >
+                        <label class="layui-form-label">二级</label>
+                        <div class="layui-input-block" >
+                            <select id="scc2" name="scc2" lay-filter="scc2">
+                                <option th:each="scc2 : ${scc2s}" th:value="${scc2.scc2}" th:text="${scc2.description+'('+scc2.scc2+')'}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="addScc2" type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-add-circle "></i>
+                    </button>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" >
+                        <label class="layui-form-label">三级</label>
+                        <div class="layui-input-block" >
+                            <select id="scc3" name="scc3" lay-filter="scc3">
+                                <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description+'('+scc3.scc3+')'}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="addScc3" type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-add-circle "></i>
+                    </button>
+                    <div class="layui-inline" >
+                        <label class="layui-form-label">四级</label>
+                        <div class="layui-input-block" >
+                            <select id="scc4" name="scc4" lay-filter="scc4">
+                                <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description+'('+scc4.scc4+')'}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="addScc4" type="button" class="layui-btn layui-btn-normal" lay-submit lay-filter="search">
+                        <i class="layui-icon layui-icon-add-circle "></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="layui-row">
+            <table class="layui-hide" id="sccTable"></table>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+    
+    <script type="text/html" id="column-toolbar">
+        <shiro:hasPermission name="factory:reset">
+            <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+        </shiro:hasPermission>
+    </script>
+
+    <script>
+        layui.use(['table','form'], function () {
+            var table = layui.table //表格
+                ,form = layui.form //form表单
+            table.render({
+                elem: '#sccTable'
+                , url: '/factoryAuth/scc/list'
+                , page: true
+                , toolbar: '#toolbar'
+                , cols: [
+                    [
+                        {field:'sccDec',  title: 'sccDec',width:150, sort: true}
+                        ,{field:'scc', title: 'scc', sort: true}
+                        ,{field:'pm',  title: 'pm', sort: true}
+                        ,{field:'pm10',  title: 'pm10', sort: true}
+                        ,{field:'pm25', title: 'pm25', sort: true}
+                        ,{field:'nox', title: 'nox', sort: true}
+                        ,{field:'so2',  title: 'so2', sort: true}
+                        ,{field:'nh3',  title: 'nh3', sort: true}
+                        ,{field:'vocs', title: 'vocs', sort: true}
+                        ,{field:'co',  title: 'co', sort: true}
+                        ,{field:'oc',  title: 'oc', sort: true}
+                        ,{field:'bc', title: 'bc', sort: true}
+                        , {title: '操作', fixed: 'right', align: 'center', toolbar: '#column-toolbar'}
+                    ]
+                ]
+                ,page: true
+                ,limit:50
+                ,limits:[50,100,200,2000,5000]
+                ,id: 'sccTable'
+            });
+
+            //监听提交 lay-filter="search"
+            form.on('select()',function(data){
+                //执行重载
+                table.reload('sccTable',{
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        scc1: $('#scc1  option:selected').val(),
+                        scc2: $('#scc2  option:selected').val(),
+                        scc3: $('#scc3  option:selected').val(),
+                        scc4: $('#scc4  option:selected').val()
+                    }
+                    , url: '/factoryAuth/scc/list'//后台做模糊搜索接口路径
+                    , method: 'get'
+                });
+                return false;//false：阻止表单跳转  true：表单跳转
+            });
+            //监听提交 lay-filter="search"
+            form.on('submit(search)', function(data){
+                // var formData = data.field;
+                // var id =data.elem.id;
+                // var level=0;
+                // var sccCode=null;
+                // if (id === 'addScc1') {
+                //     level=1;
+                // }
+                // if (id === 'addScc2') {
+                //     level=2;
+                //     sccCode=formData.scc1;
+                //     if (sccCode==null) {
+                //         layer.msg("请选择父级！", {icon: 6});
+                //     }
+                // }
+                // if (id === 'addScc3') {
+                //     level=3;
+                //     sccCode=formData.scc1;
+                // }
+                // if (id === 'addScc4') {
+                //     level=4;
+                // }
+                // $.post('/factoryAuth/device/edit/' + data.id ,form.field, function (result) {
+                //     handlerResult(result, function (data) {
+                //         layer.msg("提交成功！",{icon: 6, time:1000});
+                //     });
+                // });
+                // return false;
+            });
+            // 行点击事件 重置密码
+            table.on('tool', function (obj) {
+                var data = obj.data;
+                var event = obj.event;
+                if (event === 'edit') {
+                    layer.open({
+                        content: '/factoryAuth/scc/' + data.scc + "/edit",
+                        title: "编辑",
+                        area: ['630px', '500px'],
+                        type: 2,
+                        maxmin: true,
+                        shadeClose: true,
+                        end: function () {
+                            table.reload();
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

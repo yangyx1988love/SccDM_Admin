@@ -48,6 +48,7 @@ public class ShiroService {
         filterChainDefinitionMap.put("/lib/**", "anon");
         filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/forget/**", "anon");
         // 验证码
         filterChainDefinitionMap.put("/captcha", "anon");
         List<Menu> menuList = menuService.getLeafNodeMenu();

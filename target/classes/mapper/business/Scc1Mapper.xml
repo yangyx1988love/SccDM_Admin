@@ -5,6 +5,11 @@
     <id column="scc_1" property="scc1" jdbcType="CHAR" />
     <result column="description" property="description" jdbcType="CHAR" />
   </resultMap>
+    <select id="selectAll" resultType="nankai.xl.business.model.Scc1">
+      select *
+      from scc_1
+      where 1=1
+    </select>
 <!--  <sql id="Example_Where_Clause" >-->
 <!--    <where >-->
 <!--      <foreach collection="oredCriteria" item="criteria" separator="or" >-->

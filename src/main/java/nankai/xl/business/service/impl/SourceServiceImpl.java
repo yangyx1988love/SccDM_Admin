@@ -6,14 +6,10 @@ import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.*;
 import nankai.xl.business.service.SourceService;
 import nankai.xl.common.exception.DuplicateNameException;
-import nankai.xl.common.util.ClassUtil;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class SourceServiceImpl implements SourceService {
@@ -40,15 +36,15 @@ public class SourceServiceImpl implements SourceService {
     @Resource
     private RoadPaveMapper roadPaveMapper;
     @Resource
-    private XjconstructdustMapper xjconstructdustMapper;
+    private YcconstructdustMapper ycconstructdustMapper;
     @Resource
-    private XjcydustLoadMapper xjcydustLoadMapper;
+    private YcdustLoadMapper ycdustLoadMapper;
     @Resource
-    private XjroaddustMapper xjroaddustMapper;
+    private YcroaddustMapper ycroaddustMapper;
     @Resource
-    private XjsoildustMapper xjsoildustMapper;
+    private YcsoildustMapper ycsoildustMapper;
     @Resource
-    private XjcydustStackMapper xjcydustStackMapper;
+    private YcdustStackMapper ycdustStackMapper;
     @Resource
     private GasSourceMapper gasSourceMapper;
     @Resource
@@ -612,45 +608,45 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public int getDustSourceNum(String cityCode, String countyCode) {
-        XjconstructdustVo xjconstructdustVo=new XjconstructdustVo();
+        ycConstructdustVo xjconstructdustVo=new ycConstructdustVo();
         xjconstructdustVo.setCityCode(cityCode);
         xjconstructdustVo.setCountyId(countyCode);
-        XjcydustLoadVo xjcydustLoadVo=new XjcydustLoadVo();
+        YcDustLoadVo xjcydustLoadVo=new YcDustLoadVo();
         xjcydustLoadVo.setCityCode(cityCode);
         xjcydustLoadVo.setCountyId(countyCode);
-        XjcydustStackVo xjcydustStackVo=new XjcydustStackVo();
+        YcDustStackVo xjcydustStackVo=new YcDustStackVo();
         xjcydustStackVo.setCityCode(cityCode);
         xjcydustStackVo.setCountyId(countyCode);
-        XjroaddustVo xjroaddustVo=new XjroaddustVo();
+        YcRoaddustVo xjroaddustVo=new YcRoaddustVo();
         xjroaddustVo.setCityCode(cityCode);
         xjroaddustVo.setCountyId(countyCode);
-        XjsoildustVo xjsoildustVo=new XjsoildustVo();
+        YcSoildustVo xjsoildustVo=new YcSoildustVo();
         xjsoildustVo.setCityCode(cityCode);
         xjsoildustVo.setCountyId(countyCode);
-        return xjconstructdustMapper.selectByExample(xjconstructdustVo).size()+xjcydustLoadMapper.selectByExample(xjcydustLoadVo).size()
-                +xjcydustStackMapper.selectByExample(xjcydustStackVo).size()+xjroaddustMapper.selectByExample(xjroaddustVo).size()
-                +xjsoildustMapper.selectByExample(xjsoildustVo).size();
+        return ycconstructdustMapper.selectByExample(xjconstructdustVo).size()+ ycdustLoadMapper.selectByExample(xjcydustLoadVo).size()
+                + ycdustStackMapper.selectByExample(xjcydustStackVo).size()+ ycroaddustMapper.selectByExample(xjroaddustVo).size()
+                + ycsoildustMapper.selectByExample(xjsoildustVo).size();
     }
 
     @Override
-    public List<XjconstructdustVo> getConsByExample(XjconstructdustVo xjconstructdustVo, int page, int limit) {
+    public List<ycConstructdustVo> getConsByExample(ycConstructdustVo xjconstructdustVo, int page, int limit) {
         PageHelper.startPage(page, limit);
-        return xjconstructdustMapper.selectByExample(xjconstructdustVo);
+        return ycconstructdustMapper.selectByExample(xjconstructdustVo);
     }
 
     @Override
-    public XjconstructdustVo getConById(Integer id) {
-        return xjconstructdustMapper.selectById(id);
+    public ycConstructdustVo getConById(Integer id) {
+        return ycconstructdustMapper.selectById(id);
     }
 
     @Override
     public int deleteConById(Integer id) {
-        return xjconstructdustMapper.deleteById(id);
+        return ycconstructdustMapper.deleteById(id);
     }
 
     @Override
-    public int insertOrUpdateCon(XjconstructdustVo xjconstructdustVo,boolean isCul) {
-        Xjconstructdust xjconstructdus=xjconstructdustVo;
+    public int insertOrUpdateCon(ycConstructdustVo xjconstructdustVo, boolean isCul) {
+        YcConstructdust xjconstructdus=xjconstructdustVo;
         if (!isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
@@ -665,32 +661,32 @@ public class SourceServiceImpl implements SourceService {
 //            roadPave.setBcEmission(activity*scc.getBc());
         }
         if(xjconstructdus.getId()!=null){
-            xjconstructdustMapper.updateById(xjconstructdus);
+            ycconstructdustMapper.updateById(xjconstructdus);
         }else {
-            xjconstructdustMapper.insertSelective(xjconstructdus);
+            ycconstructdustMapper.insertSelective(xjconstructdus);
         }
         return 1;
     }
 
     @Override
-    public List<XjcydustLoadVo> getDustLoadsByExample(XjcydustLoadVo xjcydustLoadVo, int page, int limit) {
+    public List<YcDustLoadVo> getDustLoadsByExample(YcDustLoadVo xjcydustLoadVo, int page, int limit) {
         PageHelper.startPage(page, limit);
-        return xjcydustLoadMapper.selectByExample(xjcydustLoadVo);
+        return ycdustLoadMapper.selectByExample(xjcydustLoadVo);
     }
 
     @Override
-    public XjcydustLoadVo getDustLoadById(Integer id) {
-        return xjcydustLoadMapper.selectById(id);
+    public YcDustLoadVo getDustLoadById(Integer id) {
+        return ycdustLoadMapper.selectById(id);
     }
 
     @Override
     public int deleteDustLoadById(Integer id) {
-        return xjcydustLoadMapper.deleteById(id);
+        return ycdustLoadMapper.deleteById(id);
     }
 
     @Override
-    public int insertOrUpdateDustLoad(XjcydustLoadVo xjcydustLoadVo,boolean isCul) {
-        XjcydustLoad xjcydustLoad=xjcydustLoadVo;
+    public int insertOrUpdateDustLoad(YcDustLoadVo xjcydustLoadVo, boolean isCul) {
+        YcDustLoad ycDustLoad =xjcydustLoadVo;
         if (!isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
@@ -704,33 +700,33 @@ public class SourceServiceImpl implements SourceService {
 //            roadPave.setOcEmission(activity*scc.getOc());
 //            roadPave.setBcEmission(activity*scc.getBc());
         }
-        if(xjcydustLoad.getId()!=null){
-            xjcydustLoadMapper.updateById(xjcydustLoad);
+        if(ycDustLoad.getId()!=null){
+            ycdustLoadMapper.updateById(ycDustLoad);
         }else {
-            xjcydustLoadMapper.insertSelective(xjcydustLoad);
+            ycdustLoadMapper.insertSelective(ycDustLoad);
         }
         return 1;
     }
 
     @Override
-    public List<XjcydustStackVo> getDustStacksByExample(XjcydustStackVo xjcydustStackVo, int page, int limit) {
+    public List<YcDustStackVo> getDustStacksByExample(YcDustStackVo xjcydustStackVo, int page, int limit) {
         PageHelper.startPage(page, limit);
-        return xjcydustStackMapper.selectByExample(xjcydustStackVo);
+        return ycdustStackMapper.selectByExample(xjcydustStackVo);
     }
 
     @Override
-    public XjcydustStackVo getDustStackById(Integer id) {
-        return xjcydustStackMapper.selectById(id);
+    public YcDustStackVo getDustStackById(Integer id) {
+        return ycdustStackMapper.selectById(id);
     }
 
     @Override
     public int deleteDustStackById(Integer id) {
-        return xjcydustStackMapper.deleteById(id);
+        return ycdustStackMapper.deleteById(id);
     }
 
     @Override
-    public int insertOrUpdateDustStack(XjcydustStackVo xjcydustStackVo,boolean isCul) {
-        XjcydustStack xjcydustStack=xjcydustStackVo;
+    public int insertOrUpdateDustStack(YcDustStackVo xjcydustStackVo, boolean isCul) {
+        YcDustStack ycDustStack =xjcydustStackVo;
         if (!isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
@@ -744,33 +740,33 @@ public class SourceServiceImpl implements SourceService {
 //            roadPave.setOcEmission(activity*scc.getOc());
 //            roadPave.setBcEmission(activity*scc.getBc());
         }
-        if(xjcydustStack.getId()!=null){
-            xjcydustStackMapper.updateById(xjcydustStack);
+        if(ycDustStack.getId()!=null){
+            ycdustStackMapper.updateById(ycDustStack);
         }else {
-            xjcydustStackMapper.insertSelective(xjcydustStack);
+            ycdustStackMapper.insertSelective(ycDustStack);
         }
         return 1;
     }
 
     @Override
-    public List<XjroaddustVo> getRoadDustsByExample(XjroaddustVo xjroaddustVo, int page, int limit) {
+    public List<YcRoaddustVo> getRoadDustsByExample(YcRoaddustVo xjroaddustVo, int page, int limit) {
         PageHelper.startPage(page, limit);
-        return xjroaddustMapper.selectByExample(xjroaddustVo);
+        return ycroaddustMapper.selectByExample(xjroaddustVo);
     }
 
     @Override
-    public XjroaddustVo getRoadDustById(Integer id) {
-        return xjroaddustMapper.selectById(id);
+    public YcRoaddustVo getRoadDustById(Integer id) {
+        return ycroaddustMapper.selectById(id);
     }
 
     @Override
     public int deleteRoadDustById(Integer id) {
-        return xjroaddustMapper.deleteById(id);
+        return ycroaddustMapper.deleteById(id);
     }
 
     @Override
-    public int insertOrUpdateRoadDust(XjroaddustVo xjroaddustVo,boolean isCul) {
-        Xjroaddust xjroaddust=xjroaddustVo;
+    public int insertOrUpdateRoadDust(YcRoaddustVo xjroaddustVo, boolean isCul) {
+        YcRoaddust ycRoaddust =xjroaddustVo;
         if (!isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
@@ -784,33 +780,33 @@ public class SourceServiceImpl implements SourceService {
 //            roadPave.setOcEmission(activity*scc.getOc());
 //            roadPave.setBcEmission(activity*scc.getBc());
         }
-        if(xjroaddust.getRdId()!=null){
-            xjroaddustMapper.updateById(xjroaddust);
+        if(ycRoaddust.getRdId()!=null){
+            ycroaddustMapper.updateById(ycRoaddust);
         }else {
-            xjroaddustMapper.insertSelective(xjroaddust);
+            ycroaddustMapper.insertSelective(ycRoaddust);
         }
         return 1;
     }
 
     @Override
-    public List<XjsoildustVo> getSoilDustsByExample(XjsoildustVo xjsoildustVo, int page, int limit) {
+    public List<YcSoildustVo> getSoilDustsByExample(YcSoildustVo xjsoildustVo, int page, int limit) {
         PageHelper.startPage(page, limit);
-        return xjsoildustMapper.selectByExample(xjsoildustVo);
+        return ycsoildustMapper.selectByExample(xjsoildustVo);
     }
 
     @Override
-    public XjsoildustVo getSoilDustById(Integer id) {
-        return xjsoildustMapper.selectById(id);
+    public YcSoildustVo getSoilDustById(Integer id) {
+        return ycsoildustMapper.selectById(id);
     }
 
     @Override
     public int deleteSoilDustById(Integer id) {
-        return xjsoildustMapper.deleteById(id);
+        return ycsoildustMapper.deleteById(id);
     }
 
     @Override
-    public int insertOrUpdateSoilDust(XjsoildustVo xjsoildustVo,boolean isCul) {
-        Xjsoildust xjsoildust=xjsoildustVo;
+    public int insertOrUpdateSoilDust(YcSoildustVo xjsoildustVo, boolean isCul) {
+        YcSoildust ycSoildust =xjsoildustVo;
         if (!isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
@@ -824,10 +820,10 @@ public class SourceServiceImpl implements SourceService {
 //            roadPave.setOcEmission(activity*scc.getOc());
 //            roadPave.setBcEmission(activity*scc.getBc());
         }
-        if(xjsoildust.getSdId()!=null){
-            xjsoildustMapper.updateById(xjsoildust);
+        if(ycSoildust.getSdId()!=null){
+            ycsoildustMapper.updateById(ycSoildust);
         }else {
-            xjsoildustMapper.insertSelective(xjsoildust);
+            ycsoildustMapper.insertSelective(ycSoildust);
         }
         return 1;
     }
@@ -1959,7 +1955,7 @@ public class SourceServiceImpl implements SourceService {
         return company.getComId();
     }
     public Scc getSccFactor(String sccCode){
-        Scc scc=sccMapper.selectByScc(sccCode);
+        Scc scc=sccMapper.selectSccActivityByScc(sccCode);
         if (scc==null){
             throw new NullPointerException("无对应SCC因子表，请自己填写污染物排放量！");
         }

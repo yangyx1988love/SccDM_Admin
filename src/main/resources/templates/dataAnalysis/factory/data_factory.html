@@ -29,24 +29,24 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-header"><h3>企业锅炉、窑炉数据</h3></div>
-                        <div class="layui-card-body" >
-                            <div class="layui-carousel" id="carousel_2" >
-                                <div carousel-item="" >
-                                    <div id="pieBarDiv" style="height: 100%"></div>
-                                    <div id="BKbarGraphDiv" style="height: 540px"></div>
-<!--                                    <div id="StackAreaDiv" style="height: 560px"></div>-->
-                                    <!--                                        <div id="pieRadarDiv" style="height: 560px"></div>-->
-                                    <!--                                        <div id="sunburstDiv" style="height: 560px"></div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="layui-row layui-col-space15">-->
+<!--                <div class="layui-col-md12">-->
+<!--                    <div class="layui-card">-->
+<!--                        <div class="layui-card-header"><h3>企业锅炉、窑炉数据</h3></div>-->
+<!--                        <div class="layui-card-body" >-->
+<!--                            <div class="layui-carousel" id="carousel_2" >-->
+<!--                                <div carousel-item="" >-->
+<!--                                    <div id="pieBarDiv" style="height: 100%"></div>-->
+<!--                                    <div id="BKbarGraphDiv" style="height: 540px"></div>-->
+<!--&lt;!&ndash;                                    <div id="StackAreaDiv" style="height: 560px"></div>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <div id="pieRadarDiv" style="height: 560px"></div>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <div id="sunburstDiv" style="height: 560px"></div>&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <!--            <div class="layui-col-md4">-->
             <!--                <div class="layui-card">-->
             <!--                    <div class="layui-card-header">系统信息</div>-->
@@ -151,19 +151,19 @@
                 var myChartBarGrap = echarts.init(document.getElementById('barGraphDiv'));
                 inintBarGraph(myChartBarGrap,'各区县企业数量',['企业数量'], xAxisData, seriesData)
             });
-            layui.$.get('/data/boilerAKiln/num/barPie', function (result) {
-                var jsonObj = result;
-                layui.$("#pieBarDiv").css("width", (parentWith - 50) + 'px');
-                var myChartPieBar = echarts.init(document.getElementById('pieBarDiv'));
-                initBarPie(myChartPieBar, result.barJson, "各城市锅炉、窑炉", result.upPieJson,"锅炉占比", result.downPieJson,"窑炉占比")
-            });
-            layui.$.get('/data/boilerAKiln/num/bar', function (result) {
-                var xAxisData = result.xAxisData;
-                var seriesData = result.seriesData;
-                layui.$("#BKbarGraphDiv").css("width", (parentWith - 50) + 'px');
-                var bk = echarts.init(document.getElementById('BKbarGraphDiv'));
-                inint2BarGraph(bk, '各区县数量',['锅炉','窑炉'], xAxisData, seriesData)
-            });
+            // layui.$.get('/data/boilerAKiln/num/barPie', function (result) {
+            //     var jsonObj = result;
+            //     layui.$("#pieBarDiv").css("width", (parentWith - 50) + 'px');
+            //     var myChartPieBar = echarts.init(document.getElementById('pieBarDiv'));
+            //     initBarPie(myChartPieBar, result.barJson, "各城市锅炉、窑炉", result.upPieJson,"锅炉占比", result.downPieJson,"窑炉占比")
+            // });
+            // layui.$.get('/data/boilerAKiln/num/bar', function (result) {
+            //     var xAxisData = result.xAxisData;
+            //     var seriesData = result.seriesData;
+            //     layui.$("#BKbarGraphDiv").css("width", (parentWith - 50) + 'px');
+            //     var bk = echarts.init(document.getElementById('BKbarGraphDiv'));
+            //     inint2BarGraph(bk, '各区县数量',['锅炉','窑炉'], xAxisData, seriesData)
+            // });
             // var legendData=['化石','工艺', '联盟广告','视频广告','搜索引擎']
             // var radarIndicator=[
             //     { text: 'PM25' },

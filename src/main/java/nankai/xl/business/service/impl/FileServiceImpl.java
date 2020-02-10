@@ -5,13 +5,11 @@ import nankai.xl.business.model.*;
 import nankai.xl.business.model.vo.FactoryQuery;
 import nankai.xl.business.model.vo.SccVo;
 import nankai.xl.business.service.FileService;
-import nankai.xl.common.exception.DuplicateNameException;
 import nankai.xl.common.util.Arith;
 import nankai.xl.common.util.DateUtils;
 import nankai.xl.common.util.NumberUtil;
 import nankai.xl.system.mapper.MenuMapper;
 import nankai.xl.system.model.Menu;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -51,15 +49,15 @@ public class FileServiceImpl implements FileService {
     @Resource
     private DeoilMapper deoilMapper;
     @Resource
-    private XjsoildustMapper xjsoildustMapper;
+    private YcsoildustMapper ycsoildustMapper;
     @Resource
-    private XjroaddustMapper xjroaddustMapper;
+    private YcroaddustMapper ycroaddustMapper;
     @Resource
-    private XjconstructdustMapper xjconstructdustMapper;
+    private YcconstructdustMapper ycconstructdustMapper;
     @Resource
-    private XjcydustLoadMapper xjcydustLoadMapper;
+    private YcdustLoadMapper ycdustLoadMapper;
     @Resource
-    private XjcydustStackMapper xjcydustStackMapper;
+    private YcdustStackMapper ycdustStackMapper;
     @Resource
     private TankSourceMapper tankSourceMapper;
     @Resource
@@ -903,47 +901,47 @@ public class FileServiceImpl implements FileService {
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
-        List<Xjsoildust> xjsoildustList=new ArrayList<>();
+        List<YcSoildust> ycSoildustList =new ArrayList<>();
         for (String[] strs:list) {
-            Xjsoildust xjsoildust=new Xjsoildust();
-            xjsoildust.setScccode(strs[0]);
-            xjsoildust.setSdYear(strs[1]);
-            xjsoildust.setCountyId(strs[2]);
-            xjsoildust.setSdArea(getDecimal(strs[3]));
-            xjsoildust.setSdUtype(strs[4]);
-            xjsoildust.setSdSoiltype(strs[5]);
-            xjsoildust.setSoilindexpm25(getDecimal(strs[6]));
-            xjsoildust.setSoilindexpm10(getDecimal(strs[7]));
-            xjsoildust.setSurindex(getDecimal(strs[8]));
-            xjsoildust.setNoindex(getDecimal(strs[9]));
-            xjsoildust.setPindex(getDecimal(strs[10]));
-            xjsoildust.setSdTakemeasures(strs[11]);
-            xjsoildust.setPm10Max(getDecimal(strs[12]));
-            xjsoildust.setPm25Max(getDecimal(strs[13]));
-            xjsoildust.setCoMax(getDecimal(strs[14]));
-            xjsoildust.setVocMax(getDecimal(strs[15]));
-            xjsoildust.setSo2Max(getDecimal(strs[16]));
-            xjsoildust.setNoxMax(getDecimal(strs[17]));
-            xjsoildust.setNh3Max(getDecimal(strs[18]));
-            xjsoildust.setOcMax(getDecimal(strs[19]));
-            xjsoildust.setBcMax(getDecimal(strs[20]));
+            YcSoildust ycSoildust =new YcSoildust();
+            ycSoildust.setScccode(strs[0]);
+            ycSoildust.setSdYear(strs[1]);
+            ycSoildust.setCountyId(strs[2]);
+            ycSoildust.setSdArea(getDecimal(strs[3]));
+            ycSoildust.setSdUtype(strs[4]);
+            ycSoildust.setSdSoiltype(strs[5]);
+            ycSoildust.setSoilindexpm25(getDecimal(strs[6]));
+            ycSoildust.setSoilindexpm10(getDecimal(strs[7]));
+            ycSoildust.setSurindex(getDecimal(strs[8]));
+            ycSoildust.setNoindex(getDecimal(strs[9]));
+            ycSoildust.setPindex(getDecimal(strs[10]));
+            ycSoildust.setSdTakemeasures(strs[11]);
+            ycSoildust.setPm10Max(getDecimal(strs[12]));
+            ycSoildust.setPm25Max(getDecimal(strs[13]));
+            ycSoildust.setCoMax(getDecimal(strs[14]));
+            ycSoildust.setVocMax(getDecimal(strs[15]));
+            ycSoildust.setSo2Max(getDecimal(strs[16]));
+            ycSoildust.setNoxMax(getDecimal(strs[17]));
+            ycSoildust.setNh3Max(getDecimal(strs[18]));
+            ycSoildust.setOcMax(getDecimal(strs[19]));
+            ycSoildust.setBcMax(getDecimal(strs[20]));
             if (isCul){
-                xjsoildust.setPm10Emission(getDecimal(strs[21]));
-                xjsoildust.setPm25Emission(getDecimal(strs[22]));
-                xjsoildust.setCoEmission(getDecimal(strs[23]));
-                xjsoildust.setVocEmission(getDecimal(strs[24]));
-                xjsoildust.setSo2Emission(getDecimal(strs[25]));
-                xjsoildust.setNoxEmission(getDecimal(strs[26]));
-                xjsoildust.setNh3Emission(getDecimal(strs[27]));
-                xjsoildust.setOcEmission(getDecimal(strs[28]));
-                xjsoildust.setBcEmission(getDecimal(strs[29]));
+                ycSoildust.setPm10Emission(getDecimal(strs[21]));
+                ycSoildust.setPm25Emission(getDecimal(strs[22]));
+                ycSoildust.setCoEmission(getDecimal(strs[23]));
+                ycSoildust.setVocEmission(getDecimal(strs[24]));
+                ycSoildust.setSo2Emission(getDecimal(strs[25]));
+                ycSoildust.setNoxEmission(getDecimal(strs[26]));
+                ycSoildust.setNh3Emission(getDecimal(strs[27]));
+                ycSoildust.setOcEmission(getDecimal(strs[28]));
+                ycSoildust.setBcEmission(getDecimal(strs[29]));
             }else{
                 //计算
             }
-            xjsoildust.setSccDescribe(getSccDescribe(strs[0]));
-            xjsoildustList.add(xjsoildust);
+            ycSoildust.setSccDescribe(getSccDescribe(strs[0]));
+            ycSoildustList.add(ycSoildust);
         }
-        xjsoildustMapper.insertList(xjsoildustList);
+        ycsoildustMapper.insertList(ycSoildustList);
         return i;
     }
     public int importXjroaddust(List<String[]> list,boolean isCul){
@@ -972,50 +970,50 @@ public class FileServiceImpl implements FileService {
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
-        List<Xjroaddust> xjroaddustList=new ArrayList<>();
+        List<YcRoaddust> ycRoaddustList =new ArrayList<>();
         for (String[] strs:list) {
-            Xjroaddust xjroaddust=new Xjroaddust();
-            xjroaddust.setScccode(strs[0]);
-            xjroaddust.setYear(strs[1]);
-            xjroaddust.setCountyId(strs[2]);
-            xjroaddust.setIspave(strs[3]);
-            xjroaddust.setRoadtype(strs[4]);
-            xjroaddust.setPathlength(getDecimal(strs[5]));
-            xjroaddust.setAverwidth(getDecimal(strs[6]));
-            xjroaddust.setCarflow(getDecimal(strs[7]));
-            xjroaddust.setAverspeed(getDecimal(strs[8]));
-            xjroaddust.setAverweight(getDecimal(strs[9]));
-            xjroaddust.setNodustday(Integer.parseInt(strs[10]));
-            xjroaddust.setRoadload(getDecimal(strs[11]));
-            xjroaddust.setWaterratio(getDecimal(strs[12]));
-            xjroaddust.setDirtratio(getDecimal(strs[13]));
-            xjroaddust.setControlname(strs[14]);
-            xjroaddust.setPm10Max(getDecimal(strs[15]));
-            xjroaddust.setPm25Max(getDecimal(strs[16]));
-            xjroaddust.setCoMax(getDecimal(strs[17]));
-            xjroaddust.setVocMax(getDecimal(strs[18]));
-            xjroaddust.setSo2Max(getDecimal(strs[19]));
-            xjroaddust.setNoxMax(getDecimal(strs[20]));
-            xjroaddust.setNh3Max(getDecimal(strs[21]));
-            xjroaddust.setOcMax(getDecimal(strs[22]));
-            xjroaddust.setBcMax(getDecimal(strs[23]));
+            YcRoaddust ycRoaddust =new YcRoaddust();
+            ycRoaddust.setScccode(strs[0]);
+            ycRoaddust.setYear(strs[1]);
+            ycRoaddust.setCountyId(strs[2]);
+            ycRoaddust.setIspave(strs[3]);
+            ycRoaddust.setRoadtype(strs[4]);
+            ycRoaddust.setPathlength(getDecimal(strs[5]));
+            ycRoaddust.setAverwidth(getDecimal(strs[6]));
+            ycRoaddust.setCarflow(getDecimal(strs[7]));
+            ycRoaddust.setAverspeed(getDecimal(strs[8]));
+            ycRoaddust.setAverweight(getDecimal(strs[9]));
+            ycRoaddust.setNodustday(Integer.parseInt(strs[10]));
+            ycRoaddust.setRoadload(getDecimal(strs[11]));
+            ycRoaddust.setWaterratio(getDecimal(strs[12]));
+            ycRoaddust.setDirtratio(getDecimal(strs[13]));
+            ycRoaddust.setControlname(strs[14]);
+            ycRoaddust.setPm10Max(getDecimal(strs[15]));
+            ycRoaddust.setPm25Max(getDecimal(strs[16]));
+            ycRoaddust.setCoMax(getDecimal(strs[17]));
+            ycRoaddust.setVocMax(getDecimal(strs[18]));
+            ycRoaddust.setSo2Max(getDecimal(strs[19]));
+            ycRoaddust.setNoxMax(getDecimal(strs[20]));
+            ycRoaddust.setNh3Max(getDecimal(strs[21]));
+            ycRoaddust.setOcMax(getDecimal(strs[22]));
+            ycRoaddust.setBcMax(getDecimal(strs[23]));
             if (isCul){
-                xjroaddust.setPm10Emission(getDecimal(strs[24]));
-                xjroaddust.setPm25Emission(getDecimal(strs[25]));
-                xjroaddust.setCoEmission(getDecimal(strs[26]));
-                xjroaddust.setVocEmission(getDecimal(strs[27]));
-                xjroaddust.setSo2Emission(getDecimal(strs[28]));
-                xjroaddust.setNoxEmission(getDecimal(strs[29]));
-                xjroaddust.setNh3Emission(getDecimal(strs[30]));
-                xjroaddust.setOcEmission(getDecimal(strs[31]));
-                xjroaddust.setBcEmission(getDecimal(strs[32]));
+                ycRoaddust.setPm10Emission(getDecimal(strs[24]));
+                ycRoaddust.setPm25Emission(getDecimal(strs[25]));
+                ycRoaddust.setCoEmission(getDecimal(strs[26]));
+                ycRoaddust.setVocEmission(getDecimal(strs[27]));
+                ycRoaddust.setSo2Emission(getDecimal(strs[28]));
+                ycRoaddust.setNoxEmission(getDecimal(strs[29]));
+                ycRoaddust.setNh3Emission(getDecimal(strs[30]));
+                ycRoaddust.setOcEmission(getDecimal(strs[31]));
+                ycRoaddust.setBcEmission(getDecimal(strs[32]));
             }else{
                 //计算
             }
-            xjroaddust.setSccDescribe(getSccDescribe(strs[0]));
-            xjroaddustList.add(xjroaddust);
+            ycRoaddust.setSccDescribe(getSccDescribe(strs[0]));
+            ycRoaddustList.add(ycRoaddust);
         }
-        xjroaddustMapper.insertList(xjroaddustList);
+        ycroaddustMapper.insertList(ycRoaddustList);
         return i;
     }
     public int importXjconstructdust(List<String[]> list,boolean isCul){
@@ -1050,7 +1048,7 @@ public class FileServiceImpl implements FileService {
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
-        List<Xjconstructdust> xjconstructdustList=new ArrayList<>();
+        List<YcConstructdust> ycConstructdustList =new ArrayList<>();
         for (String[] strs:list) {
             Company company=new Company();
             company.setCountyId(strs[2]);
@@ -1060,40 +1058,40 @@ public class FileServiceImpl implements FileService {
             company.setLongitude(getDecimal(strs[6]));
             company.setLatitude(getDecimal(strs[7]));
             company.setDomain(strs[8]);
-            Xjconstructdust xjconstructdust=new Xjconstructdust();
-            xjconstructdust.setScccode(strs[0]);
-            xjconstructdust.setYear(strs[1]);
-            xjconstructdust.setXjconstructid(Integer.parseInt(strs[9]));
-            xjconstructdust.setConstructType(strs[10]);
-            xjconstructdust.setThisyearArea(getDecimal(strs[11]));
-            xjconstructdust.setMonths(Integer.parseInt(strs[12]));
-            xjconstructdust.setControlname(strs[13]);
-            xjconstructdust.setPm10Max(getDecimal(strs[14]));
-            xjconstructdust.setPm25Max(getDecimal(strs[15]));
-            xjconstructdust.setCoMax(getDecimal(strs[16]));
-            xjconstructdust.setVocMax(getDecimal(strs[17]));
-            xjconstructdust.setSo2Max(getDecimal(strs[18]));
-            xjconstructdust.setNoxMax(getDecimal(strs[19]));
-            xjconstructdust.setNh3Max(getDecimal(strs[20]));
-            xjconstructdust.setOcMax(getDecimal(strs[21]));
-            xjconstructdust.setBcMax(getDecimal(strs[22]));
+            YcConstructdust ycConstructdust =new YcConstructdust();
+            ycConstructdust.setScccode(strs[0]);
+            ycConstructdust.setYear(strs[1]);
+            ycConstructdust.setXjconstructid(Integer.parseInt(strs[9]));
+            ycConstructdust.setConstructType(strs[10]);
+            ycConstructdust.setThisyearArea(getDecimal(strs[11]));
+            ycConstructdust.setMonths(Integer.parseInt(strs[12]));
+            ycConstructdust.setControlname(strs[13]);
+            ycConstructdust.setPm10Max(getDecimal(strs[14]));
+            ycConstructdust.setPm25Max(getDecimal(strs[15]));
+            ycConstructdust.setCoMax(getDecimal(strs[16]));
+            ycConstructdust.setVocMax(getDecimal(strs[17]));
+            ycConstructdust.setSo2Max(getDecimal(strs[18]));
+            ycConstructdust.setNoxMax(getDecimal(strs[19]));
+            ycConstructdust.setNh3Max(getDecimal(strs[20]));
+            ycConstructdust.setOcMax(getDecimal(strs[21]));
+            ycConstructdust.setBcMax(getDecimal(strs[22]));
             if (isCul){
-                xjconstructdust.setPm10Emission(getDecimal(strs[23]));
-                xjconstructdust.setPm25Emission(getDecimal(strs[24]));
-                xjconstructdust.setCoEmission(getDecimal(strs[25]));
-                xjconstructdust.setVocEmission(getDecimal(strs[26]));
-                xjconstructdust.setSo2Emission(getDecimal(strs[27]));
-                xjconstructdust.setNoxEmission(getDecimal(strs[28]));
-                xjconstructdust.setNh3Emission(getDecimal(strs[29]));
-                xjconstructdust.setOcEmission(getDecimal(strs[30]));
-                xjconstructdust.setBcEmission(getDecimal(strs[31]));
+                ycConstructdust.setPm10Emission(getDecimal(strs[23]));
+                ycConstructdust.setPm25Emission(getDecimal(strs[24]));
+                ycConstructdust.setCoEmission(getDecimal(strs[25]));
+                ycConstructdust.setVocEmission(getDecimal(strs[26]));
+                ycConstructdust.setSo2Emission(getDecimal(strs[27]));
+                ycConstructdust.setNoxEmission(getDecimal(strs[28]));
+                ycConstructdust.setNh3Emission(getDecimal(strs[29]));
+                ycConstructdust.setOcEmission(getDecimal(strs[30]));
+                ycConstructdust.setBcEmission(getDecimal(strs[31]));
             }else{
                 //计算
             }
-            xjconstructdust.setSccDescribe(getSccDescribe(strs[0]));
-            xjconstructdustList.add(xjconstructdust);
+            ycConstructdust.setSccDescribe(getSccDescribe(strs[0]));
+            ycConstructdustList.add(ycConstructdust);
         }
-        xjconstructdustMapper.insertList(xjconstructdustList);
+        ycconstructdustMapper.insertList(ycConstructdustList);
         return i;
     }
     public int importXjcydustLoad(List<String[]> list,boolean isCul){
@@ -1134,7 +1132,7 @@ public class FileServiceImpl implements FileService {
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
-        List<XjcydustLoad> xjcydustLoadList=new ArrayList<>();
+        List<YcDustLoad> ycDustLoadList =new ArrayList<>();
         for (String[] strs:list) {
             Company company=new Company();
             company.setCountyId(strs[2]);
@@ -1144,42 +1142,42 @@ public class FileServiceImpl implements FileService {
             company.setLongitude(getDecimal(strs[6]));
             company.setLatitude(getDecimal(strs[7]));
             company.setDomain(strs[8]);
-            XjcydustLoad xjcydustLoad=new XjcydustLoad();
-            xjcydustLoad.setScccode(strs[0]);
-            xjcydustLoad.setYear(strs[1]);
-            xjcydustLoad.setLoadId(Integer.parseInt(strs[9]));
-            xjcydustLoad.setMaterialType(strs[10]);
-            xjcydustLoad.setMaterialLoad(Integer.parseInt(strs[11]));
-            xjcydustLoad.setMloadUnit(strs[12]);
-            xjcydustLoad.setMaterialWater(getDecimal(strs[13]));
-            xjcydustLoad.setUwindValue(getDecimal(strs[14]));
-            xjcydustLoad.setControlname(strs[15]);
-            xjcydustLoad.setPm10Max(getDecimal(strs[16]));
-            xjcydustLoad.setPm25Max(getDecimal(strs[17]));
-            xjcydustLoad.setCoMax(getDecimal(strs[18]));
-            xjcydustLoad.setVocMax(getDecimal(strs[19]));
-            xjcydustLoad.setSo2Max(getDecimal(strs[20]));
-            xjcydustLoad.setNoxMax(getDecimal(strs[21]));
-            xjcydustLoad.setNh3Max(getDecimal(strs[22]));
-            xjcydustLoad.setOcMax(getDecimal(strs[23]));
-            xjcydustLoad.setBcMax(getDecimal(strs[24]));
+            YcDustLoad ycDustLoad =new YcDustLoad();
+            ycDustLoad.setScccode(strs[0]);
+            ycDustLoad.setYear(strs[1]);
+            ycDustLoad.setLoadId(Integer.parseInt(strs[9]));
+            ycDustLoad.setMaterialType(strs[10]);
+            ycDustLoad.setMaterialLoad(Integer.parseInt(strs[11]));
+            ycDustLoad.setMloadUnit(strs[12]);
+            ycDustLoad.setMaterialWater(getDecimal(strs[13]));
+            ycDustLoad.setUwindValue(getDecimal(strs[14]));
+            ycDustLoad.setControlname(strs[15]);
+            ycDustLoad.setPm10Max(getDecimal(strs[16]));
+            ycDustLoad.setPm25Max(getDecimal(strs[17]));
+            ycDustLoad.setCoMax(getDecimal(strs[18]));
+            ycDustLoad.setVocMax(getDecimal(strs[19]));
+            ycDustLoad.setSo2Max(getDecimal(strs[20]));
+            ycDustLoad.setNoxMax(getDecimal(strs[21]));
+            ycDustLoad.setNh3Max(getDecimal(strs[22]));
+            ycDustLoad.setOcMax(getDecimal(strs[23]));
+            ycDustLoad.setBcMax(getDecimal(strs[24]));
             if (isCul){
-                xjcydustLoad.setPm10Emission(getDecimal(strs[25]));
-                xjcydustLoad.setPm25Emission(getDecimal(strs[26]));
-                xjcydustLoad.setCoEmission(getDecimal(strs[27]));
-                xjcydustLoad.setVocEmission(getDecimal(strs[28]));
-                xjcydustLoad.setSo2Emission(getDecimal(strs[29]));
-                xjcydustLoad.setNoxEmission(getDecimal(strs[30]));
-                xjcydustLoad.setNh3Emission(getDecimal(strs[31]));
-                xjcydustLoad.setOcEmission(getDecimal(strs[32]));
-                xjcydustLoad.setBcEmission(getDecimal(strs[33]));
+                ycDustLoad.setPm10Emission(getDecimal(strs[25]));
+                ycDustLoad.setPm25Emission(getDecimal(strs[26]));
+                ycDustLoad.setCoEmission(getDecimal(strs[27]));
+                ycDustLoad.setVocEmission(getDecimal(strs[28]));
+                ycDustLoad.setSo2Emission(getDecimal(strs[29]));
+                ycDustLoad.setNoxEmission(getDecimal(strs[30]));
+                ycDustLoad.setNh3Emission(getDecimal(strs[31]));
+                ycDustLoad.setOcEmission(getDecimal(strs[32]));
+                ycDustLoad.setBcEmission(getDecimal(strs[33]));
             }else{
                 //计算
             }
-            xjcydustLoad.setSccDescribe(getSccDescribe(strs[0]));
-            xjcydustLoadList.add(xjcydustLoad);
+            ycDustLoad.setSccDescribe(getSccDescribe(strs[0]));
+            ycDustLoadList.add(ycDustLoad);
         }
-        xjcydustLoadMapper.insertList(xjcydustLoadList);
+        ycdustLoadMapper.insertList(ycDustLoadList);
         return i;
     }
     public int importXjcydustStack(List<String[]> list,boolean isCul){
@@ -1214,7 +1212,7 @@ public class FileServiceImpl implements FileService {
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
-        List<XjcydustStack> xjcydustStackList=new ArrayList<>();
+        List<YcDustStack> ycDustStackList =new ArrayList<>();
         for (String[] strs:list) {
             Company company=new Company();
             company.setCountyId(strs[2]);
@@ -1224,44 +1222,44 @@ public class FileServiceImpl implements FileService {
             company.setLongitude(getDecimal(strs[6]));
             company.setLatitude(getDecimal(strs[7]));
             company.setDomain(strs[8]);
-            XjcydustStack xjcydustStack=new XjcydustStack();
-            xjcydustStack.setScccode(strs[0]);
-            xjcydustStack.setYear(strs[1]);
-            xjcydustStack.setStackId(Integer.parseInt(strs[9]));
-            xjcydustStack.setMaterialType(strs[10]);
-            xjcydustStack.setSarea(Integer.parseInt(strs[11]));
-            xjcydustStack.setmWindnum(Integer.parseInt(strs[12]));
-            xjcydustStack.setGroundWindhigh(getDecimal(strs[13]));
-            xjcydustStack.setGroundRough(getDecimal(strs[14]));
-            xjcydustStack.setGroundWind(getDecimal(strs[15]));
-            xjcydustStack.setWindFriction(getDecimal(strs[16]));
-            xjcydustStack.setControlname(strs[17]);
-            xjcydustStack.setPm10Max(getDecimal(strs[18]));
-            xjcydustStack.setPm25Max(getDecimal(strs[19]));
-            xjcydustStack.setCoMax(getDecimal(strs[20]));
-            xjcydustStack.setVocMax(getDecimal(strs[21]));
-            xjcydustStack.setSo2Max(getDecimal(strs[22]));
-            xjcydustStack.setNoxMax(getDecimal(strs[23]));
-            xjcydustStack.setNh3Max(getDecimal(strs[24]));
-            xjcydustStack.setOcMax(getDecimal(strs[25]));
-            xjcydustStack.setBcMax(getDecimal(strs[26]));
+            YcDustStack ycDustStack =new YcDustStack();
+            ycDustStack.setScccode(strs[0]);
+            ycDustStack.setYear(strs[1]);
+            ycDustStack.setStackId(Integer.parseInt(strs[9]));
+            ycDustStack.setMaterialType(strs[10]);
+            ycDustStack.setSarea(Integer.parseInt(strs[11]));
+            ycDustStack.setmWindnum(Integer.parseInt(strs[12]));
+            ycDustStack.setGroundWindhigh(getDecimal(strs[13]));
+            ycDustStack.setGroundRough(getDecimal(strs[14]));
+            ycDustStack.setGroundWind(getDecimal(strs[15]));
+            ycDustStack.setWindFriction(getDecimal(strs[16]));
+            ycDustStack.setControlname(strs[17]);
+            ycDustStack.setPm10Max(getDecimal(strs[18]));
+            ycDustStack.setPm25Max(getDecimal(strs[19]));
+            ycDustStack.setCoMax(getDecimal(strs[20]));
+            ycDustStack.setVocMax(getDecimal(strs[21]));
+            ycDustStack.setSo2Max(getDecimal(strs[22]));
+            ycDustStack.setNoxMax(getDecimal(strs[23]));
+            ycDustStack.setNh3Max(getDecimal(strs[24]));
+            ycDustStack.setOcMax(getDecimal(strs[25]));
+            ycDustStack.setBcMax(getDecimal(strs[26]));
             if (isCul){
-                xjcydustStack.setPm10Emission(getDecimal(strs[27]));
-                xjcydustStack.setPm25Emission(getDecimal(strs[28]));
-                xjcydustStack.setCoEmission(getDecimal(strs[29]));
-                xjcydustStack.setVocEmission(getDecimal(strs[30]));
-                xjcydustStack.setSo2Emission(getDecimal(strs[31]));
-                xjcydustStack.setNoxEmission(getDecimal(strs[32]));
-                xjcydustStack.setNh3Emission(getDecimal(strs[33]));
-                xjcydustStack.setOcEmission(getDecimal(strs[34]));
-                xjcydustStack.setBcEmission(getDecimal(strs[35]));
+                ycDustStack.setPm10Emission(getDecimal(strs[27]));
+                ycDustStack.setPm25Emission(getDecimal(strs[28]));
+                ycDustStack.setCoEmission(getDecimal(strs[29]));
+                ycDustStack.setVocEmission(getDecimal(strs[30]));
+                ycDustStack.setSo2Emission(getDecimal(strs[31]));
+                ycDustStack.setNoxEmission(getDecimal(strs[32]));
+                ycDustStack.setNh3Emission(getDecimal(strs[33]));
+                ycDustStack.setOcEmission(getDecimal(strs[34]));
+                ycDustStack.setBcEmission(getDecimal(strs[35]));
             }else{
                 //计算
             }
-            xjcydustStack.setSccDescribe(getSccDescribe(strs[0]));
-            xjcydustStackList.add(xjcydustStack);
+            ycDustStack.setSccDescribe(getSccDescribe(strs[0]));
+            ycDustStackList.add(ycDustStack);
         }
-        xjcydustStackMapper.insertList(xjcydustStackList);
+        ycdustStackMapper.insertList(ycDustStackList);
         return i;
     }
     public int importTankSource(List<String[]> list,boolean isCul){

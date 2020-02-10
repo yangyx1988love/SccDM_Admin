@@ -21,22 +21,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.FertilizationVo" parameterType="nankai.xl.business.model.vo.FertilizationVo" >
-    SELECT fertilization.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(fertilization.scccode,1,2) AS scc1,SUBSTR(fertilization.scccode,3,2) AS scc2,
-    SUBSTR(fertilization.scccode,5,3) AS scc3,SUBSTR(fertilization.scccode,8,3) AS scc4
-    FROM fertilization
+    SELECT ny_fertilization.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_fertilization.scccode,1,2) AS scc1,SUBSTR(ny_fertilization.scccode,3,2) AS scc2,
+    SUBSTR(ny_fertilization.scccode,5,3) AS scc3,SUBSTR(ny_fertilization.scccode,8,3) AS scc4
+    FROM ny_fertilization
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=fertilization.county_id
+    ON co.COUNTY_ID=ny_fertilization.county_id
     <where>
       <if test="year != null and year != ''">
-        fertilization.year = #{year}
+        ny_fertilization.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND fertilization.county_id = #{countyId}
+        AND ny_fertilization.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -44,24 +44,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.FertilizationVo" parameterType="java.lang.Integer" >
-    SELECT fertilization.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(fertilization.scccode,1,2) AS scc1,SUBSTR(fertilization.scccode,3,2) AS scc2,
-				SUBSTR(fertilization.scccode,5,3) AS scc3,SUBSTR(fertilization.scccode,8,3) AS scc4
-    FROM fertilization
+    SELECT ny_fertilization.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_fertilization.scccode,1,2) AS scc1,SUBSTR(ny_fertilization.scccode,3,2) AS scc2,
+				SUBSTR(ny_fertilization.scccode,5,3) AS scc3,SUBSTR(ny_fertilization.scccode,8,3) AS scc4
+    FROM ny_fertilization
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=fertilization.county_id
-    where fertilization.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=ny_fertilization.county_id
+    where ny_fertilization.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from fertilization
+    delete from ny_fertilization
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.Fertilization" >
-    insert into fertilization
+    insert into ny_fertilization
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -164,7 +164,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Fertilization" >
-    insert into fertilization (id, year, county_id, 
+    insert into ny_fertilization (id, year, county_id, 
       scccode, source_descrip, activity_level, 
       pm10_emission, pm25_emission, voc_emission, 
       nh3_emission, so2_emission, co_emission, 
@@ -224,7 +224,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.Fertilization" >
-    update fertilization
+    update ny_fertilization
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

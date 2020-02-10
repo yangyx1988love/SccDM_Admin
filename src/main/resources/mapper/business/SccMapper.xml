@@ -40,7 +40,11 @@
     bc, monthid, nkweekid, nkdayid, nknoxid, nkvocid, nkpm25id, ec, unit, nox_real, so2_real,
     nh3_real, vocs_real, co_real, pm10_real, pm25_real, bc_real, oc_real, flag
   </sql>
-  <select id="selectByScc" resultType="nankai.xl.business.model.vo.SccActivity" parameterType="java.lang.String" >
+  <select id="selectById" resultType="nankai.xl.business.model.Scc" parameterType="java.lang.String" >
+    SELECT * FROM scc
+    where scc = #{scc,jdbcType=CHAR}
+  </select>
+  <select id="selectSccActivityByScc" resultType="nankai.xl.business.model.vo.SccActivity" parameterType="java.lang.String" >
     SELECT scc,nox, so2, nh3, vocs, co, pm10, pm25, oc, pm, bc, january, february, march, april, may, june, july, august, september, october,
       november, december from(
         SELECT * FROM scc
@@ -49,4 +53,339 @@
     ) scc
     where scc = #{scc,jdbcType=CHAR}
   </select>
+  <select id="selectByLikeScc" resultType="nankai.xl.business.model.Scc" parameterType="java.lang.String" >
+    SELECT * FROM scc
+    <where>
+      <if test="_parameter != null" >
+        scc LIKE CONCAT(CONCAT('%',#{scc,jdbcType=CHAR},'%'))
+      </if>
+    </where>
+  </select>
+  <select id="selectBySccQuery" resultType="nankai.xl.business.model.vo.SccResultVo" parameterType="nankai.xl.business.model.vo.SccQueryVo" >
+    SELECT ss.sccDec,scc.* FROM scc
+    LEFT JOIN (
+    SELECT CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3,scc_4.scc_4) AS sccCode,
+    CONCAT(scc_1.description,'/',scc_2.description,'/',scc_3.description,'/',scc_4.description) AS sccDec
+    FROM scc_4
+    LEFT JOIN scc_1
+    ON scc_4.scc_1=scc_1.scc_1
+    LEFT JOIN scc_2
+    ON scc_4.scc_1=scc_2.scc_1 AND scc_4.scc_2=scc_2.scc_2
+    LEFT JOIN scc_3
+    ON scc_4.scc_1=scc_3.scc_1 AND scc_4.scc_2=scc_3.scc_2 AND scc_4.scc_3=scc_3.scc_3
+    )ss
+    ON scc.scc=ss.sccCode
+    <where>
+      <if test="scc1 != null and scc1 != ''">
+        SUBSTR(scc,1,2)=#{scc1,jdbcType=CHAR}
+      </if>
+      <if test="scc2 != null and scc2 != ''">
+        AND SUBSTR(scc,3,2)=#{scc2,jdbcType=CHAR}
+      </if>
+      <if test="scc3 != null and scc3 != ''">
+        AND SUBSTR(scc,5,3)=#{scc3,jdbcType=CHAR}
+      </if>
+      <if test="scc4 != null and scc4 != ''">
+        AND SUBSTR(scc,8,3)=#{scc4,jdbcType=CHAR}
+      </if>
+    </where>
+  </select>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.Scc" >
+    insert into scc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scc != null" >
+        scc,
+      </if>
+      <if test="epaScc != null" >
+        epa_scc,
+      </if>
+      <if test="gridid9k != null" >
+        gridid_9k,
+      </if>
+      <if test="gridid3k != null" >
+        gridid_3k,
+      </if>
+      <if test="nox != null" >
+        nox,
+      </if>
+      <if test="so2 != null" >
+        so2,
+      </if>
+      <if test="nh3 != null" >
+        nh3,
+      </if>
+      <if test="vocs != null" >
+        vocs,
+      </if>
+      <if test="co != null" >
+        co,
+      </if>
+      <if test="pm10 != null" >
+        pm10,
+      </if>
+      <if test="pm25 != null" >
+        pm25,
+      </if>
+      <if test="oc != null" >
+        oc,
+      </if>
+      <if test="pm != null" >
+        pm,
+      </if>
+      <if test="bc != null" >
+        bc,
+      </if>
+      <if test="monthid != null" >
+        monthid,
+      </if>
+      <if test="nkweekid != null" >
+        nkweekid,
+      </if>
+      <if test="nkdayid != null" >
+        nkdayid,
+      </if>
+      <if test="nknoxid != null" >
+        nknoxid,
+      </if>
+      <if test="nkvocid != null" >
+        nkvocid,
+      </if>
+      <if test="nkpm25id != null" >
+        nkpm25id,
+      </if>
+      <if test="ec != null" >
+        ec,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="noxReal != null" >
+        nox_real,
+      </if>
+      <if test="so2Real != null" >
+        so2_real,
+      </if>
+      <if test="nh3Real != null" >
+        nh3_real,
+      </if>
+      <if test="vocsReal != null" >
+        vocs_real,
+      </if>
+      <if test="coReal != null" >
+        co_real,
+      </if>
+      <if test="pm10Real != null" >
+        pm10_real,
+      </if>
+      <if test="pm25Real != null" >
+        pm25_real,
+      </if>
+      <if test="bcReal != null" >
+        bc_real,
+      </if>
+      <if test="ocReal != null" >
+        oc_real,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scc != null" >
+        #{scc,jdbcType=CHAR},
+      </if>
+      <if test="epaScc != null" >
+        #{epaScc,jdbcType=CHAR},
+      </if>
+      <if test="gridid9k != null" >
+        #{gridid9k,jdbcType=CHAR},
+      </if>
+      <if test="gridid3k != null" >
+        #{gridid3k,jdbcType=CHAR},
+      </if>
+      <if test="nox != null" >
+        #{nox,jdbcType=DOUBLE},
+      </if>
+      <if test="so2 != null" >
+        #{so2,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3 != null" >
+        #{nh3,jdbcType=DOUBLE},
+      </if>
+      <if test="vocs != null" >
+        #{vocs,jdbcType=DOUBLE},
+      </if>
+      <if test="co != null" >
+        #{co,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10 != null" >
+        #{pm10,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25 != null" >
+        #{pm25,jdbcType=DOUBLE},
+      </if>
+      <if test="oc != null" >
+        #{oc,jdbcType=DOUBLE},
+      </if>
+      <if test="pm != null" >
+        #{pm,jdbcType=DOUBLE},
+      </if>
+      <if test="bc != null" >
+        #{bc,jdbcType=DOUBLE},
+      </if>
+      <if test="monthid != null" >
+        #{monthid,jdbcType=INTEGER},
+      </if>
+      <if test="nkweekid != null" >
+        #{nkweekid,jdbcType=INTEGER},
+      </if>
+      <if test="nkdayid != null" >
+        #{nkdayid,jdbcType=INTEGER},
+      </if>
+      <if test="nknoxid != null" >
+        #{nknoxid,jdbcType=INTEGER},
+      </if>
+      <if test="nkvocid != null" >
+        #{nkvocid,jdbcType=INTEGER},
+      </if>
+      <if test="nkpm25id != null" >
+        #{nkpm25id,jdbcType=INTEGER},
+      </if>
+      <if test="ec != null" >
+        #{ec,jdbcType=DOUBLE},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="noxReal != null" >
+        #{noxReal,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Real != null" >
+        #{so2Real,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Real != null" >
+        #{nh3Real,jdbcType=DOUBLE},
+      </if>
+      <if test="vocsReal != null" >
+        #{vocsReal,jdbcType=DOUBLE},
+      </if>
+      <if test="coReal != null" >
+        #{coReal,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Real != null" >
+        #{pm10Real,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Real != null" >
+        #{pm25Real,jdbcType=DOUBLE},
+      </if>
+      <if test="bcReal != null" >
+        #{bcReal,jdbcType=DOUBLE},
+      </if>
+      <if test="ocReal != null" >
+        #{ocReal,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.Scc" >
+    update scc
+    <set >
+      <if test="epaScc != null" >
+        epa_scc = #{epaScc,jdbcType=CHAR},
+      </if>
+      <if test="gridid9k != null" >
+        gridid_9k = #{gridid9k,jdbcType=CHAR},
+      </if>
+      <if test="gridid3k != null" >
+        gridid_3k = #{gridid3k,jdbcType=CHAR},
+      </if>
+      <if test="nox != null" >
+        nox = #{nox,jdbcType=DOUBLE},
+      </if>
+      <if test="so2 != null" >
+        so2 = #{so2,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3 != null" >
+        nh3 = #{nh3,jdbcType=DOUBLE},
+      </if>
+      <if test="vocs != null" >
+        vocs = #{vocs,jdbcType=DOUBLE},
+      </if>
+      <if test="co != null" >
+        co = #{co,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10 != null" >
+        pm10 = #{pm10,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25 != null" >
+        pm25 = #{pm25,jdbcType=DOUBLE},
+      </if>
+      <if test="oc != null" >
+        oc = #{oc,jdbcType=DOUBLE},
+      </if>
+      <if test="pm != null" >
+        pm = #{pm,jdbcType=DOUBLE},
+      </if>
+      <if test="bc != null" >
+        bc = #{bc,jdbcType=DOUBLE},
+      </if>
+      <if test="monthid != null" >
+        monthid = #{monthid,jdbcType=INTEGER},
+      </if>
+      <if test="nkweekid != null" >
+        nkweekid = #{nkweekid,jdbcType=INTEGER},
+      </if>
+      <if test="nkdayid != null" >
+        nkdayid = #{nkdayid,jdbcType=INTEGER},
+      </if>
+      <if test="nknoxid != null" >
+        nknoxid = #{nknoxid,jdbcType=INTEGER},
+      </if>
+      <if test="nkvocid != null" >
+        nkvocid = #{nkvocid,jdbcType=INTEGER},
+      </if>
+      <if test="nkpm25id != null" >
+        nkpm25id = #{nkpm25id,jdbcType=INTEGER},
+      </if>
+      <if test="ec != null" >
+        ec = #{ec,jdbcType=DOUBLE},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="noxReal != null" >
+        nox_real = #{noxReal,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Real != null" >
+        so2_real = #{so2Real,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Real != null" >
+        nh3_real = #{nh3Real,jdbcType=DOUBLE},
+      </if>
+      <if test="vocsReal != null" >
+        vocs_real = #{vocsReal,jdbcType=DOUBLE},
+      </if>
+      <if test="coReal != null" >
+        co_real = #{coReal,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Real != null" >
+        pm10_real = #{pm10Real,jdbcType=DOUBLE},
+      </if>
+      <if test="pm25Real != null" >
+        pm25_real = #{pm25Real,jdbcType=DOUBLE},
+      </if>
+      <if test="bcReal != null" >
+        bc_real = #{bcReal,jdbcType=DOUBLE},
+      </if>
+      <if test="ocReal != null" >
+        oc_real = #{ocReal,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=BIT},
+      </if>
+    </set>
+    where scc = #{scc,jdbcType=CHAR}
+  </update>
 </mapper>

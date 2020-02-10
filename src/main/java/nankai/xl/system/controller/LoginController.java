@@ -100,7 +100,7 @@ public class LoginController {
                 .start();
 
         // 注册后默认的角色, 根据自己数据库的角色表 ID 设置
-        Integer[] initRoleIds = {2};
+        Integer[] initRoleIds = {1};
         return ResultBean.success(adminuserService.add(user, initRoleIds));
     }
 
@@ -133,5 +133,34 @@ public class LoginController {
         model.addAttribute("msg", msg);
         return "active";
     }
-
+    @GetMapping("/forget")
+    public String forget() {
+        return "forget";
+    }
+    @PostMapping("/forget/{username}")
+    @ResponseBody
+    public ResultBean forget(@PathVariable("username") String username,Adminuser user,Model model) {
+        Adminuser userr = adminuserService.selectOneByUserName(username);
+        String activeCode = IdUtil.fastSimpleUUID();
+        user.setUserId(userr.getUserId());
+        user.setActiveCode(activeCode);
+        String mailContent="验证码:"+activeCode;
+        new Thread(() ->
+                mailService.sendHTMLMail(userr.getEmail(), "污染源清单管理系统 密码找回邮件", mailContent))
+                .start();
+        model.addAttribute("userId", user.getUserId());
+        return ResultBean.success(adminuserService.update(user));
+    }
+    @PutMapping("/forget/{activeCode}")
+    @ResponseBody
+    public ResultBean forget(@PathVariable("activeCode") String activeCode,Adminuser user) {
+        Adminuser userr=adminuserService.selectOneByUserName(user.getUsername());
+        if(userr.getActiveCode().equals(activeCode)){
+            user.setActiveCode(IdUtil.fastSimpleUUID());
+            adminuserService.update(user);
+        }else {
+            return ResultBean.error("验证码已使用！请重新获取邮箱验证码！！");
+        }
+        return ResultBean.success();
+    }
 }

@@ -81,8 +81,8 @@
                 <div class="layui-input-block">
                     <div class="layui-unselect layui-form-select" id="deptNameDiv">
                         <div class="layui-select-title">
-                            <input type="text" id="deptName"
-                                   placeholder="请选择" class="layui-input layui-unselect" readonly>
+                            <input type="text" name="deptName" id="deptName"
+                                   placeholder="请选择" class="layui-input layui-unselect" lay-verify="required">
                             <input type="hidden" name="deptId" id="deptId">
                             <i class="layui-edge"></i>
                         </div>
@@ -138,8 +138,13 @@
                     title: "name"
                 },
                 done: function (response, obj) {
-                    var deptId = [[${user?.deptId + ''}]] ;
-                    var dept = deptDTree.getParam(deptId);
+                    var deptId  = [[${user?.deptId + ''}]]+ '';
+                    var dept ;
+                    if (deptId<10){
+                        dept = deptDTree.getParam("0" + deptId);
+                    }else{
+                        dept = deptDTree.getParam(deptId);
+                    }
                     if (dept) {
                         $("#deptName").val(dept.context);
                         $("#deptId").val(dept.nodeId);
@@ -171,6 +176,7 @@
             //监听提交
             form.on('submit(edit)', function (form) {
                 form.field._method = 'PUT';
+                form.field.role = formSelects.value('role-select', 'val');
                 form.field.role = formSelects.value('role-select', 'val');
                 $.post('/user', form.field, function (result) {
                     handlerResult(result, editDone);

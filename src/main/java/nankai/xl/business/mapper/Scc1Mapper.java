@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface Scc1Mapper {
+    List<Scc1> selectAll();
 }

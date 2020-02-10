@@ -50,16 +50,16 @@ public class DustController {
     @OperationLog("土壤扬尘源-列表")
     @GetMapping("/dust/soilDust/list")
     @ResponseBody
-    public PageResultBean<XjsoildustVo> soilDustList(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<YcSoildustVo> soilDustList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                     XjsoildustVo xjsoildustVo) {
+                                                     YcSoildustVo xjsoildustVo) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (xjsoildustVo.getCityCode()==null&&xjsoildustVo.getCountyId()==null){
             xjsoildustVo.setCityCode(cityCode);
             xjsoildustVo.setCountyId(countyCode);
         }
-        List<XjsoildustVo> results= sourceService.getSoilDustsByExample(xjsoildustVo,page, limit);
-        PageInfo<XjsoildustVo> PageInfo = new PageInfo<>(results);
+        List<YcSoildustVo> results= sourceService.getSoilDustsByExample(xjsoildustVo,page, limit);
+        PageInfo<YcSoildustVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
     @OperationLog("土壤扬尘源-删除")
@@ -73,7 +73,7 @@ public class DustController {
     @GetMapping("/dust/soilDust/{id}")
     public String soilDustEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="01";
-        XjsoildustVo xjsoildustVo=sourceService.getSoilDustById(id);
+        YcSoildustVo xjsoildustVo=sourceService.getSoilDustById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -111,7 +111,7 @@ public class DustController {
     @OperationLog("土壤扬尘源-编辑-保存")
     @PutMapping("/dust/soilDust/edit")
     @ResponseBody
-    public ResultBean soilDustInsertOrUpdate(boolean isCul,XjsoildustVo xjsoildustVo)  {
+    public ResultBean soilDustInsertOrUpdate(boolean isCul, YcSoildustVo xjsoildustVo)  {
         xjsoildustVo.setScccode(scc1+"01"+xjsoildustVo.getScc3()+xjsoildustVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(xjsoildustVo.getScccode());
         xjsoildustVo.setSccDescribe(sccVo.getDescription());
@@ -134,16 +134,16 @@ public class DustController {
     @OperationLog("道路扬尘源-列表")
     @GetMapping("/dust/roadDust/list")
     @ResponseBody
-    public PageResultBean<XjroaddustVo> roadDustList(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<YcRoaddustVo> roadDustList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                     XjroaddustVo xjroaddustVo) {
+                                                     YcRoaddustVo xjroaddustVo) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (xjroaddustVo.getCityCode()==null&&xjroaddustVo.getCountyId()==null){
             xjroaddustVo.setCityCode(cityCode);
             xjroaddustVo.setCountyId(countyCode);
         }
-        List<XjroaddustVo> results= sourceService.getRoadDustsByExample(xjroaddustVo,page, limit);
-        PageInfo<XjroaddustVo> PageInfo = new PageInfo<>(results);
+        List<YcRoaddustVo> results= sourceService.getRoadDustsByExample(xjroaddustVo,page, limit);
+        PageInfo<YcRoaddustVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
 
@@ -158,7 +158,7 @@ public class DustController {
     @GetMapping("/dust/roadDust/{id}")
     public String roadDustEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="02";
-        XjroaddustVo xjroaddustVo=sourceService.getRoadDustById(id);
+        YcRoaddustVo xjroaddustVo=sourceService.getRoadDustById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -196,7 +196,7 @@ public class DustController {
     @OperationLog("道路扬尘源-编辑-保存")
     @PutMapping("/dust/roadDust/edit")
     @ResponseBody
-    public ResultBean roadDustInsertOrUpdate(boolean isCul,XjroaddustVo xjroaddustVo)  {
+    public ResultBean roadDustInsertOrUpdate(boolean isCul, YcRoaddustVo xjroaddustVo)  {
         xjroaddustVo.setScccode(scc1+"02"+xjroaddustVo.getScc3()+xjroaddustVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(xjroaddustVo.getScccode());
         xjroaddustVo.setSccDescribe(sccVo.getDescription());
@@ -219,16 +219,16 @@ public class DustController {
     @OperationLog("施工扬尘源-列表")
     @GetMapping("/dust/conDust/list")
     @ResponseBody
-    public PageResultBean<XjconstructdustVo> conDustList(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                   @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                         XjconstructdustVo xjconstructdustVo) {
+    public PageResultBean<ycConstructdustVo> conDustList(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
+                                                         ycConstructdustVo xjconstructdustVo) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (xjconstructdustVo.getCityCode()==null&&xjconstructdustVo.getCountyId()==null){
             xjconstructdustVo.setCityCode(cityCode);
             xjconstructdustVo.setCountyId(countyCode);
         }
-        List<XjconstructdustVo> results= sourceService.getConsByExample(xjconstructdustVo,page, limit);
-        PageInfo<XjconstructdustVo> PageInfo = new PageInfo<>(results);
+        List<ycConstructdustVo> results= sourceService.getConsByExample(xjconstructdustVo,page, limit);
+        PageInfo<ycConstructdustVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
     @OperationLog("施工扬尘源-删除")
@@ -242,7 +242,7 @@ public class DustController {
     @GetMapping("/dust/conDust/{id}")
     public String conDustEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="03";
-        XjconstructdustVo xjconstructdustVo=sourceService.getConById(id);
+        ycConstructdustVo xjconstructdustVo=sourceService.getConById(id);
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);
@@ -280,7 +280,7 @@ public class DustController {
     @OperationLog("施工扬尘源-编辑-保存")
     @PutMapping("/dust/conDust/edit")
     @ResponseBody
-    public ResultBean conDustInsertOrUpdate(boolean isCul,XjconstructdustVo xjconstructdustVo)  {
+    public ResultBean conDustInsertOrUpdate(boolean isCul, ycConstructdustVo xjconstructdustVo)  {
         xjconstructdustVo.setScccode(scc1+"03"+xjconstructdustVo.getScc3()+xjconstructdustVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(xjconstructdustVo.getScccode());
         xjconstructdustVo.setSccDescribe(sccVo.getDescription());
@@ -304,16 +304,16 @@ public class DustController {
     @OperationLog("堆场装卸扬尘源-列表")
     @GetMapping("/dust/dustLoad/list")
     @ResponseBody
-    public PageResultBean<XjcydustLoadVo> dustLoadList(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<YcDustLoadVo> dustLoadList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                       XjcydustLoadVo xjcydustLoadVo) {
+                                                     YcDustLoadVo xjcydustLoadVo) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (xjcydustLoadVo.getCityCode()==null&&xjcydustLoadVo.getCountyId()==null){
             xjcydustLoadVo.setCityCode(cityCode);
             xjcydustLoadVo.setCountyId(countyCode);
         }
-        List<XjcydustLoadVo> results= sourceService.getDustLoadsByExample(xjcydustLoadVo,page, limit);
-        PageInfo<XjcydustLoadVo> PageInfo = new PageInfo<>(results);
+        List<YcDustLoadVo> results= sourceService.getDustLoadsByExample(xjcydustLoadVo,page, limit);
+        PageInfo<YcDustLoadVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
     @OperationLog("堆场装卸扬尘源-删除")
@@ -328,7 +328,7 @@ public class DustController {
     public String dustLoadEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="04";
         String scc3="001";
-        XjcydustLoadVo xjcydustLoadVo=sourceService.getDustLoadById(id);
+        YcDustLoadVo xjcydustLoadVo=sourceService.getDustLoadById(id);
         Scc4 scc4=new Scc4();
         scc4.setScc1(scc1);
         scc4.setScc2(scc2);
@@ -359,7 +359,7 @@ public class DustController {
     @OperationLog("堆场装卸扬尘源-编辑-保存")
     @PutMapping("/dust/dustLoad/edit")
     @ResponseBody
-    public ResultBean dustLoadInsertOrUpdate(boolean isCul,XjcydustLoadVo xjcydustLoadVo)  {
+    public ResultBean dustLoadInsertOrUpdate(boolean isCul, YcDustLoadVo xjcydustLoadVo)  {
         xjcydustLoadVo.setScccode(scc1+"04"+xjcydustLoadVo.getScc3()+xjcydustLoadVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(xjcydustLoadVo.getScccode());
         xjcydustLoadVo.setSccDescribe(sccVo.getDescription());
@@ -382,16 +382,16 @@ public class DustController {
     @OperationLog("堆场风蚀扬尘源-列表")
     @GetMapping("/dust/dustStack/list")
     @ResponseBody
-    public PageResultBean<XjcydustStackVo> dustStackList(@RequestParam(value = "page", defaultValue = "1") int page,
+    public PageResultBean<YcDustStackVo> dustStackList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                        @RequestParam(value = "limit", defaultValue = "50")int limit,
-                                                         XjcydustStackVo xjcydustStackVo) {
+                                                       YcDustStackVo xjcydustStackVo) {
         Adminuser user = ShiroUtil.getCurrentUser();
         if (xjcydustStackVo.getCityCode()==null&&xjcydustStackVo.getCountyId()==null){
             xjcydustStackVo.setCityCode(cityCode);
             xjcydustStackVo.setCountyId(countyCode);
         }
-        List<XjcydustStackVo> results= sourceService.getDustStacksByExample(xjcydustStackVo,page, limit);
-        PageInfo<XjcydustStackVo> PageInfo = new PageInfo<>(results);
+        List<YcDustStackVo> results= sourceService.getDustStacksByExample(xjcydustStackVo,page, limit);
+        PageInfo<YcDustStackVo> PageInfo = new PageInfo<>(results);
         return new PageResultBean<>(PageInfo.getTotal(), PageInfo.getList());
     }
     @OperationLog("堆场风蚀扬尘源-删除")
@@ -406,7 +406,7 @@ public class DustController {
     public String dustStackEdit(@PathVariable("id") Integer id, Model model) {
         String scc2="04";
         String scc3="002";
-        XjcydustStackVo xjcydustStackVo=sourceService.getDustStackById(id);
+        YcDustStackVo xjcydustStackVo=sourceService.getDustStackById(id);
         Scc4 scc4=new Scc4();
         scc4.setScc1(scc1);
         scc4.setScc2(scc2);
@@ -437,7 +437,7 @@ public class DustController {
     @OperationLog("堆场风蚀扬尘源-编辑-保存")
     @PutMapping("/dust/dustStack/edit")
     @ResponseBody
-    public ResultBean dustStackInsertOrUpdate(boolean isCul,XjcydustStackVo xjcydustStackVo)  {
+    public ResultBean dustStackInsertOrUpdate(boolean isCul, YcDustStackVo xjcydustStackVo)  {
         xjcydustStackVo.setScccode(scc1+"04"+xjcydustStackVo.getScc3()+xjcydustStackVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(xjcydustStackVo.getScccode());
         xjcydustStackVo.setSccDescribe(sccVo.getDescription());

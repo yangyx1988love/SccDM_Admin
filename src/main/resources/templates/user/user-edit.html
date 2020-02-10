@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>用户编辑</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" th:href="@{/lib/layui/extend/formSelects-v4.css}" />
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form action="" method="post" class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    用户名
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" id="username" name="username" th:value="${user?.username}"
+                           lay-verify="username" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="realname" class="layui-form-label">
+                    真实姓名
+                </label>
+                <div class="layui-input-block">
+                    <input id="realname" name="realname" th:value="${user?.realname}"
+                           lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="email" class="layui-form-label">
+                    邮箱
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" id="email" name="email"  th:value="${user?.email}"
+                           lay-verify="required|email" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="mobilephone" class="layui-form-label">
+                    移动电话
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" id="mobilephone" name="mobilephone"  th:value="${user?.mobilephone}"
+                           lay-verify="phone" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="workphone" class="layui-form-label">
+                    固定电话
+                </label>
+                <div class="layui-input-block">
+                    <input type="text" id="workphone" name="workphone"  th:value="${user?.workphone}"
+                           lay-verify="workphone" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item" pane="">
+                <label class="layui-form-label">
+                    状态
+                </label>
+                <div class="layui-input-block">
+                    <input type="radio" name="status" value="1" th:checked="${user?.status == '1' || user == null}" title="正常"  disabled="true">
+                    <input type="radio" name="status" value="0" th:checked="${user?.status == '0'}" title="锁定"  disabled="true">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left:0;text-align:center;">
+                    <input type="hidden" name="userId" th:value="${user?.userId}">
+                    <button type="button"  th:text="修改"  class="layui-btn layui-btn-normal btn-w100" lay-submit="" data-th-lay-filter="edit"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        layui.config({
+            base: '/lib/layui/extend/'
+        }).extend({
+            formSelects: 'formSelects-v4'
+        }).use(['form', 'layer', 'formSelects', 'dtree'], function () {
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                form.field._method = 'PUT';
+                $.post('/user/currtUser', form.field, function (result) {
+                    handlerResult(result, editDone);
+                });
+                return false;
+            });
+            function editDone(data) {
+                layer.msg("修改成功", {icon: 6});
+            }
+        });
+    </script>
+</body>
+
+</html>

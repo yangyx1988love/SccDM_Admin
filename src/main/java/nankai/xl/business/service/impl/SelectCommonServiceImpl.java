@@ -27,6 +27,8 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Resource
     private SourceMapper sourceMapper;
     @Resource
+    private Scc1Mapper scc1Mapper;
+    @Resource
     private Scc2Mapper scc2Mapper;
     @Resource
     private  Scc3Mapper scc3Mapper;
@@ -211,6 +213,16 @@ public class SelectCommonServiceImpl implements SelectCommonService {
     @Override
     public Company getCompanysByVagueName(String companyName) {
         return companyMapper.selectByVagueName(companyName);
+    }
+
+    @Override
+    public List<Scc1> getAllScc1s() {
+        return scc1Mapper.selectAll();
+    }
+
+    @Override
+    public List<Scc2> getAllScc2sBySccCode1(String sccCode1) {
+        return scc2Mapper.selectByScc1(sccCode1);
     }
 
     @Override

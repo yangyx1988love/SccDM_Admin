@@ -226,20 +226,33 @@
     </where>
     GROUP BY factory.industry_bigid
   </select>
-  <select id="countByCity" resultType="nankai.xl.business.model.vo.SumVo">
+  <select id="countByCity" resultType="nankai.xl.business.model.vo.SumVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
     SELECT COUNT(factory.factory_id) AS value,city.city_name AS name FROM county
     LEFT JOIN factory
     ON county.COUNTY_ID=factory.county_id
     INNER JOIN city
     ON county.city_code=city.city_code
+    <where>
+      <if test="cityCode != null and cityCode != ''">
+        AND county.city_code = #{cityCode}
+      </if>
+    </where>
     GROUP BY county.city_code
   </select>
-  <select id="countByCounty" resultType="nankai.xl.business.model.vo.SumVo">
+  <select id="countByCounty" resultType="nankai.xl.business.model.vo.SumVo" parameterType="nankai.xl.business.model.vo.FactoryQuery">
     SELECT COUNT(factory.factory_id) AS value,CONCAT(city.city_name,'-',county.COUNTY_NAME )AS name FROM county
     INNER JOIN factory
     ON county.COUNTY_ID=factory.county_id
     INNER JOIN city
     ON county.city_code=city.city_code
+    <where>
+      <if test="countyId != null and countyId != ''">
+        factory.county_id = #{countyId}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND county.city_code = #{cityCode}
+      </if>
+    </where>
     GROUP BY county.COUNTY_ID
     ORDER BY city.city_code
   </select>

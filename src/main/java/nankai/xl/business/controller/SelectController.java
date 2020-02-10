@@ -1,8 +1,13 @@
 package nankai.xl.business.controller;
 
+import com.github.pagehelper.PageInfo;
 import nankai.xl.business.model.*;
+import nankai.xl.business.model.vo.SccQueryVo;
+import nankai.xl.business.model.vo.SccResultVo;
 import nankai.xl.business.service.*;
 import nankai.xl.common.annotation.OperationLog;
+import nankai.xl.common.util.PageResultBean;
+import nankai.xl.common.util.ResultBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +20,8 @@ import java.util.List;
 public class SelectController {
     @Resource
     private SelectCommonService selectCommonService;
+    @Resource
+    private SccService sccService;
 
     @OperationLog("企业审核界面-重加载行业小分类")
     @PostMapping("/seleIndustry/{industryCode}")
@@ -37,10 +44,19 @@ public class SelectController {
         List<County> countys=selectCommonService.getCountysByCityCode(cityCode);
         return countys;
     }
+    @OperationLog("企业审核界面-scc1下拉框")
+    @PostMapping("/seleScc1/{scc1}")
+    @ResponseBody
+    public List<Scc2> seleScc2(String scc1) {
+        Scc2 scc2=new Scc2();
+        scc2.setScc1(scc1);
+        List<Scc2> scc2s=selectCommonService.getScc2sByScc2(scc2);
+        return scc2s;
+    }
     @OperationLog("企业审核界面-scc2下拉框")
     @PostMapping("/seleScc2/{scc2}")
     @ResponseBody
-    public List<Scc3> seleScc3(String scc1,String scc2, Model model) {
+    public List<Scc3> seleScc3(String scc1,String scc2) {
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(scc2);

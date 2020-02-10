@@ -1,7 +1,6 @@
 package nankai.xl.business.model.vo;
 
 public class SccVo {
-
     private String sccCode;
 
     private String description;

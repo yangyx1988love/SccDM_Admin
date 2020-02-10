@@ -26,11 +26,11 @@
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShSealpointVo" parameterType="nankai.xl.business.model.vo.ShSealpointVo" >
     SELECT * FROM (
-      SELECT sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_sealpoint.scccode,1,2) AS scc1,
-      SUBSTR(sh_sealpoint.scccode,3,2) AS scc2,SUBSTR(sh_sealpoint.scccode,5,3) AS scc3,SUBSTR(sh_sealpoint.scccode,8,3) AS scc4
-      FROM sh_sealpoint
+      SELECT gy_sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gy_sh_sealpoint.scccode,1,2) AS scc1,
+      SUBSTR(gy_sh_sealpoint.scccode,3,2) AS scc2,SUBSTR(gy_sh_sealpoint.scccode,5,3) AS scc3,SUBSTR(gy_sh_sealpoint.scccode,8,3) AS scc4
+      FROM gy_sh_sealpoint
       LEFT JOIN company
-      ON sh_sealpoint.factory_id=company.com_id
+      ON gy_sh_sealpoint.factory_id=company.com_id
       LEFT JOIN (
         SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
         FROM county
@@ -52,11 +52,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShSealpointVo" parameterType="java.lang.Integer" >
-    SELECT sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_sealpoint.scccode,1,2) AS scc1,
-        SUBSTR(sh_sealpoint.scccode,3,2) AS scc2,SUBSTR(sh_sealpoint.scccode,5,3) AS scc3,SUBSTR(sh_sealpoint.scccode,8,3) AS scc4
-    FROM sh_sealpoint
+    SELECT gy_sh_sealpoint.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gy_sh_sealpoint.scccode,1,2) AS scc1,
+        SUBSTR(gy_sh_sealpoint.scccode,3,2) AS scc2,SUBSTR(gy_sh_sealpoint.scccode,5,3) AS scc3,SUBSTR(gy_sh_sealpoint.scccode,8,3) AS scc4
+    FROM gy_sh_sealpoint
     LEFT JOIN company
-    ON sh_sealpoint.factory_id=company.com_id
+    ON gy_sh_sealpoint.factory_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -64,14 +64,14 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where sh_sealpoint.id = #{id,jdbcType=INTEGER}
+    where gy_sh_sealpoint.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from sh_sealpoint
+    delete from gy_sh_sealpoint
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.ShSealpoint" >
-    insert into sh_sealpoint
+    insert into gy_sh_sealpoint
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -186,7 +186,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ShSealpoint" >
-    insert into sh_sealpoint (id, year, factory_id,
+    insert into gy_sh_sealpoint (id, year, factory_id,
       unit_type, activity, activity_unit,
       scccode, pm10_emission, pm25_emission,
       voc_emission, so2_emission, nh3_emission,
@@ -221,7 +221,7 @@
       source_discrip = #{sourceDiscrip,jdbcType=VARCHAR}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO  sh_sealpoint ( year, factory_id,
+    INSERT INTO  gy_sh_sealpoint ( year, factory_id,
     unit_type, activity, activity_unit,
     scccode, pm10_emission, pm25_emission,
     voc_emission, so2_emission, nh3_emission,
@@ -241,7 +241,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.ShSealpoint" >
-    update sh_sealpoint
+    update gy_sh_sealpoint
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

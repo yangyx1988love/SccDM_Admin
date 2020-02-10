@@ -36,6 +36,8 @@ public interface SelectCommonService {
     public List<Sulphurremove> getAllSulphurremoves();
     Company getCompanyByExample(String companyName);
     Company getCompanysByVagueName(String companyName);
+    List<Scc1> getAllScc1s();
+    List<Scc2> getAllScc2sBySccCode1(String sccCode1);
     List<Scc3> getScc3BySccCode12(String sccCode12);
     List<Scc4> getScc4BySccCode123(String sccCode123);
 }

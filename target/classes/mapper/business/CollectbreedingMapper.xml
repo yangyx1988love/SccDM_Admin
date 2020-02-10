@@ -25,11 +25,11 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.CollectbreedingVo" parameterType="nankai.xl.business.model.vo.CollectbreedingVo" >
-    SELECT collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(collectbreeding.scccode,1,2) AS scc1,
-    SUBSTR(collectbreeding.scccode,3,2) AS scc2,SUBSTR(collectbreeding.scccode,5,3) AS scc3,SUBSTR(collectbreeding.scccode,8,3) AS scc4
-    FROM collectbreeding
+    SELECT ny_collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_collectbreeding.scccode,1,2) AS scc1,
+    SUBSTR(ny_collectbreeding.scccode,3,2) AS scc2,SUBSTR(ny_collectbreeding.scccode,5,3) AS scc3,SUBSTR(ny_collectbreeding.scccode,8,3) AS scc4
+    FROM ny_collectbreeding
     LEFT JOIN company
-    ON collectbreeding.company_id=company.com_id
+    ON ny_collectbreeding.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -39,7 +39,7 @@
     ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
-        collectbreeding.year = #{year}
+        ny_collectbreeding.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
@@ -50,11 +50,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.CollectbreedingVo" parameterType="java.lang.Integer" >
-    SELECT collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(collectbreeding.scccode,1,2) AS scc1,
-    SUBSTR(collectbreeding.scccode,3,2) AS scc2,SUBSTR(collectbreeding.scccode,5,3) AS scc3,SUBSTR(collectbreeding.scccode,8,3) AS scc4
-    FROM collectbreeding
+    SELECT ny_collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_collectbreeding.scccode,1,2) AS scc1,
+    SUBSTR(ny_collectbreeding.scccode,3,2) AS scc2,SUBSTR(ny_collectbreeding.scccode,5,3) AS scc3,SUBSTR(ny_collectbreeding.scccode,8,3) AS scc4
+    FROM ny_collectbreeding
     LEFT JOIN company
-    ON collectbreeding.company_id=company.com_id
+    ON ny_collectbreeding.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -62,14 +62,14 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where collectbreeding.id = #{id,jdbcType=INTEGER}
+    where ny_collectbreeding.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from collectbreeding
+    delete from ny_collectbreeding
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.Collectbreeding" >
-    insert into collectbreeding
+    insert into ny_collectbreeding
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -178,7 +178,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Collectbreeding" >
-    insert into collectbreeding (id, year, company_id, 
+    insert into ny_collectbreeding (id, year, company_id, 
       source_discrip, scccode, activity_level, 
       compute_cycle, pm10_emission, pm25_emission, 
       voc_emission, nh3_emission, so2_emission, 
@@ -210,7 +210,7 @@
       flag = #{flag,jdbcType=TINYINT}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO collectbreeding (id, year, company_id,
+    INSERT INTO ny_collectbreeding (id, year, company_id,
     source_discrip, scccode, activity_level,
     compute_cycle, pm10_emission, pm25_emission,
     voc_emission, nh3_emission, so2_emission,
@@ -240,7 +240,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.Collectbreeding" >
-    update collectbreeding
+    update ny_collectbreeding
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

@@ -21,22 +21,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.HouseVo" parameterType="nankai.xl.business.model.vo.HouseVo" >
-    SELECT house.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(house.scccode,1,2) AS scc1,SUBSTR(house.scccode,3,2) AS scc2,
-    SUBSTR(house.scccode,5,3) AS scc3,SUBSTR(house.scccode,8,3) AS scc4
-    FROM house
+    SELECT rj_house.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(rj_house.scccode,1,2) AS scc1,SUBSTR(rj_house.scccode,3,2) AS scc2,
+    SUBSTR(rj_house.scccode,5,3) AS scc3,SUBSTR(rj_house.scccode,8,3) AS scc4
+    FROM rj_house
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=house.county_id
+    ON co.COUNTY_ID=rj_house.county_id
     <where>
       <if test="year != null and year != ''">
-        house.year = #{year}
+        rj_house.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND house.county_id = #{countyId}
+        AND rj_house.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -44,24 +44,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.HouseVo" parameterType="java.lang.Integer" >
-    SELECT house.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(house.scccode,1,2) AS scc1,SUBSTR(house.scccode,3,2) AS scc2,
-				SUBSTR(house.scccode,5,3) AS scc3,SUBSTR(house.scccode,8,3) AS scc4
-    FROM house
+    SELECT rj_house.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(rj_house.scccode,1,2) AS scc1,SUBSTR(rj_house.scccode,3,2) AS scc2,
+				SUBSTR(rj_house.scccode,5,3) AS scc3,SUBSTR(rj_house.scccode,8,3) AS scc4
+    FROM rj_house
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=house.county_id
-    where house.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=rj_house.county_id
+    where rj_house.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from house
+    delete from rj_house
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.House" >
-    insert into house
+    insert into rj_house
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -164,7 +164,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.House" >
-    insert into house (id, year, county_id, 
+    insert into rj_house (id, year, county_id, 
       solvent_amount, scccode, pm10_emission, 
       pm25_emission, voc_emission, nh3_emission, 
       so2_emission, co_emission, oc_emission, 
@@ -195,7 +195,7 @@
       source_descrip = #{sourceDescrip,jdbcType=VARCHAR}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO house (id, year, county_id,
+    INSERT INTO rj_house (id, year, county_id,
     solvent_amount, scccode, pm10_emission,
     pm25_emission, voc_emission, nh3_emission,
     so2_emission, co_emission, oc_emission,
@@ -224,7 +224,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.House" >
-    update house
+    update rj_house
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

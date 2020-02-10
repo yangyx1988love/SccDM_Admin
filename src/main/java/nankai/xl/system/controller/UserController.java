@@ -6,9 +6,11 @@ import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
 import nankai.xl.common.validate.groups.Create;
 import nankai.xl.system.model.Adminuser;
+import nankai.xl.system.model.vo.PasswordVO;
 import nankai.xl.system.service.AdminuserService;
 import nankai.xl.system.service.RoleService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -59,11 +61,9 @@ public class UserController {
     @GetMapping("/currtUser")
     public String updatecurrtUser(Model model) {
         Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
-        int userId=currtUser.getUserId();
-        model.addAttribute("roleIds", userService.selectRoleIdsById(userId));
+        currtUser=userService.selectOne(currtUser.getUserId());
         model.addAttribute("user", currtUser);
-        model.addAttribute("roles", roleService.selectAll());
-        return "user/user-add";
+        return "user/user-edit";
     }
 
     @OperationLog("编辑角色")
@@ -75,6 +75,13 @@ public class UserController {
             currtUser=user;
         }
         userService.update(user, roleIds);
+        return ResultBean.success();
+    }
+    @OperationLog("编辑用户基本信息")
+    @PutMapping("/currtUser")
+    @ResponseBody
+    public ResultBean updateCurrtuser(@Valid Adminuser user) {
+        userService.update(user);
         return ResultBean.success();
     }
 
@@ -122,8 +129,14 @@ public class UserController {
     @OperationLog("重置密码")
     @PostMapping("/{userId}/reset")
     @ResponseBody
-    public ResultBean resetPassword(@PathVariable("userId") Integer userId, String password) {
-        userService.updatePasswordByUserId(userId, password);
+    public ResultBean resetPassword(@PathVariable("userId") Integer userId,String oldpassword,String password) {
+        Adminuser user=userService.selectOne(userId);
+        String encryptPassword0 = new Md5Hash(oldpassword,user.getSalt()).toString();
+        if (encryptPassword0.equals(user.getPassword())){
+            userService.updatePasswordByUserId(userId,password);
+        }else {
+            return ResultBean.error("老密码输入错误！");
+        }
         return ResultBean.success();
     }
 

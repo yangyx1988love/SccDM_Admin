@@ -7,7 +7,7 @@
     <result column="county_id" property="countyId" jdbcType="CHAR" />
     <result column="scccode" property="scccode" jdbcType="CHAR" />
     <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
-    <result column="pesticideamount" property="pesticideamount" jdbcType="DOUBLE" />
+    <result column="ny_pesticideamount" property="ny_pesticideamount" jdbcType="DOUBLE" />
     <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
     <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
     <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
@@ -21,22 +21,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.PesticideVo" parameterType="nankai.xl.business.model.vo.PesticideVo" >
-    SELECT pesticide.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(pesticide.scccode,1,2) AS scc1,SUBSTR(pesticide.scccode,3,2) AS scc2,
-    SUBSTR(pesticide.scccode,5,3) AS scc3,SUBSTR(pesticide.scccode,8,3) AS scc4
-    FROM pesticide
+    SELECT ny_pesticide.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_pesticide.scccode,1,2) AS scc1,SUBSTR(ny_pesticide.scccode,3,2) AS scc2,
+    SUBSTR(ny_pesticide.scccode,5,3) AS scc3,SUBSTR(ny_pesticide.scccode,8,3) AS scc4
+    FROM ny_pesticide
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=pesticide.county_id
+    ON co.COUNTY_ID=ny_pesticide.county_id
     <where>
       <if test="year != null and year != ''">
-        pesticide.year = #{year}
+        ny_pesticide.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND pesticide.county_id = #{countyId}
+        AND ny_pesticide.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -44,24 +44,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.PesticideVo" parameterType="java.lang.Integer" >
-    SELECT pesticide.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(pesticide.scccode,1,2) AS scc1,SUBSTR(pesticide.scccode,3,2) AS scc2,
-    SUBSTR(pesticide.scccode,5,3) AS scc3,SUBSTR(pesticide.scccode,8,3) AS scc4
-    FROM pesticide
+    SELECT ny_pesticide.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_pesticide.scccode,1,2) AS scc1,SUBSTR(ny_pesticide.scccode,3,2) AS scc2,
+    SUBSTR(ny_pesticide.scccode,5,3) AS scc3,SUBSTR(ny_pesticide.scccode,8,3) AS scc4
+    FROM ny_pesticide
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=pesticide.county_id
-    where pesticide.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=ny_pesticide.county_id
+    where ny_pesticide.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from pesticide
+    delete from ny_pesticide
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.Pesticide" >
-    insert into pesticide
+    insert into ny_pesticide
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -78,8 +78,8 @@
       <if test="sourceDescrip != null" >
         source_descrip,
       </if>
-      <if test="pesticideamount != null" >
-        pesticideamount,
+      <if test="ny_pesticideamount != null" >
+        ny_pesticideamount,
       </if>
       <if test="pm10Emission != null" >
         pm10_emission,
@@ -128,8 +128,8 @@
       <if test="sourceDescrip != null" >
         #{sourceDescrip,jdbcType=VARCHAR},
       </if>
-      <if test="pesticideamount != null" >
-        #{pesticideamount,jdbcType=DOUBLE},
+      <if test="ny_pesticideamount != null" >
+        #{ny_pesticideamount,jdbcType=DOUBLE},
       </if>
       <if test="pm10Emission != null" >
         #{pm10Emission,jdbcType=DOUBLE},
@@ -164,14 +164,14 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Pesticide" >
-    insert into pesticide (id, year, county_id, 
-      scccode, source_descrip, pesticideamount, 
+    insert into ny_pesticide (id, year, county_id, 
+      scccode, source_descrip, ny_pesticideamount, 
       pm10_emission, pm25_emission, voc_emission, 
       nh3_emission, so2_emission, co_emission, 
       oc_emission, bc_emission, nox_emission, 
       flagd)
     values (#{id,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, #{countyId,jdbcType=CHAR}, 
-      #{scccode,jdbcType=CHAR}, #{sourceDescrip,jdbcType=VARCHAR}, #{pesticideamount,jdbcType=DOUBLE}, 
+      #{scccode,jdbcType=CHAR}, #{sourceDescrip,jdbcType=VARCHAR}, #{ny_pesticideamount,jdbcType=DOUBLE}, 
       #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, 
       #{nh3Emission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE}, #{coEmission,jdbcType=DOUBLE}, 
       #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, 
@@ -182,7 +182,7 @@
       county_id = #{countyId,jdbcType=CHAR},
       scccode = #{scccode,jdbcType=CHAR},
       source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
-      pesticideamount = #{pesticideamount,jdbcType=DOUBLE},
+      ny_pesticideamount = #{ny_pesticideamount,jdbcType=DOUBLE},
       pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
       pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
       voc_emission = #{vocEmission,jdbcType=DOUBLE},
@@ -195,8 +195,8 @@
       flagd = #{flagd,jdbcType=TINYINT}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO pesticide (id, year, county_id,
-    scccode, source_descrip, pesticideamount,
+    INSERT INTO ny_pesticide (id, year, county_id,
+    scccode, source_descrip, ny_pesticideamount,
     pm10_emission, pm25_emission, voc_emission,
     nh3_emission, so2_emission, co_emission,
     oc_emission, bc_emission, nox_emission,
@@ -209,7 +209,7 @@
       county_id = #{item.countyId,jdbcType=CHAR},
       scccode = #{item.scccode,jdbcType=CHAR},
       source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
-      pesticideamount = #{item.pesticideamount,jdbcType=DOUBLE},
+      ny_pesticideamount = #{item.ny_pesticideamount,jdbcType=DOUBLE},
       pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
       pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
       voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
@@ -224,7 +224,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.Pesticide" >
-    update pesticide
+    update ny_pesticide
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},
@@ -238,8 +238,8 @@
       <if test="sourceDescrip != null" >
         source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
       </if>
-      <if test="pesticideamount != null" >
-        pesticideamount = #{pesticideamount,jdbcType=DOUBLE},
+      <if test="ny_pesticideamount != null" >
+        ny_pesticideamount = #{ny_pesticideamount,jdbcType=DOUBLE},
       </if>
       <if test="pm10Emission != null" >
         pm10_emission = #{pm10Emission,jdbcType=DOUBLE},

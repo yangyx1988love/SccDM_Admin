@@ -138,36 +138,46 @@ public class DataAnalysisController {
     @GetMapping("/factory/city/num/pie")
     @ResponseBody
     public JSONObject pieFactoryByCity() {
-        List<SumVo> results=factoryService.countByCity();
-        JSONArray legendData = new JSONArray();
-        JSONArray seriesData = new JSONArray();
-        for (SumVo factorySumVo:results) {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("name",factorySumVo.getName());
-            jsonObject.put("value", factorySumVo.getValue());
-            legendData.add(factorySumVo.getName());
-            seriesData.add(jsonObject);
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (user.getDeptId()!=null){
+            List<SumVo> results=factoryService.countByCity(user);
+            JSONArray legendData = new JSONArray();
+            JSONArray seriesData = new JSONArray();
+            for (SumVo factorySumVo:results) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("name",factorySumVo.getName());
+                jsonObject.put("value", factorySumVo.getValue());
+                legendData.add(factorySumVo.getName());
+                seriesData.add(jsonObject);
+            }
+            JSONObject res = new JSONObject();
+            res.put("legendData", legendData);
+            res.put("seriesData", seriesData);
+            return res;
+        }else {
+            throw new IllegalArgumentException("用户赋予的部门不能为空！");
         }
-        JSONObject res = new JSONObject();
-        res.put("legendData", legendData);
-        res.put("seriesData", seriesData);
-        return res;
     }
     @OperationLog("加载柱状图-按行业大分类")
     @GetMapping("/factory/county/num/bar")
     @ResponseBody
     public JSONObject barFactoryByCounty() {
-        List<SumVo> results=factoryService.countByCounty();
-        List<String> xAxisData=new ArrayList<>();
-        List<Integer> seriesData=new ArrayList<>();
-        for (SumVo factorySumVo:results) {
-            xAxisData.add(factorySumVo.getName());
-            seriesData.add(Integer.parseInt(factorySumVo.getValue()));
+        Adminuser user = ShiroUtil.getCurrentUser();
+        if (user.getDeptId()!=null){
+            List<SumVo> results=factoryService.countByCounty(user);
+            List<String> xAxisData=new ArrayList<>();
+            List<Integer> seriesData=new ArrayList<>();
+            for (SumVo factorySumVo:results) {
+                xAxisData.add(factorySumVo.getName());
+                seriesData.add(Integer.parseInt(factorySumVo.getValue()));
+            }
+            JSONObject res = new JSONObject();
+            res.put("xAxisData", xAxisData);
+            res.put("seriesData", seriesData);
+            return res;
+        }else {
+            throw new IllegalArgumentException("用户赋予的部门不能为空！");
         }
-        JSONObject res = new JSONObject();
-        res.put("xAxisData", xAxisData);
-        res.put("seriesData", seriesData);
-        return res;
     }
     @OperationLog("加载锅炉、窑炉数据")
     @GetMapping("/boilerAKiln/num/barPie")
@@ -190,7 +200,6 @@ public class DataAnalysisController {
         JSONObject barJson = new JSONObject();
 
         barJson.put("all",upSum+downSum);
-
         barJson.put("upBars",upMap);
         barJson.put("downBars",downMap);
 

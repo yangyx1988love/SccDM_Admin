@@ -170,6 +170,24 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                 return '企业机构代码格式不正确，由6-30位字母或数字或"-"组合！！'
             }
         },
+        "workphone": function(value, item) {
+            var reg = new RegExp(/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '请输入正确的固定电话号码！！'
+            }
+        },
+        "password": function(value, item) {
+            var reg = new RegExp( /^[\S]{6,15}$/);
+            if (value.length > 0 && !reg.test(value)) {
+                return '密码必须6到15位，且不能出现空格！！'
+            }
+        },
+        "repassword": function (value) {
+            var password = $('#password').val();
+            if (value !== password) {
+                return '两次密码不一致';
+            }
+        },
         "ratio": function(value, item) {
             var reg = new RegExp(/^([0-9]\d?(\.\d{1,2})?|1)$/);
             if (value.length > 0 && !reg.test(value)) {
@@ -282,6 +300,35 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
             })
         }
     });
+    form.on('select(scc1)',function(data){
+        $("select[id=scc2]").html('<option value="">请选择</option>'); //清空
+        $("select[id=scc3]").html('<option value="">请选择</option>'); //清空
+        $("select[id=scc4]").html('<option value="">请选择</option>'); //清空
+        form.render('select');
+        var scc1=data.value;
+        if(scc1!=''){
+            $.ajax({
+                url: '/factoryAuth/seleScc1/' + scc1,
+                data: {scc1: scc1},//发送的参数
+                type: "post",
+                success: function (datas) {
+                    if(datas.length>0){
+                        $.each(datas, function(key, val) {
+                            var option1 = $("<option>").val(val.scc2).text(val.description+'('+val.scc2+')');
+                            $("select[id=scc2]").append(option1);
+                            form.render('select');
+                        });
+                    }else{
+                        form.render('select');
+                    }
+                },
+                error:function(){
+                    //失败执行的方法
+                    layer.msg("更新失败!", {icon: 6});
+                }
+            })
+        }
+    });
     form.on('select(scc2)',function(data){
         $("select[id=scc3]").html('<option value="">请选择</option>'); //清空
         $("select[id=scc4]").html('<option value="">请选择</option>'); //清空
@@ -296,7 +343,7 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                 success: function (datas) {
                     if(datas.length>0){
                         $.each(datas, function(key, val) {
-                            var option1 = $("<option>").val(val.scc3).text(val.description);
+                            var option1 = $("<option>").val(val.scc3).text(val.description+'('+val.scc3+')');
                             $("select[id=scc3]").append(option1);
                             form.render('select');
                         });
@@ -325,7 +372,7 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
                 success: function (datas) {
                     if(datas.length>0){
                         $.each(datas, function(key, val) {
-                            var option1 = $("<option>").val(val.scc4).text(val.description);
+                            var option1 = $("<option>").val(val.scc4).text(val.description+'('+val.scc4+')');
                             $("select[id=scc4]").append(option1);
                             form.render('select');
                         });

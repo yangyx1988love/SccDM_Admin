@@ -20,11 +20,11 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.TankSourceVo" parameterType="nankai.xl.business.model.vo.TankSourceVo" >
-    SELECT tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(tank_source.scccode,1,2) AS scc1,
-    SUBSTR(tank_source.scccode,3,2) AS scc2,SUBSTR(tank_source.scccode,5,3) AS scc3,SUBSTR(tank_source.scccode,8,3) AS scc4
-    FROM tank_source
+    SELECT cc_tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(cc_tank_source.scccode,1,2) AS scc1,
+    SUBSTR(cc_tank_source.scccode,3,2) AS scc2,SUBSTR(cc_tank_source.scccode,5,3) AS scc3,SUBSTR(cc_tank_source.scccode,8,3) AS scc4
+    FROM cc_tank_source
     LEFT JOIN company
-    ON tank_source.company_id=company.com_id
+    ON cc_tank_source.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -34,7 +34,7 @@
     ON co.COUNTY_ID=company.county_id
     <where>
       <if test="year != null and year != ''">
-        tank_source.year = #{year}
+        cc_tank_source.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
         AND company.county_id = #{countyId}
@@ -45,11 +45,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.TankSourceVo" parameterType="java.lang.Integer" >
-    SELECT tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(tank_source.scccode,1,2) AS scc1,
-    SUBSTR(tank_source.scccode,3,2) AS scc2,SUBSTR(tank_source.scccode,5,3) AS scc3,SUBSTR(tank_source.scccode,8,3) AS scc4
-    FROM tank_source
+    SELECT cc_tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(cc_tank_source.scccode,1,2) AS scc1,
+    SUBSTR(cc_tank_source.scccode,3,2) AS scc2,SUBSTR(cc_tank_source.scccode,5,3) AS scc3,SUBSTR(cc_tank_source.scccode,8,3) AS scc4
+    FROM cc_tank_source
     LEFT JOIN company
-    ON tank_source.company_id=company.com_id
+    ON cc_tank_source.company_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -57,14 +57,14 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where tank_source.id = #{id,jdbcType=INTEGER}
+    where cc_tank_source.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from tank_source
+    delete from cc_tank_source
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.TankSource" >
-    insert into tank_source
+    insert into cc_tank_source
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -143,7 +143,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.TankSource" >
-    insert into tank_source (id, year, scccode, 
+    insert into cc_tank_source (id, year, scccode, 
       source_discrip, company_id, t_id, 
       tank_name, tank_type, material_type, 
       material_name, emission, flag
@@ -168,7 +168,7 @@
       flag = #{flag,jdbcType=INTEGER}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO  tank_source (id, year, scccode,
+    INSERT INTO  cc_tank_source (id, year, scccode,
     source_discrip, company_id, t_id,
     tank_name, tank_type, material_type,
     material_name, emission, flag
@@ -192,7 +192,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.TankSource" >
-    update tank_source
+    update cc_tank_source
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

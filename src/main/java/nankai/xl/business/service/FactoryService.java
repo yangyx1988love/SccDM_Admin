@@ -31,7 +31,7 @@ public interface FactoryService {
     //按行业大分类统计
     public List<SumVo> countIndustryBigByuser(Adminuser user);
     //按城市统计企业数量
-    public List<SumVo> countByCity();
+    public List<SumVo> countByCity(Adminuser user);
 
-    public List<SumVo> countByCounty();
+    public List<SumVo> countByCounty(Adminuser user);
 }

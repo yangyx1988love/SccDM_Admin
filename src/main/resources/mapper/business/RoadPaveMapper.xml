@@ -21,22 +21,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.RoadPaveVo" parameterType="nankai.xl.business.model.vo.RoadPaveVo" >
-    SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_pave.scccode,1,2) AS scc1,SUBSTR(road_pave.scccode,3,2) AS scc2,
-    SUBSTR(road_pave.scccode,5,3) AS scc3,SUBSTR(road_pave.scccode,8,3) AS scc4
-    FROM road_pave
+    SELECT rj_road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(rj_road_pave.scccode,1,2) AS scc1,SUBSTR(rj_road_pave.scccode,3,2) AS scc2,
+    SUBSTR(rj_road_pave.scccode,5,3) AS scc3,SUBSTR(rj_road_pave.scccode,8,3) AS scc4
+    FROM rj_road_pave
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=road_pave.county_id
+    ON co.COUNTY_ID=rj_road_pave.county_id
     <where>
       <if test="year != null and year != ''">
-        road_pave.year = #{year}
+        rj_road_pave.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND road_pave.county_id = #{countyId}
+        AND rj_road_pave.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -44,24 +44,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.RoadPaveVo" parameterType="java.lang.Integer" >
-    SELECT road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_pave.scccode,1,2) AS scc1,SUBSTR(road_pave.scccode,3,2) AS scc2,
-				SUBSTR(road_pave.scccode,5,3) AS scc3,SUBSTR(road_pave.scccode,8,3) AS scc4
-    FROM road_pave
+    SELECT rj_road_pave.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(rj_road_pave.scccode,1,2) AS scc1,SUBSTR(rj_road_pave.scccode,3,2) AS scc2,
+				SUBSTR(rj_road_pave.scccode,5,3) AS scc3,SUBSTR(rj_road_pave.scccode,8,3) AS scc4
+    FROM rj_road_pave
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=road_pave.county_id
-    where road_pave.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=rj_road_pave.county_id
+    where rj_road_pave.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from road_pave
+    delete from rj_road_pave
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.RoadPave" >
-    insert into road_pave
+    insert into rj_road_pave
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -164,7 +164,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.RoadPave" >
-    insert into road_pave (id, year, county_id, 
+    insert into rj_road_pave (id, year, county_id, 
       asphalt, scccode, pm10_emission, 
       pm25_emission, voc_emission, nh3_emission, 
       so2_emission, co_emission, oc_emission, 
@@ -195,7 +195,7 @@
       source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO road_pave (id, year, county_id,
+    INSERT INTO rj_road_pave (id, year, county_id,
     asphalt, scccode, pm10_emission,
     pm25_emission, voc_emission, nh3_emission,
     so2_emission, co_emission, oc_emission,
@@ -224,7 +224,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.RoadPave" >
-    update road_pave
+    update rj_road_pave
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

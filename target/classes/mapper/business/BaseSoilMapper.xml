@@ -21,22 +21,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.BaseSoilVo" parameterType="nankai.xl.business.model.vo.BaseSoilVo" >
-    SELECT base_soil.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(base_soil.scccode,1,2) AS scc1,SUBSTR(base_soil.scccode,3,2) AS scc2,
-    SUBSTR(base_soil.scccode,5,3) AS scc3,SUBSTR(base_soil.scccode,8,3) AS scc4
-    FROM base_soil
+    SELECT ny_base_soil.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_base_soil.scccode,1,2) AS scc1,SUBSTR(ny_base_soil.scccode,3,2) AS scc2,
+    SUBSTR(ny_base_soil.scccode,5,3) AS scc3,SUBSTR(ny_base_soil.scccode,8,3) AS scc4
+    FROM ny_base_soil
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=base_soil.county_id
+    ON co.COUNTY_ID=ny_base_soil.county_id
     <where>
       <if test="year != null and year != ''">
-        base_soil.year = #{year}
+        ny_base_soil.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND base_soil.county_id = #{countyId}
+        AND ny_base_soil.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -44,24 +44,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.BaseSoilVo" parameterType="java.lang.Integer" >
-    SELECT base_soil.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(base_soil.scccode,1,2) AS scc1,SUBSTR(base_soil.scccode,3,2) AS scc2,
-				SUBSTR(base_soil.scccode,5,3) AS scc3,SUBSTR(base_soil.scccode,8,3) AS scc4
-    FROM base_soil
+    SELECT ny_base_soil.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_base_soil.scccode,1,2) AS scc1,SUBSTR(ny_base_soil.scccode,3,2) AS scc2,
+				SUBSTR(ny_base_soil.scccode,5,3) AS scc3,SUBSTR(ny_base_soil.scccode,8,3) AS scc4
+    FROM ny_base_soil
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=base_soil.county_id
-    where base_soil.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=ny_base_soil.county_id
+    where ny_base_soil.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from base_soil
+    delete from ny_base_soil
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.BaseSoil" >
-    insert into base_soil
+    insert into ny_base_soil
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -164,7 +164,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.BaseSoil" >
-    insert into base_soil (id, year, county_id, 
+    insert into ny_base_soil (id, year, county_id, 
       scccode, source_descrip, cultivate_area, 
       pm10_emission, pm25_emission, voc_emission, 
       nh3_emission, so2_emission, co_emission, 
@@ -195,7 +195,7 @@
       flagd = #{flagd,jdbcType=TINYINT}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO base_soil (id, year, county_id,
+    INSERT INTO ny_base_soil (id, year, county_id,
     scccode, source_descrip, cultivate_area,
     pm10_emission, pm25_emission, voc_emission,
     nh3_emission, so2_emission, co_emission,
@@ -224,7 +224,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.BaseSoil" >
-    update base_soil
+    update ny_base_soil
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

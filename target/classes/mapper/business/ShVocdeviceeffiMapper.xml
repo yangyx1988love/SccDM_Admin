@@ -30,11 +30,11 @@
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" parameterType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" >
     SELECT * FROM (
-      SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_vocdeviceeffi.scccode,1,2) AS scc1,
-      SUBSTR(sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(sh_vocdeviceeffi.scccode,8,3) AS scc4
-      FROM sh_vocdeviceeffi
+      SELECT gy_sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gy_sh_vocdeviceeffi.scccode,1,2) AS scc1,
+      SUBSTR(gy_sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(gy_sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(gy_sh_vocdeviceeffi.scccode,8,3) AS scc4
+      FROM gy_sh_vocdeviceeffi
       LEFT JOIN company
-      ON sh_vocdeviceeffi.factory_id=company.com_id
+      ON gy_sh_vocdeviceeffi.factory_id=company.com_id
       LEFT JOIN (
         SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
         FROM county
@@ -56,11 +56,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" parameterType="java.lang.Integer" >
-    SELECT sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_vocdeviceeffi.scccode,1,2) AS scc1,
-        SUBSTR(sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(sh_vocdeviceeffi.scccode,8,3) AS scc4
-    FROM sh_vocdeviceeffi
+    SELECT gy_sh_vocdeviceeffi.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gy_sh_vocdeviceeffi.scccode,1,2) AS scc1,
+        SUBSTR(gy_sh_vocdeviceeffi.scccode,3,2) AS scc2,SUBSTR(gy_sh_vocdeviceeffi.scccode,5,3) AS scc3,SUBSTR(gy_sh_vocdeviceeffi.scccode,8,3) AS scc4
+    FROM gy_sh_vocdeviceeffi
     LEFT JOIN company
-    ON sh_vocdeviceeffi.factory_id=company.com_id
+    ON gy_sh_vocdeviceeffi.factory_id=company.com_id
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
@@ -68,14 +68,14 @@
       ON county.city_code=city.city_code
     ) co
     ON co.COUNTY_ID=company.county_id
-    where sh_vocdeviceeffi.id = #{id,jdbcType=INTEGER}
+    where gy_sh_vocdeviceeffi.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from sh_vocdeviceeffi
+    delete from gy_sh_vocdeviceeffi
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.ShVocdeviceeffi" >
-    insert into sh_vocdeviceeffi
+    insert into gy_sh_vocdeviceeffi
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -214,7 +214,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ShVocdeviceeffi" >
-    insert into sh_vocdeviceeffi (id, year, factory_id,
+    insert into gy_sh_vocdeviceeffi (id, year, factory_id,
       workshop_section, gy_name, exit_airVolume,
       annual_runtime, exit_concentration, efficency,
       pm10_emission, pm25_emission, so2_emission,
@@ -255,7 +255,7 @@
       flag = #{flag,jdbcType=INTEGER}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO   sh_vocdeviceeffi ( year, factory_id,
+    INSERT INTO   gy_sh_vocdeviceeffi ( year, factory_id,
     workshop_section, gy_name, exit_airVolume,
     annual_runtime, exit_concentration, efficency,
     pm10_emission, pm25_emission, so2_emission,
@@ -278,7 +278,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.ShVocdeviceeffi" >
-    update sh_vocdeviceeffi
+    update gy_sh_vocdeviceeffi
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

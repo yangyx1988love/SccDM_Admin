@@ -31,22 +31,22 @@
     source_description,COUNTY_NAME
   </sql>
   <select id="selectByScatteredCoal" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="nankai.xl.business.model.ScatteredCoal" >
-    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(scattered_coal.scc_code,1,2) AS scc1,SUBSTR(scattered_coal.scc_code,3,2) AS scc2,
-    SUBSTR(scattered_coal.scc_code,5,3) AS scc3,SUBSTR(scattered_coal.scc_code,8,3) AS scc4
-    FROM scattered_coal
+    SELECT gd_scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gd_scattered_coal.scc_code,1,2) AS scc1,SUBSTR(gd_scattered_coal.scc_code,3,2) AS scc2,
+    SUBSTR(gd_scattered_coal.scc_code,5,3) AS scc3,SUBSTR(gd_scattered_coal.scc_code,8,3) AS scc4
+    FROM gd_scattered_coal
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=scattered_coal.county_id
+    ON co.COUNTY_ID=gd_scattered_coal.county_id
     <where>
       <if test="year != null and year != ''">
-        scattered_coal.year = #{year}
+        gd_scattered_coal.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND scattered_coal.county_id = #{countyId}
+        AND gd_scattered_coal.county_id = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -54,31 +54,31 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ScatteredCoalVo" parameterType="java.lang.Integer">
-    SELECT scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(scattered_coal.scc_code,1,2) AS scc1,SUBSTR(scattered_coal.scc_code,3,2) AS scc2,
-				SUBSTR(scattered_coal.scc_code,5,3) AS scc3,SUBSTR(scattered_coal.scc_code,8,3) AS scc4
-    FROM scattered_coal
+    SELECT gd_scattered_coal.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gd_scattered_coal.scc_code,1,2) AS scc1,SUBSTR(gd_scattered_coal.scc_code,3,2) AS scc2,
+				SUBSTR(gd_scattered_coal.scc_code,5,3) AS scc3,SUBSTR(gd_scattered_coal.scc_code,8,3) AS scc4
+    FROM gd_scattered_coal
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=scattered_coal.county_id
+    ON co.COUNTY_ID=gd_scattered_coal.county_id
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="sumByFuleTypeACity" resultType="nankai.xl.business.model.vo.SumVo">
-    SELECT SUM(scattered_coal.activity_level_num) AS value,scattered_coal.activity_level AS name ,ss.city_name AS theme
-    FROM scattered_coal
+    SELECT SUM(gd_scattered_coal.activity_level_num) AS value,gd_scattered_coal.activity_level AS name ,ss.city_name AS theme
+    FROM gd_scattered_coal
     INNER JOIN (
     SELECT county.COUNTY_ID,city.city_name,city.city_code FROM county
     INNER JOIN city
     ON city.city_code=county.city_code
     )ss
-    ON scattered_coal.county_id=ss.COUNTY_ID
-    GROUP BY scattered_coal.activity_level,ss.city_code
+    ON gd_scattered_coal.county_id=ss.COUNTY_ID
+    GROUP BY gd_scattered_coal.activity_level,ss.city_code
   </select>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.ScatteredCoal" >
-    insert into scattered_coal
+    insert into gd_scattered_coal
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -205,7 +205,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ScatteredCoal" >
-    insert into scattered_coal (id, scc_code, year,
+    insert into gd_scattered_coal (id, scc_code, year,
       county_id, activity_level, fuel_metering_unit,
       activity_level_num, control_measure, sulfur_content,
       ash_content, pm25_emission, pm10_emission,
@@ -242,7 +242,7 @@
       source_description = #{sourceDescription,jdbcType=CHAR}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO scattered_coal (id, scc_code, year,
+    INSERT INTO gd_scattered_coal (id, scc_code, year,
     county_id, activity_level, fuel_metering_unit,
     activity_level_num, control_measure, sulfur_content,
     ash_content, pm25_emission, pm10_emission,
@@ -263,11 +263,11 @@
     </foreach>
   </insert>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from scattered_coal
+    delete from gd_scattered_coal
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <update id="updateById" parameterType="nankai.xl.business.model.ScatteredCoal" >
-    update scattered_coal
+    update gd_scattered_coal
     <set >
       <if test="sccCode != null" >
         scc_code = #{sccCode,jdbcType=CHAR},

@@ -90,9 +90,7 @@ public class FactoryServiceImpl implements FactoryService {
     @Override
     public List<SumVo> countNonAuthByuser(Adminuser user) {
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
-        Integer[] roleIds=adminuserMapper.selectRoleIdsByUserId(user.getUserId());
         FactoryQuery factoryQuery=new FactoryQuery();
-        factoryQuery.setStatus(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
             factoryQuery.setCityCode(city.getCityCode());
@@ -107,9 +105,7 @@ public class FactoryServiceImpl implements FactoryService {
     @Override
     public List<SumVo> countIndustryBigByuser(Adminuser user) {
         Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
-        Integer[] roleIds=adminuserMapper.selectRoleIdsByUserId(user.getUserId());
         FactoryQuery factoryQuery=new FactoryQuery();
-        factoryQuery.setStatus(roleAuditMapper.selectByRodeId(roleIds[0]).getStatusId());
         if (dept.getDeptLevel()==2){
             City city=cityMapper.selectCityByCode(dept.getDeptId());
             factoryQuery.setCityCode(city.getCityCode());
@@ -122,13 +118,29 @@ public class FactoryServiceImpl implements FactoryService {
     }
 
     @Override
-    public List<SumVo> countByCity() {
-        return factoryMapper.countByCity();
+    public List<SumVo> countByCity(Adminuser user) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactoryQuery factoryQuery=new FactoryQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factoryQuery.setCityCode(city.getCityCode());
+        }
+        return factoryMapper.countByCity(factoryQuery);
     }
 
     @Override
-    public List<SumVo> countByCounty() {
-        return factoryMapper.countByCounty();
+    public List<SumVo> countByCounty(Adminuser user) {
+        Dept dept=deptMapper.selectByPrimaryKey(user.getDeptId());
+        FactoryQuery factoryQuery=new FactoryQuery();
+        if (dept.getDeptLevel()==2){
+            City city=cityMapper.selectCityByCode(dept.getDeptId());
+            factoryQuery.setCityCode(city.getCityCode());
+        }
+        if (dept.getDeptLevel()==3){
+            County county=countyMapper.selectCountyById(dept.getDeptId());
+            factoryQuery.setCountyId(county.getCountyId());
+        }
+        return factoryMapper.countByCounty(factoryQuery);
     }
 
     @Override

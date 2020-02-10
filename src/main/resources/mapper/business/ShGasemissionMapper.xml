@@ -30,11 +30,11 @@
   </resultMap>
   <select id="selectByShGas" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="nankai.xl.business.model.vo.ShGasemissionVo" >
     SELECT * FROM (
-      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_gasemission.scccode,1,2) AS scc1,
-      SUBSTR(sh_gasemission.scccode,3,2) AS scc2,SUBSTR(sh_gasemission.scccode,5,3) AS scc3,SUBSTR(sh_gasemission.scccode,8,3) AS scc4
-      FROM sh_gasemission
+      SELECT gy_sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gy_sh_gasemission.scccode,1,2) AS scc1,
+      SUBSTR(gy_sh_gasemission.scccode,3,2) AS scc2,SUBSTR(gy_sh_gasemission.scccode,5,3) AS scc3,SUBSTR(gy_sh_gasemission.scccode,8,3) AS scc4
+      FROM gy_sh_gasemission
       LEFT JOIN company
-      ON sh_gasemission.factory_id=company.com_id
+      ON gy_sh_gasemission.factory_id=company.com_id
       LEFT JOIN (
         SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
         FROM county
@@ -56,11 +56,11 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.ShGasemissionVo" parameterType="java.lang.Integer" >
-      SELECT sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(sh_gasemission.scccode,1,2) AS scc1,
-          SUBSTR(sh_gasemission.scccode,3,2) AS scc2,SUBSTR(sh_gasemission.scccode,5,3) AS scc3,SUBSTR(sh_gasemission.scccode,8,3) AS scc4
-      FROM sh_gasemission
+      SELECT gy_sh_gasemission.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(gy_sh_gasemission.scccode,1,2) AS scc1,
+          SUBSTR(gy_sh_gasemission.scccode,3,2) AS scc2,SUBSTR(gy_sh_gasemission.scccode,5,3) AS scc3,SUBSTR(gy_sh_gasemission.scccode,8,3) AS scc4
+      FROM gy_sh_gasemission
       LEFT JOIN company
-      ON sh_gasemission.factory_id=company.com_id
+      ON gy_sh_gasemission.factory_id=company.com_id
       LEFT JOIN (
         SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
         FROM county
@@ -68,14 +68,14 @@
         ON county.city_code=city.city_code
       ) co
       ON co.COUNTY_ID=company.county_id
-      where sh_gasemission.id = #{id,jdbcType=INTEGER}
+      where gy_sh_gasemission.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from sh_gasemission
+    delete from gy_sh_gasemission
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.ShGasemission" >
-    insert into sh_gasemission
+    insert into gy_sh_gasemission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -214,7 +214,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.ShGasemission" >
-    insert into sh_gasemission (id, year, factory_id, 
+    insert into gy_sh_gasemission (id, year, factory_id, 
       gy_name, activity_note, density, 
       activity, activity_unit, efficency, 
       pm10_emission, pm25_emission, so2_emission, 
@@ -255,7 +255,7 @@
       flag = #{flag,jdbcType=INTEGER}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO sh_gasemission (year, factory_id,
+    INSERT INTO gy_sh_gasemission (year, factory_id,
       gy_name, activity_note, density,
       activity, activity_unit, efficency,
       pm10_emission, pm25_emission, so2_emission,
@@ -278,7 +278,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.ShGasemission" >
-    update sh_gasemission
+    update gy_sh_gasemission
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},

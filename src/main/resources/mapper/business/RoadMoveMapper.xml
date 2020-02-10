@@ -28,22 +28,22 @@
     <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.RoadMoveVo" parameterType="nankai.xl.business.model.vo.RoadMoveVo" >
-    SELECT road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_move.scccode,1,2) AS scc1,SUBSTR(road_move.scccode,3,2) AS scc2,
-    SUBSTR(road_move.scccode,5,3) AS scc3,SUBSTR(road_move.scccode,8,3) AS scc4
-    FROM road_move
+    SELECT yd_road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_road_move.scccode,1,2) AS scc1,SUBSTR(yd_road_move.scccode,3,2) AS scc2,
+    SUBSTR(yd_road_move.scccode,5,3) AS scc3,SUBSTR(yd_road_move.scccode,8,3) AS scc4
+    FROM yd_road_move
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=road_move.county_id
+    ON co.COUNTY_ID=yd_road_move.county_id
     <where>
       <if test="year != null and year != ''">
-        road_move.year = #{year}
+        yd_road_move.year = #{year}
       </if>
       <if test="countyId != null and countyId != ''">
-        AND road_move.COUNTY_ID = #{countyId}
+        AND yd_road_move.COUNTY_ID = #{countyId}
       </if>
       <if test="cityCode != null and cityCode != ''">
         AND co.city_code = #{cityCode}
@@ -51,24 +51,24 @@
     </where>
   </select>
   <select id="selectById" resultType="nankai.xl.business.model.vo.RoadMoveVo" parameterType="java.lang.Integer" >
-    SELECT road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(road_move.scccode,1,2) AS scc1,SUBSTR(road_move.scccode,3,2) AS scc2,
-    SUBSTR(road_move.scccode,5,3) AS scc3,SUBSTR(road_move.scccode,8,3) AS scc4
-    FROM road_move
+    SELECT yd_road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_road_move.scccode,1,2) AS scc1,SUBSTR(yd_road_move.scccode,3,2) AS scc2,
+    SUBSTR(yd_road_move.scccode,5,3) AS scc3,SUBSTR(yd_road_move.scccode,8,3) AS scc4
+    FROM yd_road_move
     LEFT JOIN (
       SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
       FROM county
       LEFT JOIN city
       ON county.city_code=city.city_code
     ) co
-    ON co.COUNTY_ID=road_move.county_id
-    where road_move.id = #{id,jdbcType=INTEGER}
+    ON co.COUNTY_ID=yd_road_move.county_id
+    where yd_road_move.id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteById" parameterType="java.lang.Integer" >
-    delete from road_move
+    delete from yd_road_move
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insertSelective" parameterType="nankai.xl.business.model.RoadMove" >
-    insert into road_move
+    insert into yd_road_move
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -213,7 +213,7 @@
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.RoadMove" >
-    insert into road_move (id, scccode, source_discrip, 
+    insert into yd_road_move (id, scccode, source_discrip, 
       year, county_city, county_id, 
       average_mile, car_amount, car_speed, 
       fuel_type, car_fuelamount, orvr_percentage, 
@@ -255,7 +255,7 @@
       flag = #{bioStrawflag,jdbcType=INTEGER}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO road_move (id, scccode, source_discrip,
+    INSERT INTO yd_road_move (id, scccode, source_discrip,
     year, county_city, county_id,
     average_mile, car_amount, car_speed,
     fuel_type, car_fuelamount, orvr_percentage,
@@ -293,7 +293,7 @@
     </foreach>
   </insert>
   <update id="updateById" parameterType="nankai.xl.business.model.RoadMove" >
-    update road_move
+    update yd_road_move
     <set >
       <if test="scccode != null" >
         scccode = #{scccode,jdbcType=CHAR},

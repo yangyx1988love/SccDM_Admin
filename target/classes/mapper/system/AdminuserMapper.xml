@@ -32,10 +32,10 @@
         mobilephone,
         workphone
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from adminuser
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="nankai.xl.system.model.Adminuser">
+        select adminuser.*,dept.dept_name from adminuser
+        left join dept
+        on dept.dept_id=adminuser.dept_id
         where user_id = #{userId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -151,6 +151,9 @@
             <if test="workphone != null" >
                 workphone = #{workphone,jdbcType=VARCHAR},
             </if>
+            <if test="activeCode != null" >
+                active_code = #{activeCode,jdbcType=VARCHAR},
+            </if>
         </set>
         where user_id = #{userId,jdbcType=INTEGER}
     </update>
@@ -203,16 +206,16 @@
             adminuser.username = #{username,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectOneByUserName" resultMap="BaseResultMap">
+    <select id="selectOneByUserName" resultType="nankai.xl.system.model.Adminuser">
         select
-        <include refid="Base_Column_List"/>
+        *
         from adminuser
         where username=#{username,jdbcType=VARCHAR} limit 1
     </select>
 
-    <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultType="nankai.xl.system.model.Adminuser">
         select
-        <include refid="Base_Column_List"/>
+        *
         from adminuser
     </select>
 
@@ -242,8 +245,8 @@
         select role_id from user_role where user_id = #{userId} ORDER BY role_id DESC
     </select>
 
-    <select id="selectByActiveCode" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/> from adminuser where active_code = #{activeCode}
+    <select id="selectByActiveCode" resultType="nankai.xl.system.model.Adminuser">
+        select * from adminuser where active_code = #{activeCode}
     </select>
 
     <select id="count" resultType="java.lang.Integer">
@@ -277,7 +280,7 @@
     </update>
 
 
-    <select id="selectAllWithDept" resultMap="BaseResultMap">
+    <select id="selectAllWithDept" resultType="nankai.xl.system.model.Adminuser">
         select
                u.user_id,
                u.username,
