@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="nankai.xl.business.mapper.YcDustStackMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.YcDustStack" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="com_id" property="comId" jdbcType="INTEGER" />
+    <result column="stack_id" property="stackId" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="CHAR" />
+    <result column="sarea" property="sarea" jdbcType="INTEGER" />
+    <result column="material_type" property="materialType" jdbcType="VARCHAR" />
+    <result column="windf_thresh" property="windfThresh" jdbcType="DOUBLE" />
+    <result column="wind_friction" property="windFriction" jdbcType="DOUBLE" />
+    <result column="ground_rough" property="groundRough" jdbcType="DOUBLE" />
+    <result column="material_rough" property="materialRough" jdbcType="DOUBLE" />
+    <result column="ground_windhigh" property="groundWindhigh" jdbcType="DOUBLE" />
+    <result column="m_windnum" property="mWindnum" jdbcType="INTEGER" />
+    <result column="ground_wind" property="groundWind" jdbcType="DOUBLE" />
+    <result column="controlname" property="controlname" jdbcType="VARCHAR" />
+    <result column="scccode" property="scccode" jdbcType="CHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
+    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
+    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
+    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
+    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
+    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
+    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
+    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
+    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
+    <result column="scc_describe" property="sccDescribe" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.YcDustStackVo" parameterType="nankai.xl.business.model.vo.YcDustStackVo" >
+    SELECT yc_dust_stack.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yc_dust_stack.scccode,1,2) AS scc1,
+    SUBSTR(yc_dust_stack.scccode,3,2) AS scc2,SUBSTR(yc_dust_stack.scccode,5,3) AS scc3,SUBSTR(yc_dust_stack.scccode,8,3) AS scc4
+    FROM yc_dust_stack
+    LEFT JOIN company
+    ON yc_dust_stack.com_id=company.com_id
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
+    <where>
+      <if test="year != null and year != ''">
+        yc_dust_stack.year = #{year}
+      </if>
+      <if test="countyId != null and countyId != ''">
+        AND company.county_id = #{countyId}
+      </if>
+      <if test="cityCode != null and cityCode != ''">
+        AND co.city_code = #{cityCode}
+      </if>
+    </where>
+  </select>
+  <select id="selectById" resultType="nankai.xl.business.model.vo.YcDustStackVo" parameterType="java.lang.Integer" >
+    SELECT yc_dust_stack.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yc_dust_stack.scccode,1,2) AS scc1,
+    SUBSTR(yc_dust_stack.scccode,3,2) AS scc2,SUBSTR(yc_dust_stack.scccode,5,3) AS scc3,SUBSTR(yc_dust_stack.scccode,8,3) AS scc4
+    FROM yc_dust_stack
+    LEFT JOIN company
+    ON yc_dust_stack.com_id=company.com_id
+    LEFT JOIN (
+      SELECT county.COUNTY_ID,county.COUNTY_NAME,city.city_name,city.city_code
+      FROM county
+      LEFT JOIN city
+      ON county.city_code=city.city_code
+    ) co
+    ON co.COUNTY_ID=company.county_id
+    where yc_dust_stack.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+    delete from yc_dust_stack
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.YcDustStack" >
+    insert into yc_dust_stack
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="comId != null" >
+        com_id,
+      </if>
+      <if test="stackId != null" >
+        stack_id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="sarea != null" >
+        sarea,
+      </if>
+      <if test="materialType != null" >
+        material_type,
+      </if>
+      <if test="windfThresh != null" >
+        windf_thresh,
+      </if>
+      <if test="windFriction != null" >
+        wind_friction,
+      </if>
+      <if test="groundRough != null" >
+        ground_rough,
+      </if>
+      <if test="materialRough != null" >
+        material_rough,
+      </if>
+      <if test="groundWindhigh != null" >
+        ground_windhigh,
+      </if>
+      <if test="mWindnum != null" >
+        m_windnum,
+      </if>
+      <if test="groundWind != null" >
+        ground_wind,
+      </if>
+      <if test="controlname != null" >
+        controlname,
+      </if>
+      <if test="scccode != null" >
+        scccode,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission,
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission,
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission,
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission,
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission,
+      </if>
+      <if test="coEmission != null" >
+        co_emission,
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission,
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission,
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission,
+      </if>
+      <if test="sccDescribe != null" >
+        scc_describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="comId != null" >
+        #{comId,jdbcType=INTEGER},
+      </if>
+      <if test="stackId != null" >
+        #{stackId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=CHAR},
+      </if>
+      <if test="sarea != null" >
+        #{sarea,jdbcType=INTEGER},
+      </if>
+      <if test="materialType != null" >
+        #{materialType,jdbcType=VARCHAR},
+      </if>
+      <if test="windfThresh != null" >
+        #{windfThresh,jdbcType=DOUBLE},
+      </if>
+      <if test="windFriction != null" >
+        #{windFriction,jdbcType=DOUBLE},
+      </if>
+      <if test="groundRough != null" >
+        #{groundRough,jdbcType=DOUBLE},
+      </if>
+      <if test="materialRough != null" >
+        #{materialRough,jdbcType=DOUBLE},
+      </if>
+      <if test="groundWindhigh != null" >
+        #{groundWindhigh,jdbcType=DOUBLE},
+      </if>
+      <if test="mWindnum != null" >
+        #{mWindnum,jdbcType=INTEGER},
+      </if>
+      <if test="groundWind != null" >
+        #{groundWind,jdbcType=DOUBLE},
+      </if>
+      <if test="controlname != null" >
+        #{controlname,jdbcType=VARCHAR},
+      </if>
+      <if test="scccode != null" >
+        #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="pm25Emission != null" >
+        #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="sccDescribe != null" >
+        #{sccDescribe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.YcDustStack" >
+    insert into yc_dust_stack (id, com_id, stack_id,
+      year, sarea, material_type,
+      windf_thresh, wind_friction, ground_rough,
+      material_rough, ground_windhigh, m_windnum,
+      ground_wind, controlname, scccode,
+      flag, pm25_emission, pm10_emission,
+      voc_emission, nh3_emission, so2_emission,
+      co_emission, oc_emission, bc_emission,
+      nox_emission, scc_describe)
+    values (#{id,jdbcType=INTEGER}, #{comId,jdbcType=INTEGER}, #{stackId,jdbcType=INTEGER},
+      #{year,jdbcType=CHAR}, #{sarea,jdbcType=INTEGER}, #{materialType,jdbcType=VARCHAR},
+      #{windfThresh,jdbcType=DOUBLE}, #{windFriction,jdbcType=DOUBLE}, #{groundRough,jdbcType=DOUBLE},
+      #{materialRough,jdbcType=DOUBLE}, #{groundWindhigh,jdbcType=DOUBLE}, #{mWindnum,jdbcType=INTEGER},
+      #{groundWind,jdbcType=DOUBLE}, #{controlname,jdbcType=VARCHAR}, #{scccode,jdbcType=CHAR},
+      #{flag,jdbcType=INTEGER}, #{pm25Emission,jdbcType=DOUBLE}, #{pm10Emission,jdbcType=DOUBLE},
+      #{vocEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE},
+      #{coEmission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE},
+      #{noxEmission,jdbcType=DOUBLE}, #{sccDescribe,jdbcType=VARCHAR})
+     ON DUPLICATE KEY UPDATE        
+      id = #{id,jdbcType=INTEGER},
+      com_id = #{comId,jdbcType=INTEGER},
+      stack_id = #{stackId,jdbcType=INTEGER},
+      year = #{year,jdbcType=CHAR},
+      sarea = #{sarea,jdbcType=INTEGER},
+      material_type = #{materialType,jdbcType=VARCHAR},
+      windf_thresh = #{windfThresh,jdbcType=DOUBLE},
+      wind_friction = #{windFriction,jdbcType=DOUBLE},
+      ground_rough = #{groundRough,jdbcType=DOUBLE},
+      material_rough = #{materialRough,jdbcType=DOUBLE},
+      ground_windhigh = #{groundWindhigh,jdbcType=DOUBLE},
+      m_windnum = #{mWindnum,jdbcType=INTEGER},
+      ground_wind = #{groundWind,jdbcType=DOUBLE},
+      controlname = #{controlname,jdbcType=VARCHAR},
+      scccode = #{scccode,jdbcType=CHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      co_emission = #{coEmission,jdbcType=DOUBLE},
+      oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      scc_describe = #{sccDescribe,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertList" parameterType="java.util.List">
+    insert into yc_dust_stack (id, com_id, stack_id,
+    year, sarea, material_type,
+    windf_thresh, wind_friction, ground_rough,
+    material_rough, ground_windhigh, m_windnum,
+    ground_wind, controlname, scccode,
+    flag, pm25_emission, pm10_emission,
+    voc_emission, nh3_emission, so2_emission,
+    co_emission, oc_emission, bc_emission,
+    nox_emission, scc_describe)
+    VALUES
+    <foreach collection="list"  index="index" item="item" separator=",">
+      (
+      #{item.id,jdbcType=INTEGER},#{item.comId,jdbcType=INTEGER},#{item.stackId,jdbcType=INTEGER},
+      #{item.year,jdbcType=CHAR},#{item.sarea,jdbcType=INTEGER},#{item.materialType,jdbcType=VARCHAR},
+      #{item.windfThresh,jdbcType=DOUBLE},#{item.windFriction,jdbcType=DOUBLE},#{item.groundRough,jdbcType=DOUBLE},
+      #{item.materialRough,jdbcType=DOUBLE},#{item.groundWindhigh,jdbcType=DOUBLE},#{item.mWindnum,jdbcType=INTEGER},
+      #{item.groundWind,jdbcType=DOUBLE},#{item.controlname,jdbcType=VARCHAR},#{item.scccode,jdbcType=CHAR},
+      #{item.flag,jdbcType=INTEGER},#{item.pm25Emission,jdbcType=DOUBLE},#{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},#{item.nh3Emission,jdbcType=DOUBLE},#{item.so2Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},#{item.ocEmission,jdbcType=DOUBLE},#{item.bcEmission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},#{item.sccDescribe,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+  <update id="updateById" parameterType="nankai.xl.business.model.YcDustStack" >
+    update yc_dust_stack
+    <set >
+      <if test="comId != null" >
+        com_id = #{comId,jdbcType=INTEGER},
+      </if>
+      <if test="stackId != null" >
+        stack_id = #{stackId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=CHAR},
+      </if>
+      <if test="sarea != null" >
+        sarea = #{sarea,jdbcType=INTEGER},
+      </if>
+      <if test="materialType != null" >
+        material_type = #{materialType,jdbcType=VARCHAR},
+      </if>
+      <if test="windfThresh != null" >
+        windf_thresh = #{windfThresh,jdbcType=DOUBLE},
+      </if>
+      <if test="windFriction != null" >
+        wind_friction = #{windFriction,jdbcType=DOUBLE},
+      </if>
+      <if test="groundRough != null" >
+        ground_rough = #{groundRough,jdbcType=DOUBLE},
+      </if>
+      <if test="materialRough != null" >
+        material_rough = #{materialRough,jdbcType=DOUBLE},
+      </if>
+      <if test="groundWindhigh != null" >
+        ground_windhigh = #{groundWindhigh,jdbcType=DOUBLE},
+      </if>
+      <if test="mWindnum != null" >
+        m_windnum = #{mWindnum,jdbcType=INTEGER},
+      </if>
+      <if test="groundWind != null" >
+        ground_wind = #{groundWind,jdbcType=DOUBLE},
+      </if>
+      <if test="controlname != null" >
+        controlname = #{controlname,jdbcType=VARCHAR},
+      </if>
+      <if test="scccode != null" >
+        scccode = #{scccode,jdbcType=CHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="pm25Emission != null" >
+        pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="pm10Emission != null" >
+        pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="vocEmission != null" >
+        voc_emission = #{vocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="nh3Emission != null" >
+        nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="so2Emission != null" >
+        so2_emission = #{so2Emission,jdbcType=DOUBLE},
+      </if>
+      <if test="coEmission != null" >
+        co_emission = #{coEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="ocEmission != null" >
+        oc_emission = #{ocEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="bcEmission != null" >
+        bc_emission = #{bcEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="noxEmission != null" >
+        nox_emission = #{noxEmission,jdbcType=DOUBLE},
+      </if>
+      <if test="sccDescribe != null" >
+        scc_describe = #{sccDescribe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

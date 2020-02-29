@@ -540,7 +540,7 @@
       <workItem from="1582964176566" duration="7323000" />
       <workItem from="1582978492711" duration="10420000" />
       <workItem from="1582996292428" duration="129000" />
-      <workItem from="1582996428969" duration="2069000" />
+      <workItem from="1582996428969" duration="2703000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1566356085749</created>
@@ -703,7 +703,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582997841798</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="完成所有功能初步测试">
+      <created>1582998606805</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1582998606805</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -756,10 +763,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1405" y="633" width="503" height="281" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1582981074972" />
-    <state x="743" y="234" key="CommitChangelistDialog2" timestamp="1582997836905">
+    <state x="743" y="234" key="CommitChangelistDialog2" timestamp="1582998606365">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="743" y="234" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1582997836905" />
+    <state x="743" y="234" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1582998606365" />
     <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1582978061076">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -816,10 +823,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="342" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1582538959058" />
-    <state x="906" y="419" key="Vcs.Push.Dialog.v2" timestamp="1582997858543">
+    <state x="906" y="419" key="Vcs.Push.Dialog.v2" timestamp="1582998614685">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="906" y="419" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1582997858543" />
+    <state x="906" y="419" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1582998614685" />
     <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1582564951718">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

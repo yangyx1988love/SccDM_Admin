@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>工艺过程-原料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <form class="layui-form layui-form-pane" name="deviceRawForm" id="deviceRawForm" >
+        <input type="hidden" id="id" name="id"  th:value="${deviceRaw?.id}">
+        <input type="hidden" id="scc1" name="scc1"  th:value="${scc1}">
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">生产类别</label>
+                <div class="layui-input-block" style="width: 240px;">
+                    <select id="scc2" name="scc2" th:field="*{deviceRaw.scc2}" lay-filter="scc2" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option th:each="scc2 : ${scc2s}" th:value="${scc2.scc2}" th:text="${scc2.description}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">原料类别</label>
+                <div class="layui-input-block" style="width: 240px;">
+                    <select id="scc3" name="scc3" th:field="*{deviceRaw.scc3}" lay-filter="scc3" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;" >
+                <label class="layui-form-label" style="width: 110px">生产工艺</label>
+                <div class="layui-input-block"  style="width: 240px;">
+                    <select id="scc4" name="scc4" th:field="*{deviceRaw.scc4}" lay-filter="scc4" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">原料备注</label>
+                <div class="layui-input-block"  >
+                    <input id="deviceRawNo" name="deviceRawNo" th:value="${deviceRaw?.mname}"  class="layui-input" style="width: 240px;" type="text" lay-verify="">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;" >
+                <label class="layui-form-label" style="width: 110px">设备编号</label>
+                <div class="layui-input-block" >
+                    <select id="deviceId" name="deviceId" th:field="*{deviceRaw.deviceId}" lay-filter="model" lay-verify="required|number">
+                        <option value="">请选择</option>
+                        <option th:each="deviceVo : ${deviceVos}" th:value="${deviceVo.id}" th:text="${deviceVo.nkNo}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">集气设施编号</label>
+                <div class="layui-input-block" >
+                    <input id="gasNo" name="gasNo" th:value="${deviceRaw?.gasNo}" class="layui-input" style="width: 240px;"   type="text" lay-verify="">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">治理设施编号</label>
+                <div class="layui-input-block" >
+                    <input id="treatNo" name="treatNo" th:value="${deviceRaw?.treatNo}" class="layui-input" style="width: 240px;"   type="text" lay-verify="">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">集气效率(%)</label>
+                <div class="layui-input-block" >
+                    <input id="gasPre" name="gasPre" th:value="${deviceRaw?.gasPre}" class="layui-input" style="width: 240px;"   type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">VOCs去除率(%)</label>
+                <div class="layui-input-block" >
+                    <input id="treatPre" name="treatPre" th:value="${deviceRaw?.treatPre}" class="layui-input" style="width: 240px;"  type="text" lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">VOCs含量(%)</label>
+                <div class="layui-input-block" >
+                    <input id="gasVocs" name="gasVocs" th:value="${deviceRaw?.gasVocs}" class="layui-input" style="width: 240px;"  type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">VOCs排放量(吨/年)</label>
+                <div class="layui-input-block" >
+                    <input id="voc" name="voc" th:value="${deviceRaw?.voc}" class="layui-input" style="width: 240px;"  type="text" lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>原料年使用量及月使用量</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">原料年使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUse" name="musage" th:value="${deviceRaw?.musage}" class="layui-input" style="width: 240px;"  type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">使用量单位</label>
+                <div class="layui-input-block" >
+                    <input id="unit" name="unit" th:value="${deviceRaw?.unit}" class="layui-input" style="width: 240px;"  type="text" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">一月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM1" name="janUseamount" th:value="${deviceRaw?.janUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px" >二月份使用量</label>
+                <div class="layui-input-block"  >
+                    <input id="totalUseM2" name="febUseamount" th:value="${deviceRaw?.febUseamount}"  class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">三月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM3" name="marUseamount" th:value="${deviceRaw?.marUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">四月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM4" name="aprUseamount" th:value="${deviceRaw?.aprUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">五月份使用量</label>
+                <div class="layui-input-block"  >
+                    <input id="totalUseM5" name="mayUseamount" th:value="${deviceRaw?.mayUseamount}"  class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">六月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM6" name="juneUseamount" th:value="${deviceRaw?.juneUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">七月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM7" name="julyUseamount" th:value="${deviceRaw?.julyUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">八月份使用量</label>
+                <div class="layui-input-block"  >
+                    <input id="totalUseM8" name="augUseamount" th:value="${deviceRaw?.augUseamount}"  class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">九月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM9" name="septUseamount" th:value="${deviceRaw?.septUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">十月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM10" name="octUseAmount" th:value="${deviceRaw?.octUseAmount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">十一月份使用量</label>
+                <div class="layui-input-block"  >
+                    <input id="totalUseM11" name="novUseamount" th:value="${deviceRaw?.novUseamount}"  class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">十二月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM12" name="decUseamount" th:value="${deviceRaw?.decUseamount}" class="layui-input" style="width: 240px;" onchange="checkMonthUse(this)" type="text" lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <shiro:hasPermission name="factoryAuth:deviceRaw:update">
+            <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+            </div>
+        </shiro:hasPermission>
+    </form>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                var data = form.field;
+                $.post('/factoryAuth/deviceRaw/edit/' + data.id , form.field, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

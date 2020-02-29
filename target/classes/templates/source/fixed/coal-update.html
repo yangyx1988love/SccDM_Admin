@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>固定燃烧源散煤</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form class="layui-form layui-form-pane" name="coalForm" id="coalForm" >
+            <blockquote class="layui-elem-quote">
+                <legend>SCC编码：<span th:text="${scatteredCoalVo.sccCode}"></span>&nbsp;&nbsp;&nbsp;
+                         详情：<span th:text="${scatteredCoalVo.sourceDescription}"></span></legend>
+            </blockquote>
+            <input type="hidden" id="id" name="id"  th:value="${scatteredCoalVo.id}">
+            <input type="hidden" id="scc1" name="scc1"  th:value="${scatteredCoalVo.scc1}">
+            <input type="hidden" id="scc2" name="scc2"  th:value="${scatteredCoalVo.scc2}">
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">年份</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <input type="text" class="layui-input" id="year" name="year" th:value="${scatteredCoalVo.year}" placeholder="yyyy" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="cityCode" name="cityCode" th:field="*{scatteredCoalVo.cityCode}" lay-filter="cityCode" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">区县</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="countyId" name="countyId" th:field="*{scatteredCoalVo.countyId}" lay-filter="countyId" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">三级编码</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc3" name="scc3" th:field="*{scatteredCoalVo.scc3}" lay-filter="scc3" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">四级编码</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc4" name="scc4" th:field="*{scatteredCoalVo.scc4}" lay-filter="model" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">燃料类型</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <select id="activityLevel" name="activityLevel" th:field="*{scatteredCoalVo.activityLevel}" lay-verify="required">
+                            <option value="" >请选择</option>
+                            <option value="煤炭" >煤炭</option>
+                            <option value="液化石油气">液化石油气</option>
+                            <option value="天然气">天然气</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">活动数量</label>
+                    <div class="layui-input-block"  style="width: 240px;">
+                        <input id="activityLevelNum" name="activityLevelNum" th:value="${scatteredCoalVo.activityLevelNum}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">计量单位</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <select id="fuelMeteringUnit" name="fuelMeteringUnit" th:field="*{scatteredCoalVo.fuelMeteringUnit}" lay-verify="required">
+                            <option value="" >请选择</option>
+                            <option value="吨" >吨</option>
+                            <option value="立方米">立方米</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">控制技术</label>
+                    <div class="layui-input-block" >
+                        <input id="controlMeasure" name="controlMeasure" style="width: 170px;" th:value="${scatteredCoalVo.controlMeasure}"  class="layui-input" type="text" lay-verify="required">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">燃料平均硫分(%)</label>
+                    <div class="layui-input-block">
+                        <input id="sulfurContent" name="sulfurContent" style="width: 170px;" th:value="${scatteredCoalVo.sulfurContent}" class="layui-input" type="text"  lay-verify="required|ratio">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label"  style="width: 180px;">燃料平均灰分(%)</label>
+                    <div class="layui-input-block">
+                        <input id="ashContent" name="ashContent" style="width: 170px;" th:value="${scatteredCoalVo.ashContent}" class="layui-input" type="text"  lay-verify="required|ratio">
+                    </div>
+                </div>
+                <th:block  th:include="common/emission::isCul" />
+            </div>
+            <div id="emissionDiv" name="emissionDiv">
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM2.5</label>
+                        <div class="layui-input-block" >
+                            <input id="pm25Emission" name="pm25Emission" style="width: 170px;" th:value="${scatteredCoalVo.pm25Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM10</label>
+                        <div class="layui-input-block">
+                            <input id="pm10Emission" name="pm10Emission" style="width: 170px;" th:value="${scatteredCoalVo.pm10Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">CO</label>
+                        <div class="layui-input-block">
+                            <input id="coEmission" name="coEmission" style="width: 170px;" th:value="${scatteredCoalVo.coEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">VOCs</label>
+                        <div class="layui-input-block" >
+                            <input id="vocEmission" name="vocEmission" style="width: 170px;" th:value="${scatteredCoalVo.vocEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">SO2</label>
+                        <div class="layui-input-block">
+                            <input id="so2Emission" name="so2Emission" style="width: 170px;" th:value="${scatteredCoalVo.so2Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">NOx</label>
+                        <div class="layui-input-block">
+                            <input id="noxEmission" name="noxEmission" style="width: 170px;" th:value="${scatteredCoalVo.noxEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">NH3</label>
+                        <div class="layui-input-block" >
+                            <input id="nh3Emission" name="nh3Emission" style="width: 170px;" th:value="${scatteredCoalVo.nh3Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">OC</label>
+                        <div class="layui-input-block">
+                            <input id="ocEmission" name="ocEmission" style="width: 170px;" th:value="${scatteredCoalVo.ocEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">BC</label>
+                        <div class="layui-input-block">
+                            <input id="bcEmission" name="bcEmission" style="width: 170px;" th:value="${scatteredCoalVo.bcEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:fixed:update">
+                <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                    <button class="layui-btn layui-btn-blue" lay-filter="edit" lay-submit="">保存提交</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                form.field._method = 'PUT';
+                var data = form.field;
+                var isCul=$('input[name="isCul"]:checked').is(':checked');
+                data.isCul=isCul;
+                $.post('/source/fixed/coal/edit/', data, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+
+            });
+        });
+    </script>
+</body>
+</html>

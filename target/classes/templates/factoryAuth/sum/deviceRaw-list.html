@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="UTF-8">
+    <title>设备原料列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 we-search">
+                <th:block  th:include="common/sum-common-select::content" />
+            </form>
+        </div>
+        <div class="layui-row">
+            <table class="layui-hide" id="deviceRawsTable"></table>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        layui.use(['table','form', 'element'], function () {
+            var table = layui.table //表格
+                ,form = layui.form //form表单
+                ,element = layui.element;
+            table.render({
+                elem: '#deviceRawsTable'
+                , url: '/factoryAuth/sum/deviceRaw/list'
+                , page: true
+                , toolbar: '#toolbar'
+                , cols: [
+                    [
+                        {field: 'year', title: '年份'}
+                        , {field: 'factoryNo', title: '工厂编号'}
+                        , {field: 'factoryName', title: '工厂名称'}
+                        , {field: 'cityName', title: '实际城市'}
+                        , {field: 'countyName', title: '实际区县'}
+                        , {field: 'statusdec', title: '审核状态'}
+                        , {field: 'deviceId', title: '对应设备ID'}
+                        , {field: 'deviceName', title: '生产装置名称'}
+                        , {field: 'deviceFlow', title: '主要工艺流程'}
+                        , {field: 'practicalPower', title: '实际生产能力'}
+                        , {field: 'yearrunDays', title: '全年运行天数'}
+                        , {field: 'id', title: '设备原料ID'}
+                        , {field: 'nkNo', title: '原料编号'}
+                        , {field: 'musage', title: '年使用量'}
+                        , {field: 'unit', title: '计量单位'}
+                        , {field: 'sccDec', title: '原料描述'}
+                        , {field: 'janUseamount', title: '原料1月份使用量'}
+                        , {field: 'febUseamount', title: '原料2月份使用量'}
+                        , {field: 'marUseamount', title: '原料3月份使用量'}
+                        , {field: 'aprUseamount', title: '原料4月份使用量'}
+                        , {field: 'mayUseamount', title: '原料5月份使用量'}
+                        , {field: 'juneUseamount', title: '原料6月份使用量'}
+                        , {field: 'julyUseamount', title: '原料7月份使用量'}
+                        , {field: 'augUseamount', title: '原料8月份使用量'}
+                        , {field: 'septUseamount', title: '原料9月份使用量'}
+                        , {field: 'octUseAmount', title: '原料10月份使用量'}
+                        , {field: 'novUseamount', title: '原料11月份使用量'}
+                        , {field: 'decUseamount', title: '原料12月份使用量'}
+                        , {field: 'pm10', title: 'PM10排放量(吨)'}
+                        , {field: 'pm25', title: 'PM2.5排放量(吨)'}
+                        , {field: 'co', title: 'CO排放量(吨)'}
+                        , {field: 'voc', title: 'VOC排放量(吨)'}
+                        , {field: 'pm', title: 'PM排放量(吨)'}
+                        , {field: 'so2', title: 'SO2排放量(吨)'}
+                        , {field: 'nox', title: 'NOX排放量(吨)'}
+                        , {field: 'oc', title: 'OC排放量(吨)'}
+                        , {field: 'bc', title: 'BC排放量(吨)'}
+                        , {field: 'nh3', title: 'NH3排放量(吨)'}
+                    ]
+                ]
+                ,page: true   //开启分页
+                ,limit:50   //默认十条数据一页
+                ,limits:[50,100,200,500,1000,2000]  //数据分页条
+                ,id: 'deviceRawTableReload'
+            });
+            //监听提交 lay-filter="search"
+            form.on('submit(search)', function(data){
+                var formData = data.field;
+                var countyId = formData.countyId,
+                    cityCode=formData.cityCode,
+                    year=formData.year
+                    status=formData.status
+                //执行重载
+                table.reload('deviceRawTableReload',{
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {//这里传参  向后台
+                        countyId: countyId,
+                        cityCode: cityCode,
+                        status: status,
+                        year:year
+                    }
+                    , url: '/factoryAuth/sum/deviceRaw/reload'//后台做模糊搜索接口路径
+                    , method: 'get'
+                });
+                return false;//false：阻止表单跳转  true：表单跳转
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

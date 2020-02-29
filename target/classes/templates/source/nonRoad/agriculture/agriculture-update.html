@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>农用运输车</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form class="layui-form layui-form-pane" name="agricultureForm" id="agricultureForm" >
+            <blockquote class="layui-elem-quote">
+                <legend>SCC编码：<span th:text="${agricultureMachineryVo.sccCode}"></span>&nbsp;&nbsp;&nbsp;
+                         详情：<span th:text="${agricultureMachineryVo.sourceDescrip}"></span></legend>
+            </blockquote>
+            <input type="hidden" id="id" name="id"  th:value="${agricultureMachineryVo.id}">
+            <input type="hidden" id="scc1" name="scc1"  th:value="${agricultureMachineryVo.scc1}">
+            <input type="hidden" id="scc2" name="scc2"  th:value="${agricultureMachineryVo.scc2}">
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">年份</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <input type="text" class="layui-input" id="year" name="year" th:value="${agricultureMachineryVo.year}" placeholder="yyyy" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="cityCode" name="cityCode" th:field="*{agricultureMachineryVo.cityCode}" lay-filter="cityCode" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">区县</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="countyId" name="countyId" th:field="*{agricultureMachineryVo.countyId}" lay-filter="countyId" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">三级编码</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc3" name="scc3" th:field="*{agricultureMachineryVo.scc3}" lay-filter="scc3" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">四级编码</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc4" name="scc4" th:field="*{agricultureMachineryVo.scc4}" lay-filter="model" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">保有量(台)</label>
+                    <div class="layui-input-block">
+                        <input id="holdings" name="holdings" style="width: 170px;" th:value="${agricultureMachineryVo.holdings}" class="layui-input" type="text"  lay-verify="required|integer">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">年均行驶里程(km)</label>
+                    <div class="layui-input-block">
+                        <input id="annalAverageMilage" name="annalAverageMilage" style="width: 170px;" th:value="${agricultureMachineryVo.annalAverageMilage}" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">燃料类型</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <select id="fuelType" name="fuelType" th:field="*{agricultureMachineryVo.fuelType}" lay-verify="required">
+                            <option value="" >请选择</option>
+                            <option value="柴油" >柴油</option>
+                            <option value="汽油">汽油</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <th:block  th:include="common/emission::isCul" />
+            </div>
+            <div id="emissionDiv" name="emissionDiv">
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM2.5</label>
+                        <div class="layui-input-block" >
+                            <input id="pm25Emission" name="pm25Emission" style="width: 170px;" th:value="${agricultureMachineryVo.pm25Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">PM10</label>
+                        <div class="layui-input-block">
+                            <input id="pm10Emission" name="pm10Emission" style="width: 170px;" th:value="${agricultureMachineryVo.pm10Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">CO</label>
+                        <div class="layui-input-block">
+                            <input id="coEmission" name="coEmission" style="width: 170px;" th:value="${agricultureMachineryVo.coEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">VOCs</label>
+                        <div class="layui-input-block" >
+                            <input id="vocsEmission" name="vocsEmission" style="width: 170px;" th:value="${agricultureMachineryVo.vocsEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">SO2</label>
+                        <div class="layui-input-block">
+                            <input id="so2Emission" name="so2Emission" style="width: 170px;" th:value="${agricultureMachineryVo.so2Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">NOx</label>
+                        <div class="layui-input-block">
+                            <input id="noxEmission" name="noxEmission" style="width: 170px;" th:value="${agricultureMachineryVo.noxEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">NH3</label>
+                        <div class="layui-input-block" >
+                            <input id="nh3Emission" name="nh3Emission" style="width: 170px;" th:value="${agricultureMachineryVo.nh3Emission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">OC</label>
+                        <div class="layui-input-block">
+                            <input id="ocEmission" name="ocEmission" style="width: 170px;" th:value="${agricultureMachineryVo.ocEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label"  style="width: 180px;">BC</label>
+                        <div class="layui-input-block">
+                            <input id="bcEmission" name="bcEmission" style="width: 170px;" th:value="${agricultureMachineryVo.bcEmission}" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:nonRoad:update">
+                <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                    <button class="layui-btn layui-btn-blue" lay-filter="edit" lay-submit="">保存提交</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                form.field._method = 'PUT';
+                var data = form.field;
+                var isCul=$('input[name="isCul"]:checked').is(':checked');
+                data.isCul=isCul;
+                $.post('/source/nonRoad/agriculture/edit/', data, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+
+            });
+        });
+    </script>
+</body>
+</html>

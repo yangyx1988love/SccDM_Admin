@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>加气站-新增</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+    <div class="z-body animated fadeIn">
+        <form class="layui-form layui-form-pane" name="coalForm" id="coalForm" >
+            <input type="hidden" id="comId" name="comId" >
+            <input type="hidden" id="scc1" name="scc1"  th:value="${scc1}">
+            <input type="hidden" id="scc2" name="scc2"  th:value="${scc2}">
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">年份</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <input type="text" class="layui-input" id="year" name="year" placeholder="yyyy" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">城市</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="cityCode" name="cityCode" lay-filter="cityCode" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">区县</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="countyId" name="countyId" lay-filter="countyId" lay-verify="required">
+                            <option value="">请选择实际区县</option>
+                            <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">加气站名称</label>
+                    <div class="layui-input-block"  >
+                        <input id="companyName" name="companyName" style="width: 240px;" class="layui-input" type="text"  lay-verify="required|chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">地址</label>
+                    <div class="layui-input-block"  >
+                        <input id="address" name="address" style="width: 240px;" class="layui-input" type="text"  lay-verify="required|chinese">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">企业备注</label>
+                    <div class="layui-input-block" style="width: 240px;">
+                        <input id="category" name="category" class="layui-input" type="text"  lay-verify="">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">经度</label>
+                    <div class="layui-input-block"  >
+                        <input id="longitude" name="longitude" style="width: 240px;" class="layui-input" type="text"  lay-verify="required|longitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px;">纬度</label>
+                    <div class="layui-input-block"  >
+                        <input id="latitude" name="latitude" style="width: 240px;" class="layui-input" type="text"  lay-verify="required|latitude">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">存储物质</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc3" name="scc3" lay-filter="scc3" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="100" disabled>汽油</option>
+                            <option value="200" disabled>柴油</option>
+                            <option value="300">LPG（液化石油气）</option>
+                            <option value="400">LNG（液化天然气）</option>
+                            <option value="500">CNG（天然气）</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 110px">损失方式</label>
+                    <div class="layui-input-block" style="width: 240px">
+                        <select id="scc4" name="scc4" lay-filter="model" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">销售量(m<sup>3</sup>)</label>
+                    <div class="layui-input-block" >
+                        <input id="salesVolume" name="salesVolume" style="width: 170px;" class="layui-input" type="text" lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">储罐容量(m<sup>3</sup>)</label>
+                    <div class="layui-input-block">
+                        <input id="volume" name="volume" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label"  style="width: 180px;">储罐充油量(m<sup>3</sup>/次)</label>
+                    <div class="layui-input-block">
+                        <input id="everyVolume" name="everyVolume" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">年充油次数</label>
+                    <div class="layui-input-block" >
+                        <input id="volumeCount" name="volumeCount" style="width: 170px;" class="layui-input" type="text" lay-verify="required|integer">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">加油枪总个数</label>
+                    <div class="layui-input-block" >
+                        <input id="gunNum" name="gunNum" style="width: 170px;" class="layui-input" type="text" lay-verify="required|integer">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">储罐数量</label>
+                    <div class="layui-input-block" >
+                        <input id="tankNum" name="tankNum" style="width: 170px;" class="layui-input" type="text" lay-verify="required|integer">
+                    </div>
+                </div>
+                <th:block  th:include="common/emission::isCul" />
+            </div>
+            <div id="emissionDiv" name="emissionDiv">
+                <div class="layui-form-item">
+                    <div class="layui-inline" style="width: 350px;">
+                        <label class="layui-form-label" style="width: 180px;">排放量</label>
+                        <div class="layui-input-block" >
+                            <input id="emission" name="emission" style="width: 170px;" class="layui-input" type="text" lay-verify="pos-num">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <shiro:hasPermission name="factoryAuth:scatteredCoal:update">
+                <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                    <button class="layui-btn layui-btn-blue" lay-filter="edit" lay-submit="">保存提交</button>
+                </div>
+            </shiro:hasPermission>
+        </form>
+    </div>
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            form.on('submit(edit)', function (form) {
+                form.field._method = 'PUT';
+                var data = form.field;
+                var isCul=$('input[name="isCul"]:checked').is(':checked');
+                data.isCul=isCul;
+                $.post('/source/transport/gas/edit/', data, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+
+            });
+        });
+    </script>
+</body>
+</html>

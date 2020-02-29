@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>企业填报情况汇总</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+
+<body>
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="text-align: center">企业信息概览</legend>
+        </fieldset>
+
+        <blockquote class="layui-elem-quote">
+            排气筒总数：<span th:text="${factoryMessSumVo.getExhausts().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getExhausts().size() > 0}">
+            <thead>
+            <tr>
+                <th>排气筒编号</th>
+                <th>排气筒材质</th>
+                <th>排气筒高度(m)</th>
+                <th>烟气出口直径(m)</th>
+                <th>烟气出口温度(℃)</th>
+                <th>烟气流量</th>
+                <th>烟气出口流速(m/s)</th>
+                <th>排气筒经度</th>
+                <th>排气筒维度</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="exhaust:${factoryMessSumVo.getExhausts()}">
+                <td th:text="${exhaust?.nkNo}"></td>
+                <td th:text="${exhaust?.exfMaterial}"></td>
+                <td th:text="${exhaust?.exfHeight}"></td>
+                <td th:text="${exhaust?.smokeOutd}"></td>
+                <td th:text="${exhaust?.smokeOUtteM}"></td>
+                <td th:text="${exhaust?.smokeOuta}"></td>
+                <td th:text="${exhaust?.smokeOutv}"></td>
+                <td th:text="${exhaust?.exfLongitude}"></td>
+                <td th:text="${exhaust?.exfLatitude}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            锅炉总数：<span th:text="${factoryMessSumVo.getBoilers().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getBoilers().size() > 0}">
+            <thead>
+            <tr>
+                <th>锅炉编号</th>
+                <th>排气筒编号</th>
+                <th>锅炉吨位(吨)</th>
+                <th>装机容量(兆瓦)</th>
+                <th>燃料年使用量</th>
+                <th>使用量单位</th>
+                <th>燃料灰分(%)</th>
+                <th>燃料硫分(%)</th>
+                <th>燃料挥发分(%)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="boiler:${factoryMessSumVo.getBoilers()}">
+                <td th:text="${boiler?.nkNo}"></td>
+                <td th:text="${boiler?.exhustId}"></td>
+                <td th:text="${boiler?.tons}"></td>
+                <td th:text="${boiler?.installedCapacity}"></td>
+                <td th:text="${boiler?.fuelAusage}"></td>
+                <td th:text="${boiler?.fuelAusageunit}"></td>
+                <td th:text="${boiler?.coalash}"></td>
+                <td th:text="${boiler?.coalsulfur}"></td>
+                <td th:text="${boiler?.coalVolatilisation}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            窑炉总数：<span th:text="${factoryMessSumVo.getKilns().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getKilns().size() > 0}">
+            <thead>
+            <tr>
+                <th>窑炉编号</th>
+                <th>排气筒编号</th>
+                <th>燃料年使用量</th>
+                <th>使用量单位</th>
+                <th>燃料灰分(%)</th>
+                <th>燃料硫分(%)</th>
+                <th>燃料挥发分(%)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kiln:${factoryMessSumVo.getKilns()}">
+                <td th:text="${kiln?.nkNo}"></td>
+                <td th:text="${kiln?.exhustId}"></td>
+                <td th:text="${kiln?.kilnFuelAusage}"></td>
+                <td th:text="${kiln?.kilnFuelAusageunit}"></td>
+                <td th:text="${kiln?.coalash}"></td>
+                <td th:text="${kiln?.coalsulfur}"></td>
+                <td th:text="${kiln?.coalVolatilisation}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            工艺过程-设备总数：<span th:text="${factoryMessSumVo.getDevices().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getDevices().size() > 0}">
+            <thead>
+            <tr>
+                <th>生产装置名称</th>
+                <th>生产装置编号</th>
+                <th>排气筒编号</th>
+                <th>主要工艺流程</th>
+                <th>设计生产能力</th>
+                <th>生产能力单位</th>
+                <th>年生产能力</th>
+                <th>全年运行天数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="device:${factoryMessSumVo.getDevices()}">
+                <td th:text="${device?.name}"></td>
+                <td th:text="${device?.nkNo}"></td>
+                <td th:text="${device?.exhustId}"></td>
+                <td th:text="${device?.deviceFlow}"></td>
+                <td th:text="${device?.designPower}"></td>
+                <td th:text="${device?.designUnit}"></td>
+                <td th:text="${device?.practicalPower}"></td>
+                <td th:text="${device?.yearrunDays}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            工艺过程-原料总数：<span th:text="${factoryMessSumVo.getDeviceRaws().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getDeviceRaws().size() > 0}">
+            <thead>
+            <tr>
+                <th>设备编号</th>
+                <th>集气设施编号</th>
+                <th>集气效率(%)</th>
+                <th>VOCs去除率(%)</th>
+                <th>VOCs含量(%)</th>
+                <th>原料年使用量</th>
+                <th>使用量单位</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="deviceRaw:${factoryMessSumVo.getDeviceRaws()}">
+                <td th:text="${deviceRaw?.deviceId}"></td>
+                <td th:text="${deviceRaw?.gasNo}"></td>
+                <td th:text="${deviceRaw?.gasPre}"></td>
+                <td th:text="${deviceRaw?.treatPre}"></td>
+                <td th:text="${deviceRaw?.gasVocs}"></td>
+                <td th:text="${deviceRaw?.musage}"></td>
+                <td th:text="${deviceRaw?.unit}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            工艺过程-产品总数：<span th:text="${factoryMessSumVo.getDeviceProducts().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getDeviceProducts().size() > 0}">
+            <thead>
+            <tr>
+                <th>设备编号</th>
+                <th>产品备注</th>
+                <th>年总产量</th>
+                <th>产量计量单位</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="deviceProduct:${factoryMessSumVo.getDeviceProducts()}">
+                <td th:text="${deviceProduct?.deviceId}"></td>
+                <td th:text="${deviceProduct?.annualOutput}"></td>
+                <td th:text="${deviceProduct?.name}"></td>
+                <td th:text="${deviceProduct?.uint}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            溶剂使用-原料总数：<span th:text="${factoryMessSumVo.getRongjiRaws().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getRongjiRaws().size() > 0}">
+            <thead>
+            <tr>
+                <th>集气设施编号</th>
+                <th>治理设施编号</th>
+                <th>原料备注</th>
+                <th>VOCs含量(%)</th>
+                <th>集气效率(%)</th>
+                <th>VOCs去除率</th>
+                <th>原料年使用量</th>
+                <th>使用量单位</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rongjiRaw:${factoryMessSumVo.getRongjiRaws()}">
+                <td th:text="${rongjiRaw?.gasNo}"></td>
+                <td th:text="${rongjiRaw?.treatNo}"></td>
+                <td th:text="${rongjiRaw?.mname}"></td>
+                <td th:text="${rongjiRaw?.gasVocs}"></td>
+                <td th:text="${rongjiRaw?.gasPre}"></td>
+                <td th:text="${rongjiRaw?.treatPre}"></td>
+                <td th:text="${rongjiRaw?.musage}"></td>
+                <td th:text="${rongjiRaw?.unit}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            溶剂使用-产品总数：<span th:text="${factoryMessSumVo.getRongjiProducts().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getRongjiProducts().size() > 0}">
+            <thead>
+            <tr>
+                <th>产品年总产量</th>
+                <th>计量单位</th>
+                <th>产品备注</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rongjiProduct:${factoryMessSumVo.getRongjiProducts()}">
+                <td th:text="${rongjiProduct?.annualOutput}"></td>
+                <td th:text="${rongjiProduct?.uint}"></td>
+                <td th:text="${rongjiProduct?.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            废弃设备总数：<span th:text="${factoryMessSumVo.getFeiqis().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getFeiqis().size() > 0}">
+            <thead>
+            <tr>
+                <th>处理工艺/设施名称</th>
+                <th>设备经度</th>
+                <th>设备纬度</th>
+                <th>年处理量("m3"/"吨/年")</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="feiqi:${factoryMessSumVo.getFeiqis()}">
+                <td th:text="${feiqi?.deviceName}"></td>
+                <td th:text="${feiqi?.lon1}"></td>
+                <td th:text="${feiqi?.lat1}"></td>
+                <td th:text="${feiqi?.watter}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            无组织扬尘排放-施工扬尘源：<span th:text="${factoryMessSumVo.getfConstructionDustSources().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfConstructionDustSources().size() > 0}">
+            <thead>
+            <tr>
+                <th>施工类型</th>
+                <th>建筑施工阶段</th>
+                <th>施工规划面积(m2)</th>
+                <th>现在开工面积(m2)</th>
+                <th>已竣工面积(m2)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fCon:${factoryMessSumVo.getfConstructionDustSources()}">
+                <td th:text="${fCon?.constructionType}"></td>
+                <td th:text="${fCon?.constructState}"></td>
+                <td th:text="${fCon?.constructArea}"></td>
+                <td th:text="${fCon?.nowkgarea}"></td>
+                <td th:text="${fCon?.finisharea}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            无组织扬尘排放-堆场扬尘源：<span th:text="${factoryMessSumVo.getfYardDustSources().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfYardDustSources().size() > 0}">
+            <thead>
+            <tr>
+                <th>物料种类</th>
+                <th>物料含水率(%)</th>
+                <th>料堆占地面积(m<sup>2</sup>)</th>
+                <th>料堆高度(m)</th>
+                <th>装卸物料种类</th>
+                <th>年物料装卸量(t)</th>
+                <th>每日装卸次数</th>
+                <th>每次装卸量(t)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fYard:${factoryMessSumVo.getfYardDustSources()}">
+                <td th:text="${fYard?.materialType}"></td>
+                <td th:text="${fYard?.moistureMateria}"></td>
+                <td th:text="${fYard?.heapCovered}"></td>
+                <td th:text="${fYard?.heapHeigh}"></td>
+                <td th:text="${fYard?.materialType1}"></td>
+                <td th:text="${fYard?.materialCapacity}"></td>
+                <td th:text="${fYard?.loadingCount}"></td>
+                <td th:text="${fYard?.loadingCapacity}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            无组织扬尘排放-道路扬尘源信息：<span th:text="${factoryMessSumVo.getfRoadDustSources().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfRoadDustSources().size() > 0}">
+            <thead>
+            <tr>
+                <th>道路长度(km)</th>
+                <th>道路平均宽度(m)</th>
+                <th>平均车重(吨)</th>
+                <th>日均车流量(辆/日)</th>
+                <th>平均车速(km/h)</th>
+                <th>清扫次数/天(安装真空装置)</th>
+                <th>清扫次数/天(未安装真空装置)</th>
+                <th>春季湿扫(次数/天)</th>
+                <th>夏季湿扫(次数/天)</th>
+                <th>秋季湿扫(次数/天)</th>
+                <th>春季每日洒水次数</th>
+                <th>夏季每日洒水次数</th>
+                <th>秋季每日洒水次数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fRoad:${factoryMessSumVo.getfRoadDustSources()}">
+                <td th:text="${fRoad?.pathLength}"></td>
+                <td th:text="${fRoad?.averWidth}"></td>
+                <td th:text="${fRoad?.averWeight}"></td>
+                <td th:text="${fRoad?.carFlow}"></td>
+                <td th:text="${fRoad?.averSpeed}"></td>
+                <td th:text="${fRoad?.clearTimeInstall}"></td>
+                <td th:text="${fRoad?.clearTimeUninstall}"></td>
+                <td th:text="${fRoad?.sweepSpring}"></td>
+                <td th:text="${fRoad?.sweepSummer}"></td>
+                <td th:text="${fRoad?.sweepFall}"></td>
+                <td th:text="${fRoad?.waterTimesSpring}"></td>
+                <td th:text="${fRoad?.waterTimesSummer}"></td>
+                <td th:text="${fRoad?.waterTimesFall}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">
+            无组织扬尘排放-裸土扬尘源：<span th:text="${factoryMessSumVo.getfBareSoilDustSources().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfBareSoilDustSources().size() > 0}">
+            <thead>
+            <tr>
+                <th>裸土面积(平方米)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fBare:${factoryMessSumVo.getfBareSoilDustSources()}">
+                <td th:text="${fBare?.bareSoilArea}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <blockquote class="layui-elem-quote">
+            无组织车间排放：<span th:text="${factoryMessSumVo.getfNoOrgs().size()}"></span>
+        </blockquote>
+        <table class="layui-table" lay-skin="line" th:if="${factoryMessSumVo.getfNoOrgs().size() > 0}">
+            <thead>
+            <tr>
+                <th>车间编号</th>
+                <th>经度</th>
+                <th>纬度</th>
+                <th>生产用途</th>
+                <th>车间面积(m<sup>2</sup>)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fNoOrg:${factoryMessSumVo.getfNoOrgs()}">
+                <td th:text="${fNoOrg?.workshopid}"></td>
+                <td th:text="${fNoOrg?.longitude}"></td>
+                <td th:text="${fNoOrg?.latitude}"></td>
+                <td th:text="${fNoOrg?.productionUse}"></td>
+                <td th:text="${fNoOrg?.workshopArea}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <shiro:hasPermission name="factoryAuth:auth">
+        <form class="layui-form layui-form-pane" >
+            <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryMessSumVo.getFactoryId()}">
+            <div class="layui-form-item" style="margin-left: 40%;margin-top: 20px">
+                <button type="button" class="layui-btn layui-btn-normal" lay-filter="past" lay-submit=""><i class="layui-icon layui-icon-ok"></i>通过</button>
+                <button type="button" class="layui-btn layui-btn-danger" lay-filter="reject" lay-submit="" style="margin-left: 30px">
+                    <i class="layui-icon layui-icon-close"></i>未通过</button></button>
+<!--                <button type="button" class="layui-btn layui-btn-danger" lay-filter="del" lay-submit="" style="margin-left: 30px">-->
+<!--                    <i class="layui-icon layui-icon-close"></i>删除企业</button></button>-->
+            </div>
+        </form>
+        </shiro:hasPermission>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+        layui.use(['form','element','table','jquery'], function() {
+            var element = layui.element;
+            var form = layui.form,
+                table = layui.table
+            var $ = layui.jquery;
+
+            form.on('submit(back)', function (form) {
+                var data = form.field;
+                $.post('/factoryAuth/' + data.factoryId + "/back", form.field, function () {
+                    layer.msg("上一个！",{icon: 6, time:1000});
+                });
+                return false;
+            });
+            form.on('submit(next)', function (form) {
+                var data = form.field;
+                $.post('/factoryAuth/' + data.factoryId + "/next", form.field, function () {
+                    layer.msg("下一个！",{icon: 6, time:1000});
+                });
+                return false;
+            });
+            form.on('submit(past)', function (form) {
+                layer.confirm('您是确定审核通过吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    var data = form.field;
+                    $.post('/factoryAuth/' + data.factoryId + "/past", form.field, function (result) {
+                        handlerResult(result, function (data) {
+                            layer.msg("修改成功！",{icon: 6, time:1000});
+                        });
+                    });
+                }, function(){
+                    layer.close();
+                });
+                return false;
+            });
+            form.on('submit(reject)', function (form) {
+                var data = form.field;
+                layer.open({
+                    content: '/factoryAuth/' + data.factoryId + "/reject",
+                    title: "邮件反馈",
+                    area: ['40%', '55%'],
+                    type: 2,
+                    maxmin: true,
+                    shadeClose: true,
+                    moveOut: true
+                });
+                return false;
+            });
+            // form.on('submit(del)', function (form) {
+            //     layer.confirm('您确定删除该企业吗？', {
+            //         btn: ['确定','取消'] //按钮
+            //     }, function(index){
+            //         var data = form.field;
+            //         var factoryId=data.factoryId;
+            //         $.post('/factoryAuth/' + data.factoryId + "/del", form.field, function (result) {
+            //             handlerResult(result, function (data) {
+            //                 layer.msg("删除成功！",{icon: 6, time:1000});
+            //                 parent.layer.close(index);
+            //             });
+            //         });
+            //     }, function(index){
+            //         layer.close(index);
+            //     });
+            //     return false;
+            // });
+        });
+    </script>
+</body>
+</html>

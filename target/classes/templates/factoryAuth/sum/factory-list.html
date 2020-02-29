@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" >
+<head>
+    <meta charset="UTF-8">
+    <title>企业列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <div class="page-loading">
+        <div class="rubik-loader"></div>
+    </div>
+    <div class="z-body animated fadeIn">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 we-search">
+                <div class="layui-input-inline layui-col-md1">
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="year" name="year" placeholder="年份">
+                    </div>
+                </div>
+                <shiro:hasPermission name="factoryAuth:citySel">
+                <div class="layui-input-inline layui-col-md2">
+                    <select id="cityCode" name="cityCode" lay-filter="cityCode">
+                        <option value="">请选择实际城市</option>
+                        <option th:each="city : ${citys}" th:value="${city.cityCode}" th:text="${city.cityName}">
+                        </option>
+                    </select>
+                </div>
+                </shiro:hasPermission>
+                <div class="layui-input-inline layui-col-md2">
+                    <select id="countyId" name="countyId" lay-filter="countyId">
+                        <option value="">请选择实际区县</option>
+                        <option th:each="county : ${countys}" th:value="${county.countyId}" th:text="${county.countyName}">
+                        </option>
+                    </select>
+                </div>
+                <div class="layui-inline layui-col-md2">
+                    <input type="text" id="factoryNo1" name="factoryNo1" placeholder="工厂编号"  lay-verify="" class="layui-input">
+                </div>
+                <div class="layui-inline layui-col-md2">
+                    <input type="text" id="factoryName" name="factoryName" placeholder="工厂名称"  lay-verify="chinese" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-col-md2">
+                    <select id="status" name="status">
+                        <option value="">审核状态</option>
+                        <option th:each="Status : ${Statuss}" th:value="${Status.id}" th:text="${Status.introduction}">
+                        </option>
+                    </select>
+                </div>
+                <button  id="selectFactorys" type="button" class="layui-btn" lay-submit lay-filter="search" data-type="reload">
+                    <i class="layui-icon">&#xe615;</i></button>
+            </form>
+        </div>
+        <div class="layui-row">
+            <table class="layui-hide" id="factorysTable"></table>
+        </div>
+    </div>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        layui.use(['table','form', 'element'], function () {
+            var table = layui.table //表格
+                ,form = layui.form //form表单
+                ,element = layui.element;
+            table.render({
+                elem: '#factorysTable'
+                , url: '/factoryAuth/sum/factory/list'
+                , page: true
+                , toolbar: '#toolbar'
+                , cols: [
+                    [
+                        {field: 'year', title: '年份'}
+                        , {field: 'factoryNo', title: '企业组织机构代码'}
+                        , {field: 'factoryName', title: '企业名称'}
+                        , {field: 'cityName', title: '实际城市'}
+                        , {field: 'countyName', title: '实际区县'}
+                        , {field: 'factoryLongitude', title: '经度'}
+                        , {field: 'factoryLatitude', title: '纬度'}
+                        , {field: 'industryBigName', title: '行业大分类'}
+                        , {field: 'industrySmallName', title: '行业小分类'}
+                        , {field: 'address', title: '地址'}
+                        , {field: 'powerAmount', title: '年度用电量(度)'}
+                        , {field: 'addressRegister', title: '注册地址'}
+                        , {field: 'sourceType', title: '污染源类型'}
+                        , {field: 'yearDays', title: '年生产天数'}
+                        , {field: 'daysHours', title: '日生产小时数'}
+                        , {field: 'totalOutput', title: '生产总值'}
+                        , {field: 'principalName', title: '填报人员姓名'}
+                        , {field: 'principalPhone', title: '填报人员电话'}
+                        , {field: 'principalMobile', title: '填报人员手机号'}
+                        , {field: 'principalEmail', title: '填报人员邮箱'}
+                        , {field: 'sourceType', title: '污染源类型'}
+                        , {field: 'statusdec', title: '审核状态'}
+                    ]
+                ]
+                ,page: true   //开启分页
+                ,limit:50   //默认十条数据一页
+                ,limits:[50,100,200,500,1000,2000,5000]  //数据分页条
+                ,id: 'factoryTableReload'
+            });
+            //监听提交 lay-filter="search"
+            form.on('submit(search)', function(data){
+                var formData = data.field;
+                var countyId = formData.countyId,
+                    cityCode=formData.cityCode,
+                    factoryName=formData.factoryName,
+                    factoryNo=formData.factoryNo,
+                    status=formData.status,
+                    year=formData.year
+                //执行重载
+                table.reload('factoryTableReload',{
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {//这里传参  向后台
+                        countyId: countyId,
+                        factoryName: factoryName,
+                        cityCode: cityCode,
+                        factoryNo: factoryNo,
+                        status: status,
+                        year: year
+                    }
+                    , url: '/factoryAuth/sum/factory/reload'//后台做模糊搜索接口路径
+                    , method: 'get'
+                });
+                return false;//false：阻止表单跳转  true：表单跳转
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

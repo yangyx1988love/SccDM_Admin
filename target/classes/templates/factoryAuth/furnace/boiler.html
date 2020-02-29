@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>锅炉</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+</head>
+<body>
+    <form class="layui-form layui-form-pane" name="boilerForm" id="boilerForm" >
+        <input type="hidden" id="factoryId" name="factoryId"  th:value="${factoryId}">
+        <input type="hidden" id="id" name="id"  th:value="${boiler?.id}">
+        <input type="hidden" id="scc1" name="scc1"  th:value="${scc1}">
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">锅炉用途</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="scc2" name="functio" th:field="*{boiler.functio}" lay-filter="scc2" lay-verify="required">
+                        <option th:each="scc2 : ${scc2s}" th:value="${scc2.scc2}" th:text="${scc2.description}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label"style="width: 110px">燃料类型</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="scc3" name="fueltype" th:field="*{boiler.fueltype}" lay-filter="scc3" lay-verify="required">
+                        <option th:each="scc3 : ${scc3s}" th:value="${scc3.scc3}" th:text="${scc3.description}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">锅炉类型</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="scc4" name="model" th:field="*{boiler.model}" lay-filter="scc4" lay-verify="required">
+                        <option th:each="scc4 : ${scc4s}" th:value="${scc4.scc4}" th:text="${scc4.description}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">燃烧方式</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="combustionsystem" name="combustionsystem"  th:field="*{boiler.combustionsystem}" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="无">无</option>
+                        <option value="层燃">层燃</option>
+                        <option value="室燃">室燃</option>
+                        <option value="循环流化床">循环流化床</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">机组编码</label>
+                <div class="layui-input-block" >
+                    <input id="machineNo" name="machineNo" th:value="${boiler?.machineNo}"  class="layui-input" style="width: 240px;" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label"  style="width: 110px;">锅炉编号</label>
+                <div class="layui-input-block">
+                    <input id="nkNo" name="nkNo" th:value="${boiler?.nkNo}" class="layui-input" style="width: 240px;" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px">排气筒编号</label>
+                <div class="layui-input-block" style="width: 240px;">
+                    <select id="exhustId" name="exhustId" th:field="*{boiler.exhustId}" lay-verify="required|number">
+                        <option th:each="exhaust:${exhausts}" th:value="${exhaust.exfId}" th:text="${exhaust.nkNo}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">锅炉型号</label>
+                <div class="layui-input-block">
+                    <input id="version" name="version" th:value="${boiler?.version}" class="layui-input" style="width: 240px;" type="text" lay-verify="">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">锅炉吨位(吨)</label>
+                <div class="layui-input-block">
+                    <input id="tons" name="tons" th:value="${boiler?.tons}" class="layui-input" style="width: 240px;" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">装机容量(兆瓦)</label>
+                <div class="layui-input-block">
+                    <input id="installedCapacity" name="installedCapacity" th:value="${boiler?.installedCapacity}"
+                           class="layui-input" style="width: 240px;" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>燃料特性</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料灰分(%)</label>
+                <div class="layui-input-block">
+                    <input id="coalash" name="coalash" th:value="${boiler?.coalash}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料硫分(%)</label>
+                <div class="layui-input-block">
+                    <input id="coalsulfur" name="coalsulfur" th:value="${boiler?.coalsulfur}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料挥发分(%)</label>
+                <div class="layui-input-block">
+                    <input id="coalVolatilisation" name="coalVolatilisation" th:value="${boiler?.coalVolatilisation}"
+                           class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>废气、烟粉尘等排放量</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">废气排放量(万立方米)</label>
+                <div class="layui-input-block">
+                    <input id="feiqiti" name="feiqiti" th:value="${boiler?.feiqiti}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">二氧化硫排放量(吨)</label>
+                <div class="layui-input-block">
+                    <input id="so2out" name="so2out" th:value="${boiler?.so2out}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">氮氧化物排放量(吨)</label>
+                <div class="layui-input-block">
+                    <input id="noxout" name="noxout" th:value="${boiler?.noxout}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">烟粉尘(吨)</label>
+                <div class="layui-input-block">
+                    <input id="pmout" name="pmout" th:value="${boiler?.pmout}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>控制措施</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label"style="width: 110px;">除尘方式</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="dustremoveId" name="dustremoveId" th:field="*{boiler.dustremoveId}">
+                        <option value="">请选择</option>
+                        <option th:each="dustremove : ${dustremoves}" th:value="${dustremove.id}" th:text="${dustremove.dustRemoveName}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px">
+                <label class="layui-form-label" style="width: 110px;">脱硫方式</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="sulphurremoveId" name="sulphurremoveId" th:field="*{boiler.sulphurremoveId}">
+                        <option value="">请选择</option>
+                        <option th:each="sulphurremove : ${sulphurremoves}" th:value="${sulphurremove.id}" th:text="${sulphurremove.sulphurMethod}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">脱硝方式</label>
+                <div class="layui-input-block" style="width: 240px">
+                    <select id="nitreremoveId" name="nitreremoveId" th:field="*{boiler.nitreremoveId}">
+                        <option value="">请选择</option>
+                        <option th:each="nitreremove:${nitreremoves}" th:value="${nitreremove.id}" th:text="${nitreremove.nitreMethod}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" >
+            <legend>燃料年使用量及月使用量；改变月使用量，年使用量会相应改变</legend>
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料年使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUse" name="fuelAusage" th:value="${boiler?.fuelAusage}" class="layui-input" style="width: 240px" type="text" lay-verify="required|number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">使用量单位</label>
+                <div class="layui-input-block" style="width: 240px;">
+                    <select id="fuelAusageunit" name="fuelAusageunit"  th:field="*{boiler.fuelAusageunit}" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="吨">吨</option>
+                        <option value="万立方米">万立方米</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料一月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM1" name="janUseamount" th:value="${boiler?.janUseamount}" class="layui-input" style="width: 240px"type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料二月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM2" name="febUseamount" th:value="${boiler?.febUseamount}"  class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料三月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM3" name="marUseamount" th:value="${boiler?.marUseamount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label"  style="width: 110px;">燃料四月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM4" name="aprUseamount" th:value="${boiler?.aprUseamount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料五月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM5" name="mayUseamount" th:value="${boiler?.mayUseamount}"  class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料六月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM6" name="juneUseamount" th:value="${boiler?.juneUseamount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label"  style="width: 110px;">燃料七月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM7" name="julyUseamount" th:value="${boiler?.julyUseamount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料八月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM8" name="augUseamount" th:value="${boiler?.augUseamount}"  class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料九月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM9" name="septUseamount" th:value="${boiler?.septUseamount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label"  style="width: 110px;">燃料十月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM10" name="octUseAmount" th:value="${boiler?.octUseAmount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料十一月份使用量</label>
+                <div class="layui-input-block" >
+                    <input id="totalUseM11" name="novUseamount" th:value="${boiler?.novUseamount}"  class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+            <div class="layui-inline" style="width: 350px;">
+                <label class="layui-form-label" style="width: 110px;">燃料十二月份使用量</label>
+                <div class="layui-input-block">
+                    <input id="totalUseM12" name="decUseamount" th:value="${boiler?.decUseamount}" class="layui-input" style="width: 240px;" type="text" onchange="checkMonthUse(this)"lay-verify="number">
+                </div>
+            </div>
+        </div>
+        <shiro:hasPermission name="factoryAuth:boiler:update">
+            <div class="layui-input-inline login-btn" style="margin-left: 40%;margin-top: 10px">
+                <button class="layui-btn layui-btn-blue" lay-filter="edit" value="submit" type="submit" lay-submit="">保存提交</button>
+            </div>
+        </shiro:hasPermission>
+    </form>
+
+    <script th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}"></script>
+    <script th:src="@{/js/common.js}"></script>
+
+    <script type="application/javascript">
+        layui.use(['form', 'layer','jquery'], function(){
+            $ = layui.jquery;
+            var form = layui.form
+                , layer = layui.layer
+            //监听提交
+            form.on('submit(edit)', function (form) {
+                var data = form.field;
+                $.post('/factoryAuth/boiler/' + data.id+ '/edit/', form.field, function (result) {
+                    handlerResult(result, function (data) {
+                        layer.msg("提交成功！",{icon: 6, time:1000});
+                    });
+                });
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
