@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.PesticideMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.PesticideVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Pesticide" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="county_id" property="countyId" jdbcType="CHAR" />
     <result column="scccode" property="scccode" jdbcType="CHAR" />
     <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
-    <result column="ny_pesticideamount" property="ny_pesticideamount" jdbcType="DOUBLE" />
+    <result column="pesticideamount" property="pesticideamount" jdbcType="DOUBLE" />
     <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
     <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
     <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
@@ -18,7 +18,6 @@
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
     <result column="flagd" property="flagd" jdbcType="TINYINT" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.PesticideVo" parameterType="nankai.xl.business.model.vo.PesticideVo" >
     SELECT ny_pesticide.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_pesticide.scccode,1,2) AS scc1,SUBSTR(ny_pesticide.scccode,3,2) AS scc2,
@@ -78,8 +77,8 @@
       <if test="sourceDescrip != null" >
         source_descrip,
       </if>
-      <if test="ny_pesticideamount != null" >
-        ny_pesticideamount,
+      <if test="pesticideamount != null" >
+        pesticideamount,
       </if>
       <if test="pm10Emission != null" >
         pm10_emission,
@@ -128,8 +127,8 @@
       <if test="sourceDescrip != null" >
         #{sourceDescrip,jdbcType=VARCHAR},
       </if>
-      <if test="ny_pesticideamount != null" >
-        #{ny_pesticideamount,jdbcType=DOUBLE},
+      <if test="pesticideamount != null" >
+        #{pesticideamount,jdbcType=DOUBLE},
       </if>
       <if test="pm10Emission != null" >
         #{pm10Emission,jdbcType=DOUBLE},
@@ -165,13 +164,13 @@
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.Pesticide" >
     insert into ny_pesticide (id, year, county_id, 
-      scccode, source_descrip, ny_pesticideamount, 
+      scccode, source_descrip, pesticideamount, 
       pm10_emission, pm25_emission, voc_emission, 
       nh3_emission, so2_emission, co_emission, 
       oc_emission, bc_emission, nox_emission, 
       flagd)
     values (#{id,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, #{countyId,jdbcType=CHAR}, 
-      #{scccode,jdbcType=CHAR}, #{sourceDescrip,jdbcType=VARCHAR}, #{ny_pesticideamount,jdbcType=DOUBLE}, 
+      #{scccode,jdbcType=CHAR}, #{sourceDescrip,jdbcType=VARCHAR}, #{pesticideamount,jdbcType=DOUBLE}, 
       #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, 
       #{nh3Emission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE}, #{coEmission,jdbcType=DOUBLE}, 
       #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, 
@@ -182,7 +181,7 @@
       county_id = #{countyId,jdbcType=CHAR},
       scccode = #{scccode,jdbcType=CHAR},
       source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
-      ny_pesticideamount = #{ny_pesticideamount,jdbcType=DOUBLE},
+      pesticideamount = #{pesticideamount,jdbcType=DOUBLE},
       pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
       pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
       voc_emission = #{vocEmission,jdbcType=DOUBLE},
@@ -196,7 +195,7 @@
   </insert>
   <insert id="insertList" parameterType="java.util.List">
     INSERT INTO ny_pesticide (id, year, county_id,
-    scccode, source_descrip, ny_pesticideamount,
+    scccode, source_descrip, pesticideamount,
     pm10_emission, pm25_emission, voc_emission,
     nh3_emission, so2_emission, co_emission,
     oc_emission, bc_emission, nox_emission,
@@ -204,22 +203,22 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
-      ny_pesticideamount = #{item.ny_pesticideamount,jdbcType=DOUBLE},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      flagd = #{item.flagd,jdbcType=TINYINT}
+      #{item.id,jdbcType=INTEGER},
+      #{item.year,jdbcType=CHAR},
+      #{item.countyId,jdbcType=CHAR},
+      #{item.scccode,jdbcType=CHAR},
+      #{item.sourceDescrip,jdbcType=VARCHAR},
+      #{item.pesticideamount,jdbcType=DOUBLE},
+      #{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},
+      #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},
+      #{item.flagd,jdbcType=TINYINT}
       )
     </foreach>
   </insert>
@@ -238,8 +237,8 @@
       <if test="sourceDescrip != null" >
         source_descrip = #{sourceDescrip,jdbcType=VARCHAR},
       </if>
-      <if test="ny_pesticideamount != null" >
-        ny_pesticideamount = #{ny_pesticideamount,jdbcType=DOUBLE},
+      <if test="pesticideamount != null" >
+        pesticideamount = #{pesticideamount,jdbcType=DOUBLE},
       </if>
       <if test="pm10Emission != null" >
         pm10_emission = #{pm10Emission,jdbcType=DOUBLE},

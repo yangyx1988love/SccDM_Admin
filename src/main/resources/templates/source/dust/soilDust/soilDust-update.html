@@ -18,14 +18,14 @@
                 <legend>SCC编码：<span th:text="${xjsoildustVo.scccode}"></span>&nbsp;&nbsp;&nbsp;
                          详情：<span th:text="${xjsoildustVo.sccDescribe}"></span></legend>
             </blockquote>
-            <input type="hidden" id="id" name="id"  th:value="${xjsoildustVo.sdId}">
+            <input type="hidden" id="sdId" name="sdId"  th:value="${xjsoildustVo.sdId}">
             <input type="hidden" id="scc1" name="scc1"  th:value="${xjsoildustVo.scc1}">
             <input type="hidden" id="scc2" name="scc2"  th:value="${xjsoildustVo.scc2}">
             <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 110px">年份</label>
                     <div class="layui-input-block" style="width: 240px">
-                        <input type="text" class="layui-input" id="year" name="year" th:value="${xjsoildustVo.sdYear}" placeholder="yyyy" lay-verify="required">
+                        <input type="text" class="layui-input" id="year" name="sdYear" th:value="${xjsoildustVo.sdYear}" placeholder="yyyy" lay-verify="required">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
@@ -77,26 +77,6 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="layui-form-item">-->
-<!--                <div class="layui-inline" style="width: 350px;">-->
-<!--                    <label class="layui-form-label" style="width: 180px;">年平均风速(m/s)</label>-->
-<!--                    <div class="layui-input-block" >-->
-<!--                        <input id="carflow" name="carflow" style="width: 170px;" th:value="${xjsoildustVo.}" class="layui-input" type="text"  lay-verify="required|integer">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-inline" style="width: 350px;">-->
-<!--                    <label class="layui-form-label" style="width: 180px;">年平均温度(°C)</label>-->
-<!--                    <div class="layui-input-block" >-->
-<!--                        <input id="averspeed" name="averspeed" style="width: 170px;" th:value="${xjsoildustVo.y}" class="layui-input" type="text"  lay-verify="required|integer">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-inline" style="width: 350px;">-->
-<!--                    <label class="layui-form-label" style="width: 180px;">年降水量(mm)</label>-->
-<!--                    <div class="layui-input-block" >-->
-<!--                        <input id="dirtratio" name="dirtratio" style="width: 170px;" th:value="${xjsoildustVo.yr}" class="layui-input" type="text"  lay-verify="required|integer">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">PM10土壤风蚀指数</label>
@@ -113,7 +93,7 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">地面粗糙因子</label>
                     <div class="layui-input-block" >
-                        <input id="surindex" name="surindex" style="width: 170px;" th:value="${xjsoildustVo.surindex}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="surindex" name="surindex" style="width: 170px;" th:value="${xjsoildustVo.surindex}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
             </div>
@@ -121,18 +101,18 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">无屏障宽度因子</label>
                     <div class="layui-input-block" >
-                        <input id="noindex" name="noindex" style="width: 170px;" th:value="${xjsoildustVo.noindex}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="noindex" name="noindex" style="width: 170px;" th:value="${xjsoildustVo.noindex}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">植被覆盖因子</label>
                     <div class="layui-input-block" >
-                        <input id="pindex" name="pindex" style="width: 170px;" th:value="${xjsoildustVo.pindex}" class="layui-input" type="text"  lay-verify="required|ratio">
+                        <input id="pindex" name="pindex" style="width: 170px;" th:value="${xjsoildustVo.pindex}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
             </div>
             <div class="layui-form-item">
-                <input type="hidden" id="controlname" name="controlname"  th:value="${xjsoildustVo.sdTakemeasures}">
+                <input type="hidden" id="sdTakemeasures" name="sdTakemeasures"  th:value="${xjsoildustVo.sdTakemeasures}">
                 <label class="layui-form-label">控制措施</label>
                 <input type="checkbox" name="controlMeasure" value="A1" title="1.8m硬质围挡">
                 <input type="checkbox" name="controlMeasure" value="A2" title="2.4m硬质围挡">
@@ -142,14 +122,9 @@
                 <input type="checkbox" name="controlMeasure" value="F" title="封闭">
             </div>
             <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none">
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>
@@ -224,11 +199,11 @@
             //监听提交
             $(document).ready(function(){
                 //加载控制措施
-                var arr1 =$('input[name="controlname"]').val().split(",");
-                var controlname=$.grep(arr1,function(n,i){
+                var arr1 =$('input[name="sdTakemeasures"]').val().split(",");
+                var sdTakemeasures=$.grep(arr1,function(n,i){
                     return n;
                 },false);
-                $.each(controlname,function(i,item){
+                $.each(sdTakemeasures,function(i,item){
                     $("input[name='controlMeasure'][value="+item+"]").attr("checked","checked");
                 });
                 //重载
@@ -237,12 +212,12 @@
             form.on('submit(edit)', function (form) {
                 form.field._method = 'PUT';
                 //控制措施
-                var controlname =[];//定义一个数组
+                var sdTakemeasures =[];//定义一个数组
                 $('input[name="controlMeasure"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
-                    controlname+=$(this).val()+",";
+                    sdTakemeasures+=$(this).val()+",";
                 });
                 var data = form.field;
-                data.controlname=controlname;
+                data.sdTakemeasures=sdTakemeasures;
                 var isCul=$('input[name="isCul"]:checked').is(':checked');
                 data.isCul=isCul;
                 $.post('/source/dust/soilDust/edit', data, function (result) {

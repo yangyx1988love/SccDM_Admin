@@ -49,15 +49,15 @@ public class FileServiceImpl implements FileService {
     @Resource
     private DeoilMapper deoilMapper;
     @Resource
-    private YcsoildustMapper ycsoildustMapper;
+    private YcSoildustMapper ycsoildustMapper;
     @Resource
-    private YcroaddustMapper ycroaddustMapper;
+    private YcRoaddustMapper ycroaddustMapper;
     @Resource
-    private YcconstructdustMapper ycconstructdustMapper;
+    private YcConstructdustMapper ycconstructdustMapper;
     @Resource
-    private YcdustLoadMapper ycdustLoadMapper;
+    private YcDustLoadMapper ycdustLoadMapper;
     @Resource
-    private YcdustStackMapper ycdustStackMapper;
+    private YcDustStackMapper ycdustStackMapper;
     @Resource
     private TankSourceMapper tankSourceMapper;
     @Resource
@@ -154,19 +154,19 @@ public class FileServiceImpl implements FileService {
             num=importDeoil(list,isCul);
         }
         if (sourceName.contains("土壤扬尘源")){
-            num=importXjsoildust(list,isCul);
+            num=importYcSoildust(list,isCul);
         }
         if (sourceName.contains("道路扬尘源")){
-            num=importXjroaddust(list,isCul);
+            num=importYcRoaddust(list,isCul);
         }
         if (sourceName.contains("施工扬尘源")){
-            num=importXjconstructdust(list,isCul);
+            num=importYcConstructdust(list,isCul);
         }
         if (sourceName.contains("堆场装卸扬尘源")){
-            num=importXjcydustLoad(list,isCul);
+            num=importYcDustLoad(list,isCul);
         }
         if (sourceName.contains("堆场风蚀扬尘源")){
-            num=importXjcydustStack(list,isCul);
+            num=importYcDustStack(list,isCul);
         }
         if (sourceName.contains("储罐存储")){
             num=importTankSource(list,isCul);
@@ -185,6 +185,60 @@ public class FileServiceImpl implements FileService {
         }
         if (sourceName.contains("畜牧集约化养殖")){
             num=importCollectbreeding(list,isCul);
+        }
+        if (sourceName.contains("畜牧散养")){
+            num=importFreeStockbreeding(list,isCul);
+        }
+        if (sourceName.contains("农业施肥")){
+            num=importFertilization(list,isCul);
+        }
+        if (sourceName.contains("土壤本低")){
+            num=importBaseSoil(list,isCul);
+        }
+        if (sourceName.contains("固氮植物")){
+            num=importNPlant(list,isCul);
+        }
+        if (sourceName.contains("秸秆堆肥")){
+            num=importstrawCompost(list,isCul);
+        }
+        if (sourceName.contains("生物质锅炉")){
+            num=importBiomassBoiler(list,isCul);
+        }
+        if (sourceName.contains("户用生物质炉具")){
+            num=importBiomassStove(list,isCul);
+        }
+        if (sourceName.contains("秸秆露天焚烧")){
+            num=importBiomassStraw(list,isCul);
+        }
+        if (sourceName.contains("森林、草原火灾")){
+            num=importBiomassForestGrassland(list,isCul);
+        }
+        if (sourceName.contains("道路移动")){
+            num=importRoadMove(list,isCul);
+        }
+        if (sourceName.contains("农运运输车")){
+            num=importAgricultureMachinery(list,isCul);
+        }
+        if (sourceName.contains("民航飞机")){
+            num=importAirplane(list,isCul);
+        }
+        if (sourceName.contains("非道路机械")){
+            num=importNonroadMachinery(list,isCul);
+        }
+        if (sourceName.contains("铁路内燃机")){
+            num=importRailwayEngine(list,isCul);
+        }
+        if (sourceName.contains("小型通用机械")){
+            num=importSmallMachinery(list,isCul);
+        }
+        if (sourceName.contains("社会餐饮")){
+            num=importRepast(list,isCul);
+        }
+        if (sourceName.contains("家庭餐饮")){
+            num=importRepastFamily(list,isCul);
+        }
+        if (sourceName.contains("烧烤餐饮")){
+            num=importRepastBarbecue(list,isCul);
         }
         return num;
     }
@@ -266,6 +320,14 @@ public class FileServiceImpl implements FileService {
         }
         return true;
     }
+    public boolean checkInteger(String[] strs,int start,int end){
+        for (int i = start; i <end ; i++) {
+            if(!NumberUtil.checkNumber(strs[i],"0+")){
+                return false;
+            }
+        }
+        return true;
+    }
     public Double getDecimal(String str){
         return Arith.round(str,decimalNum);
     }
@@ -301,7 +363,7 @@ public class FileServiceImpl implements FileService {
             scatteredCoal.setControlMeasure(strs[6]);
             scatteredCoal.setSulfurContent(getDecimal(strs[7]));
             scatteredCoal.setAshContent(getDecimal(strs[8]));
-            if (isCul){
+            if (!isCul){
                 scatteredCoal.setPm10Emission(getDecimal(strs[9]));
                 scatteredCoal.setPm25Emission(getDecimal(strs[10]));
                 scatteredCoal.setCoEmission(getDecimal(strs[11]));
@@ -370,7 +432,7 @@ public class FileServiceImpl implements FileService {
             shGasemission.setActivityUnit(strs[13]);
             shGasemission.setEfficency(getDecimal(strs[14]));
             shGasemission.setEmissionUnit(strs[15]);
-            if (isCul){
+            if (!isCul){
                 shGasemission.setPm10Emission(getDecimal(strs[16]));
                 shGasemission.setPm25Emission(getDecimal(strs[17]));
                 shGasemission.setCoEmission(getDecimal(strs[18]));
@@ -432,7 +494,7 @@ public class FileServiceImpl implements FileService {
             shSealpoint.setUnitType(strs[9]);
             shSealpoint.setActivity(getDecimal(strs[10]));
             shSealpoint.setActivityUnit(strs[11]);
-            if (isCul){
+            if (!isCul){
                 shSealpoint.setPm10Emission(getDecimal(strs[12]));
                 shSealpoint.setPm25Emission(getDecimal(strs[13]));
                 shSealpoint.setCoEmission(getDecimal(strs[14]));
@@ -499,7 +561,7 @@ public class FileServiceImpl implements FileService {
             shEffluentemission.setActivityUnit(strs[11]);
             shEffluentemission.setVocEfficency(getDecimal(strs[12]));
             shEffluentemission.setEmissionUnit(strs[13]);
-            if (isCul){
+            if (!isCul){
                 shEffluentemission.setPm10Emission(getDecimal(strs[14]));
                 shEffluentemission.setPm25Emission(getDecimal(strs[15]));
                 shEffluentemission.setCoEmission(getDecimal(strs[16]));
@@ -569,7 +631,7 @@ public class FileServiceImpl implements FileService {
             shVocdeviceeffi.setExitConcentration(getDecimal(strs[13]));
             shVocdeviceeffi.setEfficency(getDecimal(strs[14]));
             shVocdeviceeffi.setEmissionUnit(strs[15]);
-            if (isCul){
+            if (!isCul){
                 shVocdeviceeffi.setPm10Emission(getDecimal(strs[16]));
                 shVocdeviceeffi.setPm25Emission(getDecimal(strs[17]));
                 shVocdeviceeffi.setCoEmission(getDecimal(strs[18]));
@@ -626,7 +688,7 @@ public class FileServiceImpl implements FileService {
             dryCleaner.setYear(strs[1]);
             dryCleaner.setCompanyId(getCompanyId(company));
             dryCleaner.setYearAmount(getDecimal(strs[9]));
-            if (isCul){
+            if (!isCul){
                 dryCleaner.setPm10Emission(getDecimal(strs[10]));
                 dryCleaner.setPm25Emission(getDecimal(strs[11]));
                 dryCleaner.setCoEmission(getDecimal(strs[12]));
@@ -684,7 +746,7 @@ public class FileServiceImpl implements FileService {
             carRepair.setYear(strs[1]);
             carRepair.setCompanyId(getCompanyId(company));
             carRepair.setSolventAmount(getDecimal(strs[9]));
-            if (isCul){
+            if (!isCul){
                 carRepair.setPm10Emission(getDecimal(strs[10]));
                 carRepair.setPm25Emission(getDecimal(strs[11]));
                 carRepair.setCoEmission(getDecimal(strs[12]));
@@ -717,7 +779,7 @@ public class FileServiceImpl implements FileService {
             if (!checkCounty(strs[2])){
                 throw new NullPointerException("第"+(i+1)+"行区县编码填写错误，请仔细查验！");
             }
-            if (!checkPosDouble(strs,3,14)){
+            if (!checkPosDouble(strs,3,13)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
@@ -727,7 +789,7 @@ public class FileServiceImpl implements FileService {
             roadPave.setYear(strs[1]);
             roadPave.setCountyId(strs[2]);
             roadPave.setAsphalt(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 roadPave.setPm10Emission(getDecimal(strs[4]));
                 roadPave.setPm25Emission(getDecimal(strs[5]));
                 roadPave.setCoEmission(getDecimal(strs[6]));
@@ -770,7 +832,7 @@ public class FileServiceImpl implements FileService {
             buildingSmear.setYear(strs[1]);
             buildingSmear.setCountyId(strs[2]);
             buildingSmear.setPaintAmount(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 buildingSmear.setPm10Emission(getDecimal(strs[4]));
                 buildingSmear.setPm25Emission(getDecimal(strs[5]));
                 buildingSmear.setCoEmission(getDecimal(strs[6]));
@@ -813,7 +875,7 @@ public class FileServiceImpl implements FileService {
             house.setYear(strs[1]);
             house.setCountyId(strs[2]);
             house.setSolventAmount(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 house.setPm10Emission(getDecimal(strs[4]));
                 house.setPm25Emission(getDecimal(strs[5]));
                 house.setCoEmission(getDecimal(strs[6]));
@@ -856,7 +918,7 @@ public class FileServiceImpl implements FileService {
             deoil.setYear(strs[1]);
             deoil.setCountyId(strs[2]);
             deoil.setPeoplenumber(Integer.parseInt(strs[3]));
-            if (isCul){
+            if (!isCul){
                 deoil.setPm10Emission(getDecimal(strs[4]));
                 deoil.setPm25Emission(getDecimal(strs[5]));
                 deoil.setCoEmission(getDecimal(strs[6]));
@@ -875,7 +937,7 @@ public class FileServiceImpl implements FileService {
         deoilMapper.insertList(deoilList);
         return i;
     }
-    public int importXjsoildust(List<String[]> list,boolean isCul){
+    public int importYcSoildust(List<String[]> list,boolean isCul){
         int i=0;
         for (i=0;i<list.size();i++)   {
             String[] strs=list.get(i);
@@ -894,10 +956,7 @@ public class FileServiceImpl implements FileService {
             if (!checkPosDouble(strs,6,11)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
-            if (!checkRatio(strs,12,21)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
-            }
-            if (!checkPosDouble(strs,21,30)){
+            if (!checkPosDouble(strs,12,21)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
@@ -916,25 +975,16 @@ public class FileServiceImpl implements FileService {
             ycSoildust.setNoindex(getDecimal(strs[9]));
             ycSoildust.setPindex(getDecimal(strs[10]));
             ycSoildust.setSdTakemeasures(strs[11]);
-            ycSoildust.setPm10Max(getDecimal(strs[12]));
-            ycSoildust.setPm25Max(getDecimal(strs[13]));
-            ycSoildust.setCoMax(getDecimal(strs[14]));
-            ycSoildust.setVocMax(getDecimal(strs[15]));
-            ycSoildust.setSo2Max(getDecimal(strs[16]));
-            ycSoildust.setNoxMax(getDecimal(strs[17]));
-            ycSoildust.setNh3Max(getDecimal(strs[18]));
-            ycSoildust.setOcMax(getDecimal(strs[19]));
-            ycSoildust.setBcMax(getDecimal(strs[20]));
-            if (isCul){
-                ycSoildust.setPm10Emission(getDecimal(strs[21]));
-                ycSoildust.setPm25Emission(getDecimal(strs[22]));
-                ycSoildust.setCoEmission(getDecimal(strs[23]));
-                ycSoildust.setVocEmission(getDecimal(strs[24]));
-                ycSoildust.setSo2Emission(getDecimal(strs[25]));
-                ycSoildust.setNoxEmission(getDecimal(strs[26]));
-                ycSoildust.setNh3Emission(getDecimal(strs[27]));
-                ycSoildust.setOcEmission(getDecimal(strs[28]));
-                ycSoildust.setBcEmission(getDecimal(strs[29]));
+            if (!isCul){
+                ycSoildust.setPm10Emission(getDecimal(strs[12]));
+                ycSoildust.setPm25Emission(getDecimal(strs[13]));
+                ycSoildust.setCoEmission(getDecimal(strs[14]));
+                ycSoildust.setVocEmission(getDecimal(strs[15]));
+                ycSoildust.setSo2Emission(getDecimal(strs[16]));
+                ycSoildust.setNoxEmission(getDecimal(strs[17]));
+                ycSoildust.setNh3Emission(getDecimal(strs[18]));
+                ycSoildust.setOcEmission(getDecimal(strs[19]));
+                ycSoildust.setBcEmission(getDecimal(strs[20]));
             }else{
                 //计算
             }
@@ -944,7 +994,7 @@ public class FileServiceImpl implements FileService {
         ycsoildustMapper.insertList(ycSoildustList);
         return i;
     }
-    public int importXjroaddust(List<String[]> list,boolean isCul){
+    public int importYcRoaddust(List<String[]> list,boolean isCul){
         int i=0;
         for (i=0;i<list.size();i++)   {
             String[] strs=list.get(i);
@@ -963,12 +1013,8 @@ public class FileServiceImpl implements FileService {
             if (!checkRatio(strs,12,14)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
             }
-            if (!checkRatio(strs,15,24)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
-            }
-            if (!checkPosDouble(strs,24,32)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
-            }
+            if (!checkPosDouble(strs,15,24)){
+                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");            }
         }
         List<YcRoaddust> ycRoaddustList =new ArrayList<>();
         for (String[] strs:list) {
@@ -988,25 +1034,16 @@ public class FileServiceImpl implements FileService {
             ycRoaddust.setWaterratio(getDecimal(strs[12]));
             ycRoaddust.setDirtratio(getDecimal(strs[13]));
             ycRoaddust.setControlname(strs[14]);
-            ycRoaddust.setPm10Max(getDecimal(strs[15]));
-            ycRoaddust.setPm25Max(getDecimal(strs[16]));
-            ycRoaddust.setCoMax(getDecimal(strs[17]));
-            ycRoaddust.setVocMax(getDecimal(strs[18]));
-            ycRoaddust.setSo2Max(getDecimal(strs[19]));
-            ycRoaddust.setNoxMax(getDecimal(strs[20]));
-            ycRoaddust.setNh3Max(getDecimal(strs[21]));
-            ycRoaddust.setOcMax(getDecimal(strs[22]));
-            ycRoaddust.setBcMax(getDecimal(strs[23]));
-            if (isCul){
-                ycRoaddust.setPm10Emission(getDecimal(strs[24]));
-                ycRoaddust.setPm25Emission(getDecimal(strs[25]));
-                ycRoaddust.setCoEmission(getDecimal(strs[26]));
-                ycRoaddust.setVocEmission(getDecimal(strs[27]));
-                ycRoaddust.setSo2Emission(getDecimal(strs[28]));
-                ycRoaddust.setNoxEmission(getDecimal(strs[29]));
-                ycRoaddust.setNh3Emission(getDecimal(strs[30]));
-                ycRoaddust.setOcEmission(getDecimal(strs[31]));
-                ycRoaddust.setBcEmission(getDecimal(strs[32]));
+            if (!isCul){
+                ycRoaddust.setPm10Emission(getDecimal(strs[15]));
+                ycRoaddust.setPm25Emission(getDecimal(strs[16]));
+                ycRoaddust.setCoEmission(getDecimal(strs[17]));
+                ycRoaddust.setVocEmission(getDecimal(strs[18]));
+                ycRoaddust.setSo2Emission(getDecimal(strs[19]));
+                ycRoaddust.setNoxEmission(getDecimal(strs[20]));
+                ycRoaddust.setNh3Emission(getDecimal(strs[21]));
+                ycRoaddust.setOcEmission(getDecimal(strs[22]));
+                ycRoaddust.setBcEmission(getDecimal(strs[23]));
             }else{
                 //计算
             }
@@ -1016,7 +1053,7 @@ public class FileServiceImpl implements FileService {
         ycroaddustMapper.insertList(ycRoaddustList);
         return i;
     }
-    public int importXjconstructdust(List<String[]> list,boolean isCul){
+    public int importYcConstructdust(List<String[]> list,boolean isCul){
         int i=0;
         for (i=0;i<list.size();i++)   {
             String[] strs=list.get(i);
@@ -1035,16 +1072,16 @@ public class FileServiceImpl implements FileService {
             if (!NumberUtil.isLatitude(strs[7],integerNum)){
                 throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
             }
-            if (!checkPosDouble(strs,9,10)){
+            if (!checkInteger(strs,9,10)){
+                throw new NullPointerException("第"+(i+1)+"行第9列数字转换错误，请填写0~"+integerNum+"位正整数！");
+            }
+            if (!checkInteger(strs,11,12)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
-            if (!checkPosDouble(strs,11,13)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            if (!checkInteger(strs,12,13)){
+                throw new NullPointerException("第"+(i+1)+"行第9列数字转换错误，请填写0~"+integerNum+"位正整数！");
             }
-            if (!checkRatio(strs,14,23)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
-            }
-            if (!checkPosDouble(strs,23,32)){
+            if (!checkPosDouble(strs,14,23)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
@@ -1059,6 +1096,7 @@ public class FileServiceImpl implements FileService {
             company.setLatitude(getDecimal(strs[7]));
             company.setDomain(strs[8]);
             YcConstructdust ycConstructdust =new YcConstructdust();
+            ycConstructdust.setComId(getCompanyId(company));
             ycConstructdust.setScccode(strs[0]);
             ycConstructdust.setYear(strs[1]);
             ycConstructdust.setXjconstructid(Integer.parseInt(strs[9]));
@@ -1066,25 +1104,16 @@ public class FileServiceImpl implements FileService {
             ycConstructdust.setThisyearArea(getDecimal(strs[11]));
             ycConstructdust.setMonths(Integer.parseInt(strs[12]));
             ycConstructdust.setControlname(strs[13]);
-            ycConstructdust.setPm10Max(getDecimal(strs[14]));
-            ycConstructdust.setPm25Max(getDecimal(strs[15]));
-            ycConstructdust.setCoMax(getDecimal(strs[16]));
-            ycConstructdust.setVocMax(getDecimal(strs[17]));
-            ycConstructdust.setSo2Max(getDecimal(strs[18]));
-            ycConstructdust.setNoxMax(getDecimal(strs[19]));
-            ycConstructdust.setNh3Max(getDecimal(strs[20]));
-            ycConstructdust.setOcMax(getDecimal(strs[21]));
-            ycConstructdust.setBcMax(getDecimal(strs[22]));
-            if (isCul){
-                ycConstructdust.setPm10Emission(getDecimal(strs[23]));
-                ycConstructdust.setPm25Emission(getDecimal(strs[24]));
-                ycConstructdust.setCoEmission(getDecimal(strs[25]));
-                ycConstructdust.setVocEmission(getDecimal(strs[26]));
-                ycConstructdust.setSo2Emission(getDecimal(strs[27]));
-                ycConstructdust.setNoxEmission(getDecimal(strs[28]));
-                ycConstructdust.setNh3Emission(getDecimal(strs[29]));
-                ycConstructdust.setOcEmission(getDecimal(strs[30]));
-                ycConstructdust.setBcEmission(getDecimal(strs[31]));
+            if (!isCul){
+                ycConstructdust.setPm10Emission(getDecimal(strs[14]));
+                ycConstructdust.setPm25Emission(getDecimal(strs[15]));
+                ycConstructdust.setCoEmission(getDecimal(strs[16]));
+                ycConstructdust.setVocEmission(getDecimal(strs[17]));
+                ycConstructdust.setSo2Emission(getDecimal(strs[18]));
+                ycConstructdust.setNoxEmission(getDecimal(strs[19]));
+                ycConstructdust.setNh3Emission(getDecimal(strs[20]));
+                ycConstructdust.setOcEmission(getDecimal(strs[21]));
+                ycConstructdust.setBcEmission(getDecimal(strs[22]));
             }else{
                 //计算
             }
@@ -1094,7 +1123,7 @@ public class FileServiceImpl implements FileService {
         ycconstructdustMapper.insertList(ycConstructdustList);
         return i;
     }
-    public int importXjcydustLoad(List<String[]> list,boolean isCul){
+    public int importYcDustLoad(List<String[]> list,boolean isCul){
         int i=0;
         for (i=0;i<list.size();i++)   {
             String[] strs=list.get(i);
@@ -1113,23 +1142,20 @@ public class FileServiceImpl implements FileService {
             if (!NumberUtil.isLatitude(strs[7],integerNum)){
                 throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
             }
-            if (!checkPosDouble(strs,9,10)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            if (!checkInteger(strs,9,10)){
+                throw new NullPointerException("第"+(i+1)+"行第9列数字转换错误，请填写0~"+integerNum+"位正整数！");
             }
             if (!checkPosDouble(strs,11,12)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+                throw new NullPointerException("第"+(i+1)+"行第11列数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
             if (!checkRatio(strs,13,14)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
+                throw new NullPointerException("第"+(i+1)+"行第13列数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
             }
             if (!checkPosDouble(strs,14,15)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+                throw new NullPointerException("第"+(i+1)+"行第14列数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
-            if (!checkRatio(strs,16,25)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
-            }
-            if (!checkPosDouble(strs,25,34)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            if (!checkPosDouble(strs,16,25)){
+                throw new NullPointerException("第"+(i+1)+"行第16~24列数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
         List<YcDustLoad> ycDustLoadList =new ArrayList<>();
@@ -1143,6 +1169,7 @@ public class FileServiceImpl implements FileService {
             company.setLatitude(getDecimal(strs[7]));
             company.setDomain(strs[8]);
             YcDustLoad ycDustLoad =new YcDustLoad();
+            ycDustLoad.setComId(getCompanyId(company));
             ycDustLoad.setScccode(strs[0]);
             ycDustLoad.setYear(strs[1]);
             ycDustLoad.setLoadId(Integer.parseInt(strs[9]));
@@ -1152,25 +1179,16 @@ public class FileServiceImpl implements FileService {
             ycDustLoad.setMaterialWater(getDecimal(strs[13]));
             ycDustLoad.setUwindValue(getDecimal(strs[14]));
             ycDustLoad.setControlname(strs[15]);
-            ycDustLoad.setPm10Max(getDecimal(strs[16]));
-            ycDustLoad.setPm25Max(getDecimal(strs[17]));
-            ycDustLoad.setCoMax(getDecimal(strs[18]));
-            ycDustLoad.setVocMax(getDecimal(strs[19]));
-            ycDustLoad.setSo2Max(getDecimal(strs[20]));
-            ycDustLoad.setNoxMax(getDecimal(strs[21]));
-            ycDustLoad.setNh3Max(getDecimal(strs[22]));
-            ycDustLoad.setOcMax(getDecimal(strs[23]));
-            ycDustLoad.setBcMax(getDecimal(strs[24]));
-            if (isCul){
-                ycDustLoad.setPm10Emission(getDecimal(strs[25]));
-                ycDustLoad.setPm25Emission(getDecimal(strs[26]));
-                ycDustLoad.setCoEmission(getDecimal(strs[27]));
-                ycDustLoad.setVocEmission(getDecimal(strs[28]));
-                ycDustLoad.setSo2Emission(getDecimal(strs[29]));
-                ycDustLoad.setNoxEmission(getDecimal(strs[30]));
-                ycDustLoad.setNh3Emission(getDecimal(strs[31]));
-                ycDustLoad.setOcEmission(getDecimal(strs[32]));
-                ycDustLoad.setBcEmission(getDecimal(strs[33]));
+            if (!isCul){
+                ycDustLoad.setPm10Emission(getDecimal(strs[16]));
+                ycDustLoad.setPm25Emission(getDecimal(strs[17]));
+                ycDustLoad.setCoEmission(getDecimal(strs[18]));
+                ycDustLoad.setVocEmission(getDecimal(strs[19]));
+                ycDustLoad.setSo2Emission(getDecimal(strs[20]));
+                ycDustLoad.setNoxEmission(getDecimal(strs[21]));
+                ycDustLoad.setNh3Emission(getDecimal(strs[22]));
+                ycDustLoad.setOcEmission(getDecimal(strs[23]));
+                ycDustLoad.setBcEmission(getDecimal(strs[24]));
             }else{
                 //计算
             }
@@ -1180,7 +1198,7 @@ public class FileServiceImpl implements FileService {
         ycdustLoadMapper.insertList(ycDustLoadList);
         return i;
     }
-    public int importXjcydustStack(List<String[]> list,boolean isCul){
+    public int importYcDustStack(List<String[]> list,boolean isCul){
         int i=0;
         for (i=0;i<list.size();i++)   {
             String[] strs=list.get(i);
@@ -1199,17 +1217,14 @@ public class FileServiceImpl implements FileService {
             if (!NumberUtil.isLatitude(strs[7],integerNum)){
                 throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
             }
-            if (!checkPosDouble(strs,9,10)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            if (!checkInteger(strs,9,10)){
+                throw new NullPointerException("第"+(i+1)+"行第9列数字转换错误，请填写0~"+integerNum+"位正整数！");
             }
             if (!checkPosDouble(strs,11,17)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+                throw new NullPointerException("第"+(i+1)+"行第11~16列数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
-            if (!checkRatio(strs,18,27)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
-            }
-            if (!checkPosDouble(strs,27,36)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            if (!checkPosDouble(strs,18,27)){
+                throw new NullPointerException("第"+(i+1)+"行第18~26列数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
         List<YcDustStack> ycDustStackList =new ArrayList<>();
@@ -1223,6 +1238,7 @@ public class FileServiceImpl implements FileService {
             company.setLatitude(getDecimal(strs[7]));
             company.setDomain(strs[8]);
             YcDustStack ycDustStack =new YcDustStack();
+            ycDustStack.setComId(getCompanyId(company));
             ycDustStack.setScccode(strs[0]);
             ycDustStack.setYear(strs[1]);
             ycDustStack.setStackId(Integer.parseInt(strs[9]));
@@ -1234,25 +1250,16 @@ public class FileServiceImpl implements FileService {
             ycDustStack.setGroundWind(getDecimal(strs[15]));
             ycDustStack.setWindFriction(getDecimal(strs[16]));
             ycDustStack.setControlname(strs[17]);
-            ycDustStack.setPm10Max(getDecimal(strs[18]));
-            ycDustStack.setPm25Max(getDecimal(strs[19]));
-            ycDustStack.setCoMax(getDecimal(strs[20]));
-            ycDustStack.setVocMax(getDecimal(strs[21]));
-            ycDustStack.setSo2Max(getDecimal(strs[22]));
-            ycDustStack.setNoxMax(getDecimal(strs[23]));
-            ycDustStack.setNh3Max(getDecimal(strs[24]));
-            ycDustStack.setOcMax(getDecimal(strs[25]));
-            ycDustStack.setBcMax(getDecimal(strs[26]));
-            if (isCul){
-                ycDustStack.setPm10Emission(getDecimal(strs[27]));
-                ycDustStack.setPm25Emission(getDecimal(strs[28]));
-                ycDustStack.setCoEmission(getDecimal(strs[29]));
-                ycDustStack.setVocEmission(getDecimal(strs[30]));
-                ycDustStack.setSo2Emission(getDecimal(strs[31]));
-                ycDustStack.setNoxEmission(getDecimal(strs[32]));
-                ycDustStack.setNh3Emission(getDecimal(strs[33]));
-                ycDustStack.setOcEmission(getDecimal(strs[34]));
-                ycDustStack.setBcEmission(getDecimal(strs[35]));
+            if (!isCul){
+                ycDustStack.setPm10Emission(getDecimal(strs[18]));
+                ycDustStack.setPm25Emission(getDecimal(strs[19]));
+                ycDustStack.setCoEmission(getDecimal(strs[20]));
+                ycDustStack.setVocEmission(getDecimal(strs[21]));
+                ycDustStack.setSo2Emission(getDecimal(strs[22]));
+                ycDustStack.setNoxEmission(getDecimal(strs[23]));
+                ycDustStack.setNh3Emission(getDecimal(strs[24]));
+                ycDustStack.setOcEmission(getDecimal(strs[25]));
+                ycDustStack.setBcEmission(getDecimal(strs[26]));
             }else{
                 //计算
             }
@@ -1282,8 +1289,8 @@ public class FileServiceImpl implements FileService {
             if (!NumberUtil.isLatitude(strs[7],integerNum)){
                 throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
             }
-            if (!checkPosDouble(strs,9,10)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            if (!checkInteger(strs,9,10)){
+                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正整数！");
             }
             if (!checkPosDouble(strs,14,15)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
@@ -1301,18 +1308,19 @@ public class FileServiceImpl implements FileService {
             TankSource tankSource=new TankSource();
             tankSource.setScccode(strs[0]);
             tankSource.setYear(strs[1]);
-            tankSource.setComId(getCompanyId(company));
+            tankSource.setCompanyId(getCompanyId(company));
             tankSource.settId(Integer.parseInt(strs[9]));
             tankSource.setTankName(strs[10]);
             tankSource.setTankType(strs[11]);
             tankSource.setMaterialName(strs[12]);
             tankSource.setMaterialType(strs[13]);
-            if (isCul){
+            if (!isCul){
                 tankSource.setEmission(getDecimal(strs[14]));
             }else {
                 //计算
             }
             tankSource.setSourceDiscrip(getSccDescribe(strs[0]));
+           // tankSourceMapper.insertSelective(tankSource);
             tankSourceList.add(tankSource);
         }
         tankSourceMapper.insertList(tankSourceList);
@@ -1354,7 +1362,7 @@ public class FileServiceImpl implements FileService {
             GasSource gasSource=new GasSource();
             gasSource.setScccode(strs[0]);
             gasSource.setYear(strs[1]);
-            gasSource.setComId(getCompanyId(company));
+            gasSource.setCompanyId(getCompanyId(company));
             gasSource.setGasType(strs[9]);
             gasSource.setSalesVolume(getDecimal(strs[10]));
             gasSource.setTankNum(Integer.parseInt(strs[11]));
@@ -1362,7 +1370,7 @@ public class FileServiceImpl implements FileService {
             gasSource.setEveryVolume(getDecimal(strs[13]));
             gasSource.setVolumeCount(Integer.parseInt(strs[14]));
             gasSource.setGunNum(Integer.parseInt(strs[15]));
-            if (isCul){
+            if (!isCul){
                 gasSource.setEmission(getDecimal(strs[16]));
             }else {
                 //计算
@@ -1393,7 +1401,7 @@ public class FileServiceImpl implements FileService {
             if (!NumberUtil.isLatitude(strs[7],integerNum)){
                 throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
             }
-            if (!checkPosDouble(strs,11,18)){
+            if (!checkPosDouble(strs,11,17)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
@@ -1409,7 +1417,7 @@ public class FileServiceImpl implements FileService {
             OilSource oilSource=new OilSource();
             oilSource.setScccode(strs[0]);
             oilSource.setYear(strs[1]);
-            oilSource.setComId(getCompanyId(company));
+            oilSource.setCompanyId(getCompanyId(company));
             oilSource.setOilType(strs[9]);
             oilSource.setSalesVolume(getDecimal(strs[10]));
             oilSource.setTankNum(Integer.parseInt(strs[11]));
@@ -1417,12 +1425,13 @@ public class FileServiceImpl implements FileService {
             oilSource.setEveryVolume(getDecimal(strs[13]));
             oilSource.setVolumeCount(getDecimal(strs[14]));
             oilSource.setGunNum(Integer.parseInt(strs[15]));
-            if (isCul){
+            if (!isCul){
                 oilSource.setEmission(getDecimal(strs[16]));
             }else {
                 //计算
             }
             oilSource.setSourceDiscrip(getSccDescribe(strs[0]));
+            //oilSourceMapper.insertOrUpdate(oilSource);
             oilSourceList.add(oilSource);
         }
         oilSourceMapper.insertList(oilSourceList);
@@ -1448,7 +1457,10 @@ public class FileServiceImpl implements FileService {
             if (!NumberUtil.isLatitude(strs[7],integerNum)){
                 throw new NullPointerException("第"+(i+1)+"行纬度错误，请填写正确的经纬度范围,且在0^18位！");
             }
-            if (!checkPosDouble(strs,9,12)){
+            if (!checkInteger(strs,10,11)){
+                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
+            }
+            if (!checkPosDouble(strs,11,12)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
@@ -1464,11 +1476,11 @@ public class FileServiceImpl implements FileService {
             OilTransport oilTransport=new OilTransport();
             oilTransport.setScccode(strs[0]);
             oilTransport.setYear(strs[1]);
-            oilTransport.setComId(getCompanyId(company));
+            oilTransport.setCompanyId(getCompanyId(company));
             oilTransport.setOilType(strs[9]);
             oilTransport.setControlRate(Integer.parseInt(strs[10]));
             oilTransport.setYearVolume(getDecimal(strs[11]));
-            if (isCul){
+            if (!isCul){
                 oilTransport.setEmission(getDecimal(strs[12]));
             }else {
                 //计算
@@ -1503,7 +1515,7 @@ public class FileServiceImpl implements FileService {
             pesticide.setYear(strs[1]);
             pesticide.setCountyId(strs[2]);
             pesticide.setPesticideamount(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 pesticide.setPm10Emission(getDecimal(strs[4]));
                 pesticide.setPm25Emission(getDecimal(strs[5]));
                 pesticide.setCoEmission(getDecimal(strs[6]));
@@ -1561,7 +1573,7 @@ public class FileServiceImpl implements FileService {
             collectbreeding.setCompanyId(getCompanyId(company));
             collectbreeding.setActivityLevel(getDecimal(strs[9]));
             collectbreeding.setComputeCycle(Integer.parseInt(strs[10]));
-            if (isCul){
+            if (!isCul){
                 collectbreeding.setPm10Emission(getDecimal(strs[11]));
                 collectbreeding.setPm25Emission(getDecimal(strs[12]));
                 collectbreeding.setCoEmission(getDecimal(strs[13]));
@@ -1605,7 +1617,7 @@ public class FileServiceImpl implements FileService {
             freeStockbreeding.setCountyId(strs[2]);
             freeStockbreeding.setActivityLevel(getDecimal(strs[3]));
             freeStockbreeding.setComputeCycle(Integer.parseInt(strs[4]));
-            if (isCul){
+            if (!isCul){
                 freeStockbreeding.setPm10Emission(getDecimal(strs[5]));
                 freeStockbreeding.setPm25Emission(getDecimal(strs[6]));
                 freeStockbreeding.setCoEmission(getDecimal(strs[7]));
@@ -1648,7 +1660,7 @@ public class FileServiceImpl implements FileService {
             fertilization.setYear(strs[1]);
             fertilization.setCountyId(strs[2]);
             fertilization.setActivityLevel(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 fertilization.setPm10Emission(getDecimal(strs[4]));
                 fertilization.setPm25Emission(getDecimal(strs[5]));
                 fertilization.setCoEmission(getDecimal(strs[6]));
@@ -1691,7 +1703,7 @@ public class FileServiceImpl implements FileService {
             baseSoil.setYear(strs[1]);
             baseSoil.setCountyId(strs[2]);
             baseSoil.setCultivateArea(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 baseSoil.setPm10Emission(getDecimal(strs[4]));
                 baseSoil.setPm25Emission(getDecimal(strs[5]));
                 baseSoil.setCoEmission(getDecimal(strs[6]));
@@ -1734,7 +1746,7 @@ public class FileServiceImpl implements FileService {
             nPlant.setYear(strs[1]);
             nPlant.setCountyId(strs[2]);
             nPlant.setPlantArea(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 nPlant.setPm10Emission(getDecimal(strs[4]));
                 nPlant.setPm25Emission(getDecimal(strs[5]));
                 nPlant.setCoEmission(getDecimal(strs[6]));
@@ -1748,9 +1760,10 @@ public class FileServiceImpl implements FileService {
                 //计算
             }
             nPlant.setSourceDescrip(getSccDescribe(strs[0]));
-            nPlantList.add(nPlant);
+            nPlantMapper.insertSelective(nPlant);
+            //nPlantList.add(nPlant);
         }
-        nPlantMapper.insertList(nPlantList);
+        //nPlantMapper.insertList(nPlantList);
         return i;
     }
     public int importstrawCompost(List<String[]> list,boolean isCul){
@@ -1777,7 +1790,7 @@ public class FileServiceImpl implements FileService {
             strawCompost.setYear(strs[1]);
             strawCompost.setCountyId(strs[2]);
             strawCompost.setActivityLevel(getDecimal(strs[3]));
-            if (isCul){
+            if (!isCul){
                 strawCompost.setPm10Emission(getDecimal(strs[4]));
                 strawCompost.setPm25Emission(getDecimal(strs[5]));
                 strawCompost.setCoEmission(getDecimal(strs[6]));
@@ -1848,7 +1861,7 @@ public class FileServiceImpl implements FileService {
             biomassBoiler.setPm25RemoveRatio(getDecimal(strs[15]));
             biomassBoiler.setSo2RemoveRatio(getDecimal(strs[16]));
             biomassBoiler.setNoxRemoveRatio(getDecimal(strs[17]));
-            if (isCul){
+            if (!isCul){
                 biomassBoiler.setPm10Emission(getDecimal(strs[18]));
                 biomassBoiler.setPm25Emission(getDecimal(strs[19]));
                 biomassBoiler.setCoEmission(getDecimal(strs[20]));
@@ -1901,7 +1914,7 @@ public class FileServiceImpl implements FileService {
             biomassStove.setStoveType(strs[5]);
             biomassStove.setBurningRatioStove(getDecimal(strs[6]));
             biomassStove.setGrassValleyRatio(getDecimal(strs[7]));
-            if (isCul){
+            if (!isCul){
                 biomassStove.setPm10Emission(getDecimal(strs[8]));
                 biomassStove.setPm25Emission(getDecimal(strs[9]));
                 biomassStove.setCoEmission(getDecimal(strs[10]));
@@ -1954,7 +1967,7 @@ public class FileServiceImpl implements FileService {
             biomassStraw.setOpenBurningRatio(getDecimal(strs[5]));
             biomassStraw.setBurningRatio(getDecimal(strs[6]));
             biomassStraw.setGrassValleyRatio(getDecimal(strs[7]));
-            if (isCul){
+            if (!isCul){
                 biomassStraw.setPm10Emission(getDecimal(strs[8]));
                 biomassStraw.setPm25Emission(getDecimal(strs[9]));
                 biomassStraw.setCoEmission(getDecimal(strs[10]));
@@ -2003,7 +2016,7 @@ public class FileServiceImpl implements FileService {
             biomassForestGrassland.setBurningRatio(getDecimal(strs[4]));
             biomassForestGrassland.setFireArea(getDecimal(strs[5]));
             biomassForestGrassland.setDryBiomass(getDecimal(strs[6]));
-            if (isCul){
+            if (!isCul){
                 biomassForestGrassland.setPm10Emission(getDecimal(strs[7]));
                 biomassForestGrassland.setPm25Emission(getDecimal(strs[8]));
                 biomassForestGrassland.setCoEmission(getDecimal(strs[9]));
@@ -2050,12 +2063,12 @@ public class FileServiceImpl implements FileService {
             roadMove.setCountyId(strs[2]);
             roadMove.setFuelType(strs[3]);
             roadMove.setOrvrPercentage(getDecimal(strs[4]));
-            roadMove.setAverageSamount(getDecimal(strs[5]));
+            roadMove.setCarFuelamount(getDecimal(strs[5]));
             roadMove.setAverageMile(getDecimal(strs[6]));
             roadMove.setCarAmount(getDecimal(strs[7]));
             roadMove.setCarSpeed(getDecimal(strs[8]));
             roadMove.setAverageSamount(getDecimal(strs[9]));
-            if (isCul){
+            if (!isCul){
                 roadMove.setPm10Emission(getDecimal(strs[10]));
                 roadMove.setPm25Emission(getDecimal(strs[11]));
                 roadMove.setCoEmission(getDecimal(strs[12]));
@@ -2087,10 +2100,10 @@ public class FileServiceImpl implements FileService {
             if (!checkCounty(strs[2])){
                 throw new NullPointerException("第"+(i+1)+"行区县编码填写错误，请仔细查验！");
             }
-            if (!checkRatio(strs,4,5)){
-                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正浮点数！");
+            if (!checkInteger(strs,4,5)){
+                throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~1小于"+integerNum+"位正整数！");
             }
-            if (!checkPosDouble(strs,5,19)){
+            if (!checkPosDouble(strs,5,18)){
                 throw new NullPointerException("第"+(i+1)+"行数字转换错误，请填写0~"+integerNum+"位正浮点数！");
             }
         }
@@ -2106,7 +2119,7 @@ public class FileServiceImpl implements FileService {
             agricultureMachinery.setFuelAnnualUsage(getDecimal(strs[6]));
             agricultureMachinery.setAnnalAverageMilage(getDecimal(strs[7]));
             agricultureMachinery.setFuelSulfurContent(getDecimal(strs[8]));
-            if (isCul){
+            if (!isCul){
                 agricultureMachinery.setPm10Emission(getDecimal(strs[9]));
                 agricultureMachinery.setPm25Emission(getDecimal(strs[10]));
                 agricultureMachinery.setCoEmission(getDecimal(strs[11]));
@@ -2152,7 +2165,7 @@ public class FileServiceImpl implements FileService {
             airplane.setActivityLevel(getDecimal(strs[4]));
             airplane.setFuelAnnualUsage(getDecimal(strs[5]));
             airplane.setFuelSulfurUsage(getDecimal(strs[6]));
-            if (isCul){
+            if (!isCul){
                 airplane.setPm10Emission(getDecimal(strs[7]));
                 airplane.setPm25Emission(getDecimal(strs[8]));
                 airplane.setCoEmission(getDecimal(strs[9]));
@@ -2207,7 +2220,7 @@ public class FileServiceImpl implements FileService {
             nonroadMachinery.setAnnalAverageMileage(getDecimal(strs[7]));
             nonroadMachinery.setFuelAnnualUsage(getDecimal(strs[8]));
             nonroadMachinery.setFuelSulfurContent(getDecimal(strs[9]));
-            if (isCul){
+            if (!isCul){
                 nonroadMachinery.setPm10Emission(getDecimal(strs[10]));
                 nonroadMachinery.setPm25Emission(getDecimal(strs[11]));
                 nonroadMachinery.setCoEmission(getDecimal(strs[12]));
@@ -2259,7 +2272,7 @@ public class FileServiceImpl implements FileService {
             railwayEngine.setFuelAnnualUsage(getDecimal(strs[4]));
             railwayEngine.setAnnalAverageMileage(getDecimal(strs[5]));
             railwayEngine.setFuelSulfurContent(getDecimal(strs[6]));
-            if (isCul){
+            if (!isCul){
                 railwayEngine.setPm10Emission(getDecimal(strs[7]));
                 railwayEngine.setPm25Emission(getDecimal(strs[8]));
                 railwayEngine.setCoEmission(getDecimal(strs[9]));
@@ -2313,7 +2326,7 @@ public class FileServiceImpl implements FileService {
             smallMachinery.setAnnalAverageMileage(getDecimal(strs[6]));
             smallMachinery.setUseHours(getDecimal(strs[7]));
             smallMachinery.setFuelSulfurContent(getDecimal(strs[8]));
-            if (isCul){
+            if (!isCul){
                 smallMachinery.setPm10Emission(getDecimal(strs[9]));
                 smallMachinery.setPm25Emission(getDecimal(strs[10]));
                 smallMachinery.setCoEmission(getDecimal(strs[11]));
@@ -2386,7 +2399,7 @@ public class FileServiceImpl implements FileService {
             repast.setOtherConsumption(getDecimal(strs[17]));
             repast.setOilConsumption(getDecimal(strs[18]));
             repast.setRemovalEffi(getDecimal(strs[19]));
-            if (isCul){
+            if (!isCul){
                 repast.setPm10Emission(getDecimal(strs[20]));
                 repast.setPm25Emission(getDecimal(strs[21]));
                 repast.setCoEmission(getDecimal(strs[22]));
@@ -2444,7 +2457,7 @@ public class FileServiceImpl implements FileService {
             repastFamily.setOtherConsumption(getDecimal(strs[10]));
             repastFamily.setOilConsumption(getDecimal(strs[11]));
             repastFamily.setRemovalEffi(getDecimal(strs[12]));
-            if (isCul){
+            if (!isCul){
                 repastFamily.setPm10Emission(getDecimal(strs[13]));
                 repastFamily.setPm25Emission(getDecimal(strs[14]));
                 repastFamily.setCoEmission(getDecimal(strs[15]));
@@ -2508,7 +2521,7 @@ public class FileServiceImpl implements FileService {
             repastBarbecue.setOtherConsumption(getDecimal(strs[14]));
             repastBarbecue.setMealConsumption(getDecimal(strs[15]));
             repastBarbecue.setDayRunntime(getDecimal(strs[16]));
-            if (isCul){
+            if (!isCul){
                 repastBarbecue.setPm10Emission(getDecimal(strs[17]));
                 repastBarbecue.setPm25Emission(getDecimal(strs[18]));
                 repastBarbecue.setCoEmission(getDecimal(strs[19]));

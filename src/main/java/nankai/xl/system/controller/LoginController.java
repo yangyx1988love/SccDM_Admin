@@ -11,6 +11,7 @@ import nankai.xl.system.service.AdminuserService;
 import nankai.xl.system.service.MailService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -100,7 +101,7 @@ public class LoginController {
                 .start();
 
         // 注册后默认的角色, 根据自己数据库的角色表 ID 设置
-        Integer[] initRoleIds = {1};
+        Integer[] initRoleIds = {0};
         return ResultBean.success(adminuserService.add(user, initRoleIds));
     }
 
@@ -156,7 +157,11 @@ public class LoginController {
     public ResultBean forget(@PathVariable("activeCode") String activeCode,Adminuser user) {
         Adminuser userr=adminuserService.selectOneByUserName(user.getUsername());
         if(userr.getActiveCode().equals(activeCode)){
+            user.setUserId(userr.getUserId());
             user.setActiveCode(IdUtil.fastSimpleUUID());
+            String salt=String.valueOf(System.currentTimeMillis());
+            user.setSalt(salt);
+            user.setPassword(new Md5Hash(user.getPassword(), salt).toString());
             adminuserService.update(user);
         }else {
             return ResultBean.error("验证码已使用！请重新获取邮箱验证码！！");

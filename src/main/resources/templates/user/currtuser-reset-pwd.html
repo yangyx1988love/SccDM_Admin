@@ -16,15 +16,37 @@
     <div class="z-body animated fadeIn">
         <form action="" method="post" class="layui-form layui-form-pane">
             <div class="layui-form-item">
+                <label for="oldpassword" class="layui-form-label">
+                    老密码
+                </label>
+                <div class="layui-input-block">
+                    <input type="password" id="oldpassword" name="oldpassword"
+                           lay-verify="required" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label for="password" class="layui-form-label">
                     新密码
                 </label>
                 <div class="layui-input-block">
-                    <input type="text" id="password" name="password" value ="123456" lay-verify="required|passwd" lay-vertype="tips" autocomplete="off"
-                           class="layui-input">
-                    <input type="hidden" name="factoryNo1" th:value="${factoryNo1}">
+                    <input type="password" id="password" name="password"
+                           lay-verify="required|password" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label for="repassword" class="layui-form-label">
+                    确认密码
+                </label>
+                <div class="layui-input-block">
+                    <input type="password" id="repassword" name="repassword"
+                           lay-verify="required|repassword" lay-vertype="tips"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <span type="type" class="passwsordError"  readonly="true" style="display: none; overflow: hidden;" val=""></span>
+            </div>
+            <input type="hidden" name="userId" th:value="${userId}">
             <div class="layui-form-item">
                 <div class="layui-input-block" style="margin-left:0;text-align:center;">
                     <button type="button"  class="layui-btn layui-btn-normal btn-w100" lay-submit="" lay-filter="reset-password">确定</button>
@@ -42,17 +64,9 @@
             $ = layui.jquery;
             var form = layui.form
                 , layer = layui.layer;
-            form.verify({
-                "passwd": function(value, item) {
-                    var reg = new RegExp(/^[0-9A-Za-z]{6,15}$/);
-                    if (value.length > 0 && !reg.test(value)) {
-                        return '密码格式不正确,由6-15位字母和数字组合！！'
-                    }
-                }
-            })
             form.on('submit(reset-password)', function (form) {
                 var data = form.field;
-                $.post('/factory/' + data.factoryNo1 + "/reset", form.field, function (result) {
+                $.post('/user/currtUser/' + data.userId + "/reset", form.field, function (result) {
                     handlerResult(result, function (data) {
                         layer.msg("重置成功", {icon: 6});
                     });
@@ -60,7 +74,6 @@
                 return false;
             });
         });
-
     </script>
 </body>
 

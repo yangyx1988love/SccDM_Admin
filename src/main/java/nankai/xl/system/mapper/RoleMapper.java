@@ -21,5 +21,9 @@ public interface RoleMapper {
 
     List<Role> selectAll();
 
+    List<Role> selectById(Integer roleId);
+
+    List<Role> selectLessById(Integer roleId);
+
     int count();
 }

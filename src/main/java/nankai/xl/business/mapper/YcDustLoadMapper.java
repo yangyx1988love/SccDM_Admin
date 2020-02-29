@@ -6,7 +6,7 @@ import nankai.xl.business.model.vo.YcDustLoadVo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface YcdustLoadMapper {
+public interface YcDustLoadMapper {
     List<YcDustLoadVo> selectByExample(YcDustLoadVo xjcydustLoadVo);
     YcDustLoadVo selectById(Integer id);
     int deleteById(Integer id);

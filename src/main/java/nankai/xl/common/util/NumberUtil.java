@@ -53,52 +53,62 @@ public class NumberUtil {
         boolean b = m.matches();
         return b;
     }
-    //包括科学计数法
-    public static boolean isFloat(String str) {
-        if (null == str || "".equals(str)) {
-            return false;
-        }
-        String regx = "[+-]*\\d+\\.?\\d*[Ee]*[+-]*\\d+";
+    //判断是否为科学计数法
+    public static boolean isScientific(String str){
+        String regx = "^((-?\\d+.?\\d*)[Ee]{1}(-?\\d+))$";//科学计数法正则表达式
         Pattern pattern = Pattern.compile(regx);
-        boolean isNumber = pattern.matcher(str).matches();
-        if (!isNumber) {
-            return false;
-        }
-        regx = "^[-\\+]?[.\\d]*$";
-        pattern = Pattern.compile(regx);
         return pattern.matcher(str).matches();
     }
-    //验证正浮点数
-    public static boolean isPosDouble(String num,int integerNum){
-        if (!NumberUtil.isFloat(num)){
-            return false;
+    //科学计数法，返回完全数
+    public static boolean isFloat(String num,String type) {
+        if (isScientific(num)){
+            BigDecimal db = new BigDecimal(num);
+            num = db.toPlainString();
         }
-        if (num.indexOf(".")>integerNum){
-            return false;
-        }
-        if (Double.valueOf(num)<0){
+        if (!checkNumber(num,type)&&!checkFloat(num,type)){
             return false;
         }
         return true;
     }
+    //验证正浮点数，整多少位
+    public static boolean isPosDouble(String num,int integerNum){
+        if (!isFloat(num,"0+")){
+            return false;
+        }
+        if (isScientific(num)){
+            BigDecimal db = new BigDecimal(num);
+            num = db.toPlainString();
+        }
+        if (num.contains(".")){
+            if ( num.indexOf(".")>integerNum){
+                return false;
+            }
+        }else {
+            if ( num.length()>integerNum){
+                return false;
+            }
+        }
+        return true;
+    }
+    //比例
     public static boolean isRatio(String num,int integerNum){
-        if (!NumberUtil.isFloat(num)){
+        if (!isFloat(num,"0+")){
             return false;
         }
-        if (num.indexOf(".")>integerNum){
+        if ( num.indexOf(".")>integerNum){
             return false;
         }
-        if (Double.valueOf(num)<0){
+        if ( Double.valueOf(num) > 1){
             return false;
         }
         return true;
     }
     //检验经纬度
     public static boolean isLongitude(String longitude,int integerNum){
-        if (!NumberUtil.isFloat(longitude)){
+        if (!isFloat(longitude,"0+")){
             return false;
         }
-        if (longitude.indexOf(".")>integerNum){
+        if ( longitude.indexOf(".")>integerNum){
             return false;
         }
         if (73>Double.valueOf(longitude)||Double.valueOf(longitude)>135){
@@ -107,10 +117,10 @@ public class NumberUtil {
         return true;
     }
     public static boolean isLatitude(String latitude,int integerNum){
-        if (!NumberUtil.isFloat(latitude)){
+        if (!isFloat(latitude,"0+")){
             return false;
         }
-        if (latitude.indexOf(".")>integerNum){
+        if ( latitude.indexOf(".")>integerNum){
             return false;
         }
         if (3>Double.valueOf(latitude)||Double.valueOf(latitude)>53){
@@ -178,6 +188,12 @@ public class NumberUtil {
 ////        BigDecimal b2 = new BigDecimal("288888888.010999999999");
 ////        System.out.println("小数格式化：" + df.format(b1));
 ////        System.out.println("整数格式化：" + df.format(b2));
-//        System.out.println(Arith.round("1.888888888",2));
+////        System.out.println(Arith.round("1.888888888",2));
+//        String sjiachun = "D2+E2";
+////        BigDecimal db = new BigDecimal(sjiachun);
+////        String ii = db.toPlainString();
+////        System.out.println(ii);
+//        System.out.println(NumberUtil.isPosDouble(sjiachun,8));
+//
 //    }
 }

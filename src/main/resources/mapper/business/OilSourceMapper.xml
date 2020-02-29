@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.OilSourceMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.OilSourceVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.OilSource" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="company_id" property="companyId" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
@@ -192,20 +192,11 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      company_id = #{item.companyId,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      oil_type = #{item.oilType,jdbcType=CHAR},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
-      sales_volume = #{item.salesVolume,jdbcType=DOUBLE},
-      emission = #{item.emission,jdbcType=DOUBLE},
-      flag = #{item.flag,jdbcType=INTEGER},
-      volume = #{item.volume,jdbcType=DOUBLE},
-      every_volume = #{item.everyVolume,jdbcType=DOUBLE},
-      volume_count = #{item.volumeCount,jdbcType=DOUBLE},
-      gun_num = #{item.gunNum,jdbcType=INTEGER},
-      tank_num = #{item.tankNum,jdbcType=INTEGER}
+      #{item.id,jdbcType=INTEGER},#{item.companyId,jdbcType=INTEGER},#{item.year,jdbcType=CHAR},
+      #{item.oilType,jdbcType=CHAR},#{item.scccode,jdbcType=CHAR},#{item.sourceDiscrip,jdbcType=VARCHAR},
+      #{item.salesVolume,jdbcType=DOUBLE},#{item.emission,jdbcType=DOUBLE},#{item.flag,jdbcType=INTEGER},
+      #{item.volume,jdbcType=DOUBLE},#{item.everyVolume,jdbcType=DOUBLE},#{item.volumeCount,jdbcType=DOUBLE},
+      #{item.gunNum,jdbcType=INTEGER},#{item.tankNum,jdbcType=INTEGER}
       )
     </foreach>
   </insert>

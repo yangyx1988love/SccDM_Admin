@@ -5,8 +5,6 @@ public class RepastFamily {
 
     private String year;
 
-    private String countyName;
-
     private String countyId;
 
     private Double nonfarmNum;
@@ -131,14 +129,6 @@ public class RepastFamily {
 
     public void setYear(String year) {
         this.year = year == null ? null : year.trim();
-    }
-
-    public String getCountyName() {
-        return countyName;
-    }
-
-    public void setCountyName(String countyName) {
-        this.countyName = countyName == null ? null : countyName.trim();
     }
 
     public String getCountyId() {

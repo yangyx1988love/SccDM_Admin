@@ -300,6 +300,28 @@
         from adminuser u
         left join dept d on u.dept_id = d.dept_id
     </select>
+    <select id="selectWithDeptByParentId" resultType="nankai.xl.system.model.Adminuser" parameterType="String">
+          SELECT
+            u.user_id,
+            u.username,
+            u.PASSWORD,
+            u.salt,
+            u.email,
+            u.STATUS,
+            u.last_login_time,
+            u.create_time,
+            u.modify_time,
+            u.active_code,
+            u.dept_id,
+            u.realname,
+            u.mobilephone,
+            u.workphone,
+            d.dept_name
+        FROM adminuser u
+        INNER JOIN dept d
+        ON u.dept_id = d.dept_id
+        WHERE d.parent_id=#{parentId}
+    </select>
 
     <update id="activeUserByUserId">
         update adminuser

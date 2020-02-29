@@ -94,40 +94,25 @@
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 180px;">PM10控制效率</label>
-                    <div class="layui-input-block" >
-                        <input id="pm10Max" name="pm10Max" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
-                    </div>
-                </div>
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 180px;">PM25控制效率</label>
-                    <div class="layui-input-block" >
-                        <input id="pm25Max" name="pm25Max" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
-                    </div>
-                </div>
-
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">物料年装卸量(吨)</label>
                     <div class="layui-input-block" >
-                        <input id="materialLoad" name="materialLoad" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="materialLoad" name="materialLoad" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">年装卸次数</label>
                     <div class="layui-input-block" >
-                        <input id="loadNum" name="loadNum" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
-                    </div>
-                </div>
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 180px;">地表平均风速(m/s)</label>
-                    <div class="layui-input-block" >
-                        <input id="uwindValue" name="uwindValue" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
+                        <input id="loadNum" name="loadNum" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|integer">
                     </div>
                 </div>
             </div>
             <div class="layui-form-item">
+                <div class="layui-inline" style="width: 350px;">
+                    <label class="layui-form-label" style="width: 180px;">地表平均风速(m/s)</label>
+                    <div class="layui-input-block" >
+                        <input id="uwindValue" name="uwindValue" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|pos-num">
+                    </div>
+                </div>
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">装卸堆场编号</label>
                     <div class="layui-input-block" >
@@ -146,14 +131,9 @@
                 <input type="checkbox" name="controlMeasure" value="F" title="封闭">
             </div>
             <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none">
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>

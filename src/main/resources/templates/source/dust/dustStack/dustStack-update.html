@@ -111,7 +111,7 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">地面粗糙度</label>
                     <div class="layui-input-block" >
-                        <input id="groundRough" name="groundRough" style="width: 170px;" th:value="${xjcydustStackVo.groundRough}" class="layui-input" type="text"  lay-verify="required|ratio">
+                        <input id="groundRough" name="groundRough" style="width: 170px;" th:value="${xjcydustStackVo.groundRough}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
 
@@ -120,13 +120,13 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">地面风速检测高度(m)</label>
                     <div class="layui-input-block" >
-                        <input id="groundWindhigh" name="groundWindhigh" style="width: 170px;" th:value="${xjcydustStackVo.groundWindhigh}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="groundWindhigh" name="groundWindhigh" style="width: 170px;" th:value="${xjcydustStackVo.groundWindhigh}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">地面风速(m/s)</label>
                     <div class="layui-input-block" >
-                        <input id="groundWind" name="groundWind" style="width: 170px;" th:value="${xjcydustStackVo.groundWind}" class="layui-input" type="text"  lay-verify="required|ratio">
+                        <input id="groundWind" name="groundWind" style="width: 170px;" th:value="${xjcydustStackVo.groundWind}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
@@ -165,14 +165,9 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none">
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>

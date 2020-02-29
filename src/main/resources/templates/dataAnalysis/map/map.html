@@ -16,8 +16,8 @@
     <div class="rubik-loader"></div>
 </div>
 <div class="z-body animated fadeIn">
-    <div class="layui-row">
-        <div id="map"style="width: 100%;height: 800px"></div>
+    <div class="layui-row" id="map_canvas">
+        <div id="map"style="width: 100%;height: 1200px"></div>
     </div>
 </div>
 
@@ -43,9 +43,11 @@
             layui.$.get('/data/map/factory/list', function (result) {
                 var dataValue = result.valueData;
                 var geoCoordMap = result.geoCoordMap;
+                var parentHeight = $('#map_canvas').height();
+                layui.$("#map").css("height", (parentHeight - 50) + 'px');
                 var myChartMap = echarts.init(document.getElementById('map'));
                 //intiMap(myChartMap,'PM10',geoCoordMap,dataValue,[87.624851,43.831293],8);
-                intiMap(myChartMap, '生产总值', geoCoordMap, dataValue,[87.624851,43.831293],8,40,10);
+                intiMap(myChartMap, '生产总值', geoCoordMap, dataValue,[123.4366,41.748016],8,40,10);
             });
     });
 </script>

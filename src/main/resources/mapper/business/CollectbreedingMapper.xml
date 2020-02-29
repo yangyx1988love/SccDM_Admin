@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.CollectbreedingMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.CollectbreedingVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.Collectbreeding" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="company_id" property="companyId" jdbcType="INTEGER" />
@@ -19,10 +19,6 @@
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
     <result column="flag" property="flag" jdbcType="TINYINT" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.CollectbreedingVo" parameterType="nankai.xl.business.model.vo.CollectbreedingVo" >
     SELECT ny_collectbreeding.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(ny_collectbreeding.scccode,1,2) AS scc1,
@@ -219,23 +215,23 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      company_id = #{item.companyId,jdbcType=INTEGER},
-      source_discrip = #{item.sourceDiscrip,jdbcType=CHAR},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      activity_level = #{item.activityLevel,jdbcType=DOUBLE},
-      compute_cycle = #{item.computeCycle,jdbcType=INTEGER},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      flag = #{item.flag,jdbcType=TINYINT}
+      #{item.id,jdbcType=INTEGER},
+      #{item.year,jdbcType=CHAR},
+      #{item.companyId,jdbcType=INTEGER},
+      #{item.sourceDiscrip,jdbcType=CHAR},
+      #{item.scccode,jdbcType=CHAR},
+      #{item.activityLevel,jdbcType=DOUBLE},
+      #{item.computeCycle,jdbcType=INTEGER},
+      #{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},
+      #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},
+      #{item.flag,jdbcType=TINYINT}
       )
     </foreach>
   </insert>

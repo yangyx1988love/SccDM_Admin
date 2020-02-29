@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.ShSealpointMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.ShSealpointVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.ShSealpoint" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="factory_id" property="factoryId" jdbcType="INTEGER" />
@@ -20,9 +20,6 @@
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
     <result column="source_discrip" property="sourceDiscrip" jdbcType="VARCHAR" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShSealpointVo" parameterType="nankai.xl.business.model.vo.ShSealpointVo" >
     SELECT * FROM (

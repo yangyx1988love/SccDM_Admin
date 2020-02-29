@@ -1,73 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java" description="//通过scc重新计算" line="570" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="21a863a7-45e2-4408-b9bf-5ba9b383b90b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SccController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccQueryVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccResultVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/model/vo/PasswordVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/forget.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/scc/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/scc/scc-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/scc/scc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user/user-edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/background1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/emission.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/common/scc-select.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user/currtuser-reset-pwd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/sccadmin-修改后.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/sccadmin-修改后.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/sccadmin_new_20200206.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/sccadmin_new_20200206.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DataAnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DataAnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SelectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SelectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FactoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FactoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc1Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc1Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc2Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc2Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/SccMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/SccMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/XjconstructdustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcconstructdustMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/XjcydustLoadMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcdustLoadMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/XjcydustStackMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcdustStackMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/XjroaddustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcroaddustMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/XjsoildustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcsoildustMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Xjconstructdust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcConstructdust.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/XjcydustLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcDustLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/XjcydustStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcDustStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Xjroaddust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcRoaddust.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/Xjsoildust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcSoildust.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/XjconstructdustVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/ycConstructdustVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/XjcydustLoadVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/YcDustLoadVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/XjcydustStackVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/YcDustStackVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/XjroaddustVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/YcRoaddustVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/XjsoildustVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/YcSoildustVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FactoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FactoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SccService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SccService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SelectCommonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SelectCommonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SourceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/BiomassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/BiomassController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FilesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SolventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SolventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/TransportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/TransportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcconstructdustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcConstructdustMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcdustLoadMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcDustLoadMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcdustStackMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcDustStackMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcroaddustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcRoaddustMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcsoildustMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/YcSoildustMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/RepastFamily.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/RepastFamily.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcConstructdust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcConstructdust.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcDustLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcDustLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcDustStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcDustStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcRoaddust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcRoaddust.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcSoildust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/YcSoildust.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SccServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SccServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SelectCommonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SelectCommonServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SourceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SourceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/SourceUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/SoureManageMeus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/NumberUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ReadExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/common/util/ReadExcel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/DeptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/DeptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/AdminuserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/AdminuserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/RoleMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/AdminuserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/AdminuserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/ShiroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/ShiroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/DeptService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/DeptService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/RoleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/VOC处理装置.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/VOC处理装置.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/储罐存储.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/储罐存储.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/农业施肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/农业施肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/农药施用.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/农药施用.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/农运运输车.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/农运运输车.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/加气站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/加气站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/加油站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/加油站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/固氮植物.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/固氮植物.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/土壤扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/土壤扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/土壤本低.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/土壤本低.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/堆场装卸扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/堆场装卸扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/堆场风蚀扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/堆场风蚀扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/家庭餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/家庭餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/小型通用机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/小型通用机械.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/干洗店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/干洗店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/废水无组织排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/废水无组织排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/户用生物质炉具.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/户用生物质炉具.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/施工扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/施工扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/森林、草原火灾.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/森林、草原火灾.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/民航飞机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/民航飞机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/汽修店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/汽修店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/烧烤餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/烧烤餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/生物质锅炉.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/生物质锅炉.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/畜牧散养.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/畜牧散养.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/畜牧集约化养殖.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/畜牧集约化养殖.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/石化有组织废气排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/石化有组织废气排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/社会餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/社会餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/秸秆堆肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/秸秆堆肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/秸秆露天焚烧.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/秸秆露天焚烧.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/装置密封点.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/装置密封点.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/装载过程排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/装载过程排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/道路扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/道路扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/道路移动源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/道路移动源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/铁路内燃机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/铁路内燃机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/examples/非道路机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/examples/非道路机械.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/AgricultureMachineryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/AgricultureMachineryMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/AirplaneMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/AirplaneMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BaseSoilMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BaseSoilMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassBoilerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassBoilerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassForestGrasslandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassForestGrasslandMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassStoveMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassStoveMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassStrawMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BiomassStrawMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/BuildingSmearMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/BuildingSmearMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/CarRepairMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/CarRepairMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/CollectbreedingMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/CollectbreedingMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DeoilMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DeoilMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/DryCleanerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/DryCleanerMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FertilizationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FertilizationMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/FreeStockbreedingMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/FreeStockbreedingMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/GasSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/GasSourceMapper.xml" afterDir="false" />
@@ -78,12 +96,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/OilTransportMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/OilTransportMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/PesticideMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/PesticideMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RailwayEngineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RailwayEngineMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RepastBarbecueMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RepastBarbecueMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RepastFamilyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RepastFamilyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RepastMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RepastMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RoadMoveMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RoadMoveMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/RoadPaveMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/RoadPaveMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ScatteredCoalMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc1Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc1Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc2Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc2Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/SccMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/SccMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/Scc4Mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShEffluentemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShEffluentemissionMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShGasemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShGasemissionMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/ShSealpointMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/ShSealpointMapper.xml" afterDir="false" />
@@ -91,34 +109,172 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/SmallMachineryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/SmallMachineryMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/StrawCompostMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/StrawCompostMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/TankSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/TankSourceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/XjconstructdustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcconstructdustMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/XjcydustLoadMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcdustLoadMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/XjcydustStackMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcdustStackMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/XjroaddustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcroaddustMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/XjsoildustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcsoildustMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/YcconstructdustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcConstructdustMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/YcdustLoadMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcDustLoadMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/YcdustStackMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcDustStackMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/YcroaddustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcRoaddustMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/business/YcsoildustMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/business/YcSoildustMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/system/AdminuserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/system/AdminuserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/system/DeptMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/system/DeptMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/system/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/images/background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/factory/data_factory.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/factory/data_factory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/source/data_source.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/source/data_source.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factory/user-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factory/user-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/map/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/map/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factory/user-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factory/factory-user-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/factory/user-reset-pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/factory/factory-user-reset-pwd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/files/file-up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/forget.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/forget.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioBoiler/bioBoiler-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioForest/bioForest-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioForest/bioForest-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioForest/bioForest-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioForest/bioForest-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioForest/bioForest-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioForest/bioForest-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStove/bioStove-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStove/bioStove-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStove/bioStove-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStove/bioStove-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStove/bioStove-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStove/bioStove-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStraw/bioStraw-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStraw/bioStraw-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStraw/bioStraw-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStraw/bioStraw-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStraw/bioStraw-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/biomass/bioStraw/bioStraw-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/conDust/conDust-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustLoad/dustLoad-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/dustStack/dustStack-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/roadDust/roadDust-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/dust/soilDust/soilDust-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/baseSoil/baseSoil-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/baseSoil/baseSoil-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/baseSoil/baseSoil-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/baseSoil/baseSoil-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/coBreed/coBreed-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/coBreed/coBreed-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/coBreed/coBreed-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/coBreed/coBreed-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/fertil/fertil-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/fertil/fertil-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/fertil/fertil-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/fertil/fertil-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/freeStock/freeStock-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/freeStock/freeStock-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/freeStock/freeStock-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/freeStock/freeStock-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/nPlant/nPlant-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/nPlant/nPlant-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/nPlant/nPlant-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/nPlant/nPlant-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/pesticide/pesticide-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/pesticide/pesticide-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/pesticide/pesticide-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/pesticide/pesticide-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/strawCompost/strawCompost-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/strawCompost/strawCompost-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/farm/strawCompost/strawCompost-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/farm/strawCompost/strawCompost-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/fixed/coal-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/fixed/coal-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/fixed/coal-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/fixed/coal-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/agriculture/agriculture-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/agriculture/agriculture-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/agriculture/agriculture-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/agriculture/agriculture-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/agriculture/agriculture-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/agriculture/agriculture-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/airplane/airplane-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/airplane/airplane-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/airplane/airplane-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/airplane/airplane-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/airplane/airplane-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/airplane/airplane-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/machinery/machinery-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/machinery/machinery-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/machinery/machinery-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/machinery/machinery-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/machinery/machinery-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/machinery/machinery-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/railway/railway-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/railway/railway-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/railway/railway-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/railway/railway-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/railway/railway-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/railway/railway-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/smallMachinery/smallMachinery-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/smallMachinery/smallMachinery-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/smallMachinery/smallMachinery-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/smallMachinery/smallMachinery-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/smallMachinery/smallMachinery-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/nonRoad/smallMachinery/smallMachinery-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shEff/shEff-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shEff/shEff-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shEff/shEff-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shEff/shEff-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shGas/shGas-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shGas/shGas-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shGas/shGas-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shGas/shGas-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shSeal/shSeal-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shSeal/shSeal-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shSeal/shSeal-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shSeal/shSeal-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shVoc/shVoc-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shVoc/shVoc-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shVoc/shVoc-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shVoc/shVoc-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/process/shVoc/shVoc-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/process/shVoc/shVoc-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/barbecue/barbecue-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/repast/barbecue/barbecue-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/barbecue/barbecue-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/repast/barbecue/barbecue-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/family/family-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/repast/family/family-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/family/family-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/repast/family/family-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/repast/repast-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/repast/repast/repast-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/repast/repast/repast-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/repast/repast/repast-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/road/roadMove-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/road/roadMove-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/road/roadMove-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/road/roadMove-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/road/roadMove-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/road/roadMove-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/build/build-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/build/build-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/build/build-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/build/build-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/car/car-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/car/car-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/car/car-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/car/car-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/deoil/deoil-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/deoil/deoil-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/deoil/deoil-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/deoil/deoil-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/dry/dry-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/dry/dry-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/dry/dry-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/dry/dry-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/house/house-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/house/house-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/house/house-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/house/house-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/roadPa/roadPa-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/roadPa/roadPa-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/roadPa/roadPa-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/solvent/roadPa/roadPa-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/gas/gas-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/gas/gas-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/gas/gas-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/gas/gas-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oil/oil-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oil/oil-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oil/oil-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oil/oil-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oilTran/oilTran-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oilTran/oilTran-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oilTran/oilTran-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/oilTran/oilTran-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/tank/tank-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/tank/tank-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/source/transport/tank/tank-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/source/transport/tank/tank-update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/user-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/user-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/user-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/user-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user/user-reset-pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/user-reset-pwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/welcome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/nankai/xl/business/service/impl/FactoryServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/SccDM_Admin.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-prod.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/VOC处理装置.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/VOC处理装置.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/储罐存储.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/储罐存储.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/农业施肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/农业施肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/农药施用.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/农药施用.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/农运运输车.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/农运运输车.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/加气站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/加气站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/加油站.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/加油站.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/固氮植物.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/固氮植物.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/土壤扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/土壤扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/土壤本低.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/土壤本低.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/堆场装卸扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/堆场装卸扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/堆场风蚀扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/堆场风蚀扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/家庭餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/家庭餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/小型通用机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/小型通用机械.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/干洗店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/干洗店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/废水无组织排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/废水无组织排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/户用生物质炉具.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/户用生物质炉具.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/施工扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/施工扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/森林、草原火灾.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/森林、草原火灾.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/民航飞机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/民航飞机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/汽修店.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/汽修店.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/烧烤餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/烧烤餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/生物质锅炉.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/生物质锅炉.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/畜牧散养.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/畜牧散养.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/畜牧集约化养殖.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/畜牧集约化养殖.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/石化有组织废气排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/石化有组织废气排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/社会餐饮.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/社会餐饮.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/秸秆堆肥.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/秸秆堆肥.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/秸秆露天焚烧.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/秸秆露天焚烧.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/装置密封点.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/装置密封点.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/装载过程排放.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/装载过程排放.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/道路扬尘源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/道路扬尘源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/道路移动源.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/道路移动源.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/铁路内燃机.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/铁路内燃机.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/examples/非道路机械.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/examples/非道路机械.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/AgricultureMachineryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/AgricultureMachineryMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/AirplaneMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/AirplaneMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BaseSoilMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BaseSoilMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BiomassBoilerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BiomassBoilerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BiomassForestGrasslandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BiomassForestGrasslandMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BiomassStoveMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BiomassStoveMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BiomassStrawMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BiomassStrawMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/BuildingSmearMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/BuildingSmearMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/CarRepairMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/CarRepairMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/CollectbreedingMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/CollectbreedingMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/DeoilMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/DeoilMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/DryCleanerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/DryCleanerMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FactoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FactoryMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FertilizationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FertilizationMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/FreeStockbreedingMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/FreeStockbreedingMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/GasSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/GasSourceMapper.xml" afterDir="false" />
@@ -129,12 +285,12 @@
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/OilTransportMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/OilTransportMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/PesticideMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/PesticideMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RailwayEngineMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RailwayEngineMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RepastBarbecueMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RepastBarbecueMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RepastFamilyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RepastFamilyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RepastMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RepastMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RoadMoveMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RoadMoveMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/RoadPaveMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/RoadPaveMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ScatteredCoalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ScatteredCoalMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/Scc1Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/Scc1Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/Scc2Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/Scc2Mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/SccMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/SccMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/Scc4Mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/Scc4Mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShEffluentemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShEffluentemissionMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShGasemissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShGasemissionMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/ShSealpointMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/ShSealpointMapper.xml" afterDir="false" />
@@ -142,61 +298,37 @@
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/SmallMachineryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/SmallMachineryMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/StrawCompostMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/StrawCompostMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/TankSourceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/business/TankSourceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/XjconstructdustMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/XjcydustLoadMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/XjcydustStackMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/XjroaddustMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/business/XjsoildustMapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/system/AdminuserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/system/AdminuserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/system/DeptMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/system/DeptMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/DustController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/DustController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/SelectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/SelectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FactoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/FactoryMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/Scc1Mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/Scc1Mapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/Scc2Mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/Scc2Mapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/SccMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/SccMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/XjconstructdustMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/XjcydustLoadMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/XjcydustStackMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/XjroaddustMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/mapper/XjsoildustMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/Xjconstructdust.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/XjcydustLoad.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/XjcydustStack.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/Xjroaddust.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/Xjsoildust.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/XjconstructdustVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/XjcydustLoadVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/XjcydustStackVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/XjroaddustVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/vo/XjsoildustVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/FactoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/FactoryService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SccService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SccService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SelectCommonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SelectCommonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SourceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/SourceService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FactoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FactoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/system/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/BiomassController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/BiomassController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/FactoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/FactoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/FilesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/FilesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/SolventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/SolventController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/TransportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/controller/TransportController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/RepastFamily.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/model/RepastFamily.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FileServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/FileServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SccServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SccServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SelectCommonServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SelectCommonServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SourceServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/business/service/impl/SourceServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/SourceUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/SoureManageMeus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/ReadExcel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/common/util/ReadExcel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/controller/DeptController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/controller/DeptController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/controller/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/mapper/AdminuserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/mapper/AdminuserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/mapper/RoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/mapper/RoleMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/service/AdminuserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/service/AdminuserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/service/DeptService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/service/DeptService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/nankai/xl/system/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nankai/xl/system/service/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/images/background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/images/background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/factory/user-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/factory/user-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/factory/user-add.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/factory/user-reset-pwd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/files/file-up.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/files/file-up.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/source/road/roadMove-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/source/road/roadMove-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/user/user-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/user-add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user/user-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/user-list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/user/user-reset-pwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user/user-reset-pwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/welcome.html" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/classes/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/vehicleflows/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -225,88 +357,6 @@
   <component name="FavoritesManager">
     <favorites_list name="SccDM_Admin" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/forget.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
-              <folding>
-                <element signature="n#style#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/common.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="153" column="39" lean-forward="true" selection-start-line="153" selection-start-column="39" selection-end-line="153" selection-end-column="39" />
-              <folding>
-                <element signature="e#4942#4943#0" expanded="true" />
-                <element signature="e#4973#4974#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1744" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/solvent/rongjiRaw.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="209" selection-start-line="209" selection-end-line="211" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/MailService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -315,268 +365,42 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>scattered_coal</find>
-      <find>sh_effluentemission</find>
-      <find>sh_gasemission</find>
-      <find>sh_sealpoint</find>
-      <find>sh_vocdeviceeffi</find>
-      <find>collectbreeding</find>
-      <find>base_soil</find>
-      <find>fertilization</find>
-      <find>n_plant</find>
-      <find>pesticide</find>
-      <find>straw_compost</find>
-      <find>free_stockbreeding</find>
-      <find>building_smear</find>
-      <find>car_repair</find>
-      <find>deoil</find>
-      <find>dry_cleaner</find>
-      <find>house</find>
-      <find>road_pave</find>
-      <find>factorysTable</find>
-      <find>style=&quot;width: 240px&quot;</find>
-      <find>style=&quot;width: 50px;&quot;</find>
-      <find>lay-filter</find>
-      <find>lay-verify=&quot;required</find>
-      <find>record.</find>
-      <find>selectRoleIdsByUserId</find>
-      <find>deptTree</find>
-      <find>forgetpasswd</find>
-      <find>selectOneByUserName</find>
-      <find>updateByPrimaryKeySelective</find>
-      <find>&lt;include refid=&quot;Base_Column_List&quot;/&gt;</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>yd_small_machinery</replace>
-      <replace>yd_nonroad_machinery</replace>
-      <replace>yd_railway_engine</replace>
-      <replace>yd_airplane</replace>
-      <replace>cc_gas_source</replace>
-      <replace>cc_oil_source</replace>
-      <replace>cc_oil_transport</replace>
-      <replace>cc_tank_source</replace>
-      <replace>gd_scattered_coal</replace>
-      <replace>gy_sh_effluentemission</replace>
-      <replace>gy_sh_gasemission</replace>
-      <replace>gy_sh_sealpoint</replace>
-      <replace>gy_sh_vocdeviceeffi</replace>
-      <replace>ny_collectbreeding</replace>
-      <replace>ny_base_soil</replace>
-      <replace>ny_fertilization</replace>
-      <replace>ny_n_plant</replace>
-      <replace>ny_pesticide</replace>
-      <replace>ny_straw_compost</replace>
-      <replace>ny_free_stockbreeding</replace>
-      <replace>rj_building_smear</replace>
-      <replace>rj_car_repair</replace>
-      <replace>rj_deoil</replace>
-      <replace>rj_dry_cleaner</replace>
-      <replace>rj_house</replace>
-      <replace>rj_road_pave</replace>
-      <replace>sccTable</replace>
-      <replace>lay-verify=&quot;required|pos-num</replace>
-      <replace>forget</replace>
-      <replace>*</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
-    <option name="PATH_TO_GIT" value="D:\java\Git\bin\git.exe" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="PATH_TO_GIT" value="D:\Program Files\Git\bin\git.exe" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/DryCleanerMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/HouseMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/RoadPaveMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/Scc1Mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc1Mapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/Scc2Mapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/Scc2Mapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SelectCommonService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SelectCommonServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SourceServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/factory/user-add.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccQueryVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/model/vo/SccResultVo.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-dev.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/SccMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/SccMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/SccService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/SccServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/system/DeptMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/DeptController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/scc/scc-add.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/scc/scc.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SelectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SccController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/scc/index.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/user/user-add.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/AdminuserService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/user/user-edit.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/model/vo/PasswordVO.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/welcome.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FactoryMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FactoryService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DataAnalysisController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/factory/data_factory.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/source/data_source.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/common.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/user/user-reset-pwd.html" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/forgetpasswd.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/register.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/application-prod.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/service/ShiroService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/system/AdminuserMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/forget.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
-      </list>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\yang-\.m2\repository" />
+        <option name="userSettingsFile" value="C:\Users\yang-\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="SccDM_Admin" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="SccDM_Admin" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="100" />
-    <option name="y" value="200" />
-    <option name="width" value="3875" />
-    <option name="height" value="2095" />
-  </component>
+  <component name="ProjectId" id="1YFWAmEzkWt22y2jLZvXc4tshMS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="58d84e3e:PackageViewProjectNode" />
-              <item name="SccDM_Admin" type="616d4139:PackageViewModuleNode" />
-              <item name="templates" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="factoryAuth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SccDM_Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="factoryAuth" type="462c0819:PsiDirectoryNode" />
-              <item name="solvent" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="SccDM_Admin" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="SccDM_Admin" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/sql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/examples" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -586,20 +410,23 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="settings.gitee" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="show.run.dashboard.notification" value="false" />
   </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\user" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\scc" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\sql" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\files" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\mapper\business" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\noOrg" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\exhaust" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\base" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="nankai.xl.system.model.vo" />
@@ -608,27 +435,15 @@
       <recent name="nankai.xl.business.model" />
       <recent name="nankai.xl.business.service.impl" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\mapper\business" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\noOrg" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\exhaust" />
-      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\factoryAuth\base" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\examples" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\common" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\static\images" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\src\main\resources\templates\user" />
+      <recent name="D:\IdeaProjects\SccDM_Admin\sql" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.ShiroActionApplication">
+  <component name="RunManager" selected="Spring Boot.SccAdminApplication">
     <configuration name="CalculateTask" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="nankai.xl.common.util.CalculateTask" />
       <module name="SccDM_Admin" />
@@ -655,9 +470,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShiroActionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="SccAdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="SccDM_Admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="nankai.xl.SccAdminApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -669,6 +485,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.CalculateTask" />
+      <item itemvalue="Application.NumberUtil" />
+      <item itemvalue="Spring Boot.SccAdminApplication" />
+      <item itemvalue="Spring Boot.VehicleflowsApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.NumberUtil" />
@@ -1003,7 +825,47 @@
       <workItem from="1581084381946" duration="7738000" />
       <workItem from="1581258523279" duration="14308000" />
       <workItem from="1581319473971" duration="14296000" />
-      <workItem from="1581344535361" duration="6670000" />
+      <workItem from="1581344535361" duration="7896000" />
+      <workItem from="1581426346070" duration="592000" />
+      <workItem from="1581435225918" duration="9664000" />
+      <workItem from="1581479455950" duration="3249000" />
+      <workItem from="1581485718894" duration="384000" />
+      <workItem from="1581486175520" duration="3794000" />
+      <workItem from="1581509999638" duration="1605000" />
+      <workItem from="1581511700173" duration="874000" />
+      <workItem from="1581513769368" duration="1111000" />
+      <workItem from="1581515766071" duration="593000" />
+      <workItem from="1581527188818" duration="6288000" />
+      <workItem from="1581572555092" duration="10442000" />
+      <workItem from="1581583421807" duration="3311000" />
+      <workItem from="1581590568856" duration="846000" />
+      <workItem from="1581592311393" duration="1187000" />
+      <workItem from="1581700608315" duration="589000" />
+      <workItem from="1581776881564" duration="8168000" />
+      <workItem from="1581788763971" duration="409000" />
+      <workItem from="1581861008943" duration="4623000" />
+      <workItem from="1581923248497" duration="13712000" />
+      <workItem from="1581942789748" duration="924000" />
+      <workItem from="1581951364392" duration="11997000" />
+      <workItem from="1582013195755" duration="6086000" />
+      <workItem from="1582038673290" duration="1002000" />
+      <workItem from="1582040063415" duration="4583000" />
+      <workItem from="1582538685532" duration="2047000" />
+      <workItem from="1582564945795" duration="2755000" />
+      <workItem from="1582567711719" duration="4806000" />
+      <workItem from="1582601642836" duration="373000" />
+      <workItem from="1582602023826" duration="378000" />
+      <workItem from="1582602410160" duration="7535000" />
+      <workItem from="1582812322520" duration="1003000" />
+      <workItem from="1582816806446" duration="498000" />
+      <workItem from="1582817315038" duration="11000" />
+      <workItem from="1582825920085" duration="2001000" />
+      <workItem from="1582828143650" duration="599000" />
+      <workItem from="1582831801795" duration="23000" />
+      <workItem from="1582964176566" duration="7323000" />
+      <workItem from="1582978492711" duration="10420000" />
+      <workItem from="1582996292428" duration="129000" />
+      <workItem from="1582996428969" duration="621000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1566356085749</created>
@@ -1152,11 +1014,15 @@
       <option name="project" value="LOCAL" />
       <updated>1580978112778</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="完成忘记密码找回功能，完善用户个人中心、修改密码">
+      <created>1581352042965</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1581352042965</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1782047000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1166,86 +1032,6 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5261669" visible="true" weight="0.27059612" />
-      <window_info id="Structure" order="1" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
-      <window_info id="Web" order="7" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.39321074" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.70155585" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49919093" weight="0.56577086" />
-      <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.4996651" weight="0.6393211" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49698594" weight="0.4427157" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030141" side_tool="true" weight="0.71570015" />
-      <window_info anchor="bottom" id="Problems" order="11" weight="0.3281471" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3592645" />
-      <window_info anchor="bottom" id="Spring" order="13" weight="0.3281471" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.6280057" />
-      <window_info anchor="bottom" id="Java Enterprise" order="15" sideWeight="0.5010047" side_tool="true" weight="0.8036723" />
-      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32953784" />
-      <window_info anchor="right" id="Preview" order="1" weight="0.32953784" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.24983256" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32953784" />
-      <window_info anchor="right" id="Database" order="10" weight="0.32953784" />
-      <window_info anchor="right" id="Maven" order="11" weight="0.32953784" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5261669" visible="true" weight="0.27059612" />
-      <window_info id="Structure" order="1" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
-      <window_info id="Web" order="7" sideWeight="0.47383308" side_tool="true" weight="0.22103149" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.39321074" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49832553" weight="0.70155585" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49919093" weight="0.56577086" />
-      <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.4996651" weight="0.6393211" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49698594" visible="true" weight="0.4427157" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5030141" side_tool="true" weight="0.71570015" />
-      <window_info anchor="bottom" id="Problems" order="11" weight="0.3281471" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3592645" />
-      <window_info anchor="bottom" id="Spring" order="13" weight="0.3281471" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.6280057" />
-      <window_info anchor="bottom" id="Java Enterprise" order="15" sideWeight="0.5010047" side_tool="true" weight="0.8036723" />
-      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32953784" />
-      <window_info anchor="right" id="Preview" order="1" weight="0.32953784" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.24983256" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Bean Validation" order="9" weight="0.32953784" />
-      <window_info anchor="right" id="Database" order="10" weight="0.32953784" />
-      <window_info anchor="right" id="Maven" order="11" weight="0.32953784" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1271,578 +1057,153 @@
     <MESSAGE value="数据导出，包括企业、排气筒、锅炉、窑炉" />
     <MESSAGE value="完成数据导出功能" />
     <MESSAGE value="完成基本功能以及数据库的修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成基本功能以及数据库的修改" />
+    <MESSAGE value="完成忘记密码找回功能，完善用户个人中心、修改密码" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成忘记密码找回功能，完善用户个人中心、修改密码" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="769" y="356" width="1111" height="703" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582996314052">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="769" y="356" width="1111" height="703" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1582996314052" />
+    <state x="1386" y="527" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1582602400104">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1386" y="527" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1582602400104" />
+    <state x="1405" y="633" width="503" height="281" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582981074972">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1405" y="633" width="503" height="281" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1582981074972" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1582978061076">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1582978061076" />
+    <state width="1954" height="594" key="GridCell.Tab.0.bottom" timestamp="1582997039707">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039707" />
+    <state width="1954" height="594" key="GridCell.Tab.0.center" timestamp="1582997039706">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039706" />
+    <state width="1954" height="594" key="GridCell.Tab.0.left" timestamp="1582997039706">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039706" />
+    <state width="1954" height="594" key="GridCell.Tab.0.right" timestamp="1582997039706">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039706" />
+    <state width="1954" height="594" key="GridCell.Tab.1.bottom" timestamp="1582997039707">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039707" />
+    <state width="1954" height="594" key="GridCell.Tab.1.center" timestamp="1582997039707">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039707" />
+    <state width="1954" height="594" key="GridCell.Tab.1.left" timestamp="1582997039707">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039707" />
+    <state width="1954" height="594" key="GridCell.Tab.1.right" timestamp="1582997039707">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="594" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1582997039707" />
+    <state width="1954" height="260" key="GridCell.Tab.2.bottom" timestamp="1582996263209">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="260" key="GridCell.Tab.2.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1582996263209" />
+    <state width="1954" height="260" key="GridCell.Tab.2.center" timestamp="1582996263209">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="260" key="GridCell.Tab.2.center/0.0.2560.1400@0.0.2560.1400" timestamp="1582996263209" />
+    <state width="1954" height="260" key="GridCell.Tab.2.left" timestamp="1582996263209">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="260" key="GridCell.Tab.2.left/0.0.2560.1400@0.0.2560.1400" timestamp="1582996263209" />
+    <state width="1954" height="260" key="GridCell.Tab.2.right" timestamp="1582996263209">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1954" height="260" key="GridCell.Tab.2.right/0.0.2560.1400@0.0.2560.1400" timestamp="1582996263209" />
+    <state x="781" y="342" key="SettingsEditor" timestamp="1582538959058">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="342" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1582538959058" />
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1582564951718">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="960" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1582564951718" />
+    <state x="368" y="251" width="833" height="1206" key="dock-window-1" timestamp="1582979817680">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="368" y="251" width="833" height="1206" key="dock-window-1/0.0.2560.1400@0.0.2560.1400" timestamp="1582979817680" />
+    <state x="0" y="0" width="1848" height="1206" key="dock-window-2" timestamp="1582981233271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="0" y="0" width="1848" height="1206" key="dock-window-2/0.0.2560.1400@0.0.2560.1400" timestamp="1582981233271" />
+    <state x="0" y="0" width="1848" height="1206" key="dock-window-3" timestamp="1582981233271">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="0" y="0" width="1848" height="1206" key="dock-window-3/0.0.2560.1400@0.0.2560.1400" timestamp="1582981233271" />
+    <state x="1644" y="84" width="1206" height="999" key="dock-window-4" timestamp="1582985235285">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1644" y="84" width="1206" height="999" key="dock-window-4/0.0.2560.1400@0.0.2560.1400" timestamp="1582985235285" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/IndexController.java</url>
-          <line>93</line>
-          <properties />
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/NonRoadController.java</url>
-          <line>285</line>
-          <properties />
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java</url>
-          <line>171</line>
-          <properties />
-          <option name="timeStamp" value="105" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java</url>
+          <line>603</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java</url>
-          <line>132</line>
-          <properties />
-          <option name="timeStamp" value="107" />
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java</url>
+          <line>609</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/AdminuserService.java</url>
-          <line>97</line>
-          <properties />
-          <option name="timeStamp" value="112" />
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/SolventController.java</url>
+          <line>293</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/BiomassController.java</url>
+          <line>193</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java</url>
+          <line>2438</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java</url>
+          <line>2441</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FileServiceImpl.java</url>
+          <line>2435</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="((MySQLIntegrityConstraintViolationException)((DuplicateKeyException)e).cause).cause" custom="org.springframework.dao.DuplicateKeyException,com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SccDM_Admin$ShiroActionApplication.ic" NAME="ShiroActionApplication Coverage Results" MODIFIED="1562091372633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/SccDM_Admin$CalculateTask.ic" NAME="CalculateTask Coverage Results" MODIFIED="1564561476845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>nankai.xl.common.util.*</FILTER>
     </SUITE>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>list.size()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>file.getName()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>factoryNo1</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>factoryService.addFactoryUser(factory,user)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3-sources.jar!/ch/qos/logback/classic/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="486" selection-start-line="486" selection-end-line="486" />
-          <folding>
-            <element signature="e#16562#16563#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/realm/AuthenticatingRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="585" selection-start-line="585" selection-end-line="585" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/pam/ModularRealmAuthenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="266" selection-start-line="266" selection-end-line="266" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/AbstractAuthenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/mgt/AuthenticatingSecurityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/mgt/DefaultSecurityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="290" selection-start-line="290" selection-end-line="290" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/subject/support/DelegatingSubject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="293" selection-start-line="293" selection-end-line="293" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.10.RELEASE/spring-webmvc-5.0.10.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.10.RELEASE/spring-webmvc-5.0.10.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="796" selection-start-line="796" selection-end-line="796" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/subject/SimplePrincipalCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/model/vo/AdminuserVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/model/vo/PasswordVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-          <folding>
-            <element signature="e#300#301#0" expanded="true" />
-            <element signature="e#345#346#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#589#590#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
-            <element signature="e#713#714#0" expanded="true" />
-            <element signature="e#749#750#0" expanded="true" />
-            <element signature="e#781#782#0" expanded="true" />
-            <element signature="e#831#832#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/common/shiro/realm/UserNameRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/SimpleAuthenticationInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2822">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="53" column="83" selection-start-line="53" selection-start-column="74" selection-end-line="53" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/mapper/FactoryMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="33" column="55" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/FactoryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="35" column="51" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/service/impl/FactoryServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2706">
-          <caret line="142" column="8" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/factory/data_factory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/DataAnalysisController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-974">
-          <caret line="186" column="65" selection-start-line="186" selection-start-column="50" selection-end-line="186" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/dataAnalysis/source/data_source.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1458">
-          <caret line="19" column="68" lean-forward="true" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/business/FactoryMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="234" column="11" selection-start-line="234" selection-start-column="11" selection-end-line="234" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/cn/hutool/hutool-all/4.1.21/hutool-all-4.1.21-sources.jar!/cn/hutool/core/util/IdUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-          <folding>
-            <element signature="e#1040#1041#0" expanded="true" />
-            <element signature="e#1084#1085#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/welcome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3340">
-          <caret line="261" column="13" selection-start-line="261" selection-start-column="13" selection-end-line="261" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/images/background.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/SystemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/model/Adminuser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="40" column="29" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="29" />
-          <folding>
-            <element signature="e#1381#1382#0" expanded="true" />
-            <element signature="e#1412#1413#0" expanded="true" />
-            <element signature="e#1531#1532#0" expanded="true" />
-            <element signature="e#1558#1559#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/business/controller/FactoryAuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-86">
-          <caret line="842" column="34" lean-forward="true" selection-start-line="842" selection-start-column="34" selection-end-line="842" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="134" column="57" lean-forward="true" selection-start-line="134" selection-start-column="57" selection-end-line="134" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user/user-reset-pwd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="48" column="12" lean-forward="true" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="68" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/ShiroService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="51" column="14" lean-forward="true" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.10.RELEASE/spring-aop-5.0.10.RELEASE-sources.jar!/org/springframework/aop/framework/CglibAopProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="698" selection-start-line="698" selection-end-line="698" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/user/user-edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="100" column="15" selection-start-line="100" selection-start-column="15" selection-end-line="100" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/AdminuserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="98" column="42" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
-          <folding>
-            <element signature="e#1576#1577#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#3278#3279#0" expanded="true" />
-            <element signature="e#3339#3340#0" expanded="true" />
-            <element signature="e#6645#6646#0" expanded="true" />
-            <element signature="e#6713#6714#0" expanded="true" />
-            <element signature="e#7021#7022#0" expanded="true" />
-            <element signature="e#7086#7087#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/mapper/AdminuserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/system/AdminuserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1665">
-          <caret line="211" column="22" lean-forward="true" selection-start-line="211" selection-start-column="22" selection-end-line="211" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-prod.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="15" lean-forward="true" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.0.6.RELEASE/spring-boot-autoconfigure-2.0.6.RELEASE-sources.jar!/org/springframework/boot/autoconfigure/mail/MailProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1370">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="27" />
-          <folding>
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="e#2486#2487#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context-support/5.0.10.RELEASE/spring-context-support-5.0.10.RELEASE-sources.jar!/org/springframework/mail/javamail/JavaMailSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.10.RELEASE/spring-web-5.0.10.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="217" selection-start-line="217" selection-end-line="217" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/service/MailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/sum/boiler-list.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/solvent/rongjiRaw.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="209" selection-start-line="209" selection-end-line="211" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/factoryAuth/factory-Info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1744" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nankai/xl/system/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="153" column="39" lean-forward="true" selection-start-line="153" selection-start-column="39" selection-end-line="153" selection-end-column="39" />
-          <folding>
-            <element signature="e#4942#4943#0" expanded="true" />
-            <element signature="e#4973#4974#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/forget.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>SccDM_Admin</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <SUITE FILE_PATH="coverage/SccDM_Admin$ShiroActionApplication.ic" NAME="ShiroActionApplication Coverage Results" MODIFIED="1562091372633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

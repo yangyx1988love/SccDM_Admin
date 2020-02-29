@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.DryCleanerMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.DryCleanerVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.DryCleaner" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="company_id" property="companyId" jdbcType="INTEGER" />
@@ -18,9 +18,6 @@
     <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
     <result column="flagd" property="flagd" jdbcType="TINYINT" />
     <result column="source_descrip" property="sourceDescrip" jdbcType="VARCHAR" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, year, company_id, scccode, year_amount, pm10_emission, pm25_emission, voc_emission,
@@ -215,22 +212,22 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      company_id = #{item.companyId,jdbcType=INTEGER},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      year_amount = #{item.yearAmount,jdbcType=DOUBLE},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      flagd = #{item.flagd,jdbcType=TINYINT},
-      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR}
+      #{item.id,jdbcType=INTEGER},
+      #{item.year,jdbcType=CHAR},
+      #{item.companyId,jdbcType=INTEGER},
+      #{item.scccode,jdbcType=CHAR},
+      #{item.yearAmount,jdbcType=DOUBLE},
+      #{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},
+      #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},
+      #{item.flagd,jdbcType=TINYINT},
+      #{item.sourceDescrip,jdbcType=VARCHAR}
       )
     </foreach>
   </insert>

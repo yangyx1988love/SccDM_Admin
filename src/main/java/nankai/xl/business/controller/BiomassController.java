@@ -54,7 +54,6 @@ public class BiomassController {
     public PageResultBean<BiomassBoilerVo> bioBoilerList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                      @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                          BiomassBoilerVo biomassBoilerVo) {
-        Adminuser user = ShiroUtil.getCurrentUser();
         if (biomassBoilerVo.getCityCode()==null&&biomassBoilerVo.getCountyId()==null){
             biomassBoilerVo.setCityCode(cityCode);
             biomassBoilerVo.setCountyId(countyCode);
@@ -115,7 +114,6 @@ public class BiomassController {
     public PageResultBean<BiomassForestGrasslandVo> bioForestList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                          @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                                   BiomassForestGrasslandVo biomassForestGrasslandVo) {
-        Adminuser user = ShiroUtil.getCurrentUser();
         if (biomassForestGrasslandVo.getCityCode()==null&&biomassForestGrasslandVo.getCountyId()==null){
             biomassForestGrasslandVo.setCityCode(cityCode);
             biomassForestGrasslandVo.setCountyId(countyCode);
@@ -188,7 +186,6 @@ public class BiomassController {
     public PageResultBean<BiomassStoveVo> bioStoveList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        BiomassStoveVo biomassStoveVo) {
-        Adminuser user = ShiroUtil.getCurrentUser();
         if (biomassStoveVo.getCityCode()==null&&biomassStoveVo.getCountyId()==null){
             biomassStoveVo.setCityCode(cityCode);
             biomassStoveVo.setCountyId(countyCode);
@@ -254,7 +251,6 @@ public class BiomassController {
     public PageResultBean<BiomassStrawVo> bioStrawList(@RequestParam(value = "page", defaultValue = "1") int page,
                                                         @RequestParam(value = "limit", defaultValue = "50")int limit,
                                                        BiomassStrawVo biomassStrawVo) {
-        Adminuser user = ShiroUtil.getCurrentUser();
         if (biomassStrawVo.getCityCode()==null&&biomassStrawVo.getCountyId()==null){
             biomassStrawVo.setCityCode(cityCode);
             biomassStrawVo.setCountyId(countyCode);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.TankSourceMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.TankSourceVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.TankSource" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="scccode" property="scccode" jdbcType="CHAR" />
@@ -14,10 +14,6 @@
     <result column="material_name" property="materialName" jdbcType="VARCHAR" />
     <result column="emission" property="emission" jdbcType="DOUBLE" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.TankSourceVo" parameterType="nankai.xl.business.model.vo.TankSourceVo" >
     SELECT cc_tank_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(cc_tank_source.scccode,1,2) AS scc1,
@@ -176,18 +172,10 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
-      company_id = #{item.companyId,jdbcType=INTEGER},
-      t_id = #{item.tId,jdbcType=INTEGER},
-      tank_name = #{item.tankName,jdbcType=VARCHAR},
-      tank_type = #{item.tankType,jdbcType=VARCHAR},
-      material_type = #{item.materialType,jdbcType=VARCHAR},
-      material_name = #{item.materialName,jdbcType=VARCHAR},
-      emission = #{item.emission,jdbcType=DOUBLE},
-      flag = #{item.flag,jdbcType=INTEGER}
+      #{item.id,jdbcType=INTEGER},#{item.year,jdbcType=CHAR},#{item.scccode,jdbcType=CHAR},
+      #{item.sourceDiscrip,jdbcType=VARCHAR},#{item.companyId,jdbcType=INTEGER},#{item.tId,jdbcType=INTEGER},
+      #{item.tankName,jdbcType=VARCHAR},#{item.tankType,jdbcType=VARCHAR},#{item.materialType,jdbcType=VARCHAR},
+      #{item.materialName,jdbcType=VARCHAR},#{item.emission,jdbcType=DOUBLE},#{item.flag,jdbcType=INTEGER}
       )
     </foreach>
   </insert>

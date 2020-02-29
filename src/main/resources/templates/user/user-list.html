@@ -120,7 +120,7 @@
                         maxmin: true,
                         shadeClose: true,
                         end: function () {
-                            $(".layui-laypage-btn")[0].click()
+                            table.reload('user-table');
                         }
                     });
                 } else if (event === 'del') {
@@ -145,7 +145,7 @@
                     maxmin: true,
                     shadeClose: true,
                     end: function () {
-                        $(".layui-laypage-btn")[0].click()
+                        table.reload('user-table');
                     }
                 });
             }

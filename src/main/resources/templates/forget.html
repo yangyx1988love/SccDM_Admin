@@ -25,7 +25,7 @@
             </div>
             <div class="layui-input-inline">
                 <div class="layui-inline" style="width: 100%">
-                    <input type="text" class="layui-input" placeholder="请输入邮箱验证码" autocomplete="off"
+                    <input type="text" class="layui-input" placeholder="请输入邮箱验证码，在此之前不要输入下面密码" autocomplete="off"
                            lay-verify="" lay-vertype="tips" id="activeCode" name="activeCode">
                 </div>
             </div>
@@ -48,10 +48,13 @@
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <input type="hidden" name="userId" th:value="${userId}">
             <div class="layui-input-inline login-btn" style="width: 100%">
                 <button type="button"  class="layui-btn layui-btn-normal btn-w100" lay-submit="" lay-filter="reset-password">确定</button>
             </div>
+            <hr style="width: 100%"/>
+            <p style="width: 100%">
+                <a href="login" class="fl">返回登录页</a>
+            </p>
         </form>
     </div>
 

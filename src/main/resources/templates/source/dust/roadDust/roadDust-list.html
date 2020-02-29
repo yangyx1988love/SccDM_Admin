@@ -59,6 +59,7 @@
             , cols: [
                 [
                     {field: 'year', title: '年份'}
+                    , {field: 'cityName', title: '城市'}
                     , {field: 'countyName', title: '区县'}
                     , {field: 'sccDescribe', title: 'SCC信息描述'}
                     , {field: 'pathlength', title: '道路长度(km)'}
@@ -102,10 +103,12 @@
             var data = obj.data;
             var url = '/source/dust/roadDust/' + data.rdId;
             openTab('编辑-道路扬尘源',url);
+            refresh();
         }
         function add(obj) {
             var url = '/source/dust/roadDust/add';
             openTab('新增-道路扬尘源',url);
+            refresh();
         }
         function del(obj) {
             layer.confirm("确定删除吗?", {icon: 3, title: '提示'},

@@ -86,6 +86,7 @@
                             <option value="21" >有机化学品存储</option>
                             <option value="22" disabled>有机化学品运输</option>
                             <option value="23" disabled>加油站</option>
+                            <option value="13" >汽车加油站</option>
                         </select>
                     </div>
                 </div>
@@ -131,14 +132,9 @@
                         <input id="tId" name="tId" style="width: 170px;" th:value="${tankSourceVo.tId}"  class="layui-input" type="text" lay-verify="required|integer">
                     </div>
                 </div>
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none">
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">排放量</label>

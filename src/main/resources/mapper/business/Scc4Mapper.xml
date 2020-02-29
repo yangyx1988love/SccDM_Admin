@@ -12,7 +12,7 @@
   <sql id="Base_Column_List" >
     id, scc_1, scc_2, scc_3, scc_4, description
   </sql>
-  <select id="selectByScc4" resultMap="BaseResultMap" parameterType="nankai.xl.business.model.Scc4" >
+  <select id="selectByScc4" resultType="nankai.xl.business.model.Scc4" parameterType="nankai.xl.business.model.Scc4" >
     select
     <include refid="Base_Column_List" />
     from scc_4
@@ -32,8 +32,18 @@
     </where>
   </select>
   <select id="selectBySccCode" resultType="nankai.xl.business.model.vo.SccVo" parameterType="java.lang.String" >
-      SELECT * FROM scc_describe
-      WHERE scc_code= #{sccCode}
+      SELECT * FROM(
+          SELECT CONCAT(scc_4.scc_1,scc_4.scc_2,scc_4.scc_3,scc_4.scc_4) AS sccCode,
+          CONCAT(scc_1.description,'/',scc_2.description,'/',scc_3.description,'/',scc_4.description) AS description
+          FROM scc_4
+          LEFT JOIN scc_1
+          ON scc_4.scc_1=scc_1.scc_1
+          LEFT JOIN scc_2
+          ON scc_4.scc_1=scc_2.scc_1 AND scc_4.scc_2=scc_2.scc_2
+          LEFT JOIN scc_3
+          ON scc_4.scc_1=scc_3.scc_1 AND scc_4.scc_2=scc_3.scc_2 AND scc_4.scc_3=scc_3.scc_3
+      )ss
+      WHERE sccCode= #{sccCode}
   </select>
 <!--  <select id="selectBySccCode" resultType="nankai.xl.business.model.vo.SccVo" parameterType="java.lang.String" >-->
 <!--    SELECT REPLACE(REPLACE(REPLACE(REPLACE(description,CHAR(13),''),CHAR(10),''),CHAR(9),''),' ','') AS description,scc_code FROM (-->

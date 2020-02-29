@@ -100,20 +100,6 @@
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 180px;">PM10控制效率</label>
-                    <div class="layui-input-block" >
-                        <input id="pm10Max" name="pm10Max" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
-                    </div>
-                </div>
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 180px;">PM25控制效率</label>
-                    <div class="layui-input-block" >
-                        <input id="pm25Max" name="pm25Max" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|ratio">
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">施工面积(m²)</label>
                     <div class="layui-input-block" >
                         <input id="thisyearArea" name="thisyearArea" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|pos-num">
@@ -125,6 +111,8 @@
                         <input id="months" name="months" style="width: 170px;" class="layui-input" type="text"  lay-verify="required|integer">
                     </div>
                 </div>
+            </div>
+            <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">施工工地编号</label>
                     <div class="layui-input-block" >
@@ -143,14 +131,9 @@
                 <input type="checkbox" name="controlMeasure" value="F" title="封闭">
             </div>
             <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none">
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>

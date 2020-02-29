@@ -1,8 +1,11 @@
 package nankai.xl.system.service;
 
+import nankai.xl.common.util.ShiroUtil;
 import nankai.xl.common.util.TreeUtil;
 import nankai.xl.system.mapper.DeptMapper;
+import nankai.xl.system.model.Adminuser;
 import nankai.xl.system.model.Dept;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -59,7 +62,27 @@ public class DeptService {
      * 查找所有的部门
      */
     public List<Dept> selectAllDept() {
-        return deptMapper.selectAll();
+        Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        if (ShiroUtil.getSuperAdminUsername().equals(currtUser.getUsername())){
+            return deptMapper.selectAll();
+        }else{
+            List<Dept> depts=deptMapper.selectByParentId(currtUser.getDeptId());
+            depts.addAll(getChild(depts));
+            Dept dept=deptMapper.selectByPrimaryKey(currtUser.getDeptId());
+            dept.setParentId("0");
+            depts.add(dept);
+            return depts;
+        }
+    }
+    public List<Dept> getChild(List<Dept> depts) {
+        List<Dept> deptList =new ArrayList<>();
+        for (Dept dept:depts) {
+            List<Dept> deptList0 =deptMapper.selectByParentId(dept.getDeptId());
+            if (deptList0!=null){
+                deptList.addAll(deptList0);
+            }
+        }
+        return deptList;
     }
 
     /**
@@ -76,7 +99,7 @@ public class DeptService {
         List<Dept> deptList = toTree(selectAllDept());
         Dept root = new Dept();
         root.setDeptId("0");
-        root.setDeptName("根部门");
+        root.setDeptName("部门树形结构");
         root.setChildren(deptList);
         List<Dept> rootList = new ArrayList<>();
         rootList.add(root);

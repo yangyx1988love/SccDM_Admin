@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.RailwayEngineMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.RailwayEngineVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.RailwayEngine" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="county_id" property="countyId" jdbcType="CHAR" />
@@ -20,7 +20,6 @@
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
     <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.RailwayEngineVo" parameterType="nankai.xl.business.model.vo.RailwayEngineVo" >
     SELECT yd_railway_engine.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_railway_engine.scc_code,1,2) AS scc1,SUBSTR(yd_railway_engine.scc_code,3,2) AS scc2,
@@ -223,24 +222,12 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      scc_code = #{item.sccCode,jdbcType=CHAR},
-      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
-      fuel_annual_usage = #{item.fuelAnnualUsage,jdbcType=DOUBLE},
-      fuel_sulfur_content = #{item.fuelSulfurContent,jdbcType=DOUBLE},
-      fuel_type = #{item.fuelType,jdbcType=CHAR},
-      annal_average_mileage = #{item.annalAverageMileage,jdbcType=DOUBLE},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      vocs_emission = #{item.vocsEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE}
+      #{item.id,jdbcType=INTEGER},#{item.year,jdbcType=CHAR},#{item.countyId,jdbcType=CHAR},
+      #{item.sccCode,jdbcType=CHAR},#{item.sourceDescrip,jdbcType=VARCHAR},#{item.fuelAnnualUsage,jdbcType=DOUBLE},
+      #{item.fuelSulfurContent,jdbcType=DOUBLE},#{item.fuelType,jdbcType=CHAR},#{item.annalAverageMileage,jdbcType=DOUBLE},
+      #{item.pm10Emission,jdbcType=DOUBLE},#{item.pm25Emission,jdbcType=DOUBLE},#{item.coEmission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},#{item.noxEmission,jdbcType=DOUBLE},#{item.vocsEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE},#{item.ocEmission,jdbcType=DOUBLE},#{item.nh3Emission,jdbcType=DOUBLE}
       )
     </foreach>
   </insert>

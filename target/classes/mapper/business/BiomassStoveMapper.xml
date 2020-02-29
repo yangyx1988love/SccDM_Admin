@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.BiomassStoveMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.BiomassStoveVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.BiomassStove" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="county_id" property="countyId" jdbcType="CHAR" />
@@ -23,9 +23,8 @@
     <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
     <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
-  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassStrawVo" parameterType="nankai.xl.business.model.vo.BiomassStoveVo" >
+  <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassStoveVo" parameterType="nankai.xl.business.model.vo.BiomassStoveVo" >
     SELECT biomass_stove.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_stove.scc_code,1,2) AS scc1,SUBSTR(biomass_stove.scc_code,3,2) AS scc2,
     SUBSTR(biomass_stove.scc_code,5,3) AS scc3,SUBSTR(biomass_stove.scc_code,8,3) AS scc4
     FROM biomass_stove
@@ -250,27 +249,27 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      stove_type = #{item.stoveType,jdbcType=CHAR},
-      CROP_TYPE = #{item.cropType,jdbcType=CHAR},
-      CROP_YIELD = #{item.cropYield,jdbcType=DOUBLE},
-      scc_code = #{item.sccCode,jdbcType=CHAR},
-      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
-      GRASS_VALLEY_RATIO = #{item.grassValleyRatio,jdbcType=DOUBLE},
-      BURNING_RATIO_stove = #{item.burningRatioStove,jdbcType=DOUBLE},
-      note = #{item.note,jdbcType=VARCHAR},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      pm_emission = #{item.pmEmission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE}
+      #{item.id,jdbcType=INTEGER},
+      #{item.year,jdbcType=CHAR},
+      #{item.countyId,jdbcType=CHAR},
+      #{item.stoveType,jdbcType=CHAR},
+      #{item.cropType,jdbcType=CHAR},
+      #{item.cropYield,jdbcType=DOUBLE},
+      #{item.sccCode,jdbcType=CHAR},
+      #{item.sourceDescrip,jdbcType=VARCHAR},
+      #{item.grassValleyRatio,jdbcType=DOUBLE},
+      #{item.burningRatioStove,jdbcType=DOUBLE},
+      #{item.note,jdbcType=VARCHAR},
+      #{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},
+      #{item.pmEmission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE}
       )
     </foreach>
   </insert>

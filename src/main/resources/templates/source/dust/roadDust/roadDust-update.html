@@ -18,7 +18,7 @@
                 <legend>SCC编码：<span th:text="${xjroaddustVo.scccode}"></span>&nbsp;&nbsp;&nbsp;
                          详情：<span th:text="${xjroaddustVo.sccDescribe}"></span></legend>
             </blockquote>
-            <input type="hidden" id="id" name="id"  th:value="${xjroaddustVo.rdId}">
+            <input type="hidden" id="rdId" name="rdId"  th:value="${xjroaddustVo.rdId}">
             <input type="hidden" id="scc1" name="scc1"  th:value="${xjroaddustVo.scc1}">
             <input type="hidden" id="scc2" name="scc2"  th:value="${xjroaddustVo.scc2}">
             <div class="layui-form-item">
@@ -81,19 +81,19 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">车流量(辆/年)</label>
                     <div class="layui-input-block" >
-                        <input id="carflow" name="carflow" style="width: 170px;" th:value="${xjroaddustVo.carflow}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="carflow" name="carflow" style="width: 170px;" th:value="${xjroaddustVo.carflow}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">平均车速(km/h)</label>
                     <div class="layui-input-block" >
-                        <input id="averspeed" name="averspeed" style="width: 170px;" th:value="${xjroaddustVo.averspeed}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="averspeed" name="averspeed" style="width: 170px;" th:value="${xjroaddustVo.averspeed}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">道路表面有效积尘率</label>
                     <div class="layui-input-block" >
-                        <input id="dirtratio" name="dirtratio" style="width: 170px;" th:value="${xjroaddustVo.dirtratio}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="dirtratio" name="dirtratio" style="width: 170px;" th:value="${xjroaddustVo.dirtratio}" class="layui-input" type="text"  lay-verify="required|ratio">
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">道路积尘负荷(g/m²)</label>
                     <div class="layui-input-block" >
-                        <input id="roadload" name="roadload" style="width: 170px;" th:value="${xjroaddustVo.roadload}" class="layui-input" type="text"  lay-verify="required|integer">
+                        <input id="roadload" name="roadload" style="width: 170px;" th:value="${xjroaddustVo.roadload}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
                 <div class="layui-inline" style="width: 350px;">
@@ -121,7 +121,7 @@
                 <div class="layui-inline" style="width: 350px;">
                     <label class="layui-form-label" style="width: 180px;">平均车重(t)</label>
                     <div class="layui-input-block" >
-                        <input id="averweight" name="averweight" style="width: 170px;" th:value="${xjroaddustVo.averweight}" class="layui-input" type="text"  lay-verify="required|ratio">
+                        <input id="averweight" name="averweight" style="width: 170px;" th:value="${xjroaddustVo.averweight}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
             </div>
@@ -136,14 +136,9 @@
                 <input type="checkbox" name="controlMeasure" value="F" title="封闭">
             </div>
             <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none">
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>

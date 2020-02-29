@@ -8,6 +8,7 @@ import nankai.xl.system.mapper.AdminuserMapper;
 import nankai.xl.system.mapper.UserRoleMapper;
 import nankai.xl.system.model.Adminuser;
 import nankai.xl.system.model.Menu;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.session.Session;
@@ -44,7 +45,12 @@ public class AdminuserService {
 
     public List<Adminuser> selectAllWithDept(int page, int rows) {
         PageHelper.startPage(page, rows);
-        return adminuserMapper.selectAllWithDept();
+        Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        if (ShiroUtil.getSuperAdminUsername().equals(currtUser.getUsername())){
+            return adminuserMapper.selectAllWithDept();
+        }else {
+            return adminuserMapper.selectWithDeptByParentId(currtUser.getDeptId());
+        }
     }
 
     public Integer[] selectRoleIdsById(Integer userId) {

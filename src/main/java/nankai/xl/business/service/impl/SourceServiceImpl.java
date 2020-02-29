@@ -36,15 +36,15 @@ public class SourceServiceImpl implements SourceService {
     @Resource
     private RoadPaveMapper roadPaveMapper;
     @Resource
-    private YcconstructdustMapper ycconstructdustMapper;
+    private YcConstructdustMapper ycconstructdustMapper;
     @Resource
-    private YcdustLoadMapper ycdustLoadMapper;
+    private YcDustLoadMapper ycdustLoadMapper;
     @Resource
-    private YcroaddustMapper ycroaddustMapper;
+    private YcRoaddustMapper ycroaddustMapper;
     @Resource
-    private YcsoildustMapper ycsoildustMapper;
+    private YcSoildustMapper ycsoildustMapper;
     @Resource
-    private YcdustStackMapper ycdustStackMapper;
+    private YcDustStackMapper ycdustStackMapper;
     @Resource
     private GasSourceMapper gasSourceMapper;
     @Resource
@@ -101,7 +101,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateScatteredCoal(ScatteredCoalVo scatteredCoalVo,boolean isCul) {
         ScatteredCoal scatteredCoal=scatteredCoalVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(scatteredCoalVo.getSccCode());
             Double activity=scatteredCoal.getActivityLevelNum();
             scatteredCoal.setPm25Emission(activity*scc.getPm25());
@@ -169,7 +169,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=shGasemission;
         int comId=insertOrUpdateCompany(company);
         shGasemission.setFactoryId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(shGasemission.getScccode());
             Double activity=shGasemission.getActivity();
             shGasemission.setPm25Emission(activity*scc.getPm25());
@@ -229,7 +229,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=shSealpoint;
         int comId=insertOrUpdateCompany(company);
         shSealpoint.setFactoryId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(shSealpoint.getScccode());
             Double activity=shSealpoint.getActivity();
             shSealpoint.setPm25Emission(activity*scc.getPm25());
@@ -271,7 +271,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=shEffluentemission;
         int comId=insertOrUpdateCompany(company);
         shEffluentemission.setFactoryId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(shEffluentemission.getScccode());
             Double activity=shEffluentemission.getActivity();
             shEffluentemission.setPm25Emission(activity*scc.getPm25());
@@ -339,7 +339,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=shVocdeviceeffi;
         int comId=insertOrUpdateCompany(company);
         shVocdeviceeffi.setFactoryId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(shVocdeviceeffi.getScccode());
             Double activity=shVocdeviceeffi.getAnnualRuntime();
             shVocdeviceeffi.setPm25Emission(activity*scc.getPm25());
@@ -379,7 +379,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateBuild(BuildingSmearVo buildingSmearVo,boolean isCul) {
         BuildingSmearVo buildingSmear=buildingSmearVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(buildingSmear.getScccode());
             Double activity=buildingSmear.getPaintAmount();
             buildingSmear.setPm25Emission(activity*scc.getPm25());
@@ -422,7 +422,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=carRepair;
         int comId=insertOrUpdateCompany(company);
         carRepair.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(carRepair.getScccode());
             Double activity=carRepair.getSolventAmount();
             carRepair.setPm25Emission(activity*scc.getPm25());
@@ -462,7 +462,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateDeoil(DeoilVo deoilVo,boolean isCul) {
         Deoil deoil=deoilVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(deoil.getScccode());
             Double activity=deoil.getPeoplenumber()+0.0;
             deoil.setPm25Emission(activity*scc.getPm25());
@@ -505,7 +505,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=dryCleaner;
         int comId=insertOrUpdateCompany(company);
         dryCleaner.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(dryCleaner.getScccode());
             Double activity=dryCleaner.getYearAmount();
             dryCleaner.setPm25Emission(activity*scc.getPm25());
@@ -545,7 +545,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateHouse(HouseVo houseVo,boolean isCul) {
         House house=houseVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(house.getScccode());
             Double activity=house.getSolventAmount();
             house.setPm25Emission(activity*scc.getPm25());
@@ -585,7 +585,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateRoadPa(RoadPaveVo roadPaveVo,boolean isCul) {
         RoadPave roadPave=roadPaveVo;
-        if (!isCul){
+        if (isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
 //            roadPave.setPm25Emission(activity*scc.getPm25());
@@ -647,7 +647,10 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateCon(ycConstructdustVo xjconstructdustVo, boolean isCul) {
         YcConstructdust xjconstructdus=xjconstructdustVo;
-        if (!isCul){
+        Company company=xjconstructdus;
+        int comId=insertOrUpdateCompany(company);
+        xjconstructdus.setComId(comId);
+        if (isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
 //            roadPave.setPm25Emission(activity*scc.getPm25());
@@ -687,7 +690,10 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateDustLoad(YcDustLoadVo xjcydustLoadVo, boolean isCul) {
         YcDustLoad ycDustLoad =xjcydustLoadVo;
-        if (!isCul){
+        Company company=ycDustLoad;
+        int comId=insertOrUpdateCompany(company);
+        ycDustLoad.setComId(comId);
+        if (isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
 //            roadPave.setPm25Emission(activity*scc.getPm25());
@@ -727,7 +733,10 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateDustStack(YcDustStackVo xjcydustStackVo, boolean isCul) {
         YcDustStack ycDustStack =xjcydustStackVo;
-        if (!isCul){
+        Company company=ycDustStack;
+        int comId=insertOrUpdateCompany(company);
+        ycDustStack.setComId(comId);
+        if (isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
 //            roadPave.setPm25Emission(activity*scc.getPm25());
@@ -767,7 +776,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateRoadDust(YcRoaddustVo xjroaddustVo, boolean isCul) {
         YcRoaddust ycRoaddust =xjroaddustVo;
-        if (!isCul){
+        if (isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
 //            roadPave.setPm25Emission(activity*scc.getPm25());
@@ -807,7 +816,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateSoilDust(YcSoildustVo xjsoildustVo, boolean isCul) {
         YcSoildust ycSoildust =xjsoildustVo;
-        if (!isCul){
+        if (isCul){
 //            Scc scc=getSccFactor(roadPave.getScccode());
 //            Double activity=roadPave.getAsphalt();
 //            roadPave.setPm25Emission(activity*scc.getPm25());
@@ -868,7 +877,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=gasSource;
         int comId=insertOrUpdateCompany(company);
         gasSource.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(gasSource.getScccode());
             Double activity=gasSource.getSalesVolume();
 //            gasSource.set(activity*scc.getPm25());
@@ -911,7 +920,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=oilSource;
         int comId=insertOrUpdateCompany(company);
         oilSource.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(oilSource.getScccode());
             Double activity=oilSource.getSalesVolume();
 //            gasSource.set(activity*scc.getPm25());
@@ -954,7 +963,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=oilTransport;
         int comId=insertOrUpdateCompany(company);
         oilTransport.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(oilTransport.getScccode());
             Double activity=oilTransport.getYearVolume();
 //            gasSource.set(activity*scc.getPm25());
@@ -997,7 +1006,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=tankSource;
         int comId=insertOrUpdateCompany(company);
         tankSource.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(tankSource.getScccode());
 //            Double activity=tankSource.get();
 //            gasSource.set(activity*scc.getPm25());
@@ -1065,7 +1074,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateBaseSoil(BaseSoilVo baseSoilVo,boolean isCul) {
         BaseSoil baseSoil=baseSoilVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(baseSoil.getScccode());
             Double activity=baseSoil.getCultivateArea();
             baseSoil.setPm25Emission(activity*scc.getPm25());
@@ -1108,7 +1117,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=collectbreeding;
         int comId=insertOrUpdateCompany(company);
         collectbreeding.setCompanyId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(collectbreeding.getScccode());
             Double activity=collectbreeding.getActivityLevel();
             collectbreeding.setPm25Emission(activity*scc.getPm25());
@@ -1148,7 +1157,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateFertil(FertilizationVo fertilizationVo,boolean isCul) {
         Fertilization fertilization=fertilizationVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(fertilization.getScccode());
             Double activity=fertilization.getActivityLevel();
             fertilization.setPm25Emission(activity*scc.getPm25());
@@ -1188,7 +1197,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateFreeStock(FreeStockbreedingVo freeStockbreedingVo,boolean isCul) {
         FreeStockbreeding fertilizationVo=freeStockbreedingVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(fertilizationVo.getScccode());
             Double activity=fertilizationVo.getActivityLevel();
             fertilizationVo.setPm25Emission(activity*scc.getPm25());
@@ -1228,7 +1237,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateNPlant(NPlantVo nPlantVo,boolean isCul) {
         NPlant nPlant=nPlantVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(nPlant.getScccode());
             Double activity=nPlant.getPlantArea();
             nPlant.setPm25Emission(activity*scc.getPm25());
@@ -1268,7 +1277,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdatePesticide(PesticideVo pesticideVo,boolean isCul) {
         Pesticide pesticide=pesticideVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(pesticide.getScccode());
             Double activity=pesticide.getPesticideamount();
             pesticide.setPm25Emission(activity*scc.getPm25());
@@ -1308,7 +1317,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateStrawCompost(StrawCompostVo strawCompostVo,boolean isCul) {
         StrawCompost strawCompost=strawCompostVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(strawCompost.getScccode());
             Double activity=strawCompost.getActivityLevel();
             strawCompost.setPm25Emission(activity*scc.getPm25());
@@ -1369,7 +1378,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=biomassBoiler;
         int comId=insertOrUpdateCompany(company);
         biomassBoiler.setComId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(biomassBoiler.getSccCode());
             Double activity=biomassBoiler.getFuelConsumption();
             biomassBoiler.setPm25Emission(activity*scc.getPm25());
@@ -1409,7 +1418,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateBioForest(BiomassForestGrasslandVo biomassForestGrasslandVo,boolean isCul) {
         BiomassForestGrassland biomassForestGrassland=biomassForestGrasslandVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(biomassForestGrassland.getSccCode());
             Double activity=biomassForestGrassland.getFireArea();
             biomassForestGrassland.setPm25Emission(activity*scc.getPm25());
@@ -1449,7 +1458,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateBioStove(BiomassStoveVo biomassStoveVo,boolean isCul) {
         BiomassStove biomassStove=biomassStoveVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(biomassStove.getSccCode());
             Double activity=biomassStove.getCropYield();
             biomassStove.setPm25Emission(activity*scc.getPm25());
@@ -1489,7 +1498,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateBioStraw(BiomassStrawVo biomassStrawVo,boolean isCul) {
         BiomassStraw biomassStraw=biomassStrawVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(biomassStraw.getSccCode());
             Double activity=biomassStraw.getCropsOutput();
             biomassStraw.setPm25Emission(activity*scc.getPm25());
@@ -1537,7 +1546,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateRoadMove(RoadMoveVo roadMoveVo,boolean isCul) {
         RoadMove roadMove=roadMoveVo;
-        if (!isCul){
+        if (isCul){
 //            Scc scc=getSccFactor(roadMove.getScccode());
 //            Double activity=roadMove.get();
 //            roadMove.setPm25Emission(activity*scc.getPm25());
@@ -1603,7 +1612,7 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public int insertOrUpdate(AgricultureMachinery agricultureMachinery,boolean isCul) {
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(agricultureMachinery.getSccCode());
             Double activity=agricultureMachinery.getAnnalAverageMilage();
             agricultureMachinery.setPm25Emission(activity*scc.getPm25());
@@ -1647,7 +1656,7 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public int insertOrUpdate(Airplane airplane,boolean isCul) {
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(airplane.getSccCode());
             Double activity=airplane.getActivityLevel();
             airplane.setPm25Emission(activity*scc.getPm25());
@@ -1691,7 +1700,7 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public int insertOrUpdate(NonroadMachinery nonroadMachinery,boolean isCul) {
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(nonroadMachinery.getSccCode());
             Double activity=nonroadMachinery.getAnnalAverageMileage();
             nonroadMachinery.setPm25Emission(activity*scc.getPm25());
@@ -1735,7 +1744,7 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public int insertOrUpdate(RailwayEngine railwayEngine,boolean isCul) {
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(railwayEngine.getSccCode());
             Double activity=railwayEngine.getFuelAnnualUsage();
             railwayEngine.setPm25Emission(activity*scc.getPm25());
@@ -1779,7 +1788,7 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public int insertOrUpdate(SmallMachinery smallMachinery,boolean isCul) {
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(smallMachinery.getSccCode());
             Double activity=smallMachinery.getAnnalAverageMileage();
             smallMachinery.setPm25Emission(activity*scc.getPm25());
@@ -1837,7 +1846,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=repastBarbecue;
         int comId=insertOrUpdateCompany(company);
         repastBarbecue.setComId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(repastBarbecue.getScccode());
             Double activity=repastBarbecue.getCoalConsumption();
             repastBarbecue.setPm25Emission(activity*scc.getPm25());
@@ -1877,7 +1886,7 @@ public class SourceServiceImpl implements SourceService {
     @Override
     public int insertOrUpdateRepastFamily(RepastFamilyVo repastFamilyVo,boolean isCul) {
         RepastFamily repastFamily=repastFamilyVo;
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(repastFamily.getScccode());
             Double activity=repastFamily.getGasConsumption();
             repastFamily.setPm25Emission(activity*scc.getPm25());
@@ -1920,7 +1929,7 @@ public class SourceServiceImpl implements SourceService {
         Company company=repast;
         int comId=insertOrUpdateCompany(company);
         repast.setComId(comId);
-        if (!isCul){
+        if (isCul){
             Scc scc=getSccFactor(repast.getScccode());
             Double activity=repast.getCoalConsumption();
             repast.setPm25Emission(activity*scc.getPm25());

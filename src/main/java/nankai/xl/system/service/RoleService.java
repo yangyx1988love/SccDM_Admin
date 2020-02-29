@@ -39,6 +39,13 @@ public class RoleService {
         PageHelper.startPage(page, limit);
         return selectAll();
     }
+    public List<Role> selectById(Integer roleId) {
+        return roleMapper.selectById(roleId);
+    }
+
+    public List<Role> selectLessById(Integer roleId) {
+        return roleMapper.selectLessById(roleId);
+    }
 
     public List<Role> selectAll() {
         return roleMapper.selectAll();

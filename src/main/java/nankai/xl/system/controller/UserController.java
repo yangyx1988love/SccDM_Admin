@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import nankai.xl.common.annotation.OperationLog;
 import nankai.xl.common.util.PageResultBean;
 import nankai.xl.common.util.ResultBean;
+import nankai.xl.common.util.ShiroUtil;
 import nankai.xl.common.validate.groups.Create;
 import nankai.xl.system.model.Adminuser;
 import nankai.xl.system.model.vo.PasswordVO;
@@ -47,15 +48,27 @@ public class UserController {
 
     @GetMapping
     public String add(Model model) {
-        model.addAttribute("roles", roleService.selectAll());
+        Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        Integer[] roleIds=userService.selectRoleIdsById(currtUser.getUserId());
+        if (ShiroUtil.getSuperAdminUsername().equals(currtUser.getUsername())){
+            model.addAttribute("roles", roleService.selectAll());
+        }else{
+            model.addAttribute("roles", roleService.selectLessById(roleIds[0]));
+        }
         return "user/user-add";
     }
 
     @GetMapping("/{userId}")
     public String update(@PathVariable("userId") Integer userId, Model model) {
-        model.addAttribute("roleIds", userService.selectRoleIdsById(userId));
+        Integer[] roleIds=userService.selectRoleIdsById(userId);
+        model.addAttribute("roleIds",roleIds );
         model.addAttribute("user", userService.selectOne(userId));
-        model.addAttribute("roles", roleService.selectAll());
+        Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
+        if (ShiroUtil.getSuperAdminUsername().equals(currtUser.getUsername())){
+            model.addAttribute("roles", roleService.selectAll());
+        }else{
+            model.addAttribute("roles", roleService.selectLessById(userService.selectRoleIdsById(currtUser.getUserId())[0]));
+        }
         return "user/user-add";
     }
     @GetMapping("/currtUser")
@@ -119,17 +132,24 @@ public class UserController {
         model.addAttribute("userId", userId);
         return "user/user-reset-pwd";
     }
+    @OperationLog("重置密码")
+    @PostMapping("/{userId}/reset")
+    @ResponseBody
+    public ResultBean resetPassword(@PathVariable("userId") Integer userId,String password) {
+        userService.updatePasswordByUserId(userId,password);
+        return ResultBean.success();
+    }
     @GetMapping("/currtUser/reset")
     public String resetPasswordCurrtUser(Model model) {
         Adminuser currtUser = (Adminuser) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("userId", currtUser.getUserId());
-        return "user/user-reset-pwd";
+        return "user/currtuser-reset-pwd";
     }
 
     @OperationLog("重置密码")
-    @PostMapping("/{userId}/reset")
+    @PostMapping("/currtUser/{userId}/reset")
     @ResponseBody
-    public ResultBean resetPassword(@PathVariable("userId") Integer userId,String oldpassword,String password) {
+    public ResultBean currtUserresetPassword(@PathVariable("userId") Integer userId,String oldpassword,String password) {
         Adminuser user=userService.selectOne(userId);
         String encryptPassword0 = new Md5Hash(oldpassword,user.getSalt()).toString();
         if (encryptPassword0.equals(user.getPassword())){

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.GasSourceMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.GasSourceVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.GasSource" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="company_id" property="companyId" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
@@ -16,10 +16,6 @@
     <result column="volume_count" property="volumeCount" jdbcType="INTEGER" />
     <result column="gun_num" property="gunNum" jdbcType="INTEGER" />
     <result column="tank_num" property="tankNum" jdbcType="INTEGER" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.GasSourceVo" parameterType="nankai.xl.business.model.vo.GasSourceVo" >
     SELECT cc_gas_source.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(cc_gas_source.scccode,1,2) AS scc1,
@@ -192,20 +188,20 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      company_id = #{item.companyId,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      gas_type = #{item.gasType,jdbcType=CHAR},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
-      sales_volume = #{item.salesVolume,jdbcType=DOUBLE},
-      emission = #{item.emission,jdbcType=DOUBLE},
-      flag = #{item.flag,jdbcType=INTEGER},
-      volume = #{item.volume,jdbcType=DOUBLE},
-      every_volume = #{item.everyVolume,jdbcType=DOUBLE},
-      volume_count = #{item.volumeCount,jdbcType=INTEGER},
-      gun_num = #{item.gunNum,jdbcType=INTEGER},
-      tank_num = #{item.tankNum,jdbcType=INTEGER}
+      #{item.id,jdbcType=INTEGER},
+      #{item.companyId,jdbcType=INTEGER},
+      #{item.year,jdbcType=CHAR},
+      #{item.gasType,jdbcType=CHAR},
+      #{item.scccode,jdbcType=CHAR},
+      #{item.sourceDiscrip,jdbcType=VARCHAR},
+      #{item.salesVolume,jdbcType=DOUBLE},
+      #{item.emission,jdbcType=DOUBLE},
+      #{item.flag,jdbcType=INTEGER},
+      #{item.volume,jdbcType=DOUBLE},
+      #{item.everyVolume,jdbcType=DOUBLE},
+      #{item.volumeCount,jdbcType=INTEGER},
+      #{item.gunNum,jdbcType=INTEGER},
+      #{item.tankNum,jdbcType=INTEGER}
       )
     </foreach>
   </insert>

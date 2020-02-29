@@ -45,24 +45,6 @@ public class YcSoildust {
 
     private Double noxEmission;
 
-    private Double pm25Max;
-
-    private Double pm10Max;
-
-    private Double vocMax;
-
-    private Double nh3Max;
-
-    private Double so2Max;
-
-    private Double coMax;
-
-    private Double ocMax;
-
-    private Double bcMax;
-
-    private Double noxMax;
-
     private String sccDescribe;
 
     private Integer flag;
@@ -241,78 +223,6 @@ public class YcSoildust {
 
     public void setNoxEmission(Double noxEmission) {
         this.noxEmission = noxEmission;
-    }
-
-    public Double getPm25Max() {
-        return pm25Max;
-    }
-
-    public void setPm25Max(Double pm25Max) {
-        this.pm25Max = pm25Max;
-    }
-
-    public Double getPm10Max() {
-        return pm10Max;
-    }
-
-    public void setPm10Max(Double pm10Max) {
-        this.pm10Max = pm10Max;
-    }
-
-    public Double getVocMax() {
-        return vocMax;
-    }
-
-    public void setVocMax(Double vocMax) {
-        this.vocMax = vocMax;
-    }
-
-    public Double getNh3Max() {
-        return nh3Max;
-    }
-
-    public void setNh3Max(Double nh3Max) {
-        this.nh3Max = nh3Max;
-    }
-
-    public Double getSo2Max() {
-        return so2Max;
-    }
-
-    public void setSo2Max(Double so2Max) {
-        this.so2Max = so2Max;
-    }
-
-    public Double getCoMax() {
-        return coMax;
-    }
-
-    public void setCoMax(Double coMax) {
-        this.coMax = coMax;
-    }
-
-    public Double getOcMax() {
-        return ocMax;
-    }
-
-    public void setOcMax(Double ocMax) {
-        this.ocMax = ocMax;
-    }
-
-    public Double getBcMax() {
-        return bcMax;
-    }
-
-    public void setBcMax(Double bcMax) {
-        this.bcMax = bcMax;
-    }
-
-    public Double getNoxMax() {
-        return noxMax;
-    }
-
-    public void setNoxMax(Double noxMax) {
-        this.noxMax = noxMax;
     }
 
     public String getSccDescribe() {

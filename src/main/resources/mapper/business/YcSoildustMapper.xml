@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="nankai.xl.business.mapper.YcsoildustMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.YcSoildustVo" >
+<mapper namespace="nankai.xl.business.mapper.YcSoildustMapper" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.YcSoildust" >
     <id column="sd_id" property="sdId" jdbcType="INTEGER" />
     <result column="scccode" property="scccode" jdbcType="CHAR" />
     <result column="county_id" property="countyId" jdbcType="CHAR" />
@@ -24,18 +24,8 @@
     <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
     <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
-    <result column="pm25_max" property="pm25Max" jdbcType="DOUBLE" />
-    <result column="pm10_max" property="pm10Max" jdbcType="DOUBLE" />
-    <result column="voc_max" property="vocMax" jdbcType="DOUBLE" />
-    <result column="nh3_max" property="nh3Max" jdbcType="DOUBLE" />
-    <result column="so2_max" property="so2Max" jdbcType="DOUBLE" />
-    <result column="co_max" property="coMax" jdbcType="DOUBLE" />
-    <result column="oc_max" property="ocMax" jdbcType="DOUBLE" />
-    <result column="bc_max" property="bcMax" jdbcType="DOUBLE" />
-    <result column="nox_max" property="noxMax" jdbcType="DOUBLE" />
     <result column="scc_describe" property="sccDescribe" jdbcType="VARCHAR" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.YcSoildustVo" parameterType="nankai.xl.business.model.vo.YcSoildustVo" >
     SELECT yc_soildust.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yc_soildust.scccode,1,2) AS scc1,SUBSTR(yc_soildust.scccode,3,2) AS scc2,
@@ -146,33 +136,6 @@
       <if test="noxEmission != null" >
         nox_emission,
       </if>
-      <if test="pm25Max != null" >
-        pm25_max,
-      </if>
-      <if test="pm10Max != null" >
-        pm10_max,
-      </if>
-      <if test="vocMax != null" >
-        voc_max,
-      </if>
-      <if test="nh3Max != null" >
-        nh3_max,
-      </if>
-      <if test="so2Max != null" >
-        so2_max,
-      </if>
-      <if test="coMax != null" >
-        co_max,
-      </if>
-      <if test="ocMax != null" >
-        oc_max,
-      </if>
-      <if test="bcMax != null" >
-        bc_max,
-      </if>
-      <if test="noxMax != null" >
-        nox_max,
-      </if>
       <if test="sccDescribe != null" >
         scc_describe,
       </if>
@@ -247,33 +210,6 @@
       <if test="noxEmission != null" >
         #{noxEmission,jdbcType=DOUBLE},
       </if>
-      <if test="pm25Max != null" >
-        #{pm25Max,jdbcType=DOUBLE},
-      </if>
-      <if test="pm10Max != null" >
-        #{pm10Max,jdbcType=DOUBLE},
-      </if>
-      <if test="vocMax != null" >
-        #{vocMax,jdbcType=DOUBLE},
-      </if>
-      <if test="nh3Max != null" >
-        #{nh3Max,jdbcType=DOUBLE},
-      </if>
-      <if test="so2Max != null" >
-        #{so2Max,jdbcType=DOUBLE},
-      </if>
-      <if test="coMax != null" >
-        #{coMax,jdbcType=DOUBLE},
-      </if>
-      <if test="ocMax != null" >
-        #{ocMax,jdbcType=DOUBLE},
-      </if>
-      <if test="bcMax != null" >
-        #{bcMax,jdbcType=DOUBLE},
-      </if>
-      <if test="noxMax != null" >
-        #{noxMax,jdbcType=DOUBLE},
-      </if>
       <if test="sccDescribe != null" >
         #{sccDescribe,jdbcType=VARCHAR},
       </if>
@@ -284,27 +220,23 @@
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.YcSoildust" >
     insert into yc_soildust (sd_id, scccode, county_id,
-      sd_year, sd_takemeasures, sd_utype, 
-      sd_soiltype, sd_area, soilindexpm25, 
-      soilindexpm10, surindex, noindex, 
-      pindex, pm25_emission, pm10_emission, 
-      voc_emission, nh3_emission, so2_emission, 
-      co_emission, oc_emission, bc_emission, 
-      nox_emission, pm25_max, pm10_max, 
-      voc_max, nh3_max, so2_max, 
-      co_max, oc_max, bc_max, nox_max, 
-      scc_describe, flag)
-    values (#{sdId,jdbcType=INTEGER}, #{scccode,jdbcType=CHAR}, #{countyId,jdbcType=CHAR}, 
-      #{sdYear,jdbcType=CHAR}, #{sdTakemeasures,jdbcType=VARCHAR}, #{sdUtype,jdbcType=VARCHAR}, 
-      #{sdSoiltype,jdbcType=VARCHAR}, #{sdArea,jdbcType=DOUBLE}, #{soilindexpm25,jdbcType=DOUBLE}, 
-      #{soilindexpm10,jdbcType=DOUBLE}, #{surindex,jdbcType=DOUBLE}, #{noindex,jdbcType=DOUBLE}, 
-      #{pindex,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{pm10Emission,jdbcType=DOUBLE}, 
-      #{vocEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE}, 
-      #{coEmission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE}, 
-      #{noxEmission,jdbcType=DOUBLE}, #{pm25Max,jdbcType=DOUBLE}, #{pm10Max,jdbcType=DOUBLE}, 
-      #{vocMax,jdbcType=DOUBLE}, #{nh3Max,jdbcType=DOUBLE}, #{so2Max,jdbcType=DOUBLE}, 
-      #{coMax,jdbcType=DOUBLE}, #{ocMax,jdbcType=DOUBLE}, #{bcMax,jdbcType=DOUBLE}, #{noxMax,jdbcType=DOUBLE}, 
-      #{sccDescribe,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER})
+      sd_year, sd_takemeasures, sd_utype,
+      sd_soiltype, sd_area, soilindexpm25,
+      soilindexpm10, surindex, noindex,
+      pindex, pm25_emission, pm10_emission,
+      voc_emission, nh3_emission, so2_emission,
+      co_emission, oc_emission, bc_emission,
+      nox_emission, scc_describe, flag
+      )
+    values (#{sdId,jdbcType=INTEGER}, #{scccode,jdbcType=CHAR}, #{countyId,jdbcType=CHAR},
+      #{sdYear,jdbcType=CHAR}, #{sdTakemeasures,jdbcType=VARCHAR}, #{sdUtype,jdbcType=VARCHAR},
+      #{sdSoiltype,jdbcType=VARCHAR}, #{sdArea,jdbcType=DOUBLE}, #{soilindexpm25,jdbcType=DOUBLE},
+      #{soilindexpm10,jdbcType=DOUBLE}, #{surindex,jdbcType=DOUBLE}, #{noindex,jdbcType=DOUBLE},
+      #{pindex,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE}, #{pm10Emission,jdbcType=DOUBLE},
+      #{vocEmission,jdbcType=DOUBLE}, #{nh3Emission,jdbcType=DOUBLE}, #{so2Emission,jdbcType=DOUBLE},
+      #{coEmission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE}, #{bcEmission,jdbcType=DOUBLE},
+      #{noxEmission,jdbcType=DOUBLE}, #{sccDescribe,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
+      )
     ON DUPLICATE KEY UPDATE 
       sd_id = #{sdId,jdbcType=INTEGER},
       scccode = #{scccode,jdbcType=CHAR},
@@ -328,66 +260,30 @@
       oc_emission = #{ocEmission,jdbcType=DOUBLE},
       bc_emission = #{bcEmission,jdbcType=DOUBLE},
       nox_emission = #{noxEmission,jdbcType=DOUBLE},
-      pm25_max = #{pm25Max,jdbcType=DOUBLE},
-      pm10_max = #{pm10Max,jdbcType=DOUBLE},
-      voc_max = #{vocMax,jdbcType=DOUBLE},
-      nh3_max = #{nh3Max,jdbcType=DOUBLE},
-      so2_max = #{so2Max,jdbcType=DOUBLE},
-      co_max = #{coMax,jdbcType=DOUBLE},
-      oc_max = #{ocMax,jdbcType=DOUBLE},
-      bc_max = #{bcMax,jdbcType=DOUBLE},
-      nox_max = #{noxMax,jdbcType=DOUBLE},
       scc_describe = #{sccDescribe,jdbcType=VARCHAR},
-      flag = #{flag,jdbcType=INTEGER}   
+      flag = #{flag,jdbcType=INTEGER}
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO yc_soildust (sd_id, scccode, county_id,
+    insert into yc_soildust (sd_id, scccode, county_id,
     sd_year, sd_takemeasures, sd_utype,
     sd_soiltype, sd_area, soilindexpm25,
     soilindexpm10, surindex, noindex,
     pindex, pm25_emission, pm10_emission,
     voc_emission, nh3_emission, so2_emission,
     co_emission, oc_emission, bc_emission,
-    nox_emission, pm25_max, pm10_max,
-    voc_max, nh3_max, so2_max,
-    co_max, oc_max, bc_max, nox_max,
-    scc_describe, flag)
+    nox_emission, scc_describe, flag
+    )
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      sd_id = #{item.sdId,jdbcType=INTEGER},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      sd_year = #{item.sdYear,jdbcType=CHAR},
-      sd_takemeasures = #{item.sdTakemeasures,jdbcType=VARCHAR},
-      sd_utype = #{item.sdUtype,jdbcType=VARCHAR},
-      sd_soiltype = #{item.sdSoiltype,jdbcType=VARCHAR},
-      sd_area = #{item.sdArea,jdbcType=DOUBLE},
-      soilindexpm25 = #{item.soilindexpm25,jdbcType=DOUBLE},
-      soilindexpm10 = #{item.soilindexpm10,jdbcType=DOUBLE},
-      surindex = #{item.surindex,jdbcType=DOUBLE},
-      noindex = #{item.noindex,jdbcType=DOUBLE},
-      pindex = #{item.pindex,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      pm25_max = #{item.pm25Max,jdbcType=DOUBLE},
-      pm10_max = #{item.pm10Max,jdbcType=DOUBLE},
-      voc_max = #{item.vocMax,jdbcType=DOUBLE},
-      nh3_max = #{item.nh3Max,jdbcType=DOUBLE},
-      so2_max = #{item.so2Max,jdbcType=DOUBLE},
-      co_max = #{item.coMax,jdbcType=DOUBLE},
-      oc_max = #{item.ocMax,jdbcType=DOUBLE},
-      bc_max = #{item.bcMax,jdbcType=DOUBLE},
-      nox_max = #{item.noxMax,jdbcType=DOUBLE},
-      scc_describe = #{item.sccDescribe,jdbcType=VARCHAR},
-      flag = #{item.flag,jdbcType=INTEGER}
+      #{item.sdId,jdbcType=INTEGER},#{item.scccode,jdbcType=CHAR},#{item.countyId,jdbcType=CHAR},
+      #{item.sdYear,jdbcType=CHAR},#{item.sdTakemeasures,jdbcType=VARCHAR},#{item.sdUtype,jdbcType=VARCHAR},
+      #{item.sdSoiltype,jdbcType=VARCHAR},#{item.sdArea,jdbcType=DOUBLE},#{item.soilindexpm25,jdbcType=DOUBLE},
+      #{item.soilindexpm10,jdbcType=DOUBLE},#{item.surindex,jdbcType=DOUBLE},#{item.noindex,jdbcType=DOUBLE},
+      #{item.pindex,jdbcType=DOUBLE},#{item.pm25Emission,jdbcType=DOUBLE},#{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},#{item.nh3Emission,jdbcType=DOUBLE},#{item.so2Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},#{item.ocEmission,jdbcType=DOUBLE},#{item.bcEmission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},#{item.sccDescribe,jdbcType=VARCHAR},#{item.flag,jdbcType=INTEGER}
       )
     </foreach>
   </insert>
@@ -456,33 +352,6 @@
       </if>
       <if test="noxEmission != null" >
         nox_emission = #{noxEmission,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25Max != null" >
-        pm25_max = #{pm25Max,jdbcType=DOUBLE},
-      </if>
-      <if test="pm10Max != null" >
-        pm10_max = #{pm10Max,jdbcType=DOUBLE},
-      </if>
-      <if test="vocMax != null" >
-        voc_max = #{vocMax,jdbcType=DOUBLE},
-      </if>
-      <if test="nh3Max != null" >
-        nh3_max = #{nh3Max,jdbcType=DOUBLE},
-      </if>
-      <if test="so2Max != null" >
-        so2_max = #{so2Max,jdbcType=DOUBLE},
-      </if>
-      <if test="coMax != null" >
-        co_max = #{coMax,jdbcType=DOUBLE},
-      </if>
-      <if test="ocMax != null" >
-        oc_max = #{ocMax,jdbcType=DOUBLE},
-      </if>
-      <if test="bcMax != null" >
-        bc_max = #{bcMax,jdbcType=DOUBLE},
-      </if>
-      <if test="noxMax != null" >
-        nox_max = #{noxMax,jdbcType=DOUBLE},
       </if>
       <if test="sccDescribe != null" >
         scc_describe = #{sccDescribe,jdbcType=VARCHAR},

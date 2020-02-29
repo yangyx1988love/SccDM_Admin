@@ -86,7 +86,7 @@ FactoryController {
         }
         model.addAttribute("countyNames", countyNames);
         model.addAttribute("cityNames", cityNames);
-        return "factory/user-add";
+        return "factory/factory-user-add";
     }
     @OperationLog("新增企业用户")
     @PostMapping
@@ -101,7 +101,7 @@ FactoryController {
     @GetMapping("/{factoryNo1}/reset")
     public String resetPassword(@PathVariable("factoryNo1") String factoryNo1, Model model) {
         model.addAttribute("factoryNo1", factoryNo1);
-        return "factory/user-reset-pwd";
+        return "factory/factory-user-reset-pwd";
     }
 
     @OperationLog("重置密码")

@@ -7,7 +7,7 @@ import nankai.xl.business.model.vo.ycConstructdustVo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface YcconstructdustMapper {
+public interface YcConstructdustMapper {
     List<ycConstructdustVo> selectByExample(ycConstructdustVo xjconstructdustVo);
     ycConstructdustVo selectById(Integer id);
     int deleteById(Integer id);

@@ -48,6 +48,11 @@ public interface AdminuserMapper {
     List<Adminuser> selectAllWithDept();
 
     /**
+     * 获取所有用户,根据部门ID，查询所属部门的用户
+     */
+    List<Adminuser> selectWithDeptByParentId(String parentId);
+
+    /**
      * 更改用户的状态为某项值
      */
     int updateStatusByPrimaryKey(@Param("id") Integer id, @Param("status") int status);

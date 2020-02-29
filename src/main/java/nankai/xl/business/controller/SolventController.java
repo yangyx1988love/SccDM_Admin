@@ -419,7 +419,6 @@ public class SolventController {
     @PutMapping("/solvent/roadPa/edit")
     @ResponseBody
     public ResultBean roadPaInsertOrUpdate(boolean isCul,RoadPaveVo roadPaveVo)  {
-        roadPaveVo.setScccode("1441000000");
         SccVo sccVo=selectCommonService.selectBySccCode(roadPaveVo.getScccode());
         roadPaveVo.setSourceDescrip(sccVo.getDescription());
         sourceService.insertOrUpdateRoadPa(roadPaveVo,isCul);

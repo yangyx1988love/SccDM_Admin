@@ -40,6 +40,7 @@ public class DeptController {
     @GetMapping("/tree")
     @ResponseBody
     public ResultBean tree() {
+        List<Dept> depts=deptService.selectAllDeptTree();
         return ResultBean.success(deptService.selectAllDeptTree());
     }
 

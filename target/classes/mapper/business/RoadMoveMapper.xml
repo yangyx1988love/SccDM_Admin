@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.RoadMoveMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.RoadMoveVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.RoadMove" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="scccode" property="scccode" jdbcType="CHAR" />
     <result column="source_discrip" property="sourceDiscrip" jdbcType="VARCHAR" />
@@ -25,7 +25,6 @@
     <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
     <result column="vocs_emission" property="vocsEmission" jdbcType="DOUBLE" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.RoadMoveVo" parameterType="nankai.xl.business.model.vo.RoadMoveVo" >
     SELECT yd_road_move.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(yd_road_move.scccode,1,2) AS scc1,SUBSTR(yd_road_move.scccode,3,2) AS scc2,
@@ -266,29 +265,14 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR},
-      year = #{item.year,jdbcType=CHAR},
-      county_city = #{item.countyCity,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      average_mile = #{item.averageMile,jdbcType=DOUBLE},
-      car_amount = #{item.carAmount,jdbcType=DOUBLE},
-      car_speed = #{item.carSpeed,jdbcType=DOUBLE},
-      fuel_type = #{item.fuelType,jdbcType=VARCHAR},
-      car_fuelamount = #{item.carFuelamount,jdbcType=DOUBLE},
-      orvr_percentage = #{item.orvrPercentage,jdbcType=DOUBLE},
-      average_samount = #{item.averageSamount,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      ec_emission = #{item.ecEmission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      vocs_emission = #{item.vocsEmission,jdbcType=DOUBLE},
-      flag = #{item.flag,jdbcType=INTEGER}
+      #{item.id,jdbcType=INTEGER},#{item.scccode,jdbcType=CHAR},#{item.sourceDiscrip,jdbcType=VARCHAR},
+      #{item.year,jdbcType=CHAR},#{item.countyCity,jdbcType=CHAR},#{item.countyId,jdbcType=CHAR},
+      #{item.averageMile,jdbcType=DOUBLE},#{item.carAmount,jdbcType=DOUBLE},#{item.carSpeed,jdbcType=DOUBLE},
+      #{item.fuelType,jdbcType=VARCHAR},#{item.carFuelamount,jdbcType=DOUBLE},#{item.orvrPercentage,jdbcType=DOUBLE},
+      #{item.averageSamount,jdbcType=DOUBLE},#{item.pm25Emission,jdbcType=DOUBLE},#{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.ocEmission,jdbcType=DOUBLE},#{item.ecEmission,jdbcType=DOUBLE},#{item.so2Emission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},#{item.coEmission,jdbcType=DOUBLE},#{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.vocsEmission,jdbcType=DOUBLE},#{item.flag,jdbcType=INTEGER}
       )
     </foreach>
   </insert>

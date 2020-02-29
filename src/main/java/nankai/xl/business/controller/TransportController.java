@@ -76,7 +76,7 @@ public class TransportController {
         GasSourceVo gasSourceVo=sourceService.getGasById(id);
         Scc4 scc4=new Scc4();
         scc4.setScc1(scc1);
-        scc4.setScc2("23");
+        scc4.setScc2(gasSourceVo.getScc2());
         scc4.setScc3(gasSourceVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
@@ -99,7 +99,7 @@ public class TransportController {
     @PutMapping("/transport/gas/edit")
     @ResponseBody
     public ResultBean gasInsertOrUpdate(boolean isCul,GasSourceVo gasSourceVo)  {
-        gasSourceVo.setScccode(scc1+"23"+gasSourceVo.getScc3()+gasSourceVo.getScc4());
+        gasSourceVo.setScccode(scc1+gasSourceVo.getScc2()+gasSourceVo.getScc3()+gasSourceVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(gasSourceVo.getScccode());
         gasSourceVo.setSourceDiscrip(sccVo.getDescription());
         sourceService.insertOrUpdateGas(gasSourceVo,isCul);
@@ -146,7 +146,7 @@ public class TransportController {
         OilSourceVo oilSourceVo=sourceService.getOilById(id);
         Scc4 scc4=new Scc4();
         scc4.setScc1(scc1);
-        scc4.setScc2("23");
+        scc4.setScc2(oilSourceVo.getScc2());
         scc4.setScc3(oilSourceVo.getScc3());
         List<Scc4> scc4s=selectCommonService.getScc3sByScc4(scc4);
 
@@ -169,7 +169,7 @@ public class TransportController {
     @PutMapping("/transport/oil/edit")
     @ResponseBody
     public ResultBean oilInsertOrUpdate(boolean isCul,OilSourceVo oilSourceVo)  {
-        oilSourceVo.setScccode(scc1+"23"+oilSourceVo.getScc3()+oilSourceVo.getScc4());
+        oilSourceVo.setScccode(scc1+oilSourceVo.getScc2()+oilSourceVo.getScc3()+oilSourceVo.getScc4());
         SccVo sccVo=selectCommonService.selectBySccCode(oilSourceVo.getScccode());
         oilSourceVo.setSourceDiscrip(sccVo.getDescription());
         sourceService.insertOrUpdateOil(oilSourceVo,isCul);
@@ -289,6 +289,7 @@ public class TransportController {
     @GetMapping("/transport/tank/{id}")
     public String tankEdit(@PathVariable("id") Integer id, Model model) {
         TankSourceVo tankSourceVo=sourceService.getTankById(id);
+
         Scc3 scc3=new Scc3();
         scc3.setScc1(scc1);
         scc3.setScc2(tankSourceVo.getScc2());

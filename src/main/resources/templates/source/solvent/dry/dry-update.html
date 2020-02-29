@@ -19,6 +19,7 @@
                          详情：<span th:text="${dryCleanerVo.sourceDescrip}"></span></legend>
             </blockquote>
             <input type="hidden" id="id" name="id"  th:value="${dryCleanerVo.id}">
+            <input type="hidden" id="comId" name="comId"  th:value="${dryCleanerVo.comId}">
             <input type="hidden" id="scc1" name="scc1"  th:value="${dryCleanerVo.scc1}">
             <div class="layui-form-item">
                 <div class="layui-inline" style="width: 350px;">
@@ -101,14 +102,9 @@
                         <input id="yearAmount" name="yearAmount" style="width: 200px;" th:value="${dryCleanerVo.yearAmount}" class="layui-input" type="text"  lay-verify="required|pos-num">
                     </div>
                 </div>
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
             </div>
-            <div id="emissionDiv" name="emissionDiv" style="display: none" >
+            <div id="emissionDiv" name="emissionDiv">
                 <div class="layui-form-item">
                     <div class="layui-inline" style="width: 350px;">
                         <label class="layui-form-label" style="width: 180px;">PM2.5</label>

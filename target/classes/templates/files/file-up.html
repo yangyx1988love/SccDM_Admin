@@ -51,12 +51,7 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-inline" style="width: 350px;">
-                    <label class="layui-form-label" style="width: 190px">污染物系统运算/人工填报</label>
-                    <div class="layui-input-block" style="width: 160px">
-                        <input type="checkbox" id="isCul" name="isCul" lay-skin="switch" lay-filter="isCul" lay-text="ON|OFF">
-                    </div>
-                </div>
+                <th:block  th:include="common/emission::isCul" />
                 <div class="layui-inline" style="width: 350px;">
                     <button class="layui-btn" id="filesUpAction" type="button" lay-filter="edit" lay-submit="">开始上传</button>&nbsp;&nbsp;&nbsp;
                     <span id="msg" name="msg"></span>
@@ -65,11 +60,12 @@
         </div>
         <hr class="layui-bg-gray">
         <blockquote class="layui-elem-quote layui-quote-nm">
-            ON:人工填报，系统将读取导入文件中的污染物排放量；
-            <br>OFF：污染物系统运算,系统将根据公式自动运算并保存。
-            <br><span style="color: red">注意：</span>请把文件中的字段相应填补，如果为数字填为“0”，如果是文字请填“无”。
-            <br>数据中存在企业信息时，企业全称将作为唯一区分；如果不存在则插入。
-            <br>建议用户如果存在不同地区相同企业请在企业名称后加入区域信息，方便区分。
+<!--            ON:污染物系统运算,系统将根据公式自动运算并保存；-->
+<!--            <br>OFF：人工填报，系统将读取导入文件中的污染物排放量。-->
+<!--            <br>-->
+            <span style="color: red">注意：</span>请保留模板文件中的标题栏，将此第二行开始读取数据，请不要空行；
+            <br>请确定上传的文件中不要存在公式，这样会造成读取错误；
+            <br>请把文件中的字段相应填补，如果为数字填为“0”，如果是文字请填“无”。
         </blockquote>
     </form>
 </div>
@@ -168,7 +164,7 @@
                     tds.eq(3).html(''); //清空操作
                     return delete this.files[index]; //删除文件队列已经上传成功的文件
                 }
-                this.error(index, upload);
+                this.error(res,index, upload);
             }
             ,error: function(res,index, upload){
                 layer.msg(res.msg,{icon: 6, time:1000});

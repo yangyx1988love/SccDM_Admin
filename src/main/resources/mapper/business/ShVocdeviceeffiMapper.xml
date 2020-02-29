@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.ShVocdeviceeffiMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.ShVocdeviceeffiVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.ShVocdeviceeffi" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="year" property="year" jdbcType="CHAR" />
     <result column="factory_id" property="factoryId" jdbcType="INTEGER" />
@@ -24,9 +24,6 @@
     <result column="scccode" property="scccode" jdbcType="CHAR" />
     <result column="source_discrip" property="sourceDiscrip" jdbcType="VARCHAR" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" parameterType="nankai.xl.business.model.vo.ShVocdeviceeffiVo" >
     SELECT * FROM (

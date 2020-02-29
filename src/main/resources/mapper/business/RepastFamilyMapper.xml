@@ -1,65 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.RepastFamilyMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.RepastFamily" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="year" property="year" jdbcType="CHAR" />
-    <result column="county_name" property="countyName" jdbcType="CHAR" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="nonfarm_num" property="nonfarmNum" jdbcType="DOUBLE" />
-    <result column="farm_num" property="farmNum" jdbcType="DOUBLE" />
-    <result column="total_num" property="totalNum" jdbcType="DOUBLE" />
-    <result column="scccode" property="scccode" jdbcType="CHAR" />
-    <result column="smoke_rate" property="smokeRate" jdbcType="DOUBLE" />
-    <result column="annual_runtime" property="annualRuntime" jdbcType="INTEGER" />
-    <result column="gas_consumption" property="gasConsumption" jdbcType="DOUBLE" />
-    <result column="removal_effi" property="removalEffi" jdbcType="DOUBLE" />
-    <result column="pm_emf" property="pmEmf" jdbcType="DOUBLE" />
-    <result column="pm_emfunit" property="pmEmfunit" jdbcType="VARCHAR" />
-    <result column="pm10_emf" property="pm10Emf" jdbcType="DOUBLE" />
-    <result column="pm10_emfunit" property="pm10Emfunit" jdbcType="VARCHAR" />
-    <result column="pm25_emf" property="pm25Emf" jdbcType="DOUBLE" />
-    <result column="pm25_emfunit" property="pm25Emfunit" jdbcType="VARCHAR" />
-    <result column="so2_emf" property="so2Emf" jdbcType="DOUBLE" />
-    <result column="so2_emfunit" property="so2Emfunit" jdbcType="VARCHAR" />
-    <result column="nox_emf" property="noxEmf" jdbcType="DOUBLE" />
-    <result column="nox_emfunit" property="noxEmfunit" jdbcType="VARCHAR" />
-    <result column="co_emf" property="coEmf" jdbcType="DOUBLE" />
-    <result column="co_emfunit" property="coEmfunit" jdbcType="VARCHAR" />
-    <result column="nh3_emf" property="nh3Emf" jdbcType="DOUBLE" />
-    <result column="nh3_emfunit" property="nh3Emfunit" jdbcType="VARCHAR" />
-    <result column="voc_emf" property="vocEmf" jdbcType="DOUBLE" />
-    <result column="voc_emfunit" property="vocEmfunit" jdbcType="VARCHAR" />
-    <result column="oc_emf" property="ocEmf" jdbcType="DOUBLE" />
-    <result column="oc_emfunit" property="ocEmfunit" jdbcType="VARCHAR" />
-    <result column="bc_emf" property="bcEmf" jdbcType="DOUBLE" />
-    <result column="bc_emfunit" property="bcEmfunit" jdbcType="VARCHAR" />
-    <result column="pm_emission" property="pmEmission" jdbcType="DOUBLE" />
-    <result column="pm_emiunit" property="pmEmiunit" jdbcType="VARCHAR" />
-    <result column="pm10_emission" property="pm10Emission" jdbcType="DOUBLE" />
-    <result column="pm10_emiunit" property="pm10Emiunit" jdbcType="VARCHAR" />
-    <result column="pm25_emission" property="pm25Emission" jdbcType="DOUBLE" />
-    <result column="pm25_emiunit" property="pm25Emiunit" jdbcType="VARCHAR" />
-    <result column="so2_emission" property="so2Emission" jdbcType="DOUBLE" />
-    <result column="so2_emiunit" property="so2Emiunit" jdbcType="VARCHAR" />
-    <result column="nox_emission" property="noxEmission" jdbcType="DOUBLE" />
-    <result column="nox_emiunit" property="noxEmiunit" jdbcType="VARCHAR" />
-    <result column="co_emission" property="coEmission" jdbcType="DOUBLE" />
-    <result column="co_emiunit" property="coEmiunit" jdbcType="VARCHAR" />
-    <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
-    <result column="nh3_emiunit" property="nh3Emiunit" jdbcType="VARCHAR" />
-    <result column="voc_emission" property="vocEmission" jdbcType="DOUBLE" />
-    <result column="voc_emiunit" property="vocEmiunit" jdbcType="VARCHAR" />
-    <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
-    <result column="oc_emiunit" property="ocEmiunit" jdbcType="VARCHAR" />
-    <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
-    <result column="bc_emiunit" property="bcEmiunit" jdbcType="VARCHAR" />
-    <result column="flag" property="flag" jdbcType="BIT" />
-    <result column="coal_consumption" property="coalConsumption" jdbcType="DOUBLE" />
-    <result column="other_consumption" property="otherConsumption" jdbcType="DOUBLE" />
-    <result column="other_conunit" property="otherConunit" jdbcType="CHAR" />
-    <result column="oil_consumption" property="oilConsumption" jdbcType="DOUBLE" />
-    <result column="source_discrip" property="sourceDiscrip" jdbcType="VARCHAR" />
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.RepastFamily">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="year" jdbcType="CHAR" property="year" />
+    <result column="county_id" jdbcType="CHAR" property="countyId" />
+    <result column="nonfarm_num" jdbcType="DOUBLE" property="nonfarmNum" />
+    <result column="farm_num" jdbcType="DOUBLE" property="farmNum" />
+    <result column="total_num" jdbcType="DOUBLE" property="totalNum" />
+    <result column="scccode" jdbcType="CHAR" property="scccode" />
+    <result column="smoke_rate" jdbcType="DOUBLE" property="smokeRate" />
+    <result column="annual_runtime" jdbcType="INTEGER" property="annualRuntime" />
+    <result column="gas_consumption" jdbcType="DOUBLE" property="gasConsumption" />
+    <result column="removal_effi" jdbcType="DOUBLE" property="removalEffi" />
+    <result column="pm_emission" jdbcType="DOUBLE" property="pmEmission" />
+    <result column="pm10_emission" jdbcType="DOUBLE" property="pm10Emission" />
+    <result column="pm25_emission" jdbcType="DOUBLE" property="pm25Emission" />
+    <result column="so2_emission" jdbcType="DOUBLE" property="so2Emission" />
+    <result column="nox_emission" jdbcType="DOUBLE" property="noxEmission" />
+    <result column="co_emission" jdbcType="DOUBLE" property="coEmission" />
+    <result column="nh3_emission" jdbcType="DOUBLE" property="nh3Emission" />
+    <result column="voc_emission" jdbcType="DOUBLE" property="vocEmission" />
+    <result column="oc_emission" jdbcType="DOUBLE" property="ocEmission" />
+    <result column="bc_emission" jdbcType="DOUBLE" property="bcEmission" />
+    <result column="flag" jdbcType="BIT" property="flag" />
+    <result column="coal_consumption" jdbcType="DOUBLE" property="coalConsumption" />
+    <result column="other_consumption" jdbcType="DOUBLE" property="otherConsumption" />
+    <result column="other_conunit" jdbcType="CHAR" property="otherConunit" />
+    <result column="oil_consumption" jdbcType="DOUBLE" property="oilConsumption" />
+    <result column="source_discrip" jdbcType="VARCHAR" property="sourceDiscrip" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.RepastFamilyVo" parameterType="nankai.xl.business.model.vo.RepastFamilyVo" >
     SELECT repast_family.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(repast_family.scccode,1,2) AS scc1,SUBSTR(repast_family.scccode,3,2) AS scc2,
@@ -101,544 +70,223 @@
     delete from repast_family
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="nankai.xl.business.model.RepastFamily" >
+  <insert id="insertSelective" parameterType="nankai.xl.business.model.RepastFamily">
     insert into repast_family
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="year != null" >
+      <if test="year != null">
         year,
       </if>
-      <if test="countyName != null" >
-        county_name,
-      </if>
-      <if test="countyId != null" >
+      <if test="countyId != null">
         county_id,
       </if>
-      <if test="nonfarmNum != null" >
+      <if test="nonfarmNum != null">
         nonfarm_num,
       </if>
-      <if test="farmNum != null" >
+      <if test="farmNum != null">
         farm_num,
       </if>
-      <if test="totalNum != null" >
+      <if test="totalNum != null">
         total_num,
       </if>
-      <if test="scccode != null" >
+      <if test="scccode != null">
         scccode,
       </if>
-      <if test="smokeRate != null" >
+      <if test="smokeRate != null">
         smoke_rate,
       </if>
-      <if test="annualRuntime != null" >
+      <if test="annualRuntime != null">
         annual_runtime,
       </if>
-      <if test="gasConsumption != null" >
+      <if test="gasConsumption != null">
         gas_consumption,
       </if>
-      <if test="removalEffi != null" >
+      <if test="removalEffi != null">
         removal_effi,
       </if>
-      <if test="pmEmf != null" >
-        pm_emf,
-      </if>
-      <if test="pmEmfunit != null" >
-        pm_emfunit,
-      </if>
-      <if test="pm10Emf != null" >
-        pm10_emf,
-      </if>
-      <if test="pm10Emfunit != null" >
-        pm10_emfunit,
-      </if>
-      <if test="pm25Emf != null" >
-        pm25_emf,
-      </if>
-      <if test="pm25Emfunit != null" >
-        pm25_emfunit,
-      </if>
-      <if test="so2Emf != null" >
-        so2_emf,
-      </if>
-      <if test="so2Emfunit != null" >
-        so2_emfunit,
-      </if>
-      <if test="noxEmf != null" >
-        nox_emf,
-      </if>
-      <if test="noxEmfunit != null" >
-        nox_emfunit,
-      </if>
-      <if test="coEmf != null" >
-        co_emf,
-      </if>
-      <if test="coEmfunit != null" >
-        co_emfunit,
-      </if>
-      <if test="nh3Emf != null" >
-        nh3_emf,
-      </if>
-      <if test="nh3Emfunit != null" >
-        nh3_emfunit,
-      </if>
-      <if test="vocEmf != null" >
-        voc_emf,
-      </if>
-      <if test="vocEmfunit != null" >
-        voc_emfunit,
-      </if>
-      <if test="ocEmf != null" >
-        oc_emf,
-      </if>
-      <if test="ocEmfunit != null" >
-        oc_emfunit,
-      </if>
-      <if test="bcEmf != null" >
-        bc_emf,
-      </if>
-      <if test="bcEmfunit != null" >
-        bc_emfunit,
-      </if>
-      <if test="pmEmission != null" >
+      <if test="pmEmission != null">
         pm_emission,
       </if>
-      <if test="pmEmiunit != null" >
-        pm_emiunit,
-      </if>
-      <if test="pm10Emission != null" >
+      <if test="pm10Emission != null">
         pm10_emission,
       </if>
-      <if test="pm10Emiunit != null" >
-        pm10_emiunit,
-      </if>
-      <if test="pm25Emission != null" >
+      <if test="pm25Emission != null">
         pm25_emission,
       </if>
-      <if test="pm25Emiunit != null" >
-        pm25_emiunit,
-      </if>
-      <if test="so2Emission != null" >
+      <if test="so2Emission != null">
         so2_emission,
       </if>
-      <if test="so2Emiunit != null" >
-        so2_emiunit,
-      </if>
-      <if test="noxEmission != null" >
+      <if test="noxEmission != null">
         nox_emission,
       </if>
-      <if test="noxEmiunit != null" >
-        nox_emiunit,
-      </if>
-      <if test="coEmission != null" >
+      <if test="coEmission != null">
         co_emission,
       </if>
-      <if test="coEmiunit != null" >
-        co_emiunit,
-      </if>
-      <if test="nh3Emission != null" >
+      <if test="nh3Emission != null">
         nh3_emission,
       </if>
-      <if test="nh3Emiunit != null" >
-        nh3_emiunit,
-      </if>
-      <if test="vocEmission != null" >
+      <if test="vocEmission != null">
         voc_emission,
       </if>
-      <if test="vocEmiunit != null" >
-        voc_emiunit,
-      </if>
-      <if test="ocEmission != null" >
+      <if test="ocEmission != null">
         oc_emission,
       </if>
-      <if test="ocEmiunit != null" >
-        oc_emiunit,
-      </if>
-      <if test="bcEmission != null" >
+      <if test="bcEmission != null">
         bc_emission,
       </if>
-      <if test="bcEmiunit != null" >
-        bc_emiunit,
-      </if>
-      <if test="flag != null" >
+      <if test="flag != null">
         flag,
       </if>
-      <if test="coalConsumption != null" >
+      <if test="coalConsumption != null">
         coal_consumption,
       </if>
-      <if test="otherConsumption != null" >
+      <if test="otherConsumption != null">
         other_consumption,
       </if>
-      <if test="otherConunit != null" >
+      <if test="otherConunit != null">
         other_conunit,
       </if>
-      <if test="oilConsumption != null" >
+      <if test="oilConsumption != null">
         oil_consumption,
       </if>
-      <if test="sourceDiscrip != null" >
+      <if test="sourceDiscrip != null">
         source_discrip,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="year != null" >
+      <if test="year != null">
         #{year,jdbcType=CHAR},
       </if>
-      <if test="countyName != null" >
-        #{countyName,jdbcType=CHAR},
-      </if>
-      <if test="countyId != null" >
+      <if test="countyId != null">
         #{countyId,jdbcType=CHAR},
       </if>
-      <if test="nonfarmNum != null" >
+      <if test="nonfarmNum != null">
         #{nonfarmNum,jdbcType=DOUBLE},
       </if>
-      <if test="farmNum != null" >
+      <if test="farmNum != null">
         #{farmNum,jdbcType=DOUBLE},
       </if>
-      <if test="totalNum != null" >
+      <if test="totalNum != null">
         #{totalNum,jdbcType=DOUBLE},
       </if>
-      <if test="scccode != null" >
+      <if test="scccode != null">
         #{scccode,jdbcType=CHAR},
       </if>
-      <if test="smokeRate != null" >
+      <if test="smokeRate != null">
         #{smokeRate,jdbcType=DOUBLE},
       </if>
-      <if test="annualRuntime != null" >
+      <if test="annualRuntime != null">
         #{annualRuntime,jdbcType=INTEGER},
       </if>
-      <if test="gasConsumption != null" >
+      <if test="gasConsumption != null">
         #{gasConsumption,jdbcType=DOUBLE},
       </if>
-      <if test="removalEffi != null" >
+      <if test="removalEffi != null">
         #{removalEffi,jdbcType=DOUBLE},
       </if>
-      <if test="pmEmf != null" >
-        #{pmEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="pmEmfunit != null" >
-        #{pmEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pm10Emf != null" >
-        #{pm10Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="pm10Emfunit != null" >
-        #{pm10Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pm25Emf != null" >
-        #{pm25Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25Emfunit != null" >
-        #{pm25Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="so2Emf != null" >
-        #{so2Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="so2Emfunit != null" >
-        #{so2Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="noxEmf != null" >
-        #{noxEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="noxEmfunit != null" >
-        #{noxEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="coEmf != null" >
-        #{coEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="coEmfunit != null" >
-        #{coEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="nh3Emf != null" >
-        #{nh3Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="nh3Emfunit != null" >
-        #{nh3Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="vocEmf != null" >
-        #{vocEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="vocEmfunit != null" >
-        #{vocEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="ocEmf != null" >
-        #{ocEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="ocEmfunit != null" >
-        #{ocEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="bcEmf != null" >
-        #{bcEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="bcEmfunit != null" >
-        #{bcEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pmEmission != null" >
+      <if test="pmEmission != null">
         #{pmEmission,jdbcType=DOUBLE},
       </if>
-      <if test="pmEmiunit != null" >
-        #{pmEmiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pm10Emission != null" >
+      <if test="pm10Emission != null">
         #{pm10Emission,jdbcType=DOUBLE},
       </if>
-      <if test="pm10Emiunit != null" >
-        #{pm10Emiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pm25Emission != null" >
+      <if test="pm25Emission != null">
         #{pm25Emission,jdbcType=DOUBLE},
       </if>
-      <if test="pm25Emiunit != null" >
-        #{pm25Emiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="so2Emission != null" >
+      <if test="so2Emission != null">
         #{so2Emission,jdbcType=DOUBLE},
       </if>
-      <if test="so2Emiunit != null" >
-        #{so2Emiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="noxEmission != null" >
+      <if test="noxEmission != null">
         #{noxEmission,jdbcType=DOUBLE},
       </if>
-      <if test="noxEmiunit != null" >
-        #{noxEmiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="coEmission != null" >
+      <if test="coEmission != null">
         #{coEmission,jdbcType=DOUBLE},
       </if>
-      <if test="coEmiunit != null" >
-        #{coEmiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="nh3Emission != null" >
+      <if test="nh3Emission != null">
         #{nh3Emission,jdbcType=DOUBLE},
       </if>
-      <if test="nh3Emiunit != null" >
-        #{nh3Emiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="vocEmission != null" >
+      <if test="vocEmission != null">
         #{vocEmission,jdbcType=DOUBLE},
       </if>
-      <if test="vocEmiunit != null" >
-        #{vocEmiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="ocEmission != null" >
+      <if test="ocEmission != null">
         #{ocEmission,jdbcType=DOUBLE},
       </if>
-      <if test="ocEmiunit != null" >
-        #{ocEmiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="bcEmission != null" >
+      <if test="bcEmission != null">
         #{bcEmission,jdbcType=DOUBLE},
       </if>
-      <if test="bcEmiunit != null" >
-        #{bcEmiunit,jdbcType=VARCHAR},
-      </if>
-      <if test="flag != null" >
+      <if test="flag != null">
         #{flag,jdbcType=BIT},
       </if>
-      <if test="coalConsumption != null" >
+      <if test="coalConsumption != null">
         #{coalConsumption,jdbcType=DOUBLE},
       </if>
-      <if test="otherConsumption != null" >
+      <if test="otherConsumption != null">
         #{otherConsumption,jdbcType=DOUBLE},
       </if>
-      <if test="otherConunit != null" >
+      <if test="otherConunit != null">
         #{otherConunit,jdbcType=CHAR},
       </if>
-      <if test="oilConsumption != null" >
+      <if test="oilConsumption != null">
         #{oilConsumption,jdbcType=DOUBLE},
       </if>
-      <if test="sourceDiscrip != null" >
+      <if test="sourceDiscrip != null">
         #{sourceDiscrip,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <insert id="insertOrUpdate" parameterType="nankai.xl.business.model.RepastFamily" >
-    insert into repast_family (id, year, county_name, 
+    insert into repast_family (id, year,
       county_id, nonfarm_num, farm_num, 
       total_num, scccode, smoke_rate, 
       annual_runtime, gas_consumption, removal_effi, 
-      pm_emf, pm_emfunit, pm10_emf, 
-      pm10_emfunit, pm25_emf, pm25_emfunit, 
-      so2_emf, so2_emfunit, nox_emf, 
-      nox_emfunit, co_emf, co_emfunit, 
-      nh3_emf, nh3_emfunit, voc_emf, 
-      voc_emfunit, oc_emf, oc_emfunit, 
-      bc_emf, bc_emfunit, pm_emission, 
-      pm_emiunit, pm10_emission, pm10_emiunit, 
-      pm25_emission, pm25_emiunit, so2_emission, 
-      so2_emiunit, nox_emission, nox_emiunit, 
-      co_emission, co_emiunit, nh3_emission, 
-      nh3_emiunit, voc_emission, voc_emiunit, 
-      oc_emission, oc_emiunit, bc_emission, 
-      bc_emiunit, flag, coal_consumption, 
-      other_consumption, other_conunit, oil_consumption, 
+      pm_emission, pm10_emission, pm25_emission,
+      so2_emission, nox_emission, co_emission,
+      nh3_emission, voc_emission, oc_emission,
+      bc_emission, flag, coal_consumption,
+      other_consumption, other_conunit, oil_consumption,
       source_discrip)
-    values (#{id,jdbcType=INTEGER}, #{year,jdbcType=CHAR}, #{countyName,jdbcType=CHAR}, 
-      #{countyId,jdbcType=CHAR}, #{nonfarmNum,jdbcType=DOUBLE}, #{farmNum,jdbcType=DOUBLE}, 
-      #{totalNum,jdbcType=DOUBLE}, #{scccode,jdbcType=CHAR}, #{smokeRate,jdbcType=DOUBLE}, 
-      #{annualRuntime,jdbcType=INTEGER}, #{gasConsumption,jdbcType=DOUBLE}, #{removalEffi,jdbcType=DOUBLE}, 
-      #{pmEmf,jdbcType=DOUBLE}, #{pmEmfunit,jdbcType=VARCHAR}, #{pm10Emf,jdbcType=DOUBLE}, 
-      #{pm10Emfunit,jdbcType=VARCHAR}, #{pm25Emf,jdbcType=DOUBLE}, #{pm25Emfunit,jdbcType=VARCHAR}, 
-      #{so2Emf,jdbcType=DOUBLE}, #{so2Emfunit,jdbcType=VARCHAR}, #{noxEmf,jdbcType=DOUBLE}, 
-      #{noxEmfunit,jdbcType=VARCHAR}, #{coEmf,jdbcType=DOUBLE}, #{coEmfunit,jdbcType=VARCHAR}, 
-      #{nh3Emf,jdbcType=DOUBLE}, #{nh3Emfunit,jdbcType=VARCHAR}, #{vocEmf,jdbcType=DOUBLE}, 
-      #{vocEmfunit,jdbcType=VARCHAR}, #{ocEmf,jdbcType=DOUBLE}, #{ocEmfunit,jdbcType=VARCHAR}, 
-      #{bcEmf,jdbcType=DOUBLE}, #{bcEmfunit,jdbcType=VARCHAR}, #{pmEmission,jdbcType=DOUBLE}, 
-      #{pmEmiunit,jdbcType=VARCHAR}, #{pm10Emission,jdbcType=DOUBLE}, #{pm10Emiunit,jdbcType=VARCHAR}, 
-      #{pm25Emission,jdbcType=DOUBLE}, #{pm25Emiunit,jdbcType=VARCHAR}, #{so2Emission,jdbcType=DOUBLE}, 
-      #{so2Emiunit,jdbcType=VARCHAR}, #{noxEmission,jdbcType=DOUBLE}, #{noxEmiunit,jdbcType=VARCHAR}, 
-      #{coEmission,jdbcType=DOUBLE}, #{coEmiunit,jdbcType=VARCHAR}, #{nh3Emission,jdbcType=DOUBLE}, 
-      #{nh3Emiunit,jdbcType=VARCHAR}, #{vocEmission,jdbcType=DOUBLE}, #{vocEmiunit,jdbcType=VARCHAR}, 
-      #{ocEmission,jdbcType=DOUBLE}, #{ocEmiunit,jdbcType=VARCHAR}, #{bcEmission,jdbcType=DOUBLE}, 
-      #{bcEmiunit,jdbcType=VARCHAR}, #{flag,jdbcType=BIT}, #{coalConsumption,jdbcType=DOUBLE}, 
+    values (#{id,jdbcType=INTEGER}, #{year,jdbcType=CHAR},
+      #{countyId,jdbcType=CHAR}, #{nonfarmNum,jdbcType=DOUBLE}, #{farmNum,jdbcType=DOUBLE},
+      #{totalNum,jdbcType=DOUBLE}, #{scccode,jdbcType=CHAR}, #{smokeRate,jdbcType=DOUBLE},
+      #{annualRuntime,jdbcType=INTEGER}, #{gasConsumption,jdbcType=DOUBLE}, #{removalEffi,jdbcType=DOUBLE},
+      #{pmEmission,jdbcType=DOUBLE}, #{pm10Emission,jdbcType=DOUBLE}, #{pm25Emission,jdbcType=DOUBLE},
+      #{so2Emission,jdbcType=DOUBLE}, #{noxEmission,jdbcType=DOUBLE}, #{coEmission,jdbcType=DOUBLE},
+      #{nh3Emission,jdbcType=DOUBLE}, #{vocEmission,jdbcType=DOUBLE}, #{ocEmission,jdbcType=DOUBLE},
+      #{bcEmission,jdbcType=DOUBLE}, #{flag,jdbcType=BIT}, #{coalConsumption,jdbcType=DOUBLE},
       #{otherConsumption,jdbcType=DOUBLE}, #{otherConunit,jdbcType=CHAR}, #{oilConsumption,jdbcType=DOUBLE}, 
       #{sourceDiscrip,jdbcType=VARCHAR})
      ON DUPLICATE KEY UPDATE
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      county_name = #{item.countyName,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      nonfarm_num = #{item.nonfarmNum,jdbcType=DOUBLE},
-      farm_num = #{item.farmNum,jdbcType=DOUBLE},
-      total_num = #{item.totalNum,jdbcType=DOUBLE},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      smoke_rate = #{item.smokeRate,jdbcType=DOUBLE},
-      annual_runtime = #{item.annualRuntime,jdbcType=INTEGER},
-      gas_consumption = #{item.gasConsumption,jdbcType=DOUBLE},
-      removal_effi = #{item.removalEffi,jdbcType=DOUBLE},
-      pm_emf = #{item.pmEmf,jdbcType=DOUBLE},
-      pm_emfunit = #{item.pmEmfunit,jdbcType=VARCHAR},
-      pm10_emf = #{item.pm10Emf,jdbcType=DOUBLE},
-      pm10_emfunit = #{item.pm10Emfunit,jdbcType=VARCHAR},
-      pm25_emf = #{item.pm25Emf,jdbcType=DOUBLE},
-      pm25_emfunit = #{item.pm25Emfunit,jdbcType=VARCHAR},
-      so2_emf = #{item.so2Emf,jdbcType=DOUBLE},
-      so2_emfunit = #{item.so2Emfunit,jdbcType=VARCHAR},
-      nox_emf = #{item.noxEmf,jdbcType=DOUBLE},
-      nox_emfunit = #{item.noxEmfunit,jdbcType=VARCHAR},
-      co_emf = #{item.coEmf,jdbcType=DOUBLE},
-      co_emfunit = #{item.coEmfunit,jdbcType=VARCHAR},
-      nh3_emf = #{item.nh3Emf,jdbcType=DOUBLE},
-      nh3_emfunit = #{item.nh3Emfunit,jdbcType=VARCHAR},
-      voc_emf = #{item.vocEmf,jdbcType=DOUBLE},
-      voc_emfunit = #{item.vocEmfunit,jdbcType=VARCHAR},
-      oc_emf = #{item.ocEmf,jdbcType=DOUBLE},
-      oc_emfunit = #{item.ocEmfunit,jdbcType=VARCHAR},
-      bc_emf = #{item.bcEmf,jdbcType=DOUBLE},
-      bc_emfunit = #{item.bcEmfunit,jdbcType=VARCHAR},
-      pm_emission = #{item.pmEmission,jdbcType=DOUBLE},
-      pm_emiunit = #{item.pmEmiunit,jdbcType=VARCHAR},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm10_emiunit = #{item.pm10Emiunit,jdbcType=VARCHAR},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      pm25_emiunit = #{item.pm25Emiunit,jdbcType=VARCHAR},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      so2_emiunit = #{item.so2Emiunit,jdbcType=VARCHAR},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      nox_emiunit = #{item.noxEmiunit,jdbcType=VARCHAR},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      co_emiunit = #{item.coEmiunit,jdbcType=VARCHAR},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      nh3_emiunit = #{item.nh3Emiunit,jdbcType=VARCHAR},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      voc_emiunit = #{item.vocEmiunit,jdbcType=VARCHAR},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      oc_emiunit = #{item.ocEmiunit,jdbcType=VARCHAR},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      bc_emiunit = #{item.bcEmiunit,jdbcType=VARCHAR},
-      flag = #{item.flag,jdbcType=BIT},
-      coal_consumption = #{item.coalConsumption,jdbcType=DOUBLE},
-      other_consumption = #{item.otherConsumption,jdbcType=DOUBLE},
-      other_conunit = #{item.otherConunit,jdbcType=CHAR},
-      oil_consumption = #{item.oilConsumption,jdbcType=DOUBLE},
-      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR}
+
   </insert>
   <insert id="insertList" parameterType="java.util.List">
-    INSERT INTO repast_family (id, year, county_name,
+    insert into repast_family (id, year,
     county_id, nonfarm_num, farm_num,
     total_num, scccode, smoke_rate,
     annual_runtime, gas_consumption, removal_effi,
-    pm_emf, pm_emfunit, pm10_emf,
-    pm10_emfunit, pm25_emf, pm25_emfunit,
-    so2_emf, so2_emfunit, nox_emf,
-    nox_emfunit, co_emf, co_emfunit,
-    nh3_emf, nh3_emfunit, voc_emf,
-    voc_emfunit, oc_emf, oc_emfunit,
-    bc_emf, bc_emfunit, pm_emission,
-    pm_emiunit, pm10_emission, pm10_emiunit,
-    pm25_emission, pm25_emiunit, so2_emission,
-    so2_emiunit, nox_emission, nox_emiunit,
-    co_emission, co_emiunit, nh3_emission,
-    nh3_emiunit, voc_emission, voc_emiunit,
-    oc_emission, oc_emiunit, bc_emission,
-    bc_emiunit, flag, coal_consumption,
+    pm_emission, pm10_emission, pm25_emission,
+    so2_emission, nox_emission, co_emission,
+    nh3_emission, voc_emission, oc_emission,
+    bc_emission, flag, coal_consumption,
     other_consumption, other_conunit, oil_consumption,
     source_discrip)
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      year = #{item.year,jdbcType=CHAR},
-      county_name = #{item.countyName,jdbcType=CHAR},
-      county_id = #{item.countyId,jdbcType=CHAR},
-      nonfarm_num = #{item.nonfarmNum,jdbcType=DOUBLE},
-      farm_num = #{item.farmNum,jdbcType=DOUBLE},
-      total_num = #{item.totalNum,jdbcType=DOUBLE},
-      scccode = #{item.scccode,jdbcType=CHAR},
-      smoke_rate = #{item.smokeRate,jdbcType=DOUBLE},
-      annual_runtime = #{item.annualRuntime,jdbcType=INTEGER},
-      gas_consumption = #{item.gasConsumption,jdbcType=DOUBLE},
-      removal_effi = #{item.removalEffi,jdbcType=DOUBLE},
-      pm_emf = #{item.pmEmf,jdbcType=DOUBLE},
-      pm_emfunit = #{item.pmEmfunit,jdbcType=VARCHAR},
-      pm10_emf = #{item.pm10Emf,jdbcType=DOUBLE},
-      pm10_emfunit = #{item.pm10Emfunit,jdbcType=VARCHAR},
-      pm25_emf = #{item.pm25Emf,jdbcType=DOUBLE},
-      pm25_emfunit = #{item.pm25Emfunit,jdbcType=VARCHAR},
-      so2_emf = #{item.so2Emf,jdbcType=DOUBLE},
-      so2_emfunit = #{item.so2Emfunit,jdbcType=VARCHAR},
-      nox_emf = #{item.noxEmf,jdbcType=DOUBLE},
-      nox_emfunit = #{item.noxEmfunit,jdbcType=VARCHAR},
-      co_emf = #{item.coEmf,jdbcType=DOUBLE},
-      co_emfunit = #{item.coEmfunit,jdbcType=VARCHAR},
-      nh3_emf = #{item.nh3Emf,jdbcType=DOUBLE},
-      nh3_emfunit = #{item.nh3Emfunit,jdbcType=VARCHAR},
-      voc_emf = #{item.vocEmf,jdbcType=DOUBLE},
-      voc_emfunit = #{item.vocEmfunit,jdbcType=VARCHAR},
-      oc_emf = #{item.ocEmf,jdbcType=DOUBLE},
-      oc_emfunit = #{item.ocEmfunit,jdbcType=VARCHAR},
-      bc_emf = #{item.bcEmf,jdbcType=DOUBLE},
-      bc_emfunit = #{item.bcEmfunit,jdbcType=VARCHAR},
-      pm_emission = #{item.pmEmission,jdbcType=DOUBLE},
-      pm_emiunit = #{item.pmEmiunit,jdbcType=VARCHAR},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm10_emiunit = #{item.pm10Emiunit,jdbcType=VARCHAR},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      pm25_emiunit = #{item.pm25Emiunit,jdbcType=VARCHAR},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      so2_emiunit = #{item.so2Emiunit,jdbcType=VARCHAR},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      nox_emiunit = #{item.noxEmiunit,jdbcType=VARCHAR},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      co_emiunit = #{item.coEmiunit,jdbcType=VARCHAR},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      nh3_emiunit = #{item.nh3Emiunit,jdbcType=VARCHAR},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      voc_emiunit = #{item.vocEmiunit,jdbcType=VARCHAR},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      oc_emiunit = #{item.ocEmiunit,jdbcType=VARCHAR},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE},
-      bc_emiunit = #{item.bcEmiunit,jdbcType=VARCHAR},
-      flag = #{item.flag,jdbcType=BIT},
-      coal_consumption = #{item.coalConsumption,jdbcType=DOUBLE},
-      other_consumption = #{item.otherConsumption,jdbcType=DOUBLE},
-      other_conunit = #{item.otherConunit,jdbcType=CHAR},
-      oil_consumption = #{item.oilConsumption,jdbcType=DOUBLE},
-      source_discrip = #{item.sourceDiscrip,jdbcType=VARCHAR}
+      #{item.id,jdbcType=INTEGER},#{item.year,jdbcType=CHAR},
+      #{item.countyId,jdbcType=CHAR},#{item.nonfarmNum,jdbcType=DOUBLE},#{item.farmNum,jdbcType=DOUBLE},
+      #{item.totalNum,jdbcType=DOUBLE},#{item.scccode,jdbcType=CHAR},#{item.smokeRate,jdbcType=DOUBLE},
+      #{item.annualRuntime,jdbcType=INTEGER},#{item.gasConsumption,jdbcType=DOUBLE},#{item.removalEffi,jdbcType=DOUBLE},
+      #{item.pmEmission,jdbcType=DOUBLE},#{item.pm10Emission,jdbcType=DOUBLE},#{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},#{item.noxEmission,jdbcType=DOUBLE},#{item.coEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE},#{item.vocEmission,jdbcType=DOUBLE},#{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE},#{item.flag,jdbcType=BIT},#{item.coalConsumption,jdbcType=DOUBLE},
+      #{item.otherConsumption,jdbcType=DOUBLE},#{item.otherConunit,jdbcType=CHAR},#{item.oilConsumption,jdbcType=DOUBLE},
+      #{item.sourceDiscrip,jdbcType=VARCHAR}
       )
     </foreach>
   </insert>
@@ -647,9 +295,6 @@
     <set >
       <if test="year != null" >
         year = #{year,jdbcType=CHAR},
-      </if>
-      <if test="countyName != null" >
-        county_name = #{countyName,jdbcType=CHAR},
       </if>
       <if test="countyId != null" >
         county_id = #{countyId,jdbcType=CHAR},
@@ -678,125 +323,35 @@
       <if test="removalEffi != null" >
         removal_effi = #{removalEffi,jdbcType=DOUBLE},
       </if>
-      <if test="pmEmf != null" >
-        pm_emf = #{pmEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="pmEmfunit != null" >
-        pm_emfunit = #{pmEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pm10Emf != null" >
-        pm10_emf = #{pm10Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="pm10Emfunit != null" >
-        pm10_emfunit = #{pm10Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="pm25Emf != null" >
-        pm25_emf = #{pm25Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25Emfunit != null" >
-        pm25_emfunit = #{pm25Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="so2Emf != null" >
-        so2_emf = #{so2Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="so2Emfunit != null" >
-        so2_emfunit = #{so2Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="noxEmf != null" >
-        nox_emf = #{noxEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="noxEmfunit != null" >
-        nox_emfunit = #{noxEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="coEmf != null" >
-        co_emf = #{coEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="coEmfunit != null" >
-        co_emfunit = #{coEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="nh3Emf != null" >
-        nh3_emf = #{nh3Emf,jdbcType=DOUBLE},
-      </if>
-      <if test="nh3Emfunit != null" >
-        nh3_emfunit = #{nh3Emfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="vocEmf != null" >
-        voc_emf = #{vocEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="vocEmfunit != null" >
-        voc_emfunit = #{vocEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="ocEmf != null" >
-        oc_emf = #{ocEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="ocEmfunit != null" >
-        oc_emfunit = #{ocEmfunit,jdbcType=VARCHAR},
-      </if>
-      <if test="bcEmf != null" >
-        bc_emf = #{bcEmf,jdbcType=DOUBLE},
-      </if>
-      <if test="bcEmfunit != null" >
-        bc_emfunit = #{bcEmfunit,jdbcType=VARCHAR},
-      </if>
       <if test="pmEmission != null" >
         pm_emission = #{pmEmission,jdbcType=DOUBLE},
-      </if>
-      <if test="pmEmiunit != null" >
-        pm_emiunit = #{pmEmiunit,jdbcType=VARCHAR},
       </if>
       <if test="pm10Emission != null" >
         pm10_emission = #{pm10Emission,jdbcType=DOUBLE},
       </if>
-      <if test="pm10Emiunit != null" >
-        pm10_emiunit = #{pm10Emiunit,jdbcType=VARCHAR},
-      </if>
       <if test="pm25Emission != null" >
         pm25_emission = #{pm25Emission,jdbcType=DOUBLE},
-      </if>
-      <if test="pm25Emiunit != null" >
-        pm25_emiunit = #{pm25Emiunit,jdbcType=VARCHAR},
       </if>
       <if test="so2Emission != null" >
         so2_emission = #{so2Emission,jdbcType=DOUBLE},
       </if>
-      <if test="so2Emiunit != null" >
-        so2_emiunit = #{so2Emiunit,jdbcType=VARCHAR},
-      </if>
       <if test="noxEmission != null" >
         nox_emission = #{noxEmission,jdbcType=DOUBLE},
-      </if>
-      <if test="noxEmiunit != null" >
-        nox_emiunit = #{noxEmiunit,jdbcType=VARCHAR},
       </if>
       <if test="coEmission != null" >
         co_emission = #{coEmission,jdbcType=DOUBLE},
       </if>
-      <if test="coEmiunit != null" >
-        co_emiunit = #{coEmiunit,jdbcType=VARCHAR},
-      </if>
       <if test="nh3Emission != null" >
         nh3_emission = #{nh3Emission,jdbcType=DOUBLE},
-      </if>
-      <if test="nh3Emiunit != null" >
-        nh3_emiunit = #{nh3Emiunit,jdbcType=VARCHAR},
       </if>
       <if test="vocEmission != null" >
         voc_emission = #{vocEmission,jdbcType=DOUBLE},
       </if>
-      <if test="vocEmiunit != null" >
-        voc_emiunit = #{vocEmiunit,jdbcType=VARCHAR},
-      </if>
       <if test="ocEmission != null" >
         oc_emission = #{ocEmission,jdbcType=DOUBLE},
       </if>
-      <if test="ocEmiunit != null" >
-        oc_emiunit = #{ocEmiunit,jdbcType=VARCHAR},
-      </if>
       <if test="bcEmission != null" >
         bc_emission = #{bcEmission,jdbcType=DOUBLE},
-      </if>
-      <if test="bcEmiunit != null" >
-        bc_emiunit = #{bcEmiunit,jdbcType=VARCHAR},
       </if>
       <if test="flag != null" >
         flag = #{flag,jdbcType=BIT},

@@ -332,7 +332,7 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
     form.on('select(scc2)',function(data){
         $("select[id=scc3]").html('<option value="">请选择</option>'); //清空
         $("select[id=scc4]").html('<option value="">请选择</option>'); //清空
-        var scc1=$("input[id=scc1]").val();
+        var scc1=$("#scc1").val();
         form.render('select');
         var scc2=data.value;
         if(scc2!=''){
@@ -360,8 +360,8 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
     });
     form.on('select(scc3)',function(data){
         $("select[id=scc4]").html('<option value="">请选择</option>'); //清空
-        var scc1=$("input[id=scc1]").val();
-        var scc2=$("select[id=scc2]").val();
+        var scc1=$("#scc1").val();
+        var scc2=$("#scc2").val();
         form.render('select');
         var scc3=data.value;
         if (scc3!=''){
@@ -390,9 +390,9 @@ layui.use(['form', 'layer','jquery','laydate'], function(){
     //监听指定开关//污染物是否参与运算
     form.on('switch(isCul)', function(data){
         if (this.checked){
-            $("#emissionDiv").attr("style","display:block;");//显示div
+            $("#emissionDiv").attr("style","display:none;");//显示div
         }else {
-            $("#emissionDiv").attr("style","display:none;");//隐藏div
+            $("#emissionDiv").attr("style","display:block;");//隐藏div
         }
     });
     //企业查询

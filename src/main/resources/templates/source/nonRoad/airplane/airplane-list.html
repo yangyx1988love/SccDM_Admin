@@ -70,7 +70,7 @@
                     , {field: 'coEmission', title: 'CO'}
                     , {field: 'ocEmission', title: 'OC'}
                     , {field: 'bcEmission', title: 'BC'}
-                    , {field: 'vocEmission', title: 'VOC'}
+                    , {field: 'vocsEmission', title: 'VOC'}
                     , {field: 'so2Emission', title: 'SO2'}
                     , {field: 'noxEmission', title: 'NOX'}
                     , {field: 'nh3Emission', title: 'NH3'}
@@ -103,11 +103,11 @@
         function edit(obj) {
             var data = obj.data;
             var url = '/source/nonRoad/airplane/' + data.id;
-            openTab('编辑-农用运输车',url);
+            openTab('编辑-飞机',url);
         }
         function add(obj) {
             var url = '/source/nonRoad/airplane/add';
-            openTab('新增-农用运输车',url);
+            openTab('新增-飞机',url);
         }
         function del(obj) {
             layer.confirm("确定删除吗?", {icon: 3, title: '提示'},

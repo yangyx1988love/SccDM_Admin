@@ -6,7 +6,7 @@ import nankai.xl.business.model.vo.YcSoildustVo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface YcsoildustMapper {
+public interface YcSoildustMapper {
     List<YcSoildustVo> selectByExample(YcSoildustVo xjsoildustVo);
     YcSoildustVo selectById(Integer id);
     int deleteById(Integer id);

@@ -44,7 +44,7 @@ public class FilesController {
 
     @OperationLog("源文件管理-文件下载")
     @GetMapping("/down/index")
-    public String temple(Model model) {
+    public String temple() {
         return "files/temple-list";
     }
     @OperationLog("源文件管理-文件模板列表")
@@ -89,23 +89,38 @@ public class FilesController {
             int num=0;
             try {
                 for (MultipartFile file:files) {
-                    lists.addAll(ReadExcel.readExcel(file));
+                    List<String[]> list=ReadExcel.readExcel(file,0);
+                    if (list!=null){
+                        lists.addAll(list);
+                    }
                 }
-                num=fileService.importTempleFileToSource(childMenuId,lists,isCul);
+                if (lists.size()>0){
+                    num=fileService.importTempleFileToSource(childMenuId,lists,isCul);
+                }else {
+                    return ResultBean.error("无数据，请查看文件！！");
+                }
             } catch (Exception e) {
-                return ResultBean.error(e.getMessage());
+                if (e.getMessage().contains("Mysql")||e.getMessage().contains("jdbc")){
+                    if (e.getMessage().contains("Duplicate")){
+                        return ResultBean.error("数据重复！！违反唯一性条件");
+                    }else {
+                        return ResultBean.error("数据更新错误！！");
+                    }
+                }else{
+                    return ResultBean.error(e.getMessage());
+                }
             }
             return ResultBean.success("共导入:"+num+"数据，导入失败："+(lists.size()-num)+"条数据");
         }
     }
-    @OperationLog("源文件管理-上传-文件分类联级选择")
+    @OperationLog("企业管理-上传-文件分类联级选择")
     @PostMapping("/up/soure/{menuId}")
     @ResponseBody
     public List<Menu> seleCountry(@PathVariable("menuId") Integer menuId) {
         List<Menu> childMeus=menuService.selectByParentId(menuId);
         return childMeus;
     }
-    @OperationLog("源文件管理-文件上传")
+    @OperationLog("企业管理-上传")
     @GetMapping("/up/factory")
     public String factoryUp(Model model) {
         Adminuser user = ShiroUtil.getCurrentUser();
@@ -117,7 +132,7 @@ public class FilesController {
         }
         return "files/factory-up";
     }
-    @OperationLog("源文件上传")
+    @OperationLog("企业上传")
     @PostMapping("/upload/factory")
     @ResponseBody
     public ResultBean factoryUpload(@RequestParam("file") MultipartFile[] files, FactoryQuery factoryQuery){
@@ -128,9 +143,16 @@ public class FilesController {
             List<String[]> lists=new ArrayList<>();
             try {
                 for (MultipartFile file:files) {
-                        lists.addAll(ReadExcel.readExcel(file));
+                    List<String[]> list=ReadExcel.readExcel(file,0);
+                    if (list!=null){
+                        lists.addAll(list);
+                    }
                 }
-                num=fileService.importTempleFileToFactory(factoryQuery,lists);
+                if (lists.size()>0){
+                    num=fileService.importTempleFileToFactory(factoryQuery,lists);
+                }else {
+                    return ResultBean.error("无数据，请查看文件！！");
+                }
             } catch (Exception e) {
                 return ResultBean.error(e.getMessage());
             }

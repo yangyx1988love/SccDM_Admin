@@ -74,11 +74,24 @@
         select
         <include refid="Base_Column_List"/>
         from sys_role
+        where role_id &gt; 0
     </select>
 
     <select id="count" resultType="java.lang.Integer">
         select
         count(*)
         from sys_role
+    </select>
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        where role_id &lt;= #{roleId,jdbcType=INTEGER} and role_id &gt; 0
+    </select>
+    <select id="selectLessById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        where role_id &lt; #{roleId,jdbcType=INTEGER} and role_id &gt; 0
     </select>
 </mapper>

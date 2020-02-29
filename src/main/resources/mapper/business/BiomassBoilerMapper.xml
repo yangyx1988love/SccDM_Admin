@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="nankai.xl.business.mapper.BiomassBoilerMapper" >
-  <resultMap id="BaseResultMap" type="nankai.xl.business.model.vo.BiomassBoilerVo" >
+  <resultMap id="BaseResultMap" type="nankai.xl.business.model.BiomassBoiler" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="scc_code" property="sccCode" jdbcType="CHAR" />
     <result column="com_id" property="comId" jdbcType="INTEGER" />
@@ -28,10 +28,6 @@
     <result column="nh3_emission" property="nh3Emission" jdbcType="DOUBLE" />
     <result column="oc_emission" property="ocEmission" jdbcType="DOUBLE" />
     <result column="bc_emission" property="bcEmission" jdbcType="DOUBLE" />
-    <result column="county_id" property="countyId" jdbcType="CHAR" />
-    <result column="COUNTY_NAME" property="countyName" jdbcType="CHAR" />
-    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByExample" resultType="nankai.xl.business.model.vo.BiomassBoilerVo" parameterType="nankai.xl.business.model.vo.BiomassBoilerVo" >
     SELECT biomass_boiler.*,company.*,co.COUNTY_NAME,co.city_code,co.city_name,SUBSTR(biomass_boiler.scc_code,1,2) AS scc1,SUBSTR(biomass_boiler.scc_code,3,2) AS scc2,SUBSTR(biomass_boiler.scc_code,5,3) AS scc3,SUBSTR(biomass_boiler.scc_code,8,3) AS scc4
@@ -298,32 +294,32 @@
     VALUES
     <foreach collection="list"  index="index" item="item" separator=",">
       (
-      id = #{item.id,jdbcType=INTEGER},
-      scc_code = #{item.sccCode,jdbcType=CHAR},
-      com_id = #{item.comId,jdbcType=INTEGER},
-      source_descrip = #{item.sourceDescrip,jdbcType=VARCHAR},
-      boiler_no = #{item.boilerNo,jdbcType=INTEGER},
-      fuel_type = #{item.fuelType,jdbcType=CHAR},
-      fuel_consumption = #{item.fuelConsumption,jdbcType=DOUBLE},
-      dust_remove_tech = #{item.dustRemoveTech,jdbcType=CHAR},
-      pm10_remove_ratio = #{item.pm10RemoveRatio,jdbcType=DOUBLE},
-      pm25_remove_ratio = #{item.pm25RemoveRatio,jdbcType=DOUBLE},
-      DESULPHUR_REMOVE_TECH = #{item.desulphurRemoveTech,jdbcType=CHAR},
-      SO2_REMOVE_RATIO = #{item.so2RemoveRatio,jdbcType=DOUBLE},
-      DENITRIFIC_REMOVE_TECH = #{item.denitrificRemoveTech,jdbcType=CHAR},
-      NOX_REMOVE_RATIO = #{item.noxRemoveRatio,jdbcType=DOUBLE},
-      note = #{item.note,jdbcType=VARCHAR},
-      year = #{item.year,jdbcType=CHAR},
-      pm10_emission = #{item.pm10Emission,jdbcType=DOUBLE},
-      pm25_emission = #{item.pm25Emission,jdbcType=DOUBLE},
-      co_emission = #{item.coEmission,jdbcType=DOUBLE},
-      voc_emission = #{item.vocEmission,jdbcType=DOUBLE},
-      pm_emission = #{item.pmEmission,jdbcType=DOUBLE},
-      so2_emission = #{item.so2Emission,jdbcType=DOUBLE},
-      nox_emission = #{item.noxEmission,jdbcType=DOUBLE},
-      nh3_emission = #{item.nh3Emission,jdbcType=DOUBLE},
-      oc_emission = #{item.ocEmission,jdbcType=DOUBLE},
-      bc_emission = #{item.bcEmission,jdbcType=DOUBLE}
+      #{item.id,jdbcType=INTEGER},
+      #{item.sccCode,jdbcType=CHAR},
+      #{item.comId,jdbcType=INTEGER},
+      #{item.sourceDescrip,jdbcType=VARCHAR},
+      #{item.boilerNo,jdbcType=INTEGER},
+      #{item.fuelType,jdbcType=CHAR},
+      #{item.fuelConsumption,jdbcType=DOUBLE},
+      #{item.dustRemoveTech,jdbcType=CHAR},
+      #{item.pm10RemoveRatio,jdbcType=DOUBLE},
+      #{item.pm25RemoveRatio,jdbcType=DOUBLE},
+      #{item.desulphurRemoveTech,jdbcType=CHAR},
+      #{item.so2RemoveRatio,jdbcType=DOUBLE},
+      #{item.denitrificRemoveTech,jdbcType=CHAR},
+      #{item.noxRemoveRatio,jdbcType=DOUBLE},
+      #{item.note,jdbcType=VARCHAR},
+      #{item.year,jdbcType=CHAR},
+      #{item.pm10Emission,jdbcType=DOUBLE},
+      #{item.pm25Emission,jdbcType=DOUBLE},
+      #{item.coEmission,jdbcType=DOUBLE},
+      #{item.vocEmission,jdbcType=DOUBLE},
+      #{item.pmEmission,jdbcType=DOUBLE},
+      #{item.so2Emission,jdbcType=DOUBLE},
+      #{item.noxEmission,jdbcType=DOUBLE},
+      #{item.nh3Emission,jdbcType=DOUBLE},
+      #{item.ocEmission,jdbcType=DOUBLE},
+      #{item.bcEmission,jdbcType=DOUBLE}
       )
     </foreach>
   </insert>
